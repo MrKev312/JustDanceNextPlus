@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35309.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustDanceNextPlus", "JustDanceNextPlus\JustDanceNextPlus.csproj", "{D93905A9-270A-4302-9419-ADBB062D6AD8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D93905A9-270A-4302-9419-ADBB062D6AD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D93905A9-270A-4302-9419-ADBB062D6AD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D93905A9-270A-4302-9419-ADBB062D6AD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D93905A9-270A-4302-9419-ADBB062D6AD8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {906B58A8-D884-4FCC-9CA4-842E4B4A1E8C}
+	EndGlobalSection
+EndGlobal
