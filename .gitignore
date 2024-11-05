@@ -7,7 +7,7 @@
 /JustDanceNextPlus/wwwroot/maps/
 /JustDanceNextPlus/wwwroot/main_menu/live-tile.bundle
 /JustDanceNextPlus/wwwroot/jsons/*.json
-/JustDanceNextPlus/wwwroot/All.en-US.json.gz
+/JustDanceNextPlus/wwwroot/jsons/*.json.gz
 
 # User-specific files
 *.rsuser

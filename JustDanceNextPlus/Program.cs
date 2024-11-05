@@ -109,6 +109,8 @@ public class Program
 	{
 		using IServiceScope scope = app.Services.CreateScope();
 		UserDataContext dbContext = scope.ServiceProvider.GetRequiredService<UserDataContext>();
+		// Ensure the folder exists.
+		Directory.CreateDirectory(Path.GetDirectoryName(dbContext.Database.GetDbConnection().DataSource)!);
 		dbContext.Database.EnsureCreated();
 	}
 
