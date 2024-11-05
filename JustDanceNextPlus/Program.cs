@@ -29,6 +29,9 @@ public class Program
 			return;
 		}
 
+		// Ensure the maps folder exists.
+		Directory.CreateDirectory(builder.Configuration["Paths:MapsPath"]!);
+
 		WebApplication app = builder.Build();
 
 		// Ensure the database is created.

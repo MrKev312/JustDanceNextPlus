@@ -23,11 +23,13 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --no-restore
     - name: Test
-      run: dotnet test
+      run: dotnet test --no-build
+    - name: publish
+      run: dotnet publish
     - name: Upload release artifact
       uses: actions/upload-artifact@v4
       with:
         name: artifact
-        path: JustDanceNextPlus/bin/Release/net8.0/
+        path: JustDanceNextPlus/bin/Release/net8.0/Publish
