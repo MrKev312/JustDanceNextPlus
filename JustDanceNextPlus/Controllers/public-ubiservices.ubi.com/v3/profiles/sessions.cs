@@ -38,6 +38,11 @@ public class Sessions(UserDataService userDataService, TimingService timingServi
 
 		// Convert to JWT token
 		JwtSecurityToken jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(authorization);
+		// From the payload, get the subject (sub) claim
+		string? subject = jwtToken.Payload.Sub;
+		if (subject == null)
+			return BadRequest("Invalid 'Authorization' header in request");
+		authorization = subject;
 
 		Profile? userData = userDataService.GetProfileByTicketAsync(authorization).Result;
 

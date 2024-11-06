@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 
+using System.IdentityModel.Tokens.Jwt;
 using System.Text.Json;
 
 namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.session.v2;
@@ -37,9 +38,16 @@ public class Session(TimingService timingService, SessionManager sessionManager)
 			return BadRequest("Missing 'ubi-sessionid' header in request");
 		}
 
+		// Convert to JWT token
+		 JwtSecurityToken jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(nsaIdTokenElement.GetString()!);
+		// From the payload, get the subject (sub) claim
+		string? subject = jwtToken.Payload.Sub;
+		if (subject == null)
+			return BadRequest("Invalid 'userOwnership.dlcCheckToken.nsaIdToken' field in request body");
+
 		// Get the profileId from the session manager
 		Services.Session? session = sessionId == Guid.Empty
-			? sessionManager.GetSessionByNSATicket(nsaIdTokenElement.GetString()!)
+			? sessionManager.GetSessionByNSATicket(subject)
 			: sessionManager.GetSessionById(sessionId);
 
 		if (session == null)
