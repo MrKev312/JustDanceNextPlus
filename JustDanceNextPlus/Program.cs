@@ -82,6 +82,8 @@ public class Program
 
 		// Inject custom services.
 		builder.Services.AddScoped<UserDataService>();
+		builder.Services.AddSingleton<LocalizedStringService>();
+		builder.Services.AddSingleton<TagService>();
 		builder.Services.AddSingleton<JsonSettings>();
 		builder.Services.AddSingleton<MapService>();
 		builder.Services.AddSingleton<PartyManager>();

@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 
 namespace JustDanceNextPlus.Services;
 
-public class MapService(IOptions<PathSettings> pathSettings, UtilityService utilityService, ILogger<MapService> logger)
+public class MapService(IOptions<PathSettings> pathSettings, UtilityService utilityService, TagService tagService, ILogger<MapService> logger)
 {
 	private readonly PathSettings settings = pathSettings.Value;
 
@@ -53,6 +53,25 @@ public class MapService(IOptions<PathSettings> pathSettings, UtilityService util
 		{
 			SongDB.Songs[result.SongID] = result.SongInfo;
 			SongDB.ContentAuthorization[result.SongID] = result.ContentAuthorization;
+
+			List<string> oldTags = result.SongInfo.TagIds;
+			result.SongInfo.TagIds = [];
+
+			// Split the artist by & and trim the results
+			string[] artists = result.SongInfo.Artist.Split('&').Select(x => x.Trim()).ToArray();
+			foreach (string artist in artists) 
+			{
+				// Add the artist to the tag service
+				Guid tag = tagService.GetAddTag(artist, "artist");
+				result.SongInfo.TagIds.Add(tag.ToString());
+			}
+
+			// Add the tags to the tag service
+			foreach (string tag in oldTags)
+			{
+				Guid tagId = tagService.GetAddTag(tag, "mood");
+				result.SongInfo.TagIds.Add(tagId.ToString());
+			}
 		}
 	}
 

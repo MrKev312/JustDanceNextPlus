@@ -21,7 +21,7 @@ public class JustDanceSongDBEntry
 	public int OriginalJDVersion { get; set; } = 0;
 	public string ParentMapName { get; set; } = "";
 	public int SweatDifficulty { get; set; } = 0;
-	public List<Guid> TagIds { get; set; } = [];
+	public List<string> TagIds { get; set; } = [];
 	public List<string> Tags { get; set; } = [];
 	public string Title { get; set; } = "";
 	public Assets Assets { get; set; } = new();
