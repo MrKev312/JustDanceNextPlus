@@ -51,14 +51,8 @@ public class Mutation
 				Good = map.GoodMovesCount,
 				Super = map.SuperMovesCount,
 				Perfect = map.PerfectMovesCount,
-				Gold = map.GoldMovesCount,
-
-				ProfileId = profile.Id,
-				MapId = map.MapId
-			},
-
-			ProfileId = profile.Id,
-			MapId = map.MapId
+				Gold = map.GoldMovesCount
+			}
 		};
 
 		// Update the high score

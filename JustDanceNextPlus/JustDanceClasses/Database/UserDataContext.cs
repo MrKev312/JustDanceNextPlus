@@ -14,4 +14,30 @@ public class UserDataContext(DbContextOptions<UserDataContext> options) : DbCont
 	public DbSet<CompletedTask> CompletedTasks { get; set; }
 	public DbSet<ObjectiveCompletionData> ObjectiveCompletionData { get; set; }
 	public DbSet<BossModeStats> BossStats { get; set; }
+
+	protected override void OnModelCreating(ModelBuilder modelBuilder)
+	{
+		modelBuilder.Entity<MapStats>(builder =>
+		{
+			builder.HasKey(m => new { m.MapId, m.ProfileId });
+
+			builder.OwnsOne(m => m.HighScorePerformance, hs =>
+			{
+				hs.OwnsOne(h => h.Moves);
+
+				// Configure the collection of primitive types
+				hs.Property(h => h.GoldMovesAchieved)
+				  .HasConversion(
+					  v => string.Join(',', v),
+					  v => v.Split(',', StringSplitOptions.RemoveEmptyEntries)
+							.Select(bool.Parse)
+							.ToList());
+			});
+
+			builder.OwnsOne(m => m.GameModeStats, gs =>
+			{
+				gs.OwnsOne(g => g.Challenge);
+			});
+		});
+	}
 }
