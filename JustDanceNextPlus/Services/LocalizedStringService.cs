@@ -117,15 +117,15 @@ public class LocalizedStringService
 
 public class LocalizedStringDatabase
 {
-	public Guid SpaceId { get; } = Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0");
-	public List<LocalizedString> LocalizedStrings { get; } = [];
+	public Guid SpaceId { get; set; } = Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0");
+	public List<LocalizedString> LocalizedStrings { get; set; } = [];
 }
 
 public class LocalizedString
 {
 	[JsonIgnore]
 	public int OasisIdInt { get; set; }
-	public string OasisId => OasisIdInt.ToString();
+	public string OasisId { get => OasisIdInt.ToString(); set => OasisIdInt = int.Parse(value); }
 	public string LocaleCode { get; set; } = "";
 	public string DisplayString { get; set; } = "";
 	public Guid LocalizedStringId { get; set; }
