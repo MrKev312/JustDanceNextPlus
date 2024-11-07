@@ -8,7 +8,10 @@ using System.Text.RegularExpressions;
 
 namespace JustDanceNextPlus.Services;
 
-public class MapService(IOptions<PathSettings> pathSettings, UtilityService utilityService, TagService tagService, ILogger<MapService> logger)
+public class MapService(IOptions<PathSettings> pathSettings,
+	UtilityService utilityService,
+	TagService tagService,
+	ILogger<MapService> logger)
 {
 	private readonly PathSettings settings = pathSettings.Value;
 
@@ -56,12 +59,7 @@ public class MapService(IOptions<PathSettings> pathSettings, UtilityService util
 			SongDB.Songs[result.SongID] = result.SongInfo;
 			SongDB.ContentAuthorization[result.SongID] = result.ContentAuthorization;
 
-			HashSet<string> oldTags = result.SongInfo.TagIds;
-			result.SongInfo.TagIds = [];
-
 			// Split the artist by & and trim the results
-			//string[] split = [" & ", " ft. ", " feat. ", " featuring "];
-			//string[] artists = [.. result.SongInfo.Artist.Split(split, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)];
 			Regex regex = new(@"(?: & | ft. | feat. | featuring )", RegexOptions.IgnoreCase);
 			string[] artists = regex.Split(result.SongInfo.Artist).Select(x => x.Trim()).ToArray();
 
@@ -69,28 +67,14 @@ public class MapService(IOptions<PathSettings> pathSettings, UtilityService util
 			{
 				// Add the artist to the tag service
 				Guid tag = tagService.GetAddTag(artist, "artist");
-				result.SongInfo.TagIds.Add(tag.ToString());
+				result.SongInfo.TagIds.Add(tag);
 			}
 
 			// Process player count
 			{
 				string[] playerCounts = ["Solo", "Duet", "Trio", "Quartet"];
 				Guid tag = tagService.GetAddTag(playerCounts[result.SongInfo.CoachCount - 1], "choreoSettings");
-				result.SongInfo.TagIds.Add(tag.ToString());
-			}
-
-			// Add the tags to the tag service
-			foreach (string tag in oldTags)
-			{
-				// If the tag is a valid guid, just add it
-				if (Guid.TryParse(tag, out Guid tagId))
-				{
-					result.SongInfo.TagIds.Add(tagId.ToString());
-					continue;
-				}
-
-				tagId = tagService.GetAddTag(tag, "mood");
-				result.SongInfo.TagIds.Add(tagId.ToString());
+				result.SongInfo.TagIds.Add(tag);
 			}
 		}
 	}

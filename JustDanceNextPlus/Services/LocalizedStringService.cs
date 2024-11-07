@@ -19,8 +19,7 @@ public class LocalizedStringService
 	readonly ConcurrentDictionary<Guid, int> localizedTagsGuid = new();
 
 	public LocalizedStringService(ILogger<LocalizedStringService> logger,
-		IOptions<PathSettings> settings,
-		JsonSettings jsonSettings)
+		IOptions<PathSettings> settings)
 	{
 		string path = Path.Combine(settings.Value.JsonsPath, "localizedstrings.json");
 		if (!File.Exists(path))
@@ -30,7 +29,7 @@ public class LocalizedStringService
 		}
 
 		string json = File.ReadAllText(path);
-		LocalizedStringDatabase? db = JsonSerializer.Deserialize<LocalizedStringDatabase>(json, jsonSettings.PrettyPascalFormat);
+		LocalizedStringDatabase? db = JsonSerializer.Deserialize<LocalizedStringDatabase>(json, JsonSettings.PrettyPascalFormat);
 
 		if (db == null)
 		{

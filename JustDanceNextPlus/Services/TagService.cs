@@ -14,8 +14,7 @@ public class TagService
 
 	public TagService(LocalizedStringService localizedStringService,
 		ILogger<TagService> logger,
-		IOptions<PathSettings> pathSettings,
-		JsonSettings jsonSettings)
+		IOptions<PathSettings> pathSettings)
 	{
 		this.localizedStringService = localizedStringService;
 
@@ -28,7 +27,7 @@ public class TagService
 		}
 
 		string json = File.ReadAllText(tagsPath);
-		TagDatabase? db = JsonSerializer.Deserialize<TagDatabase>(json, jsonSettings.PrettyPascalFormat);
+		TagDatabase? db = JsonSerializer.Deserialize<TagDatabase>(json, JsonSettings.PrettyPascalFormat);
 
 		if (db == null)
 		{

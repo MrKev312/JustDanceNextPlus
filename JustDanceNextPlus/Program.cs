@@ -1,14 +1,17 @@
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 using JustDanceNextPlus.Configuration;
 using JustDanceNextPlus.JustDanceClasses.Database;
 using JustDanceNextPlus.JustDanceClasses.GraphQL;
 using JustDanceNextPlus.Services;
+using JustDanceNextPlus.Utilities;
 
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace JustDanceNextPlus;
 
@@ -45,15 +48,8 @@ public class Program
 
 	private static void ConfigureServices(WebApplicationBuilder builder)
 	{
-		// Add controllers and JSON options.
+		// Add controllers
 		builder.Services.AddControllers();
-		builder.Services.AddMvc()
-			.AddJsonOptions(options =>
-			{
-				options.JsonSerializerOptions.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
-				options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-				options.JsonSerializerOptions.WriteIndented = true;
-			});
 
 		// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 		builder.Services.AddEndpointsApiExplorer();
@@ -84,13 +80,16 @@ public class Program
 		builder.Services.AddScoped<UserDataService>();
 		builder.Services.AddSingleton<LocalizedStringService>();
 		builder.Services.AddSingleton<TagService>();
-		builder.Services.AddSingleton<JsonSettings>();
 		builder.Services.AddSingleton<MapService>();
 		builder.Services.AddSingleton<PartyManager>();
 		builder.Services.AddSingleton<SecurityService>();
 		builder.Services.AddSingleton<SessionManager>();
 		builder.Services.AddSingleton<TimingService>();
 		builder.Services.AddSingleton<UtilityService>();
+
+		// Inject json converters.
+		builder.Services.AddSingleton<TagIdConverter>();
+		builder.Services.AddSingleton<GuidTagConverter>();
 
 		// Add GraphQL server.
 		builder.Services.AddGraphQLServer()
@@ -108,6 +107,37 @@ public class Program
 		{
 			builder.Services.AddResponseCaching();
 		}
+
+		// Add MVC with custom JSON options.
+		builder.Services.AddMvc()
+			.AddJsonOptions(options =>
+			{
+				var serviceProvider = builder.Services.BuildServiceProvider();
+				var oasisTagConverter = serviceProvider.GetRequiredService<TagIdConverter>();
+				var guidTagConverter = serviceProvider.GetRequiredService<GuidTagConverter>();
+
+				options.JsonSerializerOptions.Converters.Add(oasisTagConverter);
+				options.JsonSerializerOptions.Converters.Add(guidTagConverter);
+
+				options.JsonSerializerOptions.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+				options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+				options.JsonSerializerOptions.WriteIndented = true;
+			});
+
+
+
+		// Update the JsonSettings for the pretty format.
+		var serviceProvider = builder.Services.BuildServiceProvider();
+		var oasisTagConverter = serviceProvider.GetRequiredService<TagIdConverter>();
+		var guidTagConverter = serviceProvider.GetRequiredService<GuidTagConverter>();
+
+		JsonSettings.PrettyPascalFormat = new()
+		{
+			PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+			WriteIndented = true,
+			Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+			Converters = { oasisTagConverter, guidTagConverter }
+		};
 	}
 
 	private static void InitializeDatabase(WebApplication app)
@@ -186,16 +216,16 @@ public class Program
 	}
 }
 
-public class JsonSettings
+public static class JsonSettings
 {
-	public JsonSerializerOptions PrettyPascalFormat { get; set; } = new()
+	public static JsonSerializerOptions PrettyPascalFormat { get; set; } = new()
 	{
 		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
 		WriteIndented = true,
 		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
 	};
 
-	public JsonSerializerOptions ShortFormat { get; set; } = new()
+	public static JsonSerializerOptions ShortFormat { get; set; } = new()
 	{
 		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
 	};

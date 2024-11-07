@@ -1,4 +1,5 @@
 ﻿using JustDanceNextPlus.Services;
+using JustDanceNextPlus.Utilities;
 
 using System.Text.Json.Serialization;
 
@@ -9,7 +10,7 @@ public class JustDanceSongDBEntry
 	public string Artist { get; set; } = "";
 	public Assetsmetadata AssetsMetadata { get; set; } = new();
 	public int CoachCount { get; set; } = 0;
-	public int[] CoachNamesLocIds { get; set; } = [];
+	public OasisTag[] CoachNamesLocIds { get; set; } = [];
 	public string Credits { get; set; } = "";
 	public int DanceVersionLocId { get; set; } = 0;
 	public int Difficulty { get; set; } = 0;
@@ -21,7 +22,7 @@ public class JustDanceSongDBEntry
 	public int OriginalJDVersion { get; set; } = 0;
 	public string ParentMapName { get; set; } = "";
 	public int SweatDifficulty { get; set; } = 0;
-	public HashSet<string> TagIds { get; set; } = [];
+	public HashSet<GuidTag> TagIds { get; set; } = [];
 	public HashSet<string> Tags { get; set; } = [];
 	public string Title { get; set; } = "";
 	public Assets Assets { get; set; } = new();
