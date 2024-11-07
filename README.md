@@ -39,7 +39,7 @@ maps/
 	AudioPreview_opus/
 	  <audio_preview_file>.opus
 	CoachesLarge/
-	  <coach_file.bundle
+	  <coach_file>.bundle
 	CoachesSmall/
 	  <coach_file>.bundle
 	Cover/
