@@ -85,8 +85,12 @@ public class TagService
 
 			TagDatabase.Tags.Add(localizedTag.LocalizedStringId, newTag);
 
-			TagDatabase.IsPresentInSongLibrary.Add(localizedTag.LocalizedStringId);
-			TagDatabase.IsPresentInSongPageDetails.Add(localizedTag.LocalizedStringId);
+			if (category != "artist")
+			{
+				TagDatabase.IsPresentInSongLibrary.Add(localizedTag.LocalizedStringId);
+				TagDatabase.IsPresentInSongPageDetails.Add(localizedTag.LocalizedStringId);
+			}
+
 			return localizedTag.LocalizedStringId;
 		}
 	}
