@@ -27,7 +27,7 @@ public class Localization(LocalizedStringService localizedStringService) : Contr
 	public IActionResult GetLocalization()
 	{
 		// Serialize the LocalizedStringService object to JSON
-		string json = JsonSerializer.Serialize(localizedStringService, options);
+		string json = JsonSerializer.Serialize(localizedStringService.Database, options);
 
 		// Compress the JSON string into GZip format
 		using MemoryStream memoryStream = new();

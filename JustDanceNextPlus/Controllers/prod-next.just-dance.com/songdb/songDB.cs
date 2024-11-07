@@ -13,7 +13,7 @@ public class SongDB(MapService mapService, JsonSettings jsonSettings) : Controll
 	[HttpGet(Name = "GetSongDB")]
 	public IActionResult GetSongDB()
 	{
-		string response = JsonSerializer.Serialize(mapService.SongDB.Songs, jsonSettings.PrettyFormat);
+		string response = JsonSerializer.Serialize(mapService.SongDB.Songs, jsonSettings.PrettyPascalFormat);
 
 		return Content(response, "application/json");
 	}

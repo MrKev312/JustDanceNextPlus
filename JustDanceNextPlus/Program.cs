@@ -188,7 +188,7 @@ public class Program
 
 public class JsonSettings
 {
-	public JsonSerializerOptions PrettyFormat { get; set; } = new()
+	public JsonSerializerOptions PrettyPascalFormat { get; set; } = new()
 	{
 		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
 		WriteIndented = true,

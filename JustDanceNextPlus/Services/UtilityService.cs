@@ -18,7 +18,7 @@ public class UtilityService(JsonSettings jsonSettings)
 			throw new FileNotFoundException($"Missing SongInfo.json in {mapFolder}");
 
 		string songInfoJson = await File.ReadAllTextAsync(songInfoPath);
-		LocalJustDanceSongDBEntry songInfo = JsonSerializer.Deserialize<LocalJustDanceSongDBEntry>(songInfoJson, jsonSettings.PrettyFormat)
+		LocalJustDanceSongDBEntry songInfo = JsonSerializer.Deserialize<LocalJustDanceSongDBEntry>(songInfoJson, jsonSettings.PrettyPascalFormat)
 			?? throw new JsonException("Failed to deserialize SongInfo.json");
 
 		// If the mapId is null or empty, throw an exception

@@ -1,6 +1,7 @@
 using JustDanceNextPlus.JustDanceClasses.Database.Profile;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace JustDanceNextPlus.JustDanceClasses.Database;
 
@@ -24,14 +25,6 @@ public class UserDataContext(DbContextOptions<UserDataContext> options) : DbCont
 			builder.OwnsOne(m => m.HighScorePerformance, hs =>
 			{
 				hs.OwnsOne(h => h.Moves);
-
-				// Configure the collection of primitive types
-				hs.Property(h => h.GoldMovesAchieved)
-				  .HasConversion(
-					  v => string.Join(',', v),
-					  v => v.Split(',', StringSplitOptions.RemoveEmptyEntries)
-							.Select(bool.Parse)
-							.ToList());
 			});
 
 			builder.OwnsOne(m => m.GameModeStats, gs =>

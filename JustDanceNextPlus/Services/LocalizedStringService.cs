@@ -1,22 +1,59 @@
-﻿using System.Collections.Concurrent;
+﻿using JustDanceNextPlus.Configuration;
+
+using Microsoft.Extensions.Options;
+
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.Services;
 
 public class LocalizedStringService
 {
-	public Guid SpaceId { get; } = Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0");
-	public List<LocalizedString> LocalizedStrings { get; } = [];
+	public LocalizedStringDatabase Database { get; } = new();
+
 	readonly ConcurrentDictionary<string, int> localizedTags = new();
 	readonly ConcurrentDictionary<Guid, int> localizedTagsGuid = new();
+
+	public LocalizedStringService(ILogger<LocalizedStringService> logger,
+		IOptions<PathSettings> settings,
+		JsonSettings jsonSettings)
+	{
+		string path = Path.Combine(settings.Value.JsonsPath, "localizedstrings.json");
+		if (!File.Exists(path))
+		{
+			logger.LogInformation("Localized strings database not found, creating a new one");
+			return;
+		}
+
+		string json = File.ReadAllText(path);
+		LocalizedStringDatabase? db = JsonSerializer.Deserialize<LocalizedStringDatabase>(json, jsonSettings.PrettyPascalFormat);
+
+		if (db == null)
+		{
+			logger.LogWarning("Localized strings database could not be loaded");
+			return;
+		}
+
+		Database = db;
+		logger.LogInformation("Localized strings database loaded");
+
+		// Populate the dictionaries
+		Parallel.For(0, Database.LocalizedStrings.Count, i =>
+		{
+			LocalizedString localizedString = Database.LocalizedStrings[i];
+			localizedTags.TryAdd(localizedString.DisplayString, i);
+			localizedTagsGuid.TryAdd(localizedString.LocalizedStringId, i);
+		});
+	}
 
 	public LocalizedString? GetLocalizedTag(string text)
 	{
 		if (localizedTags.TryGetValue(text, out int index))
-			return LocalizedStrings[index];
+			return Database.LocalizedStrings[index];
 
 		return null;
 	}
@@ -24,15 +61,15 @@ public class LocalizedStringService
 	public LocalizedString? GetLocalizedTag(Guid id)
 	{
 		if (localizedTagsGuid.TryGetValue(id, out int index))
-			return LocalizedStrings[index];
+			return Database.LocalizedStrings[index];
 
 		return null;
 	}
 
 	public LocalizedString? GetLocalizedTag(int id)
 	{
-		if (id < LocalizedStrings.Count)
-			return LocalizedStrings[id];
+		if (id < Database.LocalizedStrings.Count)
+			return Database.LocalizedStrings[id];
 
 		return null;
 	}
@@ -45,7 +82,7 @@ public class LocalizedStringService
 			return localizedTag;
 
 		// Lock the list
-		lock (LocalizedStrings)
+		lock (Database.LocalizedStrings)
 		{
 			// Check again
 			localizedTag = GetLocalizedTag(text);
@@ -60,7 +97,7 @@ public class LocalizedStringService
 			}
 			while (localizedTagsGuid.ContainsKey(guid));
 
-			int index = LocalizedStrings.Count;
+			int index = Database.LocalizedStrings.Count;
 
 			localizedTag = new()
 			{
@@ -70,12 +107,18 @@ public class LocalizedStringService
 				LocalizedStringId = guid
 			};
 
-			LocalizedStrings.Add(localizedTag);
+			Database.LocalizedStrings.Add(localizedTag);
 			localizedTags.TryAdd(text, index);
 			localizedTagsGuid.TryAdd(guid, index);
 			return localizedTag;
 		}
 	}
+}
+
+public class LocalizedStringDatabase
+{
+	public Guid SpaceId { get; } = Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0");
+	public List<LocalizedString> LocalizedStrings { get; } = [];
 }
 
 public class LocalizedString

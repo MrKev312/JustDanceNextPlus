@@ -11,6 +11,6 @@ public class TagDB(TagService tagService) : ControllerBase
 	[HttpGet]
 	public IActionResult GetTagdb()
 	{
-		return Ok(tagService);
+		return Ok(tagService.TagDatabase);
 	}
 }

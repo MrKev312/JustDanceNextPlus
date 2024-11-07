@@ -1,12 +1,46 @@
 ﻿using HotChocolate.Execution;
 
+using JustDanceNextPlus.Configuration;
+
+using Microsoft.Extensions.Options;
+
+using System.Text.Json;
+
 namespace JustDanceNextPlus.Services;
 
-public class TagService(LocalizedStringService localizedStringService)
+public class TagService
 {
-	public OrderedDictionary<Guid, Tag> Tags { get; } = [];
-	public List<Guid> IsPresentInSongLibrary { get; } = [];
-	public List<Guid> IsPresentInSongPageDetails { get; } = [];
+	private readonly LocalizedStringService localizedStringService;
+
+	public TagService(LocalizedStringService localizedStringService,
+		ILogger<TagService> logger,
+		IOptions<PathSettings> pathSettings,
+		JsonSettings jsonSettings)
+	{
+		this.localizedStringService = localizedStringService;
+
+		// Load the tags
+		string tagsPath = Path.Combine(pathSettings.Value.JsonsPath, "tagdb.json");
+		if (!File.Exists(tagsPath))
+		{
+			logger.LogInformation("Tag database not found, creating a new one");
+			return;
+		}
+
+		string json = File.ReadAllText(tagsPath);
+		TagDatabase? db = JsonSerializer.Deserialize<TagDatabase>(json, jsonSettings.PrettyPascalFormat);
+
+		if (db == null)
+		{
+			logger.LogWarning("Tag database could not be loaded");
+			return;
+		}
+
+		TagDatabase = db;
+		logger.LogInformation("Tag database loaded");
+	}
+
+	public TagDatabase TagDatabase { get; } = new();
 
 	public Guid? GetTag(string text)
 	{
@@ -15,7 +49,7 @@ public class TagService(LocalizedStringService localizedStringService)
 		if (localizedTag == null)
 			return null;
 
-		Guid tagGuid = Tags.FirstOrDefault(x => x.Value.LocId == localizedTag.OasisIdInt).Key;
+		Guid tagGuid = TagDatabase.Tags.FirstOrDefault(x => x.Value.LocId == localizedTag.OasisIdInt).Key;
 
 		if (tagGuid == Guid.Empty)
 			return null;
@@ -34,7 +68,7 @@ public class TagService(LocalizedStringService localizedStringService)
 			return tag.Value;
 
 		// Lock the list
-		lock (Tags)
+		lock (TagDatabase.Tags)
 		{
 			// Check again
 			tag = GetTag(localizedTag.DisplayString);
@@ -49,13 +83,20 @@ public class TagService(LocalizedStringService localizedStringService)
 				Category = category
 			};
 
-			Tags.Add(localizedTag.LocalizedStringId, newTag);
+			TagDatabase.Tags.Add(localizedTag.LocalizedStringId, newTag);
 
-			IsPresentInSongLibrary.Add(localizedTag.LocalizedStringId);
-			IsPresentInSongPageDetails.Add(localizedTag.LocalizedStringId);
+			TagDatabase.IsPresentInSongLibrary.Add(localizedTag.LocalizedStringId);
+			TagDatabase.IsPresentInSongPageDetails.Add(localizedTag.LocalizedStringId);
 			return localizedTag.LocalizedStringId;
 		}
 	}
+}
+
+public class TagDatabase
+{
+	public OrderedDictionary<Guid, Tag> Tags { get; set; } = [];
+	public List<Guid> IsPresentInSongLibrary { get; set; } = [];
+	public List<Guid> IsPresentInSongPageDetails { get; set; } = [];
 }
 
 public class Tag

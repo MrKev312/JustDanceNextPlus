@@ -58,7 +58,9 @@ public class MapService(IOptions<PathSettings> pathSettings, UtilityService util
 			result.SongInfo.TagIds = [];
 
 			// Split the artist by & and trim the results
-			string[] artists = result.SongInfo.Artist.Split('&').Select(x => x.Trim()).ToArray();
+			string[] split = [" & ", " ft. ", " feat. ", " featuring "];
+			string[] artists = [.. result.SongInfo.Artist.Split(split, StringSplitOptions.TrimEntries)];
+
 			foreach (string artist in artists) 
 			{
 				// Add the artist to the tag service
@@ -69,7 +71,14 @@ public class MapService(IOptions<PathSettings> pathSettings, UtilityService util
 			// Add the tags to the tag service
 			foreach (string tag in oldTags)
 			{
-				Guid tagId = tagService.GetAddTag(tag, "mood");
+				// If the tag is a valid guid, just add it
+				if (Guid.TryParse(tag, out Guid tagId))
+				{
+					result.SongInfo.TagIds.Add(tagId.ToString());
+					continue;
+				}
+
+				tagId = tagService.GetAddTag(tag, "mood");
 				result.SongInfo.TagIds.Add(tagId.ToString());
 			}
 		}
