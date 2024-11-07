@@ -14,7 +14,7 @@ public class All(TimingService timingService) : ControllerBase
 
 		string response = $$"""
 			{
-				"getUrl": "https://prod-next.just-dance.com/jsons/All.en-US.json.gz",
+				"getUrl": "https://prod-next.just-dance.com/editorial/v1/All.en-US.json.gz",
 				"getUrlExpiresAt": "{{timingService.TimeString(expiresAt)}}",
 				"localeCode": "en-US",
 				"md5": "d7dab8accbbaef4b109de1dbd1c9f091",

@@ -8,12 +8,12 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.songdb;
 
 [ApiController]
 [Route("songdb/songDB")]
-public class SongDB(MapService mapService, JsonSettings jsonSettings) : ControllerBase
+public class SongDB(MapService mapService) : ControllerBase
 {
 	[HttpGet(Name = "GetSongDB")]
 	public IActionResult GetSongDB()
 	{
-		string response = JsonSerializer.Serialize(mapService.SongDB.Songs, jsonSettings.PrettyFormat);
+		string response = JsonSerializer.Serialize(mapService.SongDB.Songs, JsonSettings.PrettyPascalFormat);
 
 		return Content(response, "application/json");
 	}

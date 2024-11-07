@@ -4,9 +4,14 @@ using JustDanceNextPlus.JustDanceClasses.Endpoints;
 
 using Microsoft.Extensions.Options;
 
+using System.Text.RegularExpressions;
+
 namespace JustDanceNextPlus.Services;
 
-public class MapService(IOptions<PathSettings> pathSettings, UtilityService utilityService, ILogger<MapService> logger)
+public class MapService(IOptions<PathSettings> pathSettings,
+	UtilityService utilityService,
+	TagService tagService,
+	ILogger<MapService> logger)
 {
 	private readonly PathSettings settings = pathSettings.Value;
 
@@ -53,6 +58,24 @@ public class MapService(IOptions<PathSettings> pathSettings, UtilityService util
 		{
 			SongDB.Songs[result.SongID] = result.SongInfo;
 			SongDB.ContentAuthorization[result.SongID] = result.ContentAuthorization;
+
+			// Split the artist by & and trim the results
+			Regex regex = new(@"(?: & | ft. | feat. | featuring )", RegexOptions.IgnoreCase);
+			string[] artists = regex.Split(result.SongInfo.Artist).Select(x => x.Trim()).ToArray();
+
+			foreach (string artist in artists) 
+			{
+				// Add the artist to the tag service
+				Guid tag = tagService.GetAddTag(artist, "artist");
+				result.SongInfo.TagIds.Add(tag);
+			}
+
+			// Process player count
+			{
+				string[] playerCounts = ["Solo", "Duet", "Trio", "Quartet"];
+				Guid tag = tagService.GetAddTag(playerCounts[result.SongInfo.CoachCount - 1], "choreoSettings");
+				result.SongInfo.TagIds.Add(tag);
+			}
 		}
 	}
 

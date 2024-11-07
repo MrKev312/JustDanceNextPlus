@@ -3,14 +3,24 @@ using AssetsTools.NET.Extra;
 
 using JustDanceNextPlus.JustDanceClasses.Database;
 using JustDanceNextPlus.JustDanceClasses.Endpoints;
+using JustDanceNextPlus.Utilities;
 
 using System.Globalization;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
 
-public class UtilityService(JsonSettings jsonSettings)
+public class UtilityService(TagIdConverter tagIdConverter, GuidTagConverter guidTagConverter)
 {
+	JsonSerializerOptions options { get; } = new()
+	{
+		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,	
+		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+		WriteIndented = true,
+		Converters = { tagIdConverter, guidTagConverter }
+	};
+
 	public async Task<LocalJustDanceSongDBEntry> LoadMapDBEntryAsync(string mapFolder)
 	{
 		string songInfoPath = Path.Combine(mapFolder, "SongInfo.json");
@@ -18,7 +28,7 @@ public class UtilityService(JsonSettings jsonSettings)
 			throw new FileNotFoundException($"Missing SongInfo.json in {mapFolder}");
 
 		string songInfoJson = await File.ReadAllTextAsync(songInfoPath);
-		LocalJustDanceSongDBEntry songInfo = JsonSerializer.Deserialize<LocalJustDanceSongDBEntry>(songInfoJson, jsonSettings.PrettyFormat)
+		LocalJustDanceSongDBEntry songInfo = JsonSerializer.Deserialize<LocalJustDanceSongDBEntry>(songInfoJson, options)
 			?? throw new JsonException("Failed to deserialize SongInfo.json");
 
 		// If the mapId is null or empty, throw an exception
@@ -232,6 +242,6 @@ public class UtilityService(JsonSettings jsonSettings)
 		};
 
 		// Serialize the object
-		return JsonSerializer.Serialize(audioPreviewTrk, jsonSettings.ShortFormat);
+		return JsonSerializer.Serialize(audioPreviewTrk, JsonSettings.ShortFormat);
 	}
 }
