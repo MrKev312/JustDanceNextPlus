@@ -30,6 +30,7 @@ With every update, you risk **permanently losing ALL stored data**.
 - parametersv1.json
 - playlistdb.json
 - shop-config.json
+
 The following are not needed but are recommended:
 - tagdb.json
 - localizedstrings.json (from the `All.US-en.*.json.gz` file)
