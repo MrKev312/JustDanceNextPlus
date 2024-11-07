@@ -4,6 +4,8 @@ using JustDanceNextPlus.JustDanceClasses.Endpoints;
 
 using Microsoft.Extensions.Options;
 
+using System.Text.RegularExpressions;
+
 namespace JustDanceNextPlus.Services;
 
 public class MapService(IOptions<PathSettings> pathSettings, UtilityService utilityService, TagService tagService, ILogger<MapService> logger)
@@ -54,17 +56,26 @@ public class MapService(IOptions<PathSettings> pathSettings, UtilityService util
 			SongDB.Songs[result.SongID] = result.SongInfo;
 			SongDB.ContentAuthorization[result.SongID] = result.ContentAuthorization;
 
-			List<string> oldTags = result.SongInfo.TagIds;
+			HashSet<string> oldTags = result.SongInfo.TagIds;
 			result.SongInfo.TagIds = [];
 
 			// Split the artist by & and trim the results
-			string[] split = [" & ", " ft. ", " feat. ", " featuring "];
-			string[] artists = [.. result.SongInfo.Artist.Split(split, StringSplitOptions.TrimEntries)];
+			//string[] split = [" & ", " ft. ", " feat. ", " featuring "];
+			//string[] artists = [.. result.SongInfo.Artist.Split(split, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)];
+			Regex regex = new(@"(?: & | ft. | feat. | featuring )", RegexOptions.IgnoreCase);
+			string[] artists = regex.Split(result.SongInfo.Artist).Select(x => x.Trim()).ToArray();
 
 			foreach (string artist in artists) 
 			{
 				// Add the artist to the tag service
 				Guid tag = tagService.GetAddTag(artist, "artist");
+				result.SongInfo.TagIds.Add(tag.ToString());
+			}
+
+			// Process player count
+			{
+				string[] playerCounts = ["Solo", "Duet", "Trio", "Quartet"];
+				Guid tag = tagService.GetAddTag(playerCounts[result.SongInfo.CoachCount - 1], "choreoSettings");
 				result.SongInfo.TagIds.Add(tag.ToString());
 			}
 
