@@ -12,7 +12,7 @@ public class MapInfo
 	public int SuperMovesCount { get; set; }
 	public int PerfectMovesCount { get; set; }
 	public int GoldMovesCount { get; set; }
-	public bool[] GoldMovesAchieved { get; set; } = [];
+	public List<bool> GoldMovesAchieved { get; set; } = [];
 	public int Stars { get; set; }
 	public bool IsGroupEnabled { get; set; }
 	public bool IsRecommended { get; set; }

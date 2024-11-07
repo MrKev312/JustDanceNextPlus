@@ -260,6 +260,7 @@ public class UserDataService(
 			{
 				ProfileId = playerId,
 				MapId = mapId,
+				UpdatedAt = DateTime.UtcNow,
 				HighScore = score,
 				PlayCount = 1,
 				HighScorePerformance = highScore
@@ -272,17 +273,28 @@ public class UserDataService(
 		{
 			if (score > existingHighScore.HighScore)
 			{
+				existingHighScore.UpdatedAt = DateTime.UtcNow;
 				existingHighScore.HighScore = score;
 				existingHighScore.HighScorePerformance = highScore;
+
 				isNewHighScore = true;
 			}
 
 			existingHighScore.PlayCount++;
 
-			dbContext.Entry(existingHighScore).State = EntityState.Modified;
+			dbContext.HighScores.Update(existingHighScore);
 		}
 
-		await dbContext.SaveChangesAsync();
+		try
+		{
+			await dbContext.SaveChangesAsync();
+		}
+		catch (Exception ex)
+		{
+			logger.LogError(ex, "Failed to update high score");
+			return (false, false);
+		}
+
 		return (true, isNewHighScore);
 	}
 }

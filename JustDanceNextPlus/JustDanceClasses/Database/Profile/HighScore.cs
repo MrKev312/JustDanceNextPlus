@@ -1,22 +1,36 @@
-﻿namespace JustDanceNextPlus.JustDanceClasses.Database.Profile;
+﻿using Microsoft.EntityFrameworkCore;
 
-public class MapStats : PlayerMapData
+using System.Text.Json.Serialization;
+
+namespace JustDanceNextPlus.JustDanceClasses.Database.Profile;
+
+[PrimaryKey("MapId", "ProfileId")]
+public class MapStats
 {
+	[JsonIgnore]
+	public Guid MapId { get; set; }
+
+	[JsonIgnore]
+	public Guid ProfileId { get; set; }
+
 	public int HighScore { get; set; }
 	public long PlayCount { get; set; }
 	public string Platform { get; set; } = "Unknown";
 	public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
-	public virtual HighscorePerformance? HighScorePerformance { get; set; }
-	public virtual GameModeStats? GameModeStats { get; set; }
+
+	public HighscorePerformance HighScorePerformance { get; set; } = new();
+	public GameModeStats? GameModeStats { get; set; }
 }
 
-public class HighscorePerformance : PlayerMapData
+[Owned]
+public class HighscorePerformance
 {
-	public bool[] GoldMovesAchieved { get; set; } = [];
-	public virtual MoveCounts Moves { get; set; } = new();
+	public List<bool> GoldMovesAchieved { get; set; } = [];
+	public MoveCounts Moves { get; set; } = new();
 }
 
-public class MoveCounts : PlayerMapData
+[Owned]
+public class MoveCounts
 {
 	public int Missed { get; set; }
 	public int Okay { get; set; }
@@ -26,12 +40,16 @@ public class MoveCounts : PlayerMapData
 	public int Gold { get; set; }
 }
 
-public class GameModeStats : PlayerMapData
+[Owned]
+public class GameModeStats
 {
-	public virtual ChallengeStats? Challenge { get; set; }
+	[JsonIgnore]
+	public bool Exists { get; set; } = true;
+	public ChallengeStats Challenge { get; set; } = new();
 }
 
-public class ChallengeStats : PlayerMapData
+[Owned]
+public class ChallengeStats
 {
 	public int LastScore { get; set; }
 }
