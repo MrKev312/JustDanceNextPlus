@@ -8,7 +8,7 @@ However, I have made the source code available for anyone who is interested in c
 ## Features
 - Play official Just Dance maps
 - Play custom Just Dance maps
-- Save your scores and view leaderboards for maps that have 3 or more scores submitted (quirk of the game)
+- Save your scores and view leaderboards for maps that have scores submitted from at least 1 other player (quirk of the game)
 
 ## Installation
 1. Clone the repository
@@ -17,6 +17,16 @@ However, I have made the source code available for anyone who is interested in c
 4. Run the server
 5. Run a proxy or custom dns server to redirect your game to the server (you will need to disable ssl certification on the switch to do this, can be found [here](https://github.com/misson20000/exefs_patches), 18.0.0 and above [here](https://github.com/borntohonk/exefs_patches)
 6. Enjoy!
+
+## Needed JSONs
+- activity-page.json
+- parameters.json
+- parametersv1.json
+- playlistdb.json
+- shop-config.json
+The following are not needed but are recommended:
+- tagdb.json
+- localizedstrings.json (from the `All.US-en.*.json.gz` file)
 
 ## Map Format
 Maps are stored in the following format:
@@ -47,7 +57,7 @@ where the SongInfo.json is in the following format:
   "songID": "guid here",
   "artist": "Artist here",
   "coachCount": 1,
-  "coachNamesLocIds": [],
+  "coachNamesLocIds": [], (names of the coaches from left to right, either as oasisId or as a string)
   "credits": "Credits here",
   "danceVersionLocId": 0,
   "difficulty": 1,
@@ -58,15 +68,15 @@ where the SongInfo.json is in the following format:
   "originalJDVersion": 2020,
   "parentMapName": "codename here",
   "sweatDifficulty": 1,
-  "tagIds": [],
+  "tagIds": [], (either as a tag guid or as a string)
   "tags": [
 	(Pick which are applicable)
-    "Main",
-    "jdplus",
+	"Main",
+	"jdplus",
 	"songpack_year1",
 	"songpack_year2",
 	"songpack_year3",
-    "Custom"
+	"Custom"
   ],
   "title": "song name here"
 }
