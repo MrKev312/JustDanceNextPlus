@@ -9,8 +9,7 @@ using System.Text.RegularExpressions;
 namespace JustDanceNextPlus.Services;
 
 public class MapService(IOptions<PathSettings> pathSettings,
-	UtilityService utilityService,
-	TagService tagService,
+	IServiceProvider serviceProvider,
 	ILogger<MapService> logger)
 {
 	private readonly PathSettings settings = pathSettings.Value;
@@ -33,13 +32,17 @@ public class MapService(IOptions<PathSettings> pathSettings,
 
 	public async Task LoadMapsAsync()
 	{
+		// Load the tag service
+		TagService tagService = serviceProvider.GetRequiredService<TagService>();
+		UtilityService utilityService = serviceProvider.GetRequiredService<UtilityService>();
+
 		string[] mapFolders = Directory.GetDirectories(settings.MapsPath)
 			.Select(x => Path.Combine(settings.MapsPath, Path.GetFileName(x)))
 			.ToArray();
 
 		var loadMapTasks = mapFolders.Select(async mapFolder =>
 		{
-			(LocalJustDanceSongDBEntry songInfo, ContentAuthorization contentAuthorization) = await LoadMapAsync(mapFolder);
+			(LocalJustDanceSongDBEntry songInfo, ContentAuthorization contentAuthorization) = await LoadMapAsync(mapFolder, utilityService);
 			return new
 			{
 				songInfo.SongID,
@@ -81,6 +84,7 @@ public class MapService(IOptions<PathSettings> pathSettings,
 
 	public Task LoadOffers()
 	{
+		// Todo: update this with a packService?
 		Dictionary<string, int> packToLocId = new()
 		{
 			{ "jdplus", 0 },
@@ -160,7 +164,7 @@ public class MapService(IOptions<PathSettings> pathSettings,
 		return Task.CompletedTask;
 	}
 
-	private async Task<(LocalJustDanceSongDBEntry, ContentAuthorization)> LoadMapAsync(string mapFolder)
+	private async Task<(LocalJustDanceSongDBEntry, ContentAuthorization)> LoadMapAsync(string mapFolder, UtilityService utilityService)
 	{
 		LocalJustDanceSongDBEntry songInfo = await utilityService.LoadMapDBEntryAsync(mapFolder);
 		ContentAuthorization contentAuthorization = utilityService.LoadContentAuthorization(mapFolder);

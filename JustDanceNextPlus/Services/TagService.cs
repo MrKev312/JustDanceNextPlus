@@ -93,6 +93,54 @@ public class TagService
 			return localizedTag.LocalizedStringId;
 		}
 	}
+
+	internal List<Filter> GetFilters()
+	{
+		List<Filter> filters = [];
+
+		// First we get the choreo filters
+		string[] choreoFilters = ["Solo", "Duo", "Trio", "Quatuor", "Kids", "For Friends"];
+		filters.Add(new()
+		{
+			LocId = 318,
+			Order = choreoFilters.Select(x => TagDatabase.Tags.FirstOrDefault(y => y.Value.TagName == x).Key).ToList(),
+			Category = "choreoSettings"
+		});
+
+		// Musical genre filters
+		filters.Add(new()
+		{
+			LocId = 317,
+			Order = TagDatabase.Tags.Where(x => x.Value.Category == "musicalGenre").OrderBy(x => x.Value.TagName).Select(x => x.Key).ToList(),
+			Category = "musicalGenre"
+		});
+
+		// Mood filters
+		filters.Add(new()
+		{
+			LocId = 319,
+			Order = TagDatabase.Tags.Where(x => x.Value.Category == "mood").OrderBy(x => x.Value.TagName).Select(x => x.Key).ToList(),
+			Category = "mood"
+		});
+
+		// Decade filters
+		filters.Add(new()
+		{
+			LocId = 320,
+			Order = TagDatabase.Tags.Where(x => x.Value.Category == "decades").OrderBy(x => x.Value.TagName).Select(x => x.Key).ToList(),
+			Category = "decades"
+		});
+
+		// Accesibility filters
+		filters.Add(new()
+		{
+			LocId = 321,
+			Order = TagDatabase.Tags.Where(x => x.Value.Category == "accessibility").OrderBy(x => x.Value.TagName).Select(x => x.Key).ToList(),
+			Category = "accessibility"
+		});
+
+		return filters;
+	}
 }
 
 public class TagDatabase
@@ -108,4 +156,11 @@ public class Tag
 	public int LocId { get; set; }
 	public string Category { get; set; } = "";
 	public List<string> Synonyms { get; set; } = [];
+}
+
+public class Filter
+{
+	public int LocId { get; set; }
+	public List<Guid> Order { get; set; } = [];
+	public string Category { get; set; } = "";
 }

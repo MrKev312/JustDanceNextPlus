@@ -48,5 +48,6 @@ public class MapStat
 
 public class Ownership
 {
+	// Todo: update this with a packService?
 	public List<string> Claims { get; set; } = ["songpack_year1", "songpack_year2", "songpack_year3"];
 }

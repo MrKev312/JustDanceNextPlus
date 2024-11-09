@@ -1,7 +1,6 @@
 using JustDanceNextPlus.JustDanceClasses.Database.Profile;
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace JustDanceNextPlus.JustDanceClasses.Database;
 

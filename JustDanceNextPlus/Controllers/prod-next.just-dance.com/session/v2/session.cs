@@ -59,6 +59,7 @@ public class Session(TimingService timingService, SessionManager sessionManager)
 			BootId = bootID.ToString(),
 			ProfileId = session.PlayerId.ToString(),
 			DurationSeconds = 10745,
+			// Todo: update this with a packService?
 			SubscriptionInfo = new()
 			{
 				Dlcs = new()

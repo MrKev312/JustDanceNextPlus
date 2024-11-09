@@ -1,6 +1,5 @@
 using System.Text.Encodings.Web;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 using JustDanceNextPlus.Configuration;
 using JustDanceNextPlus.JustDanceClasses.Database;
@@ -11,7 +10,6 @@ using JustDanceNextPlus.Utilities;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace JustDanceNextPlus;
 
@@ -195,7 +193,6 @@ public class Program
 		string[] paths = [
 			"activity-page.json",
 			"parameters.json",
-			"parametersv1.json",
 			"playlistdb.json",
 			"shop-config.json",
 			"tagdb.json"
