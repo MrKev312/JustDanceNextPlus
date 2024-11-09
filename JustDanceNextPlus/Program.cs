@@ -194,8 +194,7 @@ public class Program
 			"activity-page.json",
 			"parameters.json",
 			"playlistdb.json",
-			"shop-config.json",
-			"tagdb.json"
+			"shop-config.json"
 			];
 
 		bool missing = false;
