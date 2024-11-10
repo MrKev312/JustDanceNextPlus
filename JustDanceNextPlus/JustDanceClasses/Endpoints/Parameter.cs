@@ -7,7 +7,7 @@ public class ParameterList
 
 public class Parameter
 {
-	public Dictionary<string, object> Fields { get; set; } = [];
+	public Dictionary<string, object?> Fields { get; set; } = [];
 	public RelatedPopulation? RelatedPopulation { get; set; }
 }
 
