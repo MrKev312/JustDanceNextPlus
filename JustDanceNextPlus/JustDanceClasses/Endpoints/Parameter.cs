@@ -1,5 +1,10 @@
 ﻿namespace JustDanceNextPlus.JustDanceClasses.Endpoints;
 
+public class ParameterList
+{
+	public Dictionary<string, Parameter> Parameters { get; set; } = [];
+}
+
 public class Parameter
 {
 	public Dictionary<string, object> Fields { get; set; } = [];
