@@ -1,4 +1,5 @@
-﻿using JustDanceNextPlus.Services;
+﻿using JustDanceNextPlus.JustDanceClasses.Endpoints;
+using JustDanceNextPlus.Services;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -866,12 +867,6 @@ public class ParameterList(TagService tagService)
 	};
 }
 
-public class Parameter
-{
-	public Dictionary<string, object> Fields { get; set; } = [];
-	public RelatedPopulation? RelatedPopulation { get; set; }
-}
-
 public class Template
 {
 	[JsonPropertyName("template")]
@@ -935,10 +930,4 @@ public class Filters(TagService tagService)
 
 	[JsonPropertyName("filters")]
 	public List<Filter> FilterList { get; set; } = tagService.GetFilters();
-}
-
-public class RelatedPopulation
-{
-	public string? Name { get; set; }
-	public string? Subject { get; set; }
 }
