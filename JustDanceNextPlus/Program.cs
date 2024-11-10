@@ -192,7 +192,6 @@ public class Program
 	{
 		string[] paths = [
 			"activity-page.json",
-			"parameters.json",
 			"playlistdb.json",
 			"shop-config.json"
 			];
