@@ -79,6 +79,7 @@ public class Program
 		builder.Services.AddSingleton<LocalizedStringService>();
 		builder.Services.AddSingleton<TagService>();
 		builder.Services.AddSingleton<MapService>();
+		builder.Services.AddSingleton<BundleService>();
 		builder.Services.AddSingleton<PartyManager>();
 		builder.Services.AddSingleton<SecurityService>();
 		builder.Services.AddSingleton<SessionManager>();
@@ -88,6 +89,7 @@ public class Program
 		// Inject json converters.
 		builder.Services.AddSingleton<TagIdConverter>();
 		builder.Services.AddSingleton<GuidTagConverter>();
+		builder.Services.AddSingleton<MapTagConverter>();
 
 		// Add GraphQL server.
 		builder.Services.AddGraphQLServer()
@@ -113,9 +115,11 @@ public class Program
 				var serviceProvider = builder.Services.BuildServiceProvider();
 				var oasisTagConverter = serviceProvider.GetRequiredService<TagIdConverter>();
 				var guidTagConverter = serviceProvider.GetRequiredService<GuidTagConverter>();
+				var mapTagConverter = serviceProvider.GetRequiredService<MapTagConverter>();
 
 				options.JsonSerializerOptions.Converters.Add(oasisTagConverter);
 				options.JsonSerializerOptions.Converters.Add(guidTagConverter);
+				options.JsonSerializerOptions.Converters.Add(mapTagConverter);
 
 				options.JsonSerializerOptions.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
 				options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
@@ -128,13 +132,14 @@ public class Program
 		var serviceProvider = builder.Services.BuildServiceProvider();
 		var oasisTagConverter = serviceProvider.GetRequiredService<TagIdConverter>();
 		var guidTagConverter = serviceProvider.GetRequiredService<GuidTagConverter>();
+		var mapTagConverter = serviceProvider.GetRequiredService<MapTagConverter>();
 
 		JsonSettings.PrettyPascalFormat = new()
 		{
 			PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
 			WriteIndented = true,
 			Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-			Converters = { oasisTagConverter, guidTagConverter }
+			Converters = { oasisTagConverter, guidTagConverter, mapTagConverter }
 		};
 	}
 

@@ -7,7 +7,7 @@ namespace JustDanceNextPlus.Utilities;
 
 public class OasisTag
 {
-	public int ID { get; set; }
+	public int ID { get; set; } = 0;
 
 	// Allow implicit conversion from OasisTag to int
 	public static implicit operator int(OasisTag tag) => tag.ID;

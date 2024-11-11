@@ -16,7 +16,7 @@ public class MapService(IOptions<PathSettings> pathSettings,
 
 	public JustDanceSongDB SongDB { get; private set; } = new();
 	public Dictionary<string, Guid> MapToGuid { get; } = [];
-	public Dictionary<string, SortedSet<Guid>> ClaimToGuid { get; } = [];
+	public Dictionary<string, List<Guid>> ClaimToGuid { get; } = [];
 
 	public async Task LoadDataAsync()
 	{
