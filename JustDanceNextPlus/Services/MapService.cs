@@ -16,7 +16,6 @@ public class MapService(IOptions<PathSettings> pathSettings,
 
 	public JustDanceSongDB SongDB { get; private set; } = new();
 	public Dictionary<string, Guid> MapToGuid { get; } = [];
-	public Dictionary<string, List<Guid>> ClaimToGuid { get; } = [];
 
 	public async Task LoadDataAsync()
 	{
@@ -123,9 +122,6 @@ public class MapService(IOptions<PathSettings> pathSettings,
 					packs[tag] = pack;
 				}
 
-				if (!ClaimToGuid.ContainsKey(tag))
-					ClaimToGuid[tag] = [];
-				ClaimToGuid[tag].Add(song.Key);
 				pack.SongIds.Add(song.Key);
 				addedToPack = true;
 			}
@@ -148,9 +144,6 @@ public class MapService(IOptions<PathSettings> pathSettings,
 					packs["jdplus"] = pack;
 				}
 
-				if (!ClaimToGuid.ContainsKey("jdplus"))
-					ClaimToGuid["jdplus"] = [];
-				ClaimToGuid["jdplus"].Add(song.Key);
 				pack.SongIds.Add(song.Key);
 			}
 		}
