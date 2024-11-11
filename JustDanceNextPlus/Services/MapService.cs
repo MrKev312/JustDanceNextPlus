@@ -15,6 +15,7 @@ public class MapService(IOptions<PathSettings> pathSettings,
 	private readonly PathSettings settings = pathSettings.Value;
 
 	public JustDanceSongDB SongDB { get; private set; } = new();
+	public Dictionary<string, Guid> MapToGuid { get; } = [];
 
 	public async Task LoadDataAsync()
 	{
@@ -61,6 +62,7 @@ public class MapService(IOptions<PathSettings> pathSettings,
 		{
 			SongDB.Songs[result.SongID] = result.SongInfo;
 			SongDB.ContentAuthorization[result.SongID] = result.ContentAuthorization;
+			MapToGuid[result.SongInfo.MapName] = result.SongID;
 
 			// Split the artist by & and trim the results
 			Regex regex = new(@"(?: & | ft. | feat. | featuring )", RegexOptions.IgnoreCase);
