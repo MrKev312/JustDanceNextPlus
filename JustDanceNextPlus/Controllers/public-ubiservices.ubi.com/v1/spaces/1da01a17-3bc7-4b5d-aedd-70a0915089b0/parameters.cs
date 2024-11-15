@@ -670,7 +670,7 @@ public class Parameters(TagService tagService) : ControllerBase
 			{
 				Fields = new()
 				{
-					["ClaimDisplayPriority"] = new List<string> { "songpack_year3", "songpack_year2", "songpack_year1", "jdplus" },
+					["ClaimDisplayPriority"] = BundleService.ClaimDisplayPriority,
 					["MCA_DeviceInclusionList"] = new Dictionary<string, object>(),
 					["CameraScoring_SurveyPopupSettings"] = new Dictionary<string, object>(),
 					["CameraScoring_MoveScoreBoostPercent"] = "11",

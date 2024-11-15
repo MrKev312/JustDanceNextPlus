@@ -10,7 +10,6 @@ public class UserDataService(
 	UserDataContext dbContext,
 	ILogger<UserDataService> logger)
 {
-
 	public async Task<Profile?> GetProfileByIdAsync(Guid id)
 	{
 		Profile? profile = await dbContext.Profiles.FindAsync(id);

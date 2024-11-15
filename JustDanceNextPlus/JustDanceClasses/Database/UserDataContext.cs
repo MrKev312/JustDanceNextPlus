@@ -21,15 +21,9 @@ public class UserDataContext(DbContextOptions<UserDataContext> options) : DbCont
 		{
 			builder.HasKey(m => new { m.MapId, m.ProfileId });
 
-			builder.OwnsOne(m => m.HighScorePerformance, hs =>
-			{
-				hs.OwnsOne(h => h.Moves);
-			});
+			builder.OwnsOne(m => m.HighScorePerformance, hs => hs.OwnsOne(h => h.Moves));
 
-			builder.OwnsOne(m => m.GameModeStats, gs =>
-			{
-				gs.OwnsOne(g => g.Challenge);
-			});
+			builder.OwnsOne(m => m.GameModeStats, gs => gs.OwnsOne(g => g.Challenge));
 		});
 	}
 }

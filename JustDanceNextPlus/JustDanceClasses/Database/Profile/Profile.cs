@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using JustDanceNextPlus.Services;
+
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -48,6 +50,5 @@ public class MapStat
 
 public class Ownership
 {
-	// Todo: update this with a packService?
-	public List<string> Claims { get; set; } = ["songpack_year1", "songpack_year2", "songpack_year3"];
+	public List<string> Claims { get; set; } = BundleService.Claims;
 }
