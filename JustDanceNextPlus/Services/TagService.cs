@@ -2,21 +2,21 @@
 
 using JustDanceNextPlus.Configuration;
 
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
 
-public class TagService
+public class TagService(LocalizedStringService localizedStringService, IServiceProvider serviceProvider, ILogger<TagService> logger)
 {
-	private readonly LocalizedStringService localizedStringService;
+	public TagDatabase TagDatabase { get; private set; } = new();
 
-	public TagService(LocalizedStringService localizedStringService,
-		ILogger<TagService> logger,
-		IOptions<PathSettings> pathSettings)
+	public void LoadData()
 	{
-		this.localizedStringService = localizedStringService;
+		IOptions<PathSettings> pathSettings = serviceProvider.GetRequiredService<IOptions<PathSettings>>();
+		JsonSettingsService jsonSettingsService = serviceProvider.GetRequiredService<JsonSettingsService>();
 
 		// Load the tags
 		string tagsPath = Path.Combine(pathSettings.Value.JsonsPath, "tagdb.json");
@@ -27,7 +27,7 @@ public class TagService
 		}
 
 		string json = File.ReadAllText(tagsPath);
-		TagDatabase? db = JsonSerializer.Deserialize<TagDatabase>(json, JsonSettings.PrettyPascalFormat);
+		TagDatabase? db = JsonSerializer.Deserialize<TagDatabase>(json, jsonSettingsService.PrettyPascalFormat);
 
 		if (db == null)
 		{
@@ -38,8 +38,6 @@ public class TagService
 		TagDatabase = db;
 		logger.LogInformation("Tag database loaded");
 	}
-
-	public TagDatabase TagDatabase { get; } = new();
 
 	public Guid? GetTag(string text)
 	{

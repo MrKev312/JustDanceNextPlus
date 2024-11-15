@@ -5,6 +5,10 @@ public class HostedDataService(IServiceProvider serviceProvider) : IHostedServic
 	public async Task StartAsync(CancellationToken cancellationToken)
 	{
 		using IServiceScope scope = serviceProvider.CreateScope();
+		LocalizedStringService localizedStringService = scope.ServiceProvider.GetRequiredService<LocalizedStringService>();
+		localizedStringService.LoadData();
+		TagService tagService = scope.ServiceProvider.GetRequiredService<TagService>();
+		tagService.LoadData();
 		MapService dataService = scope.ServiceProvider.GetRequiredService<MapService>();
 		await dataService.LoadDataAsync();
 	}

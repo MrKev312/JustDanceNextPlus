@@ -31,6 +31,7 @@ public class MapTagConverter(MapService mapService) : JsonConverter<MapTag>
 
 		return new MapTag { Guid = tag };
 	}
+
 	public override void Write(Utf8JsonWriter writer, MapTag value, JsonSerializerOptions options)
 	{
 		writer.WriteStringValue(value.Guid.ToString());

@@ -87,6 +87,7 @@ public class Program
 		builder.Services.AddSingleton<UtilityService>();
 
 		// Inject json converters.
+		builder.Services.AddSingleton<JsonSettingsService>();
 		builder.Services.AddSingleton<TagIdConverter>();
 		builder.Services.AddSingleton<GuidTagConverter>();
 		builder.Services.AddSingleton<MapTagConverter>();
@@ -125,22 +126,6 @@ public class Program
 				options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 				options.JsonSerializerOptions.WriteIndented = true;
 			});
-
-
-
-		// Update the JsonSettings for the pretty format.
-		var serviceProvider = builder.Services.BuildServiceProvider();
-		var oasisTagConverter = serviceProvider.GetRequiredService<TagIdConverter>();
-		var guidTagConverter = serviceProvider.GetRequiredService<GuidTagConverter>();
-		var mapTagConverter = serviceProvider.GetRequiredService<MapTagConverter>();
-
-		JsonSettings.PrettyPascalFormat = new()
-		{
-			PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-			WriteIndented = true,
-			Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-			Converters = { oasisTagConverter, guidTagConverter, mapTagConverter }
-		};
 	}
 
 	private static void InitializeDatabase(WebApplication app)
@@ -214,21 +199,6 @@ public class Program
 
 		return !missing;
 	}
-}
-
-public static class JsonSettings
-{
-	public static JsonSerializerOptions PrettyPascalFormat { get; set; } = new()
-	{
-		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-		WriteIndented = true,
-		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-	};
-
-	public static JsonSerializerOptions ShortFormat { get; set; } = new()
-	{
-		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-	};
 }
 
 public class TimingService

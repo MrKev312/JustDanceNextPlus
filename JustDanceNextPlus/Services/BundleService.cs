@@ -12,7 +12,8 @@ public class BundleService
 	public ShopConfig ShopConfig { get; } = new();
 
 	public BundleService(ILogger<TagService> logger,
-		IOptions<PathSettings> pathSettings)
+		IOptions<PathSettings> pathSettings,
+		JsonSettingsService jsonSettingsService)
 	{
 		// Load the bundles
 		string bundlesPath = Path.Combine(pathSettings.Value.JsonsPath, "shop-config.json");
@@ -23,7 +24,7 @@ public class BundleService
 		}
 
 		string json = File.ReadAllText(bundlesPath);
-		ShopConfig? db = JsonSerializer.Deserialize<ShopConfig>(json, JsonSettings.PrettyPascalFormat);
+		ShopConfig? db = JsonSerializer.Deserialize<ShopConfig>(json, jsonSettingsService.PrettyPascalFormat);
 
 		if (db == null)
 		{
