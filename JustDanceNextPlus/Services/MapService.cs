@@ -187,4 +187,11 @@ public class MapService(IOptions<PathSettings> pathSettings,
 
 		return (songInfo, contentAuthorization);
 	}
+
+	public Guid? GetSongId(string mapName)
+	{
+		if (MapToGuid.TryGetValue(mapName, out Guid songId))
+			return songId;
+		return null;
+	}
 }
