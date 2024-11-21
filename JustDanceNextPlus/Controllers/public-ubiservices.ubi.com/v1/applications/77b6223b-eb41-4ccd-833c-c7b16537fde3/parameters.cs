@@ -8,7 +8,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.applicatio
 
 [ApiController]
 [Route("/v1/applications/77b6223b-eb41-4ccd-833c-c7b16537fde3/parameters")]
-public class Parameters(IOptions<PathSettings> pathSettings) : ControllerBase
+public class Parameters : ControllerBase
 {
 	[HttpGet(Name = "GetParameters")]
 	public IActionResult GetParameters()

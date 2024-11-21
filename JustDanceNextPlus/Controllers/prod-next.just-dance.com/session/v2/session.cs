@@ -9,7 +9,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.session.v2;
 
 [ApiController]
 [Route("session/v2")]
-public class Session(TimingService timingService, SessionManager sessionManager) : ControllerBase
+public class Session(TimingService timingService, SessionManager sessionManager, BundleService bundleService) : ControllerBase
 {
 	[HttpPost("session")]
 	[HttpPost("refresh-purchase")]
@@ -53,6 +53,8 @@ public class Session(TimingService timingService, SessionManager sessionManager)
 		if (session == null)
 			return NotFound("Session not found");
 
+		List<string> claims = bundleService.GetAllClaims();
+
 		PurchaseResponse purchaseResponse = new()
 		{
 			SessionId = session.SessionId.ToString(),
@@ -64,26 +66,13 @@ public class Session(TimingService timingService, SessionManager sessionManager)
 			{
 				Dlcs = new()
 				{
-					Owned =
-					[
-						new("0", [new("songpack_year1")]),
-						new("1", [new("songpack_year2")]),
-						new("2", [new("songpack_year3")]),
-						new("3", [new("Music_Pack_AllOutFun")]),
-						new("4", [new("Music_Pack_DisneyVol1")]),
-						new("5", [new("Music_Pack_PopParty")])
-					]
+					Owned = claims.AsEnumerable().Select((claim, index) => new Dlc(index.ToString(), [new(claim)])).ToList()
 				},
 				Claims =
 				[
 					new("jdplus"),
 					new("welcomeGifts"),
-					new("songpack_year1"),
-					new("songpack_year2"),
-					new("songpack_year3"),
-					new("Music_Pack_AllOutFun"),
-					new("Music_Pack_DisneyVol1"),
-					new("Music_Pack_PopParty")
+					.. claims.Select(claim => new Claim(claim))
 				],
 				Subscriptions = new()
 				{

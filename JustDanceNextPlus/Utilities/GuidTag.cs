@@ -32,6 +32,7 @@ public class GuidTagConverter(TagService tagService) : JsonConverter<GuidTag>
 
 		return new GuidTag { Guid = tag };
 	}
+
 	public override void Write(Utf8JsonWriter writer, GuidTag value, JsonSerializerOptions options)
 	{
 		writer.WriteStringValue(value.Guid.ToString());

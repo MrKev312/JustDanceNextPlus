@@ -8,16 +8,19 @@ using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.Services;
 
-public class LocalizedStringService
+public class LocalizedStringService(ILogger<LocalizedStringService> logger,
+	IServiceProvider serviceProvider)
 {
-	public LocalizedStringDatabase Database { get; } = new();
+	public LocalizedStringDatabase Database { get; private set; } = new();
 
 	readonly ConcurrentDictionary<string, int> localizedTags = new();
 	readonly ConcurrentDictionary<Guid, int> localizedTagsGuid = new();
 
-	public LocalizedStringService(ILogger<LocalizedStringService> logger,
-		IOptions<PathSettings> settings)
+	public void LoadData()
 	{
+		IOptions<PathSettings> settings = serviceProvider.GetRequiredService<IOptions<PathSettings>>();
+		JsonSettingsService jsonSettingsService = serviceProvider.GetRequiredService<JsonSettingsService>();
+
 		string path = Path.Combine(settings.Value.JsonsPath, "localizedstrings.json");
 		if (!File.Exists(path))
 		{
@@ -26,7 +29,7 @@ public class LocalizedStringService
 		}
 
 		string json = File.ReadAllText(path);
-		LocalizedStringDatabase? db = JsonSerializer.Deserialize<LocalizedStringDatabase>(json, JsonSettings.PrettyPascalFormat);
+		LocalizedStringDatabase? db = JsonSerializer.Deserialize<LocalizedStringDatabase>(json, jsonSettingsService.PrettyPascalFormat);
 
 		if (db == null)
 		{

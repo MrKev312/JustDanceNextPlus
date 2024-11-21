@@ -86,17 +86,7 @@ public class MapService(IOptions<PathSettings> pathSettings,
 
 	public Task LoadOffers()
 	{
-		// Todo: update this with a packService?
-		Dictionary<string, int> packToLocId = new()
-		{
-			{ "jdplus", 0 },
-			{ "songpack_year1", 4794 },
-			{ "songpack_year2", 5224 },
-			{ "songpack_year3", 8598 },
-			{ "Music_Pack_AllOutFun", 8643 },
-			{ "Music_Pack_DisneyVol1", 8642 },
-			{ "Music_Pack_PopParty", 8642 }
-		};
+		BundleService bundleService = serviceProvider.GetRequiredService<BundleService>();
 
 		Dictionary<string, Pack> packs = [];
 
@@ -109,11 +99,30 @@ public class MapService(IOptions<PathSettings> pathSettings,
 				if (tag != "jdplus" && !tag.StartsWith("songpack_") && !tag.StartsWith("Music_Pack_"))
 					continue;
 
+				Guid productGroupId;
+
+				if (tag == "jdplus")
+				{
+					productGroupId = bundleService.ShopConfig.FirstPartyProductDb.ProductGroups
+						.FirstOrDefault(x => x.Value.Type == "jdplus").Key;
+				}
+				else
+				{
+
+					Guid dlcId = bundleService.ShopConfig.FirstPartyProductDb.DlcProducts
+						.FirstOrDefault(x => x.Value.ClaimIds.Contains(tag)).Key;
+
+					productGroupId = bundleService.ShopConfig.FirstPartyProductDb.ProductGroups
+						.FirstOrDefault(x => x.Value.ProductIds.Contains(dlcId)).Key;
+				}
+
+				int groupLocId = bundleService.ShopConfig.FirstPartyProductDb.ProductGroups[productGroupId].GroupLocId;
+
 				if (!packs.TryGetValue(tag, out Pack? pack))
 				{
 					pack = new Pack
 					{
-						DescriptionLocId = packToLocId[tag],
+						DescriptionLocId = groupLocId,
 						AllowSharing = true,
 						FreeTrialDurationMinutes = 43200,
 						SongPackIds = [],
@@ -131,11 +140,16 @@ public class MapService(IOptions<PathSettings> pathSettings,
 			{
 				song.Value.Tags.Add("jdplus");
 
+				Guid productGroupId = bundleService.ShopConfig.FirstPartyProductDb.ProductGroups
+					.FirstOrDefault(x => x.Value.Type == "jdplus").Key;
+
+				int groupLocId = bundleService.ShopConfig.FirstPartyProductDb.ProductGroups[productGroupId].GroupLocId;
+
 				if (!packs.TryGetValue("jdplus", out Pack? pack))
 				{
 					pack = new Pack
 					{
-						DescriptionLocId = packToLocId["jdplus"],
+						DescriptionLocId = groupLocId,
 						AllowSharing = true,
 						FreeTrialDurationMinutes = 43200,
 						SongPackIds = [],
@@ -172,5 +186,12 @@ public class MapService(IOptions<PathSettings> pathSettings,
 		ContentAuthorization contentAuthorization = utilityService.LoadContentAuthorization(mapFolder);
 
 		return (songInfo, contentAuthorization);
+	}
+
+	public Guid? GetSongId(string mapName)
+	{
+		if (MapToGuid.TryGetValue(mapName, out Guid songId))
+			return songId;
+		return null;
 	}
 }
