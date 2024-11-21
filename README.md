@@ -94,3 +94,5 @@ If you would like to contribute to the project, feel free to fork the repository
 
 ## License
 This project is licensed under the GNU GPLv3 License - see the [LICENSE](LICENSE) file for details.
+
+Ubisoft owns the rights to Just Dance and all related assets. This project is not affiliated with Ubisoft in any way.
