@@ -5,17 +5,15 @@
 
 # Ignore copyrighted/legally-gray files
 /JustDanceNextPlus/wwwroot/maps/
-/JustDanceNextPlus/wwwroot/main_menu/live-tile.bundle
-!/JustDanceNextPlus/database/config/
+
+# Configuration files
 /JustDanceNextPlus/database/config/*.json
+!/JustDanceNextPlus/database/config/JustDanceEditions.json
 
 # Database files
 *.db
 *.db-shm
 *.db-wal
-
-# Bundles
-*.bundle
 
 # User-specific files
 *.rsuser

@@ -17,7 +17,7 @@ public class LiveTile : ControllerBase
 					"deepLink": "//jdn?sid=Details&pid=PlaylistDetailsPage_LandscapeCursor&PlaylistId=c4cdeeee-da41-4193-aa5c-f83dc5c6c57b",
 					"priority": 2,
 					"assets": {
-						"backgroundImage": "https://prod-next.just-dance.com/main_menu/live-tile.bundle",
+						"backgroundImage": "https://prod-next.just-dance.com/bundles/live-tile.bundle",
 					}
 				}
 			}

@@ -18,7 +18,7 @@ With every update, you risk **permanently losing ALL stored data**.
 
 ## Installation
 1. Clone the repository
-2. Place the json files under wwwroot/jsons/ (you will need to dump these yourself for legal reasons, I will not provide them nor will I tell you how to get them)
+2. Place the json files under database/config/ (you will need to dump these yourself for legal reasons, I will not provide them nor will I tell you how to get them)
 3. Add maps under the wwwroot/maps/ folder
 4. Run the server
 5. Run a proxy or custom dns server to redirect your game to the server (you will need to disable ssl certification on the switch to do this, can be found [here](https://github.com/misson20000/exefs_patches), 18.0.0 and above [here](https://github.com/borntohonk/exefs_patches)
@@ -26,14 +26,14 @@ With every update, you risk **permanently losing ALL stored data**.
 
 ## Needed JSONs
 - activity-page.json
-- parameters.json
-- parametersv1.json
 - playlistdb.json
-- shop-config.json
 
 The following are not needed but are recommended:
 - tagdb.json
 - localizedstrings.json (from the `All.US-en.*.json.gz` file)
+
+## Bundles
+Feel free to modify the bundles to your liking, but make sure to keep the same structure as the original bundles.
 
 ## Map Format
 Maps are stored in the following format:

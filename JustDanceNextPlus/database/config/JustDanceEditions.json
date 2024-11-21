@@ -1,0 +1,180 @@
+[
+  {
+    "dlcType": "Yearly",
+    "name": "songpack_year2022",
+    "groupLocId": "Just Dance 2022 Edition",
+    "songsCountLocId": "40 songs",
+    "groupDescriptionLocId": "All the tracks from base Just Dance 2022!",
+    "tracklistExtended": [
+      "Judas",
+      "BossWitch",
+      "Levitating",
+      "SuaCara",
+      "Chandelier",
+      "SaveYourTears",
+      "LoveStory",
+      "Good4U",
+      "TGIF",
+      "Human"
+    ],
+    "tracklistLimited": [
+      "Judas",
+      "Levitating",
+      "SuaCara",
+      "LoveStory",
+      "Good4U",
+      "TGIF"
+    ],
+    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2022.bundle"
+  },
+  {
+    "dlcType": "Yearly",
+    "name": "songpack_year1",
+    "groupLocId": "Just Dance 2023 Edition",
+    "songsCountLocId": "40 songs",
+    "groupDescriptionLocId": "Welcome to a new era of dance!",
+    "tracklistExtended": [
+      "IKnewYouWereTrouble",
+      "AsItWas",
+      "Dynamite",
+      "Numb",
+      "Physical",
+      "ThereforeIAm",
+      "Radioactive",
+      "HeatWaves",
+      "DriversLicense",
+      "SissyThatWalk"
+    ],
+    "tracklistLimited": [
+      "Dynamite",
+      "AsItWas",
+      "Radioactive",
+      "Numb",
+      "Physical",
+      "ThereforeIAm"
+    ],
+    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/084e28e8-34ab-4428-95ea-9ddd4d7abc92/nx/productGroupBundle/120586a6aceccc2450f1a36342e1dfb3.bundle"
+  },
+  {
+    "dlcType": "Yearly",
+    "name": "songpack_year2",
+    "groupLocId": "Just Dance 2024 Edition",
+    "songsCountLocId": "40 songs",
+    "groupDescriptionLocId": "Enjoy 40 songs from the latest hits to beloved classics!",
+    "tracklistExtended": [
+      "Butter",
+      "TitiMePregunto",
+      "Flowers",
+      "Survivor",
+      "Vampire",
+      "YouShould",
+      "IWannaDance",
+      "DESPECHA",
+      "KillBill",
+      "CalmDown"
+    ],
+    "tracklistLimited": [
+      "Butter",
+      "Flowers",
+      "Survivor",
+      "Vampire",
+      "KillBill",
+      "CalmDown"
+    ],
+    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/261fc221-8aa7-4a91-b3ec-df3a4ea8d6a5/nx/productGroupBundle/453b39a881765d851fb6ab6125ac8cdb.bundle"
+  },
+  {
+    "dlcType": "Yearly",
+    "name": "songpack_year3",
+    "groupLocId": "Just Dance 2025 Edition",
+    "songsCountLocId": "40 songs",
+    "groupDescriptionLocId": "Dance it off to 40 of your favorite songs, from chart-topping hits to beloved classics!",
+    "tracklistExtended": [
+      "YesAnd",
+      "PokerFace",
+      "Calabria",
+      "Unstoppable",
+      "BasketCase",
+      "PartyUSA",
+      "Vogue",
+      "InTheShadows",
+      "Yeah",
+      "LovinOnMe"
+    ],
+    "tracklistLimited": [
+      "YesAnd",
+      "PokerFace",
+      "Calabria",
+      "Unstoppable",
+      "BasketCase",
+      "Vogue"
+    ],
+    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/7c65f88f-4a05-46e6-a915-9c1f17b92830/nx/productGroupBundle/d3426f432613fcf066ddfe5c6f086fbe.bundle"
+  },
+  {
+    "dlcType": "Exclusive",
+    "name": "Music_Pack_DisneyVol1",
+    "groupLocId": "Disney Hits <nobr>Vol. 1</nobr>",
+    "songsCountLocId": "6 songs",
+    "groupDescriptionLocId": "Dance with your favorite Disney characters!",
+    "tracklistExtended": [
+      "LetItGo",
+      "FriendInMe",
+      "PrinceAli",
+      "HowFar",
+      "ZeroToHero",
+      "WillMyLifeBegin"
+    ],
+    "tracklistLimited": [
+      "LetItGo",
+      "PrinceAli",
+      "HowFar",
+      "ZeroToHero"
+    ],
+    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/81714ac1-0845-4b4c-b84a-6a21d3930883/nx/productGroupBundle/47a0281ffcdc7c6cdee7cc2ad9ffdfb6.bundle"
+  },
+  {
+    "dlcType": "Exclusive",
+    "name": "Music_Pack_AllOutFun",
+    "groupLocId": "All Out Fun",
+    "songsCountLocId": "6 songs",
+    "groupDescriptionLocId": "Let loose with these wacky tunes!",
+    "tracklistExtended": [
+      "Kuliki",
+      "Blue",
+      "BeepBeep",
+      "MakeItJingle",
+      "PacaDance",
+      "DragosteaDinTei"
+    ],
+    "tracklistLimited": [
+      "Kuliki",
+      "Blue",
+      "MakeItJingle",
+      "DragosteaDinTei"
+    ],
+    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/098f8ab0-b9b5-42fe-b141-ac9250e0bbd0/nx/productGroupBundle/fb064ff419baaa3ccec7f7e2a5f685da.bundle"
+  },
+  {
+    "dlcType": "Exclusive",
+    "name": "Music_Pack_PopParty",
+    "groupLocId": "Pop Party",
+    "songsCountLocId": "6 songs",
+    "groupDescriptionLocId": "Let's get this party started!",
+    "tracklistExtended": [
+      "TGIF",
+      "CheapThrills",
+      "DanceMonkey",
+      "LoveYouLike",
+      "MrSaxobeat",
+      "Malibu"
+    ],
+    "tracklistLimited": [
+      "CheapThrills",
+      "DanceMonkey",
+      "MrSaxobeat",
+      "Malibu"
+    ],
+    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/c9e3b359-30aa-4329-9e8c-671d617af6eb/nx/productGroupBundle/7b92bc735b9b2dddf739d94c957e1921.bundle"
+  }
+]
