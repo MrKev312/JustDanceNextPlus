@@ -186,7 +186,7 @@ public class Program
 		string[] paths = [
 			"activity-page.json",
 			"playlistdb.json",
-			"shop-config.json"
+			"JustDanceEditions.json"
 			];
 
 		bool missing = false;

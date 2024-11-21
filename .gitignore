@@ -6,8 +6,16 @@
 # Ignore copyrighted/legally-gray files
 /JustDanceNextPlus/wwwroot/maps/
 /JustDanceNextPlus/wwwroot/main_menu/live-tile.bundle
-/JustDanceNextPlus/wwwroot/jsons/*.json
-/JustDanceNextPlus/wwwroot/jsons/*.json.gz
+!/JustDanceNextPlus/database/config/
+/JustDanceNextPlus/database/config/*.json
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+
+# Bundles
+*.bundle
 
 # User-specific files
 *.rsuser
@@ -367,4 +375,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/JustDanceNextPlus/database

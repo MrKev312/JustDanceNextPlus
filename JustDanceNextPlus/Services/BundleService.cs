@@ -47,7 +47,7 @@ public class BundleService
 	private void LoadData()
 	{ 
 		// Load the bundles
-		string bundlesPath = Path.Combine(pathSettings.Value.JsonsPath, "shop-config.json");
+		string bundlesPath = Path.Combine(pathSettings.Value.JsonsPath, "JustDanceEditions.json");
 		if (!File.Exists(bundlesPath))
 		{
 			logger.LogInformation("Bundle database not found, creating a new one");
