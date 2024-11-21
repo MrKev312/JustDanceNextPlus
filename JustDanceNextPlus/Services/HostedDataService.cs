@@ -12,12 +12,9 @@ public class HostedDataService(IServiceProvider serviceProvider) : IHostedServic
 		// Then load the tag service, which uses the string service
 		TagService tagService = scope.ServiceProvider.GetRequiredService<TagService>();
 		tagService.LoadData();
-		// Then load the map service, which uses the tag service
+		// Then load the map service, which uses the tag service and bundle service
 		MapService dataService = scope.ServiceProvider.GetRequiredService<MapService>();
 		await dataService.LoadDataAsync();
-		// Then load the bundle service, which uses the map service
-		BundleService bundleService = scope.ServiceProvider.GetRequiredService<BundleService>();
-		bundleService.LoadShopConfig();
 	}
 
 	public Task StopAsync(CancellationToken cancellationToken)
