@@ -1,6 +1,230 @@
 [
   {
     "dlcType": "Yearly",
+    "name": "songpack_year2014",
+    "groupLocId": "Just Dance 2014 Edition",
+    "songsCountLocId": "40 songs",
+    "groupDescriptionLocId": "All the tracks from base Just Dance 2014!",
+    "tracklistExtended": [
+      "LimaGolf1",
+      "BlurredLines",
+      "GetLucky",
+      "Gentleman",
+      "JustDance",
+      "KissYou",
+      "PoundTheAlarm",
+      "KiloPapaDLC",
+      "Starships",
+      "YMCA"
+    ],
+    "tracklistLimited": [
+      "LimaGolf1",
+      "BlurredLines",
+      "GetLucky",
+      "KiloPapaDLC",
+      "Starships",
+      "YMCA"
+    ],
+    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2014.bundle"
+  },
+  {
+    "dlcType": "Yearly",
+    "name": "songpack_year2015",
+    "groupLocId": "Just Dance 2015 Edition",
+    "songsCountLocId": "40 songs",
+    "groupDescriptionLocId": "All the tracks from base Just Dance 2015!",
+    "tracklistExtended": [
+      "Balance",
+      "Problem",
+      "LetItGo",
+      "Bailando",
+      "Mad",
+      "Happy",
+      "Tetris",
+      "TheFox",
+      "Diamonds",
+      "Burn"
+    ],
+    "tracklistLimited": [
+      "Balance",
+      "Problem",
+      "Diamonds",
+      "TheFox",
+      "Burn",
+      "LetItGo"
+    ],
+    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2015.bundle"
+  },
+  {
+    "dlcType": "Yearly",
+    "name": "songpack_year2016",
+    "groupLocId": "Just Dance 2016 Edition",
+    "songsCountLocId": "40 songs",
+    "groupDescriptionLocId": "All the tracks from base Just Dance 2016!",
+    "tracklistExtended": [
+      "AboutThatBass",
+      "Animals",
+      "UptownFunk",
+      "BadRomance",
+      "Stargate",
+      "Coolos",
+      "Fun",
+      "Circus",
+      "Albatraoz",
+      "JuntoATi"
+    ],
+    "tracklistLimited": [
+      "AboutThatBass",
+      "Albatraoz",
+      "Animals",
+      "UptownFunk",
+      "Coolos",
+      "BadRomance"
+    ],
+    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2016.bundle"
+  },
+  {
+    "dlcType": "Yearly",
+    "name": "songpack_year2017",
+    "groupLocId": "Just Dance 2017 Edition",
+    "songsCountLocId": "40 songs",
+    "groupDescriptionLocId": "All the tracks from base Just Dance 2017!",
+    "tracklistExtended": [
+      "CheapThrills",
+      "Sorry",
+      "Hips",
+      "DragosteaDinTei",
+      "CakeByTheOcean",
+      "IntoYou",
+      "LeanOn",
+      "Radical",
+      "ScreamNShout",
+      "SingleLadies"
+    ],
+    "tracklistLimited": [
+      "CheapThrills",
+      "DragosteaDinTei",
+      "Sorry",
+      "LeanOn",
+      "IntoYou",
+      "Hips"
+    ],
+    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2017.bundle"
+  },
+  {
+    "dlcType": "Yearly",
+    "name": "songpack_year2018",
+    "groupLocId": "Just Dance 2018 Edition",
+    "songsCountLocId": "40 songs",
+    "groupDescriptionLocId": "All the tracks from base Just Dance 2018!",
+    "tracklistExtended": [
+      "24K",
+      "Despacito",
+      "ShapeOfYou",
+      "SwishSwish",
+      "Rockabye",
+      "Chantaje",
+      "SideTo",
+      "Blue",
+      "Automaton",
+      "BeepBeep"
+    ],
+    "tracklistLimited": [
+      "Automaton",
+      "24K",
+      "Despacito",
+      "ShapeOfYou",
+      "SwishSwish",
+      "Blue"
+    ],
+    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2018.bundle"
+  },
+  {
+    "dlcType": "Yearly",
+    "name": "songpack_year2019",
+    "groupLocId": "Just Dance 2019 Edition",
+    "songsCountLocId": "40 songs",
+    "groupDescriptionLocId": "All the tracks from base Just Dance 2019!",
+    "tracklistExtended": [
+      "WorkWork",
+      "PocoLoco",
+      "SweetSensation",
+      "RaveIn",
+      "SangriaWine",
+      "Sugar",
+      "TOY",
+      "WhereAreYou",
+      "WaterMe",
+      "Rhythm"
+    ],
+    "tracklistLimited": [
+      "WorkWork",
+      "PocoLoco",
+      "RaveIn",
+      "SweetSensation",
+      "Sugar",
+      "TOY"
+    ],
+    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2019.bundle"
+  },
+  {
+    "dlcType": "Yearly",
+    "name": "songpack_year2020",
+    "groupLocId": "Just Dance 2020 Edition",
+    "songsCountLocId": "40 songs",
+    "groupDescriptionLocId": "All the tracks from base Just Dance 2020!",
+    "tracklistExtended": [
+      "OldTownRoad",
+      "7Rings",
+      "BadGuy",
+      "ConAltura",
+      "Skibidi",
+      "ConCalma",
+      "HighHopes",
+      "IAmTheBest",
+      "Vodovorot",
+      "RainOverMe"
+    ],
+    "tracklistLimited": [
+      "OldTownRoad",
+      "7Rings",
+      "BadGuy",
+      "ConAltura",
+      "Skibidi",
+      "ConCalma"
+    ],
+    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2020.bundle"
+  },
+  {
+    "dlcType": "Yearly",
+    "name": "songpack_year2021",
+    "groupLocId": "Just Dance 2021 Edition",
+    "songsCountLocId": "40 songs",
+    "groupDescriptionLocId": "All the tracks from base Just Dance 2021!",
+    "tracklistExtended": [
+      "DanceMonkey",
+      "AdoreYou",
+      "Bailando1997",
+      "BlindingLights",
+      "Kuliki",
+      "TheWeekend",
+      "PacaDance",
+      "Uno",
+      "WithoutMe",
+      "FriendInMe"
+    ],
+    "tracklistLimited": [
+      "DanceMonkey",
+      "AdoreYou",
+      "Bailando1997",
+      "BlindingLights",
+      "Kuliki",
+      "PacaDance"
+    ],
+    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2021.bundle"
+  },
+  {
+    "dlcType": "Yearly",
     "name": "songpack_year2022",
     "groupLocId": "Just Dance 2022 Edition",
     "songsCountLocId": "40 songs",
