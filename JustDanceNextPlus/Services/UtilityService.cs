@@ -11,36 +11,44 @@ using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
 
-public class UtilityService(JsonSettingsService jsonSettingsService)
+public class UtilityService(JsonSettingsService jsonSettingsService, ILogger<UtilityService> logger)
 {
 	public async Task<LocalJustDanceSongDBEntry> LoadMapDBEntryAsync(string mapFolder)
 	{
-		string songInfoPath = Path.Combine(mapFolder, "SongInfo.json");
-		if (!File.Exists(songInfoPath))
-			throw new FileNotFoundException($"Missing SongInfo.json in {mapFolder}");
+		try
+		{
+			string songInfoPath = Path.Combine(mapFolder, "SongInfo.json");
+			if (!File.Exists(songInfoPath))
+				throw new FileNotFoundException($"Missing SongInfo.json in {mapFolder}");
 
-		string songInfoJson = await File.ReadAllTextAsync(songInfoPath);
-		LocalJustDanceSongDBEntry songInfo = JsonSerializer.Deserialize<LocalJustDanceSongDBEntry>(songInfoJson, jsonSettingsService.PrettyPascalFormat)
-			?? throw new JsonException("Failed to deserialize SongInfo.json");
+			string songInfoJson = await File.ReadAllTextAsync(songInfoPath);
+			LocalJustDanceSongDBEntry songInfo = JsonSerializer.Deserialize<LocalJustDanceSongDBEntry>(songInfoJson, jsonSettingsService.PrettyPascalFormat)
+				?? throw new JsonException("Failed to deserialize SongInfo.json");
 
-		// If the mapId is null or empty, throw an exception
-		if (string.IsNullOrEmpty(songInfo.MapName))
-			throw new InvalidOperationException($"MapName is null or empty in {songInfoPath}");
+			// If the mapId is null or empty, throw an exception
+			if (string.IsNullOrEmpty(songInfo.MapName))
+				throw new InvalidOperationException($"MapName is null or empty in {songInfoPath}");
 
-		WebmData[] videoData = GetVideoUrls(Path.Combine(mapFolder, "videoPreview"));
-		AssignVideoUrls(songInfo, videoData, mapFolder);
-		songInfo.AssetsMetadata.VideoData = videoData;
-		songInfo.AssetsMetadata.AudioPreviewTrk ??= GenerateAudioPreviewTrk(Directory.GetFiles(Path.Combine(mapFolder, "MapPackage"))[0]);
+			WebmData[] videoData = GetVideoUrls(Path.Combine(mapFolder, "videoPreview"));
+			AssignVideoUrls(songInfo, videoData, mapFolder);
+			songInfo.AssetsMetadata.VideoData = videoData;
+			songInfo.AssetsMetadata.AudioPreviewTrk ??= GenerateAudioPreviewTrk(Directory.GetFiles(Path.Combine(mapFolder, "MapPackage"))[0]);
 
-		songInfo.Assets.AudioPreview_opus ??= GetAssetUrl(mapFolder, "audioPreview_opus");
-		songInfo.Assets.CoachesLarge ??= GetAssetUrl(mapFolder, "coachesLarge");
-		songInfo.Assets.CoachesSmall ??= GetAssetUrl(mapFolder, "coachesSmall");
-		songInfo.Assets.Cover ??= GetAssetUrl(mapFolder, "cover");
-		songInfo.Assets.SongTitleLogo ??= GetAssetUrl(mapFolder, "songTitleLogo", true);
+			songInfo.Assets.AudioPreview_opus ??= GetAssetUrl(mapFolder, "audioPreview_opus");
+			songInfo.Assets.CoachesLarge ??= GetAssetUrl(mapFolder, "coachesLarge");
+			songInfo.Assets.CoachesSmall ??= GetAssetUrl(mapFolder, "coachesSmall");
+			songInfo.Assets.Cover ??= GetAssetUrl(mapFolder, "cover");
+			songInfo.Assets.SongTitleLogo ??= GetAssetUrl(mapFolder, "songTitleLogo", true);
 
-		AssignAssetUrls(songInfo, mapFolder);
+			AssignAssetUrls(songInfo, mapFolder);
 
-		return songInfo;
+			return songInfo;
+		}
+		catch (Exception ex)
+		{
+			logger.LogError(ex, $"Failed to load map DB entry: ({mapFolder})");
+			throw new InvalidOperationException($"Failed to load map DB entry: ({mapFolder})", ex);
+		}
 	}
 
 	public static void AssignVideoUrls(LocalJustDanceSongDBEntry songInfo, WebmData[] videoData, string mapFolder)
