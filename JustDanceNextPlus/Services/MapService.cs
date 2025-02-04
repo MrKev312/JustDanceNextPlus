@@ -116,6 +116,9 @@ public class MapService(IOptions<PathSettings> pathSettings,
 						.FirstOrDefault(x => x.Value.ProductIds.Contains(dlcId)).Key;
 				}
 
+				if (productGroupId == Guid.Empty)
+					continue;
+
 				int groupLocId = bundleService.ShopConfig.FirstPartyProductDb.ProductGroups[productGroupId].GroupLocId;
 
 				if (!packs.TryGetValue(tag, out Pack? pack))
