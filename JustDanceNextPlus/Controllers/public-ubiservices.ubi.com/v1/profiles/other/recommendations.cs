@@ -11,7 +11,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.profiles.o
 public class Recommendations(IOptions<PathSettings> pathSettings) : ControllerBase
 {
 	[HttpGet(Name = "GetRecommendations")]
-	public IActionResult GetRecommendations()
+	public IActionResult GetRecommendations([FromRoute] Guid guid)
 	{
 		string recommendationsJson = Path.Combine(pathSettings.Value.JsonsPath, "recommendations.json");
 
