@@ -7,7 +7,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v3.profiles.u
 public class PlayerId : ControllerBase
 {
 	[HttpGet(Name = "GetUsers")]
-	public IActionResult GetUsers()
+	public IActionResult GetUsers([FromRoute] Guid guid)
 	{
 		string response = """
 			{

@@ -9,7 +9,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.profiles.o
 public class RulesExecution : ControllerBase
 {
 	[HttpPost]
-	public IActionResult PostRuleExecution([FromBody] JsonElement body)
+	public IActionResult PostRuleExecution([FromRoute] Guid guid, [FromBody] JsonElement body)
 	{
 		string response = """
 			{

@@ -7,7 +7,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v3.profiles.o
 public class Friends : ControllerBase
 {
 	[HttpGet(Name = "GetFriends")]
-	public IActionResult GetFriends()
+	public IActionResult GetFriends([FromRoute] Guid guid)
 	{
 		string response = """
 			{

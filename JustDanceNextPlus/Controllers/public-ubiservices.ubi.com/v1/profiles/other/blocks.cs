@@ -7,7 +7,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.profiles.o
 public class Blocks : ControllerBase
 {
 	[HttpGet(Name = "GetBlocks")]
-	public IActionResult GetBlocks()
+	public IActionResult GetBlocks([FromRoute] Guid guid)
 	{
 		string response = """
 			{
