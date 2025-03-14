@@ -7,9 +7,13 @@ using JustDanceNextPlus.JustDanceClasses.GraphQL;
 using JustDanceNextPlus.Services;
 using JustDanceNextPlus.Utilities;
 
+using Microsoft.AspNetCore.OpenApi;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+
+using Scalar.AspNetCore;
 
 namespace JustDanceNextPlus;
 
@@ -49,9 +53,9 @@ public class Program
 		// Add controllers
 		builder.Services.AddControllers();
 
-		// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+		// Learn more about configuring OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 		builder.Services.AddEndpointsApiExplorer();
-		builder.Services.AddSwaggerGen();
+        builder.Services.AddOpenApi();
 
 		// Allow gzip compression.
 		builder.Services.AddResponseCompression(options =>
@@ -142,11 +146,11 @@ public class Program
 
 	private static void ConfigureMiddleware(WebApplication app)
 	{
-		if (app.Environment.IsDevelopment())
+        if (app.Environment.IsDevelopment())
 		{
-			app.UseSwagger();
-			app.UseSwaggerUI();
-		}
+            app.MapOpenApi();
+            app.MapScalarApiReference();
+        }
 
 		app.UseHttpsRedirection();
 		app.UseResponseCompression();
@@ -157,13 +161,23 @@ public class Program
 		provider.Mappings[".webm"] = "video/webm";
 		provider.Mappings[".opus"] = "audio/opus";
 
-		app.UseStaticFiles(new StaticFileOptions
+        // Serve static files.
+        app.UseStaticFiles(new StaticFileOptions
 		{
 			ContentTypeProvider = provider
 		});
 
-		// Cache static files if not in development environment.
-		if (!app.Environment.IsDevelopment())
+        // Add external maps middleware
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            FileProvider = new PhysicalFileProvider(
+                app.Configuration["Paths:MapsPath"]!),
+            RequestPath = "/maps",
+            ContentTypeProvider = provider
+        });
+
+        // Cache static files if not in development environment.
+        if (!app.Environment.IsDevelopment())
 		{
 			app.Use(async (context, next) =>
 			{
