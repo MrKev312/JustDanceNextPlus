@@ -129,10 +129,9 @@ public class UserDataService(
 		int userIndex = highScoresWithNames.FindIndex(hs => hs.ProfileId == userId);
 
 		// Get the surrounding scores
-		List<MapStats> surroundingScores = highScoresWithNames
+		List<MapStats> surroundingScores = [.. highScoresWithNames
 			.Skip(Math.Max(0, userIndex - 1))
-			.Take(3)
-			.ToList();
+			.Take(3)];
 
 		Leaderboard leaderboard = new()
 		{

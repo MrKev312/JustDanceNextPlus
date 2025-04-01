@@ -37,9 +37,7 @@ public class MapService(IOptions<PathSettings> pathSettings,
 		TagService tagService = serviceProvider.GetRequiredService<TagService>();
 		UtilityService utilityService = serviceProvider.GetRequiredService<UtilityService>();
 
-		string[] mapFolders = Directory.GetDirectories(settings.MapsPath)
-			.Select(x => Path.Combine(settings.MapsPath, Path.GetFileName(x)))
-			.ToArray();
+		string[] mapFolders = [.. Directory.GetDirectories(settings.MapsPath).Select(x => Path.Combine(settings.MapsPath, Path.GetFileName(x)))];
 
 		var loadMapTasks = mapFolders.Select(async mapFolder =>
 		{
@@ -66,7 +64,7 @@ public class MapService(IOptions<PathSettings> pathSettings,
 
 			// Split the artist by & and trim the results
 			Regex regex = new(@"(?: & | ft. | feat. | featuring )", RegexOptions.IgnoreCase);
-			string[] artists = regex.Split(result.SongInfo.Artist).Select(x => x.Trim()).ToArray();
+			string[] artists = [.. regex.Split(result.SongInfo.Artist).Select(x => x.Trim())];
 
 			foreach (string artist in artists) 
 			{

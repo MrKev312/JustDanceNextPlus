@@ -101,7 +101,7 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 		filters.Add(new()
 		{
 			LocId = 318,
-			Order = choreoFilters.Select(x => TagDatabase.Tags.FirstOrDefault(y => y.Value.TagName == x).Key).ToList(),
+			Order = [.. choreoFilters.Select(x => TagDatabase.Tags.FirstOrDefault(y => y.Value.TagName == x).Key)],
 			Category = "choreoSettings"
 		});
 
@@ -109,7 +109,7 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 		filters.Add(new()
 		{
 			LocId = 317,
-			Order = TagDatabase.Tags.Where(x => x.Value.Category == "musicalGenre").OrderBy(x => x.Value.TagName).Select(x => x.Key).ToList(),
+			Order = [.. TagDatabase.Tags.Where(x => x.Value.Category == "musicalGenre").OrderBy(x => x.Value.TagName).Select(x => x.Key)],
 			Category = "musicalGenre"
 		});
 
@@ -117,7 +117,7 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 		filters.Add(new()
 		{
 			LocId = 319,
-			Order = TagDatabase.Tags.Where(x => x.Value.Category == "mood").OrderBy(x => x.Value.TagName).Select(x => x.Key).ToList(),
+			Order = [.. TagDatabase.Tags.Where(x => x.Value.Category == "mood").OrderBy(x => x.Value.TagName).Select(x => x.Key)],
 			Category = "mood"
 		});
 
@@ -125,7 +125,7 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 		filters.Add(new()
 		{
 			LocId = 320,
-			Order = TagDatabase.Tags.Where(x => x.Value.Category == "decades").OrderBy(x => x.Value.TagName).Select(x => x.Key).ToList(),
+			Order = [.. TagDatabase.Tags.Where(x => x.Value.Category == "decades").OrderBy(x => x.Value.TagName).Select(x => x.Key)],
 			Category = "decades"
 		});
 
@@ -133,7 +133,7 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 		filters.Add(new()
 		{
 			LocId = 321,
-			Order = TagDatabase.Tags.Where(x => x.Value.Category == "accessibility").OrderBy(x => x.Value.TagName).Select(x => x.Key).ToList(),
+			Order = [.. TagDatabase.Tags.Where(x => x.Value.Category == "accessibility").OrderBy(x => x.Value.TagName).Select(x => x.Key)],
 			Category = "accessibility"
 		});
 

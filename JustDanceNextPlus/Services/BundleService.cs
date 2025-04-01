@@ -161,7 +161,7 @@ public class BundleService
 		database.ProductGroups.Add(subscriptionGuid, jdPlus);
 
 		// Sort the claims based on GetClaimLists
-		(List<string> songpacks, List<string> otherClaims) = GetClaimLists(database.DlcProducts.Values.SelectMany(x => x.ClaimIds).ToList());
+		(List<string> songpacks, List<string> otherClaims) = GetClaimLists([.. database.DlcProducts.Values.SelectMany(x => x.ClaimIds)]);
 		// Merge them
 		claims = [.. songpacks, .. otherClaims, "jdplus"];
 		Dictionary<string, int> claimIndex = claims.Select((x, i) => (x, i)).ToDictionary(x => x.x, x => x.i);
@@ -186,9 +186,7 @@ public class BundleService
 
 	private static (List<string> songpacks, List<string> otherClaims) GetClaimLists(List<string> claims)
 	{
-		List<string> songpacks = claims
-			.Where(x => x.StartsWith("songpack_year"))
-			.ToList();
+		List<string> songpacks = [.. claims.Where(x => x.StartsWith("songpack_year"))];
 
 		songpacks.Sort((x, y) =>
 		{
@@ -202,9 +200,7 @@ public class BundleService
 		});
 
 		// Now add the other claims to the end
-		List<string> otherClaims = claims
-			.Where(x => !x.StartsWith("songpack_year"))
-			.ToList();
+		List<string> otherClaims = [.. claims.Where(x => !x.StartsWith("songpack_year"))];
 		otherClaims.Sort();
 
 		return (songpacks, otherClaims);
@@ -212,10 +208,9 @@ public class BundleService
 
 	public List<string> GetAllClaims()
 	{
-		List<string> claims = ShopConfig.FirstPartyProductDb.DlcProducts.Values
+		List<string> claims = [.. ShopConfig.FirstPartyProductDb.DlcProducts.Values
 			.SelectMany(x => x.ClaimIds)
-			.Distinct()
-			.ToList();
+			.Distinct()];
 
 		claims.Sort();
 
