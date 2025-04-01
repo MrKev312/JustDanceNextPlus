@@ -1,7 +1,7 @@
 ﻿using JustDanceNextPlus.JustDanceClasses.Database;
 using JustDanceNextPlus.Services;
-
 using Microsoft.AspNetCore.Mvc;
+using FuzzySharp;
 
 namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.recommendation.v3;
 
@@ -15,24 +15,24 @@ public class Search(MapService mapService) : ControllerBase
 		// Normalize search input for comparison
 		string normalizedSearchInput = searchRequest.SearchInput.ToLower();
 
-		// Search the database
+		// Search the database using fuzzy matching to compute a relevance score.
 		var searchSongResult = mapService.SongDB.Songs
 			.AsParallel()
 			.Select(song => new
 			{
 				Song = song,
-				// Calculate relevance with higher score for exact artist match
+				// Calculate relevance using fuzzy logic (see GetRelevance below)
 				Relevance = GetRelevance(normalizedSearchInput, song.Value)
 			})
-			.Where(song => song.Relevance > 0)
+			.Where(song => song.Relevance >= 50)
 			.OrderByDescending(song => song.Relevance)
 			.ThenBy(song => song.Song.Value.Title)
 			.ThenBy(song => song.Song.Value.MapName)
 			.ToArray();
 
-		Guid[] mapIds = searchSongResult.Select(song => song.Song.Key).ToArray();
-		string[] codeNames = searchSongResult.Select(song => song.Song.Value.ParentMapName).ToArray();
-		string[] artistIds = searchSongResult.Select(song => song.Song.Value.Artist).Distinct().ToArray();
+		Guid[] mapIds = [.. searchSongResult.Select(song => song.Song.Key)];
+		string[] codeNames = [.. searchSongResult.Select(song => song.Song.Value.ParentMapName)];
+		string[] artistIds = [.. searchSongResult.Select(song => song.Song.Value.Artist).Distinct()];
 
 		// Create the response
 		SearchResponse searchResults = new()
@@ -48,82 +48,25 @@ public class Search(MapService mapService) : ControllerBase
 		return Ok(searchResults);
 	}
 
-	static uint GetRelevance(string searchInput, JustDanceSongDBEntry song)
+	/// <summary>
+	/// Calculate a combined fuzzy relevance score using FuzzySharp.
+	/// </summary>
+	static float GetRelevance(string searchInput, JustDanceSongDBEntry song)
 	{
-		uint relevance = 0;
+		float relevance = 0;
 
-		// Bool for partial match
-		bool partialMatchTitle = song.Title.Contains(searchInput, StringComparison.OrdinalIgnoreCase);
-		bool partialMatchArtist = song.Artist.Contains(searchInput, StringComparison.OrdinalIgnoreCase);
-
-		// Helper function to check if two strings are one character off (including insertions/deletions)
-		static bool IsOneCharOff(string s1, string s2)
-		{
-			s2 = s2.ToLowerInvariant();
-
-			int len1 = s1.Length;
-			int len2 = s2.Length;
-
-			// If the length difference is greater than 1, it's more than one char off
-			if (Math.Abs(len1 - len2) > 1)
-				return false;
-
-			int mismatchCount = 0;
-			int i = 0, j = 0;
-
-			// Walk through both strings and count mismatches
-			while (i < len1 && j < len2)
-			{
-				if (s1[i] != s2[j])
-				{
-					mismatchCount++;
-					if (mismatchCount > 1)
-						return false;
-
-					// If lengths differ, move the pointer of the longer string ahead
-					if (len1 > len2)
-						i++;
-					else if (len2 > len1)
-						j++;
-					else
-					{
-						i++;
-						j++;
-					}
-				}
-				else
-				{
-					i++;
-					j++;
-				}
-			}
-
-			// If one string is longer, count that as an additional mismatch
-			if (i < len1 || j < len2)
-				mismatchCount++;
-
-			return mismatchCount == 1;
-		}
-
-		// Exact year match
+		// Bonus: Exact match on year gets extra points.
 		if (uint.TryParse(searchInput, out uint searchNumber) && song.OriginalJDVersion == searchNumber)
-			relevance += 100;
+			relevance += 50;
 
-		// Title matches
-		if (partialMatchTitle && searchInput.Length == song.Title.Length)
-			relevance += 10; // Exact title match
-		if (partialMatchTitle)
-			relevance += 7; // Partial title match
-		else if (IsOneCharOff(searchInput, song.Title))
-			relevance += 5; // One character off from title
+		// Calculate fuzzy similarity scores using WeightedRatio.
+		// Higher weight for title, lower for artist.
+		int titleScore = Fuzz.WeightedRatio(searchInput, song.Title);
+		int artistScore = Fuzz.WeightedRatio(searchInput, song.Artist);
 
-		// Artist matches
-		if (partialMatchArtist && searchInput.Length == song.Artist.Length)
-			relevance += 5; // Exact artist match
-		else if (IsOneCharOff(searchInput, song.Artist))
-			relevance += 2; // One character off from artist
-		if (partialMatchArtist)
-			relevance += 1; // Partial artist match
+		// Combine the scores with chosen weights.
+		// For example: title weight 1.0, artist weight 0.5.
+		relevance += (titleScore + (artistScore * 0.5f)) / 1.5f;
 
 		return relevance;
 	}
