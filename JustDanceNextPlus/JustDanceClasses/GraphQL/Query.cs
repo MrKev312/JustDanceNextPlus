@@ -12,20 +12,18 @@ public class Query
 	public async Task<Profile?> GetProfileById(string id, [Service] UserDataService userDataService)
 	{
 		// Parse id to Guid
-		if (!Guid.TryParse(id, out Guid guid))
-			return null;
-
-		return await userDataService.GetProfileByIdAsync(guid);
+		return !Guid.TryParse(id, out Guid guid) 
+			? null 
+			: await userDataService.GetProfileByIdAsync(guid);
 	}
 
 	[GraphQLDescription("Check if a profile exists")]
 	public async Task<Profile?> HasJustDanceProfile(string id, [Service] UserDataService userDataService)
 	{
 		// Parse id to Guid
-		if (!Guid.TryParse(id, out Guid guid))
-			return null;
-
-		return await userDataService.GetProfileByIdAsync(guid);
+		return !Guid.TryParse(id, out Guid guid) 
+			? null 
+			: await userDataService.GetProfileByIdAsync(guid);
 	}
 
 	[GraphQLName("getProfilesLeaderboardById")]

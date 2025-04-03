@@ -10,10 +10,10 @@ namespace JustDanceNextPlus.Services;
 
 public class BundleService
 {
-	ILogger<BundleService> logger;
-	IOptions<PathSettings> pathSettings;
-	JsonSettingsService jsonSettingsService;
-	LocalizedStringService localizedStringService;
+	readonly ILogger<BundleService> logger;
+	readonly IOptions<PathSettings> pathSettings;
+	readonly JsonSettingsService jsonSettingsService;
+	readonly LocalizedStringService localizedStringService;
 
 	public ShopConfig ShopConfig { get; private set; } = new();
 

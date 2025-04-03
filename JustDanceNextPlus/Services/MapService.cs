@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace JustDanceNextPlus.Services;
 
-public class MapService(IOptions<PathSettings> pathSettings,
+public partial class MapService(IOptions<PathSettings> pathSettings,
 	IServiceProvider serviceProvider,
 	ILogger<MapService> logger)
 {
@@ -63,7 +63,7 @@ public class MapService(IOptions<PathSettings> pathSettings,
 			MapToGuid[result.SongInfo.MapName] = result.SongID;
 
 			// Split the artist by & and trim the results
-			Regex regex = new(@"(?: & | ft. | feat. | featuring )", RegexOptions.IgnoreCase);
+			Regex regex = ArtistSplitRegex();
 			string[] artists = [.. regex.Split(result.SongInfo.Artist).Select(x => x.Trim())];
 
 			foreach (string artist in artists) 
@@ -181,7 +181,7 @@ public class MapService(IOptions<PathSettings> pathSettings,
 		return Task.CompletedTask;
 	}
 
-	private async Task<(LocalJustDanceSongDBEntry, ContentAuthorization)> LoadMapAsync(string mapFolder, UtilityService utilityService)
+	private static async Task<(LocalJustDanceSongDBEntry, ContentAuthorization)> LoadMapAsync(string mapFolder, UtilityService utilityService)
 	{
 		LocalJustDanceSongDBEntry songInfo = await utilityService.LoadMapDBEntryAsync(mapFolder);
 		ContentAuthorization contentAuthorization = utilityService.LoadContentAuthorization(mapFolder);
@@ -191,8 +191,11 @@ public class MapService(IOptions<PathSettings> pathSettings,
 
 	public Guid? GetSongId(string mapName)
 	{
-		if (MapToGuid.TryGetValue(mapName, out Guid songId))
-			return songId;
-		return null;
+		return MapToGuid.TryGetValue(mapName, out Guid songId) 
+			? songId 
+			: null;
 	}
+
+	[GeneratedRegex(@"(?: & | ft. | feat. | featuring )", RegexOptions.IgnoreCase, "en-NL")]
+	private static partial Regex ArtistSplitRegex();
 }

@@ -10,46 +10,46 @@ using System.Text.Json.Serialization;
 namespace JustDanceNextPlus.Services;
 
 public class PlaylistService(
-	IServiceProvider serviceProvider,
-	ILogger<PlaylistService> logger)
+				IServiceProvider serviceProvider,
+				ILogger<PlaylistService> logger)
 {
-    public PlaylistDB PlaylistDB { get; set; } = new();
+	public PlaylistDB PlaylistDB { get; set; } = new();
 
 	public void LoadData()
-    {
+	{
 		IOptions<PathSettings> pathSettings = serviceProvider.GetRequiredService<IOptions<PathSettings>>();
 		JsonSettingsService jsonSettingsService = serviceProvider.GetRequiredService<JsonSettingsService>();
 
 		logger.LogInformation("Loading playlists");
 
-        string path = pathSettings.Value.PlaylistPath;
+		string path = pathSettings.Value.PlaylistPath;
 
-        if (!Directory.Exists(path))
-        {
-            logger.LogWarning("Playlist path does not exist, will not load playlists");
-            return;
-        }
+		if (!Directory.Exists(path))
+		{
+			logger.LogWarning("Playlist path does not exist, will not load playlists");
+			return;
+		}
 
-        string[] files = Directory.GetFiles(path, "*.json");
+		string[] files = Directory.GetFiles(path, "*.json");
 
-        foreach (string file in files)
-        {
-            logger.LogInformation($"Loading playlist {file}");
+		foreach (string file in files)
+		{
+			logger.LogInformation("Loading playlist {File}", file);
 
-            string json = File.ReadAllText(file);
+			string json = File.ReadAllText(file);
 			JsonPlaylist? playlist = JsonSerializer.Deserialize<JsonPlaylist>(json, jsonSettingsService.PrettyPascalFormat);
 
-            if (playlist == null)
-            {
-                logger.LogWarning($"Failed to load playlist {file}");
-                continue;
-            }
+			if (playlist == null)
+			{
+				logger.LogWarning("Failed to load playlist {File}", file);
+				continue;
+			}
 
-            if (playlist.ItemList == null || playlist.ItemList.Count <= 1)
-            {
-                logger.LogWarning($"Playlist {file} has no songs, skipping");
-                continue;
-            }
+			if (playlist.ItemList == null || playlist.ItemList.Count <= 1)
+			{
+				logger.LogWarning("Playlist {File} has no songs, skipping", file);
+				continue;
+			}
 
 			PlaylistDB.Playlists[playlist.Guid] = playlist;
 			PlaylistDB.PlaylistsOffers.VisiblePlaylists.Add(playlist.Guid);
@@ -99,7 +99,6 @@ public class Itemlist
 	public Guid Id { get; set; }
 	public string Type { get; set; } = "Placeholder";
 }
-
 
 public class PlaylistsOffers
 {

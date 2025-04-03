@@ -51,26 +51,23 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 
 	public LocalizedString? GetLocalizedTag(string text)
 	{
-		if (localizedTags.TryGetValue(text, out int index))
-			return Database.LocalizedStrings[index];
-
-		return null;
+		return localizedTags.TryGetValue(text, out int index) 
+			? Database.LocalizedStrings[index] 
+			: null;
 	}
 
 	public LocalizedString? GetLocalizedTag(Guid id)
 	{
-		if (localizedTagsGuid.TryGetValue(id, out int index))
-			return Database.LocalizedStrings[index];
-
-		return null;
+		return localizedTagsGuid.TryGetValue(id, out int index) 
+			? Database.LocalizedStrings[index]
+			: null;
 	}
 
 	public LocalizedString? GetLocalizedTag(int id)
 	{
-		if (id < Database.LocalizedStrings.Count)
-			return Database.LocalizedStrings[id];
-
-		return null;
+		return id < Database.LocalizedStrings.Count 
+			? Database.LocalizedStrings[id] 
+			: null;
 	}
 
 	public LocalizedString GetAddLocalizedTag(string text)

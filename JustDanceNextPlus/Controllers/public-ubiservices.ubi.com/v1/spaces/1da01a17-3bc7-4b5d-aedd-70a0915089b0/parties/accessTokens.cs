@@ -13,7 +13,7 @@ public class AccessTokens(TimingService timingService) : ControllerBase
 
 		byte[] tokenData = new byte[20];
 		Random.Shared.NextBytes(tokenData);
-		string accessToken = BitConverter.ToString(tokenData).Replace("-", "").ToLower();
+		string accessToken = Convert.ToHexStringLower(tokenData);
 
 		string response = $$"""
 			{
