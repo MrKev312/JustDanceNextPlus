@@ -7,7 +7,6 @@ using JustDanceNextPlus.JustDanceClasses.GraphQL;
 using JustDanceNextPlus.Services;
 using JustDanceNextPlus.Utilities;
 
-using Microsoft.AspNetCore.OpenApi;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;

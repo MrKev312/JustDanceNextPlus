@@ -1,8 +1,6 @@
-﻿using JustDanceNextPlus.Configuration;
-using JustDanceNextPlus.JustDanceClasses.Endpoints;
+﻿using JustDanceNextPlus.JustDanceClasses.Endpoints;
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 
 namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.applications._77b6223b_eb41_4ccd_833c_c7b16537fde3;
 

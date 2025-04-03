@@ -1,8 +1,6 @@
 using JustDanceNextPlus.Services;
 using JustDanceNextPlus.Utilities;
 
-using System.Text.Json.Serialization;
-
 namespace JustDanceNextPlus.JustDanceClasses.Database;
 
 // Class as stored in the database

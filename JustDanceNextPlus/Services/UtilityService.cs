@@ -3,10 +3,8 @@ using AssetsTools.NET.Extra;
 
 using JustDanceNextPlus.JustDanceClasses.Database;
 using JustDanceNextPlus.JustDanceClasses.Endpoints;
-using JustDanceNextPlus.Utilities;
 
 using System.Globalization;
-using System.Text.Encodings.Web;
 using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
