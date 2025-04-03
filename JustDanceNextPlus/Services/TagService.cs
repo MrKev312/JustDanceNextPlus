@@ -1,8 +1,5 @@
-﻿using HotChocolate.Execution;
+﻿using JustDanceNextPlus.Configuration;
 
-using JustDanceNextPlus.Configuration;
-
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 using System.Text.Json;
@@ -143,7 +140,7 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 
 public class TagDatabase
 {
-	public System.Collections.Generic.OrderedDictionary<Guid, Tag> Tags { get; set; } = [];
+	public OrderedDictionary<Guid, Tag> Tags { get; set; } = [];
 	public List<Guid> IsPresentInSongLibrary { get; set; } = [];
 	public List<Guid> IsPresentInSongPageDetails { get; set; } = [];
 }
