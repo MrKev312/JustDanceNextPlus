@@ -66,7 +66,7 @@ public class Session(TimingService timingService, SessionManager sessionManager,
 			{
 				Dlcs = new()
 				{
-					Owned = claims.AsEnumerable().Select((claim, index) => new Dlc(index.ToString(), [new(claim)])).ToList()
+					Owned = [.. claims.AsEnumerable().Select((claim, index) => new Dlc(index.ToString(), [new(claim)]))]
 				},
 				Claims =
 				[

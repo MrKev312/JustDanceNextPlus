@@ -235,7 +235,7 @@ public class UtilityService(JsonSettingsService jsonSettingsService, ILogger<Uti
 			StartBeat = structure["startBeat"].AsFloat,
 			EndBeat = structure["endBeat"].AsFloat,
 			PreviewDuration = structure.Children.FirstOrDefault(x => x.FieldName == "previewDuration")?.AsFloat ?? 30,
-			Markers = structure["markers"]["Array"].Children.Select(x => x["VAL"].AsInt).ToArray(),
+			Markers = [.. structure["markers"]["Array"].Children.Select(x => x["VAL"].AsInt)],
 			VideoStartTime = structure["videoStartTime"].AsFloat,
 			PreviewLoopStart = structure["previewLoopStart"].AsFloat,
 			PreviewEntry = structure["previewEntry"].AsFloat
