@@ -20,8 +20,6 @@ public class BundleService
 	public static List<string> Claims { get; set; } = [];
 	public static List<string> ClaimDisplayPriority { get; set; } = [];
 
-	private const int cutoff = 10;
-
 	public BundleService(ILogger<BundleService> logger,
 		IOptions<PathSettings> pathSettings,
 		JsonSettingsService jsonSettingsService,
@@ -186,21 +184,14 @@ public class BundleService
 
 	private static (List<string> songpacks, List<string> otherClaims) GetClaimLists(List<string> claims)
 	{
-		List<string> songpacks = [.. claims.Where(x => x.StartsWith("songpack_year"))];
+		// First add the songpack_years (2023+) then songpack_games (1-2022)
+		List<string> songpacks = [];
 
-		songpacks.Sort((x, y) =>
-		{
-			int xYear = int.Parse(x[13..]);
-			int yYear = int.Parse(y[13..]);
-			if (xYear < cutoff && yYear >= cutoff)
-				return -1;
-			if (xYear >= cutoff && yYear < cutoff)
-				return 1;
-			return yYear.CompareTo(xYear);
-		});
+		songpacks.AddRange(claims.Where(x => x.StartsWith("songpack_year")).OrderByDescending(x => int.Parse(x[13..])));
+		songpacks.AddRange(claims.Where(x => x.StartsWith("songpack_game")).OrderByDescending(x => int.Parse(x[13..])));
 
 		// Now add the other claims to the end
-		List<string> otherClaims = [.. claims.Where(x => !x.StartsWith("songpack_year"))];
+		List<string> otherClaims = [.. claims.Except(songpacks)];
 		otherClaims.Sort();
 
 		return (songpacks, otherClaims);

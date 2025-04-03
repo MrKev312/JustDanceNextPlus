@@ -1,7 +1,7 @@
 [
   {
     "dlcType": "Yearly",
-    "name": "songpack_year2014",
+    "name": "songpack_game2014",
     "groupLocId": "Just Dance 2014 Edition",
     "songsCountLocId": "40 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2014!",
@@ -29,7 +29,7 @@
   },
   {
     "dlcType": "Yearly",
-    "name": "songpack_year2015",
+    "name": "songpack_game2015",
     "groupLocId": "Just Dance 2015 Edition",
     "songsCountLocId": "40 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2015!",
@@ -57,7 +57,7 @@
   },
   {
     "dlcType": "Yearly",
-    "name": "songpack_year2016",
+    "name": "songpack_game2016",
     "groupLocId": "Just Dance 2016 Edition",
     "songsCountLocId": "40 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2016!",
@@ -85,7 +85,7 @@
   },
   {
     "dlcType": "Yearly",
-    "name": "songpack_year2017",
+    "name": "songpack_game2017",
     "groupLocId": "Just Dance 2017 Edition",
     "songsCountLocId": "40 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2017!",
@@ -113,7 +113,7 @@
   },
   {
     "dlcType": "Yearly",
-    "name": "songpack_year2018",
+    "name": "songpack_game2018",
     "groupLocId": "Just Dance 2018 Edition",
     "songsCountLocId": "40 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2018!",
@@ -141,7 +141,7 @@
   },
   {
     "dlcType": "Yearly",
-    "name": "songpack_year2019",
+    "name": "songpack_game2019",
     "groupLocId": "Just Dance 2019 Edition",
     "songsCountLocId": "40 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2019!",
@@ -169,7 +169,7 @@
   },
   {
     "dlcType": "Yearly",
-    "name": "songpack_year2020",
+    "name": "songpack_game2020",
     "groupLocId": "Just Dance 2020 Edition",
     "songsCountLocId": "40 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2020!",
@@ -197,7 +197,7 @@
   },
   {
     "dlcType": "Yearly",
-    "name": "songpack_year2021",
+    "name": "songpack_game2021",
     "groupLocId": "Just Dance 2021 Edition",
     "songsCountLocId": "40 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2021!",
@@ -225,7 +225,7 @@
   },
   {
     "dlcType": "Yearly",
-    "name": "songpack_year2022",
+    "name": "songpack_game2022",
     "groupLocId": "Just Dance 2022 Edition",
     "songsCountLocId": "40 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2022!",
