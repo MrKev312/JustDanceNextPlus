@@ -170,7 +170,7 @@ public class Program
         app.UseStaticFiles(new StaticFileOptions
         {
             FileProvider = new PhysicalFileProvider(
-                app.Configuration["Paths:MapsPath"]!),
+                Path.GetFullPath(app.Configuration["Paths:MapsPath"]!)),
             RequestPath = "/maps",
             ContentTypeProvider = provider
         });
