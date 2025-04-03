@@ -143,7 +143,7 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 
 public class TagDatabase
 {
-	public OrderedDictionary<Guid, Tag> Tags { get; set; } = [];
+	public System.Collections.Generic.OrderedDictionary<Guid, Tag> Tags { get; set; } = [];
 	public List<Guid> IsPresentInSongLibrary { get; set; } = [];
 	public List<Guid> IsPresentInSongPageDetails { get; set; } = [];
 }
