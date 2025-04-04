@@ -26,7 +26,6 @@ With every update, you risk **permanently losing ALL stored data**.
 
 ## Needed JSONs
 - activity-page.json
-- playlistdb.json
 
 The following are not needed but are recommended:
 - tagdb.json
@@ -83,9 +82,31 @@ where the SongInfo.json is in the following format:
 	"songpack_year1",
 	"songpack_year2",
 	"songpack_year3",
+	"songpack_game2022"
+	"songpack_game20..",
+	"songpack_game2018",
 	"Custom"
   ],
   "title": "song name here"
+}
+```
+
+## Playlist Format
+Playlists are stored in the following format:
+```
+{
+	"guid": "guid here",
+	"playlistName": "codename here",
+	"localizedTitle": "Title here",
+	"localizedDescription": "Description here",
+	"coverUrl": "URL to the cover bundle here",
+	"coverDetailsUrl": "URL to the cover details bundle here",
+	(Optional field) "tags": [ 
+		"tag here"
+	],
+	"itemList": [
+		"map codenames or map guids here"
+	]
 }
 ```
 
