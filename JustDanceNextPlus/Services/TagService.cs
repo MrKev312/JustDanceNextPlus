@@ -43,7 +43,9 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 		if (localizedTag == null)
 			return null;
 
-		Guid tagGuid = TagDatabase.Tags.FirstOrDefault(x => x.Value.LocId == localizedTag.OasisIdInt).Key;
+		Guid tagGuid;
+		lock (TagDatabase.Tags)
+			tagGuid = TagDatabase.Tags.FirstOrDefault(x => x.Value.LocId == localizedTag.OasisIdInt).Key;
 
 		if (tagGuid == Guid.Empty)
 			return null;
