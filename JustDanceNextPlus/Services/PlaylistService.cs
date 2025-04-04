@@ -9,11 +9,21 @@ using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.Services;
 
-public class PlaylistService(
-				IServiceProvider serviceProvider,
-				ILogger<PlaylistService> logger)
+public class PlaylistService
 {
 	public PlaylistDB PlaylistDB { get; set; } = new();
+
+	readonly IServiceProvider serviceProvider;
+	readonly ILogger<PlaylistService> logger;
+
+	public PlaylistService(IServiceProvider serviceProvider,
+				ILogger<PlaylistService> logger)
+	{
+		this.serviceProvider = serviceProvider;
+		this.logger = logger;
+
+		LoadData();
+	}
 
 	public void LoadData()
 	{
@@ -34,8 +44,6 @@ public class PlaylistService(
 
 		foreach (string file in files)
 		{
-			logger.LogInformation("Loading playlist {File}", file);
-
 			string json = File.ReadAllText(file);
 			JsonPlaylist? playlist = JsonSerializer.Deserialize<JsonPlaylist>(json, jsonSettingsService.PrettyPascalFormat);
 
@@ -47,7 +55,7 @@ public class PlaylistService(
 
 			if (playlist.ItemList == null || playlist.ItemList.Count <= 1)
 			{
-				logger.LogWarning("Playlist {File} has no songs, skipping", file);
+				logger.LogWarning("Playlist {File} has not enough maps, skipping", file);
 				continue;
 			}
 

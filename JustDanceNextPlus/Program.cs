@@ -83,6 +83,7 @@ public class Program
 		builder.Services.AddSingleton<TagService>();
 		builder.Services.AddSingleton<MapService>();
 		builder.Services.AddSingleton<BundleService>();
+		builder.Services.AddSingleton<PlaylistService>();
 		builder.Services.AddSingleton<PartyManager>();
 		builder.Services.AddSingleton<SecurityService>();
 		builder.Services.AddSingleton<SessionManager>();
@@ -198,7 +199,6 @@ public class Program
 	{
 		string[] paths = [
 			"activity-page.json",
-			"playlistdb.json",
 			"JustDanceEditions.json"
 			];
 

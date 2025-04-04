@@ -31,7 +31,6 @@ public class BundleService
 		this.localizedStringService = localizedStringService;
 
 		LoadShopConfig();
-
 	}
 
 	public void LoadShopConfig()

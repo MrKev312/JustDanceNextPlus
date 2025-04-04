@@ -1,0 +1,18 @@
+{
+  "guid": "5b2a3a9d-63b7-4a0b-ae0d-405cd37c42ae",
+  "playlistName": "NewHere",
+  "localizedTitle": "New Here?",
+  "localizedDescription": "A special playlist to welcome our new players. Made with love, from Just\u00A0Dance. Get hooked!",
+  "coverUrl": "https://jd-s3.cdn.ubi.com/public/jdnext/playlists/5b2a3a9d-63b7-4a0b-ae0d-405cd37c42ae/nx/cover/d4074174e17e219179b6a16b734721c0_en.bundle",
+  "coverDetailsUrl": "https://jd-s3.cdn.ubi.com/public/jdnext/playlists/5b2a3a9d-63b7-4a0b-ae0d-405cd37c42ae/nx/coverDetails/5f4daf724c65fe4964069626dc7648d4_en.bundle",
+  "tags": [
+    "bcf1628d-5913-42fd-b08d-3670c266e805"
+  ],
+  "itemList": [
+    "Playground",
+    "HeatWaves",
+    "DriversLicense",
+    "IKnewYouWereTrouble",
+    "MOREALT"
+  ]
+}

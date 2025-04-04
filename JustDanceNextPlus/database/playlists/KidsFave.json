@@ -1,0 +1,15 @@
+{
+  "guid": "0b23f77a-5729-45ce-8ff3-650630e2ed95",
+  "playlistName": "KidsFave",
+  "localizedTitle": "Kids' Faves",
+  "localizedDescription": "Looking for some faves for the younger ones? Well, we can tell you these tracks are child’s play.",
+  "coverUrl": "https://jd-s3.cdn.ubi.com/public/jdnext/playlists/0b23f77a-5729-45ce-8ff3-650630e2ed95/nx/cover/5419d4559c41e38885d2c9e1655e4b27_en.bundle",
+  "coverDetailsUrl": "https://jd-s3.cdn.ubi.com/public/jdnext/playlists/0b23f77a-5729-45ce-8ff3-650630e2ed95/nx/coverDetails/171b5f88d15cb0005242baab1b339b87_en.bundle",
+  "itemList": [
+    "BabyShark",
+    "ChefKids",
+    "AngryBirds",
+    "BalletKids",
+    "Kuliki"
+  ]
+}

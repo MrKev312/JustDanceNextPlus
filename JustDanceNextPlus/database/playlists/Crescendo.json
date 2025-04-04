@@ -1,0 +1,19 @@
+{
+  "guid": "b1724ab1-8fed-4c28-b99d-0fde1cf1cc48",
+  "playlistName": "Crescendo",
+  "localizedTitle": "Intense Crescendo",
+  "localizedDescription": "Gentle to start, extreme to finish. This playlist will wear your body out!",
+  "coverUrl": "https://jd-s3.cdn.ubi.com/public/jdnext/playlists/b1724ab1-8fed-4c28-b99d-0fde1cf1cc48/nx/cover/ce19d28c09cfabea81b89be204b87448_en.bundle",
+  "coverDetailsUrl": "https://jd-s3.cdn.ubi.com/public/jdnext/playlists/b1724ab1-8fed-4c28-b99d-0fde1cf1cc48/nx/coverDetails/dfe6727c8bf27a6b35f9b3eb7cf6ced5_en.bundle",
+  "tags": [
+    "0c9e077f-4199-4717-adb2-80f452a0bfce"
+  ],
+  "itemList": [
+    "MakeFriends",
+    "CalmDown",
+    "CureForMeALT",
+    "GimmeMore",
+    "Cradles",
+    "WasabiALT"
+  ]
+}

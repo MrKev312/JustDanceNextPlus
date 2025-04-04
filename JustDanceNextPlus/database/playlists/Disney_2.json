@@ -1,0 +1,16 @@
+{
+  "guid": "e044058a-0ff2-4203-b6e2-056c67ac0200",
+  "playlistName": "Disney_2",
+  "localizedTitle": "Dance Disney",
+  "localizedDescription": "Let it all go with your childhood faves. Whether it's a princess or a mouse, relive classic movie moments and dance.",
+  "coverUrl": "https://jd-s3.cdn.ubi.com/public/jdnext/playlists/e044058a-0ff2-4203-b6e2-056c67ac0200/nx/cover/45ea04135d9fd05d4b05f40603c0f945_en.bundle",
+  "coverDetailsUrl": "https://jd-s3.cdn.ubi.com/public/jdnext/playlists/e044058a-0ff2-4203-b6e2-056c67ac0200/nx/coverDetails/77eb4355ca14ccda0852071398c547a3_en.bundle",
+  "itemList": [
+    "LetItGoDLC",
+    "FriendInMe",
+    "PrinceAli",
+    "HowFar",
+    "Lullaby",
+    "UnderTheSea"
+  ]
+}
