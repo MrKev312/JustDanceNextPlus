@@ -1,10 +1,12 @@
 ﻿using JustDanceNextPlus.Services;
 using JustDanceNextPlus.Utilities;
 
+using System.Linq.Dynamic.Core.CustomTypeProviders;
 using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.JustDanceClasses.Database;
 
+[DynamicLinqType]
 public class JustDanceSongDBEntry
 {
 	public string Artist { get; set; } = "";

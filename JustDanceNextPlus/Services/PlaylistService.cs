@@ -4,6 +4,7 @@ using JustDanceNextPlus.Utilities;
 
 using Microsoft.Extensions.Options;
 
+using System.Linq.Dynamic.Core;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -13,25 +14,24 @@ public class PlaylistService
 {
 	public PlaylistDB PlaylistDB { get; set; } = new();
 
-	readonly IServiceProvider serviceProvider;
+	readonly MapService mapService;
+	readonly JsonSettingsService jsonSettingsService;
+	readonly IOptions<PathSettings> pathSettings;
 	readonly ILogger<PlaylistService> logger;
 
-	public PlaylistService(IServiceProvider serviceProvider,
-				ILogger<PlaylistService> logger)
+	public PlaylistService(MapService mapService,
+		JsonSettingsService jsonSettingsService,
+		IOptions<PathSettings> pathSettings,
+		ILogger<PlaylistService> logger)
 	{
-		this.serviceProvider = serviceProvider;
+		this.mapService = mapService;
+		this.jsonSettingsService = jsonSettingsService;
+		this.pathSettings = pathSettings;
 		this.logger = logger;
-
-		LoadData();
 	}
 
 	public void LoadData()
 	{
-		IOptions<PathSettings> pathSettings = serviceProvider.GetRequiredService<IOptions<PathSettings>>();
-		JsonSettingsService jsonSettingsService = serviceProvider.GetRequiredService<JsonSettingsService>();
-
-		logger.LogInformation("Loading playlists");
-
 		string path = pathSettings.Value.PlaylistPath;
 
 		if (!Directory.Exists(path))
@@ -53,13 +53,44 @@ public class PlaylistService
 				continue;
 			}
 
-			if (playlist.ItemList == null || playlist.ItemList.Count <= 1)
+			JustDancePlaylist playlistFinal = playlist;
+
+			// If the playlist has a query, run the query on the map database and get the maps
+			if (playlist.Query != null)
+			{
+				List<Itemlist> maps = [.. mapService.SongDB.Songs.Select(x => x.Value).AsQueryable()
+					.Where(playlist.Query)
+					.Select(x => x.MapName)
+					.Select(x=> new Itemlist
+					{
+						Id = mapService.MapToGuid[x],
+						Type = "map"
+					})];
+
+				playlistFinal.ItemList.AddRange(maps);
+			}
+
+			// If the playlist has an order by, sort the maps
+			if (playlist.OrderBy != null)
+			{
+				playlistFinal.ItemList = [.. playlistFinal.ItemList.Select(x => mapService.SongDB.Songs[x.Id])
+					.AsQueryable()
+					.OrderBy(playlist.OrderBy)
+					.Select(x => new Itemlist
+					{
+						Id = mapService.MapToGuid[x.MapName],
+						Type = "map"
+					})];
+			}
+
+			if (playlistFinal.ItemList == null || playlistFinal.ItemList.Count <= 1)
 			{
 				logger.LogWarning("Playlist {File} has not enough maps, skipping", file);
 				continue;
 			}
 
-			PlaylistDB.Playlists[playlist.Guid] = playlist;
+			PlaylistDB.Playlists[playlist.Guid] = playlistFinal;
+			PlaylistDB.PlaylistsOffers.AvailablePlaylists.Add(playlist.Guid);
 			PlaylistDB.PlaylistsOffers.VisiblePlaylists.Add(playlist.Guid);
 		}
 

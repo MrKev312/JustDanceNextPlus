@@ -18,6 +18,8 @@ public class JsonPlaylist
 	public bool Hidden { get; set; } = false;
 
 	// The maps
+	public string? Query { get; set; }
+	public string? OrderBy { get; set; }
 	public List<MapTag> ItemList { get; set; } = [];
 
 	// Implicit conversion to Playlist

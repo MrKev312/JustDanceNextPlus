@@ -101,14 +101,20 @@ Playlists are stored in the following format:
 	"localizedDescription": "Description here",
 	"coverUrl": "URL to the cover bundle here",
 	"coverDetailsUrl": "URL to the cover details bundle here",
-	(Optional field) "tags": [ 
+	(Optional field)
+	"tags": [ 
 		"tag here"
 	],
+	(Optional field)
 	"itemList": [
 		"map codenames or map guids here"
 	]
+	(Optional query fields with example, you can query on anything from SongInfo)
+	"query": "Artist.Contains(\"Lady Gaga\") && !Tags.Contains(\"Alternate\")"
+	"orderBy": "OriginalJDVersion, MapName"
 }
 ```
+If you have both a query and an itemList, the query will be appended to the itemList.
 
 ## Contributing
 If you would like to contribute to the project, feel free to fork the repository and submit a pull request with your changes.
