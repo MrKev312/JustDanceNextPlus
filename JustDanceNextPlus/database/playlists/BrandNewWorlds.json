@@ -1,0 +1,17 @@
+{
+  "guid": "32f50403-ac9a-44c8-a4e2-6918e321ebbf",
+  "playlistName": "BrandNewWorlds",
+  "localizedTitle": "Many new worlds...",
+  "localizedDescription": "…are waiting for you to explore them! Come join us, you'll love them!",
+  "coverUrl": "https://jd-s3.cdn.ubi.com/public/jdnext/playlists/32f50403-ac9a-44c8-a4e2-6918e321ebbf/nx/cover/6bd1c8e5c56aba6cc9a234a3ef559b66_en.bundle",
+  "coverDetailsUrl": "https://jd-s3.cdn.ubi.com/public/jdnext/playlists/32f50403-ac9a-44c8-a4e2-6918e321ebbf/nx/coverDetails/c20c283f30e01f3e38d88799b088a74f_en.bundle",
+  "tags": [
+    "08f7bf6b-0ca8-432e-a1c4-309ac42b58e2"
+  ],
+  "itemList": [
+    "PlayDate",
+    "MoveYourBody",
+    "SleighRide",
+    "ControlResponse"
+  ]
+}
