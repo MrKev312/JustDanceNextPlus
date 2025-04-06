@@ -1,9 +1,121 @@
 [
   {
     "dlcType": "Yearly",
+    "name": "songpack_game1",
+    "groupLocId": "Just Dance",
+    "songsCountLocId": "27 songs",
+    "groupDescriptionLocId": "All the tracks from Just Dance!",
+    "tracklistExtended": [
+      "GirlsJustWant",
+      "Cotton",
+      "ILikeToMoveIt",
+      "HotNCold",
+      "PumpUpTheJam",
+      "ThatsTheWay",
+      "EyeOfTheTiger",
+      "Acceptable",
+      "DogsOut",
+      "StepByStep"
+    ],
+    "tracklistLimited": [
+      "GirlsJustWant",
+      "Cotton",
+      "ILikeToMoveIt",
+      "HotNCold",
+      "Acceptable",
+      "DogsOut"
+    ],
+    "productGroupBundle": "https://prod-next.just-dance.com/bundles/1.bundle"
+  },
+  {
+    "dlcType": "Yearly",
+    "name": "songpack_game2",
+    "groupLocId": "Just Dance 2",
+    "songsCountLocId": "47 songs",
+    "groupDescriptionLocId": "All the tracks from Just Dance 2!",
+    "tracklistExtended": [
+      "ItsRainingMen",
+      "TikTok",
+      "APunk",
+      "IGotYou",
+      "WhenIGrowUp",
+      "Toxic",
+      "Idealistic",
+      "Girlfriend",
+      "SOS",
+      "ElectroTribalDLC"
+    ],
+    "tracklistLimited": [
+      "ItsRainingMen",
+      "TikTok",
+      "Toxic",
+      "Girlfriend",
+      "SOS",
+      "ElectroTribalDLC"
+    ],
+    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2.bundle"
+  },
+  {
+    "dlcType": "Yearly",
+    "name": "songpack_game3",
+    "groupLocId": "Just Dance 3",
+    "songsCountLocId": "53 songs",
+    "groupDescriptionLocId": "All the tracks from Just Dance 3!",
+    "tracklistExtended": [
+      "Airplanes",
+      "CaliforniaGurls",
+      "TakeOnMe",
+      "BabyOneMoreQUAT",
+      "DynamiteQUAT",
+      "WhatYouWait",
+      "DaFunk",
+      "PartyRock",
+      "ToTheMall",
+      "VideoKilled"
+    ],
+    "tracklistLimited": [
+      "Airplanes",
+      "CaliforniaGurls",
+      "DynamiteQUAT",
+      "PartyRock",
+      "ToTheMall",
+      "VideoKilled"
+    ],
+    "productGroupBundle": "https://prod-next.just-dance.com/bundles/3.bundle"
+  },
+  {
+    "dlcType": "Yearly",
+    "name": "songpack_game4",
+    "groupLocId": "Just Dance 4",
+    "songsCountLocId": "50 songs",
+    "groupDescriptionLocId": "All the tracks from Just Dance 4!",
+    "tracklistExtended": [
+      "CallMeMaybe",
+      "MakesYouBeautiful",
+      "KetchupSong",
+      "NeverGonna",
+      "Maneater",
+      "LivinLaVidaLoca",
+      "TheFinalCountdown",
+      "MovesLikeDLC",
+      "SoWhat",
+      "Umbrella"
+    ],
+    "tracklistLimited": [
+      "CallMeMaybe",
+      "MakesYouBeautiful",
+      "Maneater",
+      "LivinLaVidaLoca",
+      "MovesLikeDLC",
+      "Umbrella"
+    ],
+    "productGroupBundle": "https://prod-next.just-dance.com/bundles/4.bundle"
+  },
+  {
+    "dlcType": "Yearly",
     "name": "songpack_game2014",
-    "groupLocId": "Just Dance 2014 Edition",
-    "songsCountLocId": "40 songs",
+    "groupLocId": "Just Dance 2014 Edition",
+    "songsCountLocId": "50 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2014!",
     "tracklistExtended": [
       "LimaGolf1",
@@ -30,8 +142,8 @@
   {
     "dlcType": "Yearly",
     "name": "songpack_game2015",
-    "groupLocId": "Just Dance 2015 Edition",
-    "songsCountLocId": "40 songs",
+    "groupLocId": "Just Dance 2015 Edition",
+    "songsCountLocId": "43 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2015!",
     "tracklistExtended": [
       "Balance",
@@ -58,8 +170,8 @@
   {
     "dlcType": "Yearly",
     "name": "songpack_game2016",
-    "groupLocId": "Just Dance 2016 Edition",
-    "songsCountLocId": "40 songs",
+    "groupLocId": "Just Dance 2016 Edition",
+    "songsCountLocId": "44 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2016!",
     "tracklistExtended": [
       "AboutThatBass",
@@ -86,8 +198,8 @@
   {
     "dlcType": "Yearly",
     "name": "songpack_game2017",
-    "groupLocId": "Just Dance 2017 Edition",
-    "songsCountLocId": "40 songs",
+    "groupLocId": "Just Dance 2017 Edition",
+    "songsCountLocId": "41 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2017!",
     "tracklistExtended": [
       "CheapThrills",
@@ -114,8 +226,8 @@
   {
     "dlcType": "Yearly",
     "name": "songpack_game2018",
-    "groupLocId": "Just Dance 2018 Edition",
-    "songsCountLocId": "40 songs",
+    "groupLocId": "Just Dance 2018 Edition",
+    "songsCountLocId": "51 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2018!",
     "tracklistExtended": [
       "24K",
@@ -142,8 +254,8 @@
   {
     "dlcType": "Yearly",
     "name": "songpack_game2019",
-    "groupLocId": "Just Dance 2019 Edition",
-    "songsCountLocId": "40 songs",
+    "groupLocId": "Just Dance 2019 Edition",
+    "songsCountLocId": "52 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2019!",
     "tracklistExtended": [
       "WorkWork",
@@ -170,7 +282,7 @@
   {
     "dlcType": "Yearly",
     "name": "songpack_game2020",
-    "groupLocId": "Just Dance 2020 Edition",
+    "groupLocId": "Just Dance 2020 Edition",
     "songsCountLocId": "40 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2020!",
     "tracklistExtended": [
@@ -199,7 +311,7 @@
     "dlcType": "Yearly",
     "name": "songpack_game2021",
     "groupLocId": "Just Dance 2021 Edition",
-    "songsCountLocId": "40 songs",
+    "songsCountLocId": "44 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2021!",
     "tracklistExtended": [
       "DanceMonkey",
@@ -227,7 +339,7 @@
     "dlcType": "Yearly",
     "name": "songpack_game2022",
     "groupLocId": "Just Dance 2022 Edition",
-    "songsCountLocId": "40 songs",
+    "songsCountLocId": "46 songs",
     "groupDescriptionLocId": "All the tracks from base Just Dance 2022!",
     "tracklistExtended": [
       "Judas",
