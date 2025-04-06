@@ -1,1 +1,0 @@
-﻿namespace JustDanceNextPlus.JustDanceClasses.Database.Profile;

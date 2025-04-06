@@ -23,5 +23,5 @@ public class MapInfo
 
 public class PushMapsPlayedInput
 {
-	public MapInfo[] Maps { get; set; } = [];
+	public required MapInfo Maps { get; set; }
 }

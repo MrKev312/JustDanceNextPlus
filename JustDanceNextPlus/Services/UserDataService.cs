@@ -22,6 +22,10 @@ public class UserDataService(
 			.Where(hs => hs.ProfileId == id)
 			.ToDictionaryAsync(hs => hs.MapId);
 
+		profile.PlaylistStats = await dbContext.PlaylistHighScores
+			.Where(ph => ph.ProfileId == id)
+			.ToDictionaryAsync(ph => ph.PlaylistId);
+
 		return profile;
 	}
 
@@ -63,6 +67,7 @@ public class UserDataService(
 		return true;
 	}
 
+	// Map leaderboard
 	public async Task<Leaderboard> GetLeaderboardByMapIdAsync(Guid mapId, long limit, long offset)
 	{
 		List<MapStats> highScores = await dbContext.HighScores
@@ -225,6 +230,125 @@ public class UserDataService(
 		return leaderboard;
 	}
 
+	// Playlist leaderboard
+	public async Task<Leaderboard> GetPlaylistLeaderboardByPlaylistIdAsync(Guid playlistId, long limit, long offset)
+	{
+		List<PlaylistStats> highScores = await dbContext.PlaylistHighScores
+			.Where(ph => ph.PlaylistId == playlistId)
+			.Join(dbContext.Profiles,
+				ph => ph.ProfileId,
+				p => p.Id,
+				(ph, p) => new { HighScore = ph, ProfileName = p.Dancercard.Name })
+			.OrderByDescending(ph => ph.HighScore.HighScore)
+			.ThenBy(ph => ph.ProfileName)
+			.Skip((int)offset)
+			.Take((int)limit)
+			.Select(ph => ph.HighScore)
+			.ToListAsync();
+
+		Leaderboard leaderboard = new()
+		{
+			Count = highScores.Count
+		};
+
+		foreach (PlaylistStats highScore in highScores)
+		{
+			long position = await dbContext.PlaylistHighScores
+				.Where(ph => ph.PlaylistId == playlistId && ph.HighScore > highScore.HighScore)
+				.CountAsync();
+			ScoreDetails newScore = new()
+			{
+				ProfileId = highScore.ProfileId,
+				Score = highScore.HighScore,
+				Position = position
+			};
+			leaderboard.Scores.Add(newScore);
+		}
+
+		return leaderboard;
+	}
+
+	public async Task<Leaderboard> GetPlaylistLeaderboardAroundAsync(Guid playlistId, Guid userId)
+	{
+		// Pre-fetch profiles and their dancer card names in one query to avoid multiple async calls
+		List<PlaylistStats> highScoresWithNames = await dbContext.PlaylistHighScores
+			.Where(ph => ph.PlaylistId == playlistId)
+			.Join(dbContext.Profiles,
+				ph => ph.ProfileId,
+				p => p.Id,
+				(ph, p) => new
+				{
+					ph.ProfileId,
+					ph.HighScore,
+					DancerCardName = p.Dancercard.Name
+				})
+			.OrderByDescending(ph => ph.HighScore)
+			.ThenBy(ph => ph.DancerCardName)
+			.Select(ph => new PlaylistStats
+			{
+				ProfileId = ph.ProfileId,
+				HighScore = ph.HighScore
+			})
+			.ToListAsync();
+
+		int userIndex = highScoresWithNames.FindIndex(ph => ph.ProfileId == userId);
+
+		List<PlaylistStats> surroundingScores = [.. highScoresWithNames
+			.Skip(Math.Max(0, userIndex - 1))
+			.Take(3)];
+
+		Leaderboard leaderboard = new()
+		{
+			Count = surroundingScores.Count
+		};
+
+		foreach (PlaylistStats highScore in surroundingScores)
+		{
+			long position = await dbContext.PlaylistHighScores
+				.Where(ph => ph.PlaylistId == playlistId && ph.HighScore > highScore.HighScore)
+				.CountAsync();
+			ScoreDetails newScore = new()
+			{
+				ProfileId = highScore.ProfileId,
+				Score = highScore.HighScore,
+				Position = position
+			};
+			leaderboard.Scores.Add(newScore);
+		}
+
+		return leaderboard;
+	}
+
+	public async Task<Leaderboard> GetPlaylistLeaderboardFromIdsAsync(Guid playlistId, List<Guid> userIds)
+	{
+		List<PlaylistStats> highScores = await dbContext.PlaylistHighScores
+			.Where(ph => ph.PlaylistId == playlistId && userIds.Contains(ph.ProfileId))
+			.OrderByDescending(ph => ph.HighScore)
+			.ToListAsync();
+
+		Leaderboard leaderboard = new()
+		{
+			Count = highScores.Count
+		};
+
+		foreach (PlaylistStats highScore in highScores)
+		{
+			long position = await dbContext.PlaylistHighScores
+				.Where(ph => ph.PlaylistId == playlistId && ph.HighScore > highScore.HighScore)
+				.CountAsync();
+			ScoreDetails newScore = new()
+			{
+				ProfileId = highScore.ProfileId,
+				Score = highScore.HighScore,
+				Position = position
+			};
+			leaderboard.Scores.Add(newScore);
+		}
+
+		return leaderboard;
+	}
+
+	// Map scores
 	public async Task<List<MapStats>> GetHighScoresByProfileIdAsync(Guid profileId)
 	{
 		return await dbContext.HighScores
@@ -293,6 +417,73 @@ public class UserDataService(
 			return (false, false);
 		}
 
+		return (true, isNewHighScore);
+	}
+
+	// Playlist scores
+	public async Task<List<PlaylistStats>> GetPlaylistHighScoresByProfileIdAsync(Guid profileId)
+	{
+		return await dbContext.PlaylistHighScores
+			.Where(ph => ph.ProfileId == profileId)
+			.ToListAsync();
+	}
+
+	public async Task<PlaylistStats?> GetPlaylistHighScoreByProfileIdAndPlaylistIdAsync(Guid profileId, Guid playlistId)
+	{
+		return await dbContext.PlaylistHighScores
+			.FirstOrDefaultAsync(ph => ph.ProfileId == profileId && ph.PlaylistId == playlistId);
+	}
+
+	public async Task<(bool Success, bool IsNewHighScore)> UpdatePlaylistHighScoreAsync(PlaylistStats playlistStats, int score, Guid playerId, Guid playlistId)
+	{
+		if (playerId == Guid.Empty || playlistId == Guid.Empty)
+			return (false, false);
+
+		// If the score is 0, just return
+		if (score == 0)
+			return (true, false);
+
+		PlaylistStats? existingHighScore = await dbContext.PlaylistHighScores
+			.FirstOrDefaultAsync(ph => ph.ProfileId == playerId && ph.PlaylistId == playlistId);
+
+		bool isNewHighScore = false;
+
+		if (existingHighScore == null)
+		{
+			PlaylistStats newHighScore = new()
+			{
+				ProfileId = playerId,
+				PlaylistId = playlistId,
+				UpdatedAt = DateTime.UtcNow,
+				HighScore = score,
+				PlayCount = 1,
+				HighScorePerMap = playlistStats.HighScorePerMap
+			};
+			dbContext.PlaylistHighScores.Add(newHighScore);
+			isNewHighScore = true;
+		}
+		else
+		{
+			if (score > existingHighScore.HighScore)
+			{
+				existingHighScore.UpdatedAt = DateTime.UtcNow;
+				existingHighScore.HighScore = score;
+				existingHighScore.HighScorePerMap = playlistStats.HighScorePerMap;
+				isNewHighScore = true;
+			}
+			existingHighScore.PlayCount++;
+			dbContext.PlaylistHighScores.Update(existingHighScore);
+		}
+
+		try
+		{
+			await dbContext.SaveChangesAsync();
+		}
+		catch (Exception ex)
+		{
+			logger.LogError(ex, "Failed to update playlist high score");
+			return (false, false);
+		}
 		return (true, isNewHighScore);
 	}
 }

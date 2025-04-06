@@ -28,11 +28,11 @@ public class Profile
 	[NotMapped]
 	public Dictionary<Guid, MapStats> MapStats { get; set; } = [];
 	[NotMapped]
-	public Dictionary<Guid, MapStats> PlaylistStats { get; set; } = [];
+	public Dictionary<Guid, PlaylistStats> PlaylistStats { get; set; } = [];
 	[NotMapped]
 	public List<MapHistory> MapHistory { get; set; } = [];
 	[NotMapped]
-	public List<MapHistory> PlaylistHistory { get; set; } = [];
+	public List<PlaylistHistory> PlaylistHistory { get; set; } = [];
 	[NotMapped]
 	public Dictionary<Guid, RunningTask> RunningTasks { get; set; } = [];
 	[NotMapped]
