@@ -101,7 +101,7 @@ public class Mutation
 	}
 
 	public async Task<ExecutionResult<PlaylistStatsResponse>> PushPlaylistPlayedAsync(
-		PushPlaylistInput input,
+		PushPlaylistPlayedInput input,
 		[Service] UserDataService userDataService,
 		[Service] SessionManager sessionManager,
 		[Service] IHttpContextAccessor httpContextAccessor)
@@ -159,11 +159,15 @@ public class Mutation
 			Response = new PlaylistStatsResponse
 			{
 				IsHighScore = isNewHighScore,
-				PlaylistStats = new PlaylistStats
+				PlaylistStats = new PlaylistStatsDataResponse
 				{
 					HighScore = playlistHighScore.HighScore,
 					PlayCount = playlistHighScore.PlayCount,
-					HighScorePerMap = playlistHighScore.HighScorePerMap,
+					HighScorePerMap = [.. playlistHighScore.HighScorePerMap.Select(m => new MapDataResponse
+					{
+						MapId = m.Key,
+						HighScore = m.Value
+					})],
 					Platform = playlistHighScore.Platform
 				},
 			}

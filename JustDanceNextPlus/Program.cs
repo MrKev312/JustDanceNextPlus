@@ -141,7 +141,9 @@ public class Program
 		UserDataContext dbContext = scope.ServiceProvider.GetRequiredService<UserDataContext>();
 		// Ensure the folder exists.
 		Directory.CreateDirectory(Path.GetDirectoryName(dbContext.Database.GetDbConnection().DataSource)!);
-		dbContext.Database.EnsureCreated();
+
+		// Migrations
+		dbContext.Database.Migrate();
 	}
 
 	private static void ConfigureMiddleware(WebApplication app)

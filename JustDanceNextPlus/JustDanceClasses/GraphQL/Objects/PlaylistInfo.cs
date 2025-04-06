@@ -19,7 +19,7 @@ public class MapData
 	public int Stars { get; set; }
 }
 
-public class PushPlaylistInput
+public class PushPlaylistPlayedInput
 {
 	public required PlaylistInfo Playlist { get; set; }
 }

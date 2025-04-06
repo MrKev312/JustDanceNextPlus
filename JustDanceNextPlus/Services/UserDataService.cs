@@ -471,6 +471,7 @@ public class UserDataService(
 				existingHighScore.HighScorePerMap = playlistStats.HighScorePerMap;
 				isNewHighScore = true;
 			}
+
 			existingHighScore.PlayCount++;
 			dbContext.PlaylistHighScores.Update(existingHighScore);
 		}
@@ -484,6 +485,7 @@ public class UserDataService(
 			logger.LogError(ex, "Failed to update playlist high score");
 			return (false, false);
 		}
+
 		return (true, isNewHighScore);
 	}
 }

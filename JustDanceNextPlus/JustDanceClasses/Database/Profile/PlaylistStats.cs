@@ -20,7 +20,7 @@ public class PlaylistStats
 	public Guid ProfileId { get; set; }
 
 	public int HighScore { get; set; }
-	public long PlayCount { get; set; }
+	public int PlayCount { get; set; }
 	public string Platform { get; set; } = "Unknown";
 	[GraphQLIgnore]
 	public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
