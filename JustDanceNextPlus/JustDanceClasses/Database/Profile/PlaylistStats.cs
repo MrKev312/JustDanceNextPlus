@@ -1,10 +1,7 @@
 ﻿using HotChocolate;
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.JustDanceClasses.Database.Profile;
