@@ -67,6 +67,22 @@ public class UserDataService(
 		return true;
 	}
 
+	public async Task<bool> UpdateProfileAsync(Profile profile)
+	{
+		dbContext.Profiles.Update(profile);
+		try
+		{
+			await dbContext.SaveChangesAsync();
+			return true;
+		}
+		catch (Exception ex)
+		{
+			logger.LogError(ex, "Failed to update profile");
+			return false;
+		}
+	}
+
+
 	// Map leaderboard
 	public async Task<Leaderboard> GetLeaderboardByMapIdAsync(Guid mapId, long limit, long offset)
 	{

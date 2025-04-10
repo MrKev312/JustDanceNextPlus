@@ -1,8 +1,9 @@
 using JustDanceNextPlus.JustDanceClasses.Database.Profile;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+
 using System.Text.Json;
-using System.Linq;
 
 namespace JustDanceNextPlus.JustDanceClasses.Database;
 

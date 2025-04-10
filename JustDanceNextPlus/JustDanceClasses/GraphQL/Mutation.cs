@@ -173,4 +173,44 @@ public class Mutation
 			}
 		};
 	}
+
+	public async Task<UpdateDancercardResponse> UpdateDancercardAsync(
+		UpdateDancercardInput input,
+		[Service] UserDataService userDataService,
+		[Service] SessionManager sessionManager,
+		[Service] IHttpContextAccessor httpContextAccessor)
+	{
+		// Standardized error response
+		UpdateDancercardResponse error = new() { Success = false };
+
+		// Get the session id from headers
+		string? sessionId = httpContextAccessor.HttpContext?.Request.Headers["ubi-sessionid"].FirstOrDefault();
+		if (input == null || sessionId == null || !Guid.TryParse(sessionId, out Guid sessionGuid))
+			return error;
+
+		// Get the session
+		Session? session = sessionManager.GetSessionById(sessionGuid);
+		if (session == null)
+			return error;
+
+		// Get the user profile
+		Profile? profile = await userDataService.GetProfileByIdAsync(session.PlayerId);
+		if (profile == null)
+			return error;
+
+		// Update the dancercard using the input
+		profile.Dancercard = input;
+
+		// Update the profile (which also updates the dancercard) in the database
+		bool updated = await userDataService.UpdateProfileAsync(profile);
+
+		if (!updated)
+			return error;
+
+		return new UpdateDancercardResponse
+		{
+			Success = true,
+			Dancercard = profile.Dancercard
+		};
+	}
 }

@@ -1,6 +1,4 @@
-﻿using JustDanceNextPlus.JustDanceClasses.Database.Profile;
-
-namespace JustDanceNextPlus.JustDanceClasses.GraphQL.Objects;
+﻿namespace JustDanceNextPlus.JustDanceClasses.GraphQL.Objects;
 
 public class PlaylistStatsResponse
 {
