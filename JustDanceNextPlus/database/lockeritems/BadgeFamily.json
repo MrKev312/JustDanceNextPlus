@@ -1,0 +1,1777 @@
+[
+    {
+        "itemId": "09f35aff-898e-446d-954d-ac5e7b14ed3a",
+        "nameId": "badgeFamily_PhoneBooth",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "fe8db2e5-e91b-43af-bdfa-92ba428785b0",
+                "2": "4ebcca17-3623-42f9-966f-0cba00330546",
+                "3": "e14a2656-1af3-4eda-a6ef-647835ae6ffb"
+            },
+            "hexColor": "#37B6DA",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8463,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "92d1fbfc-723e-4c35-8157-7caa94319df3",
+        "nameId": "badgeFamily_PrinceFrog",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "19476d60-702a-4cde-8a10-fcd40c951acc",
+                "2": "e52ced6e-cca0-4ca8-8983-6b87d92d9e70",
+                "3": "eb897732-6018-4bb8-9aba-0d007b8c1ede"
+            },
+            "hexColor": "#115FED",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5673,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-12-12T10:13:47.294Z"
+    },
+    {
+        "itemId": "c026e7fa-5b29-42aa-9cff-d52562afccd6",
+        "nameId": "badgeFamily_CelebrationConfetti",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "b68d1e66-2a4a-42db-9693-a861f03d1092",
+                "2": "ebc384d9-8221-40f1-8b8d-f0a9fbd533a0",
+                "3": "08fee0a1-88ec-42aa-92ff-53271a70bcd1"
+            },
+            "hexColor": "#A733F9",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8313,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "6eae2ffa-cf7a-4c01-a750-d89e98c00d7d",
+        "nameId": "badgeFamily_TreeRise",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "b201b4ad-ffae-45e1-8056-3cec018c31c6",
+                "2": "501b81de-4f46-4ab1-bcdf-30295058f76a",
+                "3": "daec896b-0997-4d65-947e-f2ff0b0518d0"
+            },
+            "hexColor": "#60BE7F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5309,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "e9e537f4-b0ee-47e1-9026-4d58f629c1a3",
+        "nameId": "BalloonParty",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "a1ed816e-2d10-4c2b-9c08-03c7c3471895",
+                "2": "e19f822c-7c18-44c8-979f-f24bcc025dfa",
+                "3": "8f946de5-9cde-470f-abe0-f7d71ac59c4b"
+            },
+            "hexColor": "#A733F9",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3003,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2c46bcea-0592-4a9e-948b-e7cc91a85298",
+        "nameId": "badgeFamily_NightswanShine",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "86630b2a-543b-47d0-a672-0957742d56d7",
+                "2": "22241000-cac8-49d7-9134-1356c8134561",
+                "3": "bc160ffc-5204-4eea-951a-d921960d73db"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5310,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "2d8d2ee1-b02f-4cde-b95c-889396a2c77f",
+        "nameId": "SunExplore",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "4a953f06-f70d-4ab4-90a0-6a7a7a74a00c",
+                "2": "ddeca763-b31f-413f-b48f-4cb4c9f12e4d",
+                "3": "67bc62dc-e7d2-4a2b-bad6-751af25fa4d8"
+            },
+            "hexColor": "#37B6DA",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3049,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "8108f5de-f18c-4f8c-9e23-82cc20d084e2",
+        "nameId": "MirrorShine",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "ea44fcd7-890b-420b-870d-267a96000861",
+                "2": "ec693c59-d2cd-42e6-8a5b-8683108b9f08",
+                "3": "8821baa8-3ef2-4984-bb5b-c17ba0cf5865"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3034,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "55a177d7-2c89-4dac-b297-43518e253fc8",
+        "nameId": "CrownShine",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "6470bac5-fef0-4d11-9d11-7cbd44acc832",
+                "2": "753bb261-c1f3-4e00-a6dc-7eb2bb90584a",
+                "3": "8eac4816-714a-40b1-bf6c-953cf4b1d449"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3020,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "a99507d2-9b65-460b-b33c-2650062b109d",
+        "nameId": "FireWorkout",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "1b5abe22-2c39-401b-98eb-35c991b7fe6a",
+                "2": "06a8390d-0de3-4e05-8d3b-464b3529e209",
+                "3": "0055da05-43a1-4a0d-9767-4a2dc148e4d3"
+            },
+            "hexColor": "#F0874F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3024,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "3019a4cf-9a39-4d5f-abf8-aa03412cedf5",
+        "nameId": "badgeFamily_StrongarmWorkout",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "c58f294d-d464-437f-9387-388605d31db6",
+                "2": "a6b6f4ad-80ac-4f06-b796-770e1668fa8a",
+                "3": "66a4668b-17dc-4da4-b634-4f322cb8453b"
+            },
+            "hexColor": "#F0874F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5305,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "6ea987cd-8255-4c5e-94c6-3b2f6fee8416",
+        "nameId": "badgeFamily_IceCreamSummer",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "fbe97d84-d871-44a9-aa9c-bd4eb5282804",
+                "2": "b6a0bdb5-0bf1-4f15-a72b-71927b169366",
+                "3": "2b88272d-1c98-441a-9858-95859a6d86c9"
+            },
+            "hexColor": "#115FED",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4988,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "bff557c9-5b9a-4103-97dd-7e2cb0dbc8cc",
+        "nameId": "badgeFamily_LoverCoaster",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "04d953fa-b047-4116-94bf-c202ec92e148",
+                "2": "1d2b350e-46d6-4389-88a9-36440e7d3fd5",
+                "3": "ebbf8d8a-b1e2-4448-8983-6e7032c0c5be"
+            },
+            "hexColor": "#115FED",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4577,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "940b39c8-4d90-4013-86d5-d1f260283606",
+        "nameId": "GoldbarShine",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "df1ddd4b-b1cf-49b1-8903-52cfeb70a84f",
+                "2": "5c44ce0d-1953-421f-a3ba-c822b9d72f17",
+                "3": "c7b94aca-6e18-492a-9db5-4718303ae196"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3027,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "206d46c7-84cd-4255-ab2c-b1c8123e2a49",
+        "nameId": "RoseShine",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "fa9764a5-0da1-48c6-a748-1e1cdb0794f8",
+                "2": "31169160-76e7-4856-aa02-9f3cefa3135d",
+                "3": "3fc6be21-86ef-4031-959f-1969d8cf3afc"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3042,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "b92afbc2-a1fb-40ac-b3c6-493cddb6aee3",
+        "nameId": "badgeFamily_ChineseDragon",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "bce4b0fa-aaf6-45a2-8a79-dec5b3412861",
+                "2": "a9bbf13b-a14d-4214-824d-327d936bf5b0",
+                "3": "4c088ef6-3aed-491d-b076-b3feac0a49d0"
+            },
+            "hexColor": "#60BE7F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8499,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "2a7bebc1-5206-4d37-bd1e-3b0265fb9011",
+        "nameId": "badgeFamily_EurovisionShowdown",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "c4e42b34-fc59-4f1c-b9cb-703bdf362383",
+                "2": "3c9deb92-faa6-49ff-89c1-aeaa678031dd",
+                "3": "50b16cca-6aaf-4461-aed3-c60b331ecf4e"
+            },
+            "hexColor": "#115FED",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4836,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "cf8dacb5-d3af-44d2-9ad3-f7da8ebe97ae",
+        "nameId": "badgeFamily_SantaClausParty",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "6f5decd0-f60e-49c9-ae7d-d16a4be43eff",
+                "2": "ed701e76-6b43-448d-80d3-730c524ef966",
+                "3": "6a36bbd1-ea32-4df7-9c22-fb0b89da41db"
+            },
+            "hexColor": "#A733F9",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5313,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "eca640b0-cc45-4cac-bb8a-11fa359d5002",
+        "nameId": "OwlRise",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "1603a12d-714b-4d07-9206-23bf3c295ff8",
+                "2": "b5cca9d2-62f4-4a2f-895d-1039cf4caf82",
+                "3": "b939759f-29ae-4e34-9729-2861ee0dc349"
+            },
+            "hexColor": "#60BE7F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3038,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "d83671ae-d722-4434-b94b-010348e93496",
+        "nameId": "badgeFamily_DramaExplore",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "00fe6470-ae39-4f46-af95-101c0170c2f6",
+                "2": "6df93fb3-0adb-4b22-962b-333e2680afb2",
+                "3": "695a49fa-e1b0-4943-a642-c9c914a6f96f"
+            },
+            "hexColor": "#37B6DA",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5314,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "7ad98aab-0efc-413b-a2c0-bf0874f6e728",
+        "nameId": "badgeFamily_HelmExplore",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "55fb9a3d-c9ce-4836-9ed5-2910929656fb",
+                "2": "135a7ff2-8797-4205-9c50-2734709c01b2",
+                "3": "827a47b6-4740-415b-afb1-b9aba4e36f98"
+            },
+            "hexColor": "#37B6DA",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5307,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "01bdd2a7-9467-40e1-9ac7-90aec3544fda",
+        "nameId": "BalletRise",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "e539e0e7-8240-45f4-99aa-0cddd0230bfd",
+                "2": "c9245e61-1942-4d00-bd58-be0bf71cc893",
+                "3": "cfc28b39-b665-4619-84fc-eb8c0d25c09c"
+            },
+            "hexColor": "#60BE7F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3002,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "091b31a7-e106-49b9-9eac-f676de36bdca",
+        "nameId": "badgeFamily_TravelerFeather",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "aab3dfee-3484-41d6-ad49-a761f935ab99",
+                "2": "32179853-2989-4eb3-9a1c-db8400a1c8fe",
+                "3": "5e6ab73b-8072-4f32-b6b9-bdf582aa5df0"
+            },
+            "hexColor": "#FDC11C",
+            "hiddenUntilUnlocked": false,
+            "isPremium": true,
+            "isUbiconnect": false,
+            "nameLocId": 5777,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-14T08:45:18.093Z"
+    },
+    {
+        "itemId": "54d5ab9f-27de-48de-930c-42c63ad7f758",
+        "nameId": "UnicornParty",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "f850bde2-9e78-4a2c-9d7c-3f7d3ecab287",
+                "2": "1c229382-1e62-4689-a251-87d75a573a86",
+                "3": "bf462100-6250-46db-a7f0-691a66759d99"
+            },
+            "hexColor": "#A733F9",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3052,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2f796397-c1e4-436c-a5dc-a19e49dc99f4",
+        "nameId": "DiamondShine",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "e4a0f36e-7ee1-4171-b6bf-53bff0516e9d",
+                "2": "40898023-1777-4d5b-9b32-b7f2536a85b1",
+                "3": "d8ab3ea0-a686-4b47-b156-4a016f5a199e"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3021,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "0cd5d796-17ce-45fa-8c71-0df12269ea52",
+        "nameId": "badgeFamily_TelescopeExplore",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "bf2a7544-02ca-4b37-8f41-908910f8d4d4",
+                "2": "72d58a87-6b3c-4a48-89a3-e36e0d9909a9",
+                "3": "f4940877-026f-4cce-b102-a0f8e86e27d0"
+            },
+            "hexColor": "#37B6DA",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5315,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "91e9ae96-21de-4c60-9e88-dee7848aa4eb",
+        "nameId": "badgeFamily_EagleRise",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "bbae7e29-d4a6-40be-a3b1-1f14c8718aae",
+                "2": "7080d756-6fe0-4577-a969-3489bad4e0db",
+                "3": "c428dba7-f25e-49a6-bda5-b05238d14e68"
+            },
+            "hexColor": "#60BE7F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5316,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "008b3394-6177-4a17-ba93-213b11ceed3b",
+        "nameId": "ClimbingaxeRise",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "4ca70fe7-b565-4fea-900d-aa6736d37d50",
+                "2": "428980fa-e732-4678-8e95-368e70d038fe",
+                "3": "501635ee-6e3d-40bc-b911-ea8ec767a099"
+            },
+            "hexColor": "#60BE7F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3017,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "45f1c492-8de9-4312-a19c-6f798cb463bd",
+        "nameId": "badgeFamily_PokerCard",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "ec1c2ffa-cd0b-4e1c-ab9f-21de8f9f102a",
+                "2": "cdb317b9-7fd7-4f21-bd6a-b9526171bdfd",
+                "3": "0c322332-35e3-4581-b6df-5588935ad358"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8459,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "db0d498f-5d78-451a-a5cf-5a4a5771b896",
+        "nameId": "badgeFamily_MicroShine",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "8cdee45e-b674-4b85-842b-ee85dcf19e24",
+                "2": "fa42a22a-0940-41b2-b55c-60eb2f0ace07",
+                "3": "58aeee62-0048-4123-a163-eea72ce14868"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5308,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "8dc32689-0eaa-4bbe-8655-8c6655558c72",
+        "nameId": "badgeFamily_CatfishShine",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "ff2d7914-b9d7-436e-833a-e9760e2a7269",
+                "2": "528f6d74-3a7f-43d2-b8a2-e1ac9e7ba696",
+                "3": "ccc6fc49-ba8e-4bd9-9eec-49fbbec8b6d8"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5317,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "60767e87-cd01-4f20-8c0a-f965dbcb57dc",
+        "nameId": "badgeFamily_CoralBadge",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "e8154f58-26d8-426a-a1e7-ce7225360240",
+                "2": "97a03644-73e5-4302-bb26-4f74b1cadcd0",
+                "3": "e9d60b3c-2cf1-447a-92ac-f6b133360884"
+            },
+            "hexColor": "#37B6DA",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8498,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "b25b2782-53ee-4cf9-88b4-35f7bcfc26ea",
+        "nameId": "badgeFamily_GooseBadge",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "fc7b7d02-d1c2-4fa8-baa1-3f3c5c1a5bdd",
+                "2": "051539e2-67fe-4b10-8b10-0730b5a2e282",
+                "3": "009320a8-f854-4d12-9204-a664286b23ed"
+            },
+            "hexColor": "#A733F9",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8500,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "22af7a81-abdd-47ca-be3f-7639a3d38d28",
+        "nameId": "badgeFamily_ArcadeGame",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "3b028a89-6730-4aa5-a7c9-815451f9a29c",
+                "2": "83da2820-ad76-4546-87d3-a646af3e1833",
+                "3": "a9fe83b4-9b44-4490-afff-fb4edd9b2149"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8460,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "3b092280-312a-460e-b2b3-1866e5d89c23",
+        "nameId": "badgeFamily_BoxingGlove",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "ae0ac672-aa7c-418a-8a07-a37c43974948",
+                "2": "072c4c82-b421-453b-beee-5b34fb6288d6",
+                "3": "84a63a5e-5201-4e2a-8a10-53ecba0b1cfe"
+            },
+            "hexColor": "#F0874F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8458,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "ff0d6474-0718-4058-b7e9-23a9abd7942f",
+        "nameId": "BookExplore",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "a8b21eba-23b5-4e1b-9126-09ed18c0a7b0",
+                "2": "01900326-7339-4f45-a584-11e5526cd0b4",
+                "3": "9bb676ca-a104-47e9-8888-b8cf60d5c9c9"
+            },
+            "hexColor": "#37B6DA",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3004,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "5a9c8c6d-d858-440f-ab15-e6f33d25a4ac",
+        "nameId": "MoonExplore",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "a70238ca-7820-4e17-9688-949e612ec20c",
+                "2": "7b5b8469-2a4b-4377-84d5-403c3fdde0d4",
+                "3": "5e53c5ff-5e53-41b7-bdfd-2222cad9b5ce"
+            },
+            "hexColor": "#37B6DA",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3035,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "9257616d-aa2f-4d66-9532-9082ed7529ab",
+        "nameId": "badgeFamily_FistBumpShowdown",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "83da90ac-c478-4cbe-9268-73bbf44b799b",
+                "2": "ac6943b3-b076-434c-a4c8-4df2a050ac38",
+                "3": "04031696-a3d2-4c2c-ae07-9554ab926d81"
+            },
+            "hexColor": "#A733F9",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5312,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "fcb27b60-4e14-462e-ac5d-65b24721f516",
+        "nameId": "RocketExplore",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "688095dd-b5ff-42d8-ae06-cd3d558c64eb",
+                "2": "52e97929-2afe-45a0-ae87-d69f67d5624b",
+                "3": "4efc4b43-bc54-448b-9a2f-e361586e1eeb"
+            },
+            "hexColor": "#37B6DA",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3041,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "29856b60-9364-47a7-8e42-8c43fcb65419",
+        "nameId": "LotusRise",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "d7914609-0d0f-4b96-9f82-3f97ca3ef0ff",
+                "2": "5739e41d-93e3-4c16-88f2-65f08bc64c72",
+                "3": "0660cddc-0780-4163-a4c2-ba9e67541e6a"
+            },
+            "hexColor": "#60BE7F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3031,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2463c55f-13b6-456b-9b26-4adc324a03d9",
+        "nameId": "badgeFamily_BirthdayCake",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "db531653-d21f-4be4-871c-374317d17412",
+                "2": "66c59102-77b3-4a5e-ad6a-ab775db1598d",
+                "3": "5f1e8f38-a66f-42d3-a0e5-2a95fc63503a"
+            },
+            "hexColor": "#A733F9",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8312,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "b77d6c5e-369c-46c1-a584-6872c12f5dd2",
+        "nameId": "badgeFamily_FlowerWorkout",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "3e14a186-4853-4e82-92ee-13b56f1d2bd6",
+                "2": "29b7a64d-c8db-41a8-a69d-2464d4e2516f",
+                "3": "ebbcaf08-390c-49e3-b403-2c50a6904ddf"
+            },
+            "hexColor": "#F0874F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5311,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "345c615a-1ffb-4f09-82f8-f1196397d855",
+        "nameId": "SneakersWorkout",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "58ca724d-22d5-4e73-815a-5c9072d1f448",
+                "2": "cb4af587-6fd0-45d0-980b-2a91e07d76f0",
+                "3": "1c13111e-5bab-4cb2-8936-6c80786afe13"
+            },
+            "hexColor": "#F0874F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3045,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "c1613255-d516-4214-8b56-fe1b23a27ba3",
+        "nameId": "badgeFamily_RollerSkate",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "c9753aa4-b4c4-46fb-af60-d3a974cf9b21",
+                "2": "751720bd-7ccf-4127-a158-5ccb39f50d24",
+                "3": "d8eb4a3c-8e3e-4afa-b87c-86a0eef62524"
+            },
+            "hexColor": "#115FED",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5807,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 2,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "32b87f54-1ab8-49b7-993c-19a9c206eaf4",
+        "nameId": "badgeFamily_WhistleWorkout",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "5b073534-2382-41f5-b2a4-22e8a224baa2",
+                "2": "cf43c9a1-a0ea-40ec-b68f-b27d03d9524c",
+                "3": "5ea3041c-05e0-47db-b4ab-db17fb2d99f8"
+            },
+            "hexColor": "#F0874F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5303,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "915d0654-aa76-43e6-8f16-91cfaafb1556",
+        "nameId": "HeartParty",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "a6ad142c-e905-408a-89ea-efe3c0179775",
+                "2": "b0977782-4a21-437e-b9c4-75210944bad3",
+                "3": "b8f3bba4-9f49-428c-8394-a9025b317c1c"
+            },
+            "hexColor": "#A733F9",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3028,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "d402804a-52be-4f28-9d80-adbc632019f4",
+        "nameId": "ShootingstarRise",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "5c06012b-829a-434a-871c-dcaa063e589d",
+                "2": "6aa5ca9e-1618-4d9a-a0d9-ad998e4eb7ad",
+                "3": "f077053b-88af-4687-b221-2ce9436a4519"
+            },
+            "hexColor": "#60BE7F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3043,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "0f1d294a-7a8f-49db-8fc7-0f7a6b91f50d",
+        "nameId": "HeartbeatWorkout",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "9201cf0b-61c3-4c0f-8ea9-8490b2c98d73",
+                "2": "ededa2ea-7232-439c-965b-715ddab602b3",
+                "3": "f3bf8167-27c9-4a5d-ada7-d66bb63c047c"
+            },
+            "hexColor": "#F0874F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3029,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "aec92749-3eba-49e2-826b-197216e8a7f2",
+        "nameId": "FlyingbirdRise",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "e60aad0e-fc14-4390-af79-c8d055721409",
+                "2": "6057b546-8f08-445e-b392-457e91ccefd5",
+                "3": "d3598b8c-07ef-4b6b-bc60-b0b0d8051b5b"
+            },
+            "hexColor": "#60BE7F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3025,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f2d8a447-a51a-4d4d-98b0-8177e1c3cdfa",
+        "nameId": "badgeFamily_SpotlightShine",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "40505c7f-6d45-45c4-a17a-332d8f936774",
+                "2": "51585f03-7422-4476-a5ef-4795cdf5a710",
+                "3": "6e1bb661-13ed-49fd-a0c1-42eb620b3e08"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3046,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "72a4a844-e582-4030-9f4b-0ed520431ed4",
+        "nameId": "MedalShine",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "c7c431a2-4043-4760-b543-66cbce36f94d",
+                "2": "68c3b4a4-c858-44a7-9712-271fd5509568",
+                "3": "8cc73257-432d-431b-a504-c9d611245ec5"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3033,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ce848e3f-d734-4b1b-ba56-52ab26dba018",
+        "nameId": "PlanetExplore",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "f85dc913-8d02-46ba-8548-c0dd6b39a9fe",
+                "2": "6a526ed8-96de-437c-9ab6-43a1792506ca",
+                "3": "b52a0d68-df29-4071-8b06-320ecc40a2db"
+            },
+            "hexColor": "#37B6DA",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3039,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2c808d3f-289b-4f77-98a8-8b9257b95193",
+        "nameId": "FriendsParty",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "f06a4567-332b-4667-901d-aee3b66b4955",
+                "2": "89d7dd59-aa4e-47cd-af5b-3ec5430c5a68",
+                "3": "fe538cd8-8308-4110-9522-0385a71839fe"
+            },
+            "hexColor": "#A733F9",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3026,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "29f0ad3e-57dc-4f4a-80d5-9849a5ce2205",
+        "nameId": "badgeFamily_MusicPlayer",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "c0537844-6fda-4290-a943-357a0cf1c193",
+                "2": "231b3edb-2bdf-4c2d-8d70-89a4609dc8d7",
+                "3": "ddf7fb2f-373a-43de-9a45-f4f1a492e6c6"
+            },
+            "hexColor": "#115FED",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5763,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-03-05T09:26:36.908Z"
+    },
+    {
+        "itemId": "202edb3b-f510-4f94-99f5-a399e6322a93",
+        "nameId": "StarRise",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "5efc7d61-b81b-4e8a-be59-af525dcd0738",
+                "2": "52a802cd-3d86-4d9b-b38b-e89dde9d2c14",
+                "3": "6386845e-df32-45b9-addd-ab59676a6ff6"
+            },
+            "hexColor": "#60BE7F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3047,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "8683153b-9519-4ed8-9f86-e6db5550ba9f",
+        "nameId": "DiscoverExplore",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "f8351f4e-61e9-4754-a928-cb57a23658e2",
+                "2": "efff5e35-9626-4fa4-9589-325de5451e89",
+                "3": "26ad5fc9-dfe6-46fe-9a71-544160b1620f"
+            },
+            "hexColor": "#37B6DA",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3023,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "7b7b5e39-f256-4d2b-8aec-9db3be67d8ed",
+        "nameId": "MusicExplore",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "70652412-58dd-4538-885e-f15692bb5227",
+                "2": "a5b0fcc2-64cc-4a9b-af68-5f0b47b95464",
+                "3": "acb6cff2-65f4-4b1b-90d5-33b3fd0e9769"
+            },
+            "hexColor": "#37B6DA",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3037,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "48d83d35-d00f-4ac1-9980-685890fa71ac",
+        "nameId": "LightningWorkout",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "728b3aeb-f3e2-4667-b6bf-f1d75e225b21",
+                "2": "29eb06fe-88be-4829-a706-30dd6a8d2fea",
+                "3": "b984f04f-740f-46bb-b2a9-37d36786a667"
+            },
+            "hexColor": "#F0874F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3054,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "63b8d634-a93b-4600-a3ca-b18730ef1934",
+        "nameId": "badgeFamily_ConfettiParty",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "ba1905e9-00e0-4272-a4ac-89bcaa33fb6a",
+                "2": "1d8a40ad-152d-4c40-a5bb-08c547b1cc71",
+                "3": "dc6539b5-a36e-44c4-a0a7-9e97f92cb9a5"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5306,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "4ded9432-7488-41fe-b16c-cdef9db1dc13",
+        "nameId": "RecommendedExplore",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "c762f5e8-f848-424e-ade8-e78e0c8340be",
+                "2": "880056c8-ed3e-4c9f-9d8c-132bf369013c",
+                "3": "599be91f-b9cd-47d0-9b3b-137491a60cea"
+            },
+            "hexColor": "#37B6DA",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3040,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "afc19b2f-271c-43aa-b6b3-78a2c517aa63",
+        "nameId": "badgeFamily_FlamingoSeason",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "d6e8c4c1-70aa-4bd0-beac-117114744f5c",
+                "2": "3a2ed9da-049c-450d-a0e3-34f5be6730f4",
+                "3": "65926694-1ccd-4315-b7b0-ecdee8a1fc34"
+            },
+            "hexColor": "#115FED",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5521,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-09T14:19:57.987Z"
+    },
+    {
+        "itemId": "712db01c-81d5-4693-b7fd-b4dd5fcdd92a",
+        "nameId": "badgeFamily_SwanParty",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "7abcd503-7383-4fb7-a3f5-fdaedefcc031",
+                "2": "b9e86400-bd87-4266-9383-22da9a9197b6",
+                "3": "f14dc0d0-11e1-48a2-97c5-fa59af326293"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5304,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "23660717-b2bc-4f8b-95cb-b7931512ed62",
+        "nameId": "MaskParty",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "6cc594b3-8350-4021-839f-1cbcd6cf08a8",
+                "2": "1a0c3ee7-79aa-45a8-b4e7-5c12576dfc1e",
+                "3": "228e733e-5d3c-436e-a439-34922993ee8f"
+            },
+            "hexColor": "#A733F9",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3032,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "7c367712-14ed-4567-9f60-37dce6525299",
+        "nameId": "MountainRise",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "89f59c11-ec6b-4983-b332-0857b72ac115",
+                "2": "a78b7ab7-29ad-4609-9a03-2676ca4e9581",
+                "3": "5bec8058-5bc2-42a5-b13a-a7c946223c7f"
+            },
+            "hexColor": "#60BE7F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3036,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "888aa90f-c44c-4669-b1b5-53beb5db4435",
+        "nameId": "badgeFamily_WanderlustExplore",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "aa1ad3e5-f017-4a7d-bc06-753eccbfebcd",
+                "2": "0fa2a4a4-118c-42bf-b289-e86d8ae84d87",
+                "3": "a466f3f2-1f9e-478a-9439-54b1c1ba3146"
+            },
+            "hexColor": "#37B6DA",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5300,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "137e8c0e-b7fb-4e90-808a-a0367e31cd0f",
+        "nameId": "CooperationParty",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "8836a3e1-850c-4401-9271-50ee65de996d",
+                "2": "714c3c73-2dff-47dc-892e-f72bffb7e62b",
+                "3": "2424e6a9-4c19-4ee8-8e5b-56fcc84e70f9"
+            },
+            "hexColor": "#A733F9",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3019,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "d5777c07-9f2f-43c1-a92d-833965d87070",
+        "nameId": "DiscoballParty",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "95d4b42f-4760-4c61-bd3b-6224a33e92ae",
+                "2": "e794ebe4-32dc-45c4-a2a6-2109e36d24ee",
+                "3": "18b3a57c-b0ba-499b-a748-69d4c75a471b"
+            },
+            "hexColor": "#A733F9",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3022,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "55036c04-f922-4192-a065-f9f160a42e01",
+        "nameId": "badgeFamily_MusicDisc",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "1b76b010-afe0-4a9d-99a0-22c89c050c1e",
+                "2": "c6aed991-89f4-468c-a0b2-f08132c6c56a",
+                "3": "d22a5232-7777-4bc3-a004-ec12a840d5fb"
+            },
+            "hexColor": "#A733F9",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8479,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "5040eb03-0769-4b0b-a356-4a9860524406",
+        "nameId": "JokerParty",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "4fd37ec2-5c79-4988-aca5-c1b32354c4cb",
+                "2": "b6940422-9c44-4bf0-bb8b-bf5dfe07f962",
+                "3": "dfb1a4ea-3974-4e42-8a95-62c2e0945a01"
+            },
+            "hexColor": "#A733F9",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3030,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "a6a1d902-2e08-4dfd-9c44-048048f2c2d7",
+        "nameId": "BoomboxWorkout",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "4a8a1dcf-2478-4f73-9a3c-2a1f3f23708c",
+                "2": "1f25ce7c-0af1-414c-a989-09703261d0cf",
+                "3": "7339140e-c903-42df-ae93-2bb597d8cba8"
+            },
+            "hexColor": "#F0874F",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3005,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 3,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "bfe14200-1966-46af-9cc2-c040afea1da4",
+        "nameId": "badgeFamily_Football",
+        "type": "badgeFamily",
+        "obj": {
+            "badgeIdPerLevel": {
+                "1": "674cd78e-29fe-4f5e-a9d9-15d06dc1ffca",
+                "2": "b6b30813-b2ca-463e-91fb-443355f9d0c8",
+                "3": "e5c77ee1-5c28-4bdc-862f-1c2fe79c51dc"
+            },
+            "hexColor": "#E94DD2",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8464,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000"
+        },
+        "revision": 1,
+        "tags": [
+            "badgeFamily",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    }
+]

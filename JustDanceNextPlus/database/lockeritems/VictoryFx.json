@@ -1,0 +1,529 @@
+[
+    {
+        "itemId": "ba6517fd-0255-46d3-affe-114a05ef232f",
+        "nameId": "Ice_Common",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_Ice_Common.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3428,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_Ice.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "653a1cfc-09c8-494b-96e3-ed7c47083f15",
+        "nameId": "AbstractCartoonShapes_Common",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_AbstractCartoonShapes_Common.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 644,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_AbstractCartoonShapes.psd",
+            "unlockConditionsLocId": 911
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2b7df6f1-dcf9-4a06-b264-defe1ef2b003",
+        "nameId": "Magic_Rare",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_Magic_Rare.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3433,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_Magic.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "11a7dab5-bca9-4936-a860-9e6c9dd2e338",
+        "nameId": "Buterfly_Rare",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_Buterfly_Rare.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3430,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_Buterfly.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "fa4001ab-e667-48e1-96cf-c2a4642ec3e0",
+        "nameId": "Space_Common",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_Space_Common.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3425,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_Space.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "b1c971a7-0344-4aac-a643-4649290150a6",
+        "nameId": "Flower_Common",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_Flower_Common.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3429,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_Flower.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "6e3c74a5-11d8-46fb-81a1-113b1c4447e2",
+        "nameId": "Firework_Rare",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_Firework_Rare.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3431,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_Firework.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "6ed4c3a1-0350-4dca-929c-aa154b7babb1",
+        "nameId": "Handdraw_Common",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_Handdraw_Common.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3423,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_Handdraw.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "574e46a1-4bee-420c-bdb4-93358b693e1e",
+        "nameId": "victoryFx_CelebrationSpotlight",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_CelebrationSpotlight.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4841,
+            "rarity": "Legendary",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_CelebrationSpotlight.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "victoryFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "bfc8939e-5fbc-4f60-8486-3e7750017038",
+        "nameId": "Ghost_Common",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_Ghost_Common.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3422,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_Ghost.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "18df2b9b-3657-4474-9985-b1caeac5ea42",
+        "nameId": "Neon_Common",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_Neon_Common.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3427,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_Neon.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "5da4bc94-6e71-41c6-a97a-98364aefa25c",
+        "nameId": "BurningHearts_Rare",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_BurningHearts_Rare.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4582,
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_BurningHearts.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "1e176c93-f546-43c1-9bec-908fed5404a5",
+        "nameId": "Wildwest_Common",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_Wildwest_Common.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3426,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_Wildwest.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2d05f185-3060-4af8-801e-c14f59ab0a5e",
+        "nameId": "Rainbow_Common",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_Rainbow_Common.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3424,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_Rainbow.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "8134cf84-d235-488d-a8c7-cf81e6c9b63a",
+        "nameId": "victoryFx_DoveLaurel",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_DoveLaurel.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5068,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_DoveLaurel.psd",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 1,
+        "tags": [
+            "victoryFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-09T14:19:57.987Z"
+    },
+    {
+        "itemId": "54228579-769b-4bb0-a673-94d5af007ffe",
+        "nameId": "Zodiac_Rare",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_Zodiac_Rare.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3435,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_Zodiac.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "1f51c373-f4fe-444a-95d6-093348ba4836",
+        "nameId": "victoryFx_FestiveConfetti",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_FestiveConfetti.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4840,
+            "rarity": "Rare",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_FestiveConfetti.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "victoryFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "d5d29752-391a-4b0d-b35d-db2bff1a88fe",
+        "nameId": "victoryFx_CoolTraveler",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_CoolTraveler.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4986,
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_CoolTraveler.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "victoryFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "971ab537-a963-4faf-ace7-acb3335c1b8c",
+        "nameId": "RosesAndThorns_Legendary",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_RosesAndThorns_Legendary.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4583,
+            "rarity": "Legendary",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_RosesAndThorns.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "80d1861d-2c63-4fa5-b30a-337708c32e20",
+        "nameId": "EDM_Legendary",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_EDM_Legendary.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3436,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_EDM.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2f6ddb11-0e0c-4524-8559-4fbeebe76dca",
+        "nameId": "Pixelate_Rare",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_Pixelate_Rare.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3434,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_Pixelate.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "0a898e10-6c6c-4a47-b38d-f6a640ae3925",
+        "nameId": "Lantern_Rare",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_Lantern_Rare.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3432,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_Lantern.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "5804df02-e471-4033-87df-3cdfca3c9b82",
+        "nameId": "MagicLight_Legendary",
+        "type": "victoryFx",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/VictoryFXs/VictoryFXDefinitions/VVFX_MagicLight_Legendary.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3437,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/VictoryFXs/Thumbnail_VVFX_MagicLight.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "us_NotForProd",
+            "testitem",
+            "victoryFx"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    }
+]

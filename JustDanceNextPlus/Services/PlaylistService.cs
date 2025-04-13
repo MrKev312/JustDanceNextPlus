@@ -10,25 +10,12 @@ using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.Services;
 
-public class PlaylistService
+public class PlaylistService(MapService mapService,
+	JsonSettingsService jsonSettingsService,
+	IOptions<PathSettings> pathSettings,
+	ILogger<PlaylistService> logger)
 {
 	public PlaylistDB PlaylistDB { get; set; } = new();
-
-	readonly MapService mapService;
-	readonly JsonSettingsService jsonSettingsService;
-	readonly IOptions<PathSettings> pathSettings;
-	readonly ILogger<PlaylistService> logger;
-
-	public PlaylistService(MapService mapService,
-		JsonSettingsService jsonSettingsService,
-		IOptions<PathSettings> pathSettings,
-		ILogger<PlaylistService> logger)
-	{
-		this.mapService = mapService;
-		this.jsonSettingsService = jsonSettingsService;
-		this.pathSettings = pathSettings;
-		this.logger = logger;
-	}
 
 	public void LoadData()
 	{

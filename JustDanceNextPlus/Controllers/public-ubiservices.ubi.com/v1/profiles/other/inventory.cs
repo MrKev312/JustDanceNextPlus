@@ -1,4 +1,5 @@
 ﻿using JustDanceNextPlus.Configuration;
+using JustDanceNextPlus.Services;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -7,15 +8,22 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.profiles.o
 
 [ApiController]
 [Route("v1/profiles/{guid:guid}/inventory")]
-public class Inventory(IOptions<PathSettings> pathSettings) : ControllerBase
+public class Inventory(LockerItemsService lockerItemsService) : ControllerBase
 {
 	[HttpGet(Name = "GetInventory")]
 	public IActionResult GetInventory()
 	{
-		string inventoryJson = Path.Combine(pathSettings.Value.JsonsPath, "inventory.json");
-		return System.IO.File.Exists(inventoryJson)
-			? Ok(System.IO.File.ReadAllText(inventoryJson))
-			: Ok(new InventoryResponse());
+		InventoryResponse inventoryResponse = new()
+		{
+			Items = [.. lockerItemsService.LockerItemIds.Select(itemId => new Item
+			{
+				ItemId = itemId,
+				Quantity = 1,
+				LastModified = DateTime.UtcNow - TimeSpan.FromDays(1),
+			})]
+		};
+
+		return Ok(inventoryResponse);
 	}
 }
 

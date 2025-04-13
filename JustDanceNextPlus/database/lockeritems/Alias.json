@@ -1,0 +1,3256 @@
+[
+    {
+        "itemId": "faa286ff-2f2f-43c8-a43e-a04846a5418a",
+        "nameId": "alias_Alias_Progression_8",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2239,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2240,
+            "nonBinaryFormLocId": 2241,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "4f6516fe-e5a3-44d7-93f5-f718788abb41",
+        "nameId": "alias_Alias_SpookyScary",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 8545,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 8546,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 8547,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "034e6dfc-ecc5-4e50-8ccc-14976c2cdb8c",
+        "nameId": "alias_Y2S3_Season_02",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5889,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5890,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5891,
+            "rarity": "Common",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "90af2efb-74cb-4b04-96f9-73c97fa50195",
+        "nameId": "alias_Alias_Goal_Gold_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2158,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2159,
+            "nonBinaryFormLocId": 2160,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "589b62f9-aa2c-4ca3-8d9d-a80dc7a8b4b1",
+        "nameId": "Alias_Goal_Star_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2005,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2006,
+            "nonBinaryFormLocId": 2007,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "a5833af9-8ded-465f-ab03-40cc580018e9",
+        "nameId": "alias_Alias_Goal_Buttefly_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2071,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2072,
+            "nonBinaryFormLocId": 2073,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "b88756f7-49f0-4951-8849-a97b73ed47a6",
+        "nameId": "Alias_Default_5",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1945,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1946,
+            "nonBinaryFormLocId": 1947,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "742997f4-f555-43a5-9cf4-8f9bf8061680",
+        "nameId": "alias_Y2S2_Y2K_02",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5767,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5768,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5769,
+            "rarity": "Common",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "7f8576f4-44b6-4234-9a84-48fa06b615a4",
+        "nameId": "alias_Alias_Goal_Explorer_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1966,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1967,
+            "nonBinaryFormLocId": 1968,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "3055aef3-de7a-4af2-8b50-67d2ffb31163",
+        "nameId": "alias_Alias_Goal_Paper_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5364,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5365,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5366,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "8f31fff1-6969-444e-aa3a-2c4a729a0df1",
+        "nameId": "alias_Alias_Y1S1_LoverCoaster_05",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2353,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2354,
+            "nonBinaryFormLocId": 2355,
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "2fb67bf1-e543-4120-9e9b-47ca56ea3cf4",
+        "nameId": "Alias_Goal_Spy_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1999,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2000,
+            "nonBinaryFormLocId": 2001,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ac553ef1-1595-4e38-b848-91c89477eec6",
+        "nameId": "alias_Alias_Goal_Besties_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5355,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5356,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5357,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "b62159ef-0309-4a3b-935f-09157f2b973f",
+        "nameId": "alias_Alias_Goal_Famous_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2152,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2153,
+            "nonBinaryFormLocId": 2154,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "c60afaed-b471-4a94-aadf-0e5d48e366aa",
+        "nameId": "Alias_Goal_Crowd_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2011,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2012,
+            "nonBinaryFormLocId": 2013,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "436044ec-bda6-40f9-8b2d-691a7b49d225",
+        "nameId": "Alias_Goal_Deity_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1978,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1979,
+            "nonBinaryFormLocId": 1980,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f715f6e8-9d0a-4ca2-89c0-6314e3bcbe22",
+        "nameId": "alias_Alias_Y1S3_Summer_03",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 4995,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 4996,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 4997,
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "455d40e8-0e1d-4b1b-b22a-37675da2f6a7",
+        "nameId": "alias_Alias_Y1S1_LoverCoaster_03",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2233,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2234,
+            "nonBinaryFormLocId": 2235,
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "a4bceae7-2c0c-4137-8df5-b21f81d1962d",
+        "nameId": "alias_Alias_Goal_SuperBattle_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5352,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5353,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5354,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "b3c16de7-6780-47ba-a3a8-3c28acc94671",
+        "nameId": "alias_Y2S2_Y2K_01",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5764,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5765,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5766,
+            "rarity": "Common",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "569688e3-b2d6-4c75-8644-210459250417",
+        "nameId": "Alias_Goal_Star_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2008,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2009,
+            "nonBinaryFormLocId": 2010,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f27074de-9a73-4b59-b1ed-312ce6c165af",
+        "nameId": "alias_Alias_Goal_Explorer_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1972,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1973,
+            "nonBinaryFormLocId": 1974,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "b0fb97dd-b54d-4861-b321-cafe42bdd5bf",
+        "nameId": "alias_Alias_OnFire",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 8536,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 8537,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 8538,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "249544dd-958d-40c8-942d-c9825435c87f",
+        "nameId": "Alias_Goal_JustDance_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2020,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2021,
+            "nonBinaryFormLocId": 2022,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "e9eee3da-4428-4224-a65a-ec061f93de11",
+        "nameId": "alias_Alias_Goal_Paper_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5370,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5371,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5372,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "c279a1da-514a-4fcd-a3f7-897a58c10d61",
+        "nameId": "alias_Alias_Y1S2_Showdown_03",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 4833,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 4834,
+            "nonBinaryFormLocId": 4835,
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "fed41dd9-8125-4a85-95f5-8b54de2bf85b",
+        "nameId": "Alias_Goal_Emoji1_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2032,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2033,
+            "nonBinaryFormLocId": 2034,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "4f5b09d9-0b91-48f3-a763-bdf4438f83ea",
+        "nameId": "Alias_Goal_Idol_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2170,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2171,
+            "nonBinaryFormLocId": 2172,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "a488a2d7-00bb-4b55-b250-4d627aefdabf",
+        "nameId": "Alias_Goal_Flow_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2101,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2102,
+            "nonBinaryFormLocId": 2103,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "1a19ddd5-8b01-4ac6-ba94-06c506066c1b",
+        "nameId": "alias_Y2E1_Lore_02",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5781,
+            "hiddenUntilUnlocked": false,
+            "isPremium": true,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5782,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5783,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-14T08:45:18.093Z"
+    },
+    {
+        "itemId": "5008c0d4-db0c-485e-80e7-a05a88991ea2",
+        "nameId": "alias_Alias_Goal_SuperBattle_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5346,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5347,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5348,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "3e1b6ed3-3a79-4b22-a146-c04a6100e5e2",
+        "nameId": "Alias_Goal_Sweat_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2209,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2210,
+            "nonBinaryFormLocId": 2211,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "457d55d1-d3f2-422b-a87d-ac97f2783ee6",
+        "nameId": "alias_Alias_Goal_Buttefly_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2068,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2069,
+            "nonBinaryFormLocId": 2070,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "4fe3e9cc-6743-448d-aca7-da3accee8e6f",
+        "nameId": "alias_Alias_Goal_Besties_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5358,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5359,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5360,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "c1e2b8cb-f466-43e8-8e16-0eb3ef2aeee4",
+        "nameId": "Alias_Default_8",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1954,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1955,
+            "nonBinaryFormLocId": 1956,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f49855c7-2956-4de1-ab72-4decc787c084",
+        "nameId": "Alias_Goal_Dancer_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2080,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2081,
+            "nonBinaryFormLocId": 2082,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ec9148c7-9650-404b-8ae9-c1b9e3f83441",
+        "nameId": "Alias_Goal_Crowd_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2017,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2018,
+            "nonBinaryFormLocId": 2019,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "8f7dbcc5-649b-47c4-843b-066dcf16247f",
+        "nameId": "Alias_Goal_Unique_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2182,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2183,
+            "nonBinaryFormLocId": 2184,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "1bca1cc5-104d-480b-b5b7-427d0d45d583",
+        "nameId": "Alias_Ubi_Rabbid",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2365,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": true,
+            "masculineFormLocId": 2366,
+            "nonBinaryFormLocId": 2367,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 9,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "6b11a3c4-2029-4e86-a5cf-7e27e8185b79",
+        "nameId": "alias_Alias_Y2S0_JDCelebration_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5526,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5527,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5528,
+            "rarity": "Common",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "59add8c1-89ba-4066-a871-1fc6e19fd274",
+        "nameId": "alias_Alias_Goal_Gemstone_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2140,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2141,
+            "nonBinaryFormLocId": 2142,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "cb40e7bf-5a0f-4f70-abad-1a6321962733",
+        "nameId": "Alias_Goal_Unique_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2188,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2189,
+            "nonBinaryFormLocId": 2190,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "8a7974bd-ee31-4944-a602-753e096a2c98",
+        "nameId": "Alias_Goal_Idol_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2164,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2165,
+            "nonBinaryFormLocId": 2166,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "571131ba-c8f7-4efd-8df8-e2986d7648cc",
+        "nameId": "Alias_Goal_Speed_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2221,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2222,
+            "nonBinaryFormLocId": 2223,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "73d3e6b8-5ff7-45b7-b7cf-701abc0a8a49",
+        "nameId": "Alias_Default_4",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1942,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1943,
+            "nonBinaryFormLocId": 1944,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "7ec985b8-c212-4931-a196-c9adae592786",
+        "nameId": "alias_Alias_Painter",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 8524,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 8525,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 8526,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "479e07b4-4b98-4566-a4ee-5925d620de96",
+        "nameId": "Alias_Goal_Fire_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2203,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2204,
+            "nonBinaryFormLocId": 2205,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "46dda0b3-228f-46aa-bceb-adbb9d01154b",
+        "nameId": "Alias_Goal_Star_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2002,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2003,
+            "nonBinaryFormLocId": 2004,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "bf620db3-b0df-4cda-8866-02c760a540fa",
+        "nameId": "alias_Alias_TakeTime",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 8530,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 8531,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 8532,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "5fabc5b2-0dc6-4484-9977-1846ae5eea07",
+        "nameId": "alias_Alias_Goal_Gemstone_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2143,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2144,
+            "nonBinaryFormLocId": 2145,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "c246e7b0-8808-4002-940f-21194589b31f",
+        "nameId": "Alias_Goal_Unstoppable_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2122,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2123,
+            "nonBinaryFormLocId": 2124,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "929ae3b0-6123-4518-9f6b-7c2cd794f6fd",
+        "nameId": "Alias_Goal_Phoenix_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2092,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2093,
+            "nonBinaryFormLocId": 2094,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "fed6b3ad-10f6-4ca8-a0ba-3b27ecafe5c2",
+        "nameId": "Alias_Default_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1939,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1940,
+            "nonBinaryFormLocId": 1941,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "dd3e38ad-315f-4f07-a765-795f222d36bc",
+        "nameId": "alias_Alias_Y1S2_Showdown_01",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 4827,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 4828,
+            "nonBinaryFormLocId": 4829,
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "0570f1a7-ad7e-42c5-a850-f54dff1bf38b",
+        "nameId": "alias_Alias_Y2S0_JDCelebration_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5529,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5530,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5531,
+            "rarity": "Common",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "a8ed4da5-eb86-4bda-a270-33651a2d9c8c",
+        "nameId": "Alias_Goal_JustDance_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2026,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2027,
+            "nonBinaryFormLocId": 2028,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "7b979ca4-6c2c-4e6c-8662-dfefb8acc65c",
+        "nameId": "Alias_Goal_Sweat_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2212,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2213,
+            "nonBinaryFormLocId": 2214,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "fb9197a3-e7a6-45c9-9353-a5e0561cf4d2",
+        "nameId": "Alias_Goal_Night_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2179,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2180,
+            "nonBinaryFormLocId": 2181,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "b42c21a3-0038-4b3d-b5d5-143ae1aed1e9",
+        "nameId": "Alias_Goal_MageXP_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1990,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1991,
+            "nonBinaryFormLocId": 1992,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "51ad339f-7d17-4748-9a1e-b407e5d04e56",
+        "nameId": "Alias_Goal_Emoji1_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2035,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2036,
+            "nonBinaryFormLocId": 2037,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "91acc09b-a175-48bb-88d7-0d610cf2d0be",
+        "nameId": "alias_Y2S1_Mouse_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5677,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5678,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5679,
+            "rarity": "Common",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "0831a99b-edeb-4ae1-b85f-c141d33bac47",
+        "nameId": "Alias_Goal_JustDance_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2023,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2024,
+            "nonBinaryFormLocId": 2025,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "aaaad398-8579-46f5-b4bd-75e0094fb777",
+        "nameId": "alias_Alias_Goal_Gold_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2155,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2156,
+            "nonBinaryFormLocId": 2157,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "00be9798-3ec0-4bd8-bf00-7f333ab84719",
+        "nameId": "Alias_Goal_Deity_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1981,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1982,
+            "nonBinaryFormLocId": 1983,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "520f8098-4dae-464d-9328-6868fc12f643",
+        "nameId": "Alias_Goal_Swan_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2128,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2129,
+            "nonBinaryFormLocId": 2130,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "d3692498-9b17-4691-9362-a7e8f5a5b27c",
+        "nameId": "Alias_Goal_Emoji2_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2050,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2051,
+            "nonBinaryFormLocId": 2052,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "851bed97-5cec-4039-b672-974899d1f397",
+        "nameId": "Alias_Goal_Phoenix_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2098,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2099,
+            "nonBinaryFormLocId": 2100,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "d50be997-1d53-4940-a7a0-2f3a5523023d",
+        "nameId": "alias_Alias_Goal_Gemstone_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2137,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2138,
+            "nonBinaryFormLocId": 2139,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "66f3c794-7452-4256-ab13-fdef87af36dd",
+        "nameId": "Alias_Goal_Disciple_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2083,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2084,
+            "nonBinaryFormLocId": 2085,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "c7f37b94-bc56-4c7f-8e95-b04d2bd67643",
+        "nameId": "Alias_Goal_Speed_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2218,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2219,
+            "nonBinaryFormLocId": 2220,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "e7920b94-eac1-412d-b36b-3de8f094ef10",
+        "nameId": "Alias_Goal_Dancer_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2074,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2075,
+            "nonBinaryFormLocId": 2076,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "90b7aa92-483f-452c-ab05-af86caed3ffe",
+        "nameId": "Alias_Goal_Danceverse_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1960,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1961,
+            "nonBinaryFormLocId": 1962,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ee9b4892-3caf-4be5-8fa3-ebd757a9e7e6",
+        "nameId": "alias_Alias_Y1S3_Summer_01",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 4989,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 4990,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 4991,
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "70e67b89-ba6f-44ac-ab99-3ac5640e2321",
+        "nameId": "alias_Alias_Y1S3_Summer_02",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 4992,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 4993,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 4994,
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "5e363788-c41e-45a4-ae0a-185a8c1aabac",
+        "nameId": "Alias_Goal_Disciple_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2089,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2090,
+            "nonBinaryFormLocId": 2091,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ac01eb7d-0c43-46d5-b79f-dbec3f6b2390",
+        "nameId": "Alias_Goal_Flow_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2104,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2105,
+            "nonBinaryFormLocId": 2106,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "fbb6947c-294b-4b47-9b9b-52e40d85ae7a",
+        "nameId": "Alias_Goal_Crew_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2059,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2060,
+            "nonBinaryFormLocId": 2061,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "d55f4276-7112-47cb-86e9-f1604467d19e",
+        "nameId": "alias_Alias_Y1S1_LoverCoaster_01",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 682,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "masculineFormLocId": 683,
+            "nonBinaryFormLocId": 684,
+            "rarity": "Legendary",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "f5abd175-d734-4b83-b507-acef5090ec7e",
+        "nameId": "Alias_Goal_Cardio_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2197,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2198,
+            "nonBinaryFormLocId": 2199,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "b1ace973-4a95-4115-9238-87ff76716502",
+        "nameId": "Alias_Goal_Phoenix_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2095,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2096,
+            "nonBinaryFormLocId": 2097,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "dfb3cf73-e8db-4c36-ab22-8b4ef8c5165f",
+        "nameId": "Alias_Goal_Spy_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1996,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1997,
+            "nonBinaryFormLocId": 1998,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "59b87c6f-16e5-4f02-8102-1a61b705e60d",
+        "nameId": "Alias_Goal_HeartSoul_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2113,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2114,
+            "nonBinaryFormLocId": 2115,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "9f565d6f-3e7d-4831-9248-2f907f833c28",
+        "nameId": "Alias_Goal_HeartSoul_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2116,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2117,
+            "nonBinaryFormLocId": 2118,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "8097506f-b4b7-4cc1-aabf-05ed0e1aec29",
+        "nameId": "alias_Alias_Goal_CalmDown_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5334,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5335,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5336,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "0e1ed16e-a219-4606-9c38-26a35e3668ea",
+        "nameId": "alias_Y2S1_Mouse_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5674,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5675,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5676,
+            "rarity": "Common",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "afae686d-ac25-4bd0-9d86-e5c9e903580b",
+        "nameId": "alias_Alias_Y1S1_LoverCoaster_02",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2230,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2231,
+            "nonBinaryFormLocId": 2232,
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "e6db0c6d-a090-4644-baec-1c2e91a53171",
+        "nameId": "alias_AnytimeAlias",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 8509,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 8510,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 8511,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "12978f6b-9207-4fa9-8f50-31c589edaa8a",
+        "nameId": "Alias_Goal_Emoji2_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2053,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2054,
+            "nonBinaryFormLocId": 2055,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "c01f1469-6c42-460c-b83e-e20d8bb1c3f1",
+        "nameId": "alias_Alias_Goal_Buttefly_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2065,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2066,
+            "nonBinaryFormLocId": 2067,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "b43e9568-cbd8-4763-8bf4-23f2e24eb6de",
+        "nameId": "Alias_Goal_Fire_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2206,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2207,
+            "nonBinaryFormLocId": 2208,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "0547cd66-7178-4b1d-84f4-0092874a261f",
+        "nameId": "Alias_Default_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1933,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1934,
+            "nonBinaryFormLocId": 1935,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ea3b0b64-42a9-48ae-a69b-b2e16c9ad2e9",
+        "nameId": "Alias_Goal_Cardio_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2191,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2192,
+            "nonBinaryFormLocId": 2193,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "86545c62-d533-4b6c-97c4-2e5eead30e7b",
+        "nameId": "Alias_Goal_Pony_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2041,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2042,
+            "nonBinaryFormLocId": 2043,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "3848ea61-f653-4f0f-a041-ef8f97420aa6",
+        "nameId": "Alias_Goal_Crew_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2056,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2057,
+            "nonBinaryFormLocId": 2058,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "cc13485f-0d7e-478b-91b6-c721202fe8eb",
+        "nameId": "alias_Alias_Goal_Paper_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5367,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5368,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5369,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "910ba85c-76a2-4c2a-a67a-14bdb73d2227",
+        "nameId": "Alias_Goal_Night_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2173,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2174,
+            "nonBinaryFormLocId": 2175,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "6e5e135b-65d3-4a79-9290-b1be2c6956e3",
+        "nameId": "Alias_Goal_Pony_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2044,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2045,
+            "nonBinaryFormLocId": 2046,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "db1d8a58-661f-4d25-8583-cd6b54c95671",
+        "nameId": "Alias_Goal_MageXP_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1984,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1985,
+            "nonBinaryFormLocId": 1986,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "e5727657-8e28-41e9-9780-563202669476",
+        "nameId": "Alias_Goal_Speed_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2224,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2225,
+            "nonBinaryFormLocId": 2226,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "79c33556-af8b-4d06-89ab-b1abcec7fcd4",
+        "nameId": "alias_Y2E1_Lore_01",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5778,
+            "hiddenUntilUnlocked": false,
+            "isPremium": true,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5779,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5780,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-14T08:45:18.093Z"
+    },
+    {
+        "itemId": "fc29b555-d67e-40ed-9a68-4a031b5f0338",
+        "nameId": "alias_Alias_FireStarter",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 8533,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 8534,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 8535,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "45692654-3f37-4231-9072-1343c005b12b",
+        "nameId": "Alias_Goal_Disciple_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2086,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2087,
+            "nonBinaryFormLocId": 2088,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "082ecd52-3d75-4bb5-bf7f-099fed71370a",
+        "nameId": "Alias_Goal_Unstoppable_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2119,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2120,
+            "nonBinaryFormLocId": 2121,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "18d07f51-13c8-4cc4-b0b1-05f7a82eb50a",
+        "nameId": "Alias_Goal_Crew_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2062,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2063,
+            "nonBinaryFormLocId": 2064,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "353f3850-0fe4-4d4a-8a19-f114ff4ecb28",
+        "nameId": "Alias_Goal_Crowd_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2014,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2015,
+            "nonBinaryFormLocId": 2016,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "a2866a4f-5adf-4b42-bbaa-a9853a546b0e",
+        "nameId": "Alias_Default_7",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1951,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1952,
+            "nonBinaryFormLocId": 1953,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "5c92254e-9cae-478b-80bc-97ea52481d33",
+        "nameId": "Alias_Goal_Swan_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2134,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2135,
+            "nonBinaryFormLocId": 2136,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "860ced4c-c06c-4e5c-a70f-5829ea25e6fe",
+        "nameId": "Alias_Goal_Sweat_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2215,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2216,
+            "nonBinaryFormLocId": 2217,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "7b71a84c-60b3-4a58-ba21-ed41c18fa75a",
+        "nameId": "alias_Alias_Goal_Explorer_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1969,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1970,
+            "nonBinaryFormLocId": 1971,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "38b7ac4b-4d08-495a-9241-cf7b671a978c",
+        "nameId": "alias_Alias_Goal_CalmDown_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5331,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5332,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5333,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "5b88a740-716e-4e0d-8881-fcb127cd4dec",
+        "nameId": "Alias_Goal_Flow_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2107,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2108,
+            "nonBinaryFormLocId": 2109,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "6ffb773f-55ec-4505-8bc8-d0ba4684dcdb",
+        "nameId": "alias_Alias_MeowCow",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 8527,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 8528,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 8529,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "9081e33b-15fd-4325-92d3-a20330abb38f",
+        "nameId": "Alias_Goal_Idol_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2167,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2168,
+            "nonBinaryFormLocId": 2169,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "5c3b1f3a-bf38-400a-96a9-6702cff5d717",
+        "nameId": "alias_Alias_SystemInit",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 8539,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 8540,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 8541,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "1192b234-bc8e-4c4c-9ee7-5574e5580e34",
+        "nameId": "Alias_Goal_Deity_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1975,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1976,
+            "nonBinaryFormLocId": 1977,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "9b1e5034-1806-406f-ab62-b016c75d2e91",
+        "nameId": "Alias_Goal_Cardio_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2194,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2195,
+            "nonBinaryFormLocId": 2196,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ac4f2734-6092-4c7b-a5e2-ee8658a24bac",
+        "nameId": "Alias_Goal_Swan_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2131,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2132,
+            "nonBinaryFormLocId": 2133,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "61fe3933-1cdf-4a43-8c6a-b020a4388e08",
+        "nameId": "Alias_Goal_Spy_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1993,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1994,
+            "nonBinaryFormLocId": 1995,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "8105682f-cf70-4ebf-b763-eb66478d88c3",
+        "nameId": "alias_Alias_Said",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 8521,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 8522,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 8523,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "cdddb92e-97bd-4cd1-9e9c-682ee8e83e44",
+        "nameId": "Alias_Goal_Unstoppable_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2125,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2126,
+            "nonBinaryFormLocId": 2127,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2e0c282e-0a5b-4495-8ca9-d1f970ac924e",
+        "nameId": "Alias_Goal_Night_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2176,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2177,
+            "nonBinaryFormLocId": 2178,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "73095c2c-abbc-49c4-9750-9892c182b62f",
+        "nameId": "Alias_Goal_Emoji1_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2029,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2030,
+            "nonBinaryFormLocId": 2031,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "8553f62b-1a6f-46e6-a5e4-8401dac6e71c",
+        "nameId": "alias_Alias_Goal_Famous_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2146,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2147,
+            "nonBinaryFormLocId": 2148,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f6dabb2b-52e6-4829-848d-b6a77aff46f2",
+        "nameId": "Alias_Goal_Pony_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2038,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2039,
+            "nonBinaryFormLocId": 2040,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "038ed029-a247-42c7-81a5-574007f6a49c",
+        "nameId": "alias_Alias_Anywhere",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 8512,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 8513,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 8514,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "c1eda623-6b4b-4de2-8b36-96b98a3343bc",
+        "nameId": "alias_Alias_Y1S3_Summer_04",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 4998,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 4999,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5000,
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "984e5f23-7bb7-4c93-9c70-0dcaefbb801b",
+        "nameId": "Alias_Goal_Danceverse_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1957,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1958,
+            "nonBinaryFormLocId": 1959,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "fdef2423-c331-4a98-9b09-f37b43b72330",
+        "nameId": "alias_Alias_Y1S2_Showdown_02",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 4830,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 4831,
+            "nonBinaryFormLocId": 4832,
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "b0e0db22-8329-4430-acd7-9c113627aa4e",
+        "nameId": "alias_Alias_Goal_CalmDown_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5328,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5329,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5330,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "bfe6ce21-59d3-42ed-957d-bb17e44966b3",
+        "nameId": "Alias_Goal_Dancer_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2077,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2078,
+            "nonBinaryFormLocId": 2079,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "7d347c20-8b0c-43b6-ac90-d148e389ab2c",
+        "nameId": "Alias_Default_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1936,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1937,
+            "nonBinaryFormLocId": 1938,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "dc84c61d-40f6-4644-afd5-e08ee5a70276",
+        "nameId": "Alias_Goal_Unique_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2185,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2186,
+            "nonBinaryFormLocId": 2187,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "6e82ff1c-132e-4d06-a636-822faf49b17c",
+        "nameId": "alias_Alias_Goal_Famous_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2149,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2150,
+            "nonBinaryFormLocId": 2151,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "c931b81a-7bf4-4651-bdf1-273f9b5a0382",
+        "nameId": "Alias_Goal_Fire_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2200,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2201,
+            "nonBinaryFormLocId": 2202,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "a59c6713-3ba8-4f08-a168-4deac6ae065d",
+        "nameId": "alias_Alias_Y1S1_LoverCoaster_04",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2317,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2318,
+            "nonBinaryFormLocId": 2319,
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "1bb1e311-02fa-431e-862f-c4ccfb94c9a6",
+        "nameId": "Alias_Ubi_AC",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2362,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": true,
+            "masculineFormLocId": 2363,
+            "nonBinaryFormLocId": 2364,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 9,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "76b80011-b900-4f3f-9a49-17b92f246b3f",
+        "nameId": "Alias_Goal_Danceverse_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1963,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1964,
+            "nonBinaryFormLocId": 1965,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "fc0afd0d-3239-4b7a-bbbd-b2d482466ee3",
+        "nameId": "alias_Y2S3_Season_01",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5886,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5887,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5888,
+            "rarity": "Common",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "64110d0c-4203-40ef-8846-f3514d83f2b3",
+        "nameId": "alias_Alias_OopsLove",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 8542,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 8543,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 8544,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "b8948a0b-047f-4780-b508-ba122dc56f90",
+        "nameId": "Alias_Goal_MageXP_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1987,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1988,
+            "nonBinaryFormLocId": 1989,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "fb02c209-5105-4243-8260-fcdd8d699306",
+        "nameId": "alias_Alias_Goal_Gold_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2161,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2162,
+            "nonBinaryFormLocId": 2163,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "8bea8303-a884-4415-a225-a9c620928c81",
+        "nameId": "alias_Alias_Goal_SuperBattle_2",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5349,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5350,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5351,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "45c73503-16c8-4821-b663-75541dd85f5a",
+        "nameId": "Alias_Goal_HeartSoul_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2110,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2111,
+            "nonBinaryFormLocId": 2112,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "72e51f03-2b80-494f-9cf5-18919de803c1",
+        "nameId": "Alias_Goal_Emoji2_1",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 2047,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 2048,
+            "nonBinaryFormLocId": 2049,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "9aee5e02-9209-4571-b4c8-5304b335a289",
+        "nameId": "Alias_Default_6",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 1948,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 1949,
+            "nonBinaryFormLocId": 1950,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "a691a101-afe9-4f81-8b7b-9a28e8c81f83",
+        "nameId": "alias_Alias_Goal_Besties_3",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 5361,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 5362,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 5363,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    }
+]

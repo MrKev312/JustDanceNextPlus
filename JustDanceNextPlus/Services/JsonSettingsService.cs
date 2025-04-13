@@ -1,4 +1,5 @@
-﻿using JustDanceNextPlus.Utilities;
+﻿using JustDanceNextPlus.JustDanceClasses.Database;
+using JustDanceNextPlus.Utilities;
 
 using System.Text.Encodings.Web;
 using System.Text.Json;

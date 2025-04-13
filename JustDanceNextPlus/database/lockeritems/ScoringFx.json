@@ -1,0 +1,465 @@
+[
+    {
+        "itemId": "f01ea6f0-2092-4869-bed3-fc41b6b516a9",
+        "nameId": "Aqua",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Aqua/ScoringFX_Aqua_SkeletonData.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3051,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Aqua.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "bb7faadf-35a9-41c1-b5ac-191cc7f2725d",
+        "nameId": "scoringFx_Neon",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Neon/ScoringFX_Neon_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8131,
+            "rarity": "Rare",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Neon.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "6eea6cd5-67f3-4973-a896-ca4c614ceee4",
+        "nameId": "scoringFx_Flamepassion",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Flamepassion/ScoringFX_Flamepassion_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4581,
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Flamepassion.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "089306cc-de2b-44b8-b21d-11078056a4dd",
+        "nameId": "scoringFx_SparkleFirework",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/SparkleFirework/ScoringFX_SparkleFirework_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4838,
+            "rarity": "Rare",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_SparkleFirework.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "301765c8-66a4-4b8f-8787-b22301a135c0",
+        "nameId": "Halloween",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Halloween/ScoringFX_Halloween_SkeletonData.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 643,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Halloween.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "627e38c5-9653-4fe9-9d37-352652a4291e",
+        "nameId": "Memphis",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Memphis/ScoringFX_Memphis_SkeletonData.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 642,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Memphis.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "7bebb5bd-e6e8-4fcf-a9d9-8f513e4bb08d",
+        "nameId": "scoringFx_Christmas",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Christmas/ScoringFX_Christmas_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5525,
+            "rarity": "Rare",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Christmas.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "57bed8b5-2cca-492d-8d13-ee83ab97d03c",
+        "nameId": "Candy",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Candy/ScoringFX_Candy_SkeletonData.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 641,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Candy.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "3d6194af-19d8-4f5a-8387-2c794d180ed5",
+        "nameId": "scoringFx_Heartlove",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Heartlove/ScoringFX_Heartlove_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4579,
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Heartlove.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "f29818ad-63e8-4641-bc05-1914d7407d4a",
+        "nameId": "scoringFx_TropicalPlants",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/TropicalPlants/ScoringFX_TropicalPlants_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4984,
+            "rarity": "Rare",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_TropicalPlants.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "2e6783ac-ed0d-4968-bfd9-207687d3887f",
+        "nameId": "scoringFx_RoadTrip",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/RoadTrip/ScoringFX_RoadTrip_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4985,
+            "rarity": "Rare",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_RoadTrip.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "c5b36aa8-8e81-41b4-a0d5-91739d80b9bb",
+        "nameId": "scoringFx_Y2K",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Y2K/ScoringFX_Y2K_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5773,
+            "rarity": "Rare",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Y2K.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "bf36a088-66a6-4fd6-8142-4db53d8fcfb4",
+        "nameId": "scoringFx_Olympus",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Olympus/ScoringFX_Olympus_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5067,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Olympus.psd",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 1,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-09T14:19:57.987Z"
+    },
+    {
+        "itemId": "89720d84-7600-45d2-9df5-59d705bcae09",
+        "nameId": "scoringFx_Rosemolding",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Rosemolding/ScoringFX_Rosemolding_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4580,
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Rosemolding.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "833f4d71-1806-4d10-bb2b-446bd3fa3d50",
+        "nameId": "scoringFx_Glitter",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Glitter/ScoringFX_Glitter_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4839,
+            "rarity": "Rare",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Glitter.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "fe129d54-1ab3-45a5-8940-04ac4f7be13e",
+        "nameId": "Basic",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Basic/ScoringFX_Basic_SkeletonData.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 640,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Basic.psd",
+            "unlockConditionsLocId": 911
+        },
+        "revision": 3,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2b001d46-f81e-4aae-8085-7fc0d7affc0f",
+        "nameId": "scoringFx_Celebration",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Celebration/ScoringFX_Celebration_SkeletonData.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8414,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Celebration.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "8880fa2f-1986-4731-b125-ea6d1424d405",
+        "nameId": "scoringFx_Confetti",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Confetti/ScoringFX_Confetti_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4837,
+            "rarity": "Rare",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Confetti.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "08550d2b-61d3-4b1c-b8ac-f47b2502ff83",
+        "nameId": "scoringFx_Unicorn",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Unicorn/ScoringFX_Unicorn_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 6212,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Unicorn.psd",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 1,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-08T16:20:59.759Z"
+    },
+    {
+        "itemId": "dda75d11-c523-4045-83ba-a3bab53f1199",
+        "nameId": "Flower",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Flower/ScoringFX_Flower_SkeletonData.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3048,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Flower.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ade50903-d022-4769-9a6e-d0ca108183ce",
+        "nameId": "scoringFx_Magic",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Magic/ScoringFX_Magic_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5683,
+            "rarity": "Common",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Magic.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    }
+]

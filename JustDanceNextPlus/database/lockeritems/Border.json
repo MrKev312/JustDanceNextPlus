@@ -1,0 +1,2013 @@
+[
+    {
+        "itemId": "5fe7c8ff-ee83-468b-8203-9991b743c6a3",
+        "nameId": "border_EurovisionHearts",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_EurovisionHearts.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4823,
+            "rarity": "Rare",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_EurovisionHearts.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "dd2a7efe-c695-4a5c-a9a3-2eb43f33c0d4",
+        "nameId": "border_SummerSynthwave",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_SummerSynthwave.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4976,
+            "rarity": "Legendary",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_SummerSynthwave.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "d86dbefd-771a-4555-bfee-8f369e264b38",
+        "nameId": "border_MusicDisc",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_MusicDisc.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5738,
+            "rarity": "Common",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_MusicDisc.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "e9f25bfc-2b41-487a-be4b-42755a0f1d61",
+        "nameId": "border_KawaiiBubbleTea",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_KawaiiBubbleTea.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5874,
+            "rarity": "Common",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_KawaiiBubbleTea.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "b9f674f7-428a-484a-ad6d-3bc439907114",
+        "nameId": "border_Pixels",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Pixels.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5739,
+            "rarity": "Rare",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Pixels.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "3b02f7f1-bf0e-4e8f-88b0-f42f9fc5bdf1",
+        "nameId": "Sakura",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Sakura.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 633,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Sakura.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "c066a4f0-808a-473a-ad93-278e9cf5c72f",
+        "nameId": "Heart",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Heart.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3483,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Heart.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "e13507ed-f5d1-44ee-a4b9-319f6fabce2a",
+        "nameId": "border_Witchcraft",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Witchcraft.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3418,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Witchcraft.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "94c562ec-6196-46bb-a757-f49d40a74bd5",
+        "nameId": "border_RollerTrack",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_RollerTrack.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5876,
+            "rarity": "Rare",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_RollerTrack.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "543df0e6-5701-4615-aa4d-2d9a6e10cc90",
+        "nameId": "border_DesertCanyon",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_DesertCanyon.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8480,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_DesertCanyon.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "8790fce5-d4a5-44cf-961b-ab21052c3fe7",
+        "nameId": "border_BeachBar",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_BeachBar.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4977,
+            "rarity": "Legendary",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_BeachBar.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "adbd3ee4-ef0b-4806-9c7e-2ac6c412a4a6",
+        "nameId": "border_MagicUnicorn",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_MagicUnicorn.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 6484,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_MagicUnicorn.psd",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-08T16:20:59.759Z"
+    },
+    {
+        "itemId": "592d4be3-7622-48b9-ae93-877233d62f94",
+        "nameId": "border_EurovisionAtom",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_EurovisionAtom.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4818,
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_EurovisionAtom.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "a3df4bdd-43e1-4bbf-aa06-d8dcb3b83d95",
+        "nameId": "KawaiiPlush",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_KawaiiPlush.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3397,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_KawaiiPlush.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ea3b05d7-67f1-4482-81dc-436ab606f2fb",
+        "nameId": "Origami",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Origami.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3443,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Origami.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "3d60e3d6-8e8e-4564-b68a-0f39e5f19b64",
+        "nameId": "Snake",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Snake.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3444,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Snake.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "346edfd2-6c59-4b45-8346-62158602ded9",
+        "nameId": "Haunted",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Haunted.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3442,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Haunted.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "3bccf4ce-53b6-49c5-993f-0f7a0e5fb214",
+        "nameId": "border_GreenRuins",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_GreenRuins.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4820,
+            "rarity": "Legendary",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_GreenRuins.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "8d3d59ca-2b5a-4097-a8c4-2d0192d94901",
+        "nameId": "border_FatherAndSon",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_FatherAndSon.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4948,
+            "rarity": "Common",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_FatherAndSon.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "451509c7-1c65-4d97-808e-7e8a14ff153a",
+        "nameId": "Firework",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Firework.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3441,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Firework.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "adc014c2-0450-4a44-9f06-0f71f1fd0fe6",
+        "nameId": "border_FlamingoParty",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_FlamingoParty.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4951,
+            "rarity": "Rare",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_FlamingoParty.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "22f3bfb7-0188-4284-8106-3771e4850e1c",
+        "nameId": "Pizza",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Pizza.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3403,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Pizza.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2657abb7-834c-43c6-ae7e-205fc08f0067",
+        "nameId": "Donut",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Donut.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3392,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Donut.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "609385b5-a291-4bed-97e4-f3c30806145c",
+        "nameId": "border_BloomingLove",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_BloomingLove.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4575,
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_BloomingLove.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "39f8d5b3-9bbf-4e49-b131-e776246c5baf",
+        "nameId": "Feather",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Feather.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3393,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Feather.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "29ec7eb3-d79c-4c1f-af1a-7b86dcb2d17d",
+        "nameId": "Autumn",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Autumn.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3408,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Autumn.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "b3d05ab2-5953-4c0a-9586-11d4b15d08d5",
+        "nameId": "CuteStar",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_CuteStar.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3406,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_CuteStar.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "58d9afb1-4583-42cb-936e-2ca696441c93",
+        "nameId": "SwimFloat",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_SwimFloat.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3404,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_SwimFloat.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "64935faa-137c-4c4a-b679-4fdef72071de",
+        "nameId": "border_ShinyStickers",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_ShinyStickers.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5741,
+            "rarity": "Legendary",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_ShinyStickers.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "ad4be4a9-c61a-4ffe-9d07-9d4186b901ea",
+        "nameId": "border_Speakers",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Speakers.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5736,
+            "rarity": "Common",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Speakers.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "bea885a6-c7f4-4a3d-9d17-0fa5fcee64eb",
+        "nameId": "border_Observatory",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Observatory.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": true,
+            "isUbiconnect": false,
+            "nameLocId": 5776,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Observatory.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-14T08:45:18.093Z"
+    },
+    {
+        "itemId": "80e3f4a4-5794-44f0-9572-a8026b318c56",
+        "nameId": "border_StreetArt",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_StreetArt.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3445,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_StreetArt.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "32a517a3-2cc1-4f9c-ae87-7c51046f0b4d",
+        "nameId": "border_DiscoBalls",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_DiscoBalls.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4819,
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_DiscoBalls.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "d2538ca0-5504-4aa7-8710-2168f09620c7",
+        "nameId": "border_SeaShell",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_SeaShell.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 634,
+            "rarity": "Rare",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_SeaShell.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "d586719c-ff3b-4706-8cb7-3e3bd27a0ca8",
+        "nameId": "border_Coral",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Coral.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3440,
+            "rarity": "Rare",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Coral.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "a80ed29b-d060-410b-b327-e6f55f48a550",
+        "nameId": "border_Jungle",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Jungle.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3396,
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Jungle.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "6823769b-dbe4-463e-975e-fd294f154043",
+        "nameId": "border_PostApoTotem",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_PostApoTotem.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4817,
+            "rarity": "Rare",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_PostApoTotem.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "b592df9a-b982-43cf-b371-7d49900ce3bb",
+        "nameId": "border_MountainOfGold",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_MountainOfGold.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5669,
+            "rarity": "Rare",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_MountainOfGold.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "a046a797-7c77-4682-af66-6746be08b33f",
+        "nameId": "border_Snowmen",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Snowmen.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4950,
+            "rarity": "Common",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Snowmen.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "d7940597-2886-4717-ac4a-bc500aefea46",
+        "nameId": "Music",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Music.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3484,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Music.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "8053c293-e121-4921-991c-7f89f5b3161d",
+        "nameId": "border_AphroditeShell",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_AphroditeShell.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4822,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_AphroditeShell.psd",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-09T14:19:57.987Z"
+    },
+    {
+        "itemId": "0e05e492-cef4-44cd-9435-38f418510964",
+        "nameId": "border_SketchyMonsters",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_SketchyMonsters.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8333,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_SketchyMonsters.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "c03fcc8f-9cf0-48eb-b3dc-ae44f3414682",
+        "nameId": "border_IdyllicNeon",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_IdyllicNeon.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4571,
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_IdyllicNeon.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "11373286-07e3-4e52-9a4c-4e2d0d6b31be",
+        "nameId": "Kraken",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Kraken.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3446,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Kraken.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "5baf2686-c5ff-42d4-a203-5225039c09fd",
+        "nameId": "border_NightBuildings",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_NightBuildings.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5875,
+            "rarity": "Rare",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_NightBuildings.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "6d1ea184-b637-4e70-b31d-8d0600011882",
+        "nameId": "border_Jellyfish",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Jellyfish.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3412,
+            "rarity": "Rare",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Jellyfish.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "40a5bd81-b25f-4f6b-b7a1-30af0b5e36b7",
+        "nameId": "border_NostalgiaParty",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_NostalgiaParty.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8314,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_NostalgiaParty.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "911c6377-afb8-4af8-b589-ccba07ebc5e4",
+        "nameId": "border_Light",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Light.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 3447,
+            "rarity": "Legendary",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Light.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "1f513177-6ea6-49b5-9093-ff6589283c89",
+        "nameId": "Butterfly",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Butterfly.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3411,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Butterfly.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "643c6372-fcdd-4744-8606-b36af960558b",
+        "nameId": "border_RomanceRide",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_RomanceRide.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4574,
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_RomanceRide.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "549c7f71-81ba-4f43-a02f-6324a7db4abd",
+        "nameId": "border_BBFForever",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_BBFForever.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4573,
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_BBFForever.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "b6153870-092f-44fd-aaa2-fc5e77a14ecf",
+        "nameId": "border_Birthday",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Birthday.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": true,
+            "nameLocId": 8781,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Birthday.psd",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd",
+            "uplay"
+        ],
+        "lastModified": "2024-10-15T09:24:55.666Z"
+    },
+    {
+        "itemId": "7dcd1770-b568-466e-bbf8-7ef8a534c6b8",
+        "nameId": "Ballet",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Ballet.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3438,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Ballet.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "622ce86b-61c2-408c-a85c-8d6fd83f53a6",
+        "nameId": "Neon",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Neon.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3420,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Neon.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "533b8e6b-4e1e-4624-bec1-7f5d3bc2e5cf",
+        "nameId": "border_VeilFlower",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_VeilFlower.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4952,
+            "rarity": "Common",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_VeilFlower.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "894ef16a-c447-4ce7-8cb0-ee2b08e431a6",
+        "nameId": "Alchemy",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Alchemy.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3407,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Alchemy.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "efdfa869-fc0a-423f-89c1-ce6d545c0423",
+        "nameId": "border_Comics",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Comics.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3416,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Comics.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "7b65ec66-1152-4b01-9847-05af8d187d7e",
+        "nameId": "Lilypad",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Lilypad.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3399,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Lilypad.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "5f7f0a65-dbba-4b07-8ddd-63b115b8c322",
+        "nameId": "border_UnderSpotlights",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_UnderSpotlights.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4826,
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_UnderSpotlights.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "b8619f61-2f19-4841-80b3-91e11bb72d11",
+        "nameId": "border_FadedLove",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_FadedLove.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4576,
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_FadedLove.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "16d50961-a0c4-4fa7-9d01-b4baa74a8ec4",
+        "nameId": "border_Money",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Money.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3401,
+            "rarity": "Common",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Money.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "0179e35d-77ab-4e75-a1b2-1cf243fa821f",
+        "nameId": "Balloon",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Balloon.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3410,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Balloon.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "43735f5a-bfeb-4e68-b085-f31457efce90",
+        "nameId": "border_SpookyClub",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_SpookyClub.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4825,
+            "rarity": "Common",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_SpookyClub.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "dfd18859-a958-4ff8-aec6-5f439b39f97e",
+        "nameId": "Peace",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Peace.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3402,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Peace.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "babddf50-d8fd-4f22-9e58-0600976fd83e",
+        "nameId": "Lightning",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Lightning.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 632,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Lightning.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "9e19f54d-62bb-4886-8192-24afe9c0ae01",
+        "nameId": "border_MagicSmoke",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_MagicSmoke.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5670,
+            "rarity": "Common",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_MagicSmoke.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "362fd94b-d818-47e3-90c8-325626740aa2",
+        "nameId": "border_GoldenEagle",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_GoldenEagle.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4947,
+            "rarity": "Legendary",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_GoldenEagle.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "59d40349-bc6f-48a4-b123-36ce408dda51",
+        "nameId": "Angel",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Angel.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3386,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Angel.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "c3e72645-90f3-4e66-9ce9-57f91a9ed68b",
+        "nameId": "border_ContemporaryArt",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_ContemporaryArt.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5877,
+            "rarity": "Legendary",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_ContemporaryArt.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "3f7f0045-bd8f-41e9-b511-9057963ce2f6",
+        "nameId": "border_Heartwarming",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Heartwarming.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4572,
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Heartwarming.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "d6241443-5978-4ca1-a348-d24f82bd08d4",
+        "nameId": "Sport",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Sport.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3482,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Sport.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "72d30541-1238-483a-943b-9b96e95ff82c",
+        "nameId": "border_FloralTower",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_FloralTower.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5672,
+            "rarity": "Rare",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_FloralTower.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "7230093d-b849-40dd-bcff-d8b3a8d0ca1d",
+        "nameId": "Ladybug",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Ladybug.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3398,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Ladybug.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f3c2c43c-9a53-4ceb-a2bd-1a2d747af536",
+        "nameId": "Space",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Space.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3395,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Space.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "d721b83c-42ac-4a5b-a66d-57564edfdedf",
+        "nameId": "border_Fire",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Fire.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 3419,
+            "rarity": "Legendary",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Fire.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "8ff38237-4ce8-4c83-8764-c39eeb227a2f",
+        "nameId": "border_EurovisionGoldVictory",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_EurovisionGoldVictory.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4821,
+            "rarity": "Legendary",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_EurovisionGoldVictory.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "266a1d37-9cb1-4c1c-a677-e2d58c93d1aa",
+        "nameId": "border_Watermelon",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Watermelon.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4975,
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Watermelon.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "dff03936-4e01-4d08-aee4-23a70517caed",
+        "nameId": "border_Cybercity",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Cybercity.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4824,
+            "rarity": "Rare",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Cybercity.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "e4518e30-3bb8-4f7f-846a-e6bcd431c51e",
+        "nameId": "Chocolate",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Chocolate.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3439,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Chocolate.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "1e51d82e-4666-4cc2-b1cb-96b4e32142db",
+        "nameId": "Gold",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Gold.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 631,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Gold.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "fd88792a-3c61-488d-8e18-cc436412787c",
+        "nameId": "border_LuchaLibre",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_LuchaLibre.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3400,
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_LuchaLibre.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "cdf81425-693b-48f3-8eef-ff423b5af0cf",
+        "nameId": "Steampunk",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Steampunk.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3385,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Steampunk.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "03684624-066a-470c-862d-99af9ae2fae7",
+        "nameId": "border_Devices",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Devices.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5740,
+            "rarity": "Rare",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Devices.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "6e22e61f-0189-4d12-8f8a-ed5b84371029",
+        "nameId": "border_Chatting",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Chatting.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5737,
+            "rarity": "Common",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Chatting.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "a8451e12-8f01-4c1f-9506-3e1f62ac2d3f",
+        "nameId": "border_Pirate",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Pirate.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3448,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Pirate.psd",
+            "unlockConditionsLocId": 3824
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "b81c1d0b-a409-4ecb-a007-1d47ec9adcca",
+        "nameId": "RedRose",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_RedRose.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3413,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_RedRose.psd",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "edf68309-668f-48c1-8a1b-1f335ebf17c1",
+        "nameId": "border_Lanterns",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Lanterns.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5667,
+            "rarity": "Common",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Lanterns.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "afa5eb06-d524-4a41-a8e7-d0652054728f",
+        "nameId": "border_Fruit",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Fruit.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3394,
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Fruit.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "14999b06-fcce-4885-a1f3-8cdd34bf17b5",
+        "nameId": "border_CursedShip",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_CursedShip.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4949,
+            "rarity": "Rare",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_CursedShip.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "0f4c0003-e258-48c4-869b-05f1f55f7f3a",
+        "nameId": "border_TheVases",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_TheVases.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5668,
+            "rarity": "Common",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_TheVases.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "1d94fd00-22b1-43f4-98c7-89f7d15d40b6",
+        "nameId": "border_OlympusMount",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_OlympusMount.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5671,
+            "rarity": "Legendary",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_OlympusMount.psd",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    }
+]

@@ -1,0 +1,1658 @@
+[
+    {
+        "itemId": "738633fc-afc8-4c00-90b3-e8c9425b29ad",
+        "nameId": "sticker_StepMotherTongue",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/StepMotherTongue_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8309,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/StepMotherTongue/StaticTextures/StepMotherTongue.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "a8cca1f8-73c8-4422-8fce-ea6cac70fcac",
+        "nameId": "Smiling",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Smiling_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 614,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Smiling/StaticTextures/Smiling.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "d83b09f0-e22d-409a-b383-9f29aea333be",
+        "nameId": "sticker_Ecstatic",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Ecstatic_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4852,
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Ecstatic/StaticTextures/Ecstatic.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "a54df1eb-d239-4679-a7d8-634f40220705",
+        "nameId": "DontKnow",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/DontKnow_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2865,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/DontKnow/StaticTextures/DontKnow.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "c84dddea-ce97-451b-a54f-ce6eb3c33f66",
+        "nameId": "Happy",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Happy_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2867,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Happy/StaticTextures/Happy.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "345356e6-d662-479b-abb1-33c40856e8f0",
+        "nameId": "sticker_Secret",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Secret_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2877,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Secret/StaticTextures/Secret.png",
+            "unlockConditionsLocId": 3824
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "17bd4ce4-68c2-4e80-8557-c6f343903364",
+        "nameId": "Exhausted",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Exhausted_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 622,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Exhausted/StaticTextures/Exhausted.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "57d422e1-f0da-4aeb-a9de-61a139d17a28",
+        "nameId": "sticker_ComeOn",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/ComeOn_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4856,
+            "rarity": "Rare",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/ComeOn/StaticTextures/ComeOn.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "bb06dbdf-b549-4b05-9682-320d32f272c8",
+        "nameId": "sticker_Oopsie",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Oopsie_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5682,
+            "rarity": "Legendary",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Oopsie/StaticTextures/Oopsie.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "5206dbde-e691-4f7e-a121-6ae1e66434ad",
+        "nameId": "sticker_VampireSmile",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/VampireSmile_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5770,
+            "rarity": "Common",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/VampireSmile/StaticTextures/VampireSmile.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "46fc9edc-0ac1-4fd0-b0e3-c21cdc9ce874",
+        "nameId": "Wink",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Wink_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2872,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Wink/StaticTextures/Wink.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "8c28ffdb-5b1e-4e34-9522-935c34995848",
+        "nameId": "sticker_InLove",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/InLove_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4570,
+            "rarity": "Legendary",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/InLove/StaticTextures/InLove.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "05d195d7-c506-4625-95de-c8e7621922b9",
+        "nameId": "Thinking",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Thinking_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 621,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Thinking/StaticTextures/Thinking.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "22c5c9cd-f861-4f69-a3e1-6de3be60ad63",
+        "nameId": "Crying",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Crying_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 625,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Crying/StaticTextures/Crying.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "e2200bcd-f232-4d1a-a3b2-00864d6a71cb",
+        "nameId": "sticker_Sulking",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Sulking_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4854,
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Sulking/StaticTextures/Sulking.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "5d24dfcb-2bb4-468e-a7fa-45132323281f",
+        "nameId": "sticker_BloodyDance",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/BloodyDance_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4982,
+            "rarity": "Rare",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/BloodyDance/StaticTextures/BloodyDance.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "2bf8dbcb-0af2-4667-9572-9a9b1f635f29",
+        "nameId": "sticker_EyepatchPirate",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/EyepatchPirate_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4980,
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/EyepatchPirate/StaticTextures/EyepatchPirate.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "9dcc02c9-f5c3-4a15-bf05-33a00dd79506",
+        "nameId": "sticker_ToughLuck",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/ToughLuck_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4855,
+            "rarity": "Rare",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/ToughLuck/StaticTextures/ToughLuck.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "e24d9bc8-b2fd-4712-ad8f-44e81ec0bb9b",
+        "nameId": "sticker_PickUpPhone",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/PickUpPhone_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5321,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/PickUpPhone/StaticTextures/PickUpPhone.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "69f625c8-fe62-45c5-9834-9eae2e4f541c",
+        "nameId": "sticker_BeingProud",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/BeingProud_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4853,
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/BeingProud/StaticTextures/BeingProud.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "808810bb-77d6-47dd-8c33-784b349b8b1d",
+        "nameId": "Selfie",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Selfie_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2879,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Selfie/StaticTextures/Selfie.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "fa7e7fb9-fba6-4f5c-94ce-9c88285b161a",
+        "nameId": "sticker_LyreNymph",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/LyreNymph_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5066,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/LyreNymph/StaticTextures/LyreNymph.png",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 1,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-09T14:19:57.987Z"
+    },
+    {
+        "itemId": "f31519b8-eb26-4884-b6f0-edcce0c0f0c5",
+        "nameId": "Speechless",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Speechless_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2866,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Speechless/StaticTextures/Speechless.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "092ac7b4-6c64-48df-96eb-9b2ad7da61f0",
+        "nameId": "sticker_CheesyLaugh",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/CheesyLaugh_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8308,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/CheesyLaugh/StaticTextures/CheesyLaugh.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "8f7df6b0-1b8c-4f4b-a361-d819831fdc44",
+        "nameId": "Laughing",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Laughing_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 616,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Laughing/StaticTextures/Laughing.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ab7084b0-12c4-444f-a80e-de1bac1d9625",
+        "nameId": "Surprised",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Surprised_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 623,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Surprised/StaticTextures/Surprised.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "3f7575b0-314d-469b-a6a8-5a441e191495",
+        "nameId": "Screaming",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Screaming_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 624,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Screaming/StaticTextures/Screaming.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "9393d49b-96d0-4b6c-88d8-098d0fdaa1ac",
+        "nameId": "sticker_SendingKiss",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/SendingKiss_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4565,
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/SendingKiss/StaticTextures/SendingKiss.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "a411919a-ba2f-44f6-bfff-9309cea6c3dd",
+        "nameId": "sticker_UnicornLover",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/UnicornLover_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 6206,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/UnicornLover/StaticTextures/UnicornLover.png",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 1,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-08T16:20:59.759Z"
+    },
+    {
+        "itemId": "12312497-27f4-438f-8da3-08a499cae45b",
+        "nameId": "sticker_WhatAHeat",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/WhatAHeat_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4979,
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/WhatAHeat/StaticTextures/WhatAHeat.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "a306e295-0d2b-4d26-86e7-d866c4fbcd63",
+        "nameId": "sticker_Painting",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Painting_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5885,
+            "rarity": "Legendary",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Painting/StaticTextures/Painting.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "efa2d491-d700-4213-b64a-4317d68d2ae2",
+        "nameId": "sticker_SendTexto",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/SendTexto_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5772,
+            "rarity": "Legendary",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/SendTexto/StaticTextures/SendTexto.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "fbe37c8c-4316-4a8b-8277-f6c308d55c8a",
+        "nameId": "sticker_MillenialHeart",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/MillenialHeart_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4567,
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/MillenialHeart/StaticTextures/MillenialHeart.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "3037228c-0764-4910-a1fc-4695005335ac",
+        "nameId": "sticker_OneLastLove",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/OneLastLove_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8294,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/OneLastLove/StaticTextures/OneLastLove.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "ec4e5789-635a-48dc-9ced-68ddd0279a22",
+        "nameId": "sticker_HotAsHell",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/HotAsHell_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4981,
+            "rarity": "Rare",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/HotAsHell/StaticTextures/HotAsHell.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "1712d188-eee2-490c-a458-e5aea223a317",
+        "nameId": "sticker_Crystal",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Crystal_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8133,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Crystal/StaticTextures/Crystal.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "925fc884-52de-4c20-a3b0-e495fca7259b",
+        "nameId": "sticker_CoolGirl",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/CoolGirl_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5881,
+            "rarity": "Common",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/CoolGirl/StaticTextures/CoolGirl.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "d1cc6784-a9fd-4e57-9b5f-e3abcf4dedd2",
+        "nameId": "sticker_TurnEvil",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/TurnEvil_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": true,
+            "isUbiconnect": false,
+            "nameLocId": 5785,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/TurnEvil/StaticTextures/TurnEvil.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-14T08:45:18.093Z"
+    },
+    {
+        "itemId": "34356681-15fa-4221-ae41-fbebd8ea92c5",
+        "nameId": "Thanks",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Thanks_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2871,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Thanks/StaticTextures/Thanks.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f097c37d-8625-412d-8386-1040bee368aa",
+        "nameId": "Vibing",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Vibing_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 628,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Vibing/StaticTextures/Vibing.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "33cc3876-4191-46e0-aedf-ae11fa2cbcb0",
+        "nameId": "Angry",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Angry_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 626,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Angry/StaticTextures/Angry.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "6b4e0c75-e11b-46e6-ae91-1e802bbf2bb8",
+        "nameId": "sticker_WantARose",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/WantARose_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5771,
+            "rarity": "Rare",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/WantARose/StaticTextures/WantARose.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "090fcf70-d126-4ae3-b189-b9bd32c82476",
+        "nameId": "HighFive",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/HighFive_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 619,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/HighFive/StaticTextures/HighFive.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "0cac196d-1c24-4911-bf21-1dd735c66cc9",
+        "nameId": "Rainbow",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Rainbow_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2874,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Rainbow/StaticTextures/Rainbow.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "5f9f426b-e982-4e0e-b721-1f60cd5a254a",
+        "nameId": "sticker_AweDiscovery",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/AweDiscovery_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": true,
+            "isUbiconnect": false,
+            "nameLocId": 5784,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/AweDiscovery/StaticTextures/AweDiscovery.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-14T08:45:18.093Z"
+    },
+    {
+        "itemId": "b35d0168-4307-4532-90d1-98d50e0a8284",
+        "nameId": "GetReady",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/GetReady_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 620,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/GetReady/StaticTextures/GetReady.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "1af56f5f-ff19-4b32-bcda-6e2a51085ca0",
+        "nameId": "sticker_Bedtime",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Bedtime_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5522,
+            "rarity": "Common",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Bedtime/StaticTextures/Bedtime.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "d2b7be5c-bf6f-4678-bd7c-a5782b5ab40e",
+        "nameId": "sticker_MissYou",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/MissYou_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5523,
+            "rarity": "Rare",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/MissYou/StaticTextures/MissYou.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "0305db5b-57db-4955-8eb6-b0e80493dbb6",
+        "nameId": "sticker_SelfCareCup",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/SelfCareCup_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4568,
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/SelfCareCup/StaticTextures/SelfCareCup.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "6446d456-f247-4d39-93ea-98df927e6f37",
+        "nameId": "sticker_WavingFan",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/WavingFan_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5880,
+            "rarity": "Legendary",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/WavingFan/StaticTextures/WavingFan.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "93942a55-4b6b-48f2-96a5-9d92f0e19d38",
+        "nameId": "ShowOff",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/ShowOff_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2878,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/ShowOff/StaticTextures/ShowOff.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "88c7a052-bdf5-4201-8b2a-e6ee866f0872",
+        "nameId": "SeeYa",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/SeeYa_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 613,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/SeeYa/StaticTextures/SeeYa.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "17b07f52-d29b-4c9a-8b60-e54e7748e9ba",
+        "nameId": "sticker_XmasGift",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/XmasGift_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5524,
+            "rarity": "Legendary",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/XmasGift/StaticTextures/XmasGift.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "c37c6e4e-038f-4141-83a2-796df56d6623",
+        "nameId": "Incredible",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Incredible_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 617,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Incredible/StaticTextures/Incredible.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "8b103049-3d65-477f-9963-3ef709ea1213",
+        "nameId": "sticker_MakeEyes",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/MakeEyes_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5681,
+            "rarity": "Rare",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/MakeEyes/StaticTextures/MakeEyes.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "dce14241-49e1-4426-8542-f047620fb1f6",
+        "nameId": "Taunt",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Taunt_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2870,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Taunt/StaticTextures/Taunt.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "331fb83d-561b-4ca0-a0ea-762622d72306",
+        "nameId": "Rock",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Rock_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": true,
+            "nameLocId": 2876,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Rock/StaticTextures/Rock.png",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 9,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2728723c-6ca0-49c4-b38c-68415324904a",
+        "nameId": "sticker_EpicSax",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/EpicSax_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4857,
+            "rarity": "Legendary",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/EpicSax/StaticTextures/EpicSax.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "e3949f3b-7857-49ba-b1cb-219a3ffb8300",
+        "nameId": "AFK",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/AFK_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2868,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/AFK/StaticTextures/AFK.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f706213b-5d91-4b5d-ae23-f43708088664",
+        "nameId": "Impatient",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Impatient_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2869,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Impatient/StaticTextures/Impatient.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "c0b08f34-e81f-46f2-9c08-9b619655b6d9",
+        "nameId": "sticker_OMGGlasses",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/OMGGlasses_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5320,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/OMGGlasses/StaticTextures/OMGGlasses.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "19dba233-8998-44f8-8074-1890b7c02e8b",
+        "nameId": "sticker_KoreanHeart",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/KoreanHeart_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4566,
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/KoreanHeart/StaticTextures/KoreanHeart.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "335ce432-e2ba-474f-8467-588f3c6bd16c",
+        "nameId": "Yes",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Yes_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 609,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Yes/StaticTextures/Yes.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "a37e3c31-d03b-4919-809b-5b30763dd309",
+        "nameId": "sticker_MakingWish",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/MakingWish_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5680,
+            "rarity": "Rare",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/MakingWish/StaticTextures/MakingWish.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "2d920c31-9056-404d-af3f-c2ab386a1d05",
+        "nameId": "sticker_ProudOfYou",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/ProudOfYou_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4569,
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/ProudOfYou/StaticTextures/ProudOfYou.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "8f67712b-64f1-4c7a-913e-ae1271a3fce3",
+        "nameId": "sticker_Farniente",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Farniente_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4978,
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Farniente/StaticTextures/Farniente.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "6ebf3428-791e-4007-bf72-a8af3919d837",
+        "nameId": "Hurrah",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Hurrah_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2875,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Hurrah/StaticTextures/Hurrah.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "175c8326-4115-4165-a9af-e607ece62683",
+        "nameId": "Crazy",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Crazy_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": true,
+            "nameLocId": 2873,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Crazy/StaticTextures/Crazy.png",
+            "unlockConditionsLocId": 3818
+        },
+        "revision": 9,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "89260421-a727-43d1-8072-4bcffd69cd21",
+        "nameId": "LovingIt",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/LovingIt_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 618,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/LovingIt/StaticTextures/LovingIt.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "287a2219-a3c5-42db-8cf1-bfbb97d41652",
+        "nameId": "EvilLaugh",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/EvilLaugh_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 627,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/EvilLaugh/StaticTextures/EvilLaugh.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "92447018-ff05-4cef-b873-dc9d1b533e89",
+        "nameId": "Hello",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Hello_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 612,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Hello/StaticTextures/Hello.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "40f8e714-002d-4528-b03a-3a3527f06f7a",
+        "nameId": "Bravo",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Bravo_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 615,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Bravo/StaticTextures/Bravo.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2c024f0c-7338-4f50-9923-75dfc098a15d",
+        "nameId": "Victory",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/Victory_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 629,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/Victory/StaticTextures/Victory.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f920ab04-e166-4662-92c0-044a62c9bd58",
+        "nameId": "sticker_RaiseMyGlass",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/RaiseMyGlass_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4983,
+            "rarity": "Legendary",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/RaiseMyGlass/StaticTextures/RaiseMyGlass.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "6032ca01-8df6-4718-acaf-63adf8758bc7",
+        "nameId": "No",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/No_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 611,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/No/StaticTextures/No.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    }
+]

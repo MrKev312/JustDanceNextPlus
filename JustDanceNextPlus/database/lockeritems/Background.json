@@ -1,0 +1,2764 @@
+[
+    {
+        "itemId": "8c436eff-3f1a-41dc-9c83-2f172bc2cca7",
+        "nameId": "background_HeroCity",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/HeroCity/Background_HeroCity_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/HeroCity/Background_HeroCity_Cursor.png",
+            "descriptionLocId": 5762,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/HeroCity/Background_HeroCity_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/HeroCity/Background_HeroCity_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5761,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/HeroCity/Background_HeroCity_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/HeroCity/Background_HeroCity_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "b88885fb-287f-4673-b64f-80fcf5408f23",
+        "nameId": "background_SunnyVilla",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/SunnyVilla/Background_SunnyVilla_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/SunnyVilla/Background_SunnyVilla_Cursor.png",
+            "descriptionLocId": 4944,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/SunnyVilla/Background_SunnyVilla_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/SunnyVilla/Background_SunnyVilla_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4943,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/SunnyVilla/Background_SunnyVilla_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/SunnyVilla/Background_SunnyVilla_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "d352f8fa-ea01-4c78-8f18-7e3884b4909d",
+        "nameId": "background_DancityRoof",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/DancityRoof/Background_DancityRoof_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/DancityRoof/Background_DancityRoof_Cursor.png",
+            "descriptionLocId": 5871,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/DancityRoof/Background_DancityRoof_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/DancityRoof/Background_DancityRoof_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5870,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/DancityRoof/Background_DancityRoof_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/DancityRoof/Background_DancityRoof_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "50727ef9-96ee-43b0-8eca-d6c4daf0f730",
+        "nameId": "background_BlindingLights01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/BlindingLights01/Background_BlindingLights01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/BlindingLights01/Background_BlindingLights01_Cursor.png",
+            "descriptionLocId": 2757,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/BlindingLights01/Background_BlindingLights01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/BlindingLights01/Background_BlindingLights01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2756,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/BlindingLights01/Background_BlindingLights01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/BlindingLights01/Background_BlindingLights01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "34df4ff8-c0e5-4815-8568-a6dd78ca2deb",
+        "nameId": "background_NeverGonna01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/NeverGonna01/Background_NeverGonna01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/NeverGonna01/Background_NeverGonna01_Cursor.png",
+            "descriptionLocId": 2637,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/NeverGonna01/Background_NeverGonna01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/NeverGonna01/Background_NeverGonna01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2636,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/NeverGonna01/Background_NeverGonna01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/NeverGonna01/Background_NeverGonna01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "11b61cf8-2cb1-4f4c-a6a1-67f4a36d2187",
+        "nameId": "background_WomanLikeMe01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/WomanLikeMe01/Background_WomanLikeMe01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/WomanLikeMe01/Background_WomanLikeMe01_Cursor.png",
+            "descriptionLocId": 2801,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/WomanLikeMe01/Background_WomanLikeMe01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/WomanLikeMe01/Background_WomanLikeMe01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2800,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/WomanLikeMe01/Background_WomanLikeMe01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/WomanLikeMe01/Background_WomanLikeMe01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "35c6b1f7-be8a-4576-a246-1c3e5a0d21a5",
+        "nameId": "background_Tusa01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Tusa01/Background_Tusa01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Tusa01/Background_Tusa01_Cursor.png",
+            "descriptionLocId": 221,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Tusa01/Background_Tusa01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Tusa01/Background_Tusa01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 220,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Tusa01/Background_Tusa01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Tusa01/Background_Tusa01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "c38e6ff2-f376-4137-bcd4-a921fde00367",
+        "nameId": "background_WhatLoversDo01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/WhatLoversDo01/Background_WhatLoversDo01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/WhatLoversDo01/Background_WhatLoversDo01_Cursor.png",
+            "descriptionLocId": 2689,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/WhatLoversDo01/Background_WhatLoversDo01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/WhatLoversDo01/Background_WhatLoversDo01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2688,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/WhatLoversDo01/Background_WhatLoversDo01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/WhatLoversDo01/Background_WhatLoversDo01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "b10b99f1-aace-43c7-9bdf-f357d31cf970",
+        "nameId": "background_Bicicleta01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Bicicleta01/Background_Bicicleta01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Bicicleta01/Background_Bicicleta01_Cursor.png",
+            "descriptionLocId": 2699,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Bicicleta01/Background_Bicicleta01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Bicicleta01/Background_Bicicleta01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 2698,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Bicicleta01/Background_Bicicleta01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Bicicleta01/Background_Bicicleta01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "5fa1d8f0-f1c5-4c8f-9174-7e271b57cfa8",
+        "nameId": "background_IKnewYouWereTrouble02",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/IKnewYouWereTrouble02/Background_IKnewYouWereTrouble02_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/IKnewYouWereTrouble02/Background_IKnewYouWereTrouble02_Cursor.png",
+            "descriptionLocId": 4564,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/IKnewYouWereTrouble02/Background_IKnewYouWereTrouble02_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/IKnewYouWereTrouble02/Background_IKnewYouWereTrouble02_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4563,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/IKnewYouWereTrouble02/Background_IKnewYouWereTrouble02_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/IKnewYouWereTrouble02/Background_IKnewYouWereTrouble02_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "b329aef0-201f-40c0-99be-44001057861e",
+        "nameId": "background_WannabeItzy01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/WannabeItzy01/Background_WannabeItzy01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/WannabeItzy01/Background_WannabeItzy01_Cursor.png",
+            "descriptionLocId": 2679,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/WannabeItzy01/Background_WannabeItzy01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/WannabeItzy01/Background_WannabeItzy01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2678,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/WannabeItzy01/Background_WannabeItzy01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/WannabeItzy01/Background_WannabeItzy01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2e9fdcee-fffc-458c-9b4d-494a414e71b8",
+        "nameId": "background_WakeMeUp01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/WakeMeUp01/Background_WakeMeUp01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/WakeMeUp01/Background_WakeMeUp01_Cursor.png",
+            "descriptionLocId": 231,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/WakeMeUp01/Background_WakeMeUp01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/WakeMeUp01/Background_WakeMeUp01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 230,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/WakeMeUp01/Background_WakeMeUp01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/WakeMeUp01/Background_WakeMeUp01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "1858ecec-d781-4963-91c2-0ca84ff7c698",
+        "nameId": "background_TheWayIAre01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/TheWayIAre01/Background_TheWayIAre01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/TheWayIAre01/Background_TheWayIAre01_Cursor.png",
+            "descriptionLocId": 2649,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/TheWayIAre01/Background_TheWayIAre01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/TheWayIAre01/Background_TheWayIAre01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2648,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/TheWayIAre01/Background_TheWayIAre01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/TheWayIAre01/Background_TheWayIAre01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "f4509fec-bba3-4328-8429-4469ca3f2225",
+        "nameId": "background_CandySky",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/CandySky/Background_CandySky_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/CandySky/Background_CandySky_Cursor.png",
+            "descriptionLocId": 6482,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/CandySky/Background_CandySky_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/CandySky/Background_CandySky_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 6481,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/CandySky/Background_CandySky_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/CandySky/Background_CandySky_Square.png",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-08T16:20:59.759Z"
+    },
+    {
+        "itemId": "5cb85feb-747a-4aa0-9089-34eac7596cc6",
+        "nameId": "background_NoLimit01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/NoLimit01/Background_NoLimit01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/NoLimit01/Background_NoLimit01_Cursor.png",
+            "descriptionLocId": 4556,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/NoLimit01/Background_NoLimit01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/NoLimit01/Background_NoLimit01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4555,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/NoLimit01/Background_NoLimit01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/NoLimit01/Background_NoLimit01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "f7ac85e8-5a5a-4067-8572-4cebac9ac12f",
+        "nameId": "background_DanceMonkey01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/DanceMonkey01/Background_DanceMonkey01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/DanceMonkey01/Background_DanceMonkey01_Cursor.png",
+            "descriptionLocId": 227,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/DanceMonkey01/Background_DanceMonkey01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/DanceMonkey01/Background_DanceMonkey01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 228,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/DanceMonkey01/Background_DanceMonkey01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/DanceMonkey01/Background_DanceMonkey01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f6da7ae3-d806-4d85-93fd-94297c0e23a1",
+        "nameId": "background_Maneater01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Maneater01/Background_Maneater01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Maneater01/Background_Maneater01_Cursor.png",
+            "descriptionLocId": 2647,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Maneater01/Background_Maneater01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Maneater01/Background_Maneater01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2646,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Maneater01/Background_Maneater01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Maneater01/Background_Maneater01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "661e99e2-eee3-4065-a39c-2e3d99390fb1",
+        "nameId": "background_Positions01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Positions01/Background_Positions01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Positions01/Background_Positions01_Cursor.png",
+            "descriptionLocId": 2799,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Positions01/Background_Positions01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Positions01/Background_Positions01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2798,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Positions01/Background_Positions01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Positions01/Background_Positions01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "37cc38db-9447-42ad-ab07-9804b0b96cd9",
+        "nameId": "background_Physical01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Physical01/Background_Physical01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Physical01/Background_Physical01_Cursor.png",
+            "descriptionLocId": 2683,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Physical01/Background_Physical01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Physical01/Background_Physical01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2682,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Physical01/Background_Physical01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Physical01/Background_Physical01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f8ca03d8-61d2-441a-ba1b-62e0367ffe7f",
+        "nameId": "background_DontCha01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/DontCha01/Background_DontCha01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/DontCha01/Background_DontCha01_Cursor.png",
+            "descriptionLocId": 5323,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/DontCha01/Background_DontCha01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/DontCha01/Background_DontCha01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5322,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/DontCha01/Background_DontCha01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/DontCha01/Background_DontCha01_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "4b7571d7-0cf5-46cc-a88d-0d25fd0dc276",
+        "nameId": "background_BetterWhen01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/BetterWhen01/Background_BetterWhen01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/BetterWhen01/Background_BetterWhen01_Cursor.png",
+            "descriptionLocId": 2697,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/BetterWhen01/Background_BetterWhen01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/BetterWhen01/Background_BetterWhen01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2696,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/BetterWhen01/Background_BetterWhen01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/BetterWhen01/Background_BetterWhen01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "35bdbad6-b373-4fb9-b276-2cffbaef816c",
+        "nameId": "background_UglyBeauty01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/UglyBeauty01/Background_UglyBeauty01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/UglyBeauty01/Background_UglyBeauty01_Cursor.png",
+            "descriptionLocId": 2791,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/UglyBeauty01/Background_UglyBeauty01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/UglyBeauty01/Background_UglyBeauty01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2790,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/UglyBeauty01/Background_UglyBeauty01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/UglyBeauty01/Background_UglyBeauty01_Square.png",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-09T14:19:57.987Z"
+    },
+    {
+        "itemId": "2bbd21d0-cf64-4f8a-944f-6e696ba756c9",
+        "nameId": "background_HeyYa01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/HeyYa01/Background_HeyYa01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/HeyYa01/Background_HeyYa01_Cursor.png",
+            "descriptionLocId": 2763,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/HeyYa01/Background_HeyYa01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/HeyYa01/Background_HeyYa01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2762,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/HeyYa01/Background_HeyYa01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/HeyYa01/Background_HeyYa01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "9def3cca-7ebc-48f0-8d19-18d86936d6ee",
+        "nameId": "background_BornThisWayAlt01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/BornThisWayAlt01/Background_BornThisWayAlt01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/BornThisWayAlt01/Background_BornThisWayAlt01_Cursor.png",
+            "descriptionLocId": 2643,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/BornThisWayAlt01/Background_BornThisWayAlt01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/BornThisWayAlt01/Background_BornThisWayAlt01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2642,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/BornThisWayAlt01/Background_BornThisWayAlt01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/BornThisWayAlt01/Background_BornThisWayAlt01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "52baf4c7-376b-4bec-bc62-e051eb3b1278",
+        "nameId": "background_Equis01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Equis01/Background_Equis01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Equis01/Background_Equis01_Cursor.png",
+            "descriptionLocId": 2829,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Equis01/Background_Equis01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Equis01/Background_Equis01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2828,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Equis01/Background_Equis01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Equis01/Background_Equis01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "32600fc3-9e83-47d1-aaa4-20723c2e3985",
+        "nameId": "background_HotStuff01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/HotStuff01/Background_HotStuff01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/HotStuff01/Background_HotStuff01_Cursor.png",
+            "descriptionLocId": 2651,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/HotStuff01/Background_HotStuff01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/HotStuff01/Background_HotStuff01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2650,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/HotStuff01/Background_HotStuff01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/HotStuff01/Background_HotStuff01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f1442dc0-e2ed-42f3-8cd7-26ebddfdc48a",
+        "nameId": "background_BucolicCelebration",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/BucolicCelebration/Background_BucolicCelebration_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/BucolicCelebration/Background_BucolicCelebration_Cursor.png",
+            "descriptionLocId": 5666,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/BucolicCelebration/Background_BucolicCelebration_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/BucolicCelebration/Background_BucolicCelebration_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5665,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/BucolicCelebration/Background_BucolicCelebration_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/BucolicCelebration/Background_BucolicCelebration_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "967938bf-962c-4b8f-a35b-76106e215a86",
+        "nameId": "background_NewWorld01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/NewWorld01/Background_NewWorld01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/NewWorld01/Background_NewWorld01_Cursor.png",
+            "descriptionLocId": 233,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/NewWorld01/Background_NewWorld01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/NewWorld01/Background_NewWorld01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 232,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/NewWorld01/Background_NewWorld01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/NewWorld01/Background_NewWorld01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "4f5253ba-0973-4dda-b80e-4d945209843f",
+        "nameId": "background_IWillSurvive01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/IWillSurvive01/Background_IWillSurvive01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/IWillSurvive01/Background_IWillSurvive01_Cursor.png",
+            "descriptionLocId": 2813,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/IWillSurvive01/Background_IWillSurvive01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/IWillSurvive01/Background_IWillSurvive01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2812,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/IWillSurvive01/Background_IWillSurvive01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/IWillSurvive01/Background_IWillSurvive01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "3fb3c6b7-cf30-4f52-980d-55c2bc324954",
+        "nameId": "background_DrivingNight",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/DrivingNight/Background_DrivingNight_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/DrivingNight/Background_DrivingNight_Cursor.png",
+            "descriptionLocId": 5868,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/DrivingNight/Background_DrivingNight_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/DrivingNight/Background_DrivingNight_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5867,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/DrivingNight/Background_DrivingNight_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/DrivingNight/Background_DrivingNight_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "e66f1ab7-0994-4cbe-8f43-1ebd763a8495",
+        "nameId": "background_Despacito01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Despacito01/Background_Despacito01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Despacito01/Background_Despacito01_Cursor.png",
+            "descriptionLocId": 2687,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Despacito01/Background_Despacito01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Despacito01/Background_Despacito01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2686,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Despacito01/Background_Despacito01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Despacito01/Background_Despacito01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "e8ae17b7-a5cd-4a41-9327-62dc4d62b82f",
+        "nameId": "background_FlamingoBeach",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/FlamingoBeach/Background_FlamingoBeach_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/FlamingoBeach/Background_FlamingoBeach_Cursor.png",
+            "descriptionLocId": 4946,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/FlamingoBeach/Background_FlamingoBeach_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/FlamingoBeach/Background_FlamingoBeach_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4945,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/FlamingoBeach/Background_FlamingoBeach_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/FlamingoBeach/Background_FlamingoBeach_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "c33703b5-a54f-4b78-9e5e-f1c4e98f851e",
+        "nameId": "background_BirthdayParty",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/BirthdayParty/Background_BirthdayParty_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/BirthdayParty/Background_BirthdayParty_Cursor.png",
+            "descriptionLocId": 8497,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/BirthdayParty/Background_BirthdayParty_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/BirthdayParty/Background_BirthdayParty_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8496,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/BirthdayParty/Background_BirthdayParty_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/BirthdayParty/Background_BirthdayParty_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "971352b2-f8c2-4215-bbf1-fdae0f54b5eb",
+        "nameId": "background_IWannaDance01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/IWannaDance01/Background_IWannaDance01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/IWannaDance01/Background_IWannaDance01_Cursor.png",
+            "descriptionLocId": 5325,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/IWannaDance01/Background_IWannaDance01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/IWannaDance01/Background_IWannaDance01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5324,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/IWannaDance01/Background_IWannaDance01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/IWannaDance01/Background_IWannaDance01_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "e8b935af-b02a-4e0b-a447-9f8760dfdd96",
+        "nameId": "background_Rare02",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Rare02/Background_Rare02_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Rare02/Background_Rare02_Cursor.png",
+            "descriptionLocId": 2716,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Rare02/Background_Rare02_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Rare02/Background_Rare02_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2715,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Rare02/Background_Rare02_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Rare02/Background_Rare02_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "02962faf-f2e9-44e6-8978-507864487c8a",
+        "nameId": "background_MaItu01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/MaItu01/Background_MaItu01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/MaItu01/Background_MaItu01_Cursor.png",
+            "descriptionLocId": 2783,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/MaItu01/Background_MaItu01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/MaItu01/Background_MaItu01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2782,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/MaItu01/Background_MaItu01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/MaItu01/Background_MaItu01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "e4083da8-f643-4248-987e-045ca1e06af8",
+        "nameId": "background_LastChristmas01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/LastChristmas01/Background_LastChristmas01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/LastChristmas01/Background_LastChristmas01_Cursor.png",
+            "descriptionLocId": 2752,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/LastChristmas01/Background_LastChristmas01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/LastChristmas01/Background_LastChristmas01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2755,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/LastChristmas01/Background_LastChristmas01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/LastChristmas01/Background_LastChristmas01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "777e8ea7-6a6f-4f82-8646-7ff6c23f0d3d",
+        "nameId": "background_KungFunk01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/KungFunk01/Background_KungFunk01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/KungFunk01/Background_KungFunk01_Cursor.png",
+            "descriptionLocId": 2708,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/KungFunk01/Background_KungFunk01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/KungFunk01/Background_KungFunk01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2707,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/KungFunk01/Background_KungFunk01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/KungFunk01/Background_KungFunk01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "e06b0da3-f52f-401e-a899-d4e00e8576b3",
+        "nameId": "background_RollerTrackParty",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/RollerTrackParty/Background_RollerTrackParty_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/RollerTrackParty/Background_RollerTrackParty_Cursor.png",
+            "descriptionLocId": 5865,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/RollerTrackParty/Background_RollerTrackParty_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/RollerTrackParty/Background_RollerTrackParty_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5864,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/RollerTrackParty/Background_RollerTrackParty_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/RollerTrackParty/Background_RollerTrackParty_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "8e9efca2-255b-4d64-9129-30dcfe2180ed",
+        "nameId": "background_BoyWithLuvNext01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/BoyWithLuvNext01/Background_BoyWithLuvNext01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/BoyWithLuvNext01/Background_BoyWithLuvNext01_Cursor.png",
+            "descriptionLocId": 4562,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/BoyWithLuvNext01/Background_BoyWithLuvNext01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/BoyWithLuvNext01/Background_BoyWithLuvNext01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4561,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/BoyWithLuvNext01/Background_BoyWithLuvNext01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/BoyWithLuvNext01/Background_BoyWithLuvNext01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "18b7f5a1-59bf-4b97-a469-a1fd793858fc",
+        "nameId": "background_HitTheRoadAlt01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/HitTheRoadAlt01/Background_HitTheRoadAlt01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/HitTheRoadAlt01/Background_HitTheRoadAlt01_Cursor.png",
+            "descriptionLocId": 2809,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/HitTheRoadAlt01/Background_HitTheRoadAlt01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/HitTheRoadAlt01/Background_HitTheRoadAlt01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2808,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/HitTheRoadAlt01/Background_HitTheRoadAlt01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/HitTheRoadAlt01/Background_HitTheRoadAlt01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "7396819b-3783-41d5-a197-241a808a63a4",
+        "nameId": "background_LoveIsAll01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveIsAll01/Background_LoveIsAll01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveIsAll01/Background_LoveIsAll01_Cursor.png",
+            "descriptionLocId": 2739,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveIsAll01/Background_LoveIsAll01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveIsAll01/Background_LoveIsAll01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": true,
+            "nameLocId": 2738,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveIsAll01/Background_LoveIsAll01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveIsAll01/Background_LoveIsAll01_Square.png",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 9,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ec57f999-b754-4a3b-8916-9fe091093b34",
+        "nameId": "background_CygnusFactory",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/CygnusFactory/Background_CygnusFactory_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/CygnusFactory/Background_CygnusFactory_Cursor.png",
+            "descriptionLocId": 5775,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/CygnusFactory/Background_CygnusFactory_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/CygnusFactory/Background_CygnusFactory_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": true,
+            "isUbiconnect": false,
+            "nameLocId": 5774,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/CygnusFactory/Background_CygnusFactory_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/CygnusFactory/Background_CygnusFactory_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-14T08:45:18.093Z"
+    },
+    {
+        "itemId": "b4df6c98-0d0f-4b85-85bd-1b5c7dc532af",
+        "nameId": "background_BeautyAndABeat01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/BeautyAndABeat01/Background_BeautyAndABeat01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/BeautyAndABeat01/Background_BeautyAndABeat01_Cursor.png",
+            "descriptionLocId": 217,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/BeautyAndABeat01/Background_BeautyAndABeat01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/BeautyAndABeat01/Background_BeautyAndABeat01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 216,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/BeautyAndABeat01/Background_BeautyAndABeat01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/BeautyAndABeat01/Background_BeautyAndABeat01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "855f9895-6013-4379-be55-160fa5002227",
+        "nameId": "background_DontGoYet01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/DontGoYet01/Background_DontGoYet01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/DontGoYet01/Background_DontGoYet01_Cursor.png",
+            "descriptionLocId": 4968,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/DontGoYet01/Background_DontGoYet01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/DontGoYet01/Background_DontGoYet01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4967,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/DontGoYet01/Background_DontGoYet01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/DontGoYet01/Background_DontGoYet01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "ab7ed294-c151-4af5-9eb8-0199b69c4629",
+        "nameId": "background_BalletKids01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/BalletKids01/Background_BalletKids01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/BalletKids01/Background_BalletKids01_Cursor.png",
+            "descriptionLocId": 2712,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/BalletKids01/Background_BalletKids01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/BalletKids01/Background_BalletKids01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2711,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/BalletKids01/Background_BalletKids01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/BalletKids01/Background_BalletKids01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "835d2293-5282-41d5-853d-bd6e5f7a920e",
+        "nameId": "background_Oishii01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Oishii01/Background_Oishii01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Oishii01/Background_Oishii01_Cursor.png",
+            "descriptionLocId": 2703,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Oishii01/Background_Oishii01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Oishii01/Background_Oishii01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2702,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Oishii01/Background_Oishii01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Oishii01/Background_Oishii01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "8d3b6e90-f9da-4e97-9cc1-35d098caf034",
+        "nameId": "background_CakeByTheOcean01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/CakeByTheOcean01/Background_CakeByTheOcean01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/CakeByTheOcean01/Background_CakeByTheOcean01_Cursor.png",
+            "descriptionLocId": 2691,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/CakeByTheOcean01/Background_CakeByTheOcean01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/CakeByTheOcean01/Background_CakeByTheOcean01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2690,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/CakeByTheOcean01/Background_CakeByTheOcean01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/CakeByTheOcean01/Background_CakeByTheOcean01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "3bbc428b-894b-4c54-93b7-3ef0dff73ee7",
+        "nameId": "background_ThinkAboutThings01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/ThinkAboutThings01/Background_ThinkAboutThings01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/ThinkAboutThings01/Background_ThinkAboutThings01_Cursor.png",
+            "descriptionLocId": 225,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/ThinkAboutThings01/Background_ThinkAboutThings01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/ThinkAboutThings01/Background_ThinkAboutThings01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 224,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/ThinkAboutThings01/Background_ThinkAboutThings01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/ThinkAboutThings01/Background_ThinkAboutThings01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "0a096f8a-c081-4669-8ca3-2539a6faa97b",
+        "nameId": "background_Circus01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Circus01/Background_Circus01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Circus01/Background_Circus01_Cursor.png",
+            "descriptionLocId": 2765,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Circus01/Background_Circus01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Circus01/Background_Circus01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2764,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Circus01/Background_Circus01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Circus01/Background_Circus01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "3c6fb685-0a4c-436c-83a9-f90fd4fd80fe",
+        "nameId": "background_TakiTakiAlt01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/TakiTakiAlt01/Background_TakiTakiAlt01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/TakiTakiAlt01/Background_TakiTakiAlt01_Cursor.png",
+            "descriptionLocId": 4972,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/TakiTakiAlt01/Background_TakiTakiAlt01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/TakiTakiAlt01/Background_TakiTakiAlt01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4971,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/TakiTakiAlt01/Background_TakiTakiAlt01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/TakiTakiAlt01/Background_TakiTakiAlt01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "82580b84-227a-49bb-b47e-106ecc895bf7",
+        "nameId": "background_Siargo01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Siargo01/Background_Siargo01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Siargo01/Background_Siargo01_Cursor.png",
+            "descriptionLocId": 2823,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Siargo01/Background_Siargo01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Siargo01/Background_Siargo01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2822,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Siargo01/Background_Siargo01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Siargo01/Background_Siargo01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "d9ae0a83-4764-430d-bd96-c398c39f7bd9",
+        "nameId": "background_RatherBe01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/RatherBe01/Background_RatherBe01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/RatherBe01/Background_RatherBe01_Cursor.png",
+            "descriptionLocId": 2718,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/RatherBe01/Background_RatherBe01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/RatherBe01/Background_RatherBe01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2717,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/RatherBe01/Background_RatherBe01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/RatherBe01/Background_RatherBe01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "fb479c7f-9e88-4f47-a6a6-34c20c547b25",
+        "nameId": "background_Jerusalema01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Jerusalema01/Background_Jerusalema01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Jerusalema01/Background_Jerusalema01_Cursor.png",
+            "descriptionLocId": 237,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Jerusalema01/Background_Jerusalema01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Jerusalema01/Background_Jerusalema01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 236,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Jerusalema01/Background_Jerusalema01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Jerusalema01/Background_Jerusalema01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f7ff907d-51de-495b-9c6e-0987821c11f3",
+        "nameId": "background_Numb01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Numb01/Background_Numb01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Numb01/Background_Numb01_Cursor.png",
+            "descriptionLocId": 2705,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Numb01/Background_Numb01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Numb01/Background_Numb01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2704,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Numb01/Background_Numb01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Numb01/Background_Numb01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "628dc37b-478b-4d93-9680-cd2e91f01d13",
+        "nameId": "background_Sunroof01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Sunroof01/Background_Sunroof01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Sunroof01/Background_Sunroof01_Cursor.png",
+            "descriptionLocId": 4974,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Sunroof01/Background_Sunroof01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Sunroof01/Background_Sunroof01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4973,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Sunroof01/Background_Sunroof01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Sunroof01/Background_Sunroof01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "cccf2a7b-b83d-44bd-8b9f-4fb5975d153f",
+        "nameId": "background_TelAviv01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/TelAviv01/Background_TelAviv01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/TelAviv01/Background_TelAviv01_Cursor.png",
+            "descriptionLocId": 2685,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/TelAviv01/Background_TelAviv01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/TelAviv01/Background_TelAviv01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2684,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/TelAviv01/Background_TelAviv01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/TelAviv01/Background_TelAviv01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "5d19ea77-bcf6-42e5-be04-9639ba253606",
+        "nameId": "background_HighHopes01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/HighHopes01/Background_HighHopes01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/HighHopes01/Background_HighHopes01_Cursor.png",
+            "descriptionLocId": 2793,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/HighHopes01/Background_HighHopes01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/HighHopes01/Background_HighHopes01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2792,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/HighHopes01/Background_HighHopes01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/HighHopes01/Background_HighHopes01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "686f0c77-972a-47fb-bb0f-9a7ad208c57e",
+        "nameId": "background_Senorita01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Senorita01/Background_Senorita01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Senorita01/Background_Senorita01_Cursor.png",
+            "descriptionLocId": 235,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Senorita01/Background_Senorita01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Senorita01/Background_Senorita01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 234,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Senorita01/Background_Senorita01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Senorita01/Background_Senorita01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "b8ed7171-0881-43a5-8544-281d7ae8ee0b",
+        "nameId": "background_LoveMeLand01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveMeLand01/Background_LoveMeLand01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveMeLand01/Background_LoveMeLand01_Cursor.png",
+            "descriptionLocId": 2761,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveMeLand01/Background_LoveMeLand01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveMeLand01/Background_LoveMeLand01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2760,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveMeLand01/Background_LoveMeLand01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveMeLand01/Background_LoveMeLand01_Square.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ab0b396e-ebbf-455e-843d-5f4b43bbefb2",
+        "nameId": "background_Zenit01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Zenit01/Background_Zenit01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Zenit01/Background_Zenit01_Cursor.png",
+            "descriptionLocId": 223,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Zenit01/Background_Zenit01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Zenit01/Background_Zenit01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 222,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Zenit01/Background_Zenit01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Zenit01/Background_Zenit01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f47f026b-91e1-490a-8d42-3be44628aba2",
+        "nameId": "background_DiscoInferno1",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/DiscoInferno1/Background_DiscoInferno1_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/DiscoInferno1/Background_DiscoInferno1_Cursor.png",
+            "descriptionLocId": 4560,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/DiscoInferno1/Background_DiscoInferno1_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/DiscoInferno1/Background_DiscoInferno1_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4559,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/DiscoInferno1/Background_DiscoInferno1_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/DiscoInferno1/Background_DiscoInferno1_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "8708c46a-96a4-43ee-a7a4-3a0374639e48",
+        "nameId": "background_RockYourBody01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/RockYourBody01/Background_RockYourBody01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/RockYourBody01/Background_RockYourBody01_Cursor.png",
+            "descriptionLocId": 2831,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/RockYourBody01/Background_RockYourBody01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/RockYourBody01/Background_RockYourBody01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2830,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/RockYourBody01/Background_RockYourBody01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/RockYourBody01/Background_RockYourBody01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f8fa736a-6781-43ae-860f-c192ebb6a4cf",
+        "nameId": "background_TribalDance01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/TribalDance01/Background_TribalDance01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/TribalDance01/Background_TribalDance01_Cursor.png",
+            "descriptionLocId": 4558,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/TribalDance01/Background_TribalDance01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/TribalDance01/Background_TribalDance01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 4557,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/TribalDance01/Background_TribalDance01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/TribalDance01/Background_TribalDance01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "32c05c69-6ca3-4c2a-a5db-fc0f3f6c765b",
+        "nameId": "background_MysticalStage",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/MysticalStage/Background_MysticalStage_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/MysticalStage/Background_MysticalStage_Cursor.png",
+            "descriptionLocId": 5760,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/MysticalStage/Background_MysticalStage_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/MysticalStage/Background_MysticalStage_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5759,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/MysticalStage/Background_MysticalStage_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/MysticalStage/Background_MysticalStage_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "10d3a95b-ceed-4ae5-85c6-bb6786ca4cc2",
+        "nameId": "background_CloudLove",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/CloudLove/Background_CloudLove_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/CloudLove/Background_CloudLove_Cursor.png",
+            "descriptionLocId": 8495,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/CloudLove/Background_CloudLove_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/CloudLove/Background_CloudLove_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8494,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/CloudLove/Background_CloudLove_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/CloudLove/Background_CloudLove_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "1ec7885a-6d3b-431c-8213-11b772f78d51",
+        "nameId": "background_QueTirePaLante01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/QueTirePaLante01/Background_QueTirePaLante01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/QueTirePaLante01/Background_QueTirePaLante01_Cursor.png",
+            "descriptionLocId": 2659,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/QueTirePaLante01/Background_QueTirePaLante01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/QueTirePaLante01/Background_QueTirePaLante01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2658,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/QueTirePaLante01/Background_QueTirePaLante01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/QueTirePaLante01/Background_QueTirePaLante01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "af174d5a-9dbc-4094-b7e1-c3255914e3e0",
+        "nameId": "background_Bang201901",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Bang201901/Background_Bang201901_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Bang201901/Background_Bang201901_Cursor.png",
+            "descriptionLocId": 2803,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Bang201901/Background_Bang201901_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Bang201901/Background_Bang201901_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2802,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Bang201901/Background_Bang201901_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Bang201901/Background_Bang201901_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "1d968856-379a-4d26-a42d-20768b1aa4cf",
+        "nameId": "background_NaughtyGirl01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/NaughtyGirl01/Background_NaughtyGirl01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/NaughtyGirl01/Background_NaughtyGirl01_Cursor.png",
+            "descriptionLocId": 2745,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/NaughtyGirl01/Background_NaughtyGirl01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/NaughtyGirl01/Background_NaughtyGirl01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2744,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/NaughtyGirl01/Background_NaughtyGirl01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/NaughtyGirl01/Background_NaughtyGirl01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "f8eb2853-de99-4901-9d08-c63410c204ba",
+        "nameId": "background_LoveStory01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveStory01/Background_LoveStory01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveStory01/Background_LoveStory01_Cursor.png",
+            "descriptionLocId": 2737,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveStory01/Background_LoveStory01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveStory01/Background_LoveStory01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2736,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveStory01/Background_LoveStory01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/LoveStory01/Background_LoveStory01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "27194c4f-5790-407c-bc52-8f72ee45268a",
+        "nameId": "background_BossWitch01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/BossWitch01/Background_BossWitch01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/BossWitch01/Background_BossWitch01_Cursor.png",
+            "descriptionLocId": 2815,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/BossWitch01/Background_BossWitch01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/BossWitch01/Background_BossWitch01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2814,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/BossWitch01/Background_BossWitch01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/BossWitch01/Background_BossWitch01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "6a689f4a-7d42-4be0-9ca6-4b05b5a22dd2",
+        "nameId": "background_GoldenEagleThrone",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/GoldenEagleThrone/Background_GoldenEagleThrone_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/GoldenEagleThrone/Background_GoldenEagleThrone_Cursor.png",
+            "descriptionLocId": 5459,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/GoldenEagleThrone/Background_GoldenEagleThrone_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/GoldenEagleThrone/Background_GoldenEagleThrone_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5458,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/GoldenEagleThrone/Background_GoldenEagleThrone_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/GoldenEagleThrone/Background_GoldenEagleThrone_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "3f5aab47-5507-4203-bf30-45ff9877b4c9",
+        "nameId": "background_BadBoy01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/BadBoy01/Background_BadBoy01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/BadBoy01/Background_BadBoy01_Cursor.png",
+            "descriptionLocId": 4966,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/BadBoy01/Background_BadBoy01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/BadBoy01/Background_BadBoy01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4965,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/BadBoy01/Background_BadBoy01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/BadBoy01/Background_BadBoy01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "045c3a46-6cdf-4fed-90b9-967955426183",
+        "nameId": "background_AlwaysLookOn01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/AlwaysLookOn01/Background_AlwaysLookOn01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/AlwaysLookOn01/Background_AlwaysLookOn01_Cursor.png",
+            "descriptionLocId": 2817,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/AlwaysLookOn01/Background_AlwaysLookOn01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/AlwaysLookOn01/Background_AlwaysLookOn01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2816,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/AlwaysLookOn01/Background_AlwaysLookOn01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/AlwaysLookOn01/Background_AlwaysLookOn01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "c6740545-0527-4a5b-8096-a1fb55688a20",
+        "nameId": "background_Obsesion01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Obsesion01/Background_Obsesion01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Obsesion01/Background_Obsesion01_Cursor.png",
+            "descriptionLocId": 2639,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Obsesion01/Background_Obsesion01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Obsesion01/Background_Obsesion01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2638,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Obsesion01/Background_Obsesion01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Obsesion01/Background_Obsesion01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "da5ead3d-e176-4d57-856b-26ca140139a4",
+        "nameId": "background_GoodOnes01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/GoodOnes01/Background_GoodOnes01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/GoodOnes01/Background_GoodOnes01_Cursor.png",
+            "descriptionLocId": 4851,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/GoodOnes01/Background_GoodOnes01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/GoodOnes01/Background_GoodOnes01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4850,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/GoodOnes01/Background_GoodOnes01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/GoodOnes01/Background_GoodOnes01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "3ebb7f3c-a44d-4444-a9c3-ee99a78679ef",
+        "nameId": "background_Temperature01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Temperature01/Background_Temperature01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Temperature01/Background_Temperature01_Cursor.png",
+            "descriptionLocId": 2751,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Temperature01/Background_Temperature01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Temperature01/Background_Temperature01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2750,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Temperature01/Background_Temperature01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Temperature01/Background_Temperature01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "bfac653b-f8c0-4005-b161-a68a2b0714e7",
+        "nameId": "background_HotNCold01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/HotNCold01/Background_HotNCold01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/HotNCold01/Background_HotNCold01_Cursor.png",
+            "descriptionLocId": 2731,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/HotNCold01/Background_HotNCold01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/HotNCold01/Background_HotNCold01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2730,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/HotNCold01/Background_HotNCold01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/HotNCold01/Background_HotNCold01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "8c2a8c3a-83d8-4bae-9978-716e40698d26",
+        "nameId": "background_WakaWakaAlt01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/WakaWakaAlt01/Background_WakaWakaAlt01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/WakaWakaAlt01/Background_WakaWakaAlt01_Cursor.png",
+            "descriptionLocId": 2661,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/WakaWakaAlt01/Background_WakaWakaAlt01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/WakaWakaAlt01/Background_WakaWakaAlt01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2660,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/WakaWakaAlt01/Background_WakaWakaAlt01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/WakaWakaAlt01/Background_WakaWakaAlt01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "b335833a-f3d0-43cb-8647-92f92447a67e",
+        "nameId": "background_ColorfulNightCity",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/ColorfulNightCity/Background_ColorfulNightCity_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/ColorfulNightCity/Background_ColorfulNightCity_Cursor.png",
+            "descriptionLocId": 8491,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/ColorfulNightCity/Background_ColorfulNightCity_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/ColorfulNightCity/Background_ColorfulNightCity_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8490,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/ColorfulNightCity/Background_ColorfulNightCity_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/ColorfulNightCity/Background_ColorfulNightCity_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "3dfe2638-a08a-4594-bc6c-7c12d0b9d293",
+        "nameId": "background_CriminalWall",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/CriminalWall/Background_CriminalWall_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/CriminalWall/Background_CriminalWall_Cursor.png",
+            "descriptionLocId": 5869,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/CriminalWall/Background_CriminalWall_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/CriminalWall/Background_CriminalWall_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8263,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/CriminalWall/Background_CriminalWall_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/CriminalWall/Background_CriminalWall_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "0e440d38-6bdc-4847-8b37-40744306c9f1",
+        "nameId": "background_Montero01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Montero01/Background_Montero01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Montero01/Background_Montero01_Cursor.png",
+            "descriptionLocId": 2797,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Montero01/Background_Montero01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Montero01/Background_Montero01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2796,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Montero01/Background_Montero01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Montero01/Background_Montero01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "7c408337-fc69-4235-8fd1-db37e1381970",
+        "nameId": "background_ClownFunfair",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/ClownFunfair/Background_ClownFunfair_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/ClownFunfair/Background_ClownFunfair_Cursor.png",
+            "descriptionLocId": 5756,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/ClownFunfair/Background_ClownFunfair_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/ClownFunfair/Background_ClownFunfair_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5755,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/ClownFunfair/Background_ClownFunfair_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/ClownFunfair/Background_ClownFunfair_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "729dfd36-5233-4538-a72c-a6618cb4d6ea",
+        "nameId": "background_SweetSensation01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetSensation01/Background_SweetSensation01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetSensation01/Background_SweetSensation01_Cursor.png",
+            "descriptionLocId": 2825,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetSensation01/Background_SweetSensation01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetSensation01/Background_SweetSensation01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2824,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetSensation01/Background_SweetSensation01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetSensation01/Background_SweetSensation01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ff9b2136-ced5-4d56-a538-d66ae30a6b17",
+        "nameId": "background_Dharma01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Dharma01/Background_Dharma01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Dharma01/Background_Dharma01_Cursor.png",
+            "descriptionLocId": 2710,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Dharma01/Background_Dharma01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Dharma01/Background_Dharma01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2709,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Dharma01/Background_Dharma01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Dharma01/Background_Dharma01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "da2b3335-3fd4-4620-8587-2ff70e49621f",
+        "nameId": "background_CursedShipHold",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/CursedShipHold/Background_CursedShipHold_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/CursedShipHold/Background_CursedShipHold_Cursor.png",
+            "descriptionLocId": 4942,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/CursedShipHold/Background_CursedShipHold_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/CursedShipHold/Background_CursedShipHold_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4941,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/CursedShipHold/Background_CursedShipHold_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/CursedShipHold/Background_CursedShipHold_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "b818f12b-e320-41cd-86cd-a9ead450f7f2",
+        "nameId": "background_Sidewinder01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Sidewinder01/Background_Sidewinder01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Sidewinder01/Background_Sidewinder01_Cursor.png",
+            "descriptionLocId": 2811,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Sidewinder01/Background_Sidewinder01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Sidewinder01/Background_Sidewinder01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2810,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Sidewinder01/Background_Sidewinder01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Sidewinder01/Background_Sidewinder01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "a7806a2a-5d56-4b7c-868e-d82e981958ee",
+        "nameId": "background_BlackWhiteStreet",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/BlackWhiteStreet/Background_BlackWhiteStreet_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/BlackWhiteStreet/Background_BlackWhiteStreet_Cursor.png",
+            "descriptionLocId": 5873,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/BlackWhiteStreet/Background_BlackWhiteStreet_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/BlackWhiteStreet/Background_BlackWhiteStreet_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5872,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/BlackWhiteStreet/Background_BlackWhiteStreet_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/BlackWhiteStreet/Background_BlackWhiteStreet_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "ddaf1f27-268c-44b0-af8d-5ff00a8a4d21",
+        "nameId": "background_YachtParty",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/YachtParty/Background_YachtParty_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/YachtParty/Background_YachtParty_Cursor.png",
+            "descriptionLocId": 8493,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/YachtParty/Background_YachtParty_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/YachtParty/Background_YachtParty_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8492,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/YachtParty/Background_YachtParty_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/YachtParty/Background_YachtParty_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "a4ea0b24-b3ed-4a52-9f58-6aafade1c26a",
+        "nameId": "background_Baiana01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Baiana01/Background_Baiana01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Baiana01/Background_Baiana01_Cursor.png",
+            "descriptionLocId": 2695,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Baiana01/Background_Baiana01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Baiana01/Background_Baiana01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2694,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Baiana01/Background_Baiana01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Baiana01/Background_Baiana01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "aeb07b22-690c-419e-b21a-43276733c296",
+        "nameId": "background_SideTo01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/SideTo01/Background_SideTo01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/SideTo01/Background_SideTo01_Cursor.png",
+            "descriptionLocId": 2754,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/SideTo01/Background_SideTo01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/SideTo01/Background_SideTo01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2753,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/SideTo01/Background_SideTo01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/SideTo01/Background_SideTo01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "229ea021-c2f3-463e-bcaa-03fe87e38023",
+        "nameId": "background_SoyYoAlt01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/SoyYoAlt01/Background_SoyYoAlt01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/SoyYoAlt01/Background_SoyYoAlt01_Cursor.png",
+            "descriptionLocId": 2743,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/SoyYoAlt01/Background_SoyYoAlt01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/SoyYoAlt01/Background_SoyYoAlt01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2742,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/SoyYoAlt01/Background_SoyYoAlt01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/SoyYoAlt01/Background_SoyYoAlt01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "71ba8621-c17f-40c5-9dfc-e3bf51fcda70",
+        "nameId": "background_SweetButPsycho01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetButPsycho01/Background_SweetButPsycho01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetButPsycho01/Background_SweetButPsycho01_Cursor.png",
+            "descriptionLocId": 2733,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetButPsycho01/Background_SweetButPsycho01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetButPsycho01/Background_SweetButPsycho01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 2732,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetButPsycho01/Background_SweetButPsycho01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetButPsycho01/Background_SweetButPsycho01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "863c1721-3405-4eaa-a695-53c173128087",
+        "nameId": "background_Mood01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Mood01/Background_Mood01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Mood01/Background_Mood01_Cursor.png",
+            "descriptionLocId": 2645,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Mood01/Background_Mood01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Mood01/Background_Mood01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2644,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Mood01/Background_Mood01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Mood01/Background_Mood01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "a17ead1f-1aa4-4153-b007-65624ad9a4dd",
+        "nameId": "background_Sucker01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Sucker01/Background_Sucker01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Sucker01/Background_Sucker01_Cursor.png",
+            "descriptionLocId": 2735,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Sucker01/Background_Sucker01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Sucker01/Background_Sucker01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2734,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Sucker01/Background_Sucker01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Sucker01/Background_Sucker01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "885c311e-8135-4925-bdf4-8d994eae1df8",
+        "nameId": "background_Addeyo01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Addeyo01/Background_Addeyo01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Addeyo01/Background_Addeyo01_Cursor.png",
+            "descriptionLocId": 2714,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Addeyo01/Background_Addeyo01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Addeyo01/Background_Addeyo01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2713,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Addeyo01/Background_Addeyo01_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Addeyo01/Background_Addeyo01_Square.png",
+            "unlockConditionsLocId": 3824
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "c751ea1d-cd44-4e10-bb82-27149df9c416",
+        "nameId": "background_Lights01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Lights01/Background_Lights01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Lights01/Background_Lights01_Cursor.png",
+            "descriptionLocId": 2821,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Lights01/Background_Lights01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Lights01/Background_Lights01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2820,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Lights01/Background_Lights01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Lights01/Background_Lights01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "3c269e19-7879-4fb8-9e16-3216d31cfa02",
+        "nameId": "background_AllTheGoodGirls01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/AllTheGoodGirls01/Background_AllTheGoodGirls01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/AllTheGoodGirls01/Background_AllTheGoodGirls01_Cursor.png",
+            "descriptionLocId": 2819,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/AllTheGoodGirls01/Background_AllTheGoodGirls01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/AllTheGoodGirls01/Background_AllTheGoodGirls01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2818,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/AllTheGoodGirls01/Background_AllTheGoodGirls01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/AllTheGoodGirls01/Background_AllTheGoodGirls01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ebffd216-9f4a-4570-b634-d20146d237f8",
+        "nameId": "background_SpacetimeHotelParty",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/SpacetimeHotelParty/Background_SpacetimeHotelParty_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/SpacetimeHotelParty/Background_SpacetimeHotelParty_Cursor.png",
+            "descriptionLocId": 5457,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/SpacetimeHotelParty/Background_SpacetimeHotelParty_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/SpacetimeHotelParty/Background_SpacetimeHotelParty_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5456,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/SpacetimeHotelParty/Background_SpacetimeHotelParty_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/SpacetimeHotelParty/Background_SpacetimeHotelParty_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "b013780f-e9c3-4589-b137-58385cc5cb6b",
+        "nameId": "background_GotMeDancing01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/GotMeDancing01/Background_GotMeDancing01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/GotMeDancing01/Background_GotMeDancing01_Cursor.png",
+            "descriptionLocId": 2693,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/GotMeDancing01/Background_GotMeDancing01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/GotMeDancing01/Background_GotMeDancing01_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2692,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/GotMeDancing01/Background_GotMeDancing01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/GotMeDancing01/Background_GotMeDancing01_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "abf03f0e-be01-4aec-814b-f48b8cdd916f",
+        "nameId": "background_Hips01",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Hips01/Background_Hips01_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Hips01/Background_Hips01_Cursor.png",
+            "descriptionLocId": 4970,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Hips01/Background_Hips01_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Hips01/Background_Hips01_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4969,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Hips01/Background_Hips01_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Hips01/Background_Hips01_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "c401a101-bc69-4ae7-b132-df7a2fa1a97c",
+        "nameId": "background_XmasFactory",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/XmasFactory/Background_XmasFactory_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/XmasFactory/Background_XmasFactory_Cursor.png",
+            "descriptionLocId": 4940,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/XmasFactory/Background_XmasFactory_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/XmasFactory/Background_XmasFactory_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4939,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/XmasFactory/Background_XmasFactory_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/XmasFactory/Background_XmasFactory_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    }
+]

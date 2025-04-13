@@ -15,9 +15,12 @@ public class HostedDataService(IServiceProvider serviceProvider) : IHostedServic
 		// Then load the map service, which uses the tag service and bundle service
 		MapService dataService = scope.ServiceProvider.GetRequiredService<MapService>();
 		await dataService.LoadDataAsync();
-		// Then load the playlists
+		// Then load the playlists, which uses the map service
 		PlaylistService playlistService = scope.ServiceProvider.GetRequiredService<PlaylistService>();
 		playlistService.LoadData();
+		// Then load the locker items, which uses the string service
+		LockerItemsService lockerItemsService = scope.ServiceProvider.GetRequiredService<LockerItemsService>();
+		lockerItemsService.LoadData();
 	}
 
 	public Task StopAsync(CancellationToken cancellationToken)

@@ -1,0 +1,2977 @@
+[
+    {
+        "itemId": "3dd068fe-f576-4aab-a107-e7bb1bca16a2",
+        "nameId": "avatar_PoloSplash",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "MoodPolo",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Splash_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Splash_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Splash_DancerCard.png",
+            "descriptionLocId": 3063,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Splash_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Splash_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3062,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Splash_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Splash",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Splash_Square.png",
+            "unlockConditionsLocId": 3819
+        },
+        "revision": 4,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-04-06T08:42:35.913Z"
+    },
+    {
+        "itemId": "b3a33dfb-e8f7-4ee1-bb76-95b56f766889",
+        "nameId": "avatar_AmanitaDaphne",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "WithoutMeAltAmanita",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeAltAmanita/StaticTextures/WithoutMeAltAmanita_DaphneLantana_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeAltAmanita/StaticTextures/WithoutMeAltAmanita_DaphneLantana_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeAltAmanita/StaticTextures/WithoutMeAltAmanita_DaphneLantana_DancerCard.png",
+            "descriptionLocId": 2369,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeAltAmanita/StaticTextures/WithoutMeAltAmanita_DaphneLantana_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeAltAmanita/StaticTextures/WithoutMeAltAmanita_DaphneLantana_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2368,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeAltAmanita/StaticTextures/WithoutMeAltAmanita_DaphneLantana_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "DaphneLantana",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeAltAmanita/StaticTextures/WithoutMeAltAmanita_DaphneLantana_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "be7650f9-34f3-47a6-a0b9-1be75de3092b",
+        "nameId": "avatar_RudolfBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "MakeItJingleRudolf",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/MakeItJingleRudolf/StaticTextures/MakeItJingleRudolf_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/MakeItJingleRudolf/StaticTextures/MakeItJingleRudolf_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/MakeItJingleRudolf/StaticTextures/MakeItJingleRudolf_Base_DancerCard.png",
+            "descriptionLocId": 2402,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/MakeItJingleRudolf/StaticTextures/MakeItJingleRudolf_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/MakeItJingleRudolf/StaticTextures/MakeItJingleRudolf_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2401,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/MakeItJingleRudolf/StaticTextures/MakeItJingleRudolf_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/MakeItJingleRudolf/StaticTextures/MakeItJingleRudolf_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "cd4949f6-0a88-42f2-8a51-4299729810f6",
+        "nameId": "avatar_KulikitaCatBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "KulikiKulikitaCat",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Base_DancerCard.png",
+            "descriptionLocId": 2444,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2443,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "68ef11f5-bc67-4d4c-abac-a6d75f9c6f4c",
+        "nameId": "avatar_EpsilonBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "Epsilon",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/Epsilon/StaticTextures/Epsilon_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/Epsilon/StaticTextures/Epsilon_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/Epsilon/StaticTextures/Epsilon_Base_DancerCard.png",
+            "descriptionLocId": 6199,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/Epsilon/StaticTextures/Epsilon_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/Epsilon/StaticTextures/Epsilon_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 6200,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/Epsilon/StaticTextures/Epsilon_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/Epsilon/StaticTextures/Epsilon_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "98b218f1-6a2d-49fc-ab02-f6bef28f6fe9",
+        "nameId": "avatar_MihalyBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "RatherBeMihaly",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihaly/StaticTextures/RatherBeMihaly_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihaly/StaticTextures/RatherBeMihaly_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihaly/StaticTextures/RatherBeMihaly_Base_DancerCard.png",
+            "descriptionLocId": 2478,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihaly/StaticTextures/RatherBeMihaly_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihaly/StaticTextures/RatherBeMihaly_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2477,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihaly/StaticTextures/RatherBeMihaly_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihaly/StaticTextures/RatherBeMihaly_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "c53f4ff0-4dde-4944-99c8-4b342ac0f7c2",
+        "nameId": "avatar_EsterellaLegend",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "SloMoEsterella",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/SloMoEsterella/StaticTextures/SloMoEsterella_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/SloMoEsterella/StaticTextures/SloMoEsterella_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/SloMoEsterella/StaticTextures/SloMoEsterella_Base_DancerCard.png",
+            "descriptionLocId": 4845,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/SloMoEsterella/StaticTextures/SloMoEsterella_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/SloMoEsterella/StaticTextures/SloMoEsterella_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4844,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/SloMoEsterella/StaticTextures/SloMoEsterella_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/SloMoEsterella/StaticTextures/SloMoEsterella_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "ba3635f0-fd39-4e34-bc92-e19a33a4218b",
+        "nameId": "avatar_MihalyFlow",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "RatherBeMihalyFlow",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihalyFlow/StaticTextures/RatherBeMihalyFlow_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihalyFlow/StaticTextures/RatherBeMihalyFlow_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihalyFlow/StaticTextures/RatherBeMihalyFlow_Base_DancerCard.png",
+            "descriptionLocId": 2482,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihalyFlow/StaticTextures/RatherBeMihalyFlow_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihalyFlow/StaticTextures/RatherBeMihalyFlow_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2481,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihalyFlow/StaticTextures/RatherBeMihalyFlow_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihalyFlow/StaticTextures/RatherBeMihalyFlow_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "7251b5ef-6f3b-4081-81b4-5bc0f800cc0f",
+        "nameId": "avatar_OneekaUnicorn",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "StarshipsOneeka",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/StarshipsOneeka/StaticTextures/StarshipsOneeka_Unicorn_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/StarshipsOneeka/StaticTextures/StarshipsOneeka_Unicorn_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/StarshipsOneeka/StaticTextures/StarshipsOneeka_Unicorn_DancerCard.png",
+            "descriptionLocId": 8455,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/StarshipsOneeka/StaticTextures/StarshipsOneeka_Unicorn_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/StarshipsOneeka/StaticTextures/StarshipsOneeka_Unicorn_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8454,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/StarshipsOneeka/StaticTextures/StarshipsOneeka_Unicorn_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Unicorn",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/StarshipsOneeka/StaticTextures/StarshipsOneeka_Unicorn_Square.png",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-08T16:20:59.759Z"
+    },
+    {
+        "itemId": "7ab1ddea-e068-4b22-a287-2f8c26467ba7",
+        "nameId": "avatar_PoloBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "MoodPolo",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Base_DancerCard.png",
+            "descriptionLocId": 214,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 213,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "d7b5a8e6-5669-4e49-8055-d5d207bd6510",
+        "nameId": "avatar_CaptainCrimsonBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "CaptainCrimson",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/CaptainCrimson/StaticTextures/CaptainCrimson_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/CaptainCrimson/StaticTextures/CaptainCrimson_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/CaptainCrimson/StaticTextures/CaptainCrimson_Base_DancerCard.png",
+            "descriptionLocId": 4934,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/CaptainCrimson/StaticTextures/CaptainCrimson_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/CaptainCrimson/StaticTextures/CaptainCrimson_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4933,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/CaptainCrimson/StaticTextures/CaptainCrimson_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/CaptainCrimson/StaticTextures/CaptainCrimson_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "64d759de-60a4-4cbe-8e7e-47c78852f843",
+        "nameId": "avatar_ScarletGoldBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "MightyRealScarletGold",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/MightyRealScarletGold/StaticTextures/MightyRealScarletGold_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/MightyRealScarletGold/StaticTextures/MightyRealScarletGold_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/MightyRealScarletGold/StaticTextures/MightyRealScarletGold_Base_DancerCard.png",
+            "descriptionLocId": 202,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/MightyRealScarletGold/StaticTextures/MightyRealScarletGold_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/MightyRealScarletGold/StaticTextures/MightyRealScarletGold_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 201,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/MightyRealScarletGold/StaticTextures/MightyRealScarletGold_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/MightyRealScarletGold/StaticTextures/MightyRealScarletGold_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "a4d8cfda-1333-414e-a2ef-95fa796a2c6b",
+        "nameId": "avatar_WanderlustChosenOne",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "CantStopTheFeelingWanderlustChosenOne",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlustChosenOne/StaticTextures/CantStopTheFeelingWanderlustChosenOne_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlustChosenOne/StaticTextures/CantStopTheFeelingWanderlustChosenOne_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlustChosenOne/StaticTextures/CantStopTheFeelingWanderlustChosenOne_Base_DancerCard.png",
+            "descriptionLocId": 2488,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlustChosenOne/StaticTextures/CantStopTheFeelingWanderlustChosenOne_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlustChosenOne/StaticTextures/CantStopTheFeelingWanderlustChosenOne_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2487,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlustChosenOne/StaticTextures/CantStopTheFeelingWanderlustChosenOne_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlustChosenOne/StaticTextures/CantStopTheFeelingWanderlustChosenOne_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "59c0eed6-8dd2-41cf-a57c-42c38edef7b0",
+        "nameId": "avatar_PandaBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "CmonPanda",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/CmonPanda/StaticTextures/CmonPanda_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/CmonPanda/StaticTextures/CmonPanda_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/CmonPanda/StaticTextures/CmonPanda_Base_DancerCard.png",
+            "descriptionLocId": 2410,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/CmonPanda/StaticTextures/CmonPanda_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/CmonPanda/StaticTextures/CmonPanda_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2409,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/CmonPanda/StaticTextures/CmonPanda_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/CmonPanda/StaticTextures/CmonPanda_Base_Square.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "1ad8f0d3-10e0-49af-8481-c070e1bb6fc4",
+        "nameId": "avatar_GabrielaGraffiti",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "WhineUpGabriela",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/WhineUpGabriela/StaticTextures/WhineUpGabriela_Graffiti_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/WhineUpGabriela/StaticTextures/WhineUpGabriela_Graffiti_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/WhineUpGabriela/StaticTextures/WhineUpGabriela_Graffiti_DancerCard.png",
+            "descriptionLocId": 5293,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/WhineUpGabriela/StaticTextures/WhineUpGabriela_Graffiti_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/WhineUpGabriela/StaticTextures/WhineUpGabriela_Graffiti_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5292,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/WhineUpGabriela/StaticTextures/WhineUpGabriela_Graffiti_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Graffiti",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/WhineUpGabriela/StaticTextures/WhineUpGabriela_Graffiti_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "9a25cbcf-cb51-4dac-bd12-6d82244b519f",
+        "nameId": "avatar_NightSwanBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "WitchNightSwan",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/WitchNightSwan/StaticTextures/WitchNightSwan_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/WitchNightSwan/StaticTextures/WitchNightSwan_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/WitchNightSwan/StaticTextures/WitchNightSwan_Base_DancerCard.png",
+            "descriptionLocId": 2428,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/WitchNightSwan/StaticTextures/WitchNightSwan_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/WitchNightSwan/StaticTextures/WitchNightSwan_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2427,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/WitchNightSwan/StaticTextures/WitchNightSwan_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/WitchNightSwan/StaticTextures/WitchNightSwan_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "abf2efce-06d6-4bda-b416-edf3394c7660",
+        "nameId": "avatar_NestBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "ToyNest",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/ToyNest/StaticTextures/ToyNest_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/ToyNest/StaticTextures/ToyNest_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/ToyNest/StaticTextures/ToyNest_Base_DancerCard.png",
+            "descriptionLocId": 4847,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/ToyNest/StaticTextures/ToyNest_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/ToyNest/StaticTextures/ToyNest_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4846,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/ToyNest/StaticTextures/ToyNest_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/ToyNest/StaticTextures/ToyNest_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "90f436cd-2590-4676-bab0-261f75b01516",
+        "nameId": "avatar_SeraphineKDA",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "MoreAltSeraphine",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/MoreAltSeraphine/StaticTextures/MoreAltSeraphine_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/MoreAltSeraphine/StaticTextures/MoreAltSeraphine_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/MoreAltSeraphine/StaticTextures/MoreAltSeraphine_Base_DancerCard.png",
+            "descriptionLocId": 2530,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/MoreAltSeraphine/StaticTextures/MoreAltSeraphine_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/MoreAltSeraphine/StaticTextures/MoreAltSeraphine_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2529,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/MoreAltSeraphine/StaticTextures/MoreAltSeraphine_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/MoreAltSeraphine/StaticTextures/MoreAltSeraphine_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f3353acc-c7c8-4fcc-a555-dbb98e439d24",
+        "nameId": "avatar_LilithBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "ManeaterLilith",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/ManeaterLilith/StaticTextures/ManeaterLilith_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/ManeaterLilith/StaticTextures/ManeaterLilith_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/ManeaterLilith/StaticTextures/ManeaterLilith_Base_DancerCard.png",
+            "descriptionLocId": 5744,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/ManeaterLilith/StaticTextures/ManeaterLilith_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/ManeaterLilith/StaticTextures/ManeaterLilith_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5743,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/ManeaterLilith/StaticTextures/ManeaterLilith_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/ManeaterLilith/StaticTextures/ManeaterLilith_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "b0aa21cb-aae3-4ba3-898b-f0d09ad5add3",
+        "nameId": "avatar_JamesBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "GiveThatWolfJames",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/GiveThatWolfJames/StaticTextures/GiveThatWolfJames_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/GiveThatWolfJames/StaticTextures/GiveThatWolfJames_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/GiveThatWolfJames/StaticTextures/GiveThatWolfJames_Base_DancerCard.png",
+            "descriptionLocId": 4849,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/GiveThatWolfJames/StaticTextures/GiveThatWolfJames_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/GiveThatWolfJames/StaticTextures/GiveThatWolfJames_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4848,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/GiveThatWolfJames/StaticTextures/GiveThatWolfJames_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/GiveThatWolfJames/StaticTextures/GiveThatWolfJames_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "34acb9c8-ea06-4977-8e9d-b37aa9a99f89",
+        "nameId": "avatar_BrezzianaUltimateCoach",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "PhysicalBrezzianaUltimate",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezzianaUltimate/StaticTextures/PhysicalBrezzianaUltimate_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezzianaUltimate/StaticTextures/PhysicalBrezzianaUltimate_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezzianaUltimate/StaticTextures/PhysicalBrezzianaUltimate_Base_DancerCard.png",
+            "descriptionLocId": 2476,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezzianaUltimate/StaticTextures/PhysicalBrezzianaUltimate_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezzianaUltimate/StaticTextures/PhysicalBrezzianaUltimate_Base_Hud.png",
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 2475,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezzianaUltimate/StaticTextures/PhysicalBrezzianaUltimate_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezzianaUltimate/StaticTextures/PhysicalBrezzianaUltimate_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "02f25dc6-9a9f-4c6d-8f29-607f24070817",
+        "nameId": "avatar_PoloExplorer",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "MoodPolo",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Explorer_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Explorer_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Explorer_DancerCard.png",
+            "descriptionLocId": 2384,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Explorer_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Explorer_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2383,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Explorer_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Explorer",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/MoodPolo/StaticTextures/MoodPolo_Explorer_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "74f2c0c4-aa45-428d-bb0a-a880a5e4394b",
+        "nameId": "avatar_HairmanBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "WithoutMeHairman",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeHairman/StaticTextures/WithoutMeHairman_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeHairman/StaticTextures/WithoutMeHairman_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeHairman/StaticTextures/WithoutMeHairman_Base_DancerCard.png",
+            "descriptionLocId": 5289,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeHairman/StaticTextures/WithoutMeHairman_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeHairman/StaticTextures/WithoutMeHairman_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5288,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeHairman/StaticTextures/WithoutMeHairman_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeHairman/StaticTextures/WithoutMeHairman_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "314a04bd-27af-4e5a-bec9-5a38ad84d4ed",
+        "nameId": "avatar_FlakeBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "ThinkAboutThingsFlake",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/ThinkAboutThingsFlake/StaticTextures/ThinkAboutThingsFlake_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/ThinkAboutThingsFlake/StaticTextures/ThinkAboutThingsFlake_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/ThinkAboutThingsFlake/StaticTextures/ThinkAboutThingsFlake_Base_DancerCard.png",
+            "descriptionLocId": 2406,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/ThinkAboutThingsFlake/StaticTextures/ThinkAboutThingsFlake_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/ThinkAboutThingsFlake/StaticTextures/ThinkAboutThingsFlake_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2405,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/ThinkAboutThingsFlake/StaticTextures/ThinkAboutThingsFlake_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/ThinkAboutThingsFlake/StaticTextures/ThinkAboutThingsFlake_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "1c886fb3-49d3-446a-bd9d-3d7970277188",
+        "nameId": "avatar_SaraDark",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "YouShouldSara",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/YouShouldSara/StaticTextures/YouShouldSara_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/YouShouldSara/StaticTextures/YouShouldSara_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/YouShouldSara/StaticTextures/YouShouldSara_Base_DancerCard.png",
+            "descriptionLocId": 5378,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/YouShouldSara/StaticTextures/YouShouldSara_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/YouShouldSara/StaticTextures/YouShouldSara_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5377,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/YouShouldSara/StaticTextures/YouShouldSara_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/YouShouldSara/StaticTextures/YouShouldSara_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "ae8c98b2-9e9e-44c8-bae2-67d46d8ea6e6",
+        "nameId": "avatar_ChattyBirdRaven",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "InTheNavyChattyBird",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/InTheNavyChattyBird/StaticTextures/InTheNavyChattyBird_Raven_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/InTheNavyChattyBird/StaticTextures/InTheNavyChattyBird_Raven_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/InTheNavyChattyBird/StaticTextures/InTheNavyChattyBird_Raven_DancerCard.png",
+            "descriptionLocId": 2400,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/InTheNavyChattyBird/StaticTextures/InTheNavyChattyBird_Raven_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/InTheNavyChattyBird/StaticTextures/InTheNavyChattyBird_Raven_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2399,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/InTheNavyChattyBird/StaticTextures/InTheNavyChattyBird_Raven_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "skinId": "Raven",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/InTheNavyChattyBird/StaticTextures/InTheNavyChattyBird_Raven_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "9fefebae-972d-4d51-b6d2-7d541ece9d5d",
+        "nameId": "avatar_NeoBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "Neo",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/Neo/StaticTextures/Neo_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/Neo/StaticTextures/Neo_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/Neo/StaticTextures/Neo_Base_DancerCard.png",
+            "descriptionLocId": 8457,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/Neo/StaticTextures/Neo_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/Neo/StaticTextures/Neo_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8456,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/Neo/StaticTextures/Neo_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/Neo/StaticTextures/Neo_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "08a976ae-5c4a-4609-bf94-d54d0acdc40a",
+        "nameId": "avatar_JackRoseChild",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "LocketOutJackRoseChild",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRoseChild/StaticTextures/LocketOutJackRoseChild_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRoseChild/StaticTextures/LocketOutJackRoseChild_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRoseChild/StaticTextures/LocketOutJackRoseChild_Base_DancerCard.png",
+            "descriptionLocId": 2494,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRoseChild/StaticTextures/LocketOutJackRoseChild_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRoseChild/StaticTextures/LocketOutJackRoseChild_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2493,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRoseChild/StaticTextures/LocketOutJackRoseChild_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRoseChild/StaticTextures/LocketOutJackRoseChild_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "39c971ae-9987-4a7b-85be-58af76eabd99",
+        "nameId": "avatar_DualisBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "AnimalsDualis",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/AnimalsDualis/StaticTextures/AnimalsDualis_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/AnimalsDualis/StaticTextures/AnimalsDualis_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/AnimalsDualis/StaticTextures/AnimalsDualis_Base_DancerCard.png",
+            "descriptionLocId": 2526,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/AnimalsDualis/StaticTextures/AnimalsDualis_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/AnimalsDualis/StaticTextures/AnimalsDualis_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2525,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/AnimalsDualis/StaticTextures/AnimalsDualis_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/AnimalsDualis/StaticTextures/AnimalsDualis_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f3efbdab-3ad5-426f-bcde-587c0a3d8384",
+        "nameId": "avatar_AprilParty",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "IWannaDanceApril",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/IWannaDanceApril/StaticTextures/IWannaDanceApril_Party_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/IWannaDanceApril/StaticTextures/IWannaDanceApril_Party_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/IWannaDanceApril/StaticTextures/IWannaDanceApril_Party_DancerCard.png",
+            "descriptionLocId": 5283,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/IWannaDanceApril/StaticTextures/IWannaDanceApril_Party_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/IWannaDanceApril/StaticTextures/IWannaDanceApril_Party_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5282,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/IWannaDanceApril/StaticTextures/IWannaDanceApril_Party_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Party",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/IWannaDanceApril/StaticTextures/IWannaDanceApril_Party_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "1b4c1baa-074e-48ef-acce-6f305bf9cad4",
+        "nameId": "avatar_CthyllaCthulhu",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "AlwaysLookOnCthylla",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/AlwaysLookOnCthylla/StaticTextures/AlwaysLookOnCthylla_Cthulhu_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/AlwaysLookOnCthylla/StaticTextures/AlwaysLookOnCthylla_Cthulhu_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/AlwaysLookOnCthylla/StaticTextures/AlwaysLookOnCthylla_Cthulhu_DancerCard.png",
+            "descriptionLocId": 2392,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/AlwaysLookOnCthylla/StaticTextures/AlwaysLookOnCthylla_Cthulhu_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/AlwaysLookOnCthylla/StaticTextures/AlwaysLookOnCthylla_Cthulhu_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2391,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/AlwaysLookOnCthylla/StaticTextures/AlwaysLookOnCthylla_Cthulhu_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Cthulhu",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/AlwaysLookOnCthylla/StaticTextures/AlwaysLookOnCthylla_Cthulhu_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "d825c3a9-f888-469b-a9b9-f8859a3955a9",
+        "nameId": "avatar_CrystalBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "EuphoriaCrystal",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/EuphoriaCrystal/StaticTextures/EuphoriaCrystal_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/EuphoriaCrystal/StaticTextures/EuphoriaCrystal_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/EuphoriaCrystal/StaticTextures/EuphoriaCrystal_Base_DancerCard.png",
+            "descriptionLocId": 4843,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/EuphoriaCrystal/StaticTextures/EuphoriaCrystal_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/EuphoriaCrystal/StaticTextures/EuphoriaCrystal_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4842,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/EuphoriaCrystal/StaticTextures/EuphoriaCrystal_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/EuphoriaCrystal/StaticTextures/EuphoriaCrystal_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "b71e62a9-de6f-4b44-a5cd-765d6b1f1219",
+        "nameId": "avatar_PandaWaterMeAlt",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "CmonPanda",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/CmonPanda/StaticTextures/CmonPanda_Tennis_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/CmonPanda/StaticTextures/CmonPanda_Tennis_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/CmonPanda/StaticTextures/CmonPanda_Tennis_DancerCard.png",
+            "descriptionLocId": 2412,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/CmonPanda/StaticTextures/CmonPanda_Tennis_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/CmonPanda/StaticTextures/CmonPanda_Tennis_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2411,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/CmonPanda/StaticTextures/CmonPanda_Tennis_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Tennis",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/CmonPanda/StaticTextures/CmonPanda_Tennis_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "d159dea6-e6eb-452d-81fc-8f6d201fcdf3",
+        "nameId": "avatar_CthyllaBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "AlwaysLookOnCthylla",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/AlwaysLookOnCthylla/StaticTextures/AlwaysLookOnCthylla_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/AlwaysLookOnCthylla/StaticTextures/AlwaysLookOnCthylla_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/AlwaysLookOnCthylla/StaticTextures/AlwaysLookOnCthylla_Base_DancerCard.png",
+            "descriptionLocId": 2390,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/AlwaysLookOnCthylla/StaticTextures/AlwaysLookOnCthylla_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/AlwaysLookOnCthylla/StaticTextures/AlwaysLookOnCthylla_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2389,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/AlwaysLookOnCthylla/StaticTextures/AlwaysLookOnCthylla_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/AlwaysLookOnCthylla/StaticTextures/AlwaysLookOnCthylla_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f1db8ea5-c526-4d17-af75-2f44237006d6",
+        "nameId": "avatar_YakiniBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "FinesseYakini",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/FinesseYakini/StaticTextures/FinesseYakini_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/FinesseYakini/StaticTextures/FinesseYakini_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/FinesseYakini/StaticTextures/FinesseYakini_Base_DancerCard.png",
+            "descriptionLocId": 2460,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/FinesseYakini/StaticTextures/FinesseYakini_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/FinesseYakini/StaticTextures/FinesseYakini_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2459,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/FinesseYakini/StaticTextures/FinesseYakini_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/FinesseYakini/StaticTextures/FinesseYakini_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "a0d889a4-607a-43aa-9e05-04760afba3be",
+        "nameId": "avatar_KanDakeBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "MaItuKanDake",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/MaItuKanDake/StaticTextures/MaItuKanDake_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/MaItuKanDake/StaticTextures/MaItuKanDake_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/MaItuKanDake/StaticTextures/MaItuKanDake_Base_DancerCard.png",
+            "descriptionLocId": 2468,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/MaItuKanDake/StaticTextures/MaItuKanDake_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/MaItuKanDake/StaticTextures/MaItuKanDake_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2467,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/MaItuKanDake/StaticTextures/MaItuKanDake_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "1e1ad3e6-a272-4aba-bb16-13e349f68ddc",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/MaItuKanDake/StaticTextures/MaItuKanDake_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "d430f79a-660a-4e06-be63-366b0fa526b5",
+        "nameId": "avatar_YakiniJournalist",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "FinesseYakini",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/FinesseYakini/StaticTextures/FinesseYakini_Journalist_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/FinesseYakini/StaticTextures/FinesseYakini_Journalist_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/FinesseYakini/StaticTextures/FinesseYakini_Journalist_DancerCard.png",
+            "descriptionLocId": 2462,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/FinesseYakini/StaticTextures/FinesseYakini_Journalist_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/FinesseYakini/StaticTextures/FinesseYakini_Journalist_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2461,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/FinesseYakini/StaticTextures/FinesseYakini_Journalist_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "skinId": "Journalist",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/FinesseYakini/StaticTextures/FinesseYakini_Journalist_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "d5e2f794-5877-4334-b3f5-79a4bfd53bbb",
+        "nameId": "avatar_TravellerBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "RockYourBodyTraveller",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/RockYourBodyTraveller/StaticTextures/RockYourBodyTraveller_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/RockYourBodyTraveller/StaticTextures/RockYourBodyTraveller_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/RockYourBodyTraveller/StaticTextures/RockYourBodyTraveller_Base_DancerCard.png",
+            "descriptionLocId": 5742,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/RockYourBodyTraveller/StaticTextures/RockYourBodyTraveller_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/RockYourBodyTraveller/StaticTextures/RockYourBodyTraveller_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5735,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/RockYourBodyTraveller/StaticTextures/RockYourBodyTraveller_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/RockYourBodyTraveller/StaticTextures/RockYourBodyTraveller_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "1309748f-95f3-42e5-ac79-7c11863a6897",
+        "nameId": "avatar_TheBrideBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "HotNColdTheBride",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/HotNColdTheBride/StaticTextures/HotNColdTheBride_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/HotNColdTheBride/StaticTextures/HotNColdTheBride_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/HotNColdTheBride/StaticTextures/HotNColdTheBride_Base_DancerCard.png",
+            "descriptionLocId": 2430,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/HotNColdTheBride/StaticTextures/HotNColdTheBride_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/HotNColdTheBride/StaticTextures/HotNColdTheBride_Base_Hud.png",
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 2429,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/HotNColdTheBride/StaticTextures/HotNColdTheBride_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/HotNColdTheBride/StaticTextures/HotNColdTheBride_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "2554f48e-3b9e-46d9-9f89-8b66c50dc59e",
+        "nameId": "avatar_KassyClassic",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "HowYouLikeThatKassy",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/HowYouLikeThatKassy/StaticTextures/HowYouLikeThatKassy_Classic_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/HowYouLikeThatKassy/StaticTextures/HowYouLikeThatKassy_Classic_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/HowYouLikeThatKassy/StaticTextures/HowYouLikeThatKassy_Classic_DancerCard.png",
+            "descriptionLocId": 4932,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/HowYouLikeThatKassy/StaticTextures/HowYouLikeThatKassy_Classic_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/HowYouLikeThatKassy/StaticTextures/HowYouLikeThatKassy_Classic_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4931,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/HowYouLikeThatKassy/StaticTextures/HowYouLikeThatKassy_Classic_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "skinId": "Classic",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/HowYouLikeThatKassy/StaticTextures/HowYouLikeThatKassy_Classic_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "5927ab8c-049e-4fa1-b009-b0370b3ac2ac",
+        "nameId": "avatar_AgentDNurse",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "ToxicAgentD",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Nurse_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Nurse_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Nurse_DancerCard.png",
+            "descriptionLocId": 5297,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Nurse_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Nurse_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5296,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Nurse_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Nurse",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Nurse_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "c4158285-1637-45d0-9bb0-59f81caff491",
+        "nameId": "avatar_LizaFridayBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "TGIFLizaFriday",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/TGIFLizaFriday/StaticTextures/TGIFLizaFriday_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/TGIFLizaFriday/StaticTextures/TGIFLizaFriday_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/TGIFLizaFriday/StaticTextures/TGIFLizaFriday_Base_DancerCard.png",
+            "descriptionLocId": 2442,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/TGIFLizaFriday/StaticTextures/TGIFLizaFriday_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/TGIFLizaFriday/StaticTextures/TGIFLizaFriday_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": true,
+            "nameLocId": 2441,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/TGIFLizaFriday/StaticTextures/TGIFLizaFriday_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/TGIFLizaFriday/StaticTextures/TGIFLizaFriday_Base_Square.png",
+            "unlockConditionsLocId": 3818
+        },
+        "revision": 9,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "b98c7683-5973-436a-80f8-d8d07a7120e1",
+        "nameId": "avatar_BrezzianaHoliday",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "PhysicalBrezziana",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezziana/StaticTextures/PhysicalBrezziana_Holiday_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezziana/StaticTextures/PhysicalBrezziana_Holiday_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezziana/StaticTextures/PhysicalBrezziana_Holiday_DancerCard.png",
+            "descriptionLocId": 2474,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezziana/StaticTextures/PhysicalBrezziana_Holiday_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezziana/StaticTextures/PhysicalBrezziana_Holiday_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2473,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezziana/StaticTextures/PhysicalBrezziana_Holiday_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Holiday",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezziana/StaticTextures/PhysicalBrezziana_Holiday_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "53b5987e-d606-4b7c-a922-4f2e0ffe147d",
+        "nameId": "avatar_PandaMaster",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "RatherBeMasterPanda",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMasterPanda/StaticTextures/RatherBeMasterPanda_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMasterPanda/StaticTextures/RatherBeMasterPanda_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMasterPanda/StaticTextures/RatherBeMasterPanda_Base_DancerCard.png",
+            "descriptionLocId": 2414,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMasterPanda/StaticTextures/RatherBeMasterPanda_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMasterPanda/StaticTextures/RatherBeMasterPanda_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2413,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMasterPanda/StaticTextures/RatherBeMasterPanda_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMasterPanda/StaticTextures/RatherBeMasterPanda_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "0235b77c-3ea0-403c-b3b0-ba0a05d73c4e",
+        "nameId": "avatar_DualisCenturion",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "AnimalsDualis",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/AnimalsDualis/StaticTextures/AnimalsDualis_Centurion_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/AnimalsDualis/StaticTextures/AnimalsDualis_Centurion_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/AnimalsDualis/StaticTextures/AnimalsDualis_Centurion_DancerCard.png",
+            "descriptionLocId": 2528,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/AnimalsDualis/StaticTextures/AnimalsDualis_Centurion_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/AnimalsDualis/StaticTextures/AnimalsDualis_Centurion_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2527,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/AnimalsDualis/StaticTextures/AnimalsDualis_Centurion_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Centurion",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/AnimalsDualis/StaticTextures/AnimalsDualis_Centurion_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "1297a27a-c7ae-4fcf-ac26-8bcab3fefff9",
+        "nameId": "avatar_UnaiRoller",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "Unai",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/Unai/StaticTextures/Unai_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/Unai/StaticTextures/Unai_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/Unai/StaticTextures/Unai_Base_DancerCard.png",
+            "descriptionLocId": 5879,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/Unai/StaticTextures/Unai_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/Unai/StaticTextures/Unai_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5878,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/Unai/StaticTextures/Unai_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/Unai/StaticTextures/Unai_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "d2eb8b79-72d2-4a8f-852a-4d0081a09cb6",
+        "nameId": "avatar_JoyCeBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "DynamiteJoyCe",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/DynamiteJoyCe/StaticTextures/DynamiteJoyCe_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/DynamiteJoyCe/StaticTextures/DynamiteJoyCe_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/DynamiteJoyCe/StaticTextures/DynamiteJoyCe_Base_DancerCard.png",
+            "descriptionLocId": 5374,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/DynamiteJoyCe/StaticTextures/DynamiteJoyCe_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/DynamiteJoyCe/StaticTextures/DynamiteJoyCe_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5373,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/DynamiteJoyCe/StaticTextures/DynamiteJoyCe_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/DynamiteJoyCe/StaticTextures/DynamiteJoyCe_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "6afb3d79-5ec8-4510-aabd-2756f3b835dc",
+        "nameId": "avatar_ChattyBirdBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "InTheNavyChattyBird",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/InTheNavyChattyBird/StaticTextures/InTheNavyChattyBird_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/InTheNavyChattyBird/StaticTextures/InTheNavyChattyBird_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/InTheNavyChattyBird/StaticTextures/InTheNavyChattyBird_Base_DancerCard.png",
+            "descriptionLocId": 2398,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/InTheNavyChattyBird/StaticTextures/InTheNavyChattyBird_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/InTheNavyChattyBird/StaticTextures/InTheNavyChattyBird_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2397,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/InTheNavyChattyBird/StaticTextures/InTheNavyChattyBird_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/InTheNavyChattyBird/StaticTextures/InTheNavyChattyBird_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "f8c00d77-add4-4419-8481-2fdfe0557a0f",
+        "nameId": "avatar_SaraHuman",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "PartySaraHuman",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/PartySaraHuman/StaticTextures/PartySaraHuman_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/PartySaraHuman/StaticTextures/PartySaraHuman_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/PartySaraHuman/StaticTextures/PartySaraHuman_Base_DancerCard.png",
+            "descriptionLocId": 2500,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/PartySaraHuman/StaticTextures/PartySaraHuman_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/PartySaraHuman/StaticTextures/PartySaraHuman_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": true,
+            "nameLocId": 2499,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/PartySaraHuman/StaticTextures/PartySaraHuman_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/PartySaraHuman/StaticTextures/PartySaraHuman_Base_Square.png",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 9,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-03-19T09:41:33.835Z"
+    },
+    {
+        "itemId": "5984f273-d7e6-4f0e-92cf-4abad60e662b",
+        "nameId": "avatar_KymNoeHalloween",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "DanceMonkeyKymNoe",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/DanceMonkeyKymNoe/StaticTextures/DanceMonkeyKymNoe_Halloween_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/DanceMonkeyKymNoe/StaticTextures/DanceMonkeyKymNoe_Halloween_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/DanceMonkeyKymNoe/StaticTextures/DanceMonkeyKymNoe_Halloween_DancerCard.png",
+            "descriptionLocId": 607,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/DanceMonkeyKymNoe/StaticTextures/DanceMonkeyKymNoe_Halloween_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/DanceMonkeyKymNoe/StaticTextures/DanceMonkeyKymNoe_Halloween_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 606,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/DanceMonkeyKymNoe/StaticTextures/DanceMonkeyKymNoe_Halloween_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Halloween",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/DanceMonkeyKymNoe/StaticTextures/DanceMonkeyKymNoe_Halloween_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "5984f273-d7e6-4f0e-92cf-4abad60e662a",
+        "nameId": "avatar_KymNoeBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "DanceMonkeyKymNoe",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/DanceMonkeyKymNoe/StaticTextures/DanceMonkeyKymNoe_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/DanceMonkeyKymNoe/StaticTextures/DanceMonkeyKymNoe_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/DanceMonkeyKymNoe/StaticTextures/DanceMonkeyKymNoe_Base_DancerCard.png",
+            "descriptionLocId": 212,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/DanceMonkeyKymNoe/StaticTextures/DanceMonkeyKymNoe_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/DanceMonkeyKymNoe/StaticTextures/DanceMonkeyKymNoe_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 211,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/DanceMonkeyKymNoe/StaticTextures/DanceMonkeyKymNoe_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/DanceMonkeyKymNoe/StaticTextures/DanceMonkeyKymNoe_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "fbc80d70-5548-4202-8a03-603d54a4c1d3",
+        "nameId": "avatar_LilasBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "Lilas",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/Lilas/StaticTextures/Lilas_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/Lilas/StaticTextures/Lilas_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/Lilas/StaticTextures/Lilas_Base_DancerCard.png",
+            "descriptionLocId": 8453,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/Lilas/StaticTextures/Lilas_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/Lilas/StaticTextures/Lilas_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8452,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/Lilas/StaticTextures/Lilas_Base_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/Lilas/StaticTextures/Lilas_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "3605176d-59c4-4f9f-bac0-4d6767a6181c",
+        "nameId": "avatar_RasputinGroom",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "RasputinRasputin",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/RasputinRasputin/StaticTextures/RasputinRasputin_Groom_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/RasputinRasputin/StaticTextures/RasputinRasputin_Groom_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/RasputinRasputin/StaticTextures/RasputinRasputin_Groom_DancerCard.png",
+            "descriptionLocId": 2436,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/RasputinRasputin/StaticTextures/RasputinRasputin_Groom_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/RasputinRasputin/StaticTextures/RasputinRasputin_Groom_Hud.png",
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 2435,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/RasputinRasputin/StaticTextures/RasputinRasputin_Groom_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "skinId": "Groom",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/RasputinRasputin/StaticTextures/RasputinRasputin_Groom_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "205eac6b-b0da-4028-88c2-6238f6898cf2",
+        "nameId": "avatar_AgentDSpy",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "ToxicAgentD",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Spy_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Spy_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Spy_DancerCard.png",
+            "descriptionLocId": 5295,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Spy_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Spy_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5294,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Spy_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Spy",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Spy_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "2e3aca67-c6ff-46a6-a810-b8740029af50",
+        "nameId": "avatar_SoSplash",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "BoombayahSo",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_Splash_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_Splash_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_Splash_DancerCard.png",
+            "descriptionLocId": 3065,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_Splash_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_Splash_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 3064,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_Splash_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Splash",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_Splash_Square.png",
+            "unlockConditionsLocId": 3819
+        },
+        "revision": 4,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-04-06T08:42:35.913Z"
+    },
+    {
+        "itemId": "e3408267-816a-43f0-a7fe-8f004f016d06",
+        "nameId": "avatar_FeliciaBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "BloodyMaryFelicia",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/BloodyMaryFelicia/StaticTextures/BloodyMaryFelicia_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/BloodyMaryFelicia/StaticTextures/BloodyMaryFelicia_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/BloodyMaryFelicia/StaticTextures/BloodyMaryFelicia_Base_DancerCard.png",
+            "descriptionLocId": 4962,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/BloodyMaryFelicia/StaticTextures/BloodyMaryFelicia_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/BloodyMaryFelicia/StaticTextures/BloodyMaryFelicia_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4961,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/BloodyMaryFelicia/StaticTextures/BloodyMaryFelicia_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/BloodyMaryFelicia/StaticTextures/BloodyMaryFelicia_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "f33d3865-ca08-42f1-9a28-f98bf7b3b3bc",
+        "nameId": "avatar_TheShowmanBard",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "DontStopMeTheShowman",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/DontStopMeTheShowman/StaticTextures/DontStopMeTheShowman_Bard_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/DontStopMeTheShowman/StaticTextures/DontStopMeTheShowman_Bard_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/DontStopMeTheShowman/StaticTextures/DontStopMeTheShowman_Bard_DancerCard.png",
+            "descriptionLocId": 2373,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/DontStopMeTheShowman/StaticTextures/DontStopMeTheShowman_Bard_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/DontStopMeTheShowman/StaticTextures/DontStopMeTheShowman_Bard_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2372,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/DontStopMeTheShowman/StaticTextures/DontStopMeTheShowman_Bard_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Bard",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/DontStopMeTheShowman/StaticTextures/DontStopMeTheShowman_Bard_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "46349064-5637-4ca8-963e-62bb4c6be112",
+        "nameId": "avatar_GabrielaBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "WhineUpGabriela",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/WhineUpGabriela/StaticTextures/WhineUpGabriela_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/WhineUpGabriela/StaticTextures/WhineUpGabriela_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/WhineUpGabriela/StaticTextures/WhineUpGabriela_Base_DancerCard.png",
+            "descriptionLocId": 5291,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/WhineUpGabriela/StaticTextures/WhineUpGabriela_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/WhineUpGabriela/StaticTextures/WhineUpGabriela_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5290,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/WhineUpGabriela/StaticTextures/WhineUpGabriela_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/WhineUpGabriela/StaticTextures/WhineUpGabriela_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "0015b65c-f23c-42a0-b50d-d82e43dcfd10",
+        "nameId": "avatar_TheShowmanBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "DontStopMeTheShowman",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/DontStopMeTheShowman/StaticTextures/DontStopMeTheShowman_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/DontStopMeTheShowman/StaticTextures/DontStopMeTheShowman_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/DontStopMeTheShowman/StaticTextures/DontStopMeTheShowman_Base_DancerCard.png",
+            "descriptionLocId": 204,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/DontStopMeTheShowman/StaticTextures/DontStopMeTheShowman_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/DontStopMeTheShowman/StaticTextures/DontStopMeTheShowman_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 203,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/DontStopMeTheShowman/StaticTextures/DontStopMeTheShowman_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/DontStopMeTheShowman/StaticTextures/DontStopMeTheShowman_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "b9c6c653-5900-49cf-9f79-09483a42366f",
+        "nameId": "avatar_FlakeWoodElf",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "ThinkAboutThingsFlake",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/ThinkAboutThingsFlake/StaticTextures/ThinkAboutThingsFlake_WoodElf_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/ThinkAboutThingsFlake/StaticTextures/ThinkAboutThingsFlake_WoodElf_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/ThinkAboutThingsFlake/StaticTextures/ThinkAboutThingsFlake_WoodElf_DancerCard.png",
+            "descriptionLocId": 2408,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/ThinkAboutThingsFlake/StaticTextures/ThinkAboutThingsFlake_WoodElf_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/ThinkAboutThingsFlake/StaticTextures/ThinkAboutThingsFlake_WoodElf_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2407,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/ThinkAboutThingsFlake/StaticTextures/ThinkAboutThingsFlake_WoodElf_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "WoodElf",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/ThinkAboutThingsFlake/StaticTextures/ThinkAboutThingsFlake_WoodElf_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "29fcae52-13a2-4077-b810-c7978f4a9ca6",
+        "nameId": "avatar_ScottyBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "SunroofScotty",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/SunroofScotty/StaticTextures/SunroofScotty_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/SunroofScotty/StaticTextures/SunroofScotty_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/SunroofScotty/StaticTextures/SunroofScotty_Base_DancerCard.png",
+            "descriptionLocId": 4964,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/SunroofScotty/StaticTextures/SunroofScotty_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/SunroofScotty/StaticTextures/SunroofScotty_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4963,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/SunroofScotty/StaticTextures/SunroofScotty_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/SunroofScotty/StaticTextures/SunroofScotty_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "15af6952-7392-43e8-b870-7ac959c8a1cf",
+        "nameId": "avatar_AlamarBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "ScreamNShoutAlamar",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/ScreamNShoutAlamar/StaticTextures/ScreamNShoutAlamar_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/ScreamNShoutAlamar/StaticTextures/ScreamNShoutAlamar_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/ScreamNShoutAlamar/StaticTextures/ScreamNShoutAlamar_Base_DancerCard.png",
+            "descriptionLocId": 2464,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/ScreamNShoutAlamar/StaticTextures/ScreamNShoutAlamar_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/ScreamNShoutAlamar/StaticTextures/ScreamNShoutAlamar_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2463,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/ScreamNShoutAlamar/StaticTextures/ScreamNShoutAlamar_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "a8efc407-e06a-4d9a-9b8b-122a53d7aeb5",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/ScreamNShoutAlamar/StaticTextures/ScreamNShoutAlamar_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "9f23c34c-d505-4c5d-b0b9-697d672be253",
+        "nameId": "avatar_SavelinaFuegoBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "QueTirePaLanteSavelinaFuego",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/QueTirePaLanteSavelinaFuego/StaticTextures/QueTirePaLanteSavelinaFuego_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/QueTirePaLanteSavelinaFuego/StaticTextures/QueTirePaLanteSavelinaFuego_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/QueTirePaLanteSavelinaFuego/StaticTextures/QueTirePaLanteSavelinaFuego_Base_DancerCard.png",
+            "descriptionLocId": 2502,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/QueTirePaLanteSavelinaFuego/StaticTextures/QueTirePaLanteSavelinaFuego_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/QueTirePaLanteSavelinaFuego/StaticTextures/QueTirePaLanteSavelinaFuego_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2501,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/QueTirePaLanteSavelinaFuego/StaticTextures/QueTirePaLanteSavelinaFuego_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "24dd3483-2e0c-49e4-8b78-f28168ad0d94",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/QueTirePaLanteSavelinaFuego/StaticTextures/QueTirePaLanteSavelinaFuego_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "ab54d84a-7946-43a1-972f-96e14a461372",
+        "nameId": "avatar_TheBridePsycho",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "HotNColdTheBride",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/HotNColdTheBride/StaticTextures/HotNColdTheBride_Psycho_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/HotNColdTheBride/StaticTextures/HotNColdTheBride_Psycho_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/HotNColdTheBride/StaticTextures/HotNColdTheBride_Psycho_DancerCard.png",
+            "descriptionLocId": 2432,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/HotNColdTheBride/StaticTextures/HotNColdTheBride_Psycho_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/HotNColdTheBride/StaticTextures/HotNColdTheBride_Psycho_Hud.png",
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 2431,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/HotNColdTheBride/StaticTextures/HotNColdTheBride_Psycho_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "skinId": "Psycho",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/HotNColdTheBride/StaticTextures/HotNColdTheBride_Psycho_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "8b38a84a-fd38-4823-bfd1-04163b8a7002",
+        "nameId": "avatar_MichiyaSakura",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "ZenitMichiya",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/ZenitMichiya/StaticTextures/ZenitMichiya_Sakura_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/ZenitMichiya/StaticTextures/ZenitMichiya_Sakura_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/ZenitMichiya/StaticTextures/ZenitMichiya_Sakura_DancerCard.png",
+            "descriptionLocId": 2380,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/ZenitMichiya/StaticTextures/ZenitMichiya_Sakura_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/ZenitMichiya/StaticTextures/ZenitMichiya_Sakura_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2379,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/ZenitMichiya/StaticTextures/ZenitMichiya_Sakura_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Sakura",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/ZenitMichiya/StaticTextures/ZenitMichiya_Sakura_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2cb2ac48-ffb5-44dd-b125-c816c6b65ac5",
+        "nameId": "avatar_MichiyaBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "ZenitMichiya",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/ZenitMichiya/StaticTextures/ZenitMichiya_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/ZenitMichiya/StaticTextures/ZenitMichiya_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/ZenitMichiya/StaticTextures/ZenitMichiya_Base_DancerCard.png",
+            "descriptionLocId": 208,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/ZenitMichiya/StaticTextures/ZenitMichiya_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/ZenitMichiya/StaticTextures/ZenitMichiya_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 207,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/ZenitMichiya/StaticTextures/ZenitMichiya_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/ZenitMichiya/StaticTextures/ZenitMichiya_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "9b3cc847-4d2d-462f-8a7d-8fe19cb3c428",
+        "nameId": "avatar_AprilBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "IWannaDanceApril",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/IWannaDanceApril/StaticTextures/IWannaDanceApril_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/IWannaDanceApril/StaticTextures/IWannaDanceApril_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/IWannaDanceApril/StaticTextures/IWannaDanceApril_Base_DancerCard.png",
+            "descriptionLocId": 5281,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/IWannaDanceApril/StaticTextures/IWannaDanceApril_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/IWannaDanceApril/StaticTextures/IWannaDanceApril_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5280,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/IWannaDanceApril/StaticTextures/IWannaDanceApril_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/IWannaDanceApril/StaticTextures/IWannaDanceApril_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "99712844-d58c-4464-bb4d-af68e8e4d811",
+        "nameId": "avatar_DahliaBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "Dahlia",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/Dahlia/StaticTextures/Dahlia_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/Dahlia/StaticTextures/Dahlia_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/Dahlia/StaticTextures/Dahlia_Base_DancerCard.png",
+            "descriptionLocId": 4936,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/Dahlia/StaticTextures/Dahlia_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/Dahlia/StaticTextures/Dahlia_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 4935,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/Dahlia/StaticTextures/Dahlia_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "3c4d4b8f-fdd5-42cd-9d2e-753f5e32962b",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/Dahlia/StaticTextures/Dahlia_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "f66bc841-1fb9-42ae-bfce-386ed764c3c8",
+        "nameId": "avatar_RasputinBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "RasputinRasputin",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/RasputinRasputin/StaticTextures/RasputinRasputin_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/RasputinRasputin/StaticTextures/RasputinRasputin_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/RasputinRasputin/StaticTextures/RasputinRasputin_Base_DancerCard.png",
+            "descriptionLocId": 2434,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/RasputinRasputin/StaticTextures/RasputinRasputin_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/RasputinRasputin/StaticTextures/RasputinRasputin_Base_Hud.png",
+            "isPremium": false,
+            "isSeasonal": true,
+            "isUbiconnect": false,
+            "nameLocId": 2433,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/RasputinRasputin/StaticTextures/RasputinRasputin_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "80233221-36a9-4c81-8943-17d2a24c3abf",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/RasputinRasputin/StaticTextures/RasputinRasputin_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-05-09T09:03:05.328Z"
+    },
+    {
+        "itemId": "aa5bab3f-c92e-4abd-b52e-cad80dcb94ed",
+        "nameId": "avatar_NikiRedHidingHood",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "SoyYoNiki",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/SoyYoNiki/StaticTextures/SoyYoNiki_RedHidingHood_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/SoyYoNiki/StaticTextures/SoyYoNiki_RedHidingHood_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/SoyYoNiki/StaticTextures/SoyYoNiki_RedHidingHood_DancerCard.png",
+            "descriptionLocId": 2454,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/SoyYoNiki/StaticTextures/SoyYoNiki_RedHidingHood_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/SoyYoNiki/StaticTextures/SoyYoNiki_RedHidingHood_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2453,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/SoyYoNiki/StaticTextures/SoyYoNiki_RedHidingHood_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "skinId": "RedHidingHood",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/SoyYoNiki/StaticTextures/SoyYoNiki_RedHidingHood_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "19a5243f-ad90-4de0-b2be-8b7afedf9150",
+        "nameId": "avatar_BrezzianaBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "PhysicalBrezziana",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezziana/StaticTextures/PhysicalBrezziana_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezziana/StaticTextures/PhysicalBrezziana_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezziana/StaticTextures/PhysicalBrezziana_Base_DancerCard.png",
+            "descriptionLocId": 2472,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezziana/StaticTextures/PhysicalBrezziana_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezziana/StaticTextures/PhysicalBrezziana_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2471,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezziana/StaticTextures/PhysicalBrezziana_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/PhysicalBrezziana/StaticTextures/PhysicalBrezziana_Base_Square.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "bea8d83d-d8f6-415d-aa87-73fbee114106",
+        "nameId": "avatar_KassyAphrodite",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "HowYouLikeThatKassy",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/HowYouLikeThatKassy/StaticTextures/HowYouLikeThatKassy_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/HowYouLikeThatKassy/StaticTextures/HowYouLikeThatKassy_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/HowYouLikeThatKassy/StaticTextures/HowYouLikeThatKassy_Base_DancerCard.png",
+            "descriptionLocId": 5279,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/HowYouLikeThatKassy/StaticTextures/HowYouLikeThatKassy_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/HowYouLikeThatKassy/StaticTextures/HowYouLikeThatKassy_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5065,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/HowYouLikeThatKassy/StaticTextures/HowYouLikeThatKassy_Base_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/HowYouLikeThatKassy/StaticTextures/HowYouLikeThatKassy_Base_Square.png",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-09T14:19:57.987Z"
+    },
+    {
+        "itemId": "734a803c-540c-4353-8ef8-dc837840c0c2",
+        "nameId": "avatar_PhoenixSupernova",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "AllTheGoodGirlsPhoenix",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/AllTheGoodGirlsPhoenix/StaticTextures/AllTheGoodGirlsPhoenix_Supernova_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/AllTheGoodGirlsPhoenix/StaticTextures/AllTheGoodGirlsPhoenix_Supernova_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/AllTheGoodGirlsPhoenix/StaticTextures/AllTheGoodGirlsPhoenix_Supernova_DancerCard.png",
+            "descriptionLocId": 2382,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/AllTheGoodGirlsPhoenix/StaticTextures/AllTheGoodGirlsPhoenix_Supernova_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/AllTheGoodGirlsPhoenix/StaticTextures/AllTheGoodGirlsPhoenix_Supernova_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2381,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/AllTheGoodGirlsPhoenix/StaticTextures/AllTheGoodGirlsPhoenix_Supernova_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Supernova",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/AllTheGoodGirlsPhoenix/StaticTextures/AllTheGoodGirlsPhoenix_Supernova_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "b9c48b38-2381-439d-889a-74a987e11e45",
+        "nameId": "avatar_AgentDBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "ToxicAgentD",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Base_DancerCard.png",
+            "descriptionLocId": 5299,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5298,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/ToxicAgentD/StaticTextures/ToxicAgentD_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "00745e34-9865-4b30-b6f0-2c12f1ba978d",
+        "nameId": "avatar_ScarletGoldSamson",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "MightyRealScarletGold",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/MightyRealScarletGold/StaticTextures/MightyRealScarletGold_SamsonGarnet_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/MightyRealScarletGold/StaticTextures/MightyRealScarletGold_SamsonGarnet_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/MightyRealScarletGold/StaticTextures/MightyRealScarletGold_SamsonGarnet_DancerCard.png",
+            "descriptionLocId": 2371,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/MightyRealScarletGold/StaticTextures/MightyRealScarletGold_SamsonGarnet_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/MightyRealScarletGold/StaticTextures/MightyRealScarletGold_SamsonGarnet_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2370,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/MightyRealScarletGold/StaticTextures/MightyRealScarletGold_SamsonGarnet_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "SamsonGarnet",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/MightyRealScarletGold/StaticTextures/MightyRealScarletGold_SamsonGarnet_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "84278932-bc27-450a-b0dc-6c300c0d63c2",
+        "nameId": "avatar_InugamiCake",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "ChiwawaInugami",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/ChiwawaInugami/StaticTextures/ChiwawaInugami_Cake_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/ChiwawaInugami/StaticTextures/ChiwawaInugami_Cake_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/ChiwawaInugami/StaticTextures/ChiwawaInugami_Cake_DancerCard.png",
+            "descriptionLocId": 8311,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/ChiwawaInugami/StaticTextures/ChiwawaInugami_Cake_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/ChiwawaInugami/StaticTextures/ChiwawaInugami_Cake_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8310,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/ChiwawaInugami/StaticTextures/ChiwawaInugami_Cake_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Cake",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/ChiwawaInugami/StaticTextures/ChiwawaInugami_Cake_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "18f96532-efbc-468f-84ce-03ab5367976b",
+        "nameId": "avatar_AmanitaBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "WithoutMeAltAmanita",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeAltAmanita/StaticTextures/WithoutMeAltAmanita_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeAltAmanita/StaticTextures/WithoutMeAltAmanita_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeAltAmanita/StaticTextures/WithoutMeAltAmanita_Base_DancerCard.png",
+            "descriptionLocId": 200,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeAltAmanita/StaticTextures/WithoutMeAltAmanita_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeAltAmanita/StaticTextures/WithoutMeAltAmanita_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 199,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeAltAmanita/StaticTextures/WithoutMeAltAmanita_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/WithoutMeAltAmanita/StaticTextures/WithoutMeAltAmanita_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "acad6132-f18e-4837-bedd-61da6e005f21",
+        "nameId": "avatar_GeneralJaeBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "Bang2019GeneralJae",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/Bang2019GeneralJae/StaticTextures/Bang2019GeneralJae_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/Bang2019GeneralJae/StaticTextures/Bang2019GeneralJae_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/Bang2019GeneralJae/StaticTextures/Bang2019GeneralJae_Base_DancerCard.png",
+            "descriptionLocId": 2424,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/Bang2019GeneralJae/StaticTextures/Bang2019GeneralJae_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/Bang2019GeneralJae/StaticTextures/Bang2019GeneralJae_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2423,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/Bang2019GeneralJae/StaticTextures/Bang2019GeneralJae_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/Bang2019GeneralJae/StaticTextures/Bang2019GeneralJae_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "7e935f32-5cfb-4b15-a733-229218827560",
+        "nameId": "avatar_KulikitaCatPunk",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "KulikiKulikitaCat",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Punk_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Punk_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Punk_DancerCard.png",
+            "descriptionLocId": 2446,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Punk_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Punk_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2445,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Punk_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Punk",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Punk_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "51fd3132-33dc-4471-992d-9ded157e380d",
+        "nameId": "avatar_WanderlustBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "CantStopTheFeelingWanderlust",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlust/StaticTextures/CantStopTheFeelingWanderlust_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlust/StaticTextures/CantStopTheFeelingWanderlust_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlust/StaticTextures/CantStopTheFeelingWanderlust_Base_DancerCard.png",
+            "descriptionLocId": 2484,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlust/StaticTextures/CantStopTheFeelingWanderlust_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlust/StaticTextures/CantStopTheFeelingWanderlust_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2483,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlust/StaticTextures/CantStopTheFeelingWanderlust_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlust/StaticTextures/CantStopTheFeelingWanderlust_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "2ae6ed30-f709-4273-bd68-9991cbceab0c",
+        "nameId": "avatar_SaraBucolic",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "CantStopTheFeelingSara",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingSara/StaticTextures/CantStopTheFeelingSara_Bucolic_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingSara/StaticTextures/CantStopTheFeelingSara_Bucolic_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingSara/StaticTextures/CantStopTheFeelingSara_Bucolic_DancerCard.png",
+            "descriptionLocId": 2498,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingSara/StaticTextures/CantStopTheFeelingSara_Bucolic_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingSara/StaticTextures/CantStopTheFeelingSara_Bucolic_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2497,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingSara/StaticTextures/CantStopTheFeelingSara_Bucolic_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Bucolic",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingSara/StaticTextures/CantStopTheFeelingSara_Bucolic_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "c2972330-efe2-4350-a5dd-91b99b3325be",
+        "nameId": "avatar_JinxArcane",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "PlaygroundJinx",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/PlaygroundJinx/StaticTextures/PlaygroundJinx_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/PlaygroundJinx/StaticTextures/PlaygroundJinx_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/PlaygroundJinx/StaticTextures/PlaygroundJinx_Base_DancerCard.png",
+            "descriptionLocId": 2532,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/PlaygroundJinx/StaticTextures/PlaygroundJinx_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/PlaygroundJinx/StaticTextures/PlaygroundJinx_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2531,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/PlaygroundJinx/StaticTextures/PlaygroundJinx_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/PlaygroundJinx/StaticTextures/PlaygroundJinx_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "3890ef2d-2f9f-42c2-a917-83b97ed5bdbf",
+        "nameId": "avatar_JackRoseRomantic",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "LocketOutJackRose",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRose/StaticTextures/LocketOutJackRose_Romantic_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRose/StaticTextures/LocketOutJackRose_Romantic_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRose/StaticTextures/LocketOutJackRose_Romantic_DancerCard.png",
+            "descriptionLocId": 2492,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRose/StaticTextures/LocketOutJackRose_Romantic_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRose/StaticTextures/LocketOutJackRose_Romantic_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2491,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRose/StaticTextures/LocketOutJackRose_Romantic_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Romantic",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRose/StaticTextures/LocketOutJackRose_Romantic_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "75462f2d-f14f-4b77-80f4-93b4497612c3",
+        "nameId": "avatar_DoggoBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "DogsOutDoggo",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/DogsOutDoggo/StaticTextures/DogsOutDoggo_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/DogsOutDoggo/StaticTextures/DogsOutDoggo_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/DogsOutDoggo/StaticTextures/DogsOutDoggo_Base_DancerCard.png",
+            "descriptionLocId": 5685,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/DogsOutDoggo/StaticTextures/DogsOutDoggo_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/DogsOutDoggo/StaticTextures/DogsOutDoggo_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5684,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/DogsOutDoggo/StaticTextures/DogsOutDoggo_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/DogsOutDoggo/StaticTextures/DogsOutDoggo_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "34292f2d-6263-4134-bafe-5eabb96a3963",
+        "nameId": "avatar_NikiBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "SoyYoNiki",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/SoyYoNiki/StaticTextures/SoyYoNiki_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/SoyYoNiki/StaticTextures/SoyYoNiki_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/SoyYoNiki/StaticTextures/SoyYoNiki_Base_DancerCard.png",
+            "descriptionLocId": 2452,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/SoyYoNiki/StaticTextures/SoyYoNiki_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/SoyYoNiki/StaticTextures/SoyYoNiki_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2451,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/SoyYoNiki/StaticTextures/SoyYoNiki_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "3d5ee78d-b2b4-485e-9245-fcea9c2691be",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/SoyYoNiki/StaticTextures/SoyYoNiki_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "844f2b2d-4d1f-4d61-a2cb-4a1a6c8adcb2",
+        "nameId": "avatar_GeneralJaeEmperor",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "Bang2019GeneralJae",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/Bang2019GeneralJae/StaticTextures/Bang2019GeneralJae_Emperor_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/Bang2019GeneralJae/StaticTextures/Bang2019GeneralJae_Emperor_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/Bang2019GeneralJae/StaticTextures/Bang2019GeneralJae_Emperor_DancerCard.png",
+            "descriptionLocId": 2426,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/Bang2019GeneralJae/StaticTextures/Bang2019GeneralJae_Emperor_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/Bang2019GeneralJae/StaticTextures/Bang2019GeneralJae_Emperor_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2425,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/Bang2019GeneralJae/StaticTextures/Bang2019GeneralJae_Emperor_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Emperor",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/Bang2019GeneralJae/StaticTextures/Bang2019GeneralJae_Emperor_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "9e6b2b29-d908-421d-8c87-c3d2e4b8b5bb",
+        "nameId": "avatar_SaraBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "CantStopTheFeelingSara",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingSara/StaticTextures/CantStopTheFeelingSara_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingSara/StaticTextures/CantStopTheFeelingSara_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingSara/StaticTextures/CantStopTheFeelingSara_Base_DancerCard.png",
+            "descriptionLocId": 2496,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingSara/StaticTextures/CantStopTheFeelingSara_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingSara/StaticTextures/CantStopTheFeelingSara_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2495,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingSara/StaticTextures/CantStopTheFeelingSara_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingSara/StaticTextures/CantStopTheFeelingSara_Base_Square.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ed30ee28-460b-4dbb-82e0-a998f4bbecc9",
+        "nameId": "avatar_JackRoseBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "LocketOutJackRose",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRose/StaticTextures/LocketOutJackRose_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRose/StaticTextures/LocketOutJackRose_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRose/StaticTextures/LocketOutJackRose_Base_DancerCard.png",
+            "descriptionLocId": 2490,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRose/StaticTextures/LocketOutJackRose_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRose/StaticTextures/LocketOutJackRose_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2489,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRose/StaticTextures/LocketOutJackRose_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/LocketOutJackRose/StaticTextures/LocketOutJackRose_Base_Square.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "5280ad26-2fe9-4acd-af14-78042ed7677e",
+        "nameId": "avatar_KulikitaCatFluffy",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "KulikiKulikitaCat",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Fluffy_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Fluffy_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Fluffy_DancerCard.png",
+            "descriptionLocId": 2448,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Fluffy_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Fluffy_Hud.png",
+            "isPremium": true,
+            "isUbiconnect": false,
+            "nameLocId": 2447,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Fluffy_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Fluffy",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/KulikiKulikitaCat/StaticTextures/KulikiKulikitaCat_Fluffy_Square.png",
+            "unlockConditionsLocId": 3342
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "88c53723-46f9-4eb7-ab23-f296269ad539",
+        "nameId": "avatar_SoBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "BoombayahSo",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_Base_DancerCard.png",
+            "descriptionLocId": 206,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 205,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "07e38d1d-3d43-4394-a481-e50a07658ef9",
+        "nameId": "avatar_MihalySolarPunk",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "RatherBeMihaly",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihaly/StaticTextures/RatherBeMihaly_SolarPunk_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihaly/StaticTextures/RatherBeMihaly_SolarPunk_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihaly/StaticTextures/RatherBeMihaly_SolarPunk_DancerCard.png",
+            "descriptionLocId": 2480,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihaly/StaticTextures/RatherBeMihaly_SolarPunk_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihaly/StaticTextures/RatherBeMihaly_SolarPunk_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2479,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihaly/StaticTextures/RatherBeMihaly_SolarPunk_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "SolarPunk",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/RatherBeMihaly/StaticTextures/RatherBeMihaly_SolarPunk_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f3ff461d-d7da-4d26-9033-52510fcebb04",
+        "nameId": "avatar_OnyxGenie",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "ButtonsOnyx",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/ButtonsOnyx/StaticTextures/ButtonsOnyx_Genie_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/ButtonsOnyx/StaticTextures/ButtonsOnyx_Genie_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/ButtonsOnyx/StaticTextures/ButtonsOnyx_Genie_DancerCard.png",
+            "descriptionLocId": 5287,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/ButtonsOnyx/StaticTextures/ButtonsOnyx_Genie_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/ButtonsOnyx/StaticTextures/ButtonsOnyx_Genie_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5286,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/ButtonsOnyx/StaticTextures/ButtonsOnyx_Genie_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Genie",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/ButtonsOnyx/StaticTextures/ButtonsOnyx_Genie_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "0979ac1b-97c6-4351-9edb-390037a50a60",
+        "nameId": "avatar_WanderlustPirate",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "CantStopTheFeelingWanderlust",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlust/StaticTextures/CantStopTheFeelingWanderlust_Pirate_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlust/StaticTextures/CantStopTheFeelingWanderlust_Pirate_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlust/StaticTextures/CantStopTheFeelingWanderlust_Pirate_DancerCard.png",
+            "descriptionLocId": 2486,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlust/StaticTextures/CantStopTheFeelingWanderlust_Pirate_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlust/StaticTextures/CantStopTheFeelingWanderlust_Pirate_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2485,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlust/StaticTextures/CantStopTheFeelingWanderlust_Pirate_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Pirate",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/CantStopTheFeelingWanderlust/StaticTextures/CantStopTheFeelingWanderlust_Pirate_Square.png",
+            "unlockConditionsLocId": 3824
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "cb775318-73ca-4e8b-ac5c-4cf5b150d284",
+        "nameId": "avatar_JoyCeButter",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "DynamiteJoyCe",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/DynamiteJoyCe/StaticTextures/DynamiteJoyCe_Butter_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/DynamiteJoyCe/StaticTextures/DynamiteJoyCe_Butter_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/DynamiteJoyCe/StaticTextures/DynamiteJoyCe_Butter_DancerCard.png",
+            "descriptionLocId": 5376,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/DynamiteJoyCe/StaticTextures/DynamiteJoyCe_Butter_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/DynamiteJoyCe/StaticTextures/DynamiteJoyCe_Butter_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5375,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/DynamiteJoyCe/StaticTextures/DynamiteJoyCe_Butter_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Butter",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/DynamiteJoyCe/StaticTextures/DynamiteJoyCe_Butter_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "2d670914-da54-4470-b8e9-8adf74f7c4f7",
+        "nameId": "avatar_EpsilonAlternate",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "Epsilon",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/Epsilon/StaticTextures/Epsilon_Alternate_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/Epsilon/StaticTextures/Epsilon_Alternate_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/Epsilon/StaticTextures/Epsilon_Alternate_DancerCard.png",
+            "descriptionLocId": 6201,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/Epsilon/StaticTextures/Epsilon_Alternate_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/Epsilon/StaticTextures/Epsilon_Alternate_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 6198,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/Epsilon/StaticTextures/Epsilon_Alternate_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Alternate",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/Epsilon/StaticTextures/Epsilon_Alternate_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "9f6d1911-93fa-4a15-b08f-24524e8b99c1",
+        "nameId": "avatar_PhoenixBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "AllTheGoodGirlsPhoenix",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/AllTheGoodGirlsPhoenix/StaticTextures/AllTheGoodGirlsPhoenix_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/AllTheGoodGirlsPhoenix/StaticTextures/AllTheGoodGirlsPhoenix_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/AllTheGoodGirlsPhoenix/StaticTextures/AllTheGoodGirlsPhoenix_Base_DancerCard.png",
+            "descriptionLocId": 210,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/AllTheGoodGirlsPhoenix/StaticTextures/AllTheGoodGirlsPhoenix_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/AllTheGoodGirlsPhoenix/StaticTextures/AllTheGoodGirlsPhoenix_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 209,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/AllTheGoodGirlsPhoenix/StaticTextures/AllTheGoodGirlsPhoenix_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/AllTheGoodGirlsPhoenix/StaticTextures/AllTheGoodGirlsPhoenix_Base_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "22092b05-a0a6-4cf5-a59c-4b4008f466d2",
+        "nameId": "avatar_SoRedPanda",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "BoombayahSo",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_RedPanda_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_RedPanda_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_RedPanda_DancerCard.png",
+            "descriptionLocId": 2378,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_RedPanda_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_RedPanda_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 2377,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_RedPanda_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "RedPanda",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/BoombayahSo/StaticTextures/BoombayahSo_RedPanda_Square.png",
+            "unlockConditionsLocId": 3362
+        },
+        "revision": 3,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "01046404-bf04-4c8e-a2d4-860b92b3a21e",
+        "nameId": "avatar_OnyxBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "ButtonsOnyx",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/ButtonsOnyx/StaticTextures/ButtonsOnyx_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/ButtonsOnyx/StaticTextures/ButtonsOnyx_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/ButtonsOnyx/StaticTextures/ButtonsOnyx_Base_DancerCard.png",
+            "descriptionLocId": 5285,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/ButtonsOnyx/StaticTextures/ButtonsOnyx_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/ButtonsOnyx/StaticTextures/ButtonsOnyx_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5284,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/ButtonsOnyx/StaticTextures/ButtonsOnyx_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/ButtonsOnyx/StaticTextures/ButtonsOnyx_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2023-10-23T09:37:48.923Z"
+    },
+    {
+        "itemId": "10f12f02-cf5e-4d08-9b04-f20f17d89090",
+        "nameId": "avatar_IconaShardBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "IconaShard",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/IconaShard/StaticTextures/IconaShard_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/IconaShard/StaticTextures/IconaShard_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/IconaShard/StaticTextures/IconaShard_Base_DancerCard.png",
+            "descriptionLocId": 5754,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/IconaShard/StaticTextures/IconaShard_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/IconaShard/StaticTextures/IconaShard_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 5753,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/IconaShard/StaticTextures/IconaShard_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "8c86fa6f-3157-4ae5-b975-4de964524c15",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/IconaShard/StaticTextures/IconaShard_Base_Square.png",
+            "unlockConditionsLocId": 4578
+        },
+        "revision": 2,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2024-05-02T13:34:03.748Z"
+    }
+]
