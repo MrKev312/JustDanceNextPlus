@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.leaderboard.playlist.playlistid;
 
 [ApiController]
-[Route("leaderboard/v1/map/{playlistId:guid}/users")]
+[Route("leaderboard/v1/playlist/{playlistId:guid}/users")]
 public class Users(UserDataService userDataService) : ControllerBase
 {
 	[HttpPost]

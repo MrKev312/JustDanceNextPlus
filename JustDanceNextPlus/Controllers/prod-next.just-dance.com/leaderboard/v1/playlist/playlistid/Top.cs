@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.leaderboard.v1.playlist.playlistid;
 
 [ApiController]
-[Route("leaderboard/v1/map/{playlistId:guid}/top")]
+[Route("leaderboard/v1/playlist/{playlistId:guid}/top")]
 public class Top(UserDataService userDataService) : ControllerBase
 {
 	[HttpGet]
