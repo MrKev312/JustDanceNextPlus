@@ -44,7 +44,7 @@ public class UtilityService(JsonSettingsService jsonSettingsService, ILogger<Uti
 		}
 		catch (Exception ex)
 		{
-			logger.LogError(ex, $"Failed to load map DB entry: ({mapFolder})");
+			logger.LogError(ex, "Failed to load map DB entry: ({mapFolder})", mapFolder);
 			throw new InvalidOperationException($"Failed to load map DB entry: ({mapFolder})", ex);
 		}
 	}

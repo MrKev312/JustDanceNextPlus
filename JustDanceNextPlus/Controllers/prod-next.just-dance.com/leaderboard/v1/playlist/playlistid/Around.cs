@@ -26,7 +26,7 @@ public class Around(UserDataService userDataService, SessionManager sessionManag
 			return Unauthorized();
 
 		// Get the leaderboard for the mapId
-		Leaderboard leaderboard = userDataService.GetPlaylistLeaderboardAroundAsync(playlistId, session.PlayerId).Result;
+		Leaderboard leaderboard = userDataService.GetPlaylistLeaderboardAroundAsync(playlistId, session.PlayerId, limit).Result;
 
 		// Return the leaderboard
 		return Ok(leaderboard);

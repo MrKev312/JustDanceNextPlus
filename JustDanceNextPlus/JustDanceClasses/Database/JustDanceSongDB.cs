@@ -4,7 +4,7 @@ namespace JustDanceNextPlus.JustDanceClasses.Database;
 
 public class JustDanceSongDB
 {
-	public Dictionary<Guid, JustDanceSongDBEntry> Songs { get; set; } = [];
-	public Dictionary<Guid, ContentAuthorization> ContentAuthorization { get; set; } = [];
+	public OrderedDictionary<Guid, JustDanceSongDBEntry> Songs { get; set; } = [];
+	public OrderedDictionary<Guid, ContentAuthorization> ContentAuthorization { get; set; } = [];
 	public SongDBTypeSet SongDBTypeSet { get; set; } = new();
 }

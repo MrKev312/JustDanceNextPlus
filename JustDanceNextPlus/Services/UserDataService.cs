@@ -82,7 +82,6 @@ public class UserDataService(
 		}
 	}
 
-
 	// Map leaderboard
 	public async Task<Leaderboard> GetLeaderboardByMapIdAsync(Guid mapId, long limit, long offset)
 	{
@@ -123,7 +122,7 @@ public class UserDataService(
 		return leaderboard;
 	}
 
-	public async Task<Leaderboard> GetLeaderboardAroundAsync(Guid mapId, Guid userId)
+	public async Task<Leaderboard> GetLeaderboardAroundAsync(Guid mapId, Guid userId, int limit = 3)
 	{
 		// Pre-fetch profiles and their dancer card names in one query to avoid multiple async calls
 		List<MapStats> highScoresWithNames = await dbContext.HighScores
@@ -151,8 +150,8 @@ public class UserDataService(
 
 		// Get the surrounding scores
 		List<MapStats> surroundingScores = [.. highScoresWithNames
-			.Skip(Math.Max(0, userIndex - 1))
-			.Take(3)];
+			.Skip(Math.Max(0, userIndex - (limit / 2)))
+			.Take(limit)];
 
 		Leaderboard leaderboard = new()
 		{
@@ -284,7 +283,7 @@ public class UserDataService(
 		return leaderboard;
 	}
 
-	public async Task<Leaderboard> GetPlaylistLeaderboardAroundAsync(Guid playlistId, Guid userId)
+	public async Task<Leaderboard> GetPlaylistLeaderboardAroundAsync(Guid playlistId, Guid userId, int limit = 3)
 	{
 		// Pre-fetch profiles and their dancer card names in one query to avoid multiple async calls
 		List<PlaylistStats> highScoresWithNames = await dbContext.PlaylistHighScores
@@ -310,8 +309,8 @@ public class UserDataService(
 		int userIndex = highScoresWithNames.FindIndex(ph => ph.ProfileId == userId);
 
 		List<PlaylistStats> surroundingScores = [.. highScoresWithNames
-			.Skip(Math.Max(0, userIndex - 1))
-			.Take(3)];
+			.Skip(Math.Max(0, userIndex - (limit / 2)))
+			.Take(limit)];
 
 		Leaderboard leaderboard = new()
 		{

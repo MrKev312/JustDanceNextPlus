@@ -10,11 +10,11 @@ public class SongDBTypeSet
 
 public class Songoffers
 {
-	public List<Guid> FreeSongs { get; set; } = [];
-	public List<Guid> HiddenSongs { get; set; } = [];
-	public List<Guid> LocalTracks { get; set; } = [];
+	public HashSet<Guid> FreeSongs { get; set; } = [];
+	public HashSet<Guid> HiddenSongs { get; set; } = [];
+	public HashSet<Guid> LocalTracks { get; set; } = [];
 	public Dictionary<string, Pack> Claims { get; set; } = [];
-	public List<Guid> DownloadableSongs { get; set; } = [];
+	public HashSet<Guid> DownloadableSongs { get; set; } = [];
 }
 
 public class Pack
@@ -25,10 +25,10 @@ public class Pack
 	public bool? AllowSharing { get; set; }
 	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
 	public int? FreeTrialDurationMinutes { get; set; }
-	public List<Guid> RewardIds { get; set; } = [];
-	public List<Guid> SongIds { get; set; } = [];
+	public HashSet<Guid> RewardIds { get; set; } = [];
+	public HashSet<Guid> SongIds { get; set; } = [];
 	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public List<string>? SongPackIds { get; set; }
+	public HashSet<string>? SongPackIds { get; set; }
 	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
 	public bool? UnlocksFullVersion { get; set; }
 }
