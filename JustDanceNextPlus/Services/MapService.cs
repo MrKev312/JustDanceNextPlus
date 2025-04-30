@@ -50,13 +50,11 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 			};
 		});
 
-		var mapResults = await Task.WhenAll(loadMapTasks);
-
 		// Sort the results by SongID
-		var sortedResults = mapResults.OrderBy(result => result.SongID);
+		var mapResults = (await Task.WhenAll(loadMapTasks)).OrderBy(result => result.SongID);
 
 		// Add the songs and content authorizations to the song database
-		foreach (var result in sortedResults)
+		foreach (var result in mapResults)
 		{
 			SongDB.Songs[result.SongID] = result.SongInfo;
 			SongDB.ContentAuthorization[result.SongID] = result.ContentAuthorization;

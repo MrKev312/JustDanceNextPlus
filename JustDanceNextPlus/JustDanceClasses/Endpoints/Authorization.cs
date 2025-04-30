@@ -11,6 +11,12 @@ public class ContentAuthorization
 	public AssetsmetadataAuthorization AssetsMetadata { get; set; } = new();
 }
 
+public class AssetMetadata
+{
+	public required string Hash { get; set; }
+	public long Size { get; set; }
+}
+
 public class AssetsAuthorization
 {
 	[JsonPropertyName("audio.opus")]
