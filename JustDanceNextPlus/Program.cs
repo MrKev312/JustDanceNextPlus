@@ -1,6 +1,3 @@
-using System.Text.Encodings.Web;
-using System.Text.Json;
-
 using JustDanceNextPlus.Configuration;
 using JustDanceNextPlus.JustDanceClasses.Database;
 using JustDanceNextPlus.JustDanceClasses.GraphQL;
@@ -13,6 +10,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 
 using Scalar.AspNetCore;
+
+using System.Text.Encodings.Web;
+using System.Text.Json;
 
 namespace JustDanceNextPlus;
 
@@ -43,6 +43,8 @@ public class Program
 
 		// Configure the HTTP request pipeline.
 		ConfigureMiddleware(app);
+
+		app.MapGet("/", () => "Hello, World!");
 
 		app.Run();
 	}
@@ -119,11 +121,11 @@ public class Program
 		builder.Services.AddMvc()
 			.AddJsonOptions(options =>
 			{
-				var serviceProvider = builder.Services.BuildServiceProvider();
-				var oasisTagConverter = serviceProvider.GetRequiredService<TagIdConverter>();
-				var guidTagConverter = serviceProvider.GetRequiredService<GuidTagConverter>();
-				var mapTagConverter = serviceProvider.GetRequiredService<MapTagConverter>();
-				var mapTagListConverter = serviceProvider.GetRequiredService<MapTagListConverter>();
+				ServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
+				TagIdConverter oasisTagConverter = serviceProvider.GetRequiredService<TagIdConverter>();
+				GuidTagConverter guidTagConverter = serviceProvider.GetRequiredService<GuidTagConverter>();
+				MapTagConverter mapTagConverter = serviceProvider.GetRequiredService<MapTagConverter>();
+				MapTagListConverter mapTagListConverter = serviceProvider.GetRequiredService<MapTagListConverter>();
 
 				options.JsonSerializerOptions.Converters.Add(oasisTagConverter);
 				options.JsonSerializerOptions.Converters.Add(guidTagConverter);
