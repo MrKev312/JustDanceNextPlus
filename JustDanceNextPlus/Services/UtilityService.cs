@@ -3,6 +3,7 @@ using AssetsTools.NET.Extra;
 
 using JustDanceNextPlus.JustDanceClasses.Database;
 using JustDanceNextPlus.JustDanceClasses.Endpoints;
+using JustDanceNextPlus.Utilities;
 
 using System.Globalization;
 using System.Text.Json;
@@ -77,6 +78,76 @@ public class UtilityService(JsonSettingsService jsonSettingsService, ILogger<Uti
 		songInfo.Assets.AudioPreview_opus ??= GetAssetUrl(mapFolder, "audioPreview_opus");
 	}
 
+	public Dictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder)
+	{
+		var assetMetadata = new Dictionary<string, AssetMetadata>();
+		mapFolder = Path.GetFullPath(mapFolder);
+
+		var allFiles = new DirectoryInfo(mapFolder)
+			.GetFiles("*", SearchOption.AllDirectories);
+
+		void AddAsset(string relativeFolder, string? key = null)
+		{
+			key ??= relativeFolder;
+
+			var matchingFiles = allFiles
+				.Where(f => f.FullName.Contains(Path.Combine(mapFolder, relativeFolder), StringComparison.OrdinalIgnoreCase));
+
+			var largestFile = matchingFiles
+				.OrderByDescending(f => f.Length)
+				.First();
+
+			var hash = Path.GetFileNameWithoutExtension(largestFile.Name).ToLowerInvariant();
+			assetMetadata[key] = new AssetMetadata(hash, largestFile.Length);
+		}
+
+		AddAsset("cover", "cover");
+		AddAsset("audioPreview_opus", "audioPreview.opus");
+		AddAsset("audio", "audio.opus");
+		AddAsset("coachesSmall");
+		AddAsset("coachesLarge");
+		AddAsset("MapPackage", "mapPackage");
+
+		void AddVideoAsset(string subfolder, string[] keys, Func<IReadOnlyList<FileInfo>, FileInfo?> selector)
+		{
+			var matchingFiles = allFiles
+				.Where(f => Path.GetDirectoryName(f.FullName)!
+					.EndsWith(Path.Combine(mapFolder, subfolder), StringComparison.OrdinalIgnoreCase))
+				.ToList();
+
+			var file = selector(matchingFiles);
+			if (file != null)
+			{
+				var hash = Path.GetFileNameWithoutExtension(file.Name).ToLowerInvariant();
+				foreach (var key in keys)
+				{
+					assetMetadata[key] = new AssetMetadata(hash, file.Length);
+				}
+			}
+		}
+
+		FileInfo? GetNthOrLast(IReadOnlyList<FileInfo> list, int index) =>
+			list.Count == 0 ? null : list[Math.Min(index, list.Count - 1)];
+
+		// videoPreview: second smallest or fallback
+		AddVideoAsset("videoPreview",
+			["videoPreview_MID.vp8.webm", "videoPreview_MID.vp9.webm"],
+			files => GetNthOrLast([.. files.OrderBy(f => f.Length)], 1));
+
+		// video: third smallest or fallback
+		AddVideoAsset("video",
+			["video_HIGH.hd.webm", "video_HIGH.vp9.webm"],
+			files => GetNthOrLast([.. files.OrderBy(f => f.Length)], 2));
+
+		// video: largest
+		AddVideoAsset("video",
+			["video_ULTRA.hd.webm"],
+			files => files.OrderBy(f => f.Length).LastOrDefault());
+
+		return assetMetadata;
+	}
+
+
 	public ContentAuthorization LoadContentAuthorization(string mapFolder)
 	{
 		ContentAuthorization contentAuthorization = new()
@@ -135,6 +206,21 @@ public class UtilityService(JsonSettingsService jsonSettingsService, ILogger<Uti
 
 		// Sort by bitrate
 		Array.Sort(webmData, (a, b) => a.Bitrate.CompareTo(b.Bitrate));
+
+		// Duplicate the last one until there are 4
+		while (webmData.Length < 4)
+		{
+			WebmData lastWebm = webmData[^1];
+			Array.Resize(ref webmData, webmData.Length + 1);
+			webmData[^1] = new WebmData
+			{
+				FileName = lastWebm.FileName,
+				Start = lastWebm.Start,
+				End = lastWebm.End,
+				Duration = lastWebm.Duration,
+				Bitrate = lastWebm.Bitrate
+			};
+		}
 
 		return webmData;
 	}

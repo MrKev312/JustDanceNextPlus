@@ -8,8 +8,8 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.songdb.v3.songd
 [Route("songdb/v3/songdb/formatVersion/v0")]
 public class V0(MapService mapService) : ControllerBase
 {
-	[HttpGet(Name = "GetSongdbFormatVersion")]
-	public IActionResult GetSongdbFormatVersion()
+	[HttpGet]
+	public IActionResult Get()
 	{
 		return Ok(mapService.SongDB.SongDBTypeSet);
 	}

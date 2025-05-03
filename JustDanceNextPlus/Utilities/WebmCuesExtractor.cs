@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace JustDanceNextPlus;
+namespace JustDanceNextPlus.Utilities;
 
 static class WebmCuesExtractor
 {
@@ -77,9 +77,7 @@ static class WebmCuesExtractor
 			floatId = ReadVInt(reader, true);
 			floatDataSize = ReadVInt(reader);
 			if (floatId != 0x4489)
-			{
 				reader.BaseStream.Seek(floatDataSize, SeekOrigin.Current);
-			}
 		} while (floatId != 0x4489 && reader.BaseStream.Position < pos + dataSize);
 
 		byte[] bytes = reader.ReadBytes(8);
@@ -94,7 +92,7 @@ static class WebmCuesExtractor
 	{
 		byte firstByte = reader.ReadByte();
 		byte mask = 0x80;
-		long value = isID ? firstByte : (firstByte & (mask - 1));
+		long value = isID ? firstByte : firstByte & mask - 1;
 		int length = 1;
 
 		while ((firstByte & mask) == 0)
@@ -106,9 +104,7 @@ static class WebmCuesExtractor
 		}
 
 		if (!isID && length != 1)
-		{
-			value &= (1L << ((length * 8) - length)) - 1;
-		}
+			value &= (1L << length * 8 - length) - 1;
 
 		return value;
 	}

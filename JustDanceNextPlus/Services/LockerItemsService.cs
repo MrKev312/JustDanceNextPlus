@@ -4,7 +4,6 @@ using JustDanceNextPlus.JustDanceClasses.Database;
 using Microsoft.Extensions.Options;
 
 using System.Text.Json;
-using System.Text.Json.Nodes;
 
 namespace JustDanceNextPlus.Services;
 

@@ -1,4 +1,5 @@
 ﻿using JustDanceNextPlus.Configuration;
+using JustDanceNextPlus.Controllers.prod_next.just_dance.com.songdb;
 using JustDanceNextPlus.JustDanceClasses.Database;
 using JustDanceNextPlus.JustDanceClasses.Endpoints;
 
@@ -41,12 +42,13 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 
 		var loadMapTasks = mapFolders.Select(async mapFolder =>
 		{
-			(LocalJustDanceSongDBEntry songInfo, ContentAuthorization contentAuthorization) = await LoadMapAsync(mapFolder, utilityService);
+			(LocalJustDanceSongDBEntry songInfo, ContentAuthorization contentAuthorization, Dictionary<string, AssetMetadata> assetMetadata) = await LoadMapAsync(mapFolder, utilityService);
 			return new
 			{
 				songInfo.SongID,
 				SongInfo = songInfo,
-				ContentAuthorization = contentAuthorization
+				ContentAuthorization = contentAuthorization,
+				AssetMetadata = assetMetadata
 			};
 		});
 
@@ -58,6 +60,8 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 		{
 			SongDB.Songs[result.SongID] = result.SongInfo;
 			SongDB.ContentAuthorization[result.SongID] = result.ContentAuthorization;
+			SongDB.AssetMetadataPerSong[result.SongID] = result.AssetMetadata;
+			SongDB.SongDBTypeSet.SongOffers.DownloadableSongs.Add(result.SongID);
 			MapToGuid[result.SongInfo.MapName] = result.SongID;
 
 			// Split the artist by & and trim the results
@@ -182,12 +186,13 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 		return Task.CompletedTask;
 	}
 
-	private static async Task<(LocalJustDanceSongDBEntry, ContentAuthorization)> LoadMapAsync(string mapFolder, UtilityService utilityService)
+	private static async Task<(LocalJustDanceSongDBEntry, ContentAuthorization, Dictionary<string, AssetMetadata>)> LoadMapAsync(string mapFolder, UtilityService utilityService)
 	{
 		LocalJustDanceSongDBEntry songInfo = await utilityService.LoadMapDBEntryAsync(mapFolder);
 		ContentAuthorization contentAuthorization = utilityService.LoadContentAuthorization(mapFolder);
+		Dictionary<string, AssetMetadata> assetMetadata = utilityService.LoadAssetMetadata(mapFolder);
 
-		return (songInfo, contentAuthorization);
+		return (songInfo, contentAuthorization, assetMetadata);
 	}
 
 	public Guid? GetSongId(string mapName)

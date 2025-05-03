@@ -1,4 +1,5 @@
 ﻿using JustDanceNextPlus.Services;
+using JustDanceNextPlus.Utilities;
 
 using System.Text.Json.Serialization;
 
@@ -13,8 +14,22 @@ public class ContentAuthorization
 
 public class AssetMetadata
 {
-	public required string Hash { get; set; }
+	public AssetMetadata() { }
+
+	public AssetMetadata(string hash, long size)
+	{
+		Size = size;
+		Hash = hash;
+	}
+
+	public AssetMetadata(string path)
+	{
+		Size = new FileInfo(path).Length;
+		Hash = Path.GetFileNameWithoutExtension(path);
+	}
+
 	public long Size { get; set; }
+	public string Hash { get; set; } = "";
 }
 
 public class AssetsAuthorization

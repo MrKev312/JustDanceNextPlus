@@ -162,7 +162,7 @@ public class BundleService
 		// Merge them
 		claims = [.. songpacks, .. otherClaims, "jdplus"];
 		Dictionary<string, int> claimIndex = claims.Select((x, i) => (x, i)).ToDictionary(x => x.x, x => x.i);
-		foreach (var group in database.ProductGroups)
+		foreach (KeyValuePair<Guid, ProductGroup> group in database.ProductGroups)
 		{
 			group.Value.DisplayPriority = 1 + (group.Value.Type == "jdplus"
 				? claimIndex["jdplus"]
