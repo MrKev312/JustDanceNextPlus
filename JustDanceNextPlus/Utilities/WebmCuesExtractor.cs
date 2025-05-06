@@ -34,7 +34,7 @@ static class WebmCuesExtractor
 				if (elementId == 0x1549A966) // Info element
 				{
 					data.Duration = ExtractDuration(reader, dataSize);
-					data.Bitrate = (long)(stream.Length * 8 / data.Duration);
+					data.Bitrate = (long)(8 * stream.Length / data.Duration);
 				}
 				else if (elementId == 0x1C53BB6B) // Cues element
 				{
@@ -99,12 +99,12 @@ static class WebmCuesExtractor
 		{
 			length++;
 			mask >>= 1;
-			value <<= sizeof(byte);
+			value <<= 8;
 			value |= reader.ReadByte();
 		}
 
 		if (!isID && length != 1)
-			value &= (1L << ((sizeof(byte) * length) - length)) - 1;
+			value &= (1L << ((8 * length) - length)) - 1;
 
 		return value;
 	}
