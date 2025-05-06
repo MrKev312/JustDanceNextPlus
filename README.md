@@ -57,8 +57,19 @@ maps/
 	videoPreview/
 	  <video_preview_file>.webm (max of 4 versions)
 ```
-where the SongInfo.json is in the following format:
+where all files except for the `SongInfo.json` are named after their md5 hash.
+The following powershell script can automate this process:
+```powershell
+Get-ChildItem -Path . -Recurse -Include *.webm,*.bundle,*.opus | ForEach-Object -Parallel {
+    $hash = Get-FileHash $_.FullName -Algorithm MD5
+    $dir = $_.DirectoryName
+    $ext = $_.Extension
+    $newName = "$($hash.Hash)$ext"
+    Rename-Item -Path $_.FullName -NewName (Join-Path $dir $newName) -Force
+}
 ```
+And where the SongInfo.json is in the following format:
+```json
 {
   "songID": "guid here",
   "artist": "Artist here",
@@ -93,7 +104,7 @@ where the SongInfo.json is in the following format:
 
 ## Playlist Format
 Playlists are stored in the following format:
-```
+```json
 {
 	"guid": "guid here",
 	"playlistName": "codename here",
