@@ -91,20 +91,20 @@ static class WebmCuesExtractor
 	private static long ReadVInt(BinaryReader reader, bool isID = false)
 	{
 		byte firstByte = reader.ReadByte();
-		byte mask = 0x80;
-		long value = isID ? firstByte : firstByte & mask - 1;
+		byte mask = 0b10000000;
+		long value = isID ? firstByte : firstByte & (mask - 1);
 		int length = 1;
 
 		while ((firstByte & mask) == 0)
 		{
 			length++;
 			mask >>= 1;
-			value <<= 8;
+			value <<= sizeof(byte);
 			value |= reader.ReadByte();
 		}
 
 		if (!isID && length != 1)
-			value &= (1L << length * 8 - length) - 1;
+			value &= (1L << ((sizeof(byte) * length) - length)) - 1;
 
 		return value;
 	}
