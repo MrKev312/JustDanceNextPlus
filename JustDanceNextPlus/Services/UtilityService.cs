@@ -24,6 +24,8 @@ public class UtilityService(JsonSettingsService jsonSettingsService, ILogger<Uti
 			LocalJustDanceSongDBEntry songInfo = JsonSerializer.Deserialize<LocalJustDanceSongDBEntry>(songInfoJson, jsonSettingsService.PrettyPascalFormat)
 				?? throw new JsonException("Failed to deserialize SongInfo.json");
 
+			songInfo.Assets = new();
+
 			// If the mapId is null or empty, throw an exception
 			if (string.IsNullOrEmpty(songInfo.MapName))
 				throw new InvalidOperationException($"MapName is null or empty in {songInfoPath}");
