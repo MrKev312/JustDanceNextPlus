@@ -93,9 +93,9 @@ And where the SongInfo.json is in the following format:
 	"songpack_year1",
 	"songpack_year2",
 	"songpack_year3",
-	"songpack_game2022"
-	"songpack_game20..",
-	"songpack_game2018",
+	"songpack_game2022",
+	"songpack_game..",
+	"songpack_game1",
 	"Custom"
   ],
   "title": "song name here"
