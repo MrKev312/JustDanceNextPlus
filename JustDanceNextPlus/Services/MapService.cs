@@ -10,12 +10,13 @@ using System.Text.RegularExpressions;
 namespace JustDanceNextPlus.Services;
 
 public partial class MapService(IOptions<PathSettings> pathSettings,
+	IOptions<UrlSettings> urlSettings,
 	IServiceProvider serviceProvider,
 	ILogger<MapService> logger)
 {
 	private readonly PathSettings settings = pathSettings.Value;
 
-	public JustDanceSongDB SongDB { get; private set; } = new();
+	public JustDanceSongDB SongDB { get; private set; } = new(urlSettings.Value.HostUrl);
 	public Dictionary<string, Guid> MapToGuid { get; } = [];
 
 	public async Task LoadDataAsync()

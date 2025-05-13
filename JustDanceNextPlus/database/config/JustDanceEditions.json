@@ -25,7 +25,7 @@
       "Acceptable",
       "DogsOut"
     ],
-    "productGroupBundle": "https://prod-next.just-dance.com/bundles/1.bundle"
+    "productGroupBundle": "https://{{cdnUrl}}/bundles/1.bundle"
   },
   {
     "dlcType": "Yearly",
@@ -53,7 +53,7 @@
       "SOS",
       "ElectroTribalDLC"
     ],
-    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2.bundle"
+    "productGroupBundle": "https://{{cdnUrl}}/bundles/2.bundle"
   },
   {
     "dlcType": "Yearly",
@@ -81,7 +81,7 @@
       "ToTheMall",
       "VideoKilled"
     ],
-    "productGroupBundle": "https://prod-next.just-dance.com/bundles/3.bundle"
+    "productGroupBundle": "https://{{cdnUrl}}/bundles/3.bundle"
   },
   {
     "dlcType": "Yearly",
@@ -109,7 +109,7 @@
       "MovesLikeDLC",
       "Umbrella"
     ],
-    "productGroupBundle": "https://prod-next.just-dance.com/bundles/4.bundle"
+    "productGroupBundle": "https://{{cdnUrl}}/bundles/4.bundle"
   },
   {
     "dlcType": "Yearly",
@@ -137,7 +137,7 @@
       "Starships",
       "YMCA"
     ],
-    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2014.bundle"
+    "productGroupBundle": "https://{{cdnUrl}}/bundles/2014.bundle"
   },
   {
     "dlcType": "Yearly",
@@ -165,7 +165,7 @@
       "Burn",
       "LetItGo"
     ],
-    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2015.bundle"
+    "productGroupBundle": "https://{{cdnUrl}}/bundles/2015.bundle"
   },
   {
     "dlcType": "Yearly",
@@ -193,7 +193,7 @@
       "Coolos",
       "BadRomance"
     ],
-    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2016.bundle"
+    "productGroupBundle": "https://{{cdnUrl}}/bundles/2016.bundle"
   },
   {
     "dlcType": "Yearly",
@@ -221,7 +221,7 @@
       "IntoYou",
       "Hips"
     ],
-    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2017.bundle"
+    "productGroupBundle": "https://{{cdnUrl}}/bundles/2017.bundle"
   },
   {
     "dlcType": "Yearly",
@@ -249,7 +249,7 @@
       "SwishSwish",
       "Blue"
     ],
-    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2018.bundle"
+    "productGroupBundle": "https://{{cdnUrl}}/bundles/2018.bundle"
   },
   {
     "dlcType": "Yearly",
@@ -277,7 +277,7 @@
       "Sugar",
       "TOY"
     ],
-    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2019.bundle"
+    "productGroupBundle": "https://{{cdnUrl}}/bundles/2019.bundle"
   },
   {
     "dlcType": "Yearly",
@@ -305,7 +305,7 @@
       "Skibidi",
       "ConCalma"
     ],
-    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2020.bundle"
+    "productGroupBundle": "https://{{cdnUrl}}/bundles/2020.bundle"
   },
   {
     "dlcType": "Yearly",
@@ -333,7 +333,7 @@
       "Kuliki",
       "PacaDance"
     ],
-    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2021.bundle"
+    "productGroupBundle": "https://{{cdnUrl}}/bundles/2021.bundle"
   },
   {
     "dlcType": "Yearly",
@@ -361,7 +361,7 @@
       "Good4U",
       "TGIF"
     ],
-    "productGroupBundle": "https://prod-next.just-dance.com/bundles/2022.bundle"
+    "productGroupBundle": "https://{{cdnUrl}}/bundles/2022.bundle"
   },
   {
     "dlcType": "Yearly",

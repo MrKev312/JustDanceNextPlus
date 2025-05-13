@@ -12,6 +12,7 @@ public class BundleService
 {
 	readonly ILogger<BundleService> logger;
 	readonly IOptions<PathSettings> pathSettings;
+	readonly IOptions<UrlSettings> urlSettings;
 	readonly JsonSettingsService jsonSettingsService;
 	readonly LocalizedStringService localizedStringService;
 
@@ -22,11 +23,13 @@ public class BundleService
 
 	public BundleService(ILogger<BundleService> logger,
 		IOptions<PathSettings> pathSettings,
+		IOptions<UrlSettings> urlSettings,
 		JsonSettingsService jsonSettingsService,
 		LocalizedStringService localizedStringService)
 	{
 		this.logger = logger;
 		this.pathSettings = pathSettings;
+		this.urlSettings = urlSettings;
 		this.jsonSettingsService = jsonSettingsService;
 		this.localizedStringService = localizedStringService;
 
@@ -52,6 +55,7 @@ public class BundleService
 		}
 
 		string json = File.ReadAllText(bundlesPath);
+		json = json.Replace("{{cdnUrl}}", urlSettings.Value.CDNUrl);
 		List<JustDanceEdition>? db = JsonSerializer.Deserialize<List<JustDanceEdition>>(json, jsonSettingsService.PrettyPascalFormat);
 
 		if (db == null)

@@ -1,12 +1,14 @@
-﻿using JustDanceNextPlus.JustDanceClasses.Endpoints;
+﻿using JustDanceNextPlus.Configuration;
+using JustDanceNextPlus.JustDanceClasses.Endpoints;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.applications._77b6223b_eb41_4ccd_833c_c7b16537fde3;
 
 [ApiController]
 [Route("/v1/applications/77b6223b-eb41-4ccd-833c-c7b16537fde3/parameters")]
-public class Parameters : ControllerBase
+public class Parameters(IOptions<UrlSettings> urlSettings) : ControllerBase
 {
 	[HttpGet(Name = "GetParameters")]
 	public IActionResult GetParameters()
@@ -34,7 +36,7 @@ public class Parameters : ControllerBase
 			{
 				Fields = new()
 				{
-					["dynamicPanelUrl"] = "https://{env}public-ubiservices.ubi.com/v1/profiles/{profileId}/club/dynamicPanel/MyProfile.png?spaceId={spaceId}&noRedirect=true",
+					["dynamicPanelUrl"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/v1/profiles/{profileId}/club/dynamicPanel/MyProfile.png?spaceId={spaceId}&noRedirect=true""",
 					["switchClubWebsiteUrl"] = "https://static8.cdn.ubi.com/u/sites/UbisoftClub/NintendoSwitch/index.html?url=/games/{deepLink}&ussdkversion={usSdkVersionName}&env={clubEnvName}&actioncompleted={actionCompletedList}&forceLang={forceLang}&profileId={profileId}&ticket={ticket}&context={context}&debug={debug}&spaceId={spaceId}&applicationId={applicationId}"
 				}
 			},
@@ -76,11 +78,11 @@ public class Parameters : ControllerBase
 					},
 					["baseurl_aws"] = new Dictionary<string, string>()
 					{
-						["Standard"] = "https://{env}public-ubiservices.ubi.com"
+						["Standard"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}"""
 					},
 					["baseurl_msr"] = new Dictionary<string, string>()
 					{
-						["Standard"] = "https://msr-{env}public-ubiservices.ubi.com"
+						["Standard"] = $$"""https://msr-{env}{{urlSettings.Value.HostUrl}}"""
 					}
 				}
 			},
@@ -107,12 +109,12 @@ public class Parameters : ControllerBase
 				Fields = new()
 				{
 					["title"] = "",
-					["spaces"] = "https://{env}public-ubiservices.ubi.com/{version}/spaces/{spaceId}/title/{title}/",
-					["profiles"] = "https://{env}public-ubiservices.ubi.com/{version}/profiles/{profileId}/title/{title}/",
-					["spaces_all"] = "https://{env}public-ubiservices.ubi.com/{version}/spaces/title/{title}/",
-					["applications"] = "https://{env}public-ubiservices.ubi.com/{version}/applications/{applicationId}/title/{title}/",
-					["profiles_all"] = "https://{env}public-ubiservices.ubi.com/{version}/profiles/title/{title}/",
-					["applications_all"] = "https://{env}public-ubiservices.ubi.com/{version}/applications/title/{title}/"
+					["spaces"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/spaces/{spaceId}/title/{title}/""",
+					["profiles"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/profiles/{profileId}/title/{title}/""",
+					["spaces_all"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/spaces/title/{title}/""",
+					["applications"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/applications/{applicationId}/title/{title}/""",
+					["profiles_all"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/profiles/title/{title}/""",
+					["applications_all"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/applications/title/{title}/"""
 				}
 			},
 			["us-sdkClientUrls"] = new()

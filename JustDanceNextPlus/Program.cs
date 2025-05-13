@@ -73,6 +73,7 @@ public class Program
 
 		// Bind configuration.
 		builder.Services.Configure<PathSettings>(builder.Configuration.GetSection("Paths"));
+		builder.Services.Configure<UrlSettings>(builder.Configuration.GetSection("HostingUrls"));
 
 		// Configure Entity Framework with SQLite.
 		builder.Services.AddDbContext<UserDataContext>(options =>
@@ -151,11 +152,10 @@ public class Program
 
 	private static void ConfigureMiddleware(WebApplication app)
 	{
-        if (app.Environment.IsDevelopment())
-		{
-            app.MapOpenApi();
-            app.MapScalarApiReference();
-        }
+#if !RELEASE
+		app.MapOpenApi();
+        app.MapScalarApiReference();
+#endif
 
 		app.UseHttpsRedirection();
 		app.UseResponseCompression();

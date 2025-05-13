@@ -2,9 +2,9 @@
 
 namespace JustDanceNextPlus.JustDanceClasses.Endpoints;
 
-public class SongDBTypeSet
+public class SongDBTypeSet(string url)
 {
-	public string SongdbUrl { get; set; } = "https://prod-next.just-dance.com/songdb/songDB";
+	public string SongdbUrl { get; set; } = $"https://{url}/songdb/songDB";
 	public Songoffers SongOffers { get; set; } = new();
 }
 

@@ -15,6 +15,9 @@ public class SongDB(MapService mapService, JsonSettingsService jsonSettingsServi
 	{
 		string response = JsonSerializer.Serialize(mapService.SongDB.Songs, jsonSettingsService.PrettyPascalFormat);
 
+		// Disable compression for this specific response
+		Response.Headers.ContentEncoding = "identity";
+
 		return Content(response, "application/json");
 	}
 }

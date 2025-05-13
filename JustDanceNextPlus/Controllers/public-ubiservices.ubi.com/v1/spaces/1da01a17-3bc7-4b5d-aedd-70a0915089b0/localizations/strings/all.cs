@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JustDanceNextPlus.Configuration;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.spaces._1da01a17_3bc7_4b5d_aedd_70a0915089b0.localizations.strings;
 
 [ApiController]
 [Route("v1/spaces/1da01a17-3bc7-4b5d-aedd-70a0915089b0/localizations/strings/all")]
-public class All(TimingService timingService) : ControllerBase
+public class All(TimingService timingService, IOptions<UrlSettings> urlSettings) : ControllerBase
 {
 	[HttpGet(Name = "GetAll")]
 	public IActionResult GetAll()
@@ -14,7 +17,7 @@ public class All(TimingService timingService) : ControllerBase
 
 		string response = $$"""
 			{
-				"getUrl": "https://prod-next.just-dance.com/editorial/v1/All.en-US.json.gz",
+				"getUrl": "https://{{urlSettings.Value.CDNUrl}}/editorial/v1/All.en-US.json.gz",
 				"getUrlExpiresAt": "{{timingService.TimeString(expiresAt)}}",
 				"localeCode": "en-US",
 				"md5": "d7dab8accbbaef4b109de1dbd1c9f091",

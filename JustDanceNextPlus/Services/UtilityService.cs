@@ -1,17 +1,22 @@
 ﻿using AssetsTools.NET;
 using AssetsTools.NET.Extra;
 
+using JustDanceNextPlus.Configuration;
 using JustDanceNextPlus.JustDanceClasses.Database;
 using JustDanceNextPlus.JustDanceClasses.Endpoints;
 using JustDanceNextPlus.Utilities;
+
+using Microsoft.Extensions.Options;
 
 using System.Globalization;
 using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
 
-public class UtilityService(JsonSettingsService jsonSettingsService, ILogger<UtilityService> logger)
+public class UtilityService(JsonSettingsService jsonSettingsService, IOptions<UrlSettings> urlOptions, ILogger<UtilityService> logger)
 {
+	private readonly UrlSettings urlSettings = urlOptions.Value;
+
 	public async Task<LocalJustDanceSongDBEntry> LoadMapDBEntryAsync(string mapFolder)
 	{
 		try
@@ -52,11 +57,11 @@ public class UtilityService(JsonSettingsService jsonSettingsService, ILogger<Uti
 		}
 	}
 
-	public static void AssignVideoUrls(LocalJustDanceSongDBEntry songInfo, WebmData[] videoData, string mapFolder)
+	public void AssignVideoUrls(LocalJustDanceSongDBEntry songInfo, WebmData[] videoData, string mapFolder)
 	{
 		for (int i = 0; i < videoData.Length; i++)
 		{
-			string url = $"https://prod-next.just-dance.com/maps/{Path.GetFileName(mapFolder)}/videoPreview/{videoData[i].FileName}.webm";
+			string url = $"https://{urlSettings.CDNUrl}/maps/{Path.GetFileName(mapFolder)}/videoPreview/{videoData[i].FileName}.webm";
 			switch (i)
 			{
 				case 0:
@@ -75,7 +80,7 @@ public class UtilityService(JsonSettingsService jsonSettingsService, ILogger<Uti
 		}
 	}
 
-	public static void AssignAssetUrls(LocalJustDanceSongDBEntry songInfo, string mapFolder)
+	public void AssignAssetUrls(LocalJustDanceSongDBEntry songInfo, string mapFolder)
 	{
 		songInfo.Assets.AudioPreview_opus ??= GetAssetUrl(mapFolder, "audioPreview_opus");
 	}
@@ -149,7 +154,6 @@ public class UtilityService(JsonSettingsService jsonSettingsService, ILogger<Uti
 		return assetMetadata;
 	}
 
-
 	public ContentAuthorization LoadContentAuthorization(string mapFolder)
 	{
 		ContentAuthorization contentAuthorization = new()
@@ -169,11 +173,11 @@ public class UtilityService(JsonSettingsService jsonSettingsService, ILogger<Uti
 		return contentAuthorization;
 	}
 
-	public static void AssignContentAuthorizationVideoUrls(ContentAuthorization contentAuthorization, WebmData[] videoData, string mapFolder)
+	public void AssignContentAuthorizationVideoUrls(ContentAuthorization contentAuthorization, WebmData[] videoData, string mapFolder)
 	{
 		for (int i = 0; i < videoData.Length; i++)
 		{
-			string url = $"https://prod-next.just-dance.com/maps/{Path.GetFileName(mapFolder)}/video/{videoData[i].FileName}.webm";
+			string url = $"https://{urlSettings.CDNUrl}/maps/{Path.GetFileName(mapFolder)}/video/{videoData[i].FileName}.webm";
 			switch (i)
 			{
 				case 0:
@@ -227,7 +231,7 @@ public class UtilityService(JsonSettingsService jsonSettingsService, ILogger<Uti
 		return webmData;
 	}
 
-	public static string? GetAssetUrl(string mapFolder, string name, bool canBeMissing = false)
+	public string? GetAssetUrl(string mapFolder, string name, bool canBeMissing = false)
 	{
 		string assetFolder = Path.Combine(mapFolder, name);
 
@@ -237,7 +241,7 @@ public class UtilityService(JsonSettingsService jsonSettingsService, ILogger<Uti
 			if (files.Length == 0)
 				throw new FileNotFoundException($"Missing asset file in {assetFolder}");
 
-			return $"https://prod-next.just-dance.com/maps/{Path.GetFileName(mapFolder)}/{name}/{Path.GetFileName(files[0])}";
+			return $"https://{urlSettings.CDNUrl}/maps/{Path.GetFileName(mapFolder)}/{name}/{Path.GetFileName(files[0])}";
 		}
 
 		// If it's a songTitleLogo, that's fine cuz it's optional
