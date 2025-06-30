@@ -107,7 +107,7 @@ public class UserDataService(
 		{
 			long position = await dbContext.HighScores
 				.Where(hs => hs.MapId == mapId && hs.HighScore > highScore.HighScore)
-				.CountAsync();
+				.CountAsync() + 1;
 
 			ScoreDetails newScore = new()
 			{
@@ -162,7 +162,7 @@ public class UserDataService(
 		{
 			long position = await dbContext.HighScores
 				.Where(hs => hs.MapId == mapId && hs.HighScore > highScore.HighScore)
-				.CountAsync();
+				.CountAsync() + 1;
 
 			ScoreDetails newScore = new()
 			{
@@ -193,7 +193,7 @@ public class UserDataService(
 		{
 			long position = await dbContext.HighScores
 				.Where(hs => hs.MapId == mapId && hs.HighScore > highScore.HighScore)
-				.CountAsync();
+				.CountAsync() + 1;
 
 			ScoreDetails newScore = new()
 			{
@@ -231,7 +231,7 @@ public class UserDataService(
 
 		long position = await dbContext.HighScores
 			.Where(hs => hs.MapId == mapId && hs.HighScore > randomHighScore.HighScore)
-			.CountAsync();
+			.CountAsync() + 1;
 
 		ScoreDetails newScore = new()
 		{
@@ -270,7 +270,8 @@ public class UserDataService(
 		{
 			long position = await dbContext.PlaylistHighScores
 				.Where(ph => ph.PlaylistId == playlistId && ph.HighScore > highScore.HighScore)
-				.CountAsync();
+				.CountAsync() + 1;
+
 			ScoreDetails newScore = new()
 			{
 				ProfileId = highScore.ProfileId,
@@ -321,7 +322,7 @@ public class UserDataService(
 		{
 			long position = await dbContext.PlaylistHighScores
 				.Where(ph => ph.PlaylistId == playlistId && ph.HighScore > highScore.HighScore)
-				.CountAsync();
+				.CountAsync() + 1;
 			ScoreDetails newScore = new()
 			{
 				ProfileId = highScore.ProfileId,
@@ -350,7 +351,7 @@ public class UserDataService(
 		{
 			long position = await dbContext.PlaylistHighScores
 				.Where(ph => ph.PlaylistId == playlistId && ph.HighScore > highScore.HighScore)
-				.CountAsync();
+				.CountAsync() + 1;
 			ScoreDetails newScore = new()
 			{
 				ProfileId = highScore.ProfileId,
