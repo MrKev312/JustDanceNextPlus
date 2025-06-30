@@ -14,7 +14,7 @@ public class JustDanceSongDBEntry
 	public int CoachCount { get; set; } = 0;
 	public OasisTag[] CoachNamesLocIds { get; set; } = [];
 	public string Credits { get; set; } = "";
-	public int DanceVersionLocId { get; set; } = 0;
+	public OasisTag DanceVersionLocId { get; set; } = new();
 	public int Difficulty { get; set; } = 0;
 	public object? DoubleScoringType { get; set; } = null;
 	public bool HasSongTitleInCover => Assets.SongTitleLogo != null;
