@@ -4,10 +4,10 @@ using JustDanceNextPlus.JustDanceClasses.Endpoints;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
-namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.applications._77b6223b_eb41_4ccd_833c_c7b16537fde3;
+namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.applications.guid;
 
 [ApiController]
-[Route("/v1/applications/77b6223b-eb41-4ccd-833c-c7b16537fde3/parameters")]
+[Route("/v1/applications/{Guid:guid}/parameters")]
 public class Parameters(IOptions<UrlSettings> urlSettings) : ControllerBase
 {
 	[HttpGet(Name = "GetParameters")]
@@ -74,7 +74,7 @@ public class Parameters(IOptions<UrlSettings> urlSettings) : ControllerBase
 				{
 					["baseurl_ws"] = new Dictionary<string, string>()
 					{
-						["Standard"] = "wss://{env}public-ws-ubiservices.ubi.com"
+						["Standard"] = $$"""wss://{env}{{urlSettings.Value.HostUrl}}"""
 					},
 					["baseurl_aws"] = new Dictionary<string, string>()
 					{
