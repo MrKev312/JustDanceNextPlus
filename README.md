@@ -79,6 +79,7 @@ And where the SongInfo.json is in the following format:
   "danceVersionLocId": 0,
   "difficulty": 1,
   "doubleScoringType": null,
+  "hasCameraScoring": false,
   "lyricsColor": "#FFFFFFFF",
   "mapLength": 123.456,
   "mapName": "codename here",
@@ -90,12 +91,12 @@ And where the SongInfo.json is in the following format:
 	(Pick which are applicable)
 	"Main",
 	"jdplus",
+	"songpack_game1",
+	"songpack_game..",
+	"songpack_game2022",
 	"songpack_year1",
 	"songpack_year2",
 	"songpack_year3",
-	"songpack_game2022",
-	"songpack_game..",
-	"songpack_game1",
 	"Custom"
   ],
   "title": "song name here"

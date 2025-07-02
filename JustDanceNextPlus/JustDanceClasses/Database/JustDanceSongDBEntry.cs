@@ -18,6 +18,7 @@ public class JustDanceSongDBEntry
 	public int Difficulty { get; set; } = 0;
 	public object? DoubleScoringType { get; set; } = null;
 	public bool HasSongTitleInCover => Assets.SongTitleLogo != null;
+	public bool HasCameraScoring { get; set; } = false;
 	public string LyricsColor { get; set; } = "";
 	public float MapLength { get; set; } = 0;
 	public string MapName { get; set; } = "";
