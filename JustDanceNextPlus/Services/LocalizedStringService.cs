@@ -13,9 +13,6 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 {
 	public LocalizedStringDatabase Database { get; private set; } = new();
 
-	readonly ConcurrentDictionary<string, int> localizedTags = new();
-	readonly ConcurrentDictionary<Guid, int> localizedTagsGuid = new();
-
 	public void LoadData()
 	{
 		IOptions<PathSettings> settings = serviceProvider.GetRequiredService<IOptions<PathSettings>>();
@@ -39,35 +36,27 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 
 		Database = db;
 		logger.LogInformation("Localized strings database loaded");
-
-		// Populate the dictionaries
-		Parallel.For(0, Database.LocalizedStrings.Count, i =>
-		{
-			LocalizedString localizedString = Database.LocalizedStrings[i];
-			localizedTags.TryAdd(localizedString.DisplayString, i);
-			localizedTagsGuid.TryAdd(localizedString.LocalizedStringId, i);
-		});
 	}
 
 	public LocalizedString? GetLocalizedTag(string text)
 	{
-		return localizedTags.TryGetValue(text, out int index) 
-			? Database.LocalizedStrings[index] 
-			: null;
+		return Database.LocalizedStrings
+			.Where(ls => ls.DisplayString == text)
+			.FirstOrDefault();
 	}
 
 	public LocalizedString? GetLocalizedTag(Guid id)
 	{
-		return localizedTagsGuid.TryGetValue(id, out int index) 
-			? Database.LocalizedStrings[index]
-			: null;
+		return Database.LocalizedStrings
+			.Where(ls => ls.LocalizedStringId == id)
+			.FirstOrDefault();
 	}
 
 	public LocalizedString? GetLocalizedTag(int id)
 	{
-		return id < Database.LocalizedStrings.Count 
-			? Database.LocalizedStrings[id] 
-			: null;
+		return Database.LocalizedStrings
+			.Where(ls => ls.OasisIdInt == id)
+			.FirstOrDefault();
 	}
 
 	public LocalizedString GetAddLocalizedTag(string text)
@@ -91,7 +80,7 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 			{
 				guid = Guid.NewGuid();
 			}
-			while (localizedTagsGuid.ContainsKey(guid));
+			while (Database.LocalizedStrings.Any(ls => ls.LocalizedStringId == guid));
 
 			int index = Database.LocalizedStrings.Count;
 
@@ -104,8 +93,7 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 			};
 
 			Database.LocalizedStrings.Add(localizedTag);
-			localizedTags.TryAdd(text, index);
-			localizedTagsGuid.TryAdd(guid, index);
+
 			return localizedTag;
 		}
 	}

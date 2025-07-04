@@ -8,6 +8,7 @@ namespace JustDanceNextPlus.Utilities;
 public class OasisTag
 {
 	public int ID { get; set; } = 0;
+	public string? Name { get; set; }
 
 	// Allow implicit conversion from OasisTag to int
 	public static implicit operator int(OasisTag tag) => tag.ID;
@@ -18,20 +19,36 @@ public class TagIdConverter(LocalizedStringService localizedStringService) : Jso
 {
 	public override OasisTag Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
+		int tagId;
+		string? tagString;
+
 		// If we're reading an integer, just return it as an OasisTag
-		if (reader.TokenType == JsonTokenType.Number)
-			return new OasisTag { ID = reader.GetInt32() };
+		switch (reader.TokenType)
+		{
+			case JsonTokenType.Number:
+				tagId = reader.GetInt32();
+				if (tagId == 0)
+					tagString = null; // Handle the case where tagId is 0
+				else
+				{
+					tagString = localizedStringService.GetLocalizedTag(tagId)?.DisplayString;
+					if (tagString == null)
+					{
+						throw new JsonException($"Tag ID {tagId} not found in localized strings database.");
+					}
+				}
 
-		// If it's not a string, throw an exception
-		if (reader.TokenType != JsonTokenType.String)
-			throw new JsonException();
+				break;
+			case JsonTokenType.String:
+				// If we're reading a string, we need to convert it to an int using the localized string service
+				tagString = reader.GetString() ?? throw new JsonException("Tag string is null");
+				tagId = localizedStringService.GetAddLocalizedTag(tagString).OasisIdInt;
+				break;
+			default:
+				throw new JsonException($"Unexpected token type: {reader.TokenType}");
+		}
 
-		// Convert the JSON string to an int using the localized string service
-		string tagString = reader.GetString() ?? throw new JsonException();
-
-		// Convert the string to an int
-		int tagId = localizedStringService.GetAddLocalizedTag(tagString).OasisIdInt;
-		return new OasisTag { ID = tagId };
+		return new OasisTag { ID = tagId, Name = tagString };
 	}
 
 	public override void Write(Utf8JsonWriter writer, OasisTag value, JsonSerializerOptions options)
