@@ -52,15 +52,17 @@ public class Search(MapService mapService) : ControllerBase
 	{
 		uint relevance = 0;
 
+		string fullSongTitle = song.Title;
+		if (song.DanceVersionLocId.Name != null)
+			fullSongTitle += " " + song.DanceVersionLocId.Name;
+
 		// Bool for partial match
-		bool partialMatchTitle = song.Title.Contains(searchInput, StringComparison.OrdinalIgnoreCase);
+		bool partialMatchTitle = fullSongTitle.Contains(searchInput, StringComparison.OrdinalIgnoreCase);
 		bool partialMatchArtist = song.Artist.Contains(searchInput, StringComparison.OrdinalIgnoreCase);
 
 		// Helper function to check if two strings are one character off (including insertions/deletions)
-		static bool IsOneCharOff(string s1, string s2)
+		static bool IsOneCharOff(ReadOnlySpan<char> s1, ReadOnlySpan<char> s2)
 		{
-			s2 = s2.ToLowerInvariant();
-
 			int len1 = s1.Length;
 			int len2 = s2.Length;
 
@@ -74,7 +76,7 @@ public class Search(MapService mapService) : ControllerBase
 			// Walk through both strings and count mismatches
 			while (i < len1 && j < len2)
 			{
-				if (s1[i] != s2[j])
+				if (char.ToLower(s1[i]) != char.ToLower(s2[j]))
 				{
 					mismatchCount++;
 					if (mismatchCount > 1)
@@ -110,11 +112,11 @@ public class Search(MapService mapService) : ControllerBase
 			relevance += 100;
 
 		// Title matches
-		if (partialMatchTitle && searchInput.Length == song.Title.Length)
+		if (partialMatchTitle && searchInput.Length == fullSongTitle.Length)
 			relevance += 10; // Exact title match
 		if (partialMatchTitle)
 			relevance += 7; // Partial title match
-		else if (IsOneCharOff(searchInput, song.Title))
+		else if (IsOneCharOff(searchInput, fullSongTitle))
 			relevance += 5; // One character off from title
 
 		// Artist matches
