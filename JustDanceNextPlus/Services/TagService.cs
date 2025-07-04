@@ -1,4 +1,5 @@
 ﻿using JustDanceNextPlus.Configuration;
+using JustDanceNextPlus.Utilities;
 
 using Microsoft.Extensions.Options;
 
@@ -32,36 +33,42 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 			return;
 		}
 
+		foreach (KeyValuePair<Guid, GuidTag> tag in db.Tags)
+			tag.Value.TagGuid = tag.Key;
+
 		TagDatabase = db;
 		logger.LogInformation("Tag database loaded");
 	}
 
-	public Guid? GetTag(string text)
+	public GuidTag? GetTag(string text)
 	{
 		LocalizedString? localizedTag = localizedStringService.GetLocalizedTag(text);
 
 		if (localizedTag == null)
 			return null;
 
-		Guid tagGuid;
+		GuidTag tagGuid;
 		lock (TagDatabase.Tags)
-			tagGuid = TagDatabase.Tags.FirstOrDefault(x => x.Value.LocId == localizedTag.OasisIdInt).Key;
-
-		if (tagGuid == Guid.Empty)
-			return null;
+			tagGuid = TagDatabase.Tags.FirstOrDefault(x => x.Value.LocId == localizedTag.OasisIdInt).Value;
 
 		return tagGuid;
 	}
 
-	public Guid GetAddTag(string text, string category)
+	public GuidTag? GetTag(Guid tagGuid)
+	{
+		TagDatabase.Tags.TryGetValue(tagGuid, out GuidTag? tag);
+		return tag;
+	}
+
+	public GuidTag GetAddTag(string text, string category)
 	{
 		LocalizedString localizedTag = localizedStringService.GetAddLocalizedTag(text);
 
 		// If it contains the tag, return it
-		Guid? tag = GetTag(localizedTag.DisplayString);
+		GuidTag? tag = GetTag(localizedTag.DisplayString);
 
 		if (tag != null)
-			return tag.Value;
+			return tag;
 
 		// Lock the list
 		lock (TagDatabase.Tags)
@@ -70,12 +77,13 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 			tag = GetTag(localizedTag.DisplayString);
 
 			if (tag != null)
-				return tag.Value;
+				return tag;
 
-			Tag newTag = new()
+			GuidTag newTag = new()
 			{
+				TagGuid = localizedTag.LocalizedStringId,
 				TagName = localizedTag.DisplayString,
-				LocId = localizedTag.OasisIdInt,
+				LocId = localizedTag.OasisIdInt, // TODO: localizedTag and OasisId will be merged in the future
 				Category = category
 			};
 
@@ -87,7 +95,7 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 				TagDatabase.IsPresentInSongPageDetails.Add(localizedTag.LocalizedStringId);
 			}
 
-			return localizedTag.LocalizedStringId;
+			return newTag;
 		}
 	}
 
@@ -142,17 +150,9 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 
 public class TagDatabase
 {
-	public OrderedDictionary<Guid, Tag> Tags { get; set; } = [];
+	public OrderedDictionary<Guid, GuidTag> Tags { get; set; } = [];
 	public List<Guid> IsPresentInSongLibrary { get; set; } = [];
 	public List<Guid> IsPresentInSongPageDetails { get; set; } = [];
-}
-
-public class Tag
-{
-	public string TagName { get; set; } = "";
-	public int LocId { get; set; }
-	public string Category { get; set; } = "";
-	public List<string> Synonyms { get; set; } = [];
 }
 
 public class Filter

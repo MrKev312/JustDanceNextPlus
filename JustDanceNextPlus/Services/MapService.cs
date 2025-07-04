@@ -1,7 +1,7 @@
 ﻿using JustDanceNextPlus.Configuration;
-using JustDanceNextPlus.Controllers.prod_next.just_dance.com.songdb;
 using JustDanceNextPlus.JustDanceClasses.Database;
 using JustDanceNextPlus.JustDanceClasses.Endpoints;
+using JustDanceNextPlus.Utilities;
 
 using Microsoft.Extensions.Options;
 
@@ -72,14 +72,14 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 			foreach (string artist in artists) 
 			{
 				// Add the artist to the tag service
-				Guid tag = tagService.GetAddTag(artist, "artist");
+				GuidTag tag = tagService.GetAddTag(artist, "artist");
 				result.SongInfo.TagIds.Add(tag);
 			}
 
 			// Process player count
 			{
 				string[] playerCounts = ["Solo", "Duet", "Trio", "Quartet"];
-				Guid tag = tagService.GetAddTag(playerCounts[result.SongInfo.CoachCount - 1], "choreoSettings");
+				GuidTag tag = tagService.GetAddTag(playerCounts[result.SongInfo.CoachCount - 1], "choreoSettings");
 				result.SongInfo.TagIds.Add(tag);
 			}
 		}

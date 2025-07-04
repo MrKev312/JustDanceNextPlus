@@ -4,8 +4,6 @@ using JustDanceNextPlus.Services;
 
 using Microsoft.AspNetCore.Mvc;
 
-using System.Threading.Tasks;
-
 namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.songdb.v3.content_authorization.map.mapid.formatVersion;
 
 [ApiController]
