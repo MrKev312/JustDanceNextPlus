@@ -33,39 +33,39 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 			return;
 		}
 
-		foreach (KeyValuePair<Guid, GuidTag> tag in db.Tags)
+		foreach (KeyValuePair<Guid, Tag> tag in db.Tags)
 			tag.Value.TagGuid = tag.Key;
 
 		TagDatabase = db;
 		logger.LogInformation("Tag database loaded");
 	}
 
-	public GuidTag? GetTag(string text)
+	public Tag? GetTag(string text)
 	{
 		LocalizedString? localizedTag = localizedStringService.GetLocalizedTag(text);
 
 		if (localizedTag == null)
 			return null;
 
-		GuidTag tagGuid;
+		Tag tagGuid;
 		lock (TagDatabase.Tags)
 			tagGuid = TagDatabase.Tags.FirstOrDefault(x => x.Value.LocId == localizedTag.OasisIdInt).Value;
 
 		return tagGuid;
 	}
 
-	public GuidTag? GetTag(Guid tagGuid)
+	public Tag? GetTag(Guid tagGuid)
 	{
-		TagDatabase.Tags.TryGetValue(tagGuid, out GuidTag? tag);
+		TagDatabase.Tags.TryGetValue(tagGuid, out Tag? tag);
 		return tag;
 	}
 
-	public GuidTag GetAddTag(string text, string category)
+	public Tag GetAddTag(string text, string category)
 	{
 		LocalizedString localizedTag = localizedStringService.GetAddLocalizedTag(text);
 
 		// If it contains the tag, return it
-		GuidTag? tag = GetTag(localizedTag.DisplayString);
+		Tag? tag = GetTag(localizedTag.DisplayString);
 
 		if (tag != null)
 			return tag;
@@ -79,20 +79,28 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 			if (tag != null)
 				return tag;
 
-			GuidTag newTag = new()
+			// Generate an unused guid
+			Guid tagGuid = Guid.NewGuid();
+			while (TagDatabase.Tags.ContainsKey(tagGuid))
 			{
-				TagGuid = localizedTag.LocalizedStringId,
+				tagGuid = Guid.NewGuid();
+			}
+
+
+			Tag newTag = new()
+			{
+				TagGuid = tagGuid,
 				TagName = localizedTag.DisplayString,
 				LocId = localizedTag.OasisIdInt, // TODO: localizedTag and OasisId will be merged in the future
 				Category = category
 			};
 
-			TagDatabase.Tags.Add(localizedTag.LocalizedStringId, newTag);
+			TagDatabase.Tags.Add(tagGuid, newTag);
 
 			if (category != "artist")
 			{
-				TagDatabase.IsPresentInSongLibrary.Add(localizedTag.LocalizedStringId);
-				TagDatabase.IsPresentInSongPageDetails.Add(localizedTag.LocalizedStringId);
+				TagDatabase.IsPresentInSongLibrary.Add(tagGuid);
+				TagDatabase.IsPresentInSongPageDetails.Add(tagGuid);
 			}
 
 			return newTag;
@@ -150,7 +158,7 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 
 public class TagDatabase
 {
-	public OrderedDictionary<Guid, GuidTag> Tags { get; set; } = [];
+	public OrderedDictionary<Guid, Tag> Tags { get; set; } = [];
 	public List<Guid> IsPresentInSongLibrary { get; set; } = [];
 	public List<Guid> IsPresentInSongPageDetails { get; set; } = [];
 }

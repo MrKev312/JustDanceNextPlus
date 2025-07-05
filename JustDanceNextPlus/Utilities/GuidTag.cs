@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.Utilities;
 
-public class GuidTag
+public class Tag
 {
 	[JsonIgnore]
 	public Guid TagGuid { get; set; } = Guid.Empty;
@@ -18,55 +18,42 @@ public class GuidTag
 	public string? Name => LocId.Name;
 
 	// Allow implicit conversion from GuidTag to Guid
-	public static implicit operator Guid(GuidTag tag) => tag.TagGuid;
-
+	public static implicit operator Guid(Tag tag) => tag.TagGuid;
+	public static implicit operator GuidTag(Tag tag) => new(tag);
 }
 
-public class GuidTagConverter(TagService tagService) : JsonConverter<List<GuidTag>>
+[JsonConverter(typeof(GuidTagConverter))]
+public class GuidTag(Tag tag)
 {
-	public override List<GuidTag> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	public Tag Tag { get; set; } = tag;
+	public Guid TagGuid => Tag.TagGuid;
+}
+
+public class GuidTagConverter(TagService tagService) : JsonConverter<GuidTag>
+{
+	public override GuidTag Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
-		if (reader.TokenType != JsonTokenType.StartArray)
-			throw new JsonException("Expected start of array.");
+		string tagString = reader.GetString() ?? throw new JsonException();
 
-		List<GuidTag> tags = [];
-
-		while (reader.Read())
+		Tag tag;
+		if (Guid.TryParse(tagString, out Guid tagGuid))
 		{
-			if (reader.TokenType == JsonTokenType.EndArray)
-				break;
-
-			if (reader.TokenType != JsonTokenType.String)
-				throw new JsonException("Expected string elements in array.");
-
-			string tagString = reader.GetString() ?? throw new JsonException();
-
-			GuidTag tag;
-			if (Guid.TryParse(tagString, out Guid tagGuid))
-			{
-				// Exception for PadamALT's second to last tag, which somehow doesn't exist.
-				tag = tagGuid == Guid.Parse("68cb4e62-5040-46ff-bdd2-1bf6c3c8d357")
-					? new GuidTag { TagGuid = tagGuid }
-					: tagService.GetTag(tagGuid)
-						?? throw new JsonException($"Tag with GUID {tagGuid} not found in the database.");
-			}
-			else
-			{
-				tag = tagService.GetAddTag(tagString, "tag");
-			}
-
-			tags.Add(tag);
+			// Exception for PadamALT's second to last tag, which somehow doesn't exist.
+			tag = tagGuid == Guid.Parse("68cb4e62-5040-46ff-bdd2-1bf6c3c8d357")
+				? new Tag { TagGuid = tagGuid }
+				: tagService.GetTag(tagGuid)
+					?? throw new JsonException($"Tag with GUID {tagGuid} not found in the database.");
+		}
+		else
+		{
+			tag = tagService.GetAddTag(tagString, "tag");
 		}
 
-		return tags;
+		return new GuidTag(tag);
 	}
 
-	public override void Write(Utf8JsonWriter writer, List<GuidTag> value, JsonSerializerOptions options)
+	public override void Write(Utf8JsonWriter writer, GuidTag value, JsonSerializerOptions options)
 	{
-		writer.WriteStartArray();
-		foreach (GuidTag tag in value)
-			writer.WriteStringValue(tag.TagGuid.ToString());
-
-		writer.WriteEndArray();
+		writer.WriteStringValue(value.TagGuid.ToString());
 	}
 }

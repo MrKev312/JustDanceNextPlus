@@ -72,14 +72,14 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 			foreach (string artist in artists) 
 			{
 				// Add the artist to the tag service
-				GuidTag tag = tagService.GetAddTag(artist, "artist");
+				Tag tag = tagService.GetAddTag(artist, "artist");
 				result.SongInfo.TagIds.Add(tag);
 			}
 
 			// Process player count
 			{
 				string[] playerCounts = ["Solo", "Duet", "Trio", "Quartet"];
-				GuidTag tag = tagService.GetAddTag(playerCounts[result.SongInfo.CoachCount - 1], "choreoSettings");
+				Tag tag = tagService.GetAddTag(playerCounts[result.SongInfo.CoachCount - 1], "choreoSettings");
 				result.SongInfo.TagIds.Add(tag);
 			}
 		}
