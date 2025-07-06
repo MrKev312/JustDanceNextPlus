@@ -24,7 +24,7 @@ public class JustDanceEdition
 
 	// For productGroups
 	[Required]
-	public OasisTag GroupLocId { get; set; } = new();
+	public required OasisTag GroupLocId { get; set; }
 	public OasisTag? SongsCountLocId { get; set; }
 	public OasisTag? GroupDescriptionLocId { get; set; }
 	public List<MapTag> TracklistExtended { get; set; } = [];

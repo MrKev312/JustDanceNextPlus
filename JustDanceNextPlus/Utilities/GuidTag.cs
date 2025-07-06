@@ -5,12 +5,19 @@ using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.Utilities;
 
+[JsonConverter(typeof(GuidTagConverter))]
+public class GuidTag(Tag tag)
+{
+	public Tag Tag { get; set; } = tag;
+	public Guid TagGuid => Tag.TagGuid;
+}
+
 public class Tag
 {
 	[JsonIgnore]
 	public Guid TagGuid { get; set; } = Guid.Empty;
 	public string TagName { get; set; } = "";
-	public OasisTag LocId { get; set; } = new();
+	public required OasisTag LocId { get; set; }
 	public string Category { get; set; } = "";
 	public List<string> Synonyms { get; set; } = [];
 
@@ -22,14 +29,8 @@ public class Tag
 	public static implicit operator GuidTag(Tag tag) => new(tag);
 }
 
-[JsonConverter(typeof(GuidTagConverter))]
-public class GuidTag(Tag tag)
-{
-	public Tag Tag { get; set; } = tag;
-	public Guid TagGuid => Tag.TagGuid;
-}
-
-public class GuidTagConverter(TagService tagService) : JsonConverter<GuidTag>
+public class GuidTagConverter(TagService tagService,
+	LocalizedStringService localizedStringService) : JsonConverter<GuidTag>
 {
 	public override GuidTag Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
@@ -40,7 +41,7 @@ public class GuidTagConverter(TagService tagService) : JsonConverter<GuidTag>
 		{
 			// Exception for PadamALT's second to last tag, which somehow doesn't exist.
 			tag = tagGuid == Guid.Parse("68cb4e62-5040-46ff-bdd2-1bf6c3c8d357")
-				? new Tag { TagGuid = tagGuid }
+				? new Tag { TagGuid = tagGuid, LocId = localizedStringService.GetLocalizedTag(0)!, }
 				: tagService.GetTag(tagGuid)
 					?? throw new JsonException($"Tag with GUID {tagGuid} not found in the database.");
 		}

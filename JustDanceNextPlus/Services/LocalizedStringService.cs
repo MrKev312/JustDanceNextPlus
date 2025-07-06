@@ -1,9 +1,9 @@
 ﻿using JustDanceNextPlus.Configuration;
+using JustDanceNextPlus.Utilities;
 
 using Microsoft.Extensions.Options;
 
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.Services;
 
@@ -32,6 +32,39 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 			logger.LogWarning("Localized strings database could not be loaded");
 			return;
 		}
+
+		// Add 1-33 as these are only in game and not in the server json
+		Dictionary<int, string> defaultLocalizedStrings = new()
+		{
+			{ 0, null! }, // 0 means display nothing
+  			{ 1, "OK" },
+			{ 2, "Yes" },
+			{ 3, "Continue" },
+			{ 4, "Back" },
+			{ 23, "Playlists we think you'll like" },
+			{ 25, "Songs you might like" },
+			{ 26, "Everybody loves [VAR:TAGNAME]" },
+			{ 28, "Everybody's playing them" },
+			{ 30, "Sweat Longer" },
+			{ 32, "No" },
+			{ 33, "Cancel" }
+		};
+
+		foreach (var kvp in defaultLocalizedStrings)
+		{
+			if (db.LocalizedStrings.Any(ls => ls.OasisIdInt == kvp.Key))
+				continue;
+			db.LocalizedStrings.Add(new LocalizedString
+			{
+				OasisIdInt = kvp.Key,
+				LocaleCode = "en-US",
+				DisplayString = kvp.Value,
+				LocalizedStringId = Guid.NewGuid()
+			});
+		}
+
+		// Sort the localized strings by OasisIdInt
+		db.LocalizedStrings = [.. db.LocalizedStrings.OrderBy(ls => ls.OasisIdInt)];
 
 		Database = db;
 		logger.LogInformation("Localized strings database loaded");
@@ -102,16 +135,4 @@ public class LocalizedStringDatabase
 {
 	public Guid SpaceId { get; set; } = Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0");
 	public List<LocalizedString> LocalizedStrings { get; set; } = [];
-}
-
-public class LocalizedString
-{
-	[JsonIgnore]
-	public int OasisIdInt { get; set; }
-	public string OasisId { get => OasisIdInt.ToString(); set => OasisIdInt = int.Parse(value); }
-	public string LocaleCode { get; set; } = "";
-	public string DisplayString { get; set; } = "";
-	public Guid LocalizedStringId { get; set; }
-	public object? Obj { get; set; }
-	public int SpaceRevision { get; set; } = 121;
 }
