@@ -91,10 +91,10 @@ public class BundleService
 				ClaimIds = edition.ClaimIds ?? [edition.Name],
 				FirstPartyId = edition.Name,
 				Name = edition.Name,
-				ProductLocId = edition.ProductLocId ?? localizedStringService.GetAddLocalizedTag("Ultimate Edition").OasisIdInt,
+				ProductLocId = edition.ProductLocId ?? localizedStringService.GetAddLocalizedTag("Ultimate Edition"),
 				Type = "dlc",
 				DlcType = edition.DlcType.ToString().ToLowerInvariant(),
-				ProductDescriptionId = edition.ProductDescriptionId ?? localizedStringService.GetAddLocalizedTag("Infinite Just Dance+ access").OasisIdInt
+				ProductDescriptionId = edition.ProductDescriptionId ?? localizedStringService.GetAddLocalizedTag("Infinite Just Dance+ access")
 			};
 
 			database.DlcProducts.Add(guid, product);
@@ -119,12 +119,12 @@ public class BundleService
 				GroupLocId = edition.GroupLocId,
 				Name = edition.Name,
 				ProductIds = [guid],
-				SongsCountLocId = edition.SongsCountLocId ?? localizedStringService.GetAddLocalizedTag("Unlimited songs").OasisIdInt,
-				GroupDescriptionLocId = edition.GroupDescriptionLocId ?? localizedStringService.GetAddLocalizedTag("Get all the songs").OasisIdInt,
+				SongsCountLocId = edition.SongsCountLocId ?? localizedStringService.GetAddLocalizedTag("Unlimited songs"),
+				GroupDescriptionLocId = edition.GroupDescriptionLocId ?? localizedStringService.GetAddLocalizedTag("Get all the songs"),
 				TracklistExtended = edition.TracklistExtended,
 				TracklistLimited = edition.TracklistLimited,
-				TracklistExtendedLocId = edition.TracklistExtendedLocId ?? localizedStringService.GetAddLocalizedTag(trackExtLocId).OasisIdInt,
-				TracklistLimitedLocId = edition.TracklistLimitedLocId ?? localizedStringService.GetAddLocalizedTag(trackLimLocId).OasisIdInt,
+				TracklistExtendedLocId = edition.TracklistExtendedLocId ?? localizedStringService.GetAddLocalizedTag(trackExtLocId),
+				TracklistLimitedLocId = edition.TracklistLimitedLocId ?? localizedStringService.GetAddLocalizedTag(trackLimLocId),
 				Assets = new()
 				{
 					ProductGroupBundle = edition.ProductGroupBundle
@@ -144,15 +144,15 @@ public class BundleService
 		{
 			Type = "jdplus",
 			DisplayPriority = 0, // Will be updated later
-			GroupLocId = 0,
+			GroupLocId = localizedStringService.GetLocalizedTag(0)!,
 			Name = "SUBSCRIPTION_JD+",
 			ProductIds = [],
-			SongsCountLocId = 0,
-			GroupDescriptionLocId = localizedStringService.GetAddLocalizedTag("Access 350+ songs when you subscribe to our extended catalogue").OasisIdInt,
+			SongsCountLocId = localizedStringService.GetLocalizedTag(0)!,
+			GroupDescriptionLocId = localizedStringService.GetAddLocalizedTag("Access 350+ songs when you subscribe to our extended catalogue"),
 			TracklistExtended = [],
 			TracklistLimited = [],
-			TracklistExtendedLocId = 0,
-			TracklistLimitedLocId = 0,
+			TracklistExtendedLocId = localizedStringService.GetLocalizedTag(0)!,
+			TracklistLimitedLocId = localizedStringService.GetLocalizedTag(0)!,
 			Assets = new()
 			{
 				ProductGroupBundle = "https://jd-s3.cdn.ubi.com/public/jdnext/shop/e788d44c-c411-4222-a7a8-c432e2095c50/nx/productGroupBundle/3d043eb625538fbbc750d2f90ab01872.bundle"

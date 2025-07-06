@@ -86,12 +86,11 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 				tagGuid = Guid.NewGuid();
 			}
 
-
 			Tag newTag = new()
 			{
 				TagGuid = tagGuid,
 				TagName = localizedTag.DisplayString,
-				LocId = localizedTag.OasisIdInt, // TODO: localizedTag and OasisId will be merged in the future
+				LocId = new(localizedTag),
 				Category = category
 			};
 

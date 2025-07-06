@@ -9,8 +9,8 @@ public class JsonPlaylist
 	public Guid Guid { get; set; } = Guid.Empty;
 	public string PlaylistName { get; set; } = "";
 	public string ListSource { get; set; } = "editorial";
-	public OasisTag LocalizedTitle { get; set; } = new();
-	public OasisTag LocalizedDescription { get; set; } = new();
+	public required OasisTag LocalizedTitle { get; set; }
+	public required OasisTag LocalizedDescription { get; set; }
 	public string DefaultLanguage { get; set; } = "en";
 	public string CoverUrl { get; set; } = "";
 	public string CoverDetailsUrl { get; set; } = "";
