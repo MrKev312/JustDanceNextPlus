@@ -36,7 +36,7 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 		// Add 1-33 as these are only in game and not in the server json
 		Dictionary<int, string> defaultLocalizedStrings = new()
 		{
-			{ 0, null! }, // 0 means display nothing
+			{ 0, "" }, // 0 means display nothing
   			{ 1, "OK" },
 			{ 2, "Yes" },
 			{ 3, "Continue" },
