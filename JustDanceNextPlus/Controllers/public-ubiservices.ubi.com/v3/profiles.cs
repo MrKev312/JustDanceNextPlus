@@ -18,11 +18,11 @@ public class Profiles(UserDataService userDataService) : ControllerBase
 	}
 
 	[HttpGet(Name = "GetProfiles")]
-	public IActionResult GetProfiles([FromQuery] string userIds)
+	public async Task<IActionResult> GetProfiles([FromQuery] string userIds)
 	{
 		Guid guid = Guid.Parse(userIds);
 
-		Profile? user = userDataService.GetProfileByIdAsync(guid).Result;
+		Profile? user = await userDataService.GetProfileByIdAsync(guid);
 
 		if (user == null)
 			return NotFound();

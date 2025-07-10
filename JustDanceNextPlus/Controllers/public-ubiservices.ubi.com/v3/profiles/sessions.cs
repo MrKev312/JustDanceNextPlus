@@ -14,7 +14,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v3.profiles;
 public class Sessions(UserDataService userDataService, TimingService timingService, SessionManager sessionManager) : ControllerBase
 {
 	[HttpPost(Name = "PostSessions")]
-	public IActionResult PostSessions([FromBody] JsonElement body)
+	public async Task<IActionResult> PostSessions([FromBody] JsonElement body)
 	{
 		string? nameOnPlatform = body.GetProperty("switch.nameOnPlatform").GetString();
 
@@ -44,7 +44,7 @@ public class Sessions(UserDataService userDataService, TimingService timingServi
 			return BadRequest("Invalid 'Authorization' header in request");
 		authorization = subject;
 
-		Profile? userData = userDataService.GetProfileByTicketAsync(authorization).Result;
+		Profile? userData = await userDataService.GetProfileByTicketAsync(authorization);
 
 		if (userData == null)
 		{
@@ -57,8 +57,9 @@ public class Sessions(UserDataService userDataService, TimingService timingServi
 				}
 			};
 
-			Guid id = userDataService.GenerateAddProfileAsync(userData).Result;
-			userData = userDataService.GetProfileByIdAsync(id).Result!;
+			Guid id = await userDataService.GenerateAddProfileAsync(userData);
+			userData = await userDataService.GetProfileByIdAsync(id) 
+				?? throw new InvalidOperationException("Failed to retrieve newly created profile.");
 		}
 
 		// Generate a session ticket

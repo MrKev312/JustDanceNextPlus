@@ -10,7 +10,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.progression.v1;
 public class ProgressionInfo(SessionManager sessionManager, UserDataService userDataService) : ControllerBase
 {
 	[HttpGet(Name = "GetProgressionInfo")]
-	public IActionResult GetProgressionInfo()
+	public async Task<IActionResult> GetProgressionInfo()
 	{
 		// Get the session id from the request headers
 		string? sessionId = Request.Headers["ubi-sessionid"];
@@ -27,7 +27,7 @@ public class ProgressionInfo(SessionManager sessionManager, UserDataService user
 		if (session == null)
 			return Unauthorized();
 
-		Profile? profile = userDataService.GetProfileByIdAsync(session.PlayerId).Result;
+		Profile? profile = await userDataService.GetProfileByIdAsync(session.PlayerId);
 
 		return Ok(profile);
 	}

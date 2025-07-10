@@ -13,9 +13,6 @@ using Microsoft.Extensions.Options;
 
 using Scalar.AspNetCore;
 
-using System.Text.Encodings.Web;
-using System.Text.Json;
-
 namespace JustDanceNextPlus;
 
 public class Program

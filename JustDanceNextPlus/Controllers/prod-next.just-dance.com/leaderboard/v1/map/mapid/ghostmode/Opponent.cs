@@ -10,7 +10,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.leaderboard.v1.
 public class Opponent(UserDataService userDataService, SessionManager sessionManager) : ControllerBase
 {
 	[HttpPost]
-	public IActionResult Post([FromRoute] Guid mapId)
+	public async Task<IActionResult> Post([FromRoute] Guid mapId)
 	{
 		// Grab the session token from the request
 		string? sessionToken = Request.Headers["ubi-sessionid"].ToString();
@@ -29,7 +29,7 @@ public class Opponent(UserDataService userDataService, SessionManager sessionMan
 		Guid userProfile = session.PlayerId;
 
 		// Get the leaderboard for the mapId
-		Leaderboard leaderboard = userDataService.GetRandomOpponentAsync(mapId, userProfile).Result;
+		Leaderboard leaderboard = await userDataService.GetRandomOpponentAsync(mapId, userProfile);
 
 		// Return the leaderboard
 		return Ok(leaderboard);

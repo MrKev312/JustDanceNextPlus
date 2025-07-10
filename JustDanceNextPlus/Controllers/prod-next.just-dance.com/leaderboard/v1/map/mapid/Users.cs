@@ -12,10 +12,10 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.leaderboard.v1.
 public class Users(UserDataService userDataService) : ControllerBase
 {
 	[HttpPost]
-	public IActionResult Post([FromRoute] Guid mapId, [FromBody] RequestBody userIds)
+	public async Task<IActionResult> Post([FromRoute] Guid mapId, [FromBody] RequestBody userIds)
 	{
 		// Get the profiles of the users
-		Leaderboard leaderboard = userDataService.GetLeaderboardFromIdsAsync(mapId, userIds.Users).Result;
+		Leaderboard leaderboard = await userDataService.GetLeaderboardFromIdsAsync(mapId, userIds.Users);
 
 		// Return the profiles
 		return Ok(leaderboard);

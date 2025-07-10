@@ -10,7 +10,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.leaderboard.v1.
 public class Around(UserDataService userDataService, SessionManager sessionManager) : ControllerBase
 {
 	[HttpGet]
-	public IActionResult Get([FromRoute] Guid mapId, [FromQuery] int limit = 3)
+	public async Task<IActionResult> Get([FromRoute] Guid mapId, [FromQuery] int limit = 3)
 	{
 		// Get the session id
 		string? sessionIdString = Request.Headers["ubi-sessionid"];
@@ -26,7 +26,7 @@ public class Around(UserDataService userDataService, SessionManager sessionManag
 			return Unauthorized();
 
 		// Get the leaderboard for the mapId
-		Leaderboard leaderboard = userDataService.GetLeaderboardAroundAsync(mapId, session.PlayerId, limit).Result;
+		Leaderboard leaderboard = await userDataService.GetLeaderboardAroundAsync(mapId, session.PlayerId, limit);
 
 		// Return the leaderboard
 		return Ok(leaderboard);
