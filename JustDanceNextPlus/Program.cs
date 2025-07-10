@@ -4,10 +4,12 @@ using JustDanceNextPlus.JustDanceClasses.GraphQL;
 using JustDanceNextPlus.Services;
 using JustDanceNextPlus.Utilities;
 
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Options;
 
 using Scalar.AspNetCore;
 
@@ -119,24 +121,8 @@ public class Program
 		}
 
 		// Add MVC with custom JSON options.
-		builder.Services.AddMvc()
-			.AddJsonOptions(options =>
-			{
-				ServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
-				TagIdConverter oasisTagConverter = serviceProvider.GetRequiredService<TagIdConverter>();
-				GuidTagConverter guidTagConverter = serviceProvider.GetRequiredService<GuidTagConverter>();
-				MapTagConverter mapTagConverter = serviceProvider.GetRequiredService<MapTagConverter>();
-				MapTagListConverter mapTagListConverter = serviceProvider.GetRequiredService<MapTagListConverter>();
-
-				options.JsonSerializerOptions.Converters.Add(oasisTagConverter);
-				options.JsonSerializerOptions.Converters.Add(guidTagConverter);
-				options.JsonSerializerOptions.Converters.Add(mapTagConverter);
-				options.JsonSerializerOptions.Converters.Add(mapTagListConverter);
-
-				options.JsonSerializerOptions.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
-				options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-				options.JsonSerializerOptions.WriteIndented = true;
-			});
+		builder.Services.AddSingleton<IConfigureOptions<JsonOptions>, ConfigureJsonOptions>();
+		builder.Services.AddMvc();
 	}
 
 	private static void InitializeDatabase(WebApplication app)
