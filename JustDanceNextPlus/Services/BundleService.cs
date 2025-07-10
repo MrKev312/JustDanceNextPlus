@@ -28,7 +28,7 @@ public class BundleService : ILoadService
 		this.jsonSettingsService = jsonSettingsService;
 		this.localizedStringService = localizedStringService;
 
-		Task.WaitAll(LoadData());
+		LoadData().GetAwaiter().GetResult();
 	}
 
 	public ShopConfig ShopConfig { get; private set; } = new();
