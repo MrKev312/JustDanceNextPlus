@@ -10,7 +10,7 @@ public class UserDataService(
 	UserDataContext dbContext,
 	ILogger<UserDataService> logger)
 {
-	public async Task<Profile?> GetProfileByIdAsync(Guid id)
+	public async ValueTask<Profile?> GetProfileByIdAsync(Guid id)
 	{
 		Profile? profile = await dbContext.Profiles.FindAsync(id);
 
@@ -29,17 +29,17 @@ public class UserDataService(
 		return profile;
 	}
 
-	public async Task<Profile?> GetProfileByTicketAsync(string ticket)
+	public async ValueTask<Profile?> GetProfileByTicketAsync(string ticket)
 	{
 		return await dbContext.Profiles.FirstOrDefaultAsync(p => p.Ticket == ticket);
 	}
 
-	public async Task<bool> HasJustDanceProfileAsync(Guid id)
+	public async ValueTask<bool> HasJustDanceProfileAsync(Guid id)
 	{
 		return await dbContext.Profiles.AnyAsync(p => p.Id == id);
 	}
 
-	public async Task<Guid> GenerateAddProfileAsync(Profile profile)
+	public async ValueTask<Guid> GenerateAddProfileAsync(Profile profile)
 	{
 		Guid id = profile.Id;
 
@@ -54,7 +54,7 @@ public class UserDataService(
 		return id;
 	}
 
-	public async Task<bool> AddProfileAsync(Profile profile)
+	public async ValueTask<bool> AddProfileAsync(Profile profile)
 	{
 		if (profile.Id == Guid.Empty || profile.Dancercard.Id == Guid.Empty)
 			return false;
@@ -67,7 +67,7 @@ public class UserDataService(
 		return true;
 	}
 
-	public async Task<bool> UpdateProfileAsync(Profile profile)
+	public async ValueTask<bool> UpdateProfileAsync(Profile profile)
 	{
 		dbContext.Profiles.Update(profile);
 		try
@@ -83,7 +83,7 @@ public class UserDataService(
 	}
 
 	// Map leaderboard
-	public async Task<Leaderboard> GetLeaderboardByMapIdAsync(Guid mapId, long limit, long offset)
+	public async ValueTask<Leaderboard> GetLeaderboardByMapIdAsync(Guid mapId, long limit, long offset)
 	{
 		List<MapStats> highScores = await dbContext.HighScores
 			.Where(hs => hs.MapId == mapId)
@@ -122,7 +122,7 @@ public class UserDataService(
 		return leaderboard;
 	}
 
-	public async Task<Leaderboard> GetLeaderboardAroundAsync(Guid mapId, Guid userId, int limit = 3)
+	public async ValueTask<Leaderboard> GetLeaderboardAroundAsync(Guid mapId, Guid userId, int limit = 3)
 	{
 		// Pre-fetch profiles and their dancer card names in one query to avoid multiple async calls
 		List<MapStats> highScoresWithNames = await dbContext.HighScores
@@ -177,7 +177,7 @@ public class UserDataService(
 		return leaderboard;
 	}
 
-	public async Task<Leaderboard> GetLeaderboardFromIdsAsync(Guid mapId, List<Guid> userIds)
+	public async ValueTask<Leaderboard> GetLeaderboardFromIdsAsync(Guid mapId, List<Guid> userIds)
 	{
 		List<MapStats> highScores = await dbContext.HighScores
 			.Where(hs => hs.MapId == mapId && userIds.Contains(hs.ProfileId))
@@ -208,7 +208,7 @@ public class UserDataService(
 		return leaderboard;
 	}
 
-	public async Task<Leaderboard> GetRandomOpponentAsync(Guid mapId, Guid playerId)
+	public async ValueTask<Leaderboard> GetRandomOpponentAsync(Guid mapId, Guid playerId)
 	{
 		// Get a random high score
 		MapStats? randomHighScore = dbContext.HighScores
@@ -246,7 +246,7 @@ public class UserDataService(
 	}
 
 	// Playlist leaderboard
-	public async Task<Leaderboard> GetPlaylistLeaderboardByPlaylistIdAsync(Guid playlistId, long limit, long offset)
+	public async ValueTask<Leaderboard> GetPlaylistLeaderboardByPlaylistIdAsync(Guid playlistId, long limit, long offset)
 	{
 		List<PlaylistStats> highScores = await dbContext.PlaylistHighScores
 			.Where(ph => ph.PlaylistId == playlistId)
@@ -284,7 +284,7 @@ public class UserDataService(
 		return leaderboard;
 	}
 
-	public async Task<Leaderboard> GetPlaylistLeaderboardAroundAsync(Guid playlistId, Guid userId, int limit = 3)
+	public async ValueTask<Leaderboard> GetPlaylistLeaderboardAroundAsync(Guid playlistId, Guid userId, int limit = 3)
 	{
 		// Pre-fetch profiles and their dancer card names in one query to avoid multiple async calls
 		List<PlaylistStats> highScoresWithNames = await dbContext.PlaylistHighScores
@@ -335,7 +335,7 @@ public class UserDataService(
 		return leaderboard;
 	}
 
-	public async Task<Leaderboard> GetPlaylistLeaderboardFromIdsAsync(Guid playlistId, List<Guid> userIds)
+	public async ValueTask<Leaderboard> GetPlaylistLeaderboardFromIdsAsync(Guid playlistId, List<Guid> userIds)
 	{
 		List<PlaylistStats> highScores = await dbContext.PlaylistHighScores
 			.Where(ph => ph.PlaylistId == playlistId && userIds.Contains(ph.ProfileId))
@@ -365,20 +365,20 @@ public class UserDataService(
 	}
 
 	// Map scores
-	public async Task<List<MapStats>> GetHighScoresByProfileIdAsync(Guid profileId)
+	public async ValueTask<List<MapStats>> GetHighScoresByProfileIdAsync(Guid profileId)
 	{
 		return await dbContext.HighScores
 			.Where(hs => hs.ProfileId == profileId)
 			.ToListAsync();
 	}
 
-	public async Task<MapStats?> GetHighScoreByProfileIdAndMapIdAsync(Guid profileId, Guid mapId)
+	public async ValueTask<MapStats?> GetHighScoreByProfileIdAndMapIdAsync(Guid profileId, Guid mapId)
 	{
 		return await dbContext.HighScores
 			.FirstOrDefaultAsync(hs => hs.ProfileId == profileId && hs.MapId == mapId);
 	}
 
-	public async Task<(bool Success, bool IsNewHighScore)> UpdateHighScoreAsync(HighscorePerformance highScore, int score, Guid playerId, Guid mapId)
+	public async ValueTask<(bool Success, bool IsNewHighScore)> UpdateHighScoreAsync(HighscorePerformance highScore, int score, Guid playerId, Guid mapId)
 	{
 		if (playerId == Guid.Empty || mapId == Guid.Empty)
 			return (false, false);
@@ -437,20 +437,20 @@ public class UserDataService(
 	}
 
 	// Playlist scores
-	public async Task<List<PlaylistStats>> GetPlaylistHighScoresByProfileIdAsync(Guid profileId)
+	public async ValueTask<List<PlaylistStats>> GetPlaylistHighScoresByProfileIdAsync(Guid profileId)
 	{
 		return await dbContext.PlaylistHighScores
 			.Where(ph => ph.ProfileId == profileId)
 			.ToListAsync();
 	}
 
-	public async Task<PlaylistStats?> GetPlaylistHighScoreByProfileIdAndPlaylistIdAsync(Guid profileId, Guid playlistId)
+	public async ValueTask<PlaylistStats?> GetPlaylistHighScoreByProfileIdAndPlaylistIdAsync(Guid profileId, Guid playlistId)
 	{
 		return await dbContext.PlaylistHighScores
 			.FirstOrDefaultAsync(ph => ph.ProfileId == profileId && ph.PlaylistId == playlistId);
 	}
 
-	public async Task<(bool Success, bool IsNewHighScore)> UpdatePlaylistHighScoreAsync(PlaylistStats playlistStats, int score, Guid playerId, Guid playlistId)
+	public async ValueTask<(bool Success, bool IsNewHighScore)> UpdatePlaylistHighScoreAsync(PlaylistStats playlistStats, int score, Guid playerId, Guid playlistId)
 	{
 		if (playerId == Guid.Empty || playlistId == Guid.Empty)
 			return (false, false);
