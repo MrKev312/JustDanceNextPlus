@@ -286,50 +286,47 @@ public class UserDataService(
 
 	public async ValueTask<Leaderboard> GetPlaylistLeaderboardAroundAsync(Guid playlistId, Guid userId, int limit = 3)
 	{
-		// Pre-fetch profiles and their dancer card names in one query to avoid multiple async calls
-		List<PlaylistStats> highScoresWithNames = await dbContext.PlaylistHighScores
+		// Step 1: Get the user's score for the playlist.
+		int userScore = await dbContext.PlaylistHighScores
+			.Where(ph => ph.PlaylistId == playlistId && ph.ProfileId == userId)
+			.Select(ph => ph.HighScore)
+			.FirstOrDefaultAsync();
+
+		if (userScore == 0) // User has no score for this playlist.
+		{
+			// Fallback: return the top of the leaderboard.
+			return await GetPlaylistLeaderboardByPlaylistIdAsync(playlistId, limit, 0);
+		}
+
+		// Step 2: Find the user's rank by counting players with a better score.
+		int userRank = await dbContext.PlaylistHighScores
+			.CountAsync(ph => ph.PlaylistId == playlistId && ph.HighScore > userScore);
+
+		// Step 3: Calculate the correct offset to fetch the players around the user.
+		int offset = Math.Max(0, userRank - (limit / 2));
+
+		// Step 4: Fetch only the small, required slice of the leaderboard.
+		List<PlaylistStats> surroundingScores = await dbContext.PlaylistHighScores
 			.Where(ph => ph.PlaylistId == playlistId)
-			.Join(dbContext.Profiles,
-				ph => ph.ProfileId,
-				p => p.Id,
-				(ph, p) => new
-				{
-					ph.ProfileId,
-					ph.HighScore,
-					DancerCardName = p.Dancercard.Name
-				})
-			.OrderByDescending(ph => ph.HighScore)
-			.ThenBy(ph => ph.DancerCardName)
-			.Select(ph => new PlaylistStats
-			{
-				ProfileId = ph.ProfileId,
-				HighScore = ph.HighScore
-			})
+			.Join(dbContext.Profiles, ph => ph.ProfileId, p => p.Id, (ph, p) => new { HighScore = ph, ProfileName = p.Dancercard.Name })
+			.OrderByDescending(x => x.HighScore.HighScore)
+			.ThenBy(x => x.ProfileName)
+			.Skip(offset)
+			.Take(limit)
+			.Select(x => x.HighScore)
 			.ToListAsync();
 
-		int userIndex = highScoresWithNames.FindIndex(ph => ph.ProfileId == userId);
-
-		List<PlaylistStats> surroundingScores = [.. highScoresWithNames
-			.Skip(Math.Max(0, userIndex - (limit / 2)))
-			.Take(limit)];
-
-		Leaderboard leaderboard = new()
+		// Step 5: Build the final response object.
+		Leaderboard leaderboard = new() { Count = surroundingScores.Count };
+		for (int i = 0; i < surroundingScores.Count; i++)
 		{
-			Count = surroundingScores.Count
-		};
-
-		foreach (PlaylistStats highScore in surroundingScores)
-		{
-			long position = await dbContext.PlaylistHighScores
-				.Where(ph => ph.PlaylistId == playlistId && ph.HighScore > highScore.HighScore)
-				.CountAsync() + 1;
-			ScoreDetails newScore = new()
+			PlaylistStats highScore = surroundingScores[i];
+			leaderboard.Scores.Add(new ScoreDetails
 			{
 				ProfileId = highScore.ProfileId,
 				Score = highScore.HighScore,
-				Position = position
-			};
-			leaderboard.Scores.Add(newScore);
+				Position = offset + i + 1 // Calculate position directly from the offset.
+			});
 		}
 
 		return leaderboard;
