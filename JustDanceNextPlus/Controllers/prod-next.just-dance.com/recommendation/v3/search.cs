@@ -53,81 +53,72 @@ public class Search(MapService mapService) : ControllerBase
 		uint relevance = 0;
 
 		string fullSongTitle = song.Title;
-		if (song.DanceVersionLocId.Name != null)
+		if (!string.IsNullOrWhiteSpace(song.DanceVersionLocId.Name))
 			fullSongTitle += " " + song.DanceVersionLocId.Name;
 
-		// Bool for partial match
 		bool partialMatchTitle = fullSongTitle.Contains(searchInput, StringComparison.OrdinalIgnoreCase);
 		bool partialMatchArtist = song.Artist.Contains(searchInput, StringComparison.OrdinalIgnoreCase);
 
-		// Helper function to check if two strings are one character off (including insertions/deletions)
-		static bool IsOneCharOff(ReadOnlySpan<char> s1, ReadOnlySpan<char> s2)
-		{
-			int len1 = s1.Length;
-			int len2 = s2.Length;
-
-			// If the length difference is greater than 1, it's more than one char off
-			if (Math.Abs(len1 - len2) > 1)
-				return false;
-
-			int mismatchCount = 0;
-			int i = 0, j = 0;
-
-			// Walk through both strings and count mismatches
-			while (i < len1 && j < len2)
-			{
-				if (char.ToLower(s1[i]) != char.ToLower(s2[j]))
-				{
-					mismatchCount++;
-					if (mismatchCount > 1)
-						return false;
-
-					// If lengths differ, move the pointer of the longer string ahead
-					if (len1 > len2)
-						i++;
-					else if (len2 > len1)
-						j++;
-					else
-					{
-						i++;
-						j++;
-					}
-				}
-				else
-				{
-					i++;
-					j++;
-				}
-			}
-
-			// If one string is longer, count that as an additional mismatch
-			if (i < len1 || j < len2)
-				mismatchCount++;
-
-			return mismatchCount == 1;
-		}
-
-		// Exact year match
 		if (uint.TryParse(searchInput, out uint searchNumber) && song.OriginalJDVersion == searchNumber)
 			relevance += 100;
 
-		// Title matches
+		// Title checks
 		if (partialMatchTitle && searchInput.Length == fullSongTitle.Length)
-			relevance += 10; // Exact title match
-		if (partialMatchTitle)
-			relevance += 7; // Partial title match
-		else if (IsOneCharOff(searchInput, fullSongTitle))
-			relevance += 5; // One character off from title
+			relevance += 10;
+		else if (partialMatchTitle)
+			relevance += 7;
+		else if (IsWithinAllowedEditDistance(searchInput, fullSongTitle) || IsPartialWordMatch(searchInput, fullSongTitle))
+			relevance += 5;
 
-		// Artist matches
+		// Artist checks
 		if (partialMatchArtist && searchInput.Length == song.Artist.Length)
-			relevance += 5; // Exact artist match
-		else if (IsOneCharOff(searchInput, song.Artist))
-			relevance += 2; // One character off from artist
+			relevance += 5;
+		else if (IsWithinAllowedEditDistance(searchInput, song.Artist) || IsPartialWordMatch(searchInput, song.Artist))
+			relevance += 2;
 		if (partialMatchArtist)
-			relevance += 1; // Partial artist match
+			relevance += 1;
 
 		return relevance;
+	}
+
+	static bool IsPartialWordMatch(string input, string title)
+	{
+		var words = title.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+		return words.Any(word =>
+			word.StartsWith(input, StringComparison.OrdinalIgnoreCase) ||
+			IsWithinAllowedEditDistance(input, word));
+	}
+
+	static bool IsWithinAllowedEditDistance(string s1, string s2)
+	{
+		int dist = LevenshteinDistance(s1.ToLowerInvariant(), s2.ToLowerInvariant());
+		int maxLen = Math.Max(s1.Length, s2.Length);
+		int maxAllowed = Math.Max(1, maxLen / 10); // at least 1, at most 10% of length
+		return dist >= 1 && dist <= maxAllowed;
+	}
+
+	static int LevenshteinDistance(string s, string t)
+	{
+		int n = s.Length;
+		int m = t.Length;
+		int[,] d = new int[n + 1, m + 1];
+
+		for (int i = 0; i <= n; i++) d[i, 0] = i;
+		for (int j = 0; j <= m; j++) d[0, j] = j;
+
+		for (int i = 1; i <= n; i++)
+		{
+			for (int j = 1; j <= m; j++)
+			{
+				int cost = (s[i - 1] == t[j - 1]) ? 0 : 1;
+				d[i, j] = Math.Min(
+					Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
+					d[i - 1, j - 1] + cost
+				);
+			}
+		}
+
+		return d[n, m];
 	}
 }
 
