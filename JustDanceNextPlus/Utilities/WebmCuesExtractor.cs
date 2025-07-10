@@ -1,10 +1,10 @@
-﻿using System.Text;
+﻿using System.Buffers.Binary;
+using System.Text;
 
 namespace JustDanceNextPlus.Utilities;
 
 static class WebmCuesExtractor
 {
-	// Simplified version that only gets the Cues info
 	public static WebmData GetCuesInfo(string filePath)
 	{
 		using FileStream stream = new(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, options: FileOptions.Asynchronous);
@@ -16,29 +16,25 @@ static class WebmCuesExtractor
 
 		try
 		{
-			using BinaryReader reader = new(stream, Encoding.UTF8, leaveOpen: true);
-			SkipElement(reader); // Skip the first element
-			SkipElement(reader, false); // Skip the second element without skipping the data
+			SkipElement(stream);        // Skip first element
+			SkipElement(stream, false); // Skip second, leave position
 
 			while (true)
 			{
-				// Store position before reading the element ID
-				long elementIdPos = reader.BaseStream.Position;
+				long elementIdPos = stream.Position;
 
-				long elementId = ReadVInt(reader, true);
-				long dataSize = ReadVInt(reader);
+				long elementId = ReadVInt(stream, out int idLength, isID: true);
+				long dataSize = ReadVInt(stream, out int sizeLength);
 
-				// Add the size of the element ID and data size ints to the total data size
-				long infoSize = reader.BaseStream.Position - elementIdPos;
+				long infoSize = idLength + sizeLength;
 
-				if (elementId == 0x1549A966) // Info element
+				if (elementId == 0x1549A966) // Info
 				{
-					data.Duration = ExtractDuration(reader, dataSize);
+					data.Duration = ExtractDuration(stream, dataSize);
 					data.Bitrate = (long)(8 * stream.Length / data.Duration);
 				}
-				else if (elementId == 0x1C53BB6B) // Cues element
+				else if (elementId == 0x1C53BB6B) // Cues
 				{
-					// Add the size of everything before the Cues element to the total data size
 					dataSize += infoSize + elementIdPos;
 
 					data.Start = elementIdPos;
@@ -47,66 +43,95 @@ static class WebmCuesExtractor
 					return data;
 				}
 
-				reader.BaseStream.Seek(dataSize, SeekOrigin.Current);
+				stream.Seek(dataSize, SeekOrigin.Current);
 			}
 		}
 		catch (Exception ex)
 		{
-			// Handle exceptions (e.g., log the error)
 			throw new InvalidOperationException("Failed to extract cues info.", ex);
 		}
 	}
 
-	private static void SkipElement(BinaryReader reader, bool skipData = true)
+	private static void SkipElement(Stream stream, bool skipData = true)
 	{
-		_ = ReadVInt(reader, true);
-		long dataSize = ReadVInt(reader);
+		_ = ReadVInt(stream, out _); // element ID
+		long dataSize = ReadVInt(stream, out _);
 
 		if (skipData)
-			reader.BaseStream.Seek(dataSize, SeekOrigin.Current);
+			stream.Seek(dataSize, SeekOrigin.Current);
 	}
 
-	private static double ExtractDuration(BinaryReader reader, long dataSize)
+	private static double ExtractDuration(Stream stream, long dataSize)
 	{
-		long pos = reader.BaseStream.Position;
+		long pos = stream.Position;
+		long end = pos + dataSize;
+
 		long floatId;
 		long floatDataSize;
 
 		do
 		{
-			floatId = ReadVInt(reader, true);
-			floatDataSize = ReadVInt(reader);
+			floatId = ReadVInt(stream, out _);
+			floatDataSize = ReadVInt(stream, out _);
+
 			if (floatId != 0x4489)
-				reader.BaseStream.Seek(floatDataSize, SeekOrigin.Current);
-		} while (floatId != 0x4489 && reader.BaseStream.Position < pos + dataSize);
+				stream.Seek(floatDataSize, SeekOrigin.Current);
 
-		byte[] bytes = reader.ReadBytes(8);
-		Array.Reverse(bytes);
-		double duration = BitConverter.ToDouble(bytes, 0) / 1000;
+		} while (floatId != 0x4489 && stream.Position < end);
 
-		reader.BaseStream.Seek(pos, SeekOrigin.Begin);
+		Span<byte> buffer = stackalloc byte[8];
+		stream.ReadExactly(buffer[..8]);
+		double duration = BitConverter.Int64BitsToDouble(BinaryPrimitives.ReadInt64BigEndian(buffer)) / 1000;
+
+		stream.Seek(pos, SeekOrigin.Begin);
 		return duration;
 	}
 
-	private static long ReadVInt(BinaryReader reader, bool isID = false)
+	private static long ReadVInt(Stream stream, out int length, bool isID = false)
 	{
-		byte firstByte = reader.ReadByte();
-		byte mask = 0b10000000;
-		long value = isID ? firstByte : firstByte & (mask - 1);
-		int length = 1;
+		Span<byte> firstByteSpan = stackalloc byte[1];
+		stream.ReadExactly(firstByteSpan);
+		byte firstByte = firstByteSpan[0];
+
+		byte mask = 0b1000_0000;
+		length = 1;
 
 		while ((firstByte & mask) == 0)
 		{
-			length++;
 			mask >>= 1;
-			value <<= 8;
-			value |= reader.ReadByte();
+			length++;
 		}
+
+		if (length > 8)
+			throw new InvalidOperationException("Invalid VINT length");
+
+		Span<byte> buffer = stackalloc byte[8];
+		buffer[0] = firstByte;
+
+		if (length > 1)
+			stream.ReadExactly(buffer[1..length]);
+
+		long value = isID ? firstByte : firstByte & (mask - 1);
+
+		for (int i = 1; i < length; i++)
+			value = (value << 8) | buffer[i];
 
 		if (!isID && length != 1)
 			value &= (1L << ((8 * length) - length)) - 1;
 
 		return value;
+	}
+
+	private static void ReadExactly(this Stream stream, Span<byte> buffer)
+	{
+		int totalRead = 0;
+		while (totalRead < buffer.Length)
+		{
+			int read = stream.Read(buffer[totalRead..]);
+			if (read == 0)
+				throw new EndOfStreamException("Unexpected end of stream while reading bytes.");
+			totalRead += read;
+		}
 	}
 }
 
