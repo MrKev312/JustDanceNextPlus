@@ -3,6 +3,8 @@ using JustDanceNextPlus.Services;
 
 using Microsoft.AspNetCore.Mvc;
 
+using System.Buffers;
+
 namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.recommendation.v3;
 
 [ApiController]
@@ -97,28 +99,56 @@ public class Search(MapService mapService) : ControllerBase
 		return dist >= 1 && dist <= maxAllowed;
 	}
 
+	/// <summary>
+	/// Calculates the Levenshtein distance between two strings, which is a measure of the minimum number  of
+	/// single-character edits (insertions, deletions, or substitutions) required to transform one string into the other.
+	/// </summary>
+	/// <param name="s">The first string to compare. Cannot be <see langword="null"/>.</param>
+	/// <param name="t">The second string to compare. Cannot be <see langword="null"/>.</param>
+	/// <returns>The Levenshtein distance between the two strings. Returns 0 if both strings are identical.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if either <paramref name="s"/> or <paramref name="t"/> is <see langword="null"/>.</exception>
 	static int LevenshteinDistance(string s, string t)
 	{
+		ArgumentNullException.ThrowIfNull(s);
+		ArgumentNullException.ThrowIfNull(t);
+
 		int n = s.Length;
 		int m = t.Length;
-		int[,] d = new int[n + 1, m + 1];
 
-		for (int i = 0; i <= n; i++) d[i, 0] = i;
-		for (int j = 0; j <= m; j++) d[0, j] = j;
+		// Rent a 1D array to simulate a 2D array
+		int[] d = ArrayPool<int>.Shared.Rent((n + 1) * (m + 1));
 
-		for (int i = 1; i <= n; i++)
+		try
 		{
-			for (int j = 1; j <= m; j++)
-			{
-				int cost = (s[i - 1] == t[j - 1]) ? 0 : 1;
-				d[i, j] = Math.Min(
-					Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
-					d[i - 1, j - 1] + cost
-				);
-			}
-		}
+			// Initialize the first column (deletions)
+			for (int i = 0; i <= n; i++)
+				d[i * (m + 1)] = i;
+			// Initialize the first row (insertions)
+			for (int j = 0; j <= m; j++)
+				d[j] = j;
 
-		return d[n, m];
+			// Compute the rest of the matrix
+			for (int i = 1; i <= n; i++)
+			{
+				for (int j = 1; j <= m; j++)
+				{
+					// Cost is 0 if characters match, 1 otherwise
+					int cost = (s[i - 1] == t[j - 1]) ? 0 : 1;
+					// Take the minimum of deletion, insertion, or substitution
+					d[(i * (m + 1)) + j] = Math.Min(
+						Math.Min(d[((i - 1) * (m + 1)) + j] + 1, d[(i * (m + 1)) + j - 1] + 1),
+						d[((i - 1) * (m + 1)) + j - 1] + cost
+					);
+				}
+			}
+
+			// The result is in the bottom-right cell
+			return d[(n * (m + 1)) + m];
+		}
+		finally
+		{
+			ArrayPool<int>.Shared.Return(d);
+		}
 	}
 }
 
