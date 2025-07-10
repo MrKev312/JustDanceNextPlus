@@ -14,7 +14,10 @@ public class Levels(IOptions<PathSettings> pathSettings) : ControllerBase
 	{
 		string levelsJson = Path.Combine(pathSettings.Value.JsonsPath, "levels.json");
 		if (System.IO.File.Exists(levelsJson))
-			return Ok(System.IO.File.ReadAllText(levelsJson));
+		{
+			FileStream stream = System.IO.File.OpenRead(levelsJson);
+			return File(stream, "application/json");
+		}
 
 		LevelsConfig levelsConfig = new();
 

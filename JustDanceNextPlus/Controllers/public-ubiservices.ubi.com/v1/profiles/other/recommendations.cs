@@ -15,9 +15,13 @@ public class Recommendations(IOptions<PathSettings> pathSettings) : ControllerBa
 	{
 		string recommendationsJson = Path.Combine(pathSettings.Value.JsonsPath, "recommendations.json");
 
-		return System.IO.File.Exists(recommendationsJson)
-			? Ok(System.IO.File.ReadAllText(recommendationsJson))
-			: Ok(new RecommendationsResponse());
+		if (System.IO.File.Exists(recommendationsJson))
+		{
+			FileStream stream = System.IO.File.OpenRead(recommendationsJson);
+			return File(stream, "application/json");
+		}
+
+		return Ok(new RecommendationsResponse());
 	}
 }
 

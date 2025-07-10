@@ -12,6 +12,12 @@ public class V0(IOptions<PathSettings> pathSettings) : ControllerBase
 	[HttpGet]
 	public IActionResult GetActivityPage()
 	{
-		return Ok(System.IO.File.ReadAllText(Path.Combine(pathSettings.Value.JsonsPath, "activity-page.json")));
+		string filePath = Path.Combine(pathSettings.Value.JsonsPath, "activity-page.json");
+
+		if (!System.IO.File.Exists(filePath))
+			return NotFound();
+
+		FileStream stream = System.IO.File.OpenRead(filePath);
+		return File(stream, "application/json");
 	}
 }

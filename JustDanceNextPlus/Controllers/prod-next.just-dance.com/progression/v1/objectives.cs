@@ -15,9 +15,14 @@ public class Objectives(IOptions<PathSettings> pathSettings) : ControllerBase
 	public IActionResult GetObjectives()
 	{
 		string objectivesJson = Path.Combine(pathSettings.Value.JsonsPath, "objectives.json");
-		return System.IO.File.Exists(objectivesJson)
-			? Ok(System.IO.File.ReadAllText(objectivesJson))
-			: Ok(new Tasks());
+
+		if (System.IO.File.Exists(objectivesJson))
+		{
+			FileStream stream = System.IO.File.OpenRead(objectivesJson);
+			return File(stream, "application/json");
+		}
+
+		return Ok(new Tasks());
 	}
 }
 

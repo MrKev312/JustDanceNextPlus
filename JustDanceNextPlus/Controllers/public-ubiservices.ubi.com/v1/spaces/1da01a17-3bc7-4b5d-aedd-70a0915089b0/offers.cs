@@ -13,9 +13,14 @@ public class Offers(IOptions<PathSettings> pathSettings) : ControllerBase
 	public IActionResult GetOffers()
 	{
 		string offersJson = Path.Combine(pathSettings.Value.JsonsPath, "offers.json");
-		return System.IO.File.Exists(offersJson)
-			? Ok(System.IO.File.ReadAllText(offersJson))
-			: Ok("""
+
+		if (System.IO.File.Exists(offersJson))
+		{
+			FileStream stream = System.IO.File.OpenRead(offersJson);
+			return File(stream, "application/json");
+		}
+
+		return Ok("""
 			{
 				"offers": []
 			}

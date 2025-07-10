@@ -54,9 +54,6 @@ public class BundleService : ILoadService
 			return;
 		}
 
-		//string json = File.ReadAllText(bundlesPath);
-		//json = json.Replace("{{cdnUrl}}", urlSettings.Value.CDNUrl);
-		//List<JustDanceEdition>? db = JsonSerializer.Deserialize<List<JustDanceEdition>>(json, jsonSettingsService.PrettyPascalFormat);
 		using FileStream fileStream = File.OpenRead(bundlesPath);
 		List<JustDanceEdition>? db = await JsonSerializer.DeserializeAsync<List<JustDanceEdition>>(fileStream, jsonSettingsService.PrettyPascalFormat);
 

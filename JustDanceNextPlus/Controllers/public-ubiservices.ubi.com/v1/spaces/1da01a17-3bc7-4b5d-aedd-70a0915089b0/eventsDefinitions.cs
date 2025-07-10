@@ -13,9 +13,14 @@ public class EventsDefinitions(IOptions<PathSettings> pathSettings) : Controller
 	public IActionResult GetEventsDefinitions()
 	{
 		string eventsDefinitionsJson = Path.Combine(pathSettings.Value.JsonsPath, "eventsDefinitions.json");
-		return System.IO.File.Exists(eventsDefinitionsJson)
-			? Ok(System.IO.File.ReadAllText(eventsDefinitionsJson))
-			: Ok(new EventsDefinitionsResponse());
+
+		if (System.IO.File.Exists(eventsDefinitionsJson))
+		{
+			FileStream stream = System.IO.File.OpenRead(eventsDefinitionsJson);
+			return File(stream, "application/json");
+		}
+
+		return Ok(new EventsDefinitionsResponse());
 	}
 }
 
