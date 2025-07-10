@@ -7,6 +7,7 @@
 		<HotChocolateImplicitUsings>disable</HotChocolateImplicitUsings>
 		<UserSecretsId>0e061590-f3c9-40ee-a7bc-ad3ce28c2c4e</UserSecretsId>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<SustainedLowLatency>true</SustainedLowLatency>
 	</PropertyGroup>
 
 	<ItemGroup>
