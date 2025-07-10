@@ -14,9 +14,6 @@ public class Search(MapService mapService) : ControllerBase
 	[HttpPost(Name = "Search")]
 	public IActionResult ProcessSearch([FromBody] SearchRequest searchRequest)
 	{
-		// Normalize search input for comparison
-		string normalizedSearchInput = searchRequest.SearchInput.ToLower();
-
 		// Search the database
 		var searchSongResult = mapService.SongDB.Songs
 			.AsParallel()
@@ -24,7 +21,7 @@ public class Search(MapService mapService) : ControllerBase
 			{
 				Song = song,
 				// Calculate relevance with higher score for exact artist match
-				Relevance = GetRelevance(normalizedSearchInput, song.Value)
+				Relevance = GetRelevance(searchRequest.SearchInput, song.Value)
 			})
 			.Where(song => song.Relevance > 0)
 			.OrderByDescending(song => song.Relevance)
@@ -93,7 +90,7 @@ public class Search(MapService mapService) : ControllerBase
 
 	static bool IsWithinAllowedEditDistance(string s1, string s2)
 	{
-		int dist = LevenshteinDistance(s1.ToLowerInvariant(), s2.ToLowerInvariant());
+		int dist = LevenshteinDistance(s1, s2);
 		int maxLen = Math.Max(s1.Length, s2.Length);
 		int maxAllowed = Math.Max(1, maxLen / 10); // at least 1, at most 10% of length
 		return dist >= 1 && dist <= maxAllowed;
@@ -133,7 +130,7 @@ public class Search(MapService mapService) : ControllerBase
 				for (int j = 1; j <= m; j++)
 				{
 					// Cost is 0 if characters match, 1 otherwise
-					int cost = (s[i - 1] == t[j - 1]) ? 0 : 1;
+					int cost = (char.ToLowerInvariant(s[i - 1]) == char.ToLowerInvariant(t[j - 1])) ? 0 : 1;
 					// Take the minimum of deletion, insertion, or substitution
 					d[(i * (m + 1)) + j] = Math.Min(
 						Math.Min(d[((i - 1) * (m + 1)) + j] + 1, d[(i * (m + 1)) + j - 1] + 1),
