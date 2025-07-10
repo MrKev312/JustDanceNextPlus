@@ -11,36 +11,41 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.recommendation.
 [Route("recommendation/v3/search")]
 public class Search(MapService mapService) : ControllerBase
 {
+	readonly struct SongRelevance(KeyValuePair<Guid, JustDanceSongDBEntry> song, uint relevance)
+	{
+		public readonly KeyValuePair<Guid, JustDanceSongDBEntry> Song = song;
+		public readonly uint Relevance = relevance;
+	}
+
 	[HttpPost(Name = "Search")]
 	public IActionResult ProcessSearch([FromBody] SearchRequest searchRequest)
 	{
 		// Search the database
 		var searchSongResult = mapService.SongDB.Songs
 			.AsParallel()
-			.Select(song => new
-			{
-				Song = song,
+			.Select(song => new SongRelevance(
+                song,
 				// Calculate relevance with higher score for exact artist match
-				Relevance = GetRelevance(searchRequest.SearchInput, song.Value)
-			})
+				GetRelevance(searchRequest.SearchInput, song.Value)
+            ))
 			.Where(song => song.Relevance > 0)
 			.OrderByDescending(song => song.Relevance)
 			.ThenBy(song => song.Song.Value.Title)
 			.ThenBy(song => song.Song.Value.MapName)
 			.ToArray();
 
-		Guid[] mapIds = [.. searchSongResult.Select(song => song.Song.Key)];
-		string[] codeNames = [.. searchSongResult.Select(song => song.Song.Value.ParentMapName)];
-		string[] artistIds = [.. searchSongResult.Select(song => song.Song.Value.Artist).Distinct()];
+		List<Guid> mapIds = [.. searchSongResult.Select(song => song.Song.Key)];
+		List<string> codeNames = [.. searchSongResult.Select(song => song.Song.Value.ParentMapName)];
+		List<string> artistIds = [.. searchSongResult.Select(song => song.Song.Value.Artist).Distinct()];
 
 		// Create the response
 		SearchResponse searchResults = new()
 		{
-			Mapnames = [.. mapIds],
-			Maps = [.. mapIds],
+			Mapnames = mapIds,
+			Maps = mapIds,
 			Playlists = [],
-			Artists = [.. artistIds],
-			Codenames = [.. codeNames],
+			Artists = artistIds,
+			Codenames = codeNames,
 			Order = ["artists", "mapnames", "playlists"]
 		};
 
