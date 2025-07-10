@@ -96,6 +96,11 @@ static class WebmCuesExtractor
 		if (firstByte == -1)
 			throw new EndOfStreamException();
 
+		// Fast-path 1-byte VInt (common case)
+		if ((firstByte & 0b10000000) != 0)
+			return isID ? firstByte : firstByte & 0b01111111;
+
+		// Slow-path for multi-byte VInt
 		byte mask = 0b10000000;
 		long value = isID ? firstByte : firstByte & (mask - 1);
 		int length = 1;
