@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Buffers.Binary;
+using System.Text;
 
 namespace JustDanceNextPlus.Utilities;
 
@@ -80,9 +81,10 @@ static class WebmCuesExtractor
 				reader.BaseStream.Seek(floatDataSize, SeekOrigin.Current);
 		} while (floatId != 0x4489 && reader.BaseStream.Position < pos + dataSize);
 
-		byte[] bytes = reader.ReadBytes(8);
-		Array.Reverse(bytes);
-		double duration = BitConverter.ToDouble(bytes, 0) / 1000;
+		Span<byte> buffer = stackalloc byte[8];
+		if (reader.Read(buffer) != 8)
+			throw new InvalidDataException("Failed to read duration bytes.");
+		double duration = BitConverter.Int64BitsToDouble(BinaryPrimitives.ReadInt64BigEndian(buffer)) / 1000;
 
 		reader.BaseStream.Seek(pos, SeekOrigin.Begin);
 		return duration;
