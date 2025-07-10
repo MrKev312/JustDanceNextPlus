@@ -9,12 +9,12 @@ namespace JustDanceNextPlus.Services;
 
 public class LockerItemsService(JsonSettingsService jsonSettingsService,
 	IOptions<PathSettings> pathSettings,
-	ILogger<LockerItemsService> logger)
+	ILogger<LockerItemsService> logger) : ILoadService
 {
 	public Dictionary<string, List<LockerItem>> LockerItems { get; } = [];
 	public List<Guid> LockerItemIds { get; } = [];
 
-	public void LoadData()
+	public async Task LoadData()
 	{
 		string path = pathSettings.Value.LockerItemsPath;
 
@@ -28,8 +28,8 @@ public class LockerItemsService(JsonSettingsService jsonSettingsService,
 
 		foreach (string file in files)
 		{
-			string json = File.ReadAllText(file);
-			List<LockerItem> lockerItems = JsonSerializer.Deserialize<List<LockerItem>>(json, jsonSettingsService.PrettyPascalFormat) ?? [];
+			using FileStream fileStream = File.OpenRead(file);
+			List<LockerItem> lockerItems = await JsonSerializer.DeserializeAsync<List<LockerItem>>(fileStream, jsonSettingsService.PrettyPascalFormat) ?? [];
 
 			if (lockerItems.Count == 0)
 			{

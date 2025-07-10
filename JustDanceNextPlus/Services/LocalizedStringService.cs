@@ -8,7 +8,7 @@ using System.Text.Json;
 namespace JustDanceNextPlus.Services;
 
 public class LocalizedStringService(ILogger<LocalizedStringService> logger,
-	IServiceProvider serviceProvider)
+	IServiceProvider serviceProvider) : ILoadService
 {
 	public LocalizedStringDatabase Database { get; private set; } = new();
 
@@ -29,7 +29,7 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 		new LocalizedString(33, "Cancel")
 	];
 
-	public void LoadData()
+	public async Task LoadData()
 	{
 		IOptions<PathSettings> settings = serviceProvider.GetRequiredService<IOptions<PathSettings>>();
 		JsonSettingsService jsonSettingsService = serviceProvider.GetRequiredService<JsonSettingsService>();
@@ -41,8 +41,8 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 			return;
 		}
 
-		string json = File.ReadAllText(path);
-		LocalizedStringDatabase? db = JsonSerializer.Deserialize<LocalizedStringDatabase>(json, jsonSettingsService.PrettyPascalFormat);
+		using FileStream fileStream = File.OpenRead(path);
+		LocalizedStringDatabase? db = await JsonSerializer.DeserializeAsync<LocalizedStringDatabase>(fileStream, jsonSettingsService.PrettyPascalFormat);
 
 		if (db == null)
 		{

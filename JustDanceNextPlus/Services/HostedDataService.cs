@@ -7,20 +7,21 @@ public class HostedDataService(IServiceProvider serviceProvider) : IHostedServic
 		using IServiceScope scope = serviceProvider.CreateScope();
 
 		// First load the string service
-		LocalizedStringService localizedStringService = scope.ServiceProvider.GetRequiredService<LocalizedStringService>();
-		localizedStringService.LoadData();
+		await CallLoadData<LocalizedStringService>(scope);
 		// Then load the tag service, which uses the string service
-		TagService tagService = scope.ServiceProvider.GetRequiredService<TagService>();
-		tagService.LoadData();
+		await CallLoadData<TagService>(scope);
 		// Then load the map service, which uses the tag service and bundle service
-		MapService dataService = scope.ServiceProvider.GetRequiredService<MapService>();
-		await dataService.LoadDataAsync();
+		await CallLoadData<MapService>(scope);
 		// Then load the playlists, which uses the map service
-		PlaylistService playlistService = scope.ServiceProvider.GetRequiredService<PlaylistService>();
-		playlistService.LoadData();
+		await CallLoadData<PlaylistService>(scope);
 		// Then load the locker items, which uses the string service
-		LockerItemsService lockerItemsService = scope.ServiceProvider.GetRequiredService<LockerItemsService>();
-		lockerItemsService.LoadData();
+		await CallLoadData<LockerItemsService>(scope);
+	}
+
+	static async Task CallLoadData<T>(IServiceScope scope) where T : ILoadService
+	{
+		T service = scope.ServiceProvider.GetRequiredService<T>();
+		await service.LoadData();
 	}
 
 	public Task StopAsync(CancellationToken cancellationToken)

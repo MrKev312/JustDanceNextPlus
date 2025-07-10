@@ -7,11 +7,11 @@ using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
 
-public class TagService(LocalizedStringService localizedStringService, IServiceProvider serviceProvider, ILogger<TagService> logger)
+public class TagService(LocalizedStringService localizedStringService, IServiceProvider serviceProvider, ILogger<TagService> logger) : ILoadService
 {
 	public TagDatabase TagDatabase { get; private set; } = new();
 
-	public void LoadData()
+	public async Task LoadData()
 	{
 		IOptions<PathSettings> pathSettings = serviceProvider.GetRequiredService<IOptions<PathSettings>>();
 		JsonSettingsService jsonSettingsService = serviceProvider.GetRequiredService<JsonSettingsService>();
@@ -24,8 +24,8 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 			return;
 		}
 
-		string json = File.ReadAllText(tagsPath);
-		TagDatabase? db = JsonSerializer.Deserialize<TagDatabase>(json, jsonSettingsService.PrettyPascalFormat);
+		using FileStream fileStream = File.OpenRead(tagsPath);
+		TagDatabase? db = await JsonSerializer.DeserializeAsync<TagDatabase>(fileStream, jsonSettingsService.PrettyPascalFormat);
 
 		if (db == null)
 		{

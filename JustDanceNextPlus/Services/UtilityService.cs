@@ -8,6 +8,7 @@ using JustDanceNextPlus.Utilities;
 
 using Microsoft.Extensions.Options;
 
+using System.Buffers;
 using System.Globalization;
 using System.Text.Json;
 
@@ -17,7 +18,7 @@ public class UtilityService(JsonSettingsService jsonSettingsService, IOptions<Ur
 {
 	private readonly UrlSettings urlSettings = urlOptions.Value;
 
-	public async Task<LocalJustDanceSongDBEntry> LoadMapDBEntryAsync(string mapFolder)
+	public async ValueTask<LocalJustDanceSongDBEntry> LoadMapDBEntryAsync(string mapFolder)
 	{
 		try
 		{
@@ -25,9 +26,9 @@ public class UtilityService(JsonSettingsService jsonSettingsService, IOptions<Ur
 			if (!File.Exists(songInfoPath))
 				throw new FileNotFoundException($"Missing SongInfo.json in {mapFolder}");
 
-			string songInfoJson = await File.ReadAllTextAsync(songInfoPath);
-			LocalJustDanceSongDBEntry songInfo = JsonSerializer.Deserialize<LocalJustDanceSongDBEntry>(songInfoJson, jsonSettingsService.PrettyPascalFormat)
-				?? throw new JsonException("Failed to deserialize SongInfo.json");
+			using FileStream fs = File.OpenRead(songInfoPath);
+			LocalJustDanceSongDBEntry songInfo = (await JsonSerializer.DeserializeAsync<LocalJustDanceSongDBEntry>(fs, jsonSettingsService.PrettyPascalFormat))
+				?? throw new InvalidOperationException($"Failed to deserialize SongInfo.json in {mapFolder}");
 
 			songInfo.Assets = new();
 

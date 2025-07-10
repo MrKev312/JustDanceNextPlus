@@ -8,18 +8,13 @@ using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
 
-public class BundleService
+public class BundleService : ILoadService
 {
-	readonly ILogger<BundleService> logger;
-	readonly IOptions<PathSettings> pathSettings;
-	readonly IOptions<UrlSettings> urlSettings;
-	readonly JsonSettingsService jsonSettingsService;
-	readonly LocalizedStringService localizedStringService;
-
-	public ShopConfig ShopConfig { get; private set; } = new();
-
-	public static List<string> Claims { get; set; } = [];
-	public static List<string> ClaimDisplayPriority { get; set; } = [];
+	private readonly ILogger<BundleService> logger;
+	private readonly IOptions<PathSettings> pathSettings;
+	private readonly IOptions<UrlSettings> urlSettings;
+	private readonly JsonSettingsService jsonSettingsService;
+	private readonly LocalizedStringService localizedStringService;
 
 	public BundleService(ILogger<BundleService> logger,
 		IOptions<PathSettings> pathSettings,
@@ -33,18 +28,23 @@ public class BundleService
 		this.jsonSettingsService = jsonSettingsService;
 		this.localizedStringService = localizedStringService;
 
-		LoadShopConfig();
+		Task.WaitAll(LoadData());
 	}
 
-	public void LoadShopConfig()
+	public ShopConfig ShopConfig { get; private set; } = new();
+
+	public static List<string> Claims { get; set; } = [];
+	public static List<string> ClaimDisplayPriority { get; set; } = [];
+
+	public async Task LoadData()
 	{
 		// First load the shop config
-		LoadData();
+		await LoadBundleDatabase();
 		// Then initialize the claims
 		InitializeClaims();
 	}
 
-	private void LoadData()
+	private async Task LoadBundleDatabase()
 	{ 
 		// Load the bundles
 		string bundlesPath = Path.Combine(pathSettings.Value.JsonsPath, "JustDanceEditions.json");
@@ -54,15 +54,20 @@ public class BundleService
 			return;
 		}
 
-		string json = File.ReadAllText(bundlesPath);
-		json = json.Replace("{{cdnUrl}}", urlSettings.Value.CDNUrl);
-		List<JustDanceEdition>? db = JsonSerializer.Deserialize<List<JustDanceEdition>>(json, jsonSettingsService.PrettyPascalFormat);
+		//string json = File.ReadAllText(bundlesPath);
+		//json = json.Replace("{{cdnUrl}}", urlSettings.Value.CDNUrl);
+		//List<JustDanceEdition>? db = JsonSerializer.Deserialize<List<JustDanceEdition>>(json, jsonSettingsService.PrettyPascalFormat);
+		using FileStream fileStream = File.OpenRead(bundlesPath);
+		List<JustDanceEdition>? db = await JsonSerializer.DeserializeAsync<List<JustDanceEdition>>(fileStream, jsonSettingsService.PrettyPascalFormat);
 
 		if (db == null)
 		{
 			logger.LogWarning("Bundle database could not be loaded");
 			return;
 		}
+
+		// Now we replace the CDN URL in the assets
+		db.ForEach(edition => edition.ProductGroupBundle = edition.ProductGroupBundle.Replace("{{cdnUrl}}", urlSettings.Value.CDNUrl));
 
 		ShopConfig = ParseDatabase(db);
 

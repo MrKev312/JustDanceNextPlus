@@ -13,11 +13,11 @@ namespace JustDanceNextPlus.Services;
 public class PlaylistService(MapService mapService,
 	JsonSettingsService jsonSettingsService,
 	IOptions<PathSettings> pathSettings,
-	ILogger<PlaylistService> logger)
+	ILogger<PlaylistService> logger) : ILoadService
 {
 	public PlaylistDB PlaylistDB { get; set; } = new();
 
-	public void LoadData()
+	public async Task LoadData()
 	{
 		string path = pathSettings.Value.PlaylistPath;
 
@@ -31,8 +31,8 @@ public class PlaylistService(MapService mapService,
 
 		foreach (string file in files)
 		{
-			string json = File.ReadAllText(file);
-			JsonPlaylist? playlist = JsonSerializer.Deserialize<JsonPlaylist>(json, jsonSettingsService.PrettyPascalFormat);
+			using FileStream fileStream = File.OpenRead(file);
+			JsonPlaylist? playlist = await JsonSerializer.DeserializeAsync<JsonPlaylist>(fileStream, jsonSettingsService.PrettyPascalFormat);
 
 			if (playlist == null)
 			{
