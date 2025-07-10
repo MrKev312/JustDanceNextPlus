@@ -12,6 +12,23 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 {
 	public LocalizedStringDatabase Database { get; private set; } = new();
 
+	// Localization strings that are only available in the game and are not needed to be localized
+	static readonly List<LocalizedString> defaultLocalizedStrings =
+	[
+		new LocalizedString(0, ""),
+		new LocalizedString(1, "OK"),
+		new LocalizedString(2, "Yes"),
+		new LocalizedString(3, "Continue"),
+		new LocalizedString(4, "Back"),
+		new LocalizedString(23, "Playlists we think you'll like"),
+		new LocalizedString(25, "Songs you might like"),
+		new LocalizedString(26, "Everybody loves [VAR:TAGNAME]"),
+		new LocalizedString(28, "Everybody's playing them"),
+		new LocalizedString(30, "Sweat Longer"),
+		new LocalizedString(32, "No"),
+		new LocalizedString(33, "Cancel")
+	];
+
 	public void LoadData()
 	{
 		IOptions<PathSettings> settings = serviceProvider.GetRequiredService<IOptions<PathSettings>>();
@@ -33,36 +50,6 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 			return;
 		}
 
-		// Add 1-33 as these are only in game and not in the server json
-		Dictionary<int, string> defaultLocalizedStrings = new()
-		{
-			{ 0, "" }, // 0 means display nothing
-  			{ 1, "OK" },
-			{ 2, "Yes" },
-			{ 3, "Continue" },
-			{ 4, "Back" },
-			{ 23, "Playlists we think you'll like" },
-			{ 25, "Songs you might like" },
-			{ 26, "Everybody loves [VAR:TAGNAME]" },
-			{ 28, "Everybody's playing them" },
-			{ 30, "Sweat Longer" },
-			{ 32, "No" },
-			{ 33, "Cancel" }
-		};
-
-		foreach (var kvp in defaultLocalizedStrings)
-		{
-			if (db.LocalizedStrings.Any(ls => ls.OasisIdInt == kvp.Key))
-				continue;
-			db.LocalizedStrings.Add(new LocalizedString
-			{
-				OasisIdInt = kvp.Key,
-				LocaleCode = "en-US",
-				DisplayString = kvp.Value,
-				LocalizedStringId = Guid.NewGuid()
-			});
-		}
-
 		// Sort the localized strings by OasisIdInt
 		db.LocalizedStrings = [.. db.LocalizedStrings.OrderBy(ls => ls.OasisIdInt)];
 
@@ -72,23 +59,26 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 
 	public LocalizedString? GetLocalizedTag(string text)
 	{
-		return Database.LocalizedStrings
-			.Where(ls => ls.DisplayString == text)
-			.FirstOrDefault();
+		return defaultLocalizedStrings
+			.FirstOrDefault(ls => ls.DisplayString == text)
+			?? Database.LocalizedStrings
+			.FirstOrDefault(ls => ls.DisplayString == text);
 	}
 
 	public LocalizedString? GetLocalizedTag(Guid id)
 	{
-		return Database.LocalizedStrings
-			.Where(ls => ls.LocalizedStringId == id)
-			.FirstOrDefault();
+		return defaultLocalizedStrings
+			.FirstOrDefault(ls => ls.LocalizedStringId == id)
+			?? Database.LocalizedStrings
+			.FirstOrDefault(ls => ls.LocalizedStringId == id);
 	}
 
 	public LocalizedString? GetLocalizedTag(int id)
 	{
-		return Database.LocalizedStrings
-			.Where(ls => ls.OasisIdInt == id)
-			.FirstOrDefault();
+		return defaultLocalizedStrings
+			.FirstOrDefault(ls => ls.OasisIdInt == id)
+			?? Database.LocalizedStrings
+			.FirstOrDefault(ls => ls.OasisIdInt == id);
 	}
 
 	public LocalizedString GetAddLocalizedTag(string text)
@@ -125,6 +115,8 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 			};
 
 			Database.LocalizedStrings.Add(localizedTag);
+
+			Database.LocalizedStrings = [.. Database.LocalizedStrings.OrderBy(ls => ls.OasisIdInt)];
 
 			return localizedTag;
 		}

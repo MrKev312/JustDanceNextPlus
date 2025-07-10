@@ -19,6 +19,16 @@ public class OasisTag(LocalizedString localizedString)
 
 public class LocalizedString
 {
+	public LocalizedString() { }
+
+	public LocalizedString(int oasisIdInt, string displayString)
+	{
+		OasisIdInt = oasisIdInt;
+		LocaleCode = "en-US"; // Default locale code
+		DisplayString = displayString;
+		LocalizedStringId = Guid.NewGuid(); // Generate a new GUID for the localized string
+	}
+
 	[JsonIgnore]
 	public int OasisIdInt { get; set; }
 	public string OasisId { get => OasisIdInt.ToString(); set => OasisIdInt = int.Parse(value); }
