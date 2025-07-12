@@ -21,7 +21,7 @@ With every update, you risk **permanently losing ALL stored data**.
 2. Place the json files under database/config/ (you will need to dump these yourself for legal reasons, I will not provide them nor will I tell you how to get them)
 3. Add maps under the wwwroot/maps/ folder
 4. Run the server
-5. Run a proxy or custom dns server to redirect your game to the server (you will need to disable ssl certification on the switch to do this, can be found [here](https://github.com/misson20000/exefs_patches), 18.0.0 and above [here](https://github.com/borntohonk/exefs_patches)
+5. Run a proxy or custom dns server to redirect your game to the server (you will need to disable ssl certification on the switch to do this, can be found [here](https://github.com/misson20000/exefs_patches), if your system version is not supported you can use the script found [here](https://github.com/misson20000/exefs_patches/pull/41#issuecomment-2423585536)
 6. Enjoy!
 
 ## Needed JSONs
