@@ -95,9 +95,6 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 		{
 			bool addedToPack = false;
 
-			// If it doesn't have the jdplus tag, add it.
-			song.Value.Tags.Add("jdplus");
-
 			foreach (string tag in song.Value.Tags)
 			{
 				if (tag != "jdplus" && !tag.StartsWith("songpack_") && !tag.StartsWith("Music_Pack_"))
@@ -142,8 +139,8 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 				addedToPack = true;
 			}
 
-			// Else just add it to the jdplus pack
-			if (!addedToPack)
+			// If the song is not added to any pack, add it to the jdplus pack
+			if (!addedToPack && !song.Value.Tags.Contains("jdplus"))
 			{
 				song.Value.Tags.Add("jdplus");
 
