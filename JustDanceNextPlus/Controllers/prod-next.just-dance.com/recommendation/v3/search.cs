@@ -93,11 +93,11 @@ public class Search(MapService mapService) : ControllerBase
 			IsWithinAllowedEditDistance(input, word));
 	}
 
-	static bool IsWithinAllowedEditDistance(string s1, string s2)
+	static bool IsWithinAllowedEditDistance(ReadOnlySpan<char> s1, ReadOnlySpan<char> s2)
 	{
-		int dist = LevenshteinDistance(s1, s2);
 		int maxLen = Math.Max(s1.Length, s2.Length);
 		int maxAllowed = Math.Max(1, maxLen / 10); // at least 1, at most 10% of length
+		int dist = LevenshteinDistance(s1, s2, maxAllowed);
 		return dist >= 1 && dist <= maxAllowed;
 	}
 
@@ -107,51 +107,58 @@ public class Search(MapService mapService) : ControllerBase
 	/// </summary>
 	/// <param name="s">The first string to compare. Cannot be <see langword="null"/>.</param>
 	/// <param name="t">The second string to compare. Cannot be <see langword="null"/>.</param>
+	/// <param name="maxDistance">The maximum distance to calculate. If the distance exceeds this value, the method returns <see cref="int.MaxValue"/>.</param>
 	/// <returns>The Levenshtein distance between the two strings. Returns 0 if both strings are identical.</returns>
 	/// <exception cref="ArgumentNullException">Thrown if either <paramref name="s"/> or <paramref name="t"/> is <see langword="null"/>.</exception>
-	static int LevenshteinDistance(string s, string t)
+	static int LevenshteinDistance(ReadOnlySpan<char> s, ReadOnlySpan<char> t, int maxDistance = int.MaxValue)
 	{
-		ArgumentNullException.ThrowIfNull(s);
-		ArgumentNullException.ThrowIfNull(t);
+		if (Math.Abs(s.Length - t.Length) > maxDistance)
+			return int.MaxValue;
 
 		int n = s.Length;
 		int m = t.Length;
 
-		// Rent a 1D array to simulate a 2D array
-		int[] d = ArrayPool<int>.Shared.Rent((n + 1) * (m + 1));
+		Span<int> prev = stackalloc int[m + 1];
+		Span<int> curr = stackalloc int[m + 1];
 
-		try
+		for (int j = 0; j <= m; j++)
+			prev[j] = j;
+
+		for (int i = 1; i <= n; i++)
 		{
-			// Initialize the first column (deletions)
-			for (int i = 0; i <= n; i++)
-				d[i * (m + 1)] = i;
-			// Initialize the first row (insertions)
-			for (int j = 0; j <= m; j++)
-				d[j] = j;
+			curr[0] = i;
+			char sc = char.ToLowerInvariant(s[i - 1]);
 
-			// Compute the rest of the matrix
-			for (int i = 1; i <= n; i++)
+			int minInRow = curr[0];
+
+			for (int j = 1; j <= m; j++)
 			{
-				for (int j = 1; j <= m; j++)
-				{
-					// Cost is 0 if characters match, 1 otherwise
-					int cost = (char.ToLowerInvariant(s[i - 1]) == char.ToLowerInvariant(t[j - 1])) ? 0 : 1;
-					// Take the minimum of deletion, insertion, or substitution
-					d[(i * (m + 1)) + j] = Math.Min(
-						Math.Min(d[((i - 1) * (m + 1)) + j] + 1, d[(i * (m + 1)) + j - 1] + 1),
-						d[((i - 1) * (m + 1)) + j - 1] + cost
-					);
-				}
+				char tc = char.ToLowerInvariant(t[j - 1]);
+				int cost = (sc == tc) ? 0 : 1;
+
+				curr[j] = Math.Min(
+					Math.Min(curr[j - 1] + 1, prev[j] + 1),
+					prev[j - 1] + cost
+				);
+
+				minInRow = Math.Min(minInRow, curr[j]);
 			}
 
-			// The result is in the bottom-right cell
-			return d[(n * (m + 1)) + m];
+			if (minInRow > maxDistance)
+				return int.MaxValue;
+
+			// Swap prev and curr arrays for next iteration
+			Span<int> temp = prev;
+			prev = curr;
+			curr = temp;
+
+			// Clear the current row for the next iteration
+			curr.Clear();
 		}
-		finally
-		{
-			ArrayPool<int>.Shared.Return(d);
-		}
+
+		return prev[m];
 	}
+
 }
 
 public class SearchRequest
