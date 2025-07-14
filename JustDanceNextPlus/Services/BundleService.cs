@@ -146,7 +146,7 @@ public class BundleService : ILoadService
 		{
 			Type = "jdplus",
 			DisplayPriority = 0, // Will be updated later
-			GroupLocId = localizedStringService.GetLocalizedTag(0)!,
+			GroupLocId = localizedStringService.GetLocalizedTag(8747)!,
 			Name = "SUBSCRIPTION_JD+",
 			ProductIds = [],
 			SongsCountLocId = localizedStringService.GetLocalizedTag(0)!,

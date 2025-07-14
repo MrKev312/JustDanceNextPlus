@@ -13,6 +13,7 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 	public LocalizedStringDatabase Database { get; private set; } = new();
 
 	// Localization strings that are only available in the game and are not needed to be localized
+	// TODO: Add all missing localized strings from the game
 	static readonly List<LocalizedString> defaultLocalizedStrings =
 	[
 		new LocalizedString(0, ""),
@@ -26,7 +27,8 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 		new LocalizedString(28, "Everybody's playing them"),
 		new LocalizedString(30, "Sweat Longer"),
 		new LocalizedString(32, "No"),
-		new LocalizedString(33, "Cancel")
+		new LocalizedString(33, "Cancel"),
+		new LocalizedString(8747, "Just\u00A0Dance+")
 	];
 
 	public async Task LoadData()
