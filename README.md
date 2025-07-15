@@ -58,7 +58,7 @@ maps/
 	  <video_preview_file>.webm (max of 4 versions)
 ```
 where all files except for the `SongInfo.json` are named after their md5 hash.
-The following powershell script can automate this process:
+The following powershell script can automate this process, run it within your maps folder:
 ```powershell
 Get-ChildItem -Path . -Recurse -Include *.webm,*.bundle,*.opus | ForEach-Object -Parallel {
     $hash = Get-FileHash $_.FullName -Algorithm MD5
