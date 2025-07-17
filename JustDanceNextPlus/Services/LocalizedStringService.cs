@@ -11,6 +11,7 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 	IServiceProvider serviceProvider) : ILoadService
 {
 	public LocalizedStringDatabase Database { get; private set; } = new();
+	int? highestId = null;
 
 	// Localization strings that are only available in the game and are not needed to be localized
 	// TODO: Add all missing localized strings from the game
@@ -106,11 +107,12 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 			}
 			while (Database.LocalizedStrings.Any(ls => ls.LocalizedStringId == guid));
 
-			int index = Database.LocalizedStrings.Count;
+			highestId ??= Database.LocalizedStrings.Max(ls => ls.OasisIdInt); // Get the highest ID in the database
+			highestId++; // Increment it for the new localized string
 
 			localizedTag = new()
 			{
-				OasisIdInt = index + 10000,
+				OasisIdInt = highestId.Value,
 				LocaleCode = "en-US",
 				DisplayString = text,
 				LocalizedStringId = guid

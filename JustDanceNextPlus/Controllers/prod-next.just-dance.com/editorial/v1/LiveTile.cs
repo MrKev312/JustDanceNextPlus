@@ -1,8 +1,6 @@
-﻿using JustDanceNextPlus.Configuration;
-using JustDanceNextPlus.Services;
+﻿using JustDanceNextPlus.Services;
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 
 namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.editorial.v1;
 
