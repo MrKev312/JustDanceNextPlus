@@ -120,8 +120,6 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 
 			Database.LocalizedStrings.Add(localizedTag);
 
-			Database.LocalizedStrings = [.. Database.LocalizedStrings.OrderBy(ls => ls.OasisIdInt)];
-
 			return localizedTag;
 		}
 	}
