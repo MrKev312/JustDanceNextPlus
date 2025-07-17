@@ -10,41 +10,47 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v3;
 public class Profiles(UserDataService userDataService) : ControllerBase
 {
 	[HttpPost(Name = "PostProfiles")]
-	public IActionResult GetProfiles([FromBody] object body)
+	public IActionResult PostProfiles([FromBody] object body)
 	{
 		string response = "{}";
-
 		return Content(response, "application/json");
 	}
 
 	[HttpGet(Name = "GetProfiles")]
 	public async Task<IActionResult> GetProfiles([FromQuery] string userIds)
 	{
-		Guid guid = Guid.Parse(userIds);
+		if (userIds == null)
+			return BadRequest("No user IDs provided.");
 
-		Profile? user = await userDataService.GetProfileByIdAsync(guid);
+		List<Guid> userIdList = [.. userIds.Split(',').Select(Guid.Parse)];
+		if (userIdList.Count == 0)
+			return BadRequest("No user IDs provided.");
 
-		if (user == null)
-			return NotFound();
+		List<PlatformProfile> profiles = [];
 
-		string response = $$"""
-			   {
-				"profiles": [{
-					"profileId": "{{guid}}",
-					"userId": "{{guid}}",
-					"platformType": "uplay",
-					"idOnPlatform": "{{guid}}",
-					"nameOnPlatform": "{{user.Dancercard.Name}}"
-				}, {
-					"profileId": "{{guid}}",
-					"userId": "{{guid}}",
-					"platformType": "switch",
-					"idOnPlatform": "f5dd2ga1258abc15",
-					"nameOnPlatform": "{{user.Dancercard.Name}}"
-				}]
+		foreach (Guid userId in userIdList)
+		{
+			Profile? profile = await userDataService.GetProfileByIdAsync(userId);
+
+			if (profile != null)
+			{
+				profiles.Add(new PlatformProfile(profile, "switch"));
+				profiles.Add(new PlatformProfile(profile, "uplay"));
 			}
-			""";
+		}
 
-		return Content(response, "application/json");
+		return Ok(new
+		{
+			profiles
+		});
+	}
+
+	public class PlatformProfile(Profile profile, string platformType = "switch")
+	{
+		public Guid ProfileId { get; set; } = profile.Id;
+		public Guid UserId { get; set; } = profile.Id;
+		public string PlatformType { get; set; } = platformType;
+		public string IdOnPlatform { get; set; } = profile.Id.ToString();
+		public string NameOnPlatform { get; set; } = profile.Dancercard.Name;
 	}
 }
