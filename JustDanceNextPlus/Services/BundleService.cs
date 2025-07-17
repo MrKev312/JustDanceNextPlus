@@ -32,11 +32,47 @@ public class BundleService : ILoadService
 	}
 
 	public ShopConfig ShopConfig { get; private set; } = new();
+	public Dictionary<Guid, LiveTile> LiveTiles { get; private set; } = [];
 
 	public static List<string> Claims { get; set; } = [];
 	public static List<string> ClaimDisplayPriority { get; set; } = [];
 
 	public async Task LoadData()
+	{
+		await Task.WhenAll(
+			LoadJustDanceBundles(),
+			LoadLiveTiles()
+		);
+	}
+
+	public async Task LoadLiveTiles()
+	{
+		string liveTilesPath = Path.Combine(pathSettings.Value.JsonsPath, "LiveTileConfig.json");
+		if (!File.Exists(liveTilesPath))
+		{
+			logger.LogInformation("Live tiles database not found, creating a new one");
+			return;
+		}
+
+		using FileStream fileStream = File.OpenRead(liveTilesPath);
+		Dictionary<Guid, LiveTile>? liveTiles = await JsonSerializer.DeserializeAsync<Dictionary<Guid, LiveTile>>(fileStream, jsonSettingsService.PrettyPascalFormat);
+		if (liveTiles == null)
+		{
+			logger.LogWarning("Live tiles database could not be loaded");
+			return;
+		}
+
+		// Replace the CDN URL in the assets
+		foreach (KeyValuePair<Guid, LiveTile> tile in liveTiles)
+		{
+			tile.Value.Assets.BackgroundImage = tile.Value.Assets.BackgroundImage.Replace("{{cdnUrl}}", urlSettings.Value.CDNUrl);
+		}
+
+		LiveTiles = liveTiles;
+		logger.LogInformation("Live tiles database loaded");
+	}
+
+	private async Task LoadJustDanceBundles()
 	{
 		// First load the shop config
 		await LoadBundleDatabase();

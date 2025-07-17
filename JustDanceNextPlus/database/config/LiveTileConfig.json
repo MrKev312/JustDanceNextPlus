@@ -1,0 +1,11 @@
+{
+  "4f598326-72d4-483d-be62-a7623746a1b4": {
+    "buttonId": "Discover the playlist",
+    "subtitleId": "Dance with the Swan",
+    "deepLink": "//jdn?sid=Details&pid=PlaylistDetailsPage_LandscapeCursor&PlaylistId=c4cdeeee-da41-4193-aa5c-f83dc5c6c57b",
+    "priority": 2,
+    "assets": {
+      "backgroundImage": "https://{{cdnUrl}}/bundles/live-tile.bundle"
+    }
+  }
+}
