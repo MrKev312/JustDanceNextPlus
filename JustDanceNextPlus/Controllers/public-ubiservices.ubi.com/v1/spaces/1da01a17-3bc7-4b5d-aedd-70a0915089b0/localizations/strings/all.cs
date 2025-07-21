@@ -1,4 +1,5 @@
 ﻿using JustDanceNextPlus.Configuration;
+using JustDanceNextPlus.Services;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
