@@ -1,4 +1,4 @@
-﻿using JustDanceNextPlus.JustDanceClasses.ActivityPage;
+﻿using JustDanceNextPlus.JustDanceClasses.Database;
 
 using System.Text.Json;
 using System.Text.Json.Serialization;

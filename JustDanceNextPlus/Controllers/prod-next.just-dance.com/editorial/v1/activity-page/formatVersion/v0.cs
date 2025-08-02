@@ -1,4 +1,4 @@
-﻿using JustDanceNextPlus.JustDanceClasses.ActivityPage;
+﻿using JustDanceNextPlus.JustDanceClasses.Database;
 using JustDanceNextPlus.Services;
 
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +13,8 @@ public class V0(ActivityPageService activityPageService) : ControllerBase
 	public IActionResult GetActivityPage()
 	{
 		ActivityPageResponse? activityPage = activityPageService.ActivityPage;
-		if (activityPage == null)
-		{
-			return NotFound();
-		}
-
-		return Ok(activityPage);
+		return activityPage == null 
+			? NotFound() 
+			: Ok(activityPage);
 	}
 }

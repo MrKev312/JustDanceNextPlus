@@ -1,5 +1,5 @@
 ﻿using JustDanceNextPlus.Configuration;
-using JustDanceNextPlus.JustDanceClasses.ActivityPage;
+using JustDanceNextPlus.JustDanceClasses.Database;
 
 using Microsoft.Extensions.Options;
 

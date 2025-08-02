@@ -2,7 +2,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace JustDanceNextPlus.JustDanceClasses.ActivityPage;
+namespace JustDanceNextPlus.JustDanceClasses.Database;
 
 public class ActivityPageResponse
 {
