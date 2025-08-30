@@ -1,5 +1,6 @@
 ﻿using JustDanceNextPlus.Utilities;
 
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.JustDanceClasses.Database;
@@ -8,7 +9,7 @@ public class ActivityPageResponse
 {
 	public Dictionary<Guid, ICategory> Categories { get; set; } = [];
 
-	public List<CategoryModifier> CategoryModifiers { get; set; } = [];
+	public List<IModifier> CategoryModifiers { get; set; } = [];
 }
 
 public interface ICategory
@@ -106,18 +107,69 @@ public class ComparedValue
 	public int Value { get; set; }
 }
 
-public class CategoryModifier
+[JsonConverter(typeof(IModifierConverter))]
+public interface IModifier
+{
+	public string Name { get; set; }
+}
+
+public class IModifierConverter : JsonConverter<IModifier>
+{
+	public override IModifier Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	{
+		if (reader.TokenType != JsonTokenType.StartObject)
+			throw new JsonException("Expected StartObject token.");
+		using JsonDocument doc = JsonDocument.ParseValue(ref reader);
+		JsonElement root = doc.RootElement;
+		string? type = root.GetProperty("name").GetString();
+		if (type == null)
+			throw new JsonException("Modifier type is missing.");
+		return type switch
+		{
+			"positionModifier" => JsonSerializer.Deserialize<PositionModifier>(root.GetRawText(), options)!,
+			"maxAmountElement" => JsonSerializer.Deserialize<MaxAmountElements>(root.GetRawText(), options)!,
+			"moreThanXElement" => JsonSerializer.Deserialize<MoreThanXElements>(root.GetRawText(), options)!,
+			_ => throw new JsonException($"Unknown modifier type: {type}"),
+		};
+	}
+	public override void Write(Utf8JsonWriter writer, IModifier value, JsonSerializerOptions options)
+	{
+		JsonSerializer.Serialize(writer, value, value.GetType(), options);
+	}
+}
+
+public class PositionModifier : IModifier
 {
 	public string ItemTypeToModify { get; set; } = string.Empty;
 
 	public string Name { get; set; } = string.Empty;
 
 	public PositionInPage Position { get; set; } = new();
+
+	public class PositionInPage
+	{
+		public Guid Id { get; set; }
+
+		public int Position { get; set; }
+	}
 }
 
-public class PositionInPage
+public class MaxAmountElements :IModifier
 {
-	public Guid Id { get; set; }
+	public string ItemTypeToFilter { get; set; } = string.Empty;
+	public string Name { get; set; } = string.Empty;
+	public MaxAmountElementValue  MaxAmountElement { get; set; } = new();
 
-	public int Position { get; set; }
+	public class MaxAmountElementValue
+	{
+		public string Type { get; set; } = string.Empty;
+		public int Value { get; set; } = 0;
+	}
+}
+
+public class MoreThanXElements : IModifier
+{
+	public string ItemTypeToModify { get; set; } = string.Empty;
+	public string Name { get; set; } = string.Empty;
+	public int Value { get; set; } = 0;
 }
