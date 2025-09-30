@@ -18,14 +18,16 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 
 	public JustDanceSongDB SongDB { get; private set; } = new(urlSettings.Value.HostUrl);
 	public Dictionary<string, Guid> MapToGuid { get; } = [];
+	public List<MapTag> RecentlyAdded { get; private set; } = [];
 
-	public async Task LoadData()
+    public async Task LoadData()
 	{
 		try
 		{
-			await LoadMapsAsync();
+            await LoadMapsAsync();
 			await LoadOffers();
-		}
+			await LoadRecentlyAddedMaps();
+        }
 		catch (Exception ex)
 		{
 			logger.LogError(ex, "Error loading data");
@@ -41,7 +43,7 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 
 		string[] mapFolders = [.. Directory.GetDirectories(settings.MapsPath).Select(x => Path.Combine(settings.MapsPath, Path.GetFileName(x)))];
 
-		var loadMapTasks = mapFolders.Select(async mapFolder =>
+        var loadMapTasks = mapFolders.Select(async mapFolder =>
 		{
 			(LocalJustDanceSongDBEntry songInfo, ContentAuthorization contentAuthorization, Dictionary<string, AssetMetadata> assetMetadata) = await LoadMapAsync(mapFolder, utilityService);
 			return new
@@ -83,7 +85,7 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 				result.SongInfo.TagIds.Add(tag);
 			}
 		}
-	}
+    }
 
 	public Task LoadOffers()
 	{
@@ -184,13 +186,49 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 		return Task.CompletedTask;
 	}
 
-	private static async Task<(LocalJustDanceSongDBEntry, ContentAuthorization, Dictionary<string, AssetMetadata>)> LoadMapAsync(string mapFolder, UtilityService utilityService)
+    Task LoadRecentlyAddedMaps()
+    {
+        // Get all maps in the maps folder and their creation time
+        var mapCreationTimes = Directory.GetDirectories(settings.MapsPath)
+            .Select(dir => (MapName: Path.GetFileName(dir), CreationTime: Directory.GetCreationTime(dir)))
+            .OrderBy(x => x.CreationTime);
+
+        Stack<(string MapName, DateTime CreationTime)> mapStack = new(mapCreationTimes);
+
+        DateTime prevDateTime = mapStack.Peek().CreationTime;
+
+		List<string> recentlyAddedCodenames = [];
+
+        // We need at least 4, and all that are within 1 hour of the last one
+        while (mapStack.Count > 0)
+        {
+            (string MapName, DateTime CreationTime) = mapStack.Pop();
+
+            if (recentlyAddedCodenames.Count >= 4 && (prevDateTime - CreationTime).TotalHours > 1)
+                break;
+
+            prevDateTime = CreationTime;
+            recentlyAddedCodenames.Add(MapName);
+        }
+
+        // Log the recently added codenames
+		logger.LogInformation("Recently added maps: {Maps}", string.Join(", ", recentlyAddedCodenames));
+
+        // Convert to song IDs, ignoring those that don't exist
+        RecentlyAdded = [.. recentlyAddedCodenames.Select(GetSongId)
+			.Where(id => id.HasValue)
+			.Select(id => id!.Value)];
+
+        return Task.CompletedTask;
+    }
+
+    private static async Task<(LocalJustDanceSongDBEntry, ContentAuthorization, Dictionary<string, AssetMetadata>)> LoadMapAsync(string mapFolder, UtilityService utilityService)
 	{
-		LocalJustDanceSongDBEntry songInfo = await utilityService.LoadMapDBEntryAsync(mapFolder);
+        LocalJustDanceSongDBEntry songInfo = await utilityService.LoadMapDBEntryAsync(mapFolder);
 		ContentAuthorization contentAuthorization = utilityService.LoadContentAuthorization(mapFolder);
 		Dictionary<string, AssetMetadata> assetMetadata = utilityService.LoadAssetMetadata(mapFolder);
 
-		return (songInfo, contentAuthorization, assetMetadata);
+        return (songInfo, contentAuthorization, assetMetadata);
 	}
 
 	public Guid? GetSongId(string mapName)

@@ -55,12 +55,12 @@ public class CarouselCategory : ICategory
 	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
 	public bool? DoNotFilterOwnership { get; set; }
 
-	public string ListSource { get; set; } = string.Empty;
+	public string ListSource { get; set; } = "editorial";
 
 	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
 	public List<Filter>? Filters { get; set; }
 
-	public string RecommendedItemType { get; set; } = string.Empty;
+	public string RecommendedItemType { get; set; } = "map";
 
 	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
 	public List<MapTag>? ItemList { get; set; }
@@ -140,9 +140,16 @@ public class IModifierConverter : JsonConverter<IModifier>
 
 public class PositionModifier : IModifier
 {
-	public string ItemTypeToModify { get; set; } = string.Empty;
+	public PositionModifier() { }
+	public PositionModifier(string type, Guid guid, int position)
+	{
+		ItemTypeToModify = type;
+        Position = new PositionInPage { Id = guid, Position = position };
+    }
 
-	public string Name { get; set; } = string.Empty;
+    public string ItemTypeToModify { get; set; } = string.Empty;
+
+	public string Name { get; set; } = "position";
 
 	public PositionInPage Position { get; set; } = new();
 

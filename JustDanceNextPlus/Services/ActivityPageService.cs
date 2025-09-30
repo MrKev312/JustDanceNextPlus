@@ -7,11 +7,13 @@ using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
 
-public class ActivityPageService(ILogger<ActivityPageService> logger, IOptions<PathSettings> pathSettings, JsonSettingsService jsonSettingsService) : ILoadService
+public class ActivityPageService(ILogger<ActivityPageService> logger,
+	IOptions<PathSettings> pathSettings, JsonSettingsService jsonSettingsService,
+	MapService mapService, LocalizedStringService localizedStringService) : ILoadService
 {
-	public ActivityPageResponse? ActivityPage { get; private set; }
+	public ActivityPageResponse ActivityPage { get; private set; } = new();
 
-	public async Task LoadData()
+    public async Task LoadData()
 	{
 		string filePath = Path.Combine(pathSettings.Value.JsonsPath, "activity-page.json");
 
@@ -24,13 +26,26 @@ public class ActivityPageService(ILogger<ActivityPageService> logger, IOptions<P
 		try
 		{
 			using FileStream openStream = File.OpenRead(filePath);
-			ActivityPage = await JsonSerializer.DeserializeAsync<ActivityPageResponse>(openStream, jsonSettingsService.PrettyPascalFormat);
-			logger.LogInformation("Successfully loaded activity page data.");
+			ActivityPage = await JsonSerializer.DeserializeAsync<ActivityPageResponse>(openStream, jsonSettingsService.PrettyPascalFormat)
+				?? throw new NullReferenceException("Deserialized ActivityPage is null");
+            logger.LogInformation("Successfully loaded activity page data.");
 		}
 		catch (Exception ex)
 		{
 			logger.LogError(ex, "Failed to load or deserialize activity-page.json.");
-			ActivityPage = null;
 		}
-	}
+
+        // Create a new category for newly added songs
+        Guid newSongsGuid = Guid.NewGuid();
+		ActivityPage?.Categories?.Add(newSongsGuid, new CarouselCategory()
+		{
+			CategoryName = "Newly Added Songs",
+			TitleId = localizedStringService.GetAddLocalizedTag("Newly Added Songs!"),
+			ItemList = mapService.RecentlyAdded,
+			DoNotFilterOwnership = false
+		});
+
+        // Create a new mofifier to put it on top
+		ActivityPage?.CategoryModifiers.Insert(0, new PositionModifier("carousel", newSongsGuid, 0));
+    }
 }
