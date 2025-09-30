@@ -45,7 +45,7 @@ public class ActivityPageService(ILogger<ActivityPageService> logger,
 			DoNotFilterOwnership = false
 		});
 
-        // Create a new mofifier to put it on top
+        // Create a new modifier to put it on top
 		ActivityPage?.CategoryModifiers.Insert(0, new PositionModifier("carousel", newSongsGuid, 0));
     }
 }
