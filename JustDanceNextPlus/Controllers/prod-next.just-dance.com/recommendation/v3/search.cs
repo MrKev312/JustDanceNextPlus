@@ -158,7 +158,6 @@ public class Search(MapService mapService) : ControllerBase
 
 		return prev[m];
 	}
-
 }
 
 public class SearchRequest

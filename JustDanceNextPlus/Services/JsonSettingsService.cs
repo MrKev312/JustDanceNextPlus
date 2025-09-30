@@ -2,6 +2,7 @@
 
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.Services;
 
@@ -16,15 +17,18 @@ public class JsonSettingsService
 		MapTagListConverter mapTagListConverter = serviceProvider.GetRequiredService<MapTagListConverter>();
 
 		// Add the JsonConverters to the options
-		PrettyPascalFormat.Converters.Add(guidTagConverter);
-		PrettyPascalFormat.Converters.Add(mapTagConverter);
-		PrettyPascalFormat.Converters.Add(tagIdConverter);
-		PrettyPascalFormat.Converters.Add(mapTagListConverter);
+		AddConverter(
+			[guidTagConverter, mapTagConverter, tagIdConverter, mapTagListConverter, 
+			new CategoryConverter()]);
+	}
 
-		ShortFormat.Converters.Add(guidTagConverter);
-		ShortFormat.Converters.Add(mapTagConverter);
-		ShortFormat.Converters.Add(tagIdConverter);
-		ShortFormat.Converters.Add(mapTagListConverter);
+	private void AddConverter(params JsonConverter[] converters)
+	{
+		foreach (JsonConverter converter in converters)
+		{
+			PrettyPascalFormat.Converters.Add(converter);
+			ShortFormat.Converters.Add(converter);
+		}
 	}
 
 	public JsonSerializerOptions PrettyPascalFormat { get; set; } = new()

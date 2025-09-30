@@ -87,6 +87,7 @@ public class Program
 		builder.Services.AddSingleton<BundleService>();
 		builder.Services.AddSingleton<PlaylistService>();
 		builder.Services.AddSingleton<LockerItemsService>();
+		builder.Services.AddSingleton<ActivityPageService>();
 		builder.Services.AddSingleton<PartyManager>();
 		builder.Services.AddSingleton<SecurityService>();
 		builder.Services.AddSingleton<SessionManager>();
