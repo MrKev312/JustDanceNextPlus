@@ -2,18 +2,13 @@
 using JustDanceNextPlus.Services;
 using JustDanceNextPlus.Utilities;
 
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 using Moq;
 
-using System;
-using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace JustDanceNextPlus.Tests.Services;
 

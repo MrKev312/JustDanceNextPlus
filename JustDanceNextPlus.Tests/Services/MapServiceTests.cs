@@ -22,6 +22,7 @@ public class MapServiceTests
     private readonly Mock<ITagService> _mockTagService;
     private readonly Mock<IBundleService> _mockBundleService;
     private readonly MapService _service;
+    private readonly string _baseMapsPath = "C:\\maps";
 
     public MapServiceTests()
     {
@@ -34,7 +35,7 @@ public class MapServiceTests
         _mockTagService = new Mock<ITagService>();
         _mockBundleService = new Mock<IBundleService>();
 
-        _mockPathSettings.Setup(o => o.Value).Returns(new PathSettings { MapsPath = "C:\\maps" });
+        _mockPathSettings.Setup(o => o.Value).Returns(new PathSettings { MapsPath = _baseMapsPath });
         _mockUrlSettings.Setup(o => o.Value).Returns(new UrlSettings { HostUrl = "http://localhost" });
 
         _mockServiceProvider.Setup(sp => sp.GetService(typeof(IUtilityService))).Returns(_mockUtilityService.Object);
@@ -131,26 +132,32 @@ public class MapServiceTests
 		// Arrange
 		Guid songId = Guid.NewGuid();
 		string mapName = "untaggedMap";
-		string mapFolder = $"C:\\maps\\{mapName}";
-        _mockFileSystem.Setup(fs => fs.GetDirectories(It.IsAny<string>())).Returns([mapName]);
+		// Use Path.Combine to create the path so it's correct on any OS
+		string mapFolder = Path.Combine(_baseMapsPath, mapName);
+
+        // Mock GetDirectories to return the base directory name, not the full path
+        _mockFileSystem.Setup(fs => fs.GetDirectories(_baseMapsPath)).Returns([mapName]);
+
+        // Setup the UtilityService mock with the correctly combined path
         _mockUtilityService.Setup(u => u.LoadMapDBEntryAsync(mapFolder))
             .ReturnsAsync(new LocalJustDanceSongDBEntry { SongID = songId, MapName = mapName, Tags = [], Artist = "Artist", TagIds = [], DanceVersionLocId = new LocalizedString(0, "") });
 
 		ProductGroup jdPlusProductGroup = new()
-		{ Type = "jdplus",
+		{
+            Type = "jdplus",
             GroupLocId = new LocalizedString(1, "JD Plus"),
             SongsCountLocId = new LocalizedString(2, "Count"),
             GroupDescriptionLocId = new LocalizedString(3, "Description"),
             TracklistExtendedLocId = new LocalizedString(4, "Extended"),
             TracklistLimitedLocId = new LocalizedString(5, "Limited")
-            };
+        };
 		Guid jdPlusGuid = Guid.NewGuid();
 
 		ShopConfig shopConfig = new();
         shopConfig.FirstPartyProductDb.ProductGroups.Add(jdPlusGuid, jdPlusProductGroup);
 
-        // FIX: Set up the mock to return the real data object from the top-level property.
         _mockBundleService.SetupGet(bs => bs.ShopConfig).Returns(shopConfig);
+        _mockBundleService.Setup(bs => bs.LoadData()).Returns(Task.CompletedTask);
 
         // Act
         await _service.LoadData(); // This will run LoadMapsAsync first, then LoadOffers

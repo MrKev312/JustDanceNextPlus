@@ -1,6 +1,5 @@
 ﻿using JustDanceNextPlus.Services;
 
-using System;
 using System.Globalization;
 
 namespace JustDanceNextPlus.Tests.Services;
