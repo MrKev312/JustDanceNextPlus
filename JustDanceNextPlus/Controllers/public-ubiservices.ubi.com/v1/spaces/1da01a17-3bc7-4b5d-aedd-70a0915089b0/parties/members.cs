@@ -6,7 +6,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.spaces._1d
 
 [ApiController]
 [Route("v1/spaces/1da01a17-3bc7-4b5d-aedd-70a0915089b0/parties/{partyID:guid}/members")]
-public class Members(PartyManager partyManager) : ControllerBase
+public class Members(IPartyManager partyManager) : ControllerBase
 {
 	[HttpGet(Name = "GetMembers")]
 	public IActionResult GetMembers([FromRoute] Guid partyID)

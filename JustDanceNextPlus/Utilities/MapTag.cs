@@ -13,7 +13,7 @@ public class MapTag
 	public static implicit operator MapTag(Guid tag) => new() { Guid = tag };
 }
 
-public class MapTagConverter(MapService mapService, ILogger<MapTagConverter> logger) : JsonConverter<MapTag>
+public class MapTagConverter(IMapService mapService, ILogger<MapTagConverter> logger) : JsonConverter<MapTag>
 {
 	public override MapTag Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
@@ -46,7 +46,7 @@ public class MapTagConverter(MapService mapService, ILogger<MapTagConverter> log
 }
 
 // Parse any IEnumerable of MapTags
-public class MapTagListConverter(MapService mapService, ILogger<MapTagListConverter> logger) : JsonConverter<List<MapTag>>
+public class MapTagListConverter(IMapService mapService, ILogger<MapTagListConverter> logger) : JsonConverter<List<MapTag>>
 {
 	public override List<MapTag>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{

@@ -6,7 +6,16 @@ using System.IdentityModel.Tokens.Jwt;
 
 namespace JustDanceNextPlus.Services;
 
-public class SessionManager(SecurityService securityService)
+public interface ISessionManager
+{
+	Session? GetSessionByNSATicket(string ticket);
+	Session? GetSessionById(Guid sessionId);
+	bool TryGetSessionById(Guid sessionId, [MaybeNullWhen(false)] out Session session);
+	Session? GetSessionByAppId(Guid appId);
+	(string ticket, Guid sessionId) GenerateSession(Guid playerId, Guid appId, string NSAToken);
+}
+
+public class SessionManager(ISecurityService securityService) : ISessionManager
 {
 	readonly ConcurrentDictionary<string, Guid> NSATicketToSessionId = new();
 

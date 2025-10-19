@@ -7,7 +7,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v3;
 
 [ApiController]
 [Route("v3/profiles")]
-public class Profiles(UserDataService userDataService) : ControllerBase
+public class Profiles(IUserDataService userDataService) : ControllerBase
 {
 	[HttpPost(Name = "PostProfiles")]
 	public IActionResult PostProfiles([FromBody] object body)

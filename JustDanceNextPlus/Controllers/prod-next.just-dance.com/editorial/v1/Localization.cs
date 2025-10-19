@@ -11,7 +11,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.editorial.v1;
 
 [ApiController]
 [Route("editorial/v1/All.en-US.json.gz")]
-public class Localization(LocalizedStringService localizedStringService) : ControllerBase
+public class Localization(ILocalizedStringService localizedStringService) : ControllerBase
 {
 	readonly JsonSerializerOptions options = new()
 	{

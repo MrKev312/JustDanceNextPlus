@@ -9,7 +9,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.leaderboard.pla
 
 [ApiController]
 [Route("leaderboard/v1/playlist/{playlistId:guid}/users")]
-public class Users(UserDataService userDataService) : ControllerBase
+public class Users(IUserDataService userDataService) : ControllerBase
 {
 	[HttpPost]
 	public async Task<IActionResult> Post([FromRoute] Guid playlistId, [FromBody] RequestBody userIds)

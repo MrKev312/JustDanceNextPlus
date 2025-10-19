@@ -7,7 +7,19 @@ using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
 
-public class TagService(LocalizedStringService localizedStringService, IServiceProvider serviceProvider, ILogger<TagService> logger) : ILoadService
+public interface ITagService : ILoadService
+{
+    TagDatabase TagDatabase { get; }
+    Tag? GetTag(string text);
+    Tag? GetTag(Guid tagGuid);
+    Tag GetAddTag(string text, string category);
+	List<Filter> GetFilters();
+}
+
+public class TagService(ILocalizedStringService localizedStringService,
+	IServiceProvider serviceProvider,
+	ILogger<TagService> logger,
+    IFileSystem fileSystem) : ITagService, ILoadService
 {
 	public TagDatabase TagDatabase { get; private set; } = new();
 
@@ -18,13 +30,13 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 
 		// Load the tags
 		string tagsPath = Path.Combine(pathSettings.Value.JsonsPath, "tagdb.json");
-		if (!File.Exists(tagsPath))
+		if (!fileSystem.FileExists(tagsPath))
 		{
 			logger.LogInformation("Tag database not found, creating a new one");
 			return;
 		}
 
-		using FileStream fileStream = File.OpenRead(tagsPath);
+		using Stream fileStream = fileSystem.OpenRead(tagsPath);
 		TagDatabase? db = await JsonSerializer.DeserializeAsync<TagDatabase>(fileStream, jsonSettingsService.PrettyPascalFormat);
 
 		if (db == null)
@@ -106,7 +118,7 @@ public class TagService(LocalizedStringService localizedStringService, IServiceP
 		}
 	}
 
-	internal List<Filter> GetFilters()
+	public List<Filter> GetFilters()
 	{
 		List<Filter> filters = [];
 

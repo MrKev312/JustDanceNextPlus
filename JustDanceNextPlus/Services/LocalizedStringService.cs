@@ -7,8 +7,19 @@ using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
 
+public interface ILocalizedStringService : ILoadService
+{
+	LocalizedStringDatabase Database { get; }
+
+    LocalizedString? GetLocalizedTag(string text);
+    LocalizedString? GetLocalizedTag(Guid id);
+    LocalizedString? GetLocalizedTag(int id);
+    LocalizedString GetAddLocalizedTag(string text);
+}
+
 public class LocalizedStringService(ILogger<LocalizedStringService> logger,
-	IServiceProvider serviceProvider) : ILoadService
+	IServiceProvider serviceProvider,
+    IFileSystem fileSystem) : ILocalizedStringService, ILoadService
 {
 	public LocalizedStringDatabase Database { get; private set; } = new();
 	int? highestId = null;
@@ -38,13 +49,13 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 		JsonSettingsService jsonSettingsService = serviceProvider.GetRequiredService<JsonSettingsService>();
 
 		string path = Path.Combine(settings.Value.JsonsPath, "localizedstrings.json");
-		if (!File.Exists(path))
+		if (!fileSystem.FileExists(path))
 		{
 			logger.LogInformation("Localized strings database not found, creating a new one");
 			return;
 		}
 
-		using FileStream fileStream = File.OpenRead(path);
+		using Stream fileStream = fileSystem.OpenRead(path);
 		LocalizedStringDatabase? db = await JsonSerializer.DeserializeAsync<LocalizedStringDatabase>(fileStream, jsonSettingsService.PrettyPascalFormat);
 
 		if (db == null)

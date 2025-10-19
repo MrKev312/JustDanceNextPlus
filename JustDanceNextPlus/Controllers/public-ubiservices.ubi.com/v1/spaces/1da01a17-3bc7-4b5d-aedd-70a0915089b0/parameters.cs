@@ -11,7 +11,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.spaces._1d
 
 [ApiController]
 [Route("/v1/spaces/1da01a17-3bc7-4b5d-aedd-70a0915089b0/parameters")]
-public class Parameters(TagService tagService, IOptions<UrlSettings> urlSettings) : ControllerBase
+public class Parameters(IBundleService bundleService, ITagService tagService, IOptions<UrlSettings> urlSettings) : ControllerBase
 {
 	[HttpGet(Name = "GetParametersSpaces")]
 	public IActionResult GetParametersSpaces()
@@ -672,7 +672,7 @@ public class Parameters(TagService tagService, IOptions<UrlSettings> urlSettings
 			{
 				Fields = new()
 				{
-					["ClaimDisplayPriority"] = BundleService.ClaimDisplayPriority,
+					["ClaimDisplayPriority"] = bundleService.ClaimDisplayPriority,
 					["MCA_DeviceInclusionList"] = new Dictionary<string, object>(),
 					["CameraScoring_SurveyPopupSettings"] = new Dictionary<string, object>(),
 					["CameraScoring_MoveScoreBoostPercent"] = "11",
@@ -861,7 +861,7 @@ public class PinningKey
 	public List<string> PublicKeyDigests { get; set; } = [];
 }
 
-public class Filters(TagService tagService)
+public class Filters(ITagService tagService)
 {
 
 	[JsonPropertyName("filters")]

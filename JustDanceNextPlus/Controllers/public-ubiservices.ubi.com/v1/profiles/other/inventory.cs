@@ -6,7 +6,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.profiles.o
 
 [ApiController]
 [Route("v1/profiles/{guid:guid}/inventory")]
-public class Inventory(LockerItemsService lockerItemsService) : ControllerBase
+public class Inventory(ILockerItemsService lockerItemsService) : ControllerBase
 {
 	[HttpGet(Name = "GetInventory")]
 	public IActionResult GetInventory()

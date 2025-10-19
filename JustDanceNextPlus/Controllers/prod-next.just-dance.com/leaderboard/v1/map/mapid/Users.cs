@@ -9,7 +9,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.leaderboard.v1.
 
 [ApiController]
 [Route("leaderboard/v1/map/{mapId:guid}/users")]
-public class Users(UserDataService userDataService) : ControllerBase
+public class Users(IUserDataService userDataService) : ControllerBase
 {
 	[HttpPost]
 	public async Task<IActionResult> Post([FromRoute] Guid mapId, [FromBody] RequestBody userIds)

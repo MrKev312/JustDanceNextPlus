@@ -1,6 +1,4 @@
-﻿using JustDanceNextPlus.Services;
-
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -8,7 +6,14 @@ namespace JustDanceNextPlus.JustDanceClasses.Database.Profile;
 
 public class Profile
 {
-	[Key]
+	public Profile() { }
+
+    public Profile(List<string> claims)
+	{
+		Ownership.Claims = claims;
+    }
+
+    [Key]
 	public Guid Id { get; set; } = Guid.Empty;
 	[JsonIgnore]
 	public string Ticket { get; set; } = "";
@@ -50,5 +55,5 @@ public class MapStat
 
 public class Ownership
 {
-	public List<string> Claims { get; set; } = BundleService.Claims;
+	public List<string> Claims { get; set; } = [];
 }

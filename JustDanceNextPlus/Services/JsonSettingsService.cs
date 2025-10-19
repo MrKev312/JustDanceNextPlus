@@ -10,19 +10,30 @@ public class JsonSettingsService
 {
 	public JsonSettingsService(IServiceProvider serviceProvider)
 	{
-		// Get the JsonConverters
-		GuidTagConverter guidTagConverter = serviceProvider.GetRequiredService<GuidTagConverter>();
-		MapTagConverter mapTagConverter = serviceProvider.GetRequiredService<MapTagConverter>();
-		TagIdConverter tagIdConverter = serviceProvider.GetRequiredService<TagIdConverter>();
-		MapTagListConverter mapTagListConverter = serviceProvider.GetRequiredService<MapTagListConverter>();
+		Type[] serviceConvertsers = [
+			typeof(GuidTagConverter),
+			typeof(MapTagConverter),
+			typeof(TagIdConverter),
+			typeof(MapTagListConverter)
+            ];
 
-		// Add the JsonConverters to the options
-		AddConverter(
-			[guidTagConverter, mapTagConverter, tagIdConverter, mapTagListConverter, 
-			new CategoryConverter()]);
+		List<JsonConverter> converters = [ new CategoryConverter() ];
+
+        // Foreach check if it's registered
+        foreach (Type converterType in serviceConvertsers)
+		{
+			if (serviceProvider.GetService(converterType) is JsonConverter converter)
+			{
+				converters.Add(converter);
+			}
+            // Else we're in a test environment
+        }
+
+        // Add the JsonConverters to the options
+        AddConverter(converters);
 	}
 
-	private void AddConverter(params JsonConverter[] converters)
+	private void AddConverter(IEnumerable<JsonConverter> converters)
 	{
 		foreach (JsonConverter converter in converters)
 		{

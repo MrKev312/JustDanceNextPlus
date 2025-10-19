@@ -8,34 +8,27 @@ using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
 
-public class BundleService : ILoadService
+public interface IBundleService : ILoadService
 {
-	private readonly ILogger<BundleService> logger;
-	private readonly IOptions<PathSettings> pathSettings;
-	private readonly IOptions<UrlSettings> urlSettings;
-	private readonly JsonSettingsService jsonSettingsService;
-	private readonly LocalizedStringService localizedStringService;
+	ShopConfig ShopConfig { get; }
+	Dictionary<Guid, LiveTile> LiveTiles { get; }
+	List<string> Claims { get; }
+	List<string> ClaimDisplayPriority { get; }
+    List<string> GetAllClaims();
+}
 
-	public BundleService(ILogger<BundleService> logger,
+public class BundleService(ILogger<BundleService> logger,
 		IOptions<PathSettings> pathSettings,
 		IOptions<UrlSettings> urlSettings,
 		JsonSettingsService jsonSettingsService,
-		LocalizedStringService localizedStringService)
-	{
-		this.logger = logger;
-		this.pathSettings = pathSettings;
-		this.urlSettings = urlSettings;
-		this.jsonSettingsService = jsonSettingsService;
-		this.localizedStringService = localizedStringService;
-
-		LoadData().GetAwaiter().GetResult();
-	}
-
+		ILocalizedStringService localizedStringService,
+		IFileSystem fileSystem) : IBundleService, ILoadService
+{
 	public ShopConfig ShopConfig { get; private set; } = new();
 	public Dictionary<Guid, LiveTile> LiveTiles { get; private set; } = [];
 
-	public static List<string> Claims { get; set; } = [];
-	public static List<string> ClaimDisplayPriority { get; set; } = [];
+	public List<string> Claims { get; private set; } = [];
+    public List<string> ClaimDisplayPriority { get; set; } = [];
 
 	public async Task LoadData()
 	{
@@ -48,13 +41,13 @@ public class BundleService : ILoadService
 	public async Task LoadLiveTiles()
 	{
 		string liveTilesPath = Path.Combine(pathSettings.Value.JsonsPath, "LiveTileConfig.json");
-		if (!File.Exists(liveTilesPath))
+		if (!fileSystem.FileExists(liveTilesPath))
 		{
 			logger.LogInformation("Live tiles database not found, creating a new one");
 			return;
 		}
 
-		using FileStream fileStream = File.OpenRead(liveTilesPath);
+		using Stream fileStream = fileSystem.OpenRead(liveTilesPath);
 		Dictionary<Guid, LiveTile>? liveTiles = await JsonSerializer.DeserializeAsync<Dictionary<Guid, LiveTile>>(fileStream, jsonSettingsService.PrettyPascalFormat);
 		if (liveTiles == null)
 		{
@@ -84,13 +77,13 @@ public class BundleService : ILoadService
 	{ 
 		// Load the bundles
 		string bundlesPath = Path.Combine(pathSettings.Value.JsonsPath, "JustDanceEditions.json");
-		if (!File.Exists(bundlesPath))
+		if (!fileSystem.FileExists(bundlesPath))
 		{
 			logger.LogInformation("Bundle database not found, creating a new one");
 			return;
 		}
 
-		using FileStream fileStream = File.OpenRead(bundlesPath);
+		using Stream fileStream = fileSystem.OpenRead(bundlesPath);
 		List<JustDanceEdition>? db = await JsonSerializer.DeserializeAsync<List<JustDanceEdition>>(fileStream, jsonSettingsService.PrettyPascalFormat);
 
 		if (db == null)

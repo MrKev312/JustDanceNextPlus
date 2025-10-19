@@ -8,21 +8,21 @@ public class HostedDataService(IServiceProvider serviceProvider) : IHostedServic
 
 		await Task.WhenAll(
 			LoadServicesForSerialization(scope),
-			LoadData<LockerItemsService>(scope));
+			LoadData<ILockerItemsService>(scope));
 
 		await Task.WhenAll(
-			LoadData<PlaylistService>(scope),
-			LoadData<ActivityPageService>(scope));
+            LoadData<IPlaylistService>(scope),
+			LoadData<IActivityPageService>(scope));
 	}
 
 	private static async Task LoadServicesForSerialization(IServiceScope scope)
 	{
 		// First load the string service
-		await LoadData<LocalizedStringService>(scope);
+		await LoadData<ILocalizedStringService>(scope);
 		// Then load the tag service, which uses the string service
-		await LoadData<TagService>(scope);
+		await LoadData<ITagService>(scope);
 		// Then load the map service, which uses the tag service and bundle service
-		await LoadData<MapService>(scope);
+		await LoadData<IMapService>(scope);
 	}
 
 	static async Task LoadData<T>(IServiceScope scope) where T : ILoadService

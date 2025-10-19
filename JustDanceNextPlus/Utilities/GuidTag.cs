@@ -29,8 +29,8 @@ public class Tag
 	public static implicit operator GuidTag(Tag tag) => new(tag);
 }
 
-public class GuidTagConverter(TagService tagService,
-	LocalizedStringService localizedStringService) : JsonConverter<GuidTag>
+public class GuidTagConverter(ITagService tagService,
+    ILocalizedStringService localizedStringService) : JsonConverter<GuidTag>
 {
 	public override GuidTag Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{

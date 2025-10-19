@@ -9,7 +9,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.session.v2;
 
 [ApiController]
 [Route("session/v2")]
-public class Session(TimingService timingService, SessionManager sessionManager, BundleService bundleService) : ControllerBase
+public class Session(ITimingService timingService, ISessionManager sessionManager, IBundleService bundleService) : ControllerBase
 {
 	[HttpPost("session")]
 	[HttpPost("refresh-purchase")]

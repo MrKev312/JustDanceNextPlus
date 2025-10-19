@@ -37,7 +37,7 @@ public class Assetsmetadata
 
 	[JsonIgnore]
 	public WebmData[] VideoData { get; set; } = [];
-	public string VideoPreviewMpd { get => UtilityService.GenerateMpd(VideoData, true); }
+	public string VideoPreviewMpd { get; set; } = "";
 }
 
 public class AudioPreviewTrk
