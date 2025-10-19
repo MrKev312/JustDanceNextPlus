@@ -6,7 +6,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.spaces._1d
 
 [ApiController]
 [Route("v1/spaces/1da01a17-3bc7-4b5d-aedd-70a0915089b0/parties/{guid:guid}/accessTokens")]
-public class AccessTokens(TimingService timingService) : ControllerBase
+public class AccessTokens(ITimingService timingService) : ControllerBase
 {
 	[HttpPost]
 	public IActionResult Post([FromRoute] Guid guid)

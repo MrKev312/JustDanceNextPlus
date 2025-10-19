@@ -9,7 +9,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.recommendation.
 
 [ApiController]
 [Route("recommendation/v3/search")]
-public class Search(MapService mapService) : ControllerBase
+public class Search(IMapService mapService) : ControllerBase
 {
 	readonly struct SongRelevance(KeyValuePair<Guid, JustDanceSongDBEntry> song, uint relevance)
 	{
@@ -21,7 +21,7 @@ public class Search(MapService mapService) : ControllerBase
 	public IActionResult ProcessSearch([FromBody] SearchRequest searchRequest)
 	{
 		// Search the database
-		var searchSongResult = mapService.SongDB.Songs
+		SongRelevance[] searchSongResult = mapService.Songs
 			.AsParallel()
 			.Select(song => new SongRelevance(
                 song,
@@ -87,7 +87,7 @@ public class Search(MapService mapService) : ControllerBase
 
 	static bool IsPartialWordMatch(string input, string title)
 	{
-		var words = title.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+		string[] words = title.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 		return words.Any(word =>
 			word.StartsWith(input, StringComparison.OrdinalIgnoreCase) ||
 			IsWithinAllowedEditDistance(input, word));
@@ -105,58 +105,58 @@ public class Search(MapService mapService) : ControllerBase
 	/// Calculates the Levenshtein distance between two strings, which is a measure of the minimum number  of
 	/// single-character edits (insertions, deletions, or substitutions) required to transform one string into the other.
 	/// </summary>
-	/// <param name="s">The first string to compare. Cannot be <see langword="null"/>.</param>
-	/// <param name="t">The second string to compare. Cannot be <see langword="null"/>.</param>
+	/// <param name="source">The first string to compare. Cannot be <see langword="null"/>.</param>
+	/// <param name="target">The second string to compare. Cannot be <see langword="null"/>.</param>
 	/// <param name="maxDistance">The maximum distance to calculate. If the distance exceeds this value, the method returns <see cref="int.MaxValue"/>.</param>
 	/// <returns>The Levenshtein distance between the two strings. Returns 0 if both strings are identical.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if either <paramref name="s"/> or <paramref name="t"/> is <see langword="null"/>.</exception>
-	static int LevenshteinDistance(ReadOnlySpan<char> s, ReadOnlySpan<char> t, int maxDistance = int.MaxValue)
+	/// <exception cref="ArgumentNullException">Thrown if either <paramref name="source"/> or <paramref name="target"/> is <see langword="null"/>.</exception>
+	static int LevenshteinDistance(ReadOnlySpan<char> source, ReadOnlySpan<char> target, int maxDistance = int.MaxValue)
 	{
-		if (Math.Abs(s.Length - t.Length) > maxDistance)
+		if (Math.Abs(source.Length - target.Length) > maxDistance)
 			return int.MaxValue;
 
-		int n = s.Length;
-		int m = t.Length;
+		int sourceLength = source.Length;
+		int targetLength = target.Length;
 
-		Span<int> prev = stackalloc int[m + 1];
-		Span<int> curr = stackalloc int[m + 1];
+		Span<int> previousRow = stackalloc int[targetLength + 1];
+		Span<int> currentRow = stackalloc int[targetLength + 1];
 
-		for (int j = 0; j <= m; j++)
-			prev[j] = j;
+		for (int j = 0; j <= targetLength; j++)
+			previousRow[j] = j;
 
-		for (int i = 1; i <= n; i++)
+		for (int i = 1; i <= sourceLength; i++)
 		{
-			curr[0] = i;
-			char sc = char.ToLowerInvariant(s[i - 1]);
+			currentRow[0] = i;
+			char sc = char.ToLowerInvariant(source[i - 1]);
 
-			int minInRow = curr[0];
+			int minInRow = currentRow[0];
 
-			for (int j = 1; j <= m; j++)
+			for (int j = 1; j <= targetLength; j++)
 			{
-				char tc = char.ToLowerInvariant(t[j - 1]);
+				char tc = char.ToLowerInvariant(target[j - 1]);
 				int cost = (sc == tc) ? 0 : 1;
 
-				curr[j] = Math.Min(
-					Math.Min(curr[j - 1] + 1, prev[j] + 1),
-					prev[j - 1] + cost
+				currentRow[j] = Math.Min(
+					Math.Min(currentRow[j - 1] + 1, previousRow[j] + 1),
+					previousRow[j - 1] + cost
 				);
 
-				minInRow = Math.Min(minInRow, curr[j]);
+				minInRow = Math.Min(minInRow, currentRow[j]);
 			}
 
 			if (minInRow > maxDistance)
 				return int.MaxValue;
 
 			// Swap prev and curr arrays for next iteration
-			Span<int> temp = prev;
-			prev = curr;
-			curr = temp;
+			Span<int> temp = previousRow;
+			previousRow = currentRow;
+			currentRow = temp;
 
 			// Clear the current row for the next iteration
-			curr.Clear();
+			currentRow.Clear();
 		}
 
-		return prev[m];
+		return previousRow[targetLength];
 	}
 }
 

@@ -2,10 +2,14 @@
 
 namespace JustDanceNextPlus.Utilities;
 
-static class WebmCuesExtractor
+public interface IWebmExtractor
 {
-	// Simplified version that only gets the Cues info
-	public static WebmData GetCuesInfo(string filePath)
+    WebmData GetCuesInfo(string filePath);
+}
+
+public class WebmExtractor : IWebmExtractor
+{
+	public WebmData GetCuesInfo(string filePath)
 	{
 		using FileStream stream = new(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, options: FileOptions.Asynchronous);
 

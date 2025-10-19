@@ -7,7 +7,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.leaderboard.v1.
 
 [ApiController]
 [Route("leaderboard/v1/map/{mapId:guid}/around")]
-public class Around(UserDataService userDataService, SessionManager sessionManager) : ControllerBase
+public class Around(IUserDataService userDataService, ISessionManager sessionManager) : ControllerBase
 {
 	[HttpGet]
 	public async Task<IActionResult> Get([FromRoute] Guid mapId, [FromQuery] int limit = 3)

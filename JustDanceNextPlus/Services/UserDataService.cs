@@ -6,9 +6,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JustDanceNextPlus.Services;
 
+public interface IUserDataService
+{
+	ValueTask<bool> AddProfileAsync(Profile profile);
+	ValueTask<Guid> GenerateAddProfileAsync(Profile profile);
+	ValueTask<MapStats?> GetHighScoreByProfileIdAndMapIdAsync(Guid profileId, Guid mapId);
+	ValueTask<List<MapStats>> GetHighScoresByProfileIdAsync(Guid profileId);
+	ValueTask<Leaderboard> GetLeaderboardAroundAsync(Guid mapId, Guid userId, int limit = 3);
+	ValueTask<Leaderboard> GetLeaderboardByMapIdAsync(Guid mapId, long limit, long offset);
+	ValueTask<Leaderboard> GetLeaderboardFromIdsAsync(Guid mapId, List<Guid> userIds);
+	ValueTask<PlaylistStats?> GetPlaylistHighScoreByProfileIdAndPlaylistIdAsync(Guid profileId, Guid playlistId);
+	ValueTask<List<PlaylistStats>> GetPlaylistHighScoresByProfileIdAsync(Guid profileId);
+	ValueTask<Leaderboard> GetPlaylistLeaderboardAroundAsync(Guid playlistId, Guid userId, int limit = 3);
+	ValueTask<Leaderboard> GetPlaylistLeaderboardByPlaylistIdAsync(Guid playlistId, long limit, long offset);
+	ValueTask<Leaderboard> GetPlaylistLeaderboardFromIdsAsync(Guid playlistId, List<Guid> userIds);
+	ValueTask<Profile?> GetProfileByIdAsync(Guid id);
+	ValueTask<Profile?> GetProfileByTicketAsync(string ticket);
+	ValueTask<Leaderboard> GetRandomOpponentAsync(Guid mapId, Guid playerId);
+	ValueTask<bool> HasJustDanceProfileAsync(Guid id);
+	ValueTask<(bool Success, bool IsNewHighScore)> UpdateHighScoreAsync(HighscorePerformance highScore, int score, Guid playerId, Guid mapId);
+	ValueTask<(bool Success, bool IsNewHighScore)> UpdatePlaylistHighScoreAsync(PlaylistStats playlistStats, int score, Guid playerId, Guid playlistId);
+	ValueTask<bool> UpdateProfileAsync(Profile profile);
+}
+
 public class UserDataService(
 	UserDataContext dbContext,
-	ILogger<UserDataService> logger)
+	ILogger<UserDataService> logger) : IUserDataService
 {
 	public async ValueTask<Profile?> GetProfileByIdAsync(Guid id)
 	{
@@ -223,7 +246,7 @@ public class UserDataService(
 
 		if (randomHighScore == null)
 			return new Leaderboard();
-			
+
 		Leaderboard leaderboard = new()
 		{
 			Count = 1

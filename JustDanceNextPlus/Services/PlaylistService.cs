@@ -10,10 +10,16 @@ using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.Services;
 
-public class PlaylistService(MapService mapService,
+public interface IPlaylistService : ILoadService
+{
+	PlaylistDB PlaylistDB { get; set; }
+}
+
+public class PlaylistService(IMapService mapService,
 	JsonSettingsService jsonSettingsService,
 	IOptions<PathSettings> pathSettings,
-	ILogger<PlaylistService> logger) : ILoadService
+	ILogger<PlaylistService> logger,
+    IFileSystem fileSystem) : IPlaylistService, ILoadService
 {
 	public PlaylistDB PlaylistDB { get; set; } = new();
 
@@ -21,17 +27,17 @@ public class PlaylistService(MapService mapService,
 	{
 		string path = pathSettings.Value.PlaylistPath;
 
-		if (!Directory.Exists(path))
+		if (!fileSystem.DirectoryExists(path))
 		{
 			logger.LogWarning("Playlist path does not exist, will not load playlists");
 			return;
 		}
 
-		string[] files = Directory.GetFiles(path, "*.json");
+		string[] files = fileSystem.GetFiles(path, "*.json");
 
 		foreach (string file in files)
 		{
-			using FileStream fileStream = File.OpenRead(file);
+			using Stream fileStream = fileSystem.OpenRead(file);
 			JsonPlaylist? playlist = await JsonSerializer.DeserializeAsync<JsonPlaylist>(fileStream, jsonSettingsService.PrettyPascalFormat);
 
 			if (playlist == null)
@@ -45,7 +51,7 @@ public class PlaylistService(MapService mapService,
 			// If the playlist has a query, run the query on the map database and get the maps
 			if (playlist.Query != null)
 			{
-				List<Itemlist> maps = [.. mapService.SongDB.Songs.Select(x => x.Value).AsQueryable()
+				List<Itemlist> maps = [.. mapService.Songs.Select(x => x.Value).AsQueryable()
 					.Where(playlist.Query)
 					.Select(x => x.MapName)
 					.Select(x=> new Itemlist
@@ -60,7 +66,7 @@ public class PlaylistService(MapService mapService,
 			// If the playlist has an order by, sort the maps
 			if (playlist.OrderBy != null)
 			{
-				playlistFinal.ItemList = [.. playlistFinal.ItemList.Select(x => mapService.SongDB.Songs[x.Id])
+				playlistFinal.ItemList = [.. playlistFinal.ItemList.Select(x => mapService.Songs[x.Id])
 					.AsQueryable()
 					.OrderBy(playlist.OrderBy)
 					.Select(x => new Itemlist

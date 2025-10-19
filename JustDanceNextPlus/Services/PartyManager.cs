@@ -4,7 +4,16 @@ using System.Collections.Concurrent;
 
 namespace JustDanceNextPlus.Services;
 
-public class PartyManager
+public interface IPartyManager
+{
+	bool AddPartyMember(Guid partyId, Guid profileId);
+	Guid GenerateParty(Guid profileId);
+	Party? GetParty(Guid partyId);
+	Party? GetPartyByProfileId(Guid profileId);
+	void RemovePartyMember(Guid partyId, Guid profileId);
+}
+
+public class PartyManager : IPartyManager
 {
 	private readonly ConcurrentDictionary<Guid, Party> parties = new();
 

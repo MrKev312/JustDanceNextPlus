@@ -9,14 +9,30 @@ using System.Text.RegularExpressions;
 
 namespace JustDanceNextPlus.Services;
 
+public interface IMapService : ILoadService
+{
+    OrderedDictionary<Guid, JustDanceSongDBEntry> Songs { get; }
+    OrderedDictionary<Guid, ContentAuthorization> ContentAuthorization { get; }
+    SongDBTypeSet SongDBTypeSet { get; }
+    OrderedDictionary<Guid, Dictionary<string, AssetMetadata>> AssetMetadataPerSong { get; }
+
+    Dictionary<string, Guid> MapToGuid { get; }
+    List<MapTag> RecentlyAdded { get; }
+
+    Guid? GetSongId(string mapName);
+}
+
 public partial class MapService(IOptions<PathSettings> pathSettings,
 	IOptions<UrlSettings> urlSettings,
 	IServiceProvider serviceProvider,
-	ILogger<MapService> logger) : ILoadService
+	ILogger<MapService> logger,
+	IFileSystem fileSystem) : IMapService, ILoadService
 {
 	private readonly PathSettings settings = pathSettings.Value;
-
-	public JustDanceSongDB SongDB { get; private set; } = new(urlSettings.Value.HostUrl);
+    public OrderedDictionary<Guid, JustDanceSongDBEntry> Songs { get; set; } = [];
+    public OrderedDictionary<Guid, ContentAuthorization> ContentAuthorization { get; set; } = [];
+    public SongDBTypeSet SongDBTypeSet { get; set; } = new(urlSettings.Value.HostUrl);
+    public OrderedDictionary<Guid, Dictionary<string, AssetMetadata>> AssetMetadataPerSong { get; set; } = [];
 	public Dictionary<string, Guid> MapToGuid { get; } = [];
 	public List<MapTag> RecentlyAdded { get; private set; } = [];
 
@@ -26,7 +42,7 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 		{
             await LoadMapsAsync();
 			await LoadOffers();
-			await LoadRecentlyAddedMaps();
+			RecentlyAdded = await LoadRecentlyAddedMaps();
         }
 		catch (Exception ex)
 		{
@@ -37,11 +53,11 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 
 	public async Task LoadMapsAsync()
 	{
-		// Load the tag service
-		TagService tagService = serviceProvider.GetRequiredService<TagService>();
-		UtilityService utilityService = serviceProvider.GetRequiredService<UtilityService>();
+        // Load the tag service
+        ITagService tagService = serviceProvider.GetRequiredService<ITagService>();
+        IUtilityService utilityService = serviceProvider.GetRequiredService<IUtilityService>();
 
-		string[] mapFolders = [.. Directory.GetDirectories(settings.MapsPath).Select(x => Path.Combine(settings.MapsPath, Path.GetFileName(x)))];
+		string[] mapFolders = [.. fileSystem.GetDirectories(settings.MapsPath).Select(x => Path.Combine(settings.MapsPath, Path.GetFileName(x)))];
 
         var loadMapTasks = mapFolders.Select(async mapFolder =>
 		{
@@ -61,10 +77,10 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 		// Add the songs and content authorizations to the song database
 		foreach (var result in mapResults)
 		{
-			SongDB.Songs[result.SongID] = result.SongInfo;
-			SongDB.ContentAuthorization[result.SongID] = result.ContentAuthorization;
-			SongDB.AssetMetadataPerSong[result.SongID] = result.AssetMetadata;
-			SongDB.SongDBTypeSet.SongOffers.DownloadableSongs.Add(result.SongID);
+			Songs[result.SongID] = result.SongInfo;
+			ContentAuthorization[result.SongID] = result.ContentAuthorization;
+			AssetMetadataPerSong[result.SongID] = result.AssetMetadata;
+			SongDBTypeSet.SongOffers.DownloadableSongs.Add(result.SongID);
 			MapToGuid[result.SongInfo.MapName] = result.SongID;
 
 			// Split the artist by & and trim the results
@@ -78,22 +94,25 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 				result.SongInfo.TagIds.Add(tag);
 			}
 
-			// Process player count
-			{
-				string[] playerCounts = ["Solo", "Duet", "Trio", "Quartet"];
-				Tag tag = tagService.GetAddTag(playerCounts[result.SongInfo.CoachCount - 1], "choreoSettings");
-				result.SongInfo.TagIds.Add(tag);
-			}
-		}
+            // Process player count
+            if (result.SongInfo.CoachCount is >= 1 and <= 4)
+            {
+                string[] playerCounts = ["Solo", "Duet", "Trio", "Quartet"];
+                Tag tag = tagService.GetAddTag(playerCounts[result.SongInfo.CoachCount - 1], "choreoSettings");
+                result.SongInfo.TagIds.Add(tag);
+            }
+        }
     }
 
-	public Task LoadOffers()
+	public async Task LoadOffers()
 	{
-		BundleService bundleService = serviceProvider.GetRequiredService<BundleService>();
+        // Now we load the bundle service to get the offers
+		IBundleService bundleService = serviceProvider.GetRequiredService<IBundleService>();
+		await bundleService.LoadData();
 
-		Dictionary<string, Pack> packs = [];
+        Dictionary<string, Pack> packs = [];
 
-		foreach (KeyValuePair<Guid, JustDanceSongDBEntry> song in SongDB.Songs)
+		foreach (KeyValuePair<Guid, JustDanceSongDBEntry> song in Songs)
 		{
 			bool addedToPack = false;
 
@@ -178,19 +197,19 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 		}
 
 		// Convert to array and sort by tag, jdplus first, then songpacks, then by welcomeGifts, then by music packs
-		SongDB.SongDBTypeSet.SongOffers.Claims = packs
+		SongDBTypeSet.SongOffers.Claims = packs
 			.OrderBy(x => x.Key.StartsWith("jdplus") ? 0 : x.Key.StartsWith("songpack_") ? 1 : x.Key.StartsWith("welcomeGifts") ? 2 : 3)
 			.ThenBy(x => x.Key)
 			.ToDictionary(x => x.Key, x => x.Value);
 
-		return Task.CompletedTask;
+		return;
 	}
 
-    Task LoadRecentlyAddedMaps()
+    public Task<List<MapTag>> LoadRecentlyAddedMaps()
     {
-        // Get all maps in the maps folder and their creation time
-        var mapCreationTimes = Directory.GetDirectories(settings.MapsPath)
-            .Select(dir => (MapName: Path.GetFileName(dir), CreationTime: Directory.GetCreationTime(dir)))
+		// Get all maps in the maps folder and their creation time
+		IOrderedEnumerable<(string MapName, DateTime CreationTime)> mapCreationTimes = fileSystem.GetDirectories(settings.MapsPath)
+            .Select(dir => (MapName: Path.GetFileName(dir), CreationTime: fileSystem.GetDirectoryCreationTime(dir)))
             .OrderBy(x => x.CreationTime);
 
         Stack<(string MapName, DateTime CreationTime)> mapStack = new(mapCreationTimes);
@@ -215,14 +234,14 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 		logger.LogInformation("Recently added maps: {Maps}", string.Join(", ", recentlyAddedCodenames));
 
         // Convert to song IDs, ignoring those that don't exist
-        RecentlyAdded = [.. recentlyAddedCodenames.Select(GetSongId)
+        List<MapTag> recentlyAddedSongs = [.. recentlyAddedCodenames.Select(GetSongId)
 			.Where(id => id.HasValue)
 			.Select(id => id!.Value)];
 
-        return Task.CompletedTask;
+        return Task.FromResult(recentlyAddedSongs);
     }
 
-    private static async Task<(LocalJustDanceSongDBEntry, ContentAuthorization, Dictionary<string, AssetMetadata>)> LoadMapAsync(string mapFolder, UtilityService utilityService)
+    private static async Task<(LocalJustDanceSongDBEntry, ContentAuthorization, Dictionary<string, AssetMetadata>)> LoadMapAsync(string mapFolder, IUtilityService utilityService)
 	{
         LocalJustDanceSongDBEntry songInfo = await utilityService.LoadMapDBEntryAsync(mapFolder);
 		ContentAuthorization contentAuthorization = utilityService.LoadContentAuthorization(mapFolder);

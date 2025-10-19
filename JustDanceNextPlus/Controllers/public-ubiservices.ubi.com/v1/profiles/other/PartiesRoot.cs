@@ -7,7 +7,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.profiles.o
 
 [ApiController]
 [Route("v1/profiles/{guid:guid}/parties")]
-public class PartiesRoot(TimingService timingService, PartyManager partyManager) : ControllerBase
+public class PartiesRoot(ITimingService timingService, IPartyManager partyManager) : ControllerBase
 {
 	[HttpGet(Name = "GetParties")]
 	public IActionResult GetParties([FromRoute] Guid guid)

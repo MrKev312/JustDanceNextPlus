@@ -1,5 +1,4 @@
-﻿using JustDanceNextPlus.Services;
-using JustDanceNextPlus.Utilities;
+﻿using JustDanceNextPlus.Utilities;
 
 using System.Linq.Dynamic.Core.CustomTypeProviders;
 using System.Text.Json.Serialization;
@@ -37,7 +36,7 @@ public class Assetsmetadata
 
 	[JsonIgnore]
 	public WebmData[] VideoData { get; set; } = [];
-	public string VideoPreviewMpd { get => UtilityService.GenerateMpd(VideoData, true); }
+	public string VideoPreviewMpd { get; set; } = "";
 }
 
 public class AudioPreviewTrk

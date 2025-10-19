@@ -9,9 +9,9 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.songdb.v3.conte
 [ApiController]
 [Route("songdb/v3/content-authorization/map/{mapId:guid}/formatVersion/v0")]
 public class ContentAuthorizationController(ILogger<ContentAuthorizationController> logger,
-	MapService mapService,
-	SessionManager sessionManager,
-	UserDataService userDataService)
+	IMapService mapService,
+	ISessionManager sessionManager,
+	IUserDataService userDataService)
 	: ControllerBase
 {
 	[HttpGet]
@@ -57,7 +57,7 @@ public class ContentAuthorizationController(ILogger<ContentAuthorizationControll
 
 		logger.LogInformation("Map {MapCodename} requested by {Username}", mapCodename, username);
 
-		return mapService.SongDB.ContentAuthorization.TryGetValue(mapId, out ContentAuthorization? contentAuthorization)
+		return mapService.ContentAuthorization.TryGetValue(mapId, out ContentAuthorization? contentAuthorization)
 			? Ok(contentAuthorization)
 			: NotFound();
 	}

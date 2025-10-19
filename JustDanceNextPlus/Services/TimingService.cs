@@ -1,6 +1,12 @@
 ﻿namespace JustDanceNextPlus.Services;
 
-public class TimingService
+public interface ITimingService
+{
+	string ServerTime();
+	string TimeString(DateTime time);
+}
+
+public class TimingService : ITimingService
 {
 	public string TimeString(DateTime time)
 	{

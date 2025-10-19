@@ -1,4 +1,5 @@
 ﻿using JustDanceNextPlus.Configuration;
+using JustDanceNextPlus.Services;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -9,20 +10,17 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.progression.v1;
 
 [ApiController]
 [Route("progression/v1/objectives")]
-public class Objectives(IOptions<PathSettings> pathSettings) : ControllerBase
+public class Objectives(IOptions<PathSettings> pathSettings,
+    IFileSystem fileSystem) : ControllerBase
 {
 	[HttpGet(Name = "GetObjectives")]
 	public IActionResult GetObjectives()
 	{
 		string objectivesJson = Path.Combine(pathSettings.Value.JsonsPath, "objectives.json");
 
-		if (System.IO.File.Exists(objectivesJson))
-		{
-			FileStream stream = System.IO.File.OpenRead(objectivesJson);
-			return File(stream, "application/json");
-		}
-
-		return Ok(new Tasks());
+		return fileSystem.FileExists(objectivesJson) 
+			? File(fileSystem.OpenRead(objectivesJson), "application/json") 
+			: Ok(new Tasks());
 	}
 }
 

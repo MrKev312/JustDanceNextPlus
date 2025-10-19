@@ -13,7 +13,24 @@ using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
 
-public class UtilityService(JsonSettingsService jsonSettingsService, IOptions<UrlSettings> urlOptions, ILogger<UtilityService> logger)
+public interface IUtilityService
+{
+	ValueTask<LocalJustDanceSongDBEntry> LoadMapDBEntryAsync(string mapFolder);
+	Dictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder);
+	ContentAuthorization LoadContentAuthorization(string mapFolder);
+	WebmData[] GetVideoUrls(string videoFolder);
+	string? GetAssetUrl(string mapFolder, string name, bool canBeMissing = false);
+	void AssignVideoUrls(LocalJustDanceSongDBEntry songInfo, WebmData[] videoData, string mapFolder);
+	void AssignAssetUrls(LocalJustDanceSongDBEntry songInfo, string mapFolder);
+	void AssignContentAuthorizationVideoUrls(ContentAuthorization contentAuthorization, WebmData[] videoData, string mapFolder);
+	string GenerateAudioPreviewTrk(string mapPackagePath);
+}
+
+public class UtilityService(JsonSettingsService jsonSettingsService,
+	IOptions<UrlSettings> urlOptions,
+	ILogger<UtilityService> logger,
+    IFileSystem fileSystem,
+	IWebmExtractor webmExtractor) : IUtilityService
 {
 	private readonly UrlSettings urlSettings = urlOptions.Value;
 
@@ -22,14 +39,17 @@ public class UtilityService(JsonSettingsService jsonSettingsService, IOptions<Ur
 		try
 		{
 			string songInfoPath = Path.Combine(mapFolder, "SongInfo.json");
-			if (!File.Exists(songInfoPath))
+			if (!fileSystem.FileExists(songInfoPath))
 				throw new FileNotFoundException($"Missing SongInfo.json in {mapFolder}");
 
-			using FileStream fs = File.OpenRead(songInfoPath);
+			using Stream fs = fileSystem.OpenRead(songInfoPath);
 			LocalJustDanceSongDBEntry songInfo = (await JsonSerializer.DeserializeAsync<LocalJustDanceSongDBEntry>(fs, jsonSettingsService.PrettyPascalFormat))
 				?? throw new InvalidOperationException($"Failed to deserialize SongInfo.json in {mapFolder}");
 
-			songInfo.Assets = new();
+			if (string.IsNullOrEmpty(songInfo.MapName))
+				throw new InvalidOperationException($"MapName is null or empty in {songInfoPath}");
+
+            songInfo.Assets = new();
 
 			// If the mapId is null or empty, throw an exception
 			if (string.IsNullOrEmpty(songInfo.MapName))
@@ -38,7 +58,8 @@ public class UtilityService(JsonSettingsService jsonSettingsService, IOptions<Ur
 			WebmData[] videoData = GetVideoUrls(Path.Combine(mapFolder, "videoPreview"));
 			AssignVideoUrls(songInfo, videoData, mapFolder);
 			songInfo.AssetsMetadata.VideoData = videoData;
-			songInfo.AssetsMetadata.AudioPreviewTrk ??= GenerateAudioPreviewTrk(Directory.GetFiles(Path.Combine(mapFolder, "MapPackage"))[0]);
+			songInfo.AssetsMetadata.VideoPreviewMpd = GenerateMpd(videoData, isPreview: true);
+            songInfo.AssetsMetadata.AudioPreviewTrk ??= GenerateAudioPreviewTrk(fileSystem.GetFiles(Path.Combine(mapFolder, "MapPackage"))[0]);
 
 			songInfo.Assets.AudioPreview_opus ??= GetAssetUrl(mapFolder, "audioPreview_opus");
 			songInfo.Assets.CoachesLarge ??= GetAssetUrl(mapFolder, "coachesLarge");
@@ -85,76 +106,77 @@ public class UtilityService(JsonSettingsService jsonSettingsService, IOptions<Ur
 		songInfo.Assets.AudioPreview_opus ??= GetAssetUrl(mapFolder, "audioPreview_opus");
 	}
 
-	public Dictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder)
-	{
-		var assetMetadata = new Dictionary<string, AssetMetadata>();
-		mapFolder = Path.GetFullPath(mapFolder);
+    public Dictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder)
+    {
+        Dictionary<string, AssetMetadata> assetMetadata = [];
+        mapFolder = Path.GetFullPath(mapFolder);
 
-		var allFiles = new DirectoryInfo(mapFolder)
-			.GetFiles("*", SearchOption.AllDirectories);
+        // This now gets strings, not FileInfo objects
+        string[] allFiles = fileSystem.GetFiles(mapFolder, "*", SearchOption.AllDirectories);
 
-		void AddAsset(string relativeFolder, string? key = null)
-		{
-			key ??= relativeFolder;
+        void AddAsset(string relativeFolder, string? key = null)
+        {
+            key ??= relativeFolder;
 
-			var matchingFiles = allFiles
-				.Where(f => f.FullName.Contains(Path.Combine(mapFolder, relativeFolder), StringComparison.OrdinalIgnoreCase));
+            IEnumerable<string> matchingFiles = allFiles
+                .Where(f => f.Contains(Path.Combine(mapFolder, relativeFolder), StringComparison.OrdinalIgnoreCase));
 
-			var largestFile = matchingFiles
-				.OrderByDescending(f => f.Length)
-				.First();
+            // Use the abstraction to get the length for sorting
+            string largestFile = matchingFiles
+                .OrderByDescending(fileSystem.GetFileLength)
+                .First();
 
-			var hash = Path.GetFileNameWithoutExtension(largestFile.Name).ToLowerInvariant();
-			assetMetadata[key] = new AssetMetadata(hash, largestFile.Length);
-		}
+            string hash = Path.GetFileNameWithoutExtension(largestFile).ToLowerInvariant();
+            assetMetadata[key] = new AssetMetadata(hash, fileSystem.GetFileLength(largestFile));
+        }
 
-		AddAsset("cover", "cover");
-		AddAsset("audioPreview_opus", "audioPreview.opus");
-		AddAsset("audio", "audio.opus");
-		AddAsset("coachesSmall");
-		AddAsset("coachesLarge");
-		AddAsset("MapPackage", "mapPackage");
+        AddAsset("cover", "cover");
+        AddAsset("audioPreview_opus", "audioPreview.opus");
+        AddAsset("audio", "audio.opus");
+        AddAsset("coachesSmall");
+        AddAsset("coachesLarge");
+        AddAsset("MapPackage", "mapPackage");
 
-		void AddVideoAsset(string subfolder, string[] keys, Func<IReadOnlyList<FileInfo>, FileInfo?> selector)
-		{
-			var matchingFiles = allFiles
-				.Where(f => Path.GetDirectoryName(f.FullName)!
-					.EndsWith(Path.Combine(mapFolder, subfolder), StringComparison.OrdinalIgnoreCase))
-				.ToList();
+        void AddVideoAsset(string subfolder, string[] keys, Func<IReadOnlyList<string>, string?> selector)
+        {
+            List<string> matchingFiles = [.. allFiles
+                .Where(f => Path.GetDirectoryName(f)!
+                    .EndsWith(Path.Combine(mapFolder, subfolder), StringComparison.OrdinalIgnoreCase))];
 
-			var file = selector(matchingFiles);
-			if (file != null)
-			{
-				var hash = Path.GetFileNameWithoutExtension(file.Name).ToLowerInvariant();
-				foreach (var key in keys)
-				{
-					assetMetadata[key] = new AssetMetadata(hash, file.Length);
-				}
-			}
-		}
+            string? file = selector(matchingFiles);
+            if (file != null)
+            {
+                string hash = Path.GetFileNameWithoutExtension(file).ToLowerInvariant();
+                long length = fileSystem.GetFileLength(file);
+                foreach (string key in keys)
+                {
+                    assetMetadata[key] = new AssetMetadata(hash, length);
+                }
+            }
+        }
 
-		FileInfo? GetNthOrLast(IReadOnlyList<FileInfo> list, int index) =>
-			list.Count == 0 ? null : list[Math.Min(index, list.Count - 1)];
+        string? GetNthOrLast(IReadOnlyList<string> list, int index) =>
+            list.Count == 0 ? null : list[Math.Min(index, list.Count - 1)];
 
-		// videoPreview: second smallest or fallback
-		AddVideoAsset("videoPreview",
-			["videoPreview_MID.vp8.webm", "videoPreview_MID.vp9.webm"],
-			files => GetNthOrLast([.. files.OrderBy(f => f.Length)], 1));
+        // videoPreview: second smallest or fallback
+        AddVideoAsset("videoPreview",
+            ["videoPreview_MID.vp8.webm", "videoPreview_MID.vp9.webm"],
+            files => GetNthOrLast([.. files.OrderBy(f => fileSystem.GetFileLength(f))], 1));
 
-		// video: third smallest or fallback
-		AddVideoAsset("video",
-			["video_HIGH.hd.webm", "video_HIGH.vp9.webm"],
-			files => GetNthOrLast([.. files.OrderBy(f => f.Length)], 2));
+        // video: third smallest or fallback
+        AddVideoAsset("video",
+            ["video_HIGH.hd.webm", "video_HIGH.vp9.webm"],
+            files => GetNthOrLast([.. files.OrderBy(f => fileSystem.GetFileLength(f))], 2));
 
-		// video: largest
-		AddVideoAsset("video",
-			["video_ULTRA.hd.webm"],
-			files => files.OrderBy(f => f.Length).LastOrDefault());
+        // video: largest
+        AddVideoAsset("video",
+            ["video_ULTRA.hd.webm"],
+            files => files.OrderBy(f => fileSystem.GetFileLength(f)).LastOrDefault());
 
-		return assetMetadata;
-	}
+        return assetMetadata;
+    }
 
-	public ContentAuthorization LoadContentAuthorization(string mapFolder)
+    public ContentAuthorization LoadContentAuthorization(string mapFolder)
 	{
 		ContentAuthorization contentAuthorization = new()
 		{
@@ -196,9 +218,9 @@ public class UtilityService(JsonSettingsService jsonSettingsService, IOptions<Ur
 		}
 	}
 
-	public static WebmData[] GetVideoUrls(string videoFolder)
+	public WebmData[] GetVideoUrls(string videoFolder)
 	{
-		string[] videoFiles = Directory.GetFiles(videoFolder, "*.webm");
+		string[] videoFiles = fileSystem.GetFiles(videoFolder, "*.webm");
 
 		if (videoFiles.Length == 0)
 			throw new FileNotFoundException($"Missing video file in {videoFolder}");
@@ -208,7 +230,7 @@ public class UtilityService(JsonSettingsService jsonSettingsService, IOptions<Ur
 
 		WebmData[] webmData = new WebmData[videoFiles.Length];
 
-		Parallel.For(0, videoFiles.Length, i => webmData[i] = WebmCuesExtractor.GetCuesInfo(videoFiles[i]));
+		Parallel.For(0, videoFiles.Length, i => webmData[i] = webmExtractor.GetCuesInfo(videoFiles[i]));
 
 		// Sort by bitrate
 		Array.Sort(webmData, (a, b) => a.Bitrate.CompareTo(b.Bitrate));
@@ -235,9 +257,9 @@ public class UtilityService(JsonSettingsService jsonSettingsService, IOptions<Ur
 	{
 		string assetFolder = Path.Combine(mapFolder, name);
 
-		if (Directory.Exists(assetFolder))
+		if (fileSystem.DirectoryExists(assetFolder))
 		{
-			string[] files = Directory.GetFiles(assetFolder);
+			string[] files = fileSystem.GetFiles(assetFolder);
 			if (files.Length == 0)
 				throw new FileNotFoundException($"Missing asset file in {assetFolder}");
 
@@ -298,7 +320,7 @@ public class UtilityService(JsonSettingsService jsonSettingsService, IOptions<Ur
 
 	public string GenerateAudioPreviewTrk(string mapPackagePath)
 	{
-		if (!File.Exists(mapPackagePath))
+		if (!fileSystem.FileExists(mapPackagePath))
 			throw new FileNotFoundException($"Missing map package in {mapPackagePath}");
 
 		// Load map package

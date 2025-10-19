@@ -9,7 +9,7 @@ public class Query
 {
 	[GraphQLName("getProfileById")]
 	[GraphQLDescription("Get a profile by its id")]
-	public async Task<Profile?> GetProfileById(string id, [Service] UserDataService userDataService)
+	public async Task<Profile?> GetProfileById(string id, [Service] IUserDataService userDataService)
 	{
 		// Parse id to Guid
 		return !Guid.TryParse(id, out Guid guid) 
@@ -18,7 +18,7 @@ public class Query
 	}
 
 	[GraphQLDescription("Check if a profile exists")]
-	public async Task<Profile?> HasJustDanceProfile(string id, [Service] UserDataService userDataService)
+	public async Task<Profile?> HasJustDanceProfile(string id, [Service] IUserDataService userDataService)
 	{
 		// Parse id to Guid
 		return !Guid.TryParse(id, out Guid guid) 
@@ -28,7 +28,7 @@ public class Query
 
 	[GraphQLName("getProfilesLeaderboardById")]
 	[GraphQLDescription("Get profiles leaderboard by their ids")]
-	public async Task<List<Profile>> GetProfilesLeaderboardById(List<string> ids, string mapId, [Service] UserDataService userDataService)
+	public async Task<List<Profile>> GetProfilesLeaderboardById(List<string> ids, string mapId, [Service] IUserDataService userDataService)
 	{
 		List<Profile> profiles = [];
 

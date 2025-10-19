@@ -7,7 +7,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.progression.v1;
 
 [ApiController]
 [Route("progression/v1/progression-info")]
-public class ProgressionInfo(SessionManager sessionManager, UserDataService userDataService) : ControllerBase
+public class ProgressionInfo(ISessionManager sessionManager, IUserDataService userDataService) : ControllerBase
 {
 	[HttpGet(Name = "GetProgressionInfo")]
 	public async Task<IActionResult> GetProgressionInfo()

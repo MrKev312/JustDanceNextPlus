@@ -80,22 +80,24 @@ public class Program
 				   .UseSqlite($"Data Source={builder.Configuration["Paths:UserDataPath"]}"));
 
 		// Inject custom services.
-		builder.Services.AddScoped<UserDataService>();
-		builder.Services.AddSingleton<LocalizedStringService>();
-		builder.Services.AddSingleton<TagService>();
-		builder.Services.AddSingleton<MapService>();
-		builder.Services.AddSingleton<BundleService>();
-		builder.Services.AddSingleton<PlaylistService>();
-		builder.Services.AddSingleton<LockerItemsService>();
-		builder.Services.AddSingleton<ActivityPageService>();
-		builder.Services.AddSingleton<PartyManager>();
-		builder.Services.AddSingleton<SecurityService>();
-		builder.Services.AddSingleton<SessionManager>();
-		builder.Services.AddSingleton<TimingService>();
-		builder.Services.AddSingleton<UtilityService>();
+		builder.Services.AddSingleton<IFileSystem, SystemFileSystem>();
+        builder.Services.AddScoped<IUserDataService, UserDataService>();
+		builder.Services.AddSingleton<ILocalizedStringService, LocalizedStringService>();
+		builder.Services.AddSingleton<ITagService, TagService>();
+        builder.Services.AddSingleton<IMapService, MapService>();
+        builder.Services.AddSingleton<IBundleService, BundleService>();
+		builder.Services.AddSingleton<IPlaylistService, PlaylistService>();
+        builder.Services.AddSingleton<ILockerItemsService, LockerItemsService>();
+        builder.Services.AddSingleton<IActivityPageService, ActivityPageService>();
+		builder.Services.AddSingleton<IPartyManager, PartyManager>();
+		builder.Services.AddSingleton<ISecurityService, SecurityService>();
+		builder.Services.AddSingleton<ISessionManager, SessionManager>();
+		builder.Services.AddSingleton<ITimingService, TimingService>();
+		builder.Services.AddSingleton<IUtilityService, UtilityService>();
+        builder.Services.AddSingleton<IWebmExtractor, WebmExtractor>();
 
-		// Inject json converters.
-		builder.Services.AddSingleton<JsonSettingsService>();
+        // Inject json converters.
+        builder.Services.AddSingleton<JsonSettingsService>();
 		builder.Services.AddSingleton<TagIdConverter>();
 		builder.Services.AddSingleton<GuidTagConverter>();
 		builder.Services.AddSingleton<MapTagConverter>();

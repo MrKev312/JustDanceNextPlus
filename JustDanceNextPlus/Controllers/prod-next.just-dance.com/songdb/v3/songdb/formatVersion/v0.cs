@@ -6,11 +6,11 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.songdb.v3.songd
 
 [ApiController]
 [Route("songdb/v3/songdb/formatVersion/v0")]
-public class V0(MapService mapService) : ControllerBase
+public class V0(IMapService mapService) : ControllerBase
 {
 	[HttpGet]
 	public IActionResult Get()
 	{
-		return Ok(mapService.SongDB.SongDBTypeSet);
+		return Ok(mapService.SongDBTypeSet);
 	}
 }

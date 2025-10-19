@@ -1,4 +1,5 @@
 ﻿using JustDanceNextPlus.Configuration;
+using JustDanceNextPlus.Services;
 using JustDanceNextPlus.Utilities;
 
 using Microsoft.AspNetCore.Mvc;
@@ -8,20 +9,17 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.profiles.o
 
 [ApiController]
 [Route("v1/profiles/{guid:guid}/recommendations")]
-public class Recommendations(IOptions<PathSettings> pathSettings) : ControllerBase
+public class Recommendations(IOptions<PathSettings> pathSettings,
+    IFileSystem fileSystem) : ControllerBase
 {
 	[HttpGet(Name = "GetRecommendations")]
 	public IActionResult GetRecommendations([FromRoute] Guid guid)
 	{
 		string recommendationsJson = Path.Combine(pathSettings.Value.JsonsPath, "recommendations.json");
 
-		if (System.IO.File.Exists(recommendationsJson))
-		{
-			FileStream stream = System.IO.File.OpenRead(recommendationsJson);
-			return File(stream, "application/json");
-		}
-
-		return Ok(new RecommendationsResponse());
+		return fileSystem.FileExists(recommendationsJson)
+			? File(fileSystem.OpenRead(recommendationsJson), "application/json")
+			: Ok(new RecommendationsResponse());
 	}
 }
 

@@ -2,7 +2,12 @@
 
 namespace JustDanceNextPlus.Services;
 
-public class SecurityService
+public interface ISecurityService
+{
+	byte[] Secret256bit { get; }
+}
+
+public class SecurityService : ISecurityService
 {
 	public byte[] Secret256bit { get; private set; }
 

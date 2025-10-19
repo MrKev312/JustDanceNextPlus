@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="JustDanceNextPlus.Tests/JustDanceNextPlus.Tests.csproj" />
+  <Project Path="JustDanceNextPlus/JustDanceNextPlus.csproj" />
+</Solution>

@@ -7,9 +7,16 @@ using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
 
+public interface ILockerItemsService : ILoadService
+{
+	Dictionary<string, List<LockerItem>> LockerItems { get; }
+	List<Guid> LockerItemIds { get; }
+}
+
 public class LockerItemsService(JsonSettingsService jsonSettingsService,
 	IOptions<PathSettings> pathSettings,
-	ILogger<LockerItemsService> logger) : ILoadService
+	ILogger<LockerItemsService> logger,
+    IFileSystem fileSystem) : ILockerItemsService, ILoadService
 {
 	public Dictionary<string, List<LockerItem>> LockerItems { get; } = [];
 	public List<Guid> LockerItemIds { get; } = [];
@@ -18,17 +25,17 @@ public class LockerItemsService(JsonSettingsService jsonSettingsService,
 	{
 		string path = pathSettings.Value.LockerItemsPath;
 
-		if (!Directory.Exists(path))
+		if (!fileSystem.DirectoryExists(path))
 		{
 			logger.LogWarning("LockerItems path does not exist, will not load locker items");
 			return;
 		}
 
-		string[] files = Directory.GetFiles(path, "*.json");
+		string[] files = fileSystem.GetFiles(path, "*.json");
 
 		foreach (string file in files)
 		{
-			using FileStream fileStream = File.OpenRead(file);
+			using Stream fileStream = fileSystem.OpenRead(file);
 			List<LockerItem> lockerItems = await JsonSerializer.DeserializeAsync<List<LockerItem>>(fileStream, jsonSettingsService.PrettyPascalFormat) ?? [];
 
 			if (lockerItems.Count == 0)

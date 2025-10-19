@@ -39,7 +39,7 @@ public class LocalizedString
 	public int SpaceRevision { get; set; } = 121;
 }
 
-public class TagIdConverter(LocalizedStringService localizedStringService) : JsonConverter<OasisTag>
+public class TagIdConverter(ILocalizedStringService localizedStringService) : JsonConverter<OasisTag>
 {
 	public override OasisTag Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{

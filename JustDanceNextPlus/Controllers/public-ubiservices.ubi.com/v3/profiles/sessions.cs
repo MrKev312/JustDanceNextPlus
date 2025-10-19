@@ -11,7 +11,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v3.profiles;
 
 [ApiController]
 [Route("v3/profiles/sessions")]
-public class Sessions(UserDataService userDataService, TimingService timingService, SessionManager sessionManager) : ControllerBase
+public class Sessions(IUserDataService userDataService, ITimingService timingService, ISessionManager sessionManager, IBundleService bundleService) : ControllerBase
 {
 	[HttpPost(Name = "PostSessions")]
 	public async Task<IActionResult> PostSessions([FromBody] JsonElement body)
@@ -48,7 +48,7 @@ public class Sessions(UserDataService userDataService, TimingService timingServi
 
 		if (userData == null)
 		{
-			userData = new Profile
+			userData = new Profile(bundleService.Claims)
 			{
 				Ticket = authorization,
 				Dancercard = new DancerCard

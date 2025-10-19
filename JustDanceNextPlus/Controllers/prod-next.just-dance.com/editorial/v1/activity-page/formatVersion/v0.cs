@@ -7,7 +7,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.editorial.v1.ac
 
 [ApiController]
 [Route("editorial/v1/activity-page/formatVersion/v0")]
-public class V0(ActivityPageService activityPageService) : ControllerBase
+public class V0(IActivityPageService activityPageService) : ControllerBase
 {
 	[HttpGet]
 	public IActionResult GetActivityPage()
