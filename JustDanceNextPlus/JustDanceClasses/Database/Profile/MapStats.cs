@@ -19,7 +19,8 @@ public class MapStats
 	public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
 	public HighscorePerformance HighScorePerformance { get; set; } = new();
-	public GameModeStats? GameModeStats { get; set; }
+	public MoveCounts MoveCount => HighScorePerformance.Moves;
+    public GameModeStats? GameModeStats { get; set; }
 }
 
 [Owned]
