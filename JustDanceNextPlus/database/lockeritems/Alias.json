@@ -201,6 +201,29 @@
         "lastModified": "2023-02-27T09:16:31.678Z"
     },
     {
+        "itemId": "80ae1df4-8bf1-439f-86d7-5027dba05ab1",
+        "nameId": "alias_TheyCallMe",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 9288,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 9289,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 9290,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "3055aef3-de7a-4af2-8b50-67d2ffb31163",
         "nameId": "alias_Alias_Goal_Paper_1",
         "type": "alias",
@@ -628,6 +651,29 @@
         "lastModified": "2023-02-27T09:16:31.678Z"
     },
     {
+        "itemId": "4c8878d8-52bf-4076-aa69-c2d2417dccd2",
+        "nameId": "alias_SawFace",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 9279,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 9280,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 9281,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "a488a2d7-00bb-4b55-b250-4d627aefdabf",
         "nameId": "Alias_Goal_Flow_1",
         "type": "alias",
@@ -671,6 +717,29 @@
             "us_NotForProd"
         ],
         "lastModified": "2024-05-14T08:45:18.093Z"
+    },
+    {
+        "itemId": "7b3d12d5-936c-4b49-9861-9fe38d70785d",
+        "nameId": "alias_AmIType",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 9285,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 9286,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 9287,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
     },
     {
         "itemId": "5008c0d4-db0c-485e-80e7-a05a88991ea2",
@@ -763,6 +832,29 @@
         "lastModified": "2023-10-23T09:37:48.923Z"
     },
     {
+        "itemId": "a7b0c2cb-738b-4a9c-a45c-c36939aa9c96",
+        "nameId": "alias_RulingWorld",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 9276,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 9277,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 9278,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "c1e2b8cb-f466-43e8-8e16-0eb3ef2aeee4",
         "nameId": "Alias_Default_8",
         "type": "alias",
@@ -783,6 +875,29 @@
             "us_NotForProd"
         ],
         "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "f50f37cb-c8af-44b0-a205-3299893a82dd",
+        "nameId": "alias_HoldingMyTears",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 9291,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 9292,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 9293,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
     },
     {
         "itemId": "f49855c7-2956-4de1-ab72-4decc787c084",
@@ -1672,6 +1787,29 @@
         "lastModified": "2023-02-27T09:16:31.678Z"
     },
     {
+        "itemId": "c3fcf081-c0fb-4f5e-9f47-4946783e35cd",
+        "nameId": "alias_WithoutMe",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 9270,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 9271,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 9272,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "ac01eb7d-0c43-46d5-b79f-dbec3f6b2390",
         "nameId": "Alias_Goal_Flow_2",
         "type": "alias",
@@ -1714,6 +1852,52 @@
             "us_NotForProd"
         ],
         "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "ad65b479-c509-4d0e-b976-5946bf6f5e70",
+        "nameId": "alias_DancingWorking",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 9273,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 9274,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 9275,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
+        "itemId": "a2849277-a9dd-43c5-ba93-c544e841a06b",
+        "nameId": "alias_SeeYouDreams",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 9294,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 9295,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 9296,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
     },
     {
         "itemId": "d55f4276-7112-47cb-86e9-f1604467d19e",
@@ -2095,6 +2279,29 @@
         "lastModified": "2023-02-27T09:16:31.678Z"
     },
     {
+        "itemId": "bdd7e661-ebc8-4943-88ac-b88254aaf75a",
+        "nameId": "alias_HaveFun",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 9394,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 9395,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 9396,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "cc13485f-0d7e-478b-91b6-c721202fe8eb",
         "nameId": "alias_Alias_Goal_Paper_2",
         "type": "alias",
@@ -2451,6 +2658,29 @@
         "lastModified": "2023-10-23T09:37:48.923Z"
     },
     {
+        "itemId": "d2dbbf49-4ebd-454b-9610-ac4ac6237986",
+        "nameId": "alias_DocQuote",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 9495,
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 9496,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 9497,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-06T08:38:36.651Z"
+    },
+    {
         "itemId": "5b88a740-716e-4e0d-8881-fcb127cd4dec",
         "nameId": "Alias_Goal_Flow_3",
         "type": "alias",
@@ -2783,6 +3013,29 @@
             "us_NotForProd"
         ],
         "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "a9b00b25-97f9-42a5-982c-b7793ccbae3a",
+        "nameId": "alias_CatchGo",
+        "type": "alias",
+        "obj": {
+            "feminineFormLocId": 9266,
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "masculineFormLocId": 9267,
+            "nameLocId": 0,
+            "nonBinaryFormLocId": 9268,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "alias",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
     },
     {
         "itemId": "c1eda623-6b4b-4de2-8b36-96b98a3343bc",

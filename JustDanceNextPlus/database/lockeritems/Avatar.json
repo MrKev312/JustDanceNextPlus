@@ -450,6 +450,36 @@
         "lastModified": "2023-10-23T09:37:48.923Z"
     },
     {
+        "itemId": "b41ac9d2-0b1a-4a9f-a41b-0e58a1c1fc7c",
+        "nameId": "avatar_ProfessorBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "Professor",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/Professor/StaticTextures/Professor_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/Professor/StaticTextures/Professor_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/Professor/StaticTextures/Professor_Base_DancerCard.png",
+            "descriptionLocId": 9064,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/Professor/StaticTextures/Professor_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/Professor/StaticTextures/Professor_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9063,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/Professor/StaticTextures/Professor_Base_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/Professor/StaticTextures/Professor_Base_Square.png",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-09-30T09:02:51.209Z"
+    },
+    {
         "itemId": "9a25cbcf-cb51-4dac-bd12-6d82244b519f",
         "nameId": "avatar_NightSwanBase",
         "type": "avatar",
@@ -1232,6 +1262,36 @@
         "lastModified": "2023-10-23T09:37:48.923Z"
     },
     {
+        "itemId": "2f3b0887-943d-4ea0-b0de-443d9c9949f8",
+        "nameId": "avatar_JuliaBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "Julia",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/Julia/StaticTextures/Julia_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/Julia/StaticTextures/Julia_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/Julia/StaticTextures/Julia_Base_DancerCard.png",
+            "descriptionLocId": 9126,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/Julia/StaticTextures/Julia_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/Julia/StaticTextures/Julia_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9125,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/Julia/StaticTextures/Julia_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/Julia/StaticTextures/Julia_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "c4158285-1637-45d0-9bb0-59f81caff491",
         "nameId": "avatar_LizaFridayBase",
         "type": "avatar",
@@ -1320,6 +1380,36 @@
             "us_NotForProd"
         ],
         "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "3c23a17d-5209-45d1-9362-a3bb878c1817",
+        "nameId": "avatar_QuirkyProfessorBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "QuirkyProfessor",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/QuirkyProfessor/StaticTextures/QuirkyProfessor_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/QuirkyProfessor/StaticTextures/QuirkyProfessor_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/QuirkyProfessor/StaticTextures/QuirkyProfessor_Base_DancerCard.png",
+            "descriptionLocId": 9205,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/QuirkyProfessor/StaticTextures/QuirkyProfessor_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/QuirkyProfessor/StaticTextures/QuirkyProfessor_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9204,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/QuirkyProfessor/StaticTextures/QuirkyProfessor_Base_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/QuirkyProfessor/StaticTextures/QuirkyProfessor_Base_Square.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-06T08:38:36.651Z"
     },
     {
         "itemId": "0235b77c-3ea0-403c-b3b0-ba0a05d73c4e",
@@ -1623,6 +1713,36 @@
         "lastModified": "2023-10-23T09:37:48.923Z"
     },
     {
+        "itemId": "7cd1c168-e17c-4239-8a42-7abfd5000b34",
+        "nameId": "avatar_PheaNoxBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "PheaNox",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/PheaNox/StaticTextures/PheaNox_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/PheaNox/StaticTextures/PheaNox_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/PheaNox/StaticTextures/PheaNox_Base_DancerCard.png",
+            "descriptionLocId": 9207,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/PheaNox/StaticTextures/PheaNox_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/PheaNox/StaticTextures/PheaNox_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9206,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/PheaNox/StaticTextures/PheaNox_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/PheaNox/StaticTextures/PheaNox_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "2e3aca67-c6ff-46a6-a810-b8740029af50",
         "nameId": "avatar_SoSplash",
         "type": "avatar",
@@ -1743,6 +1863,36 @@
         "lastModified": "2023-10-23T09:37:48.923Z"
     },
     {
+        "itemId": "221d2c63-7b07-4858-b5d5-3486d8b3554c",
+        "nameId": "avatar_MirageBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "Mirage",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/Mirage/StaticTextures/Mirage_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/Mirage/StaticTextures/Mirage_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/Mirage/StaticTextures/Mirage_Base_DancerCard.png",
+            "descriptionLocId": 8994,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/Mirage/StaticTextures/Mirage_Base_Full.png",
+            "hiddenUntilUnlocked": false,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/Mirage/StaticTextures/Mirage_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 8993,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/Mirage/StaticTextures/Mirage_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/Mirage/StaticTextures/Mirage_Base_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "0015b65c-f23c-42a0-b50d-d82e43dcfd10",
         "nameId": "avatar_TheShowmanBase",
         "type": "avatar",
@@ -1861,6 +2011,36 @@
             "us_NotForProd"
         ],
         "lastModified": "2024-08-13T15:34:11.976Z"
+    },
+    {
+        "itemId": "40535652-c9d1-40b5-855d-1adc0936a8e1",
+        "nameId": "avatar_DinosaurBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "Dinosaur",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/Dinosaur/StaticTextures/Dinosaur_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/Dinosaur/StaticTextures/Dinosaur_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/Dinosaur/StaticTextures/Dinosaur_Base_DancerCard.png",
+            "descriptionLocId": 9499,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/Dinosaur/StaticTextures/Dinosaur_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/Dinosaur/StaticTextures/Dinosaur_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9498,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/Dinosaur/StaticTextures/Dinosaur_Base_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/Dinosaur/StaticTextures/Dinosaur_Base_Square.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-06T08:38:36.651Z"
     },
     {
         "itemId": "9f23c34c-d505-4c5d-b0b9-697d672be253",
