@@ -26,7 +26,7 @@ public class MapStats
 [Owned]
 public class HighscorePerformance
 {
-	public bool[] GoldMovesAchieved { get; set; } = [];
+	public List<bool> GoldMovesAchieved { get; set; } = [];
 	public MoveCounts Moves { get; set; } = new();
 }
 

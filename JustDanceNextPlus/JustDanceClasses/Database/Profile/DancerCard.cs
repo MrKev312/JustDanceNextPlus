@@ -1,10 +1,10 @@
-﻿using HotChocolate;
+﻿using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.JustDanceClasses.Database.Profile;
 
 public class DancerCard
 {
-	[GraphQLIgnore]
+	[JsonPropertyName("_id")]
 	public Guid Id { get; set; } = Guid.Empty;
 
 	public string Name { get; set; } = "John Doe";

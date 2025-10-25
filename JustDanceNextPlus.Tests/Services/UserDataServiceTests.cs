@@ -1,10 +1,12 @@
-﻿using Moq;
-using Microsoft.EntityFrameworkCore;
-using JustDanceNextPlus.JustDanceClasses.Database;
+﻿using JustDanceNextPlus.JustDanceClasses.Database;
 using JustDanceNextPlus.JustDanceClasses.Database.Profile;
-using JustDanceNextPlus.Services;
-using Microsoft.Extensions.Logging;
 using JustDanceNextPlus.JustDanceClasses.Endpoints;
+using JustDanceNextPlus.Services;
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+
+using Moq;
 
 namespace JustDanceNextPlus.Tests.Services;
 

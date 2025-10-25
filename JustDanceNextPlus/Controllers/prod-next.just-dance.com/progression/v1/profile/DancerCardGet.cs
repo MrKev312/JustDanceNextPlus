@@ -7,7 +7,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.progression.v1.
 
 [ApiController]
 [Route("progression/v1/profile/{guid:guid}")]
-public class DancerCard(IUserDataService userDataService) : ControllerBase
+public class DancerCardGet(IUserDataService userDataService) : ControllerBase
 {
     [HttpGet]
     public async Task<IActionResult> GetDancerCard([FromRoute] Guid guid)

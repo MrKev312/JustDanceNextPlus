@@ -1,11 +1,14 @@
-﻿using Moq;
-using JustDanceNextPlus.Configuration;
+﻿using JustDanceNextPlus.Configuration;
 using JustDanceNextPlus.JustDanceClasses.Database;
 using JustDanceNextPlus.Services;
-using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Logging;
-using System.Text;
 using JustDanceNextPlus.Utilities;
+
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+
+using Moq;
+
+using System.Text;
 
 namespace JustDanceNextPlus.Tests.Services;
 

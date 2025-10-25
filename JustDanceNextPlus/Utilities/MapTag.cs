@@ -1,6 +1,7 @@
-﻿using System.Text.Json.Serialization;
+﻿using JustDanceNextPlus.Services;
+
 using System.Text.Json;
-using JustDanceNextPlus.Services;
+using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.Utilities;
 
