@@ -661,6 +661,28 @@
         "lastModified": "2024-05-02T13:34:03.748Z"
     },
     {
+        "itemId": "9946aaa7-bc06-43ce-b70d-c251878b91a9",
+        "nameId": "border_RoyalAir",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_RoyalAir.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9081,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_RoyalAir.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "bea885a6-c7f4-4a3d-9d17-0fa5fcee64eb",
         "nameId": "border_Observatory",
         "type": "border",
@@ -1036,6 +1058,28 @@
         "lastModified": "2024-10-15T09:01:44.331Z"
     },
     {
+        "itemId": "12ce217f-5909-4e42-a002-ecb01b6e094c",
+        "nameId": "border_Scrapbook",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Scrapbook.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9133,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Scrapbook.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "911c6377-afb8-4af8-b589-ccba07ebc5e4",
         "nameId": "border_Light",
         "type": "border",
@@ -1141,13 +1185,12 @@
             "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Birthday.psd",
             "unlockConditionsLocId": 3343
         },
-        "revision": 2,
+        "revision": 3,
         "tags": [
             "border",
-            "us_NotForProd",
-            "uplay"
+            "us_NotForProd"
         ],
-        "lastModified": "2024-10-15T09:24:55.666Z"
+        "lastModified": "2025-09-30T09:02:51.209Z"
     },
     {
         "itemId": "7dcd1770-b568-466e-bbf8-7ef8a534c6b8",
@@ -1503,6 +1546,50 @@
         "lastModified": "2023-02-27T09:16:31.678Z"
     },
     {
+        "itemId": "8fcbce48-1fcc-4afd-a618-ff44266586d6",
+        "nameId": "border_FuzzyBoom",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_FuzzyBoom.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9012,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_FuzzyBoom.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-09-30T09:02:51.209Z"
+    },
+    {
+        "itemId": "6216d746-2f2d-4c32-a73b-7e877460fdb5",
+        "nameId": "border_XmasParty",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_XmasParty.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9236,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_XmasParty.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "c3e72645-90f3-4e66-9ce9-57f91a9ed68b",
         "nameId": "border_ContemporaryArt",
         "type": "border",
@@ -1855,6 +1942,28 @@
             "us_NotForProd"
         ],
         "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "9208ee1d-eae5-4d2d-86aa-d301df81e46e",
+        "nameId": "border_Lumi",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Lumi.psd",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9071,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Lumi.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
     },
     {
         "itemId": "a8451e12-8f01-4c1f-9506-3e1f62ac2d3f",

@@ -448,6 +448,76 @@
     "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/7c65f88f-4a05-46e6-a915-9c1f17b92830/nx/productGroupBundle/d3426f432613fcf066ddfe5c6f086fbe.bundle"
   },
   {
+    "dlcType": "Yearly",
+    "name": "songpack_year4",
+    "groupLocId": "Just Dance 2026 Edition",
+    "songsCountLocId": "40 songs",
+    "groupDescriptionLocId": "Dance it off to 40 of your favorite songs, from chart-topping hits to beloved classics!",
+    "tracklistExtended": [
+      "Abracadabra",
+      "APT",
+      "DogDance",
+      "GoodLuckBabe",
+      "AllStar",
+      "Houdini",
+      "ThriftShop",
+      "BornToBe",
+      "Azizam",
+      "GirlsJustWantNext"
+    ],
+    "tracklistLimited": [
+      "Abracadabra",
+      "APT",
+      "DogDance",
+      "GoodLuckBabe",
+      "AllStar",
+      "Houdini"
+    ],
+    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/c47c3d4f-f754-4f3d-a406-fdfd888a9741/nx/productGroupBundle/5ab645348a2d3c8110478d254e7c14c8.bundle"
+  },
+  {
+    "dlcType": "Exclusive",
+    "name": "Music_Pack_FiestaLatina",
+    "groupLocId": "Fiesta Latina",
+    "songsCountLocId": "6 songs",
+    "groupDescriptionLocId": "Get ready to spice up the dancefloor!",
+    "tracklistExtended": [
+      "Soltera",
+      "LaBachata",
+      "SiAntesTe",
+      "Despacito",
+      "Bailando",
+      "Provenza"
+    ],
+    "tracklistLimited": [
+      "Soltera",
+      "LaBachata",
+      "Despacito"
+    ],
+    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/2cb63a3d-f685-4c02-af75-994e05db3e8e/nx/productGroupBundle/ac0aa3c8f56e096d5696b91573489589.bundle"
+  },
+  {
+    "dlcType": "Exclusive",
+    "name": "Music_Pack_Fitness",
+    "groupLocId": "Fitness",
+    "songsCountLocId": "6 songs",
+    "groupDescriptionLocId": "Turn your workout into a dance party!!",
+    "tracklistExtended": [
+      "Apple",
+      "FeelSoClose",
+      "YouKissMe",
+      "Rabiosa",
+      "Juice",
+      "ThisIsHow"
+    ],
+    "tracklistLimited": [
+      "Apple",
+      "FeelSoClose",
+      "YouKissMe"
+    ],
+    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/3d7fd108-5603-4c14-99f7-a6d73a6c3a5d/nx/productGroupBundle/31c2fd180212c103e05ed33371fe7139.bundle"
+  },
+  {
     "dlcType": "Exclusive",
     "name": "Music_Pack_DisneyVol1",
     "groupLocId": "Disney Hits <nobr>Vol. 1</nobr>",

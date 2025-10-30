@@ -189,6 +189,33 @@
         "lastModified": "2024-02-20T12:04:55.812Z"
     },
     {
+        "itemId": "1d6806f5-dcf3-4ab8-8e4d-beae2f784c97",
+        "nameId": "background_StonyBridge",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/StonyBridge/Background_StonyBridge_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/StonyBridge/Background_StonyBridge_Cursor.png",
+            "descriptionLocId": 9215,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/StonyBridge/Background_StonyBridge_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/StonyBridge/Background_StonyBridge_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9214,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/StonyBridge/Background_StonyBridge_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/StonyBridge/Background_StonyBridge_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "c38e6ff2-f376-4137-bcd4-a921fde00367",
         "nameId": "background_WhatLoversDo01",
         "type": "background",
@@ -732,6 +759,33 @@
         "lastModified": "2024-02-20T12:04:55.812Z"
     },
     {
+        "itemId": "f8f2b7bf-1199-46cd-8c7a-2d01333b50d4",
+        "nameId": "background_NightyLab",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/NightyLab/Background_NightyLab_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/NightyLab/Background_NightyLab_Cursor.png",
+            "descriptionLocId": 9494,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/NightyLab/Background_NightyLab_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/NightyLab/Background_NightyLab_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9493,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/NightyLab/Background_NightyLab_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/NightyLab/Background_NightyLab_Square.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-06T08:38:36.651Z"
+    },
+    {
         "itemId": "967938bf-962c-4b8f-a35b-76106e215a86",
         "nameId": "background_NewWorld01",
         "type": "background",
@@ -759,6 +813,33 @@
         "lastModified": "2023-02-27T09:16:31.678Z"
     },
     {
+        "itemId": "81dd0abc-1985-47d1-87bd-eeeea2711da3",
+        "nameId": "background_CrazyClassroom",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/CrazyClassroom/Background_CrazyClassroom_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/CrazyClassroom/Background_CrazyClassroom_Cursor.png",
+            "descriptionLocId": 9074,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/CrazyClassroom/Background_CrazyClassroom_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/CrazyClassroom/Background_CrazyClassroom_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9073,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/CrazyClassroom/Background_CrazyClassroom_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/CrazyClassroom/Background_CrazyClassroom_Square.png",
+            "unlockConditionsLocId": 3343
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-09-30T09:02:51.209Z"
+    },
+    {
         "itemId": "4f5253ba-0973-4dda-b80e-4d945209843f",
         "nameId": "background_IWillSurvive01",
         "type": "background",
@@ -784,6 +865,33 @@
             "us_NotForProd"
         ],
         "lastModified": "2023-07-12T15:12:20.57Z"
+    },
+    {
+        "itemId": "d85947b9-60c3-47d3-8eeb-9cb17d26d879",
+        "nameId": "background_DeadCity",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/DeadCity/Background_DeadCity_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/DeadCity/Background_DeadCity_Cursor.png",
+            "descriptionLocId": 9263,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/DeadCity/Background_DeadCity_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/DeadCity/Background_DeadCity_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9262,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/DeadCity/Background_DeadCity_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/DeadCity/Background_DeadCity_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
     },
     {
         "itemId": "3fb3c6b7-cf30-4f52-980d-55c2bc324954",
@@ -973,6 +1081,33 @@
             "us_NotForProd"
         ],
         "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "4e74f8a8-8faf-423e-b6ae-05c6834b9057",
+        "nameId": "background_StarrySky",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/StarrySky/Background_StarrySky_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/StarrySky/Background_StarrySky_Cursor.png",
+            "descriptionLocId": 9210,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/StarrySky/Background_StarrySky_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/StarrySky/Background_StarrySky_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9209,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/StarrySky/Background_StarrySky_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/StarrySky/Background_StarrySky_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
     },
     {
         "itemId": "e4083da8-f643-4248-987e-045ca1e06af8",
@@ -1300,6 +1435,33 @@
         "lastModified": "2023-09-28T09:30:02.898Z"
     },
     {
+        "itemId": "2bf89f8f-2d29-41ba-8071-67b0a46dc6da",
+        "nameId": "background_CubicParty",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/CubicParty/Background_CubicParty_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/CubicParty/Background_CubicParty_Cursor.png",
+            "descriptionLocId": 9398,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/CubicParty/Background_CubicParty_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/CubicParty/Background_CubicParty_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9397,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/CubicParty/Background_CubicParty_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/CubicParty/Background_CubicParty_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "3bbc428b-894b-4c54-93b7-3ef0dff73ee7",
         "nameId": "background_ThinkAboutThings01",
         "type": "background",
@@ -1406,6 +1568,33 @@
             "us_NotForProd"
         ],
         "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "c81dcb83-eff5-44bd-bba2-79b0ca58adaf",
+        "nameId": "background_CozyChimney",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/CozyChimney/Background_CozyChimney_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/CozyChimney/Background_CozyChimney_Cursor.png",
+            "descriptionLocId": 9213,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/CozyChimney/Background_CozyChimney_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/CozyChimney/Background_CozyChimney_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9212,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/CozyChimney/Background_CozyChimney_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/CozyChimney/Background_CozyChimney_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
     },
     {
         "itemId": "d9ae0a83-4764-430d-bd96-c398c39f7bd9",
@@ -1652,6 +1841,33 @@
         "lastModified": "2023-02-27T09:16:31.678Z"
     },
     {
+        "itemId": "839d856c-cc59-4029-ad21-b9ccec218817",
+        "nameId": "background_StickersEverywhere",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/StickersEverywhere/Background_StickersEverywhere_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/StickersEverywhere/Background_StickersEverywhere_Cursor.png",
+            "descriptionLocId": 9219,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/StickersEverywhere/Background_StickersEverywhere_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/StickersEverywhere/Background_StickersEverywhere_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9218,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/StickersEverywhere/Background_StickersEverywhere_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/StickersEverywhere/Background_StickersEverywhere_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "f47f026b-91e1-490a-8d42-3be44628aba2",
         "nameId": "background_DiscoInferno1",
         "type": "background",
@@ -1762,6 +1978,87 @@
         "lastModified": "2024-05-02T13:34:03.748Z"
     },
     {
+        "itemId": "94eb3069-4d14-4f5e-864a-581002664eea",
+        "nameId": "background_IllusionBoxes",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/IllusionBoxes/Background_IllusionBoxes_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/IllusionBoxes/Background_IllusionBoxes_Cursor.png",
+            "descriptionLocId": 9060,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/IllusionBoxes/Background_IllusionBoxes_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/IllusionBoxes/Background_IllusionBoxes_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9059,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/IllusionBoxes/Background_IllusionBoxes_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/IllusionBoxes/Background_IllusionBoxes_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
+        "itemId": "afd5e168-9988-47d2-bf4b-b36e49050870",
+        "nameId": "background_SecretLab",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/SecretLab/Background_SecretLab_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/SecretLab/Background_SecretLab_Cursor.png",
+            "descriptionLocId": 9492,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/SecretLab/Background_SecretLab_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/SecretLab/Background_SecretLab_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9491,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/SecretLab/Background_SecretLab_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/SecretLab/Background_SecretLab_Square.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-06T08:38:36.651Z"
+    },
+    {
+        "itemId": "5f28215c-b119-4557-a592-1bd16234f6cf",
+        "nameId": "background_SweetNightmare",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetNightmare/Background_SweetNightmare_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetNightmare/Background_SweetNightmare_Cursor.png",
+            "descriptionLocId": 9265,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetNightmare/Background_SweetNightmare_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetNightmare/Background_SweetNightmare_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9264,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetNightmare/Background_SweetNightmare_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/SweetNightmare/Background_SweetNightmare_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
+    },
+    {
         "itemId": "10d3a95b-ceed-4ae5-85c6-bb6786ca4cc2",
         "nameId": "background_CloudLove",
         "type": "background",
@@ -1787,6 +2084,33 @@
             "us_NotForProd"
         ],
         "lastModified": "2024-10-15T09:01:44.331Z"
+    },
+    {
+        "itemId": "8ce5f65a-0f02-447a-9d9f-375967382d54",
+        "nameId": "background_FlyingInTheAir",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/FlyingInTheAir/Background_FlyingInTheAir_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/FlyingInTheAir/Background_FlyingInTheAir_Cursor.png",
+            "descriptionLocId": 9217,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/FlyingInTheAir/Background_FlyingInTheAir_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/FlyingInTheAir/Background_FlyingInTheAir_Gauge.png",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9216,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/FlyingInTheAir/Background_FlyingInTheAir_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/FlyingInTheAir/Background_FlyingInTheAir_Square.png",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
     },
     {
         "itemId": "1ec7885a-6d3b-431c-8213-11b772f78d51",

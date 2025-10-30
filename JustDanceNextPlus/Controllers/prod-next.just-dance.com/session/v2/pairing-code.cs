@@ -13,7 +13,8 @@ public class PairingCode : ControllerBase
 	{
 		string response = $$"""
 		{
-			"pairingCode": "doesn't work"
+			"pairingCode": "scanme:3",
+			"qrCodePairingUrl": "https://youtu.be/dQw4w9WgXcQ"
 		}
 		""";
 

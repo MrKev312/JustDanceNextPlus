@@ -1,5 +1,27 @@
 [
     {
+        "itemId": "741e02ff-2d69-4f27-9841-276cdd4429f2",
+        "nameId": "sticker_GigaThink",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/GigaThink_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9070,
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/GigaThink/StaticTextures/GigaThink.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 1,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-09-30T09:02:51.209Z"
+    },
+    {
         "itemId": "738633fc-afc8-4c00-90b3-e8c9425b29ad",
         "nameId": "sticker_StepMotherTongue",
         "type": "sticker",

@@ -1,6 +1,5 @@
 using JustDanceNextPlus.Configuration;
 using JustDanceNextPlus.JustDanceClasses.Database;
-using JustDanceNextPlus.JustDanceClasses.GraphQL;
 using JustDanceNextPlus.Services;
 using JustDanceNextPlus.Utilities;
 
@@ -103,11 +102,6 @@ public class Program
 		builder.Services.AddSingleton<MapTagConverter>();
 		builder.Services.AddSingleton<MapTagListConverter>();
 
-		// Add GraphQL server.
-		builder.Services.AddGraphQLServer()
-			.AddQueryType<Query>()
-			.AddMutationType<Mutation>();
-
 		// Add hosted service.
 		builder.Services.AddHostedService<HostedDataService>();
 
@@ -183,7 +177,6 @@ public class Program
 		}
 
 		app.MapControllers();
-		app.MapGraphQL("/profile/v3/graphql");
 	}
 
 	public static bool CheckJsonExistance(string jsonPath)

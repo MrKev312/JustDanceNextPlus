@@ -1,6 +1,8 @@
-﻿using Moq;
-using JustDanceNextPlus.Services;
+﻿using JustDanceNextPlus.Services;
+
 using Microsoft.Extensions.DependencyInjection;
+
+using Moq;
 
 namespace JustDanceNextPlus.Tests.Services;
 

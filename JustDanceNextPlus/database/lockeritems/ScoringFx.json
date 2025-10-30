@@ -1,5 +1,27 @@
 [
     {
+        "itemId": "3c0750fc-b657-4795-b00d-68e3ba2ed478",
+        "nameId": "scoringFx_Power",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/Power/ScoringFX_Power_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9057,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_Power.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-09-30T09:02:51.209Z"
+    },
+    {
         "itemId": "f01ea6f0-2092-4869-bed3-fc41b6b516a9",
         "nameId": "Aqua",
         "type": "scoringFx",
@@ -241,6 +263,28 @@
             "us_NotForProd"
         ],
         "lastModified": "2023-09-28T09:30:02.898Z"
+    },
+    {
+        "itemId": "b037e5ab-d243-44ec-8003-a723ee0f5610",
+        "nameId": "scoringFx_SuperDanceGalaxy",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/SuperDanceGalaxy/ScoringFX_SuperDanceGalaxy_SkeletonData.asset",
+            "hiddenUntilUnlocked": false,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9058,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_SuperDanceGalaxy.psd",
+            "unlockConditionsLocId": 3649
+        },
+        "revision": 1,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2025-10-14T08:18:03.482Z"
     },
     {
         "itemId": "c5b36aa8-8e81-41b4-a0d5-91739d80b9bb",
