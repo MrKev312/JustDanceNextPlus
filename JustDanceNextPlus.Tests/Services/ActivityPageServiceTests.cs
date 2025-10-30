@@ -172,7 +172,7 @@ public class ActivityPageServiceTests
 
 		CarouselCategory? newCategory = _service.ActivityPage.Categories.Values.OfType<CarouselCategory>().FirstOrDefault(c => c.CategoryName == "Newly Added Songs");
         Assert.NotNull(newCategory);
-        Assert.Equal(newLocalizedString.OasisIdInt, newCategory.TitleId.ID);
+        Assert.Equal(newLocalizedString.OasisId, newCategory.TitleId.ID);
 
         Assert.Equal(2, _service.ActivityPage.CategoryModifiers.Count);
 		PositionModifier firstModifier = Assert.IsType<PositionModifier>(_service.ActivityPage.CategoryModifiers[0]);

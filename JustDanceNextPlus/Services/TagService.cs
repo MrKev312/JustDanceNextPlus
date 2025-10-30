@@ -43,16 +43,20 @@ public class TagService(ILocalizedStringService localizedStringService,
 		{
 			logger.LogWarning("Tag database could not be loaded");
 			return;
-		}
+        }
 
-		foreach (KeyValuePair<Guid, Tag> tag in db.Tags)
-			tag.Value.TagGuid = tag.Key;
+        foreach (KeyValuePair<Guid, Tag> kv in db.Tags.ToList())
+        {
+			Guid key = kv.Key;
 
-		TagDatabase = db;
-		logger.LogInformation("Tag database loaded");
-	}
+			db.Tags[key] = kv.Value with { TagGuid = key };
+        }
 
-	public Tag? GetTag(string text)
+        TagDatabase = db;
+        logger.LogInformation("Tag database loaded");
+    }
+
+    public Tag? GetTag(string text)
 	{
 		LocalizedString? localizedTag = localizedStringService.GetLocalizedTag(text);
 
@@ -61,7 +65,7 @@ public class TagService(ILocalizedStringService localizedStringService,
 
 		Tag tagGuid;
 		lock (TagDatabase.Tags)
-			tagGuid = TagDatabase.Tags.FirstOrDefault(x => x.Value.LocId == localizedTag.OasisIdInt).Value;
+			tagGuid = TagDatabase.Tags.FirstOrDefault(x => x.Value.LocId == localizedTag.OasisId).Value;
 
 		return tagGuid;
 	}

@@ -83,7 +83,7 @@ public class LocalizedStringServiceTests
 
         // Assert
         Assert.Equal(2, _service.Database.LocalizedStrings.Count);
-        Assert.Equal(4000, _service.Database.LocalizedStrings[0].OasisIdInt); // Verify it was sorted
+        Assert.Equal(4000, _service.Database.LocalizedStrings[0].OasisId); // Verify it was sorted
         Assert.Equal("Test String A", _service.Database.LocalizedStrings[0].DisplayString);
         _mockLogger.Verify(
             x => x.Log(LogLevel.Information, It.IsAny<EventId>(), It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Localized strings database loaded")), null, It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
@@ -124,7 +124,7 @@ public class LocalizedStringServiceTests
         Assert.NotNull(tagById);
         Assert.Equal("Just\u00A0Dance+", tagById.DisplayString);
         Assert.NotNull(tagByText);
-        Assert.Equal(1, tagByText.OasisIdInt);
+        Assert.Equal(1, tagByText.OasisId);
     }
 
     [Fact]
@@ -134,7 +134,7 @@ public class LocalizedStringServiceTests
 		Guid guid = Guid.NewGuid();
 		LocalizedStringDatabase db = new()
 		{
-            LocalizedStrings = [new() { OasisIdInt = 9999, DisplayString = "Database String", LocalizedStringId = guid }]
+            LocalizedStrings = [new() { OasisId = 9999, DisplayString = "Database String", LocalizedStringId = guid }]
         };
 		string json = JsonSerializer.Serialize(db, _jsonSettingsService.PrettyPascalFormat);
 		MemoryStream stream = new(Encoding.UTF8.GetBytes(json));
@@ -152,9 +152,9 @@ public class LocalizedStringServiceTests
         Assert.NotNull(tagById);
         Assert.Equal("Database String", tagById.DisplayString);
         Assert.NotNull(tagByText);
-        Assert.Equal(9999, tagByText.OasisIdInt);
+        Assert.Equal(9999, tagByText.OasisId);
         Assert.NotNull(tagByGuid);
-        Assert.Equal(9999, tagByGuid.OasisIdInt);
+        Assert.Equal(9999, tagByGuid.OasisId);
     }
 
     [Fact]
@@ -168,8 +168,8 @@ public class LocalizedStringServiceTests
 		LocalizedString resultFromDb = _service.GetAddLocalizedTag("Existing DB String");
 
         // Assert
-        Assert.Equal(2, resultFromDefault.OasisIdInt);
-        Assert.Equal(10000, resultFromDb.OasisIdInt);
+        Assert.Equal(2, resultFromDefault.OasisId);
+        Assert.Equal(10000, resultFromDb.OasisId);
         Assert.Single(_service.Database.LocalizedStrings); // Verify no new tags were added
     }
 
@@ -185,11 +185,11 @@ public class LocalizedStringServiceTests
         // Assert
         Assert.NotNull(newTag);
         Assert.Equal("A Brand New String", newTag.DisplayString);
-        Assert.Equal(10001, newTag.OasisIdInt);
+        Assert.Equal(10001, newTag.OasisId);
 
 		LocalizedString? foundTag = _service.GetLocalizedTag("A Brand New String");
         Assert.NotNull(foundTag);
-        Assert.Equal(10001, foundTag.OasisIdInt);
+        Assert.Equal(10001, foundTag.OasisId);
     }
 
     [Fact]
@@ -211,8 +211,8 @@ public class LocalizedStringServiceTests
 		LocalizedString[] results = await Task.WhenAll(tasks);
 
 		// Assert
-		int firstId = results[0].OasisIdInt;
-        Assert.All(results, result => Assert.Equal(firstId, result.OasisIdInt));
+		int firstId = results[0].OasisId;
+        Assert.All(results, result => Assert.Equal(firstId, result.OasisId));
 
 		int countInDb = _service.Database.LocalizedStrings.Count(s => s.DisplayString == "Thread Safe Test");
         Assert.Equal(1, countInDb);

@@ -36,18 +36,24 @@ public class WebmExtractor : IWebmExtractor
 
 				if (elementId == 0x1549A966) // Info element
 				{
-					data.Duration = ExtractDuration(stream, dataSize);
-					data.Bitrate = (long)(8 * stream.Length / data.Duration);
-				}
+					data = data with
+					{
+						Duration = ExtractDuration(stream, dataSize),
+						Bitrate = (long)(8 * stream.Length / ExtractDuration(stream, dataSize))
+					};
+                }
 				else if (elementId == 0x1C53BB6B) // Cues element
 				{
 					// Add the size of everything before the Cues element to the total data size
 					dataSize += infoSize + elementIdPos;
 
-					data.Start = elementIdPos;
-					data.End = dataSize;
+					data = data with
+					{
+						Start = elementIdPos,
+						End = dataSize
+					};
 
-					return data;
+                    return data;
 				}
 
 				stream.Seek(dataSize, SeekOrigin.Current);
@@ -128,11 +134,11 @@ public class WebmExtractor : IWebmExtractor
 	}
 }
 
-public class WebmData
+public record WebmData
 {
-	public long Start { get; set; }
-	public long End { get; set; }
-	public double Duration { get; set; }
-	public long Bitrate { get; set; }
-	public string FileName { get; set; } = "";
+	public long Start { get; init; }
+	public long End { get; init; }
+	public double Duration { get; init; }
+	public long Bitrate { get; init; }
+	public string FileName { get; init; } = "";
 }
