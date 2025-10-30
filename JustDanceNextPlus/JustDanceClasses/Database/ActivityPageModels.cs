@@ -12,6 +12,7 @@ public class ActivityPageResponse
 	public List<IModifier> CategoryModifiers { get; set; } = [];
 }
 
+[JsonConverter(typeof(ICategoryConverter))]
 public interface ICategory
 {
 	string CategoryName { get; set; }

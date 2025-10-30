@@ -21,7 +21,7 @@ public class ConfigureJsonOptions(
 		options.JsonSerializerOptions.Converters.Add(mapTagConverter);
 		options.JsonSerializerOptions.Converters.Add(mapTagListConverter);
 
-		options.JsonSerializerOptions.Converters.Add(new CategoryConverter());
+		options.JsonSerializerOptions.Converters.Add(new ICategoryConverter());
 
 		options.JsonSerializerOptions.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
 		options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
