@@ -127,49 +127,6 @@ public class MapServiceTests
     }
 
     [Fact]
-    public async Task LoadOffers_AssignsUntaggedSongsToJdPlus()
-    {
-		// Arrange
-		Guid songId = Guid.NewGuid();
-		string mapName = "untaggedMap";
-		// Use Path.Combine to create the path so it's correct on any OS
-		string mapFolder = Path.Combine(_baseMapsPath, mapName);
-
-        // Mock GetDirectories to return the base directory name, not the full path
-        _mockFileSystem.Setup(fs => fs.GetDirectories(_baseMapsPath)).Returns([mapName]);
-
-        // Setup the UtilityService mock with the correctly combined path
-        _mockUtilityService.Setup(u => u.LoadMapDBEntryAsync(mapFolder))
-            .ReturnsAsync(new LocalJustDanceSongDBEntry { SongID = songId, MapName = mapName, Tags = [], Artist = "Artist", TagIds = [], DanceVersionLocId = new LocalizedString(0, "") });
-
-		ProductGroup jdPlusProductGroup = new()
-		{
-            Type = "jdplus",
-            GroupLocId = new LocalizedString(1, "JD Plus"),
-            SongsCountLocId = new LocalizedString(2, "Count"),
-            GroupDescriptionLocId = new LocalizedString(3, "Description"),
-            TracklistExtendedLocId = new LocalizedString(4, "Extended"),
-            TracklistLimitedLocId = new LocalizedString(5, "Limited")
-        };
-		Guid jdPlusGuid = Guid.NewGuid();
-
-		ShopConfig shopConfig = new();
-        shopConfig.FirstPartyProductDb.ProductGroups.Add(jdPlusGuid, jdPlusProductGroup);
-
-        _mockBundleService.SetupGet(bs => bs.ShopConfig).Returns(shopConfig);
-        _mockBundleService.Setup(bs => bs.LoadData()).Returns(Task.CompletedTask);
-
-        // Act
-        await _service.LoadData(); // This will run LoadMapsAsync first, then LoadOffers
-
-		// Assert
-		Dictionary<string, Pack> claims = _service.SongDBTypeSet.SongOffers.Claims;
-        Assert.True(claims.ContainsKey("jdplus"));
-        Assert.Contains(songId, claims["jdplus"].SongIds);
-        Assert.Contains("jdplus", _service.Songs[songId].Tags);
-    }
-
-    [Fact]
     public void GetSongId_WhenMapExists_ReturnsCorrectGuid()
     {
 		// Arrange

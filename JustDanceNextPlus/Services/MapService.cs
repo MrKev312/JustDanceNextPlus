@@ -114,8 +114,6 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 
 		foreach (KeyValuePair<Guid, JustDanceSongDBEntry> song in Songs)
 		{
-			bool addedToPack = false;
-
 			foreach (string tag in song.Value.Tags)
 			{
 				if (tag != "jdplus" && !tag.StartsWith("songpack_") && !tag.StartsWith("Music_Pack_"))
@@ -154,33 +152,6 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 						UnlocksFullVersion = !tag.StartsWith("Music_Pack_")
 					};
 					packs[tag] = pack;
-				}
-
-				pack.SongIds.Add(song.Key);
-				addedToPack = true;
-			}
-
-			// If the song is not added to any pack, add it to the jdplus pack
-			if (!addedToPack && !song.Value.Tags.Contains("jdplus"))
-			{
-				song.Value.Tags.Add("jdplus");
-
-				Guid productGroupId = bundleService.ShopConfig.FirstPartyProductDb.ProductGroups
-					.FirstOrDefault(x => x.Value.Type == "jdplus").Key;
-
-				int groupLocId = bundleService.ShopConfig.FirstPartyProductDb.ProductGroups[productGroupId].GroupLocId;
-
-				if (!packs.TryGetValue("jdplus", out Pack? pack))
-				{
-					pack = new Pack
-					{
-						DescriptionLocId = groupLocId,
-						AllowSharing = true,
-						FreeTrialDurationMinutes = 43200,
-						SongPackIds = [],
-						UnlocksFullVersion = true
-					};
-					packs["jdplus"] = pack;
 				}
 
 				pack.SongIds.Add(song.Key);
