@@ -36,7 +36,7 @@ public class ActivityPageServiceTests
         // Setup mock for JsonSettingsService and its dependencies
         _jsonSettingsService = CreateJsonSettingsService(_mockMapService, _mockTagService, _mockLocalizedStringService);
         // Ensure category converter is available for interface deserialization
-        _jsonSettingsService.PrettyPascalFormat.Converters.Add(new CategoryConverter());
+        _jsonSettingsService.PrettyPascalFormat.Converters.Add(new ICategoryConverter());
 
         _service = new ActivityPageService(
             _mockLogger.Object,

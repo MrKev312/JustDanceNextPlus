@@ -4,6 +4,7 @@ using JustDanceNextPlus.JustDanceClasses.Endpoints;
 
 using Microsoft.Extensions.Options;
 
+using System.Collections.Immutable;
 using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
@@ -12,9 +13,9 @@ public interface IBundleService : ILoadService
 {
 	ShopConfig ShopConfig { get; }
 	Dictionary<Guid, LiveTile> LiveTiles { get; }
-	List<string> Claims { get; }
-	List<string> ClaimDisplayPriority { get; }
-    List<string> GetAllClaims();
+	ImmutableArray<string> Claims { get; }
+    ImmutableArray<string> ClaimDisplayPriority { get; }
+    ImmutableArray<string> GetAllClaims();
 }
 
 public class BundleService(ILogger<BundleService> logger,
@@ -27,8 +28,8 @@ public class BundleService(ILogger<BundleService> logger,
 	public ShopConfig ShopConfig { get; private set; } = new();
 	public Dictionary<Guid, LiveTile> LiveTiles { get; private set; } = [];
 
-	public List<string> Claims { get; private set; } = [];
-    public List<string> ClaimDisplayPriority { get; set; } = [];
+	public ImmutableArray<string> Claims { get; private set; } = [];
+    public ImmutableArray<string> ClaimDisplayPriority { get; set; } = [];
 
 	public async Task LoadData()
 	{
@@ -193,7 +194,7 @@ public class BundleService(ILogger<BundleService> logger,
 		database.ProductGroups.Add(subscriptionGuid, jdPlus);
 
 		// Sort the claims based on GetClaimLists
-		(List<string> songpacks, List<string> otherClaims) = GetClaimLists([.. database.DlcProducts.Values.SelectMany(x => x.ClaimIds)]);
+		(ImmutableArray<string> songpacks, ImmutableArray<string> otherClaims) = GetClaimLists([.. database.DlcProducts.Values.SelectMany(x => x.ClaimIds)]);
 		// Merge them
 		claims = [.. songpacks, .. otherClaims, "jdplus"];
 		Dictionary<string, int> claimIndex = claims.Select((x, i) => (x, i)).ToDictionary(x => x.x, x => x.i);
@@ -211,12 +212,12 @@ public class BundleService(ILogger<BundleService> logger,
 	{
 		Claims = GetAllClaims();
 
-		(List<string> songpacks, List<string> otherClaims) = GetClaimLists(Claims);
+		(ImmutableArray<string> songpacks, ImmutableArray<string> otherClaims) = GetClaimLists(Claims);
 
 		ClaimDisplayPriority = [.. songpacks, "jdplus", .. otherClaims];
 	}
 
-	private static (List<string> songpacks, List<string> otherClaims) GetClaimLists(List<string> claims)
+	private static (ImmutableArray<string> songpacks, ImmutableArray<string> otherClaims) GetClaimLists(IEnumerable<string> claims)
 	{
 		// First add the songpack_years (2023+) then songpack_games (1-2022)
 		List<string> songpacks = [];
@@ -228,10 +229,10 @@ public class BundleService(ILogger<BundleService> logger,
 		List<string> otherClaims = [.. claims.Except(songpacks)];
 		otherClaims.Sort();
 
-		return (songpacks, otherClaims);
+		return ([.. songpacks], [.. otherClaims]);
 	}
 
-	public List<string> GetAllClaims()
+	public ImmutableArray<string> GetAllClaims()
 	{
 		List<string> claims = [.. ShopConfig.FirstPartyProductDb.DlcProducts.Values
 			.SelectMany(x => x.ClaimIds)
@@ -239,6 +240,6 @@ public class BundleService(ILogger<BundleService> logger,
 
 		claims.Sort();
 
-		return claims;
+		return [.. claims];
 	}
 }

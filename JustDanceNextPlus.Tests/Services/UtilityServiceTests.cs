@@ -55,7 +55,7 @@ public class UtilityServiceTests
 
         // Initialize the REAL JsonSettingsService with the correctly configured provider
         _jsonSettingsService = new JsonSettingsService(mockServiceProvider.Object);
-        _jsonSettingsService.PrettyPascalFormat.Converters.Add(new CategoryConverter());
+        _jsonSettingsService.PrettyPascalFormat.Converters.Add(new ICategoryConverter());
 
         _service = new UtilityService(
         _jsonSettingsService,

@@ -12,7 +12,6 @@ using System.Text;
 
 namespace JustDanceNextPlus.Tests.Services;
 
-
 public class PlaylistServiceTests
 {
     private readonly Mock<IMapService> _mockMapService;

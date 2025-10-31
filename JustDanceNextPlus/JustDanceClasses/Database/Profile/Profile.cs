@@ -6,13 +6,6 @@ namespace JustDanceNextPlus.JustDanceClasses.Database.Profile;
 
 public class Profile
 {
-	public Profile() { }
-
-    public Profile(List<string> claims)
-	{
-		Ownership.Claims = claims;
-    }
-
     [Key]
 	public Guid Id { get; set; } = Guid.Empty;
 	[JsonIgnore]
@@ -55,5 +48,5 @@ public class MapStat
 
 public class Ownership
 {
-	public List<string> Claims { get; set; } = [];
+	public IList<string> Claims { get; set; } = [];
 }

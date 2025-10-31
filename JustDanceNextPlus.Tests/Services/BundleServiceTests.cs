@@ -9,6 +9,7 @@ using Microsoft.Extensions.Options;
 
 using Moq;
 
+using System.Collections.Immutable;
 using System.Text;
 using System.Text.Json;
 
@@ -140,7 +141,7 @@ public class BundleServiceTests
         Assert.Contains("songpack_year1", _service.Claims);
 
         // We have 2 claims in the display priority list, jdplus is always added
-        Assert.Equal(2, _service.ClaimDisplayPriority.Count);
+        Assert.Equal(2, _service.ClaimDisplayPriority.Length);
         Assert.Equal("songpack_year1", _service.ClaimDisplayPriority[0]);
         Assert.Equal("jdplus", _service.ClaimDisplayPriority[1]);
     }
@@ -191,7 +192,7 @@ public class BundleServiceTests
         await _service.LoadData();
 
         // Act
-        List<string> allClaims = _service.GetAllClaims();
+        ImmutableArray<string> allClaims = _service.GetAllClaims();
 
         // Assert
         Assert.Single(allClaims);

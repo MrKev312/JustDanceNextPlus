@@ -53,7 +53,7 @@ public class Session(ITimingService timingService, ISessionManager sessionManage
 		if (session == null)
 			return NotFound("Session not found");
 
-		List<string> claims = bundleService.GetAllClaims();
+        IReadOnlyList<string> claims = bundleService.GetAllClaims();
 
 		PurchaseResponse purchaseResponse = new()
 		{

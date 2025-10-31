@@ -1,14 +1,16 @@
-﻿namespace JustDanceNextPlus.JustDanceClasses.Endpoints;
+﻿using System.Collections.Immutable;
+
+namespace JustDanceNextPlus.JustDanceClasses.Endpoints;
 
 public class Leaderboard
 {
-	public List<ScoreDetails> Scores { get; set; } = [];
-	public long Count { get; set; }
+	public ImmutableArray<ScoreDetails> Scores { get; init; } = [];
+	public long Count { get; init; }
 }
 
-public class ScoreDetails
+public record ScoreDetails
 {
-	public Guid ProfileId { get; set; }
-	public int Score { get; set; }
-	public long Position { get; set; }
+	public Guid ProfileId { get; init; }
+	public int Score { get; init; }
+	public long Position { get; init; }
 }
