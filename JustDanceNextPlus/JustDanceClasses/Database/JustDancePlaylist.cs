@@ -1,26 +1,28 @@
 using JustDanceNextPlus.Services;
 using JustDanceNextPlus.Utilities;
 
+using System.Collections.Immutable;
+
 namespace JustDanceNextPlus.JustDanceClasses.Database;
 
 // Class as stored in the database
-public class JsonPlaylist
+public record JsonPlaylist
 {
-	public Guid Guid { get; set; } = Guid.Empty;
-	public string PlaylistName { get; set; } = "";
-	public string ListSource { get; set; } = "editorial";
-	public required OasisTag LocalizedTitle { get; set; }
-	public required OasisTag LocalizedDescription { get; set; }
-	public string DefaultLanguage { get; set; } = "en";
-	public string CoverUrl { get; set; } = "";
-	public string CoverDetailsUrl { get; set; } = "";
-	public List<GuidTag> Tags { get; set; } = [];
-	public bool Hidden { get; set; } = false;
+	public Guid Guid { get; init; } = Guid.Empty;
+	public string PlaylistName { get; init; } = "";
+	public string ListSource { get; init; } = "editorial";
+	public required OasisTag LocalizedTitle { get; init; }
+	public required OasisTag LocalizedDescription { get; init; }
+	public string DefaultLanguage { get; init; } = "en";
+	public string CoverUrl { get; init; } = "";
+	public string CoverDetailsUrl { get; init; } = "";
+	public ImmutableArray<GuidTag> Tags { get; init; } = [];
+	public bool Hidden { get; init; } = false;
 
 	// The maps
-	public string? Query { get; set; }
-	public string? OrderBy { get; set; }
-	public List<MapTag> ItemList { get; set; } = [];
+	public string? Query { get; init; }
+	public string? OrderBy { get; init; }
+	public ImmutableArray<MapTag> ItemList { get; init; } = [];
 
 	// Implicit conversion to Playlist
 	public static implicit operator JustDancePlaylist(JsonPlaylist playlist)
@@ -42,11 +44,9 @@ public class JsonPlaylist
 				}
 			},
 			Tags = playlist.Tags,
-			Hidden = playlist.Hidden
+			Hidden = playlist.Hidden,
+			ItemList = [.. playlist.ItemList.Select(map => new Itemlist { Id = map.Guid, Type = "map" })]
 		};
-
-		foreach (MapTag map in playlist.ItemList)
-			newPlaylist.ItemList.Add(new Itemlist { Id = map.Guid, Type = "map" });
 
 		return newPlaylist;
 	}

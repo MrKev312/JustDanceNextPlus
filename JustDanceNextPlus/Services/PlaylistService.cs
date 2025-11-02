@@ -4,6 +4,7 @@ using JustDanceNextPlus.Utilities;
 
 using Microsoft.Extensions.Options;
 
+using System.Collections.Immutable;
 using System.Linq.Dynamic.Core;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -48,8 +49,10 @@ public class PlaylistService(IMapService mapService,
 
 			JustDancePlaylist playlistFinal = playlist;
 
-			// If the playlist has a query, run the query on the map database and get the maps
-			if (playlist.Query != null)
+            List<Itemlist> itemList = [.. playlistFinal.ItemList];
+
+            // If the playlist has a query, run the query on the map database and get the maps
+            if (playlist.Query != null)
 			{
 				List<Itemlist> maps = [.. mapService.Songs.Select(x => x.Value).AsQueryable()
 					.Where(playlist.Query)
@@ -60,23 +63,29 @@ public class PlaylistService(IMapService mapService,
 						Type = "map"
 					})];
 
-				playlistFinal.ItemList.AddRange(maps);
-			}
+                itemList.AddRange(maps);
+
+            }
 
 			// If the playlist has an order by, sort the maps
 			if (playlist.OrderBy != null)
 			{
-				playlistFinal.ItemList = [.. playlistFinal.ItemList.Select(x => mapService.Songs[x.Id])
+                itemList = [.. itemList.Select(x => mapService.Songs[x.Id])
 					.AsQueryable()
 					.OrderBy(playlist.OrderBy)
 					.Select(x => new Itemlist
 					{
 						Id = mapService.MapToGuid[x.MapName],
-						Type = "map"
-					})];
-			}
+                        Type = "map"
+                    })];
+            }
 
-			if (playlistFinal.ItemList == null || playlistFinal.ItemList.Count <= 1)
+            playlistFinal = playlistFinal with
+            {
+                ItemList = [.. itemList.DistinctBy(x => x.Id)]
+            };
+
+            if (playlistFinal.ItemList == null || playlistFinal.ItemList.Length <= 1)
 			{
 				logger.LogWarning("Playlist {File} has not enough maps, skipping", file);
 				continue;
@@ -99,37 +108,37 @@ public class PlaylistDB
 	public PlaylistsOffers PlaylistsOffers { get; set; } = new();
 }
 
-public class JustDancePlaylist
+public record JustDancePlaylist
 {
 	[JsonIgnore]
-	public Guid Guid { get; set; } = Guid.Empty;
-	public string PlaylistName { get; set; } = "Placeholder";
-	public List<Itemlist> ItemList { get; set; } = [];
-	public string ListSource { get; set; } = "editorial";
-	public int LocalizedTitle { get; set; }
-	public int LocalizedDescription { get; set; }
-	public string DefaultLanguage { get; set; } = "en";
-	public PlaylistAssets Assets { get; set; } = new();
-	public List<GuidTag> Tags { get; set; } = [];
-	public List<object> OffersTags { get; set; } = [];
-	public bool Hidden { get; set; }
+	public Guid Guid { get; init; } = Guid.Empty;
+	public string PlaylistName { get; init; } = "Placeholder";
+	public ImmutableArray<Itemlist> ItemList { get; init; } = [];
+	public string ListSource { get; init; } = "editorial";
+	public int LocalizedTitle { get; init; }
+	public int LocalizedDescription { get; init; }
+	public string DefaultLanguage { get; init; } = "en";
+	public PlaylistAssets Assets { get; init; } = new();
+	public ImmutableArray<GuidTag> Tags { get; init; } = [];
+	public ImmutableArray<object> OffersTags { get; init; } = [];
+	public bool Hidden { get; init; }
 }
 
-public class PlaylistAssets
+public record PlaylistAssets
 {
-	public LocalizedAssets En { get; set; } = new();
+	public LocalizedAssets En { get; init; } = new();
 }
 
-public class LocalizedAssets
+public record LocalizedAssets
 {
-	public string Cover { get; set; } = "Placeholder";
-	public string CoverDetails { get; set; } = "Placeholder";
+	public string Cover { get; init; } = "Placeholder";
+	public string CoverDetails { get; init; } = "Placeholder";
 }
 
-public class Itemlist
+public record Itemlist
 {
-	public Guid Id { get; set; }
-	public string Type { get; set; } = "Placeholder";
+	public Guid Id { get; init; }
+	public string Type { get; init; } = "Placeholder";
 }
 
 public class PlaylistsOffers
