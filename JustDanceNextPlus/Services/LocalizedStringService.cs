@@ -138,6 +138,6 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 
 public class LocalizedStringDatabase
 {
-	public Guid SpaceId { get; set; } = Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0");
+	public Guid SpaceId => Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0");
 	public List<LocalizedString> LocalizedStrings { get; set; } = [];
 }

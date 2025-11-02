@@ -1,26 +1,27 @@
-﻿using System.Text.Json.Nodes;
+﻿using System.Collections.Immutable;
+using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.JustDanceClasses.Database;
 
-public class LockerItem
+public record LockerItem
 {
-	public Guid ItemId { get; set; }
-	public Guid SpaceId { get; set; } = Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0");
-	public required string NameId { get; set; }
-	public required string Type { get; set; } // Enum?
+	public Guid ItemId { get; init; }
+	public Guid SpaceId { get; init; } = Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0");
+	public required string NameId { get; init; }
+	public required string Type { get; init; } // Enum?
 	// Todo: Parse this nicely
-	public JsonObject? Obj { get; set; }
-	public int Revision { get; set; }
-	public object? Duration { get; set; }
-	public string[] Tags { get; set; } = [];
-	public DateTime LastModified { get; set; }
-	public int MaximumQuantity { get; set; } = 1;
-	public Localizations Localizations { get; set; } = new();
-	public LockerAssets Assets { get; set; } = new();
-	public string BusinessCategory { get; set; } = "";
-	public DateTime? VisibleStartDate { get; set; }
-	public DateTime? VisibleEndDate { get; set; }
+	public JsonObject? Obj { get; init; }
+	public int Revision { get; init; }
+	public object? Duration { get; init; }
+	public ImmutableArray<string> Tags { get; init; } = [];
+	public DateTime LastModified { get; init; }
+	public int MaximumQuantity { get; init; } = 1;
+	public Localizations Localizations { get; init; } = new();
+	public LockerAssets Assets { get; init; } = new();
+	public string BusinessCategory { get; init; } = "";
+	public DateTime? VisibleStartDate { get; init; }
+	public DateTime? VisibleEndDate { get; init; }
 }
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
@@ -31,15 +32,15 @@ public enum Rarity
 	Legendary
 }
 
-public class Localizations
+public record Localizations
 {
-	public object? NameStringId { get; set; }
-	public object? ExcerptStringId { get; set; }
-	public object? DescriptionStringId { get; set; }
+	public object? NameStringId { get; init; }
+	public object? ExcerptStringId { get; init; }
+	public object? DescriptionStringId { get; init; }
 }
 
-public class LockerAssets
+public record LockerAssets
 {
-	public object? VisualAssetId { get; set; }
-	public string VisualAssetUrl { get; set; } = "";
+	public object? VisualAssetId { get; init; }
+	public string VisualAssetUrl { get; init; } = "";
 }
