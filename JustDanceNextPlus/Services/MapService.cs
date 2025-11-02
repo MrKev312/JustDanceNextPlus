@@ -228,6 +228,6 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 			: null;
 	}
 
-	[GeneratedRegex(@"(?: & | ft. | feat. | featuring )", RegexOptions.IgnoreCase, "en-NL")]
+	[GeneratedRegex(@"(?: & | ft. | feat. | featuring )", RegexOptions.IgnoreCase, "en-US")]
 	private static partial Regex ArtistSplitRegex();
 }
