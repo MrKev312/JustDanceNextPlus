@@ -1,183 +1,184 @@
 ﻿using JustDanceNextPlus.Utilities;
 
+using System.Collections.Immutable;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.JustDanceClasses.Database;
 
-public class ActivityPageResponse
+public record ActivityPageResponse
 {
-	public Dictionary<Guid, ICategory> Categories { get; set; } = [];
+    public ImmutableDictionary<Guid, ICategory> Categories { get; init; } = ImmutableDictionary<Guid, ICategory>.Empty;
 
-	public List<IModifier> CategoryModifiers { get; set; } = [];
+    public ImmutableList<IModifier> CategoryModifiers { get; init; } = [];
 }
 
 [JsonConverter(typeof(ICategoryConverter))]
 public interface ICategory
 {
-	string CategoryName { get; set; }
+    string CategoryName { get; }
 
-	string Type { get; }
+    string Type { get; }
 
-	OasisTag TitleId { get; set; }
+    OasisTag TitleId { get; }
 
-	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	bool? DoNotFilterOwnership { get; set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    bool? DoNotFilterOwnership { get; }
 }
 
-public class BannerCategory : ICategory
+public record BannerCategory : ICategory
 {
-	public string CategoryName { get; set; } = string.Empty;
-	public string Type => "banner";
-	public required OasisTag TitleId { get; set; }
+    public string CategoryName { get; init; } = string.Empty;
+    public string Type => "banner";
+    public required OasisTag TitleId { get; init; }
 
-	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public bool? DoNotFilterOwnership { get; set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public bool? DoNotFilterOwnership { get; init; }
 
-	[JsonPropertyName("bannerType")]
-	public string BannerType { get; set; } = string.Empty;
+    [JsonPropertyName("bannerType")]
+    public string BannerType { get; init; } = string.Empty;
 
-	[JsonPropertyName("descriptionId")]
-	public required OasisTag DescriptionId { get; set; }
+    [JsonPropertyName("descriptionId")]
+    public required OasisTag DescriptionId { get; init; }
 
-	[JsonPropertyName("assets")]
-	public required CategoryAssets Assets { get; set; }
+    [JsonPropertyName("assets")]
+    public required CategoryAssets Assets { get; init; }
 
-	[JsonPropertyName("item")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public Item? Item { get; set; }
+    [JsonPropertyName("item")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public Item? Item { get; init; }
 }
 
-public class CarouselCategory : ICategory
+public record CarouselCategory : ICategory
 {
-	public string CategoryName { get; set; } = string.Empty;
-	public string Type => "carousel";
-	public required OasisTag TitleId { get; set; }
-	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public bool? DoNotFilterOwnership { get; set; }
+    public string CategoryName { get; init; } = string.Empty;
+    public string Type => "carousel";
+    public required OasisTag TitleId { get; init; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public bool? DoNotFilterOwnership { get; init; }
 
-	public string ListSource { get; set; } = "editorial";
+    public string ListSource { get; init; } = "editorial";
 
-	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public List<Filter>? Filters { get; set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public ImmutableList<Filter>? Filters { get; init; }
 
-	public string RecommendedItemType { get; set; } = "map";
+    public string RecommendedItemType { get; init; } = "map";
 
-	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public List<MapTag>? ItemList { get; set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public ImmutableList<MapTag>? ItemList { get; init; }
 }
 
-public class CategoryAssets
+public record CategoryAssets
 {
-	public string BackgroundImage { get; set; } = string.Empty;
+    public string BackgroundImage { get; init; } = string.Empty;
 
-	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public string? ForegroundImage { get; set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? ForegroundImage { get; init; }
 }
 
-public class Item
+public record Item
 {
-	public MapTag Id { get; set; } = new();
+    public MapTag Id { get; init; } = new();
 
-	public string Type { get; set; } = string.Empty;
+    public string Type { get; init; } = string.Empty;
 }
 
-public class Filter
+public record Filter
 {
-	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public List<GuidTag>? IncludedTags { get; set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public ImmutableList<GuidTag>? IncludedTags { get; init; }
 
-	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public List<GuidTag>? ExcludedTags { get; set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public ImmutableList<GuidTag>? ExcludedTags { get; init; }
 
-	public string ItemTypeToFilter { get; set; } = string.Empty;
+    public string ItemTypeToFilter { get; init; } = string.Empty;
 
-	public string Name { get; set; } = string.Empty;
+    public string Name { get; init; } = string.Empty;
 
-	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public bool? AlreadyPlayedMap { get; set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public bool? AlreadyPlayedMap { get; init; }
 
-	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public ComparedValue? ComparedValue { get; set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public ComparedValue? ComparedValue { get; init; }
 }
 
-public class ComparedValue
+public record ComparedValue
 {
-	public string Name { get; set; } = string.Empty;
+    public string Name { get; init; } = string.Empty;
 
-	public int Value { get; set; }
+    public int Value { get; init; }
 }
 
 [JsonConverter(typeof(IModifierConverter))]
 public interface IModifier
 {
-	public string Name { get; set; }
+    public string Name { get; }
 }
 
 public class IModifierConverter : JsonConverter<IModifier>
 {
-	public override IModifier Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-	{
-		if (reader.TokenType != JsonTokenType.StartObject)
-			throw new JsonException("Expected StartObject token.");
-		using JsonDocument doc = JsonDocument.ParseValue(ref reader);
-		JsonElement root = doc.RootElement;
-		string? type = root.GetProperty("name").GetString();
-		if (type == null)
-			throw new JsonException("Modifier type is missing.");
-		return type switch
-		{
-			"positionModifier" => JsonSerializer.Deserialize<PositionModifier>(root.GetRawText(), options)!,
-			"maxAmountElement" => JsonSerializer.Deserialize<MaxAmountElements>(root.GetRawText(), options)!,
-			"moreThanXElement" => JsonSerializer.Deserialize<MoreThanXElements>(root.GetRawText(), options)!,
-			_ => throw new JsonException($"Unknown modifier type: {type}"),
-		};
-	}
-	public override void Write(Utf8JsonWriter writer, IModifier value, JsonSerializerOptions options)
-	{
-		JsonSerializer.Serialize(writer, value, value.GetType(), options);
-	}
+    public override IModifier Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        if (reader.TokenType != JsonTokenType.StartObject)
+            throw new JsonException("Expected StartObject token.");
+        using JsonDocument doc = JsonDocument.ParseValue(ref reader);
+        JsonElement root = doc.RootElement;
+        string? type = root.GetProperty("name").GetString();
+        if (type == null)
+            throw new JsonException("Modifier type is missing.");
+        return type switch
+        {
+            "positionModifier" => JsonSerializer.Deserialize<PositionModifier>(root.GetRawText(), options)!,
+            "maxAmountElement" => JsonSerializer.Deserialize<MaxAmountElements>(root.GetRawText(), options)!,
+            "moreThanXElement" => JsonSerializer.Deserialize<MoreThanXElements>(root.GetRawText(), options)!,
+            _ => throw new JsonException($"Unknown modifier type: {type}"),
+        };
+    }
+    public override void Write(Utf8JsonWriter writer, IModifier value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(writer, value, value.GetType(), options);
+    }
 }
 
-public class PositionModifier : IModifier
+public record PositionModifier : IModifier
 {
-	public PositionModifier() { }
-	public PositionModifier(string type, Guid guid, int position)
-	{
-		ItemTypeToModify = type;
+    public PositionModifier() { }
+    public PositionModifier(string type, Guid guid, int position)
+    {
+        ItemTypeToModify = type;
         Position = new PositionInPage { Id = guid, Position = position };
     }
 
-    public string ItemTypeToModify { get; set; } = string.Empty;
+    public string ItemTypeToModify { get; init; } = string.Empty;
 
-	public string Name { get; set; } = "position";
+    public string Name { get; init; } = "position";
 
-	public PositionInPage Position { get; set; } = new();
+    public PositionInPage Position { get; init; } = new();
 
-	public class PositionInPage
-	{
-		public Guid Id { get; set; }
+    public record PositionInPage
+    {
+        public Guid Id { get; init; }
 
-		public int Position { get; set; }
-	}
+        public int Position { get; init; }
+    }
 }
 
-public class MaxAmountElements :IModifier
+public record MaxAmountElements : IModifier
 {
-	public string ItemTypeToFilter { get; set; } = string.Empty;
-	public string Name { get; set; } = string.Empty;
-	public MaxAmountElementValue  MaxAmountElement { get; set; } = new();
+    public string ItemTypeToFilter { get; init; } = string.Empty;
+    public string Name { get; init; } = string.Empty;
+    public MaxAmountElementValue MaxAmountElement { get; init; } = new();
 
-	public class MaxAmountElementValue
-	{
-		public string Type { get; set; } = string.Empty;
-		public int Value { get; set; } = 0;
-	}
+    public record MaxAmountElementValue
+    {
+        public string Type { get; init; } = string.Empty;
+        public int Value { get; init; } = 0;
+    }
 }
 
-public class MoreThanXElements : IModifier
+public record MoreThanXElements : IModifier
 {
-	public string ItemTypeToModify { get; set; } = string.Empty;
-	public string Name { get; set; } = string.Empty;
-	public int Value { get; set; } = 0;
+    public string ItemTypeToModify { get; init; } = string.Empty;
+    public string Name { get; init; } = string.Empty;
+    public int Value { get; init; } = 0;
 }

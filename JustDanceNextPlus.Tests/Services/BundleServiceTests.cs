@@ -87,15 +87,15 @@ public class BundleServiceTests
         _mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag(123)).Returns(new LocalizedString(123, "Button Text"));
         _mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag(456)).Returns(new LocalizedString(456, "Subtitle Text"));
 
-        // Act
-        await _service.LoadLiveTiles();
+		// Act
+		IReadOnlyDictionary<Guid, LiveTile> result = await _service.LoadLiveTiles();
 
         // Assert
-        Assert.Single(_service.LiveTiles);
-        Assert.True(_service.LiveTiles.ContainsKey(tileId));
-        Assert.Equal("test.cdn.com/path/to/image.png", _service.LiveTiles[tileId].Assets.BackgroundImage);
-        Assert.Equal(123, _service.LiveTiles[tileId].ButtonId.ID);
-        Assert.Equal(456, _service.LiveTiles[tileId].SubtitleId.ID);
+        Assert.Single(result);
+        Assert.True(result.ContainsKey(tileId));
+        Assert.Equal("test.cdn.com/path/to/image.png", result[tileId].Assets.BackgroundImage);
+        Assert.Equal(123, result[tileId].ButtonId.ID);
+        Assert.Equal(456, result[tileId].SubtitleId.ID);
         _mockLogger.Verify(
             x => x.Log(LogLevel.Information, It.IsAny<EventId>(), It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Live tiles database loaded")), null, It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
             Times.Once

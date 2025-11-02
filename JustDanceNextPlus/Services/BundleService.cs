@@ -11,235 +11,221 @@ namespace JustDanceNextPlus.Services;
 
 public interface IBundleService : ILoadService
 {
-	ShopConfig ShopConfig { get; }
-	Dictionary<Guid, LiveTile> LiveTiles { get; }
-	ImmutableArray<string> Claims { get; }
+    ShopConfig ShopConfig { get; }
+    IReadOnlyDictionary<Guid, LiveTile> LiveTiles { get; }
+    ImmutableArray<string> Claims { get; }
     ImmutableArray<string> ClaimDisplayPriority { get; }
     ImmutableArray<string> GetAllClaims();
 }
 
 public class BundleService(ILogger<BundleService> logger,
-		IOptions<PathSettings> pathSettings,
-		IOptions<UrlSettings> urlSettings,
-		JsonSettingsService jsonSettingsService,
-		ILocalizedStringService localizedStringService,
-		IFileSystem fileSystem) : IBundleService, ILoadService
+        IOptions<PathSettings> pathSettings,
+        IOptions<UrlSettings> urlSettings,
+        JsonSettingsService jsonSettingsService,
+        ILocalizedStringService localizedStringService,
+        IFileSystem fileSystem) : IBundleService, ILoadService
 {
-	public ShopConfig ShopConfig { get; private set; } = new();
-	public Dictionary<Guid, LiveTile> LiveTiles { get; private set; } = [];
-
-	public ImmutableArray<string> Claims { get; private set; } = [];
+    public ShopConfig ShopConfig { get; private set; } = new();
+    public IReadOnlyDictionary<Guid, LiveTile> LiveTiles { get; private set; } = ImmutableDictionary<Guid, LiveTile>.Empty;
+    public ImmutableArray<string> Claims { get; private set; } = [];
     public ImmutableArray<string> ClaimDisplayPriority { get; set; } = [];
 
-	public async Task LoadData()
-	{
-		await Task.WhenAll(
-			LoadJustDanceBundles(),
-			LoadLiveTiles()
-		);
-	}
+    public async Task LoadData()
+    {
+		// Run file-loading operations in parallel
+		Task<ShopConfig> loadShopConfigTask = LoadBundleDatabaseAsync();
+		Task<IReadOnlyDictionary<Guid, LiveTile>> loadLiveTilesTask = LoadLiveTiles();
 
-	public async Task LoadLiveTiles()
-	{
-		string liveTilesPath = Path.Combine(pathSettings.Value.JsonsPath, "LiveTileConfig.json");
-		if (!fileSystem.FileExists(liveTilesPath))
-		{
-			logger.LogInformation("Live tiles database not found, creating a new one");
-			return;
-		}
+        await Task.WhenAll(loadShopConfigTask, loadLiveTilesTask);
 
-		using Stream fileStream = fileSystem.OpenRead(liveTilesPath);
-		Dictionary<Guid, LiveTile>? liveTiles = await JsonSerializer.DeserializeAsync<Dictionary<Guid, LiveTile>>(fileStream, jsonSettingsService.PrettyPascalFormat);
-		if (liveTiles == null)
-		{
-			logger.LogWarning("Live tiles database could not be loaded");
-			return;
-		}
+        // Get the results from the pure functions
+        ShopConfig shopConfig = await loadShopConfigTask;
+        LiveTiles = await loadLiveTilesTask;
 
-		// Replace the CDN URL in the assets
-		foreach (KeyValuePair<Guid, LiveTile> tile in liveTiles)
-		{
-			tile.Value.Assets.BackgroundImage = tile.Value.Assets.BackgroundImage.Replace("{{cdnUrl}}", urlSettings.Value.CDNUrl);
-		}
+        // Calculate dependent properties
+        Claims = GetAllClaims(shopConfig);
+        ClaimDisplayPriority = CalculateClaimDisplayPriority(Claims);
 
-		LiveTiles = liveTiles;
-		logger.LogInformation("Live tiles database loaded");
-	}
+        // Assign the final, immutable config
+        ShopConfig = shopConfig;
+    }
 
-	private async Task LoadJustDanceBundles()
-	{
-		// First load the shop config
-		await LoadBundleDatabase();
-		// Then initialize the claims
-		InitializeClaims();
-	}
+    public async Task<IReadOnlyDictionary<Guid, LiveTile>> LoadLiveTiles()
+    {
+        string liveTilesPath = Path.Combine(pathSettings.Value.JsonsPath, "LiveTileConfig.json");
+        if (!fileSystem.FileExists(liveTilesPath))
+        {
+            logger.LogInformation("Live tiles database not found, skipping load");
+            return ImmutableDictionary<Guid, LiveTile>.Empty;
+        }
 
-	private async Task LoadBundleDatabase()
-	{ 
-		// Load the bundles
-		string bundlesPath = Path.Combine(pathSettings.Value.JsonsPath, "JustDanceEditions.json");
-		if (!fileSystem.FileExists(bundlesPath))
-		{
-			logger.LogInformation("Bundle database not found, creating a new one");
-			return;
-		}
+        using Stream fileStream = fileSystem.OpenRead(liveTilesPath);
+        ImmutableDictionary<Guid, LiveTile>? liveTiles = await JsonSerializer.DeserializeAsync<ImmutableDictionary<Guid, LiveTile>>(fileStream, jsonSettingsService.PrettyPascalFormat);
+        if (liveTiles == null)
+        {
+            logger.LogWarning("Live tiles database could not be loaded");
+            return ImmutableDictionary<Guid, LiveTile>.Empty;
+        }
 
-		using Stream fileStream = fileSystem.OpenRead(bundlesPath);
-		List<JustDanceEdition>? db = await JsonSerializer.DeserializeAsync<List<JustDanceEdition>>(fileStream, jsonSettingsService.PrettyPascalFormat);
+		// This is a pure transformation: it takes one immutable dictionary and returns a new one.
+		ImmutableDictionary<Guid, LiveTile> updatedLiveTiles = liveTiles.ToImmutableDictionary(
+            kvp => kvp.Key,
+            kvp => kvp.Value with
+            {
+                Assets = kvp.Value.Assets with { BackgroundImage = kvp.Value.Assets.BackgroundImage.Replace("{{cdnUrl}}", urlSettings.Value.CDNUrl) }
+            });
 
-		if (db == null)
-		{
-			logger.LogWarning("Bundle database could not be loaded");
-			return;
-		}
+        logger.LogInformation("Live tiles database loaded");
+        return updatedLiveTiles;
+    }
 
-		// Now we replace the CDN URL in the assets
-		db.ForEach(edition => edition.ProductGroupBundle = edition.ProductGroupBundle.Replace("{{cdnUrl}}", urlSettings.Value.CDNUrl));
+    private async Task<ShopConfig> LoadBundleDatabaseAsync()
+    {
+        string bundlesPath = Path.Combine(pathSettings.Value.JsonsPath, "JustDanceEditions.json");
+        if (!fileSystem.FileExists(bundlesPath))
+        {
+            logger.LogInformation("Bundle database not found, creating a new one");
+            return new ShopConfig();
+        }
 
-		ShopConfig = ParseDatabase(db);
+        using Stream fileStream = fileSystem.OpenRead(bundlesPath);
+        ImmutableList<JustDanceEdition>? db = await JsonSerializer.DeserializeAsync<ImmutableList<JustDanceEdition>>(fileStream, jsonSettingsService.PrettyPascalFormat);
 
-		logger.LogInformation("Bundle database loaded");
-	}
+        if (db == null)
+        {
+            logger.LogWarning("Bundle database could not be loaded");
+            return new ShopConfig();
+        }
 
-	private ShopConfig ParseDatabase(List<JustDanceEdition> db)
-	{
-		ShopConfig shopConfig = new();
-		FirstPartyProductDb database = shopConfig.FirstPartyProductDb;
+        // Replace the CDN URL in the assets
+        ImmutableArray<JustDanceEdition> updatedDb = [.. db.Select(edition => edition with
+        {
+            ProductGroupBundle = edition.ProductGroupBundle.Replace("{{cdnUrl}}", urlSettings.Value.CDNUrl)
+        })];
 
-		List<string> claims = [];
+        logger.LogInformation("Bundle database loaded");
+        // Call the pure function to parse the database and return a new ShopConfig
+        return ParseDatabase(updatedDb);
+    }
 
-		foreach (JustDanceEdition edition in db)
-		{
-			// First add it to the dlcProducts
-			Guid guid;
-			do 
-				guid = Guid.NewGuid();
-			while (database.DlcProducts.ContainsKey(guid));
+    private ShopConfig ParseDatabase(IReadOnlyList<JustDanceEdition> db)
+    {
+		ImmutableDictionary<Guid, DlcProduct>.Builder dlcProductsBuilder = ImmutableDictionary.CreateBuilder<Guid, DlcProduct>();
+		ImmutableDictionary<Guid, ProductGroup>.Builder productGroupsBuilder = ImmutableDictionary.CreateBuilder<Guid, ProductGroup>();
+		List<(Guid Id, ProductGroup Group)> tempProductGroups = [];
 
-			claims.Add(edition.Name);
-
+        // 1. Build the DlcProducts and initial ProductGroups
+        foreach (JustDanceEdition edition in db)
+        {
+            Guid guid = Guid.NewGuid();
 			DlcProduct product = new()
 			{
-				ClaimIds = edition.ClaimIds ?? [edition.Name],
-				FirstPartyId = edition.Name,
-				Name = edition.Name,
-				ProductLocId = edition.ProductLocId ?? localizedStringService.GetAddLocalizedTag("Ultimate Edition"),
-				Type = "dlc",
-				DlcType = edition.DlcType.ToString().ToLowerInvariant(),
-				ProductDescriptionId = edition.ProductDescriptionId ?? localizedStringService.GetAddLocalizedTag("Infinite Just Dance+ access")
-			};
+                ClaimIds = edition.ClaimIds ?? [edition.Name],
+                FirstPartyId = edition.Name,
+                Name = edition.Name,
+                ProductLocId = edition.ProductLocId ?? localizedStringService.GetAddLocalizedTag("Ultimate Edition"),
+                Type = "dlc",
+                DlcType = edition.DlcType.ToString().ToLowerInvariant(),
+                ProductDescriptionId = edition.ProductDescriptionId ?? localizedStringService.GetAddLocalizedTag("Infinite Just Dance+ access")
+            };
+            dlcProductsBuilder.Add(guid, product);
 
-			database.DlcProducts.Add(guid, product);
-			string trackExtLocId;
-			string trackLimLocId;
-			if (edition.DlcType == VersionType.Yearly)
-			{
-				trackExtLocId = "[VAR:SHOP_TRACKLIST]\n\n[TAG:STRONG]and more![/STRONG]";
-				trackLimLocId = "[VAR:SHOP_TRACKLIST]\n[TAG:STRONG]and more![/STRONG]";
-			}
-			else
-			{
-				trackExtLocId = "[VAR:SHOP_TRACKLIST]\n[TAG:STRONG]and more![/STRONG]";
-				trackLimLocId = "[VAR:SHOP_TRACKLIST]\n[TAG:STRONG]and more![/STRONG]";
-			}
+            // Determine tracklist loc IDs
+            (string trackExtLocId, string trackLimLocId) = edition.DlcType == VersionType.Yearly
+                ? ("[VAR:SHOP_TRACKLIST]\n\n[TAG:STRONG]and more![/STRONG]", "[VAR:SHOP_TRACKLIST]\n[TAG:STRONG]and more![/STRONG]")
+                : ("[VAR:SHOP_TRACKLIST]\n[TAG:STRONG]and more![/STRONG]", "[VAR:SHOP_TRACKLIST]\n[TAG:STRONG]and more![/STRONG]");
 
-			// Then add it to the productGroups
 			ProductGroup productGroup = new()
 			{
-				Type = edition.DlcType.ToString().ToLowerInvariant(),
+                Type = edition.DlcType.ToString().ToLowerInvariant(),
 				DisplayPriority = 0, // Will be updated later
-				GroupLocId = edition.GroupLocId,
-				Name = edition.Name,
-				ProductIds = [guid],
-				SongsCountLocId = edition.SongsCountLocId ?? localizedStringService.GetAddLocalizedTag("Unlimited songs"),
+                GroupLocId = edition.GroupLocId,
+                Name = edition.Name,
+                ProductIds = [guid],
+                SongsCountLocId = edition.SongsCountLocId ?? localizedStringService.GetAddLocalizedTag("Unlimited songs"),
 				GroupDescriptionLocId = edition.GroupDescriptionLocId ?? localizedStringService.GetAddLocalizedTag("Get all the songs"),
-				TracklistExtended = edition.TracklistExtended,
-				TracklistLimited = edition.TracklistLimited,
-				TracklistExtendedLocId = edition.TracklistExtendedLocId ?? localizedStringService.GetAddLocalizedTag(trackExtLocId),
-				TracklistLimitedLocId = edition.TracklistLimitedLocId ?? localizedStringService.GetAddLocalizedTag(trackLimLocId),
-				Assets = new()
-				{
-					ProductGroupBundle = edition.ProductGroupBundle
-				}
-			};
+                TracklistExtended = edition.TracklistExtended,
+                TracklistLimited = edition.TracklistLimited,
+                TracklistExtendedLocId = edition.TracklistExtendedLocId ?? localizedStringService.GetAddLocalizedTag(trackExtLocId),
+                TracklistLimitedLocId = edition.TracklistLimitedLocId ?? localizedStringService.GetAddLocalizedTag(trackLimLocId),
+                Assets = new() { ProductGroupBundle = edition.ProductGroupBundle }
+            };
+            tempProductGroups.Add((guid, productGroup));
+        }
 
-			database.ProductGroups.Add(guid, productGroup);
-		}
-
-		// Get a new guid for the subscription product
-		Guid subscriptionGuid;
-		do
-			subscriptionGuid = Guid.NewGuid();
-		while (database.ProductGroups.ContainsKey(subscriptionGuid));
-
+        // 2. Add the static JD+ product group
+        Guid subscriptionGuid = Guid.NewGuid();
 		ProductGroup jdPlus = new()
 		{
-			Type = "jdplus",
-			DisplayPriority = 0, // Will be updated later
-			GroupLocId = localizedStringService.GetLocalizedTag(8747)!,
-			Name = "SUBSCRIPTION_JD+",
-			ProductIds = [],
-			SongsCountLocId = localizedStringService.GetLocalizedTag(0)!,
-			GroupDescriptionLocId = localizedStringService.GetAddLocalizedTag("Access 350+ songs when you subscribe to our extended catalogue"),
-			TracklistExtended = [],
-			TracklistLimited = [],
-			TracklistExtendedLocId = localizedStringService.GetLocalizedTag(0)!,
-			TracklistLimitedLocId = localizedStringService.GetLocalizedTag(0)!,
-			Assets = new()
-			{
-				ProductGroupBundle = "https://jd-s3.cdn.ubi.com/public/jdnext/shop/e788d44c-c411-4222-a7a8-c432e2095c50/nx/productGroupBundle/3d043eb625538fbbc750d2f90ab01872.bundle"
-			}
-		};
+            Type = "jdplus",
+            DisplayPriority = 0, // Placeholder
+            GroupLocId = localizedStringService.GetLocalizedTag(8747)!,
+            Name = "SUBSCRIPTION_JD+",
+            ProductIds = [],
+            SongsCountLocId = localizedStringService.GetLocalizedTag(0)!,
+            GroupDescriptionLocId = localizedStringService.GetAddLocalizedTag("Access 350+ songs when you subscribe to our extended catalogue"),
+            TracklistExtended = [],
+            TracklistLimited = [],
+            TracklistExtendedLocId = localizedStringService.GetLocalizedTag(0)!,
+            TracklistLimitedLocId = localizedStringService.GetLocalizedTag(0)!,
+            Assets = new() { ProductGroupBundle = "https://jd-s3.cdn.ubi.com/public/jdnext/shop/e788d44c-c411-4222-a7a8-c432e2095c50/nx/productGroupBundle/3d043eb625538fbbc750d2f90ab01872.bundle" }
+        };
+        tempProductGroups.Add((subscriptionGuid, jdPlus));
 
-		database.ProductGroups.Add(subscriptionGuid, jdPlus);
+		// 3. Calculate display priorities
+		ImmutableDictionary<Guid, DlcProduct> dlcProducts = dlcProductsBuilder.ToImmutable();
+		IEnumerable<string> allClaimIds = dlcProducts.Values.SelectMany(x => x.ClaimIds);
+        (ImmutableArray<string> songpacks, ImmutableArray<string> otherClaims) = GetClaimLists(allClaimIds);
+		List<string> sortedClaims = [.. songpacks, .. otherClaims, "jdplus"];
+		Dictionary<string, int> claimIndex = sortedClaims.Select((claim, i) => (claim, i)).ToDictionary(x => x.claim, x => x.i);
 
-		// Sort the claims based on GetClaimLists
-		(ImmutableArray<string> songpacks, ImmutableArray<string> otherClaims) = GetClaimLists([.. database.DlcProducts.Values.SelectMany(x => x.ClaimIds)]);
-		// Merge them
-		claims = [.. songpacks, .. otherClaims, "jdplus"];
-		Dictionary<string, int> claimIndex = claims.Select((x, i) => (x, i)).ToDictionary(x => x.x, x => x.i);
-		foreach (KeyValuePair<Guid, ProductGroup> group in database.ProductGroups)
-		{
-			group.Value.DisplayPriority = 1 + (group.Value.Type == "jdplus"
-				? claimIndex["jdplus"]
-				: group.Value.ProductIds.Select(x => database.DlcProducts[x].Name).Min(x => claimIndex[x]));
-		}
+        // 4. Create final ProductGroup instances with correct priorities
+        foreach ((Guid id, ProductGroup group) in tempProductGroups)
+        {
+            int priority = 1 + (group.Type == "jdplus"
+                ? claimIndex["jdplus"]
+                : group.ProductIds.Select(pid => dlcProducts[pid].Name).Min(name => claimIndex.GetValueOrDefault(name, int.MaxValue)));
 
-		return shopConfig;
-	}
+            productGroupsBuilder.Add(id, group with { DisplayPriority = priority });
+        }
 
-	private void InitializeClaims()
-	{
-		Claims = GetAllClaims();
+        // 5. Construct and return the final immutable ShopConfig
+        return new ShopConfig
+        {
+            FirstPartyProductDb = new FirstPartyProductDb
+            {
+                DlcProducts = dlcProducts,
+                ProductGroups = productGroupsBuilder.ToImmutable()
+            }
+        };
+    }
 
-		(ImmutableArray<string> songpacks, ImmutableArray<string> otherClaims) = GetClaimLists(Claims);
+    private static ImmutableArray<string> CalculateClaimDisplayPriority(ImmutableArray<string> claims)
+    {
+        (ImmutableArray<string> songpacks, ImmutableArray<string> otherClaims) = GetClaimLists(claims);
+        return [.. songpacks, "jdplus", .. otherClaims];
+    }
 
-		ClaimDisplayPriority = [.. songpacks, "jdplus", .. otherClaims];
-	}
+    private static (ImmutableArray<string> songpacks, ImmutableArray<string> otherClaims) GetClaimLists(IEnumerable<string> claims)
+    {
+		ImmutableArray<string> songpacks =
+		[
+			.. claims.Where(x => x.StartsWith("songpack_year")).OrderByDescending(x => int.Parse(x[13..])),
+			.. claims.Where(x => x.StartsWith("songpack_game")).OrderByDescending(x => int.Parse(x[13..])),
+		];
 
-	private static (ImmutableArray<string> songpacks, ImmutableArray<string> otherClaims) GetClaimLists(IEnumerable<string> claims)
-	{
-		// First add the songpack_years (2023+) then songpack_games (1-2022)
-		List<string> songpacks = [];
+		ImmutableArray<string> otherClaims = [.. claims.Except(songpacks).OrderBy(c => c)];
 
-		songpacks.AddRange(claims.Where(x => x.StartsWith("songpack_year")).OrderByDescending(x => int.Parse(x[13..])));
-		songpacks.AddRange(claims.Where(x => x.StartsWith("songpack_game")).OrderByDescending(x => int.Parse(x[13..])));
+        return (songpacks, otherClaims);
+    }
 
-		// Now add the other claims to the end
-		List<string> otherClaims = [.. claims.Except(songpacks)];
-		otherClaims.Sort();
+    public ImmutableArray<string> GetAllClaims() => GetAllClaims(ShopConfig);
 
-		return ([.. songpacks], [.. otherClaims]);
-	}
-
-	public ImmutableArray<string> GetAllClaims()
-	{
-		List<string> claims = [.. ShopConfig.FirstPartyProductDb.DlcProducts.Values
-			.SelectMany(x => x.ClaimIds)
-			.Distinct()];
-
-		claims.Sort();
-
-		return [.. claims];
-	}
+    private static ImmutableArray<string> GetAllClaims(ShopConfig shopConfig)
+    {
+        return [.. shopConfig.FirstPartyProductDb.DlcProducts.Values
+            .SelectMany(x => x.ClaimIds)
+            .Distinct()
+            .OrderBy(c => c)];
+    }
 }

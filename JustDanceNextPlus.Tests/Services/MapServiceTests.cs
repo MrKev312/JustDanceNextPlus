@@ -250,8 +250,8 @@ public class MapServiceTests
     [Fact]
     public async Task LoadData_CatchesAndLogsException_WhenLoadFails()
     {
-        // Arrange
-        var exception = new InvalidOperationException("Test exception");
+		// Arrange
+		InvalidOperationException exception = new("Test exception");
         _mockFileSystem.Setup(fs => fs.GetDirectories(It.IsAny<string>())).Throws(exception);
 
         // Act & Assert
@@ -300,12 +300,12 @@ public class MapServiceTests
         // Arrange
         DateTime now = DateTime.UtcNow;
         string[] directories = ["mapA", "mapB"];
-        var creationTimes = new Dictionary<string, DateTime>
-        {
+		Dictionary<string, DateTime> creationTimes = new()
+		{
             ["mapA"] = now.AddMinutes(-20),
             ["mapB"] = now.AddMinutes(-10)
         };
-        var mapIds = directories.ToDictionary(d => d, d => Guid.NewGuid());
+		Dictionary<string, Guid> mapIds = directories.ToDictionary(d => d, d => Guid.NewGuid());
         _mockFileSystem.Setup(fs => fs.GetDirectories(It.IsAny<string>())).Returns(directories);
         foreach (var dir in directories)
         {
@@ -313,8 +313,8 @@ public class MapServiceTests
             _service.MapToGuid[dir] = mapIds[dir];
         }
 
-        // Act
-        var recentlyAdded = await _service.LoadRecentlyAddedMaps();
+		// Act
+		List<MapTag> recentlyAdded = await _service.LoadRecentlyAddedMaps();
 
         // Assert
         Assert.Equal(2, recentlyAdded.Count);
@@ -328,8 +328,8 @@ public class MapServiceTests
         // Arrange
         DateTime now = DateTime.UtcNow;
         string[] directories = ["mapA", "mapB_no_guid", "mapC"];
-        var creationTimes = new Dictionary<string, DateTime>
-        {
+		Dictionary<string, DateTime> creationTimes = new()
+		{
             ["mapA"] = now.AddMinutes(-20),
             ["mapB_no_guid"] = now.AddMinutes(-15),
             ["mapC"] = now.AddMinutes(-10),
@@ -345,8 +345,8 @@ public class MapServiceTests
         _service.MapToGuid["mapA"] = Guid.NewGuid();
         _service.MapToGuid["mapC"] = Guid.NewGuid();
 
-        // Act
-        var recentlyAdded = await _service.LoadRecentlyAddedMaps();
+		// Act
+		List<MapTag> recentlyAdded = await _service.LoadRecentlyAddedMaps();
 
         // Assert
         Assert.Equal(2, recentlyAdded.Count);

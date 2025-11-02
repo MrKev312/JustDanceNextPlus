@@ -40,9 +40,9 @@ public class LockerItemsService(JsonSettingsService jsonSettingsService,
         foreach (string file in files)
 		{
 			using Stream fileStream = fileSystem.OpenRead(file);
-            ImmutableList<LockerItem> lockerItems = await JsonSerializer.DeserializeAsync<ImmutableList<LockerItem>>(fileStream, jsonSettingsService.PrettyPascalFormat) ?? [];
+            ImmutableArray<LockerItem> lockerItems = await JsonSerializer.DeserializeAsync<ImmutableArray<LockerItem>>(fileStream, jsonSettingsService.PrettyPascalFormat);
 
-			if (lockerItems.Count == 0)
+            if (lockerItems.Length == 0)
 			{
 				logger.LogWarning("No locker items found in file {File}", file);
 				continue;
@@ -64,7 +64,7 @@ public class LockerItemsService(JsonSettingsService jsonSettingsService,
 		}
 
 		LockerItems = lockerItemsBuilder.ToImmutable();
-		LockerItemIds = lockerItemIdsBuilder.ToImmutableList();
+		LockerItemIds = lockerItemIdsBuilder.ToImmutableArray();
 
         logger.LogInformation("Finished loading locker items");
 	}
