@@ -5,6 +5,7 @@ using JustDanceNextPlus.Utilities;
 
 using Microsoft.Extensions.Options;
 
+using System.Collections.Immutable;
 using System.Text.RegularExpressions;
 
 namespace JustDanceNextPlus.Services;
@@ -23,76 +24,86 @@ public interface IMapService : ILoadService
 }
 
 public partial class MapService(IOptions<PathSettings> pathSettings,
-	IOptions<UrlSettings> urlSettings,
-	IServiceProvider serviceProvider,
-	ILogger<MapService> logger,
-	IFileSystem fileSystem) : IMapService, ILoadService
+    IOptions<UrlSettings> urlSettings,
+    IServiceProvider serviceProvider,
+    ILogger<MapService> logger,
+    IFileSystem fileSystem) : IMapService, ILoadService
 {
-	private readonly PathSettings settings = pathSettings.Value;
+    private readonly PathSettings settings = pathSettings.Value;
+    private readonly UrlSettings urls = urlSettings.Value;
     public OrderedDictionary<Guid, JustDanceSongDBEntry> Songs { get; set; } = [];
     public OrderedDictionary<Guid, ContentAuthorization> ContentAuthorization { get; set; } = [];
-    public SongDBTypeSet SongDBTypeSet { get; set; } = new(urlSettings.Value.HostUrl);
+    public SongDBTypeSet SongDBTypeSet { get; private set; } = new(urlSettings.Value.HostUrl);
     public OrderedDictionary<Guid, Dictionary<string, AssetMetadata>> AssetMetadataPerSong { get; set; } = [];
-	public Dictionary<string, Guid> MapToGuid { get; } = [];
-	public List<MapTag> RecentlyAdded { get; private set; } = [];
+    public Dictionary<string, Guid> MapToGuid { get; } = [];
+    public List<MapTag> RecentlyAdded { get; private set; } = [];
 
     public async Task LoadData()
-	{
-		try
-		{
-            await LoadMapsAsync();
-			await LoadOffers();
-			RecentlyAdded = await LoadRecentlyAddedMaps();
-        }
-		catch (Exception ex)
-		{
-			logger.LogError(ex, "Error loading data");
-			throw;
-		}
-	}
+    {
+        try
+        {
+			IReadOnlySet<Guid> songGuids = await LoadMapsAsync();
+			IReadOnlyDictionary<string, Pack> claims = await LoadOffers();
+            RecentlyAdded = await LoadRecentlyAddedMaps();
 
-	public async Task LoadMapsAsync()
-	{
+			Songoffers songOffers = new()
+			{
+                DownloadableSongs = songGuids,
+                Claims = claims
+            };
+
+            SongDBTypeSet = new SongDBTypeSet(urls.HostUrl) with { SongOffers = songOffers };
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error loading data");
+            throw;
+        }
+    }
+
+    private async Task<IReadOnlySet<Guid>> LoadMapsAsync()
+    {
         // Load the tag service
         ITagService tagService = serviceProvider.GetRequiredService<ITagService>();
         IUtilityService utilityService = serviceProvider.GetRequiredService<IUtilityService>();
 
-		string[] mapFolders = [.. fileSystem.GetDirectories(settings.MapsPath).Select(x => Path.Combine(settings.MapsPath, Path.GetFileName(x)))];
+        string[] mapFolders = [.. fileSystem.GetDirectories(settings.MapsPath).Select(x => Path.Combine(settings.MapsPath, Path.GetFileName(x)))];
 
         var loadMapTasks = mapFolders.Select(async mapFolder =>
-		{
-			(LocalJustDanceSongDBEntry songInfo, ContentAuthorization contentAuthorization, Dictionary<string, AssetMetadata> assetMetadata) = await LoadMapAsync(mapFolder, utilityService);
-			return new
-			{
-				songInfo.SongID,
-				SongInfo = songInfo,
-				ContentAuthorization = contentAuthorization,
-				AssetMetadata = assetMetadata
-			};
-		});
+        {
+            (LocalJustDanceSongDBEntry songInfo, ContentAuthorization contentAuthorization, Dictionary<string, AssetMetadata> assetMetadata) = await LoadMapAsync(mapFolder, utilityService);
+            return new
+            {
+                songInfo.SongID,
+                SongInfo = songInfo,
+                ContentAuthorization = contentAuthorization,
+                AssetMetadata = assetMetadata
+            };
+        });
 
-		// Sort the results by SongID
-		var mapResults = (await Task.WhenAll(loadMapTasks)).OrderBy(result => result.SongID);
+        // Sort the results by SongID
+        var mapResults = (await Task.WhenAll(loadMapTasks)).OrderBy(result => result.SongID);
+		ImmutableHashSet<Guid>.Builder downloadableSongsBuilder = ImmutableHashSet.CreateBuilder<Guid>();
 
-		// Add the songs and content authorizations to the song database
-		foreach (var result in mapResults)
-		{
-			Songs[result.SongID] = result.SongInfo;
-			ContentAuthorization[result.SongID] = result.ContentAuthorization;
-			AssetMetadataPerSong[result.SongID] = result.AssetMetadata;
-			SongDBTypeSet.SongOffers.DownloadableSongs.Add(result.SongID);
-			MapToGuid[result.SongInfo.MapName] = result.SongID;
+        // Add the songs and content authorizations to the song database
+        foreach (var result in mapResults)
+        {
+            Songs[result.SongID] = result.SongInfo;
+            ContentAuthorization[result.SongID] = result.ContentAuthorization;
+            AssetMetadataPerSong[result.SongID] = result.AssetMetadata;
+            downloadableSongsBuilder.Add(result.SongID);
+            MapToGuid[result.SongInfo.MapName] = result.SongID;
 
-			// Split the artist by & and trim the results
-			Regex regex = ArtistSplitRegex();
-			string[] artists = [.. regex.Split(result.SongInfo.Artist).Select(x => x.Trim())];
+            // Split the artist by & and trim the results
+            Regex regex = ArtistSplitRegex();
+            string[] artists = [.. regex.Split(result.SongInfo.Artist).Select(x => x.Trim())];
 
-			foreach (string artist in artists) 
-			{
-				// Add the artist to the tag service
-				Tag tag = tagService.GetAddTag(artist, "artist");
-				result.SongInfo.TagIds.Add(tag);
-			}
+            foreach (string artist in artists)
+            {
+                // Add the artist to the tag service
+                Tag tag = tagService.GetAddTag(artist, "artist");
+                result.SongInfo.TagIds.Add(tag);
+            }
 
             // Process player count
             if (result.SongInfo.CoachCount is >= 1 and <= 4)
@@ -102,92 +113,102 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
                 result.SongInfo.TagIds.Add(tag);
             }
         }
+
+        return downloadableSongsBuilder.ToImmutable();
     }
 
-	public async Task LoadOffers()
-	{
+    private async Task<IReadOnlyDictionary<string, Pack>> LoadOffers()
+    {
         // Now we load the bundle service to get the offers
-		IBundleService bundleService = serviceProvider.GetRequiredService<IBundleService>();
-		await bundleService.LoadData();
+        IBundleService bundleService = serviceProvider.GetRequiredService<IBundleService>();
+        await bundleService.LoadData();
 
-        Dictionary<string, Pack> packs = [];
+        Dictionary<string, (int GroupLocId, List<Guid> SongIds, string Tag)> tempPacks = [];
 
-		foreach (KeyValuePair<Guid, JustDanceSongDBEntry> song in Songs)
-		{
-			foreach (string tag in song.Value.Tags)
-			{
-				if (tag != "jdplus" && !tag.StartsWith("songpack_") && !tag.StartsWith("Music_Pack_"))
-					continue;
+        foreach (KeyValuePair<Guid, JustDanceSongDBEntry> song in Songs)
+        {
+            foreach (string tag in song.Value.Tags)
+            {
+                if (tag != "jdplus" && !tag.StartsWith("songpack_") && !tag.StartsWith("Music_Pack_"))
+                    continue;
 
-				Guid productGroupId;
+                Guid productGroupId;
 
-				if (tag == "jdplus")
-				{
-					productGroupId = bundleService.ShopConfig.FirstPartyProductDb.ProductGroups
-						.FirstOrDefault(x => x.Value.Type == "jdplus").Key;
-				}
-				else
-				{
+                if (tag == "jdplus")
+                {
+                    productGroupId = bundleService.ShopConfig.FirstPartyProductDb.ProductGroups
+                        .FirstOrDefault(x => x.Value.Type == "jdplus").Key;
+                }
+                else
+                {
+                    Guid dlcId = bundleService.ShopConfig.FirstPartyProductDb.DlcProducts
+                        .FirstOrDefault(x => x.Value.ClaimIds.Contains(tag)).Key;
 
-					Guid dlcId = bundleService.ShopConfig.FirstPartyProductDb.DlcProducts
-						.FirstOrDefault(x => x.Value.ClaimIds.Contains(tag)).Key;
+                    productGroupId = bundleService.ShopConfig.FirstPartyProductDb.ProductGroups
+                        .FirstOrDefault(x => x.Value.ProductIds.Contains(dlcId)).Key;
+                }
 
-					productGroupId = bundleService.ShopConfig.FirstPartyProductDb.ProductGroups
-						.FirstOrDefault(x => x.Value.ProductIds.Contains(dlcId)).Key;
-				}
+                if (productGroupId == Guid.Empty)
+                    continue;
 
-				if (productGroupId == Guid.Empty)
-					continue;
+                int groupLocId = bundleService.ShopConfig.FirstPartyProductDb.ProductGroups[productGroupId].GroupLocId;
 
-				int groupLocId = bundleService.ShopConfig.FirstPartyProductDb.ProductGroups[productGroupId].GroupLocId;
+                if (!tempPacks.TryGetValue(tag, out (int GroupLocId, List<Guid> SongIds, string Tag) packData))
+                {
+                    packData = (groupLocId, new List<Guid>(), tag);
+                    tempPacks[tag] = packData;
+                }
 
-				if (!packs.TryGetValue(tag, out Pack? pack))
-				{
-					pack = new Pack
-					{
-						DescriptionLocId = groupLocId,
-						AllowSharing = true,
-						FreeTrialDurationMinutes = 43200,
-						SongPackIds = [],
-						UnlocksFullVersion = !tag.StartsWith("Music_Pack_")
-					};
-					packs[tag] = pack;
-				}
+                packData.SongIds.Add(song.Key);
+            }
+        }
 
-				pack.SongIds.Add(song.Key);
-			}
-		}
+        Dictionary<string, Pack> packs = tempPacks.ToDictionary(
+            kvp => kvp.Key,
+            kvp => new Pack
+            {
+                DescriptionLocId = kvp.Value.GroupLocId,
+                AllowSharing = true,
+                FreeTrialDurationMinutes = 43200,
+                SongPackIds = ImmutableHashSet<string>.Empty,
+                UnlocksFullVersion = !kvp.Value.Tag.StartsWith("Music_Pack_"),
+                SongIds = kvp.Value.SongIds.ToImmutableHashSet()
+            });
 
-		// Add welcomeGifts pack
-		if (!packs.ContainsKey("welcomeGifts"))
-		{
-			packs["welcomeGifts"] = new Pack
-			{
-				RewardIds = [],
-			};
-		}
+        // Add welcomeGifts pack
+        if (!packs.ContainsKey("welcomeGifts"))
+        {
+            packs["welcomeGifts"] = new Pack
+            {
+                RewardIds = ImmutableHashSet<Guid>.Empty,
+            };
+        }
 
-		// Convert to array and sort by tag, jdplus first, then songpacks, then by welcomeGifts, then by music packs
-		SongDBTypeSet.SongOffers.Claims = packs
-			.OrderBy(x => x.Key.StartsWith("jdplus") ? 0 : x.Key.StartsWith("songpack_") ? 1 : x.Key.StartsWith("welcomeGifts") ? 2 : 3)
-			.ThenBy(x => x.Key)
-			.ToDictionary(x => x.Key, x => x.Value);
-
-		return;
-	}
+        // Convert to array and sort by tag, then return as an immutable dictionary
+        return packs
+            .OrderBy(x => x.Key.StartsWith("jdplus") ? 0 : x.Key.StartsWith("songpack_") ? 1 : x.Key.StartsWith("welcomeGifts") ? 2 : 3)
+            .ThenBy(x => x.Key)
+            .ToImmutableDictionary(x => x.Key, x => x.Value);
+    }
 
     public Task<List<MapTag>> LoadRecentlyAddedMaps()
     {
-		// Get all maps in the maps folder and their creation time
-		IOrderedEnumerable<(string MapName, DateTime CreationTime)> mapCreationTimes = fileSystem.GetDirectories(settings.MapsPath)
+        // Get all maps in the maps folder and their creation time
+        IOrderedEnumerable<(string MapName, DateTime CreationTime)> mapCreationTimes = fileSystem.GetDirectories(settings.MapsPath)
             .Select(dir => (MapName: Path.GetFileName(dir), CreationTime: fileSystem.GetDirectoryCreationTime(dir)))
             .OrderBy(x => x.CreationTime);
+
+        if (!mapCreationTimes.Any())
+        {
+            logger.LogWarning("No maps found in {MapsPath}", settings.MapsPath);
+            return Task.FromResult(new List<MapTag>());
+        }
 
         Stack<(string MapName, DateTime CreationTime)> mapStack = new(mapCreationTimes);
 
         DateTime prevDateTime = mapStack.Peek().CreationTime;
 
-		List<string> recentlyAddedCodenames = [];
+        List<string> recentlyAddedCodenames = [];
 
         // We need at least 4, and all that are within 1 hour of the last one
         while (mapStack.Count > 0)
@@ -202,32 +223,32 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
         }
 
         // Log the recently added codenames
-		logger.LogInformation("Recently added maps: {Maps}", string.Join(", ", recentlyAddedCodenames));
+        logger.LogInformation("Recently added maps: {Maps}", string.Join(", ", recentlyAddedCodenames));
 
         // Convert to song IDs, ignoring those that don't exist
         List<MapTag> recentlyAddedSongs = [.. recentlyAddedCodenames.Select(GetSongId)
-			.Where(id => id.HasValue)
-			.Select(id => id!.Value)];
+            .Where(id => id.HasValue)
+            .Select(id => id!.Value)];
 
         return Task.FromResult(recentlyAddedSongs);
     }
 
     private static async Task<(LocalJustDanceSongDBEntry, ContentAuthorization, Dictionary<string, AssetMetadata>)> LoadMapAsync(string mapFolder, IUtilityService utilityService)
-	{
+    {
         LocalJustDanceSongDBEntry songInfo = await utilityService.LoadMapDBEntryAsync(mapFolder);
-		ContentAuthorization contentAuthorization = utilityService.LoadContentAuthorization(mapFolder);
-		Dictionary<string, AssetMetadata> assetMetadata = utilityService.LoadAssetMetadata(mapFolder);
+        ContentAuthorization contentAuthorization = utilityService.LoadContentAuthorization(mapFolder);
+        Dictionary<string, AssetMetadata> assetMetadata = utilityService.LoadAssetMetadata(mapFolder);
 
         return (songInfo, contentAuthorization, assetMetadata);
-	}
+    }
 
-	public Guid? GetSongId(string mapName)
-	{
-		return MapToGuid.TryGetValue(mapName, out Guid songId) 
-			? songId 
-			: null;
-	}
+    public Guid? GetSongId(string mapName)
+    {
+        return MapToGuid.TryGetValue(mapName, out Guid songId)
+            ? songId
+            : null;
+    }
 
-	[GeneratedRegex(@"(?: & | ft. | feat. | featuring )", RegexOptions.IgnoreCase, "en-US")]
-	private static partial Regex ArtistSplitRegex();
+    [GeneratedRegex(@"(?: & | ft. | feat. | featuring )", RegexOptions.IgnoreCase, "en-US")]
+    private static partial Regex ArtistSplitRegex();
 }

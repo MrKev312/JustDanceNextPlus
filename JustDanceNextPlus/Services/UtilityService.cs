@@ -382,7 +382,7 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 
         // Find the MusicTrack index
         int? index = null;
-        foreach (var fileInfo in AssetHelper.GetAssetsFileScriptInfos(manager, afileInst))
+        foreach (KeyValuePair<int, AssetTypeReference> fileInfo in AssetHelper.GetAssetsFileScriptInfos(manager, afileInst))
         {
             if (fileInfo.Value.ClassName != "MusicTrack")
                 continue;
@@ -393,8 +393,8 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
         if (index == null)
             throw new InvalidOperationException("Failed to find MusicTrack script info");
 
-        // Grab the MonoBehaviour
-        var infos = afile.GetAssetsOfType((int)AssetClassID.MonoBehaviour, (ushort)index.Value);
+		// Grab the MonoBehaviour
+		List<AssetFileInfo> infos = afile.GetAssetsOfType((int)AssetClassID.MonoBehaviour, (ushort)index.Value);
         AssetFileInfo? musicTrackInfo = infos.ElementAtOrDefault(index.Value)
             ?? throw new InvalidOperationException("Failed to find MusicTrack MonoBehaviour");
         AssetTypeValueField trackInfo = manager.GetBaseField(afileInst, musicTrackInfo);

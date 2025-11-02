@@ -145,9 +145,9 @@ public class UtilityServiceTests
         // Immediately convert it to a full path to mirror the service's internal logic.
         var mapFolder = Path.GetFullPath(relativeMapFolder);
 
-        // Use the FULL path to build the dictionary keys for the mock setup.
-        var filesWithLengths = new Dictionary<string, long>
-        {
+		// Use the FULL path to build the dictionary keys for the mock setup.
+		Dictionary<string, long> filesWithLengths = new()
+		{
             [Path.Combine(mapFolder, "cover", "abc.png")] = 100L,
             [Path.Combine(mapFolder, "audioPreview_opus", "def.opus")] = 200L,
             [Path.Combine(mapFolder, "audio", "ghi.opus")] = 300L,

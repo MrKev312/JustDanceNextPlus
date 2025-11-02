@@ -1,8 +1,8 @@
 ﻿namespace JustDanceNextPlus.JustDanceClasses.Endpoints;
 
-public class Party
+public record Party
 {
-	public required Guid PartyId { get; set; }
+	public required Guid PartyId { get; init; }
 
-	public List<Guid> PartyMembers { get; set; } = [];
+	public List<Guid> PartyMembers { get; init; } = [];
 }

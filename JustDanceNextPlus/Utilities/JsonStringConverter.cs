@@ -22,7 +22,7 @@ public class JsonStringConverter : JsonConverterFactory
             if (json is null)
                 return default;
 
-			JsonSerializerOptions innerOptions = new JsonSerializerOptions(options)
+			JsonSerializerOptions innerOptions = new(options)
             {
                 PropertyNameCaseInsensitive = true,
                 Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
@@ -34,7 +34,7 @@ public class JsonStringConverter : JsonConverterFactory
 
         public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
         {
-            JsonSerializerOptions innerOptions = new JsonSerializerOptions(options)
+            JsonSerializerOptions innerOptions = new(options)
             {
                 Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
                 WriteIndented = false

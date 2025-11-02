@@ -213,11 +213,11 @@ public class MapServiceTests
         shopConfig.FirstPartyProductDb.ProductGroups.Add(Guid.NewGuid(), new ProductGroup
         {
             Type = "jdplus",
-            GroupLocId = new OasisTag(new LocalizedString(1, "JD+")),
-            SongsCountLocId = new OasisTag(new LocalizedString(2, "Count")),
-            GroupDescriptionLocId = new OasisTag(new LocalizedString(3, "Description")),
-            TracklistExtendedLocId = new OasisTag(new LocalizedString(4, "Extended")),
-            TracklistLimitedLocId = new OasisTag(new LocalizedString(5, "Limited"))
+            GroupLocId = new LocalizedString(1, "JD+"),
+            SongsCountLocId = new LocalizedString(2, "Count"),
+            GroupDescriptionLocId = new LocalizedString(3, "Description"),
+            TracklistExtendedLocId = new LocalizedString(4, "Extended"),
+            TracklistLimitedLocId = new LocalizedString(5, "Limited")
         });
         _mockBundleService.SetupGet(bs => bs.ShopConfig).Returns(shopConfig);
         _mockBundleService.Setup(bs => bs.LoadData()).Returns(Task.CompletedTask);
@@ -245,5 +245,112 @@ public class MapServiceTests
         _mockTagService.Verify(ts => ts.GetAddTag("Artist A", "artist"), Times.Once);
         _mockTagService.Verify(ts => ts.GetAddTag("Solo", "choreoSettings"), Times.Once);
         _mockTagService.Verify(ts => ts.GetAddTag("Duet", "choreoSettings"), Times.Once);
+    }
+
+    [Fact]
+    public async Task LoadData_CatchesAndLogsException_WhenLoadFails()
+    {
+        // Arrange
+        var exception = new InvalidOperationException("Test exception");
+        _mockFileSystem.Setup(fs => fs.GetDirectories(It.IsAny<string>())).Throws(exception);
+
+        // Act & Assert
+        await Assert.ThrowsAsync<InvalidOperationException>(() => _service.LoadData());
+
+        // Verify that the error was logged
+        _mockLogger.Verify(
+            x => x.Log(
+                LogLevel.Error,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Error loading data")),
+                exception,
+                It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+            Times.Once);
+    }
+
+    [Fact]
+    public async Task LoadMapsAsync_SplitsMultipleArtistsUsingRegex()
+    {
+        // Arrange
+        Guid mapId = Guid.NewGuid();
+        string mapFolder = Path.Combine(_baseMapsPath, "map1");
+        LocalJustDanceSongDBEntry songInfo = new() { SongID = mapId, MapName = "map1", Artist = "Artist A & Artist B ft. Artist C", CoachCount = 1, TagIds = [], DanceVersionLocId = new LocalizedString(0, "") };
+
+        _mockFileSystem.Setup(fs => fs.GetDirectories(_baseMapsPath)).Returns([mapFolder]);
+        _mockUtilityService.Setup(u => u.LoadMapDBEntryAsync(mapFolder)).ReturnsAsync(songInfo);
+        _mockUtilityService.Setup(u => u.LoadContentAuthorization(mapFolder)).Returns(new ContentAuthorization());
+        _mockUtilityService.Setup(u => u.LoadAssetMetadata(mapFolder)).Returns([]);
+
+        // Mocks for LoadOffers
+        _mockBundleService.SetupGet(bs => bs.ShopConfig).Returns(new ShopConfig());
+        _mockBundleService.Setup(bs => bs.LoadData()).Returns(Task.CompletedTask);
+
+        // Act
+        await _service.LoadData();
+
+        // Assert
+        _mockTagService.Verify(ts => ts.GetAddTag("Artist A", "artist"), Times.Once);
+        _mockTagService.Verify(ts => ts.GetAddTag("Artist B", "artist"), Times.Once);
+        _mockTagService.Verify(ts => ts.GetAddTag("Artist C", "artist"), Times.Once);
+    }
+
+    [Fact]
+    public async Task LoadRecentlyAddedMaps_HandlesFewerThanFourMaps()
+    {
+        // Arrange
+        DateTime now = DateTime.UtcNow;
+        string[] directories = ["mapA", "mapB"];
+        var creationTimes = new Dictionary<string, DateTime>
+        {
+            ["mapA"] = now.AddMinutes(-20),
+            ["mapB"] = now.AddMinutes(-10)
+        };
+        var mapIds = directories.ToDictionary(d => d, d => Guid.NewGuid());
+        _mockFileSystem.Setup(fs => fs.GetDirectories(It.IsAny<string>())).Returns(directories);
+        foreach (var dir in directories)
+        {
+            _mockFileSystem.Setup(fs => fs.GetDirectoryCreationTime(dir)).Returns(creationTimes[dir]);
+            _service.MapToGuid[dir] = mapIds[dir];
+        }
+
+        // Act
+        var recentlyAdded = await _service.LoadRecentlyAddedMaps();
+
+        // Assert
+        Assert.Equal(2, recentlyAdded.Count);
+        Assert.Contains(recentlyAdded, m => m.Guid == mapIds["mapA"]);
+        Assert.Contains(recentlyAdded, m => m.Guid == mapIds["mapB"]);
+    }
+
+    [Fact]
+    public async Task LoadRecentlyAddedMaps_IgnoresMapsNotInGuidDictionary()
+    {
+        // Arrange
+        DateTime now = DateTime.UtcNow;
+        string[] directories = ["mapA", "mapB_no_guid", "mapC"];
+        var creationTimes = new Dictionary<string, DateTime>
+        {
+            ["mapA"] = now.AddMinutes(-20),
+            ["mapB_no_guid"] = now.AddMinutes(-15),
+            ["mapC"] = now.AddMinutes(-10),
+        };
+
+        _mockFileSystem.Setup(fs => fs.GetDirectories(It.IsAny<string>())).Returns(directories);
+        foreach (var dir in directories)
+        {
+            _mockFileSystem.Setup(fs => fs.GetDirectoryCreationTime(dir)).Returns(creationTimes[dir]);
+        }
+
+        // Only add mapA and mapC to the GUID dictionary
+        _service.MapToGuid["mapA"] = Guid.NewGuid();
+        _service.MapToGuid["mapC"] = Guid.NewGuid();
+
+        // Act
+        var recentlyAdded = await _service.LoadRecentlyAddedMaps();
+
+        // Assert
+        Assert.Equal(2, recentlyAdded.Count);
+        Assert.Contains(recentlyAdded, m => m.Guid == _service.MapToGuid["mapA"]);
+        Assert.Contains(recentlyAdded, m => m.Guid == _service.MapToGuid["mapC"]);
     }
 }
