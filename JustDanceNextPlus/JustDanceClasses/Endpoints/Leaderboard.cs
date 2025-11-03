@@ -2,7 +2,7 @@
 
 namespace JustDanceNextPlus.JustDanceClasses.Endpoints;
 
-public class Leaderboard
+public record Leaderboard
 {
 	public ImmutableArray<ScoreDetails> Scores { get; init; } = [];
 	public long Count { get; init; }
