@@ -3,6 +3,7 @@ using JustDanceNextPlus.JustDanceClasses.Database;
 
 using Microsoft.Extensions.Options;
 
+using System.Collections.Immutable;
 using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
@@ -76,9 +77,9 @@ public class ActivityPageService(ILogger<ActivityPageService> logger,
 		// Create a new modifier to place this category at the top
 		PositionModifier newModifier = new("carousel", newSongsGuid, 0);
 
-        // Create new immutable collections by adding our new items to the existing ones.
-        var updatedCategories = basePage.Categories.Add(newSongsGuid, newCategory);
-        var updatedModifiers = basePage.CategoryModifiers.Insert(0, newModifier);
+		// Create new immutable collections by adding our new items to the existing ones.
+		ImmutableDictionary<Guid, ICategory> updatedCategories = basePage.Categories.Add(newSongsGuid, newCategory);
+		ImmutableList<IModifier> updatedModifiers = basePage.CategoryModifiers.Insert(0, newModifier);
 
         // Use a 'with' expression to create a new, updated ActivityPageResponse.
         return basePage with

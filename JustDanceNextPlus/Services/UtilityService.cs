@@ -8,6 +8,7 @@ using JustDanceNextPlus.Utilities;
 
 using Microsoft.Extensions.Options;
 
+using System.Collections.Immutable;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
@@ -17,7 +18,7 @@ namespace JustDanceNextPlus.Services;
 public interface IUtilityService
 {
 	ValueTask<LocalJustDanceSongDBEntry> LoadMapDBEntryAsync(string mapFolder);
-	Dictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder);
+    IReadOnlyDictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder);
 	ContentAuthorization LoadContentAuthorization(string mapFolder);
 	WebmData[] GetVideoData(string videoFolder);
 	string GetAssetUrl(string mapFolder, string name);
@@ -132,10 +133,10 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 		return (audioPreview, coachesLarge, coachesSmall, cover, songTitleLogo);
 	}
 
-	public Dictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder)
+	public IReadOnlyDictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder)
 	{
-		Dictionary<string, AssetMetadata> assetMetadata = [];
-		mapFolder = Path.GetFullPath(mapFolder);
+        ImmutableDictionary<string, AssetMetadata>.Builder assetMetadata = ImmutableDictionary.CreateBuilder<string, AssetMetadata>();
+        mapFolder = Path.GetFullPath(mapFolder);
 
 		// This now gets strings, not FileInfo objects
 		string[] allFiles = fileSystem.GetFiles(mapFolder, "*", SearchOption.AllDirectories);
@@ -199,8 +200,8 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 		["video_ULTRA.hd.webm"],
 		files => files.OrderBy(f => fileSystem.GetFileLength(f)).LastOrDefault());
 
-		return assetMetadata;
-	}
+		return assetMetadata.ToImmutable();
+    }
 
 	public ContentAuthorization LoadContentAuthorization(string mapFolder)
 	{

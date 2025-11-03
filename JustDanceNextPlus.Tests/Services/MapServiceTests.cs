@@ -279,7 +279,7 @@ public class MapServiceTests
         _mockFileSystem.Setup(fs => fs.GetDirectories(_baseMapsPath)).Returns([mapFolder]);
         _mockUtilityService.Setup(u => u.LoadMapDBEntryAsync(mapFolder)).ReturnsAsync(songInfo);
         _mockUtilityService.Setup(u => u.LoadContentAuthorization(mapFolder)).Returns(new ContentAuthorization());
-        _mockUtilityService.Setup(u => u.LoadAssetMetadata(mapFolder)).Returns([]);
+        _mockUtilityService.Setup(u => u.LoadAssetMetadata(mapFolder)).Returns(new Dictionary<string, AssetMetadata>());
 
         // Mocks for LoadOffers
         _mockBundleService.SetupGet(bs => bs.ShopConfig).Returns(new ShopConfig());

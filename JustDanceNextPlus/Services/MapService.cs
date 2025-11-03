@@ -15,7 +15,7 @@ public interface IMapService : ILoadService
     OrderedDictionary<Guid, JustDanceSongDBEntry> Songs { get; }
     OrderedDictionary<Guid, ContentAuthorization> ContentAuthorization { get; }
     SongDBTypeSet SongDBTypeSet { get; }
-    OrderedDictionary<Guid, Dictionary<string, AssetMetadata>> AssetMetadataPerSong { get; }
+    OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>> AssetMetadataPerSong { get; }
 
     Dictionary<string, Guid> MapToGuid { get; }
     List<MapTag> RecentlyAdded { get; }
@@ -34,7 +34,7 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
     public OrderedDictionary<Guid, JustDanceSongDBEntry> Songs { get; set; } = [];
     public OrderedDictionary<Guid, ContentAuthorization> ContentAuthorization { get; set; } = [];
     public SongDBTypeSet SongDBTypeSet { get; private set; } = new(urlSettings.Value.HostUrl);
-    public OrderedDictionary<Guid, Dictionary<string, AssetMetadata>> AssetMetadataPerSong { get; set; } = [];
+    public OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>> AssetMetadataPerSong { get; set; } = [];
     public Dictionary<string, Guid> MapToGuid { get; } = [];
     public List<MapTag> RecentlyAdded { get; private set; } = [];
 
@@ -71,7 +71,7 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 
         var loadMapTasks = mapFolders.Select(async mapFolder =>
         {
-            (LocalJustDanceSongDBEntry songInfo, ContentAuthorization contentAuthorization, Dictionary<string, AssetMetadata> assetMetadata) = await LoadMapAsync(mapFolder, utilityService);
+            (LocalJustDanceSongDBEntry songInfo, ContentAuthorization contentAuthorization, IReadOnlyDictionary<string, AssetMetadata> assetMetadata) = await LoadMapAsync(mapFolder, utilityService);
             return new
             {
                 songInfo.SongID,
@@ -88,11 +88,10 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
         // Add the songs and content authorizations to the song database
         foreach (var result in mapResults)
         {
-            Songs[result.SongID] = result.SongInfo;
-            ContentAuthorization[result.SongID] = result.ContentAuthorization;
-            AssetMetadataPerSong[result.SongID] = result.AssetMetadata;
-            downloadableSongsBuilder.Add(result.SongID);
-            MapToGuid[result.SongInfo.MapName] = result.SongID;
+            Guid songID = result.SongID;
+            LocalJustDanceSongDBEntry songInfo = result.SongInfo;
+			ContentAuthorization contentAuthorization = result.ContentAuthorization;
+            IReadOnlyDictionary<string, AssetMetadata> assetMetadata = result.AssetMetadata;
 
             // Split the artist by & and trim the results
             Regex regex = ArtistSplitRegex();
@@ -102,16 +101,28 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
             {
                 // Add the artist to the tag service
                 Tag tag = tagService.GetAddTag(artist, "artist");
-                result.SongInfo.TagIds.Add(tag);
+                songInfo = songInfo with
+                {
+                    TagIds = songInfo.TagIds.Add(tag)
+                };
             }
 
             // Process player count
-            if (result.SongInfo.CoachCount is >= 1 and <= 4)
+            if (songInfo.CoachCount is >= 1 and <= 4)
             {
                 string[] playerCounts = ["Solo", "Duet", "Trio", "Quartet"];
-                Tag tag = tagService.GetAddTag(playerCounts[result.SongInfo.CoachCount - 1], "choreoSettings");
-                result.SongInfo.TagIds.Add(tag);
+                Tag tag = tagService.GetAddTag(playerCounts[songInfo.CoachCount - 1], "choreoSettings");
+                songInfo = songInfo with
+                {
+                    TagIds = songInfo.TagIds.Add(tag)
+                };
             }
+
+            Songs[songID] = songInfo;
+            ContentAuthorization[songID] = contentAuthorization;
+            AssetMetadataPerSong[songID] = assetMetadata;
+            downloadableSongsBuilder.Add(songID);
+            MapToGuid[songInfo.MapName] = songID;
         }
 
         return downloadableSongsBuilder.ToImmutable();
@@ -233,11 +244,11 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
         return Task.FromResult(recentlyAddedSongs);
     }
 
-    private static async Task<(LocalJustDanceSongDBEntry, ContentAuthorization, Dictionary<string, AssetMetadata>)> LoadMapAsync(string mapFolder, IUtilityService utilityService)
+    private static async Task<(LocalJustDanceSongDBEntry, ContentAuthorization, IReadOnlyDictionary<string, AssetMetadata>)> LoadMapAsync(string mapFolder, IUtilityService utilityService)
     {
         LocalJustDanceSongDBEntry songInfo = await utilityService.LoadMapDBEntryAsync(mapFolder);
         ContentAuthorization contentAuthorization = utilityService.LoadContentAuthorization(mapFolder);
-        Dictionary<string, AssetMetadata> assetMetadata = utilityService.LoadAssetMetadata(mapFolder);
+        IReadOnlyDictionary<string, AssetMetadata> assetMetadata = utilityService.LoadAssetMetadata(mapFolder);
 
         return (songInfo, contentAuthorization, assetMetadata);
     }

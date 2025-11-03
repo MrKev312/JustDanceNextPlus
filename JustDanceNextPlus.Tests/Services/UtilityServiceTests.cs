@@ -175,7 +175,7 @@ public class UtilityServiceTests
 
         // Act
         // Call the service with the original RELATIVE path.
-        Dictionary<string, AssetMetadata> metadata = _service.LoadAssetMetadata(relativeMapFolder);
+        IReadOnlyDictionary<string, AssetMetadata> metadata = _service.LoadAssetMetadata(relativeMapFolder);
 
         // Assert
         Assert.Equal(11, metadata.Count); // base assets +2 videoPreview +2 HIGH +1 ULTRA
