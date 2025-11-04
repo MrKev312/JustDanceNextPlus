@@ -22,7 +22,6 @@ public class JsonSettingsService
 		{
 			if (serviceProvider.GetService(converterType) is JsonConverter converter)
 			{
-				//converters.Add(converter);
 				PrettyPascalFormat.Converters.Add(converter);
             }
             // Else we're in a test environment
