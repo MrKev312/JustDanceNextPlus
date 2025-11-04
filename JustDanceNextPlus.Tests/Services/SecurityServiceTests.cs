@@ -16,11 +16,11 @@ public class SecurityServiceTests
 
 		// Act
 		SecurityService securityService = new(mockLogger);
-		byte[] key = securityService.Secret256bit;
+		IReadOnlyList<byte> key = securityService.Secret256bit;
 
         // Assert
         Assert.NotNull(key);
-        Assert.Equal(32, key.Length); // 256 bits = 32 bytes
+        Assert.Equal(32, key.Count); // 256 bits = 32 bytes
     }
 
     [Fact]
@@ -33,8 +33,8 @@ public class SecurityServiceTests
 		SecurityService service1 = new(mockLogger);
 		SecurityService service2 = new(mockLogger);
 
-		byte[] key1 = service1.Secret256bit;
-		byte[] key2 = service2.Secret256bit;
+        IReadOnlyList<byte> key1 = service1.Secret256bit;
+        IReadOnlyList<byte> key2 = service2.Secret256bit;
 
         // Assert
         // This test verifies that the key generation is random and not a static or hardcoded value.

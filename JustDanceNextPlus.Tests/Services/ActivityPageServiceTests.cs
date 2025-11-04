@@ -35,6 +35,8 @@ public class ActivityPageServiceTests
 
         // Setup mock for JsonSettingsService and its dependencies
         _jsonSettingsService = CreateJsonSettingsService(_mockMapService, _mockTagService, _mockLocalizedStringService);
+        // Ensure category converter is available for interface deserialization
+        _jsonSettingsService.PrettyPascalFormat.Converters.Add(new ICategoryConverter());
 
         _service = new ActivityPageService(
             _mockLogger.Object,
@@ -170,7 +172,7 @@ public class ActivityPageServiceTests
 
 		CarouselCategory? newCategory = _service.ActivityPage.Categories.Values.OfType<CarouselCategory>().FirstOrDefault(c => c.CategoryName == "Newly Added Songs");
         Assert.NotNull(newCategory);
-        Assert.Equal(newLocalizedString.OasisIdInt, newCategory.TitleId.ID);
+        Assert.Equal(newLocalizedString.OasisId, newCategory.TitleId.ID);
 
         Assert.Equal(2, _service.ActivityPage.CategoryModifiers.Count);
 		PositionModifier firstModifier = Assert.IsType<PositionModifier>(_service.ActivityPage.CategoryModifiers[0]);

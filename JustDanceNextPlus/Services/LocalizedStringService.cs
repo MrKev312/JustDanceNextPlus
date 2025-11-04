@@ -65,7 +65,7 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 		}
 
 		// Sort the localized strings by OasisIdInt
-		db.LocalizedStrings = [.. db.LocalizedStrings.OrderBy(ls => ls.OasisIdInt)];
+		db.LocalizedStrings = [.. db.LocalizedStrings.OrderBy(ls => ls.OasisId)];
 
 		Database = db;
 		logger.LogInformation("Localized strings database loaded");
@@ -90,9 +90,9 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 	public LocalizedString? GetLocalizedTag(int id)
 	{
 		return defaultLocalizedStrings
-			.FirstOrDefault(ls => ls.OasisIdInt == id)
+			.FirstOrDefault(ls => ls.OasisId == id)
 			?? Database.LocalizedStrings
-			.FirstOrDefault(ls => ls.OasisIdInt == id);
+			.FirstOrDefault(ls => ls.OasisId == id);
 	}
 
 	public LocalizedString GetAddLocalizedTag(string text)
@@ -118,12 +118,12 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 			}
 			while (Database.LocalizedStrings.Any(ls => ls.LocalizedStringId == guid));
 
-			highestId ??= Database.LocalizedStrings.Max(ls => ls.OasisIdInt); // Get the highest ID in the database
+			highestId ??= Database.LocalizedStrings.Max(ls => ls.OasisId); // Get the highest ID in the database
 			highestId++; // Increment it for the new localized string
 
 			localizedTag = new()
 			{
-				OasisIdInt = highestId.Value,
+				OasisId = highestId.Value,
 				LocaleCode = "en-US",
 				DisplayString = text,
 				LocalizedStringId = guid
@@ -138,6 +138,6 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 
 public class LocalizedStringDatabase
 {
-	public Guid SpaceId { get; set; } = Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0");
+	public Guid SpaceId => Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0");
 	public List<LocalizedString> LocalizedStrings { get; set; } = [];
 }

@@ -2,16 +2,16 @@
 
 namespace JustDanceNextPlus.JustDanceClasses.Endpoints;
 
-public class LiveTile
+public record LiveTile
 {
-	public required OasisTag ButtonId { get; set; }
-	public required OasisTag SubtitleId { get; set; }
-	public string DeepLink { get; set; } = string.Empty;
-	public int Priority { get; set; }
-	public LiveTileAssets Assets { get; set; } = new();
+	public required OasisTag ButtonId { get; init; }
+	public required OasisTag SubtitleId { get; init; }
+	public string DeepLink { get; init; } = string.Empty;
+	public int Priority { get; init; }
+	public LiveTileAssets Assets { get; init; } = new();
 }
 
-public class LiveTileAssets
+public record LiveTileAssets
 {
-	public string BackgroundImage { get; set; } = string.Empty;
+	public string BackgroundImage { get; init; } = string.Empty;
 }

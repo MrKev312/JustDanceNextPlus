@@ -29,9 +29,9 @@ public class UserDataServiceTests : IDisposable
 
         _mapId = Guid.NewGuid();
         _playlistId = Guid.NewGuid();
-        _profile1 = new([]) { Id = Guid.NewGuid(), Dancercard = new() { Name = "Player A" }, Ticket = "ticket-A" };
-        _profile2 = new([]) { Id = Guid.NewGuid(), Dancercard = new() { Name = "Player B" } };
-        _profile3 = new([]) { Id = Guid.NewGuid(), Dancercard = new() { Name = "Player C" } };
+        _profile1 = new() { Id = Guid.NewGuid(), Dancercard = new() { Name = "Player A" }, Ticket = "ticket-A" };
+        _profile2 = new() { Id = Guid.NewGuid(), Dancercard = new() { Name = "Player B" } };
+        _profile3 = new() { Id = Guid.NewGuid(), Dancercard = new() { Name = "Player C" } };
 
         _dbContext.Profiles.AddRange(_profile1, _profile2, _profile3);
         _dbContext.HighScores.AddRange(
@@ -51,7 +51,7 @@ public class UserDataServiceTests : IDisposable
     public async Task AddProfileAsync_WithExistingId_ReturnsFalse()
     {
         // Arrange
-        Profile duplicateProfile = new([]) { Id = _profile1.Id, Dancercard = new() { Id = _profile1.Id, Name = "Duplicate" } };
+        Profile duplicateProfile = new() { Id = _profile1.Id, Dancercard = new() { Id = _profile1.Id, Name = "Duplicate" } };
 
         // Act
         bool result = await _service.AddProfileAsync(duplicateProfile);
@@ -64,7 +64,7 @@ public class UserDataServiceTests : IDisposable
     public async Task GenerateAddProfileAsync_CreatesProfileWithNewGuid()
     {
         // Arrange
-        Profile newProfile = new([]) { Dancercard = new() { Name = "Newbie" } };
+        Profile newProfile = new() { Dancercard = new() { Name = "Newbie" } };
 
         // Act
         Guid newId = await _service.GenerateAddProfileAsync(newProfile);

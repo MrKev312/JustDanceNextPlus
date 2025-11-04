@@ -15,7 +15,7 @@ public class Items(ILockerItemsService lockerItemsService) : ControllerBase
 		if (string.IsNullOrEmpty(type))
 			return BadRequest("Type is required");
 
-		if (!lockerItemsService.LockerItems.TryGetValue(type, out List<LockerItem>? items))
+		if (!lockerItemsService.LockerItems.TryGetValue(type, out IReadOnlyList<LockerItem>? items))
 			return NotFound($"No items found for type {type}");
 
 		return Ok(new

@@ -1,18 +1,18 @@
 ﻿namespace JustDanceNextPlus.JustDanceClasses.Endpoints;
 
-public class ParameterList
+public record ParameterList
 {
-	public Dictionary<string, Parameter> Parameters { get; set; } = [];
+	public Dictionary<string, Parameter> Parameters { get; init; } = [];
 }
 
-public class Parameter
+public record Parameter
 {
-	public Dictionary<string, object?> Fields { get; set; } = [];
-	public RelatedPopulation? RelatedPopulation { get; set; }
+	public Dictionary<string, object?> Fields { get; init; } = [];
+    public RelatedPopulation? RelatedPopulation { get; init; }
 }
 
-public class RelatedPopulation
+public record RelatedPopulation
 {
-	public string? Name { get; set; }
-	public string? Subject { get; set; }
+	public string? Name { get; init; }
+	public string? Subject { get; init; }
 }

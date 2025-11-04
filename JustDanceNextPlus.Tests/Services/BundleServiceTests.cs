@@ -9,6 +9,7 @@ using Microsoft.Extensions.Options;
 
 using Moq;
 
+using System.Collections.Immutable;
 using System.Text;
 using System.Text.Json;
 
@@ -86,15 +87,15 @@ public class BundleServiceTests
         _mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag(123)).Returns(new LocalizedString(123, "Button Text"));
         _mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag(456)).Returns(new LocalizedString(456, "Subtitle Text"));
 
-        // Act
-        await _service.LoadLiveTiles();
+		// Act
+		IReadOnlyDictionary<Guid, LiveTile> result = await _service.LoadLiveTiles();
 
         // Assert
-        Assert.Single(_service.LiveTiles);
-        Assert.True(_service.LiveTiles.ContainsKey(tileId));
-        Assert.Equal("test.cdn.com/path/to/image.png", _service.LiveTiles[tileId].Assets.BackgroundImage);
-        Assert.Equal(123, _service.LiveTiles[tileId].ButtonId.ID);
-        Assert.Equal(456, _service.LiveTiles[tileId].SubtitleId.ID);
+        Assert.Single(result);
+        Assert.True(result.ContainsKey(tileId));
+        Assert.Equal("test.cdn.com/path/to/image.png", result[tileId].Assets.BackgroundImage);
+        Assert.Equal(123, result[tileId].ButtonId.ID);
+        Assert.Equal(456, result[tileId].SubtitleId.ID);
         _mockLogger.Verify(
             x => x.Log(LogLevel.Information, It.IsAny<EventId>(), It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Live tiles database loaded")), null, It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
             Times.Once
@@ -140,7 +141,7 @@ public class BundleServiceTests
         Assert.Contains("songpack_year1", _service.Claims);
 
         // We have 2 claims in the display priority list, jdplus is always added
-        Assert.Equal(2, _service.ClaimDisplayPriority.Count);
+        Assert.Equal(2, _service.ClaimDisplayPriority.Length);
         Assert.Equal("songpack_year1", _service.ClaimDisplayPriority[0]);
         Assert.Equal("jdplus", _service.ClaimDisplayPriority[1]);
     }
@@ -191,7 +192,7 @@ public class BundleServiceTests
         await _service.LoadData();
 
         // Act
-        List<string> allClaims = _service.GetAllClaims();
+        ImmutableArray<string> allClaims = _service.GetAllClaims();
 
         // Assert
         Assert.Single(allClaims);

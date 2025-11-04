@@ -1,15 +1,16 @@
-﻿using System.Security.Cryptography;
+﻿using System.Collections.Immutable;
+using System.Security.Cryptography;
 
 namespace JustDanceNextPlus.Services;
 
 public interface ISecurityService
 {
-	byte[] Secret256bit { get; }
+    IReadOnlyList<byte> Secret256bit { get; }
 }
 
 public class SecurityService : ISecurityService
 {
-	public byte[] Secret256bit { get; private set; }
+	public IReadOnlyList<byte> Secret256bit { get; private set; }
 
 	public SecurityService(ILogger<SecurityService> logger)
 	{
@@ -20,14 +21,11 @@ public class SecurityService : ISecurityService
 	}
 
 	// Method to generate a random 256-bit key
-	private static byte[] GenerateRandom256BitKey()
+	private static ImmutableArray<byte> GenerateRandom256BitKey()
 	{
 		byte[] key = new byte[32]; // 32 bytes = 256 bits
-		using (RandomNumberGenerator random = RandomNumberGenerator.Create())
-		{
-			random.GetBytes(key); // Fill the array with cryptographically strong random bytes
-		}
+		RandomNumberGenerator.Fill(key);
 
-		return key;
+        return [.. key];
 	}
 }

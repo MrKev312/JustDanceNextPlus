@@ -5,9 +5,9 @@ using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.Utilities;
 
-public class MapTag
+public record MapTag
 {
-	public Guid Guid { get; set; }
+	public Guid Guid { get; init; }
 
 	// Allow implicit conversion from GuidTag to Guid
 	public static implicit operator Guid(MapTag tag) => tag.Guid;

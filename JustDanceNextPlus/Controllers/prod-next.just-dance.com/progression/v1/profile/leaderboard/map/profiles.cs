@@ -13,7 +13,7 @@ public class Profiles(IUserDataService userDataService) : ControllerBase
     public async Task<IActionResult> GetProfiles([FromBody] ProfilesRequest request)
     {
         Guid mapId = request.MapId;
-        var profiles = new List<object>();
+		List<object> profiles = [];
         foreach (Guid userId in request.UsUserIds)
         {
 			Profile? profile = await userDataService.GetProfileByIdAsync(userId);

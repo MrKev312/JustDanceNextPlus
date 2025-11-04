@@ -31,23 +31,23 @@ public class UtilityServiceTests
         _mockFileSystem = new Mock<IFileSystem>();
         _mockWebmExtractor = new Mock<IWebmExtractor>();
 
-		// Mocks required by the JsonConverters
-		Mock<ITagService> mockTagService = new();
-		Mock<ILocalizedStringService> mockLocalizedStringService = new();
-		Mock<IMapService> mockMapService = new();
+        // Mocks required by the JsonConverters
+        Mock<ITagService> mockTagService = new();
+        Mock<ILocalizedStringService> mockLocalizedStringService = new();
+        Mock<IMapService> mockMapService = new();
 
         // This setup is required by custom JsonConverters which might be invoked
         // during the serialization/deserialization setup process.
         mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag(0)).Returns(new LocalizedString(0, ""));
 
-		// Create concrete instances of the converters with mocked dependencies
-		GuidTagConverter guidTagConverter = new(mockTagService.Object, mockLocalizedStringService.Object);
-		MapTagConverter mapTagConverter = new(mockMapService.Object, Mock.Of<ILogger<MapTagConverter>>());
-		TagIdConverter tagIdConverter = new(mockLocalizedStringService.Object);
-		MapTagListConverter mapTagListConverter = new(mockMapService.Object, Mock.Of<ILogger<MapTagListConverter>>());
+        // Create concrete instances of the converters with mocked dependencies
+        GuidTagConverter guidTagConverter = new(mockTagService.Object, mockLocalizedStringService.Object);
+        MapTagConverter mapTagConverter = new(mockMapService.Object, Mock.Of<ILogger<MapTagConverter>>());
+        TagIdConverter tagIdConverter = new(mockLocalizedStringService.Object);
+        MapTagListConverter mapTagListConverter = new(mockMapService.Object, Mock.Of<ILogger<MapTagListConverter>>());
 
-		// Mock the IServiceProvider to return the concrete converter instances
-		Mock<IServiceProvider> mockServiceProvider = new();
+        // Mock the IServiceProvider to return the concrete converter instances
+        Mock<IServiceProvider> mockServiceProvider = new();
         mockServiceProvider.Setup(sp => sp.GetService(typeof(GuidTagConverter))).Returns(guidTagConverter);
         mockServiceProvider.Setup(sp => sp.GetService(typeof(MapTagConverter))).Returns(mapTagConverter);
         mockServiceProvider.Setup(sp => sp.GetService(typeof(TagIdConverter))).Returns(tagIdConverter);
@@ -55,30 +55,31 @@ public class UtilityServiceTests
 
         // Initialize the REAL JsonSettingsService with the correctly configured provider
         _jsonSettingsService = new JsonSettingsService(mockServiceProvider.Object);
+        _jsonSettingsService.PrettyPascalFormat.Converters.Add(new ICategoryConverter());
 
         _service = new UtilityService(
-            _jsonSettingsService,
-            _mockUrlOptions,
-            _mockLogger.Object,
-            _mockFileSystem.Object,
-            _mockWebmExtractor.Object
+        _jsonSettingsService,
+        _mockUrlOptions,
+        _mockLogger.Object,
+        _mockFileSystem.Object,
+        _mockWebmExtractor.Object
         );
     }
 
     [Fact]
     public void GetAssetUrl_WhenFileExists_ReturnsCorrectUrl()
     {
-		// Arrange
-		string mapName = "TestMap";
-		string mapFolder = Path.Combine(_baseMapsPath, mapName);
-		string assetName = "cover";
-		string assetFolder = Path.Combine(mapFolder, assetName);
-		string expectedFile = Path.Combine(assetFolder, "cover.png");
+        // Arrange
+        string mapName = "TestMap";
+        string mapFolder = Path.Combine(_baseMapsPath, mapName);
+        string assetName = "cover";
+        string assetFolder = Path.Combine(mapFolder, assetName);
+        string expectedFile = Path.Combine(assetFolder, "cover.png");
         _mockFileSystem.Setup(fs => fs.DirectoryExists(assetFolder)).Returns(true);
         _mockFileSystem.Setup(fs => fs.GetFiles(assetFolder, "*", SearchOption.TopDirectoryOnly)).Returns([expectedFile]);
 
-		// Act
-		string? result = _service.GetAssetUrl(mapFolder, assetName, false);
+        // Act
+        string result = _service.GetAssetUrl(mapFolder, assetName);
 
         // Assert
         Assert.Equal($"https://test.cdn.com/maps/{mapName}/cover/cover.png", result);
@@ -87,52 +88,52 @@ public class UtilityServiceTests
     [Fact]
     public void GetAssetUrl_WhenDirectoryMissing_ThrowsDirectoryNotFoundException()
     {
-		// Arrange
-		string mapFolder = "C:\\maps\\TestMap";
-		string assetName = "cover";
-		string assetFolder = Path.Combine(mapFolder, assetName);
+        // Arrange
+        string mapFolder = "C:\\maps\\TestMap";
+        string assetName = "cover";
+        string assetFolder = Path.Combine(mapFolder, assetName);
         _mockFileSystem.Setup(fs => fs.DirectoryExists(assetFolder)).Returns(false);
 
         // Act & Assert
-        Assert.Throws<DirectoryNotFoundException>(() => _service.GetAssetUrl(mapFolder, assetName, false));
+        Assert.Throws<DirectoryNotFoundException>(() => _service.GetAssetUrl(mapFolder, assetName));
     }
 
     [Fact]
-    public void GetAssetUrl_WhenCanBeMissing_ReturnsNullOnMissingDirectory()
+    public void TryGetAssetUrl_WhenCanBeMissing_ReturnsNullOnMissingDirectory()
     {
-		// Arrange
-		string mapFolder = "C:\\maps\\TestMap";
-		string assetName = "songTitleLogo";
-		string assetFolder = Path.Combine(mapFolder, assetName);
+        // Arrange
+        string mapFolder = "C:\\maps\\TestMap";
+        string assetName = "songTitleLogo";
+        string assetFolder = Path.Combine(mapFolder, assetName);
         _mockFileSystem.Setup(fs => fs.DirectoryExists(assetFolder)).Returns(false);
 
-		// Act
-		string? result = _service.GetAssetUrl(mapFolder, assetName, true);
+        // Act
+        string? result = _service.TryGetAssetUrl(mapFolder, assetName);
 
         // Assert
         Assert.Null(result);
     }
 
     [Fact]
-    public void GetVideoUrls_WhenNoVideosFound_ThrowsFileNotFoundException()
+    public void GetVideoData_WhenNoVideosFound_ThrowsFileNotFoundException()
     {
-		// Arrange
-		string videoFolder = "C:\\maps\\TestMap\\videoPreview";
+        // Arrange
+        string videoFolder = "C:\\maps\\TestMap\\videoPreview";
         _mockFileSystem.Setup(fs => fs.GetFiles(videoFolder, "*.webm", SearchOption.TopDirectoryOnly)).Returns([]);
 
         // Act & Assert
-        Assert.Throws<FileNotFoundException>(() => _service.GetVideoUrls(videoFolder));
+        Assert.Throws<FileNotFoundException>(() => _service.GetVideoData(videoFolder));
     }
 
     [Fact]
-    public void GetVideoUrls_WhenTooManyVideos_ThrowsInvalidOperationException()
+    public void GetVideoData_WhenTooManyVideos_ThrowsInvalidOperationException()
     {
-		// Arrange
-		string videoFolder = "C:\\maps\\TestMap\\videoPreview";
+        // Arrange
+        string videoFolder = "C:\\maps\\TestMap\\videoPreview";
         _mockFileSystem.Setup(fs => fs.GetFiles(videoFolder, "*.webm", SearchOption.TopDirectoryOnly)).Returns(["1.webm", "2.webm", "3.webm", "4.webm", "5.webm"]);
 
         // Act & Assert
-        Assert.Throws<InvalidOperationException>(() => _service.GetVideoUrls(videoFolder));
+        Assert.Throws<InvalidOperationException>(() => _service.GetVideoData(videoFolder));
     }
 
     [Fact]
@@ -144,25 +145,27 @@ public class UtilityServiceTests
         // Immediately convert it to a full path to mirror the service's internal logic.
         var mapFolder = Path.GetFullPath(relativeMapFolder);
 
-        // Use the FULL path to build the dictionary keys for the mock setup.
-        var filesWithLengths = new Dictionary<string, long>
-        {
+		// Use the FULL path to build the dictionary keys for the mock setup.
+		Dictionary<string, long> filesWithLengths = new()
+		{
             [Path.Combine(mapFolder, "cover", "abc.png")] = 100L,
             [Path.Combine(mapFolder, "audioPreview_opus", "def.opus")] = 200L,
             [Path.Combine(mapFolder, "audio", "ghi.opus")] = 300L,
             [Path.Combine(mapFolder, "coachesSmall", "jkl.png")] = 400L,
             [Path.Combine(mapFolder, "coachesLarge", "mno.png")] = 500L,
             [Path.Combine(mapFolder, "MapPackage", "pqr.bundle")] = 600L,
-            [Path.Combine(mapFolder, "video", "small_video.webm")] = 1000L, // 1st small video
-            [Path.Combine(mapFolder, "video", "medium_video.webm")] = 3000L, // 2nd medium video
-            [Path.Combine(mapFolder, "video", "large_video.webm")] = 5000L, // 3rd large video
-            [Path.Combine(mapFolder, "video", "huge_video.webm")] = 10000L // 4th huge video
+            [Path.Combine(mapFolder, "videoPreview", "pv_small.webm")] = 800L,
+            [Path.Combine(mapFolder, "videoPreview", "pv_large.webm")] = 1200L,
+            [Path.Combine(mapFolder, "video", "small_video.webm")] = 1000L, //1st small video
+            [Path.Combine(mapFolder, "video", "medium_video.webm")] = 3000L, //2nd medium video
+            [Path.Combine(mapFolder, "video", "large_video.webm")] = 5000L, //3rd large video
+            [Path.Combine(mapFolder, "video", "huge_video.webm")] = 10000L //4th huge video
 
         };
 
         // The mock must be set up to expect a call with the FULL path.
         _mockFileSystem.Setup(fs => fs.GetFiles(mapFolder, "*", SearchOption.AllDirectories))
-                       .Returns([.. filesWithLengths.Keys]);
+        .Returns([.. filesWithLengths.Keys]);
 
         // For each fake file, set up a mock return for its fake length
         foreach (KeyValuePair<string, long> file in filesWithLengths)
@@ -170,12 +173,12 @@ public class UtilityServiceTests
             _mockFileSystem.Setup(fs => fs.GetFileLength(file.Key)).Returns(file.Value);
         }
 
-		// Act
-		// Call the service with the original RELATIVE path.
-		Dictionary<string, AssetMetadata> metadata = _service.LoadAssetMetadata(relativeMapFolder);
+        // Act
+        // Call the service with the original RELATIVE path.
+        IReadOnlyDictionary<string, AssetMetadata> metadata = _service.LoadAssetMetadata(relativeMapFolder);
 
         // Assert
-        Assert.Equal(9, metadata.Count); // Will include 4 video files, with the largest also being picked for ULTRA
+        Assert.Equal(11, metadata.Count); // base assets +2 videoPreview +2 HIGH +1 ULTRA
         Assert.True(metadata.ContainsKey("cover"));
         Assert.Equal("abc", metadata["cover"].Hash);
         Assert.Equal(100L, metadata["cover"].Size);
@@ -183,6 +186,13 @@ public class UtilityServiceTests
         Assert.True(metadata.ContainsKey("mapPackage"));
         Assert.Equal("pqr", metadata["mapPackage"].Hash);
         Assert.Equal(600L, metadata["mapPackage"].Size);
+
+        // videoPreview MID (second smallest by size)
+        Assert.True(metadata.ContainsKey("videoPreview_MID.vp8.webm"));
+        Assert.True(metadata.ContainsKey("videoPreview_MID.vp9.webm"));
+        string expectedPreviewHash = "pv_large"; // second smallest out of two is the larger one
+        Assert.Equal(expectedPreviewHash, metadata["videoPreview_MID.vp8.webm"].Hash);
+        Assert.Equal(1200L, metadata["videoPreview_MID.vp8.webm"].Size);
 
         // Assert that the sorting logic correctly picked the largest file for HIGH
         Assert.True(metadata.ContainsKey("video_HIGH.hd.webm"));
@@ -198,8 +208,8 @@ public class UtilityServiceTests
     [Fact]
     public async Task LoadMapDBEntryAsync_MissingSongInfo_ThrowsException()
     {
-		// Arrange
-		string mapFolder = "C:\\maps\\TestMap";
+        // Arrange
+        string mapFolder = "C:\\maps\\TestMap";
         _mockFileSystem.Setup(fs => fs.FileExists(Path.Combine(mapFolder, "SongInfo.json"))).Returns(false);
 
         // Act & Assert
@@ -209,22 +219,22 @@ public class UtilityServiceTests
     [Fact]
     public async Task LoadMapDBEntryAsync_EmptyMapNameInSongInfo_ThrowsException()
     {
-		// Arrange
-		string mapFolder = "C:\\maps\\TestMap";
+        // Arrange
+        string mapFolder = "C:\\maps\\TestMap";
 		LocalJustDanceSongDBEntry songInfo = new() { MapName = "", DanceVersionLocId = new LocalizedString(0, "") };
 		string json = JsonSerializer.Serialize(songInfo, _jsonSettingsService.PrettyPascalFormat);
-		MemoryStream stream = new(Encoding.UTF8.GetBytes(json));
+        MemoryStream stream = new(Encoding.UTF8.GetBytes(json));
 
         _mockFileSystem.Setup(fs => fs.FileExists(Path.Combine(mapFolder, "SongInfo.json"))).Returns(true);
         _mockFileSystem.Setup(fs => fs.OpenRead(Path.Combine(mapFolder, "SongInfo.json"))).Returns(stream);
 
-		string videoPreviewFolder = Path.Combine(mapFolder, "videoPreview");
+        string videoPreviewFolder = Path.Combine(mapFolder, "videoPreview");
         _mockFileSystem.Setup(fs => fs.GetFiles(videoPreviewFolder, "*.webm", SearchOption.TopDirectoryOnly)).Returns(["C:\\fake\\video.webm"]);
 
         _mockWebmExtractor.Setup(x => x.GetCuesInfo(It.IsAny<string>())).Returns(new WebmData());
 
-		// Act & Assert
-		InvalidOperationException ex = await Assert.ThrowsAsync<InvalidOperationException>(() => _service.LoadMapDBEntryAsync(mapFolder).AsTask());
+        // Act & Assert
+        InvalidOperationException ex = await Assert.ThrowsAsync<InvalidOperationException>(() => _service.LoadMapDBEntryAsync(mapFolder).AsTask());
         Assert.NotNull(ex.InnerException);
         Assert.Contains("MapName is null or empty", ex.InnerException.Message);
     }
@@ -232,8 +242,8 @@ public class UtilityServiceTests
     [Fact]
     public void GenerateAudioPreviewTrk_MapPackageNotFound_ThrowsFileNotFoundException()
     {
-		// Arrange
-		string mapPackagePath = "C:\\maps\\TestMap\\MapPackage\\file.bundle";
+        // Arrange
+        string mapPackagePath = "C:\\maps\\TestMap\\MapPackage\\file.bundle";
         _mockFileSystem.Setup(fs => fs.FileExists(mapPackagePath)).Returns(false);
 
         // Act & Assert
@@ -241,92 +251,94 @@ public class UtilityServiceTests
     }
 
     [Fact]
-    public void AssignVideoUrls_AssignsUrlsToCorrectProperties()
+    public void GetVideoUrls_AssignsUrlsToCorrectOrder()
     {
-		// Arrange
-		LocalJustDanceSongDBEntry songInfo = new() { DanceVersionLocId = new LocalizedString(0, ""), Assets = new() };
-		string mapName = "TestMap";
-		string mapFolder = Path.Combine(_baseMapsPath, mapName);
-		WebmData[] videoData =
-		[
-			new() { FileName = "low_quality" },
+        // Arrange
+        string mapName = "TestMap";
+        string mapFolder = Path.Combine(_baseMapsPath, mapName);
+        WebmData[] videoData =
+        [
+            new() { FileName = "low_quality" },
             new() { FileName = "mid_quality" },
             new() { FileName = "high_quality" },
             new() { FileName = "ultra_quality" }
         ];
-		string expectedBaseUrl = $"https://test.cdn.com/maps/{mapName}/videoPreview/";
+        string expectedBaseUrl = $"https://test.cdn.com/maps/{mapName}/videoPreview/";
 
         // Act
-        _service.AssignVideoUrls(songInfo, videoData, mapFolder);
+        (string low, string mid, string high, string ultra) = _service.GetVideoUrls(videoData, mapFolder);
 
         // Assert
-        Assert.Equal($"{expectedBaseUrl}low_quality.webm", songInfo.Assets.VideoPreview_LOW_vp9_webm);
-        Assert.Equal($"{expectedBaseUrl}mid_quality.webm", songInfo.Assets.VideoPreview_MID_vp9_webm);
-        Assert.Equal($"{expectedBaseUrl}high_quality.webm", songInfo.Assets.VideoPreview_HIGH_vp9_webm);
-        Assert.Equal($"{expectedBaseUrl}ultra_quality.webm", songInfo.Assets.VideoPreview_ULTRA_vp9_webm);
+        Assert.Equal($"{expectedBaseUrl}low_quality.webm", low);
+        Assert.Equal($"{expectedBaseUrl}mid_quality.webm", mid);
+        Assert.Equal($"{expectedBaseUrl}high_quality.webm", high);
+        Assert.Equal($"{expectedBaseUrl}ultra_quality.webm", ultra);
     }
 
     [Fact]
-    public void AssignAssetUrls_WhenPropertyIsNull_AssignsUrl()
+    public void GetAssetUrls_ReturnsUrls()
     {
-		// Arrange
-		LocalJustDanceSongDBEntry songInfo = new() { DanceVersionLocId = new LocalizedString(0, ""), Assets = new() };
-		string mapName = "TestMap";
-		string mapFolder = Path.Combine(_baseMapsPath, mapName);
-		string assetFolder = Path.Combine(mapFolder, "audioPreview_opus");
-        _mockFileSystem.Setup(fs => fs.DirectoryExists(assetFolder)).Returns(true);
-        _mockFileSystem.Setup(fs => fs.GetFiles(assetFolder, "*", SearchOption.TopDirectoryOnly)).Returns(["preview.opus"]);
-        songInfo.Assets.AudioPreview_opus = null;
+        // Arrange
+        string mapName = "TestMap";
+        string mapFolder = Path.Combine(_baseMapsPath, mapName);
+
+        // audioPreview_opus
+        string audioPreviewFolder = Path.Combine(mapFolder, "audioPreview_opus");
+        _mockFileSystem.Setup(fs => fs.DirectoryExists(audioPreviewFolder)).Returns(true);
+        _mockFileSystem.Setup(fs => fs.GetFiles(audioPreviewFolder, "*", SearchOption.TopDirectoryOnly)).Returns([Path.Combine(audioPreviewFolder, "preview.opus")]);
+
+        // coachesLarge
+        string coachesLargeFolder = Path.Combine(mapFolder, "coachesLarge");
+        _mockFileSystem.Setup(fs => fs.DirectoryExists(coachesLargeFolder)).Returns(true);
+        _mockFileSystem.Setup(fs => fs.GetFiles(coachesLargeFolder, "*", SearchOption.TopDirectoryOnly)).Returns([Path.Combine(coachesLargeFolder, "cl.png")]);
+
+        // coachesSmall
+        string coachesSmallFolder = Path.Combine(mapFolder, "coachesSmall");
+        _mockFileSystem.Setup(fs => fs.DirectoryExists(coachesSmallFolder)).Returns(true);
+        _mockFileSystem.Setup(fs => fs.GetFiles(coachesSmallFolder, "*", SearchOption.TopDirectoryOnly)).Returns([Path.Combine(coachesSmallFolder, "cs.png")]);
+
+        // cover
+        string coverFolder = Path.Combine(mapFolder, "cover");
+        _mockFileSystem.Setup(fs => fs.DirectoryExists(coverFolder)).Returns(true);
+        _mockFileSystem.Setup(fs => fs.GetFiles(coverFolder, "*", SearchOption.TopDirectoryOnly)).Returns([Path.Combine(coverFolder, "cover.png")]);
+
+        // songTitleLogo missing
+        string songTitleLogoFolder = Path.Combine(mapFolder, "songTitleLogo");
+        _mockFileSystem.Setup(fs => fs.DirectoryExists(songTitleLogoFolder)).Returns(false);
 
         // Act
-        _service.AssignAssetUrls(songInfo, mapFolder);
+        (string audioPreview, string coachesLarge, string coachesSmall, string cover, string? songTitleLogo) = _service.GetAssetUrls(mapFolder);
 
         // Assert
-        Assert.Equal($"https://test.cdn.com/maps/{mapName}/audioPreview_opus/preview.opus", songInfo.Assets.AudioPreview_opus);
+        Assert.Equal($"https://test.cdn.com/maps/{mapName}/audioPreview_opus/preview.opus", audioPreview);
+        Assert.Equal($"https://test.cdn.com/maps/{mapName}/coachesLarge/cl.png", coachesLarge);
+        Assert.Equal($"https://test.cdn.com/maps/{mapName}/coachesSmall/cs.png", coachesSmall);
+        Assert.Equal($"https://test.cdn.com/maps/{mapName}/cover/cover.png", cover);
+        Assert.Null(songTitleLogo);
     }
 
     [Fact]
-    public void AssignAssetUrls_WhenPropertyIsNotNull_DoesNotChangeUrl()
+    public void GetContentAuthorizationVideoUrls_AssignsUrlsToCorrectProperties()
     {
-		// Arrange
-		LocalJustDanceSongDBEntry songInfo = new() { DanceVersionLocId = new LocalizedString(0, ""), Assets = new() };
-		string mapFolder = "C:\\maps\\TestMap";
-		string preExistingUrl = "http://already.exists/audio.opus";
-
-        // Pre-set the property to a non-null value
-        songInfo.Assets.AudioPreview_opus = preExistingUrl;
-
-        // Act
-        _service.AssignAssetUrls(songInfo, mapFolder);
-
-        // Assert
-        // The mock for GetAssetUrl should not even be called, and the value should remain unchanged.
-        Assert.Equal(preExistingUrl, songInfo.Assets.AudioPreview_opus);
-    }
-
-    [Fact]
-    public void AssignContentAuthorizationVideoUrls_AssignsUrlsToCorrectProperties()
-    {
-		// Arrange
-		ContentAuthorization contentAuth = new();
-		string mapName = "TestMap";
-		string mapFolder = Path.Combine(_baseMapsPath, mapName);
-		WebmData[] videoData =
-		[
-			new() { FileName = "low_video" },
+        // Arrange
+        string mapName = "TestMap";
+        string mapFolder = Path.Combine(_baseMapsPath, mapName);
+        WebmData[] videoData =
+        [
+            new() { FileName = "low_video" },
             new() { FileName = "mid_video" },
             new() { FileName = "high_video" },
             new() { FileName = "ultra_video" }
         ];
-		string expectedBaseUrl = $"https://test.cdn.com/maps/{mapName}/video/";
+        string expectedBaseUrl = $"https://test.cdn.com/maps/{mapName}/video/";
 
         // Act
-        _service.AssignContentAuthorizationVideoUrls(contentAuth, videoData, mapFolder);
+        (string low, string mid, string high, string ultra) = _service.GetContentAuthorizationVideoUrls(videoData, mapFolder);
 
         // Assert
-        Assert.Equal($"{expectedBaseUrl}low_video.webm", contentAuth.Assets.VideoLowVP9Webm);
-        Assert.Equal($"{expectedBaseUrl}mid_video.webm", contentAuth.Assets.VideoMidVP9Webm);
-        Assert.Equal($"{expectedBaseUrl}high_video.webm", contentAuth.Assets.VideoHighVP9Webm);
-        Assert.Equal($"{expectedBaseUrl}ultra_video.webm", contentAuth.Assets.VideoUltraVP9Webm);
+        Assert.Equal($"{expectedBaseUrl}low_video.webm", low);
+        Assert.Equal($"{expectedBaseUrl}mid_video.webm", mid);
+        Assert.Equal($"{expectedBaseUrl}high_video.webm", high);
+        Assert.Equal($"{expectedBaseUrl}ultra_video.webm", ultra);
     }
 }

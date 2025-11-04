@@ -5,11 +5,9 @@ using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.Utilities;
 
-public class OasisTag(LocalizedString localizedString)
+public record OasisTag(LocalizedString LocalizedString)
 {
-	public LocalizedString LocalizedString { get; set; } = localizedString;
-
-	public int ID => LocalizedString.OasisIdInt;
+	public int ID => LocalizedString.OasisId;
 	public string? Name => LocalizedString.DisplayString;
 
 	// Allow implicit conversion from OasisTag to int
@@ -17,26 +15,25 @@ public class OasisTag(LocalizedString localizedString)
 	public static implicit operator OasisTag(LocalizedString localizedString) => new(localizedString);
 }
 
-public class LocalizedString
+public record LocalizedString
 {
 	public LocalizedString() { }
 
-	public LocalizedString(int oasisIdInt, string displayString)
+	public LocalizedString(int oasisId, string displayString)
 	{
-		OasisIdInt = oasisIdInt;
+		OasisId = oasisId;
 		LocaleCode = "en-US"; // Default locale code
 		DisplayString = displayString;
 		LocalizedStringId = Guid.NewGuid(); // Generate a new GUID for the localized string
 	}
 
-	[JsonIgnore]
-	public int OasisIdInt { get; set; }
-	public string OasisId { get => OasisIdInt.ToString(); set => OasisIdInt = int.Parse(value); }
-	public string LocaleCode { get; set; } = "";
-	public string DisplayString { get; set; } = "";
-	public Guid LocalizedStringId { get; set; }
-	public object? Obj { get; set; }
-	public int SpaceRevision { get; set; } = 121;
+	[JsonConverter(typeof(JsonStringConverter))]
+	public int OasisId { get; init; }
+	public string LocaleCode { get; init; } = "";
+	public string DisplayString { get; init; } = "";
+	public Guid LocalizedStringId { get; init; }
+	public object? Obj { get; init; }
+	public int SpaceRevision { get; init; } = 121;
 }
 
 public class TagIdConverter(ILocalizedStringService localizedStringService) : JsonConverter<OasisTag>

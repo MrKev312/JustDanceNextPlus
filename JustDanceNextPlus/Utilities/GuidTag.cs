@@ -1,25 +1,25 @@
 ﻿using JustDanceNextPlus.Services;
 
+using System.Collections.Immutable;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.Utilities;
 
 [JsonConverter(typeof(GuidTagConverter))]
-public class GuidTag(Tag tag)
+public record GuidTag(Tag Tag)
 {
-	public Tag Tag { get; set; } = tag;
 	public Guid TagGuid => Tag.TagGuid;
 }
 
-public class Tag
+public record Tag
 {
 	[JsonIgnore]
-	public Guid TagGuid { get; set; } = Guid.Empty;
-	public string TagName { get; set; } = "";
-	public required OasisTag LocId { get; set; }
-	public string Category { get; set; } = "";
-	public List<string> Synonyms { get; set; } = [];
+	public Guid TagGuid { get; init; } = Guid.Empty;
+	public string TagName { get; init; } = "";
+	public required OasisTag LocId { get; init; }
+	public string Category { get; init; } = "";
+	public ImmutableArray<string> Synonyms { get; init; } = [];
 
 	[JsonIgnore]
 	public string? Name => LocId.Name;

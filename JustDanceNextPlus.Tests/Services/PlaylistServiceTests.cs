@@ -12,7 +12,6 @@ using System.Text;
 
 namespace JustDanceNextPlus.Tests.Services;
 
-
 public class PlaylistServiceTests
 {
     private readonly Mock<IMapService> _mockMapService;
@@ -106,7 +105,7 @@ public class PlaylistServiceTests
         // Assert
         Assert.True(_service.PlaylistDB.Playlists.ContainsKey(playlistGuid));
 		JustDancePlaylist playlist = _service.PlaylistDB.Playlists[playlistGuid];
-        Assert.Equal(2, playlist.ItemList.Count);
+        Assert.Equal(2, playlist.ItemList.Length);
         Assert.Equal(map2Id, playlist.ItemList[0].Id); // 2024
         Assert.Equal(map3Id, playlist.ItemList[1].Id); // 2023
     }

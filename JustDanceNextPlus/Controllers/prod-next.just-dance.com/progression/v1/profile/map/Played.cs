@@ -30,9 +30,9 @@ public class Played(IUserDataService userDataService) : ControllerBase
 
 		PlayedRequest map = body.Map;
 
-        // Build highscore performance
-        var highScorePerformance = new HighscorePerformance
-        {
+		// Build highscore performance
+		HighscorePerformance highScorePerformance = new()
+		{
             GoldMovesAchieved = map.GoldMovesAchieved,
             Moves = new MoveCounts
             {

@@ -72,7 +72,7 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 	{
 		// Hardcoded header and payload values
 		JwtHeader header = new(new SigningCredentials(
-			new SymmetricSecurityKey(securityService.Secret256bit),
+			new SymmetricSecurityKey([.. securityService.Secret256bit]),
 			SecurityAlgorithms.HmacSha256));
 
 		JwtPayload payload = new()
@@ -96,9 +96,9 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 	}
 }
 
-public class Session
+public record Session
 {
-	public required Guid SessionId { get; set; }
-	public required Guid PlayerId { get; set; }
-	public required Guid UbiAppId { get; set; }
+	public required Guid SessionId { get; init; }
+	public required Guid PlayerId { get; init; }
+	public required Guid UbiAppId { get; init; }
 }

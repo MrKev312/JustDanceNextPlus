@@ -3,14 +3,15 @@ using JustDanceNextPlus.JustDanceClasses.Database;
 
 using Microsoft.Extensions.Options;
 
+using System.Collections.Immutable;
 using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
 
 public interface ILockerItemsService : ILoadService
 {
-	Dictionary<string, List<LockerItem>> LockerItems { get; }
-	List<Guid> LockerItemIds { get; }
+	IReadOnlyDictionary<string, IReadOnlyList<LockerItem>> LockerItems { get; }
+	IReadOnlyList<Guid> LockerItemIds { get; }
 }
 
 public class LockerItemsService(JsonSettingsService jsonSettingsService,
@@ -18,10 +19,10 @@ public class LockerItemsService(JsonSettingsService jsonSettingsService,
 	ILogger<LockerItemsService> logger,
     IFileSystem fileSystem) : ILockerItemsService, ILoadService
 {
-	public Dictionary<string, List<LockerItem>> LockerItems { get; } = [];
-	public List<Guid> LockerItemIds { get; } = [];
+	public IReadOnlyDictionary<string, IReadOnlyList<LockerItem>> LockerItems { get; private set; } = new Dictionary<string, IReadOnlyList<LockerItem>>();
+    public IReadOnlyList<Guid> LockerItemIds { get; private set; } = [];
 
-	public async Task LoadData()
+    public async Task LoadData()
 	{
 		string path = pathSettings.Value.LockerItemsPath;
 
@@ -33,32 +34,38 @@ public class LockerItemsService(JsonSettingsService jsonSettingsService,
 
 		string[] files = fileSystem.GetFiles(path, "*.json");
 
-		foreach (string file in files)
+		ImmutableDictionary<string, IReadOnlyList<LockerItem>>.Builder lockerItemsBuilder = ImmutableDictionary.CreateBuilder<string, IReadOnlyList<LockerItem>>();
+		ImmutableHashSet<Guid>.Builder lockerItemIdsBuilder = ImmutableHashSet.CreateBuilder<Guid>();
+
+        foreach (string file in files)
 		{
 			using Stream fileStream = fileSystem.OpenRead(file);
-			List<LockerItem> lockerItems = await JsonSerializer.DeserializeAsync<List<LockerItem>>(fileStream, jsonSettingsService.PrettyPascalFormat) ?? [];
+            ImmutableArray<LockerItem> lockerItems = await JsonSerializer.DeserializeAsync<ImmutableArray<LockerItem>>(fileStream, jsonSettingsService.PrettyPascalFormat);
 
-			if (lockerItems.Count == 0)
+            if (lockerItems.Length == 0)
 			{
 				logger.LogWarning("No locker items found in file {File}", file);
 				continue;
 			}
 
 			string type = lockerItems[0].Type;
-			LockerItems[type] = lockerItems;
+			lockerItemsBuilder[type] = lockerItems;
 
 			foreach (LockerItem lockerItem in lockerItems)
 			{
-				if (LockerItemIds.Contains(lockerItem.ItemId))
+				if (lockerItemIdsBuilder.Contains(lockerItem.ItemId))
 				{
 					logger.LogWarning("Duplicate locker item found: {LockerItem}", lockerItem);
 					continue;
 				}
 
-				LockerItemIds.Add(lockerItem.ItemId);
+				lockerItemIdsBuilder.Add(lockerItem.ItemId);
 			}
 		}
 
-		logger.LogInformation("Finished loading locker items");
+		LockerItems = lockerItemsBuilder.ToImmutable();
+		LockerItemIds = lockerItemIdsBuilder.ToImmutableArray();
+
+        logger.LogInformation("Finished loading locker items");
 	}
 }

@@ -1,84 +1,87 @@
-﻿using JustDanceNextPlus.Utilities;
+﻿using JustDanceNextPlus.Services;
+using JustDanceNextPlus.Utilities;
 
+using System.Collections.Immutable;
 using System.Linq.Dynamic.Core.CustomTypeProviders;
 using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.JustDanceClasses.Database;
 
 [DynamicLinqType]
-public class JustDanceSongDBEntry
+public record JustDanceSongDBEntry
 {
-	public string Artist { get; set; } = "";
-	public Assetsmetadata AssetsMetadata { get; set; } = new();
-	public int CoachCount { get; set; } = 0;
-	public OasisTag[] CoachNamesLocIds { get; set; } = [];
-	public string Credits { get; set; } = "";
-	public required OasisTag DanceVersionLocId { get; set; }
-	public int Difficulty { get; set; } = 0;
-	public object? DoubleScoringType { get; set; } = null;
+	public string Artist { get; init; } = "";
+	public AssetsMetadata AssetsMetadata { get; init; } = new();
+	public int CoachCount { get; init; } = 0;
+	public ImmutableArray<OasisTag> CoachNamesLocIds { get; init; } = [];
+	public string Credits { get; init; } = "";
+	public required OasisTag DanceVersionLocId { get; init; }
+	public int Difficulty { get; init; } = 0;
+	public object? DoubleScoringType { get; init; } = null;
 	public bool HasSongTitleInCover => Assets.SongTitleLogo != null;
-	public bool HasCameraScoring { get; set; } = false;
-	public string LyricsColor { get; set; } = "";
-	public float MapLength { get; set; } = 0;
-	public string MapName { get; set; } = "";
-	public int OriginalJDVersion { get; set; } = 0;
-	public string ParentMapName { get; set; } = "";
-	public int SweatDifficulty { get; set; } = 0;
-	public List<GuidTag> TagIds { get; set; } = [];
-	public List<string> Tags { get; set; } = [];
-	public string Title { get; set; } = "";
-	public Assets Assets { get; set; } = new();
+	public bool HasCameraScoring { get; init; } = false;
+	public string LyricsColor { get; init; } = "";
+	public float MapLength { get; init; } = 0;
+	public string MapName { get; init; } = "";
+	public int OriginalJDVersion { get; init; } = 0;
+	public string ParentMapName { get; init; } = "";
+	public int SweatDifficulty { get; init; } = 0;
+	public ImmutableArray<GuidTag> TagIds { get; init; } = [];
+	public ImmutableArray<string> Tags { get; init; } = [];
+	public string Title { get; init; } = "";
+	public SongDBAssets Assets { get; init; } = new();
 }
 
-public class Assetsmetadata
+public record AssetsMetadata
 {
-	public string? AudioPreviewTrk { get; set; }
+    [JsonConverter(typeof(JsonStringConverter))]
+    public AudioPreviewTrk? AudioPreviewTrk { get; init; }
 
-	[JsonIgnore]
-	public WebmData[] VideoData { get; set; } = [];
-	public string VideoPreviewMpd { get; set; } = "";
+    [JsonIgnore]
+	public ImmutableArray<WebmData> VideoData { get; init; } = [];
+	public string VideoPreviewMpd => UtilityService.GenerateMpd(VideoData, true);
 }
 
-public class AudioPreviewTrk
+public record AudioPreviewTrk
 {
-	public float StartBeat { get; set; }
-	public float EndBeat { get; set; }
-	public float PreviewDuration { get; set; }
-	public int[] Markers { get; set; } = [];
-	public float VideoStartTime { get; set; }
-	public float PreviewLoopStart { get; set; }
-	public float PreviewEntry { get; set; }
+	public float StartBeat { get; init; }
+	public float EndBeat { get; init; }
+	public float PreviewDuration { get; init; }
+	public ImmutableArray<int> Markers { get; init; } = [];
+	public float VideoStartTime { get; init; }
+	public float PreviewLoopStart { get; init; }
+	public float PreviewEntry { get; init; }
 }
 
-public class Assets
+public record SongDBAssets
 {
 	[JsonPropertyName("audioPreview.opus")]
-	public string? AudioPreview_opus { get; set; }
+	public string? AudioPreview_opus { get; init; }
 	[JsonPropertyName("videoPreview_HIGH.vp8.webm")]
-	public string? VideoPreview_HIGH_vp8_webm { get; set; }
+	public string? VideoPreview_HIGH_vp8_webm { get; init; }
 	[JsonPropertyName("videoPreview_HIGH.vp9.webm")]
-	public string? VideoPreview_HIGH_vp9_webm { get; set; }
+	public string? VideoPreview_HIGH_vp9_webm { get; init; }
 	[JsonPropertyName("videoPreview_LOW.vp8.webm")]
-	public string? VideoPreview_LOW_vp8_webm { get; set; }
+	public string? VideoPreview_LOW_vp8_webm { get; init; }
 	[JsonPropertyName("videoPreview_LOW.vp9.webm")]
-	public string? VideoPreview_LOW_vp9_webm { get; set; }
+	public string? VideoPreview_LOW_vp9_webm { get; init; }
 	[JsonPropertyName("videoPreview_MID.vp8.webm")]
-	public string? VideoPreview_MID_vp8_webm { get; set; }
+	public string? VideoPreview_MID_vp8_webm { get; init; }
 	[JsonPropertyName("videoPreview_MID.vp9.webm")]
-	public string? VideoPreview_MID_vp9_webm { get; set; }
+	public string? VideoPreview_MID_vp9_webm { get; init; }
 	[JsonPropertyName("videoPreview_ULTRA.vp8.webm")]
-	public string? VideoPreview_ULTRA_vp8_webm { get; set; }
+	public string? VideoPreview_ULTRA_vp8_webm { get; init; }
 	[JsonPropertyName("videoPreview_ULTRA.vp9.webm")]
-	public string? VideoPreview_ULTRA_vp9_webm { get; set; }
-	public string? CoachesLarge { get; set; }
-	public string? CoachesSmall { get; set; }
-	public string? Cover { get; set; }
+	public string? VideoPreview_ULTRA_vp9_webm { get; init; }
+	public string? CoachesLarge { get; init; }
+	public string? CoachesSmall { get; init; }
+	public string? Cover { get; init; }
 
 	// These aren't needed
 	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public string? Cover1024 { get; set; }
+	public string? Cover1024 { get; init; }
 	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public string? CoverSmall { get; set; }
+	public string? CoverSmall { get; init; }
 	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public string? SongTitleLogo { get; set; }
+	public string? SongTitleLogo { get; init; }
 }

@@ -8,7 +8,9 @@ using JustDanceNextPlus.Utilities;
 
 using Microsoft.Extensions.Options;
 
+using System.Collections.Immutable;
 using System.Globalization;
+using System.Text;
 using System.Text.Json;
 
 namespace JustDanceNextPlus.Services;
@@ -16,20 +18,21 @@ namespace JustDanceNextPlus.Services;
 public interface IUtilityService
 {
 	ValueTask<LocalJustDanceSongDBEntry> LoadMapDBEntryAsync(string mapFolder);
-	Dictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder);
+    IReadOnlyDictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder);
 	ContentAuthorization LoadContentAuthorization(string mapFolder);
-	WebmData[] GetVideoUrls(string videoFolder);
-	string? GetAssetUrl(string mapFolder, string name, bool canBeMissing = false);
-	void AssignVideoUrls(LocalJustDanceSongDBEntry songInfo, WebmData[] videoData, string mapFolder);
-	void AssignAssetUrls(LocalJustDanceSongDBEntry songInfo, string mapFolder);
-	void AssignContentAuthorizationVideoUrls(ContentAuthorization contentAuthorization, WebmData[] videoData, string mapFolder);
-	string GenerateAudioPreviewTrk(string mapPackagePath);
+	WebmData[] GetVideoData(string videoFolder);
+	string GetAssetUrl(string mapFolder, string name);
+	string? TryGetAssetUrl(string mapFolder, string name);
+	(string low, string mid, string high, string ultra) GetVideoUrls(WebmData[] videoData, string mapFolder);
+	(string audioPreview, string coachesLarge, string coachesSmall, string cover, string? songTitleLogo) GetAssetUrls(string mapFolder);
+	(string low, string mid, string high, string ultra) GetContentAuthorizationVideoUrls(WebmData[] videoData, string mapFolder);
+	AudioPreviewTrk GenerateAudioPreviewTrk(string mapPackagePath);
 }
 
 public class UtilityService(JsonSettingsService jsonSettingsService,
 	IOptions<UrlSettings> urlOptions,
 	ILogger<UtilityService> logger,
-    IFileSystem fileSystem,
+	IFileSystem fileSystem,
 	IWebmExtractor webmExtractor) : IUtilityService
 {
 	private readonly UrlSettings urlSettings = urlOptions.Value;
@@ -49,25 +52,47 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 			if (string.IsNullOrEmpty(songInfo.MapName))
 				throw new InvalidOperationException($"MapName is null or empty in {songInfoPath}");
 
-            songInfo.Assets = new();
-
 			// If the mapId is null or empty, throw an exception
 			if (string.IsNullOrEmpty(songInfo.MapName))
 				throw new InvalidOperationException($"MapName is null or empty in {songInfoPath}");
 
-			WebmData[] videoData = GetVideoUrls(Path.Combine(mapFolder, "videoPreview"));
-			AssignVideoUrls(songInfo, videoData, mapFolder);
-			songInfo.AssetsMetadata.VideoData = videoData;
-			songInfo.AssetsMetadata.VideoPreviewMpd = GenerateMpd(videoData, isPreview: true);
-            songInfo.AssetsMetadata.AudioPreviewTrk ??= GenerateAudioPreviewTrk(fileSystem.GetFiles(Path.Combine(mapFolder, "MapPackage"))[0]);
+			WebmData[] videoData = GetVideoData(Path.Combine(mapFolder, "videoPreview"));
 
-			songInfo.Assets.AudioPreview_opus ??= GetAssetUrl(mapFolder, "audioPreview_opus");
-			songInfo.Assets.CoachesLarge ??= GetAssetUrl(mapFolder, "coachesLarge");
-			songInfo.Assets.CoachesSmall ??= GetAssetUrl(mapFolder, "coachesSmall");
-			songInfo.Assets.Cover ??= GetAssetUrl(mapFolder, "cover");
-			songInfo.Assets.SongTitleLogo ??= GetAssetUrl(mapFolder, "songTitleLogo", true);
+			// Compute asset URLs
+			(string low, string mid, string high, string ultra) = GetVideoUrls(videoData, mapFolder);
+			(string audioPreview, string coachesLarge, string coachesSmall, string cover, string? songTitleLogo) = GetAssetUrls(mapFolder);
 
-			AssignAssetUrls(songInfo, mapFolder);
+			// Update songInfo with asset URLs and metadata
+			songInfo = songInfo with
+			{
+				AssetsMetadata = new AssetsMetadata
+				{
+					VideoData = [.. videoData],
+					AudioPreviewTrk = GenerateAudioPreviewTrk(fileSystem.GetFiles(Path.Combine(mapFolder, "MapPackage"))[0])
+				},
+				Assets = new SongDBAssets
+				{
+					AudioPreview_opus = audioPreview,
+					VideoPreview_HIGH_vp8_webm = high,
+					VideoPreview_HIGH_vp9_webm = high,
+					VideoPreview_LOW_vp8_webm = low,
+					VideoPreview_LOW_vp9_webm = low,
+					VideoPreview_MID_vp8_webm = mid,
+					VideoPreview_MID_vp9_webm = mid,
+					VideoPreview_ULTRA_vp8_webm = ultra,
+					VideoPreview_ULTRA_vp9_webm = ultra,
+					CoachesLarge = coachesLarge,
+					CoachesSmall = coachesSmall,
+					Cover = cover,
+					SongTitleLogo = songTitleLogo
+				}
+			};
+
+			// If there's no game version tag, add a "jdplus" tag
+			if (!songInfo.Tags.Any(tag => tag.Equals("jdplus", StringComparison.OrdinalIgnoreCase)
+				|| tag.StartsWith("songpack_", StringComparison.OrdinalIgnoreCase)
+				|| tag.StartsWith("Music_Pack_", StringComparison.OrdinalIgnoreCase)))
+				songInfo = songInfo with { Tags = songInfo.Tags.Add("jdplus") };
 
 			return songInfo;
 		}
@@ -78,147 +103,157 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 		}
 	}
 
-	public void AssignVideoUrls(LocalJustDanceSongDBEntry songInfo, WebmData[] videoData, string mapFolder)
+	public (string low, string mid, string high, string ultra) GetVideoUrls(WebmData[] videoData, string mapFolder)
 	{
-		for (int i = 0; i < videoData.Length; i++)
+		if (videoData.Length == 0)
+			throw new InvalidOperationException("No video data provided");
+
+		string[] urls = new string[4];
+		string baseUrl = $"https://{urlSettings.CDNUrl}/maps/{Path.GetFileName(mapFolder)}/videoPreview";
+
+		for (int i = 0; i < 4; i++)
 		{
-			string url = $"https://{urlSettings.CDNUrl}/maps/{Path.GetFileName(mapFolder)}/videoPreview/{videoData[i].FileName}.webm";
-			switch (i)
-			{
-				case 0:
-					songInfo.Assets.VideoPreview_LOW_vp9_webm = url;
-					break;
-				case 1:
-					songInfo.Assets.VideoPreview_MID_vp9_webm = url;
-					break;
-				case 2:
-					songInfo.Assets.VideoPreview_HIGH_vp9_webm = url;
-					break;
-				case 3:
-					songInfo.Assets.VideoPreview_ULTRA_vp9_webm = url;
-					break;
-			}
+			urls[i] = i < videoData.Length
+				? $"{baseUrl}/{videoData[i].FileName}.webm"
+				: urls[i - 1];
 		}
+
+		return (urls[0], urls[1], urls[2], urls[3]);
 	}
 
-	public void AssignAssetUrls(LocalJustDanceSongDBEntry songInfo, string mapFolder)
+	public (string audioPreview, string coachesLarge, string coachesSmall, string cover, string? songTitleLogo) GetAssetUrls(string mapFolder)
 	{
-		songInfo.Assets.AudioPreview_opus ??= GetAssetUrl(mapFolder, "audioPreview_opus");
+		// Compute values, preferring existing values
+		string audioPreview = GetAssetUrl(mapFolder, "audioPreview_opus");
+		string coachesLarge = GetAssetUrl(mapFolder, "coachesLarge");
+		string coachesSmall = GetAssetUrl(mapFolder, "coachesSmall");
+		string cover = GetAssetUrl(mapFolder, "cover");
+		string? songTitleLogo = TryGetAssetUrl(mapFolder, "songTitleLogo");
+
+		return (audioPreview, coachesLarge, coachesSmall, cover, songTitleLogo);
 	}
 
-    public Dictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder)
-    {
-        Dictionary<string, AssetMetadata> assetMetadata = [];
+	public IReadOnlyDictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder)
+	{
+        ImmutableDictionary<string, AssetMetadata>.Builder assetMetadata = ImmutableDictionary.CreateBuilder<string, AssetMetadata>();
         mapFolder = Path.GetFullPath(mapFolder);
 
-        // This now gets strings, not FileInfo objects
-        string[] allFiles = fileSystem.GetFiles(mapFolder, "*", SearchOption.AllDirectories);
+		// This now gets strings, not FileInfo objects
+		string[] allFiles = fileSystem.GetFiles(mapFolder, "*", SearchOption.AllDirectories);
 
-        void AddAsset(string relativeFolder, string? key = null)
-        {
-            key ??= relativeFolder;
+		void AddAsset(string relativeFolder, string? key = null)
+		{
+			key ??= relativeFolder;
 
-            IEnumerable<string> matchingFiles = allFiles
-                .Where(f => f.Contains(Path.Combine(mapFolder, relativeFolder), StringComparison.OrdinalIgnoreCase));
+			IEnumerable<string> matchingFiles = allFiles
+			 .Where(f => f.Contains(Path.Combine(mapFolder, relativeFolder), StringComparison.OrdinalIgnoreCase));
 
-            // Use the abstraction to get the length for sorting
-            string largestFile = matchingFiles
-                .OrderByDescending(fileSystem.GetFileLength)
-                .First();
+			// Use the abstraction to get the length for sorting
+			string largestFile = matchingFiles
+			 .OrderByDescending(fileSystem.GetFileLength)
+			 .First();
 
-            string hash = Path.GetFileNameWithoutExtension(largestFile).ToLowerInvariant();
-            assetMetadata[key] = new AssetMetadata(hash, fileSystem.GetFileLength(largestFile));
-        }
+			string hash = Path.GetFileNameWithoutExtension(largestFile).ToLowerInvariant();
+			assetMetadata[key] = new AssetMetadata(hash, fileSystem.GetFileLength(largestFile));
+		}
 
-        AddAsset("cover", "cover");
-        AddAsset("audioPreview_opus", "audioPreview.opus");
-        AddAsset("audio", "audio.opus");
-        AddAsset("coachesSmall");
-        AddAsset("coachesLarge");
-        AddAsset("MapPackage", "mapPackage");
+		AddAsset("cover", "cover");
+		AddAsset("audioPreview_opus", "audioPreview.opus");
+		AddAsset("audio", "audio.opus");
+		AddAsset("coachesSmall");
+		AddAsset("coachesLarge");
+		AddAsset("MapPackage", "mapPackage");
 
-        void AddVideoAsset(string subfolder, string[] keys, Func<IReadOnlyList<string>, string?> selector)
-        {
-            List<string> matchingFiles = [.. allFiles
-                .Where(f => Path.GetDirectoryName(f)!
-                    .EndsWith(Path.Combine(mapFolder, subfolder), StringComparison.OrdinalIgnoreCase))];
+		void AddVideoAsset(string subfolder, string[] keys, Func<IReadOnlyList<string>, string?> selector)
+		{
+			List<string> matchingFiles = [.. allFiles
+			.Where(f => Path.GetDirectoryName(f)!
+			.EndsWith(Path.Combine(mapFolder, subfolder), StringComparison.OrdinalIgnoreCase))];
 
-            string? file = selector(matchingFiles);
-            if (file != null)
-            {
-                string hash = Path.GetFileNameWithoutExtension(file).ToLowerInvariant();
-                long length = fileSystem.GetFileLength(file);
-                foreach (string key in keys)
-                {
-                    assetMetadata[key] = new AssetMetadata(hash, length);
-                }
-            }
-        }
+			string? file = selector(matchingFiles);
+			if (file != null)
+			{
+				string hash = Path.GetFileNameWithoutExtension(file).ToLowerInvariant();
+				long length = fileSystem.GetFileLength(file);
+				foreach (string key in keys)
+				{
+					assetMetadata[key] = new AssetMetadata(hash, length);
+				}
+			}
+		}
 
-        string? GetNthOrLast(IReadOnlyList<string> list, int index) =>
-            list.Count == 0 ? null : list[Math.Min(index, list.Count - 1)];
+		string? GetNthOrLast(IReadOnlyList<string> list, int index) =>
+		 list.Count == 0 ? null : list[Math.Min(index, list.Count - 1)];
 
-        // videoPreview: second smallest or fallback
-        AddVideoAsset("videoPreview",
-            ["videoPreview_MID.vp8.webm", "videoPreview_MID.vp9.webm"],
-            files => GetNthOrLast([.. files.OrderBy(f => fileSystem.GetFileLength(f))], 1));
+		// videoPreview: second smallest or fallback
+		AddVideoAsset("videoPreview",
+		["videoPreview_MID.vp8.webm", "videoPreview_MID.vp9.webm"],
+		files => GetNthOrLast([.. files.OrderBy(f => fileSystem.GetFileLength(f))], 1));
 
-        // video: third smallest or fallback
-        AddVideoAsset("video",
-            ["video_HIGH.hd.webm", "video_HIGH.vp9.webm"],
-            files => GetNthOrLast([.. files.OrderBy(f => fileSystem.GetFileLength(f))], 2));
+		// video: third smallest or fallback
+		AddVideoAsset("video",
+		["video_HIGH.hd.webm", "video_HIGH.vp9.webm"],
+		files => GetNthOrLast([.. files.OrderBy(f => fileSystem.GetFileLength(f))], 2));
 
-        // video: largest
-        AddVideoAsset("video",
-            ["video_ULTRA.hd.webm"],
-            files => files.OrderBy(f => fileSystem.GetFileLength(f)).LastOrDefault());
+		// video: largest
+		AddVideoAsset("video",
+		["video_ULTRA.hd.webm"],
+		files => files.OrderBy(f => fileSystem.GetFileLength(f)).LastOrDefault());
 
-        return assetMetadata;
+		return assetMetadata.ToImmutable();
     }
 
-    public ContentAuthorization LoadContentAuthorization(string mapFolder)
+	public ContentAuthorization LoadContentAuthorization(string mapFolder)
 	{
+		WebmData[] videoData = GetVideoData(Path.Combine(mapFolder, "video"));
+
+		(string? low, string? mid, string? high, string? ultra) = GetContentAuthorizationVideoUrls(videoData, mapFolder);
+
 		ContentAuthorization contentAuthorization = new()
 		{
 			Assets = new AssetsAuthorization
 			{
 				AudioOpus = GetAssetUrl(mapFolder, "Audio_opus")!,
+				VideoLowHdWebm = low,
+				VideoLowVP9Webm = low,
+				VideoMidHdWebm = mid,
+				VideoMidVP9Webm = mid,
+				VideoHighHdWebm = high,
+				VideoHighVP9Webm = high,
+				VideoUltraHdWebm = ultra,
+				VideoUltraVP9Webm = ultra,
 				MapPackage = GetAssetUrl(mapFolder, "MapPackage")!
+			},
+			AssetsMetadata = new AssetsmetadataAuthorization()
+			{
+				VideoData = [.. videoData]
 			}
 		};
-
-		WebmData[] videoData = GetVideoUrls(Path.Combine(mapFolder, "video"));
-		contentAuthorization.AssetsMetadata.VideoData = videoData;
-
-		AssignContentAuthorizationVideoUrls(contentAuthorization, videoData, mapFolder);
 
 		return contentAuthorization;
 	}
 
-	public void AssignContentAuthorizationVideoUrls(ContentAuthorization contentAuthorization, WebmData[] videoData, string mapFolder)
+	public (string low, string mid, string high, string ultra) GetContentAuthorizationVideoUrls(
+		WebmData[] videoData,
+		string mapFolder)
 	{
-		for (int i = 0; i < videoData.Length; i++)
+		if (videoData.Length == 0)
+			throw new InvalidOperationException("No video data provided");
+
+		string baseUrl = $"https://{urlSettings.CDNUrl}/maps/{Path.GetFileName(mapFolder)}/video";
+		string[] urls = new string[4];
+
+		for (int i = 0; i < 4; i++)
 		{
-			string url = $"https://{urlSettings.CDNUrl}/maps/{Path.GetFileName(mapFolder)}/video/{videoData[i].FileName}.webm";
-			switch (i)
-			{
-				case 0:
-					contentAuthorization.Assets.VideoLowVP9Webm = url;
-					break;
-				case 1:
-					contentAuthorization.Assets.VideoMidVP9Webm = url;
-					break;
-				case 2:
-					contentAuthorization.Assets.VideoHighVP9Webm = url;
-					break;
-				case 3:
-					contentAuthorization.Assets.VideoUltraVP9Webm = url;
-					break;
-			}
+			urls[i] = i < videoData.Length
+				? $"{baseUrl}/{videoData[i].FileName}.webm"
+				: urls[i - 1];
 		}
+
+		return (urls[0], urls[1], urls[2], urls[3]);
 	}
 
-	public WebmData[] GetVideoUrls(string videoFolder)
+	public WebmData[] GetVideoData(string videoFolder)
 	{
 		string[] videoFiles = fileSystem.GetFiles(videoFolder, "*.webm");
 
@@ -253,7 +288,7 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 		return webmData;
 	}
 
-	public string? GetAssetUrl(string mapFolder, string name, bool canBeMissing = false)
+	public string GetAssetUrl(string mapFolder, string name)
 	{
 		string assetFolder = Path.Combine(mapFolder, name);
 
@@ -266,59 +301,75 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 			return $"https://{urlSettings.CDNUrl}/maps/{Path.GetFileName(mapFolder)}/{name}/{Path.GetFileName(files[0])}";
 		}
 
-		// If it's a songTitleLogo, that's fine cuz it's optional
-		if (canBeMissing)
-			return null;
-
 		throw new DirectoryNotFoundException($"Missing asset folder {assetFolder}");
 	}
 
-	public static string GenerateMpd(WebmData[] webms, bool isPreview = false)
+	public string? TryGetAssetUrl(string mapFolder, string name)
 	{
-		if (webms.Length == 0)
-			throw new InvalidOperationException("No video files found");
-		if (webms.Length > 4)
+		string assetFolder = Path.Combine(mapFolder, name);
+
+		if (fileSystem.DirectoryExists(assetFolder))
+		{
+			string[] files = fileSystem.GetFiles(assetFolder);
+			if (files.Length == 0)
+				return null;
+
+			return $"https://{urlSettings.CDNUrl}/maps/{Path.GetFileName(mapFolder)}/{name}/{Path.GetFileName(files[0])}";
+		}
+
+		return null;
+	}
+
+	public static string GenerateMpd(IEnumerable<WebmData> webms, bool isPreview = false)
+	{
+		if (!webms.Any())
+			return "";
+		if (webms.Count() > 4)
 			throw new InvalidOperationException("Too many video files");
 
 		string baseUrlPrefix = isPreview ? "videoPreview_" : "video_";
 		int maxWidth = isPreview ? 768 : 1920;
 		int maxHeight = isPreview ? 432 : 1080;
-		string durationFormatted = webms[0].Duration.ToString(CultureInfo.InvariantCulture);
+		string durationFormatted = webms.ElementAt(0).Duration.ToString(CultureInfo.InvariantCulture);
 		int bufferTime = 10;
 
-		string response = $"""
+		StringBuilder sb = new();
+
+		sb.Append($"""
 			<?xml version="1.0"?>
 			<MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:mpeg:DASH:schema:MPD:2011" xsi:schemaLocation="urn:mpeg:DASH:schema:MPD:2011" type="static" mediaPresentationDuration="PT{durationFormatted}S" minBufferTime="PT{bufferTime}S" profiles="urn:webm:dash:profile:webm-on-demand:2012">
-				<Period id="0" start="PT0S" duration="PT{durationFormatted}S">
-					<AdaptationSet id="0" mimeType="video/webm" codecs="vp8,vp9" lang="eng" maxWidth="{maxWidth}" maxHeight="{maxHeight}" subsegmentAlignment="true" subsegmentStartsWithSAP="1" bitstreamSwitching="true">
+			<Period id="0" start="PT0S" duration="PT{durationFormatted}S">
+			<AdaptationSet id="0" mimeType="video/webm" codecs="vp8,vp9" lang="eng" maxWidth="{maxWidth}" maxHeight="{maxHeight}" subsegmentAlignment="true" subsegmentStartsWithSAP="1" bitstreamSwitching="true">
 
-			""";
+			""");
 
 		string[] qualities = ["LOW", "MID", "HIGH", "ULTRA"];
-		for (int i = 0; i < webms.Length; i++)
+		for (int i = 0; i < webms.Count(); i++)
 		{
-			response += $"""
-				<Representation id="{i}" bandwidth="{webms[i].Bitrate}">
+			WebmData webm = webms.ElementAt(i);
+
+			sb.Append($"""
+				<Representation id="{i}" bandwidth="{webm.Bitrate}">
 				<BaseURL>{baseUrlPrefix}{qualities[i % 4]}.vp9.webm</BaseURL>
-					<SegmentBase indexRange="{webms[i].Start}-{webms[i].End}">
-						<Initialization range="0-{webms[i].Start}" />
-					</SegmentBase>
+				<SegmentBase indexRange="{webm.Start}-{webm.End}">
+				<Initialization range="0-{webm.Start}" />
+				</SegmentBase>
 				</Representation>
 
-			""";
+				""");
 		}
 
-		response += """
-					</AdaptationSet>
-				</Period>
+		sb.Append("""
+			</AdaptationSet>
+			</Period>
 			</MPD>
 
-			""";
+			""");
 
-		return response;
+		return sb.ToString();
 	}
 
-	public string GenerateAudioPreviewTrk(string mapPackagePath)
+	public AudioPreviewTrk GenerateAudioPreviewTrk(string mapPackagePath)
 	{
 		if (!fileSystem.FileExists(mapPackagePath))
 			throw new FileNotFoundException($"Missing map package in {mapPackagePath}");
@@ -329,20 +380,29 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 		AssetBundleFile bun = bunInst.file;
 		AssetsFileInstance afileInst = manager.LoadAssetsFileFromBundle(bunInst, 0, false);
 		AssetsFile afile = afileInst.file;
-		afile.GenerateQuickLookup();
+
+        // Find the MusicTrack index
+        int? index = null;
+        foreach (KeyValuePair<int, AssetTypeReference> fileInfo in AssetHelper.GetAssetsFileScriptInfos(manager, afileInst))
+        {
+            if (fileInfo.Value.ClassName != "MusicTrack")
+                continue;
+
+            index = fileInfo.Key;
+        }
+
+        if (index == null)
+            throw new InvalidOperationException("Failed to find MusicTrack script info");
 
 		// Grab the MonoBehaviour
-		AssetFileInfo? musicTrackInfo = afile.AssetInfos
-			.FirstOrDefault(x => x.TypeId == (int)AssetClassID.MonoBehaviour &&
-				manager.GetBaseField(afileInst, x)["m_Name"].AsString == "")
-			?? throw new InvalidOperationException("Failed to find MusicTrack MonoBehaviour");
+		List<AssetFileInfo> infos = afile.GetAssetsOfType((int)AssetClassID.MonoBehaviour, (ushort)index.Value);
+        AssetFileInfo? musicTrackInfo = infos.ElementAtOrDefault(index.Value)
+            ?? throw new InvalidOperationException("Failed to find MusicTrack MonoBehaviour");
+        AssetTypeValueField trackInfo = manager.GetBaseField(afileInst, musicTrackInfo);
+        AssetTypeValueField structure = trackInfo["m_structure"]["MusicTrackStructure"];
 
-		AssetTypeValueField trackInfo = manager.GetBaseField(afileInst, musicTrackInfo);
-
-		AssetTypeValueField structure = trackInfo["m_structure"]["MusicTrackStructure"];
-
-		// Create an AudioPreviewTrk object
-		AudioPreviewTrk audioPreviewTrk = new()
+        // Create an AudioPreviewTrk object
+        AudioPreviewTrk audioPreviewTrk = new()
 		{
 			StartBeat = structure["startBeat"].AsFloat,
 			EndBeat = structure["endBeat"].AsFloat,
@@ -353,7 +413,9 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 			PreviewEntry = structure["previewEntry"].AsFloat
 		};
 
+		manager.UnloadAll(true);
+
 		// Serialize the object
-		return JsonSerializer.Serialize(audioPreviewTrk, jsonSettingsService.ShortFormat);
+		return audioPreviewTrk;
 	}
 }

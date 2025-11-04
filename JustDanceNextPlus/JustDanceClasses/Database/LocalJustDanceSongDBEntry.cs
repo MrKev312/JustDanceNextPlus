@@ -1,6 +1,6 @@
 ﻿namespace JustDanceNextPlus.JustDanceClasses.Database;
 
-public class LocalJustDanceSongDBEntry : JustDanceSongDBEntry
+public record LocalJustDanceSongDBEntry : JustDanceSongDBEntry
 {
-	public Guid SongID { get; set; }
+	public Guid SongID { get; init; }
 }

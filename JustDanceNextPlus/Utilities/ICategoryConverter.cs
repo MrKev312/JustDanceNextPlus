@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace JustDanceNextPlus.Utilities;
 
-public class CategoryConverter : JsonConverter<ICategory>
+public class ICategoryConverter : JsonConverter<ICategory>
 {
 	public override ICategory? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{

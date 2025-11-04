@@ -1,47 +1,49 @@
 ﻿using JustDanceNextPlus.Utilities;
 
+using System.Collections.Immutable;
+
 namespace JustDanceNextPlus.JustDanceClasses.Endpoints;
 
-public class ShopConfig
+public record ShopConfig
 {
-	public FirstPartyProductDb FirstPartyProductDb { get; set; } = new();
+	public FirstPartyProductDb FirstPartyProductDb { get; init; } = new();
 }
 
-public class FirstPartyProductDb
+public record FirstPartyProductDb
 {
-	public Dictionary<Guid, DlcProduct> DlcProducts { get; set; } = [];
-	public Dictionary<Guid, object> SubscriptionProducts { get; set; } = [];
-	public Dictionary<Guid, ProductGroup> ProductGroups { get; set; } = [];
+	public ImmutableDictionary<Guid, DlcProduct> DlcProducts { get; init; } = ImmutableDictionary<Guid, DlcProduct>.Empty;
+    public ImmutableDictionary<Guid, object> SubscriptionProducts { get; init; } = ImmutableDictionary<Guid, object>.Empty;
+    public ImmutableDictionary<Guid, ProductGroup> ProductGroups { get; init; } = ImmutableDictionary<Guid, ProductGroup>.Empty;
 }
 
-public class DlcProduct
+public record DlcProduct
 {
-	public List<string> ClaimIds { get; set; } = [];
-	public string FirstPartyId { get; set; } = "";
-	public string Name { get; set; } = "";
-	public required OasisTag ProductLocId { get; set; }
-	public string Type { get; set; } = "";
-	public string DlcType { get; set; } = "";
-	public required OasisTag ProductDescriptionId { get; set; }
+	public ImmutableArray<string> ClaimIds { get; init; } = [];
+	public string FirstPartyId { get; init; } = "";
+	public string Name { get; init; } = "";
+	public required OasisTag ProductLocId { get; init; }
+	public string Type { get; init; } = "";
+	public string DlcType { get; init; } = "";
+	public required OasisTag ProductDescriptionId { get; init; }
 }
 
-public class ProductGroup
+public record ProductGroup
 {
-	public string Type { get; set; } = "";
-	public int DisplayPriority { get; set; }
-	public required OasisTag GroupLocId { get; set; }
-	public string Name { get; set; } = "";
-	public List<Guid> ProductIds { get; set; } = [];
-	public required OasisTag SongsCountLocId { get; set; }
-	public required OasisTag GroupDescriptionLocId { get; set; }
-	public List<MapTag> TracklistExtended { get; set; } = [];
-	public List<MapTag> TracklistLimited { get; set; } = [];
-	public required OasisTag TracklistExtendedLocId { get; set; }
-	public required OasisTag TracklistLimitedLocId { get; set; }
-	public Assets Assets { get; set; } = new();
+	public string Type { get; init; } = "";
+	public int DisplayPriority { get; init; }
+	public required OasisTag GroupLocId { get; init; }
+	public string Name { get; init; } = "";
+	public ImmutableArray<Guid> ProductIds { get; init; } = [];
+	public required OasisTag SongsCountLocId { get; init; }
+	public required OasisTag GroupDescriptionLocId { get; init; }
+	public ImmutableArray<MapTag> TracklistExtended { get; init; } = [];
+	public ImmutableArray<MapTag> TracklistLimited { get; init; } = [];
+	public required OasisTag TracklistExtendedLocId { get; init; }
+	public required OasisTag TracklistLimitedLocId { get; init; }
+	public Assets Assets { get; init; } = new();
 }
 
-public class Assets
+public record Assets
 {
-	public string ProductGroupBundle { get; set; } = "";
+	public string ProductGroupBundle { get; init; } = "";
 }
