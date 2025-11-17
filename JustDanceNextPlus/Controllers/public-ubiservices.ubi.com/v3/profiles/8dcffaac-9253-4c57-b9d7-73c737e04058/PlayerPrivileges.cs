@@ -9,7 +9,7 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v2.profiles._
 public class PlayerPrivileges(ITimingService timingService) : ControllerBase
 {
     [HttpGet]
-    public IActionResult GetPlayerPrivileges()
+    public IActionResult GetPlayerPrivileges([FromRoute] Guid guid)
     {
         string response = $$"""
         {

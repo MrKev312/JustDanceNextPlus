@@ -11,8 +11,8 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v2.applicatio
 public class Parameters(IOptions<UrlSettings> urlSettings) : ControllerBase
 {
 	[HttpGet(Name = "GetParameters")]
-	public IActionResult GetParameters()
-	{
+	public IActionResult GetParameters([FromRoute] Guid guid)
+    {
 		return Ok(parameters);
 	}
 

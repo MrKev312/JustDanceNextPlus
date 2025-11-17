@@ -7,8 +7,8 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.profiles.o
 public class AutoRemoveOnDisconnect : ControllerBase
 {
 	[HttpPut]
-	public IActionResult Put()
-	{
+	public IActionResult Put([FromRoute] Guid profileId, [FromRoute] Guid partyId)
+    {
 		string response = """
 			{
 				"spaceId": "1da01a17-3bc7-4b5d-aedd-70a0915089b0",

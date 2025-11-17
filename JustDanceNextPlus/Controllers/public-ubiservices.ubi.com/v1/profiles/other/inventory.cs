@@ -9,8 +9,8 @@ namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v1.profiles.o
 public class Inventory(ILockerItemsService lockerItemsService) : ControllerBase
 {
 	[HttpGet(Name = "GetInventory")]
-	public IActionResult GetInventory()
-	{
+	public IActionResult GetInventory([FromRoute] Guid guid)
+    {
 		InventoryResponse inventoryResponse = new()
 		{
 			Items = [.. lockerItemsService.LockerItemIds.Select(itemId => new Item
