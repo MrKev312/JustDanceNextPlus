@@ -31,6 +31,7 @@ public interface IUserDataService
     ValueTask<(bool Success, bool IsNewHighScore)> UpdateHighScoreAsync(HighscorePerformance highScore, int score, Guid playerId, Guid mapId);
     ValueTask<(bool Success, bool IsNewHighScore)> UpdatePlaylistHighScoreAsync(PlaylistStats playlistStats, int score, Guid playerId, Guid playlistId);
     ValueTask<bool> UpdateProfileAsync(Profile profile);
+    ValueTask<List<Profile>> GetAllProfilesAsync();
 }
 
 public class UserDataService(
@@ -122,6 +123,29 @@ public class UserDataService(
             logger.LogError(ex, "Failed to update profile");
             return false;
         }
+    }
+
+    public async ValueTask<List<Profile>> GetAllProfilesAsync()
+    {
+        List<Profile> profiles = await dbContext.Profiles
+            .Include(p => p.Dancercard)
+            .ToListAsync();
+
+        List<MapStats> allMapStats = await dbContext.HighScores.ToListAsync();
+        List<PlaylistStats> allPlaylistStats = await dbContext.PlaylistHighScores.ToListAsync();
+
+        foreach (var profile in profiles)
+        {
+            profile.MapStats = allMapStats
+                .Where(hs => hs.ProfileId == profile.Id)
+                .ToDictionary(hs => hs.MapId);
+
+            profile.PlaylistStats = allPlaylistStats
+                .Where(ph => ph.ProfileId == profile.Id)
+                .ToDictionary(ph => ph.PlaylistId);
+        }
+
+        return profiles;
     }
 
     // Map leaderboard

@@ -1,0 +1,275 @@
+@page "/users"
+@using JustDanceNextPlus.Services
+@using JustDanceNextPlus.JustDanceClasses.Database.Profile
+@inject IUserDataService UserDataService
+@inject IMapService MapService
+@inject IPlaylistService PlaylistService
+@inject AdminAuthService AuthService
+@inject NavigationManager Navigation
+@inject ILogger<Users> Logger
+
+<PageTitle>Users</PageTitle>
+
+<div class="header-actions">
+    <h1>Users</h1>
+    <a href="" class="btn-nav">Back to Home</a>
+</div>
+
+<div class="dashboard-grid">
+    <div class="card full-width">
+        <h2>
+            Registered Users
+            <span style="font-size: 0.8em; opacity: 0.7;">@UserProfiles.Count</span>
+        </h2>
+        <div class="controls">
+            <input type="text" class="search-input" placeholder="Search user..." @bind="UserFilter" @bind:event="oninput" />
+        </div>
+        <div class="list-container">
+            <ul>
+                @foreach (var profile in FilteredProfiles)
+                {
+                    <li @onclick="() => ShowUserDetails(profile)" style="cursor: pointer;">
+                        <div class="item-header">
+                            <span>ID: @profile.Id.ToString().Substring(0, 8)...</span>
+                            <span class="badge" style="background: rgba(0, 255, 128, 0.2); color: #00ff80; border: 1px solid rgba(0, 255, 128, 0.3);">
+                                Level @profile.CurrentLevel
+                            </span>
+                        </div>
+                        <div class="item-content">
+                            <strong>@profile.Dancercard.Name</strong>
+                            <span style="opacity: 0.7; font-size: 0.9em; margin-left: 10px;">@profile.Dancercard.Country</span>
+                            <div style="margin-top: 5px; font-size: 0.85em; color: #aaa;">
+                                <span>@profile.MapStats.Count Maps</span> • <span>@profile.PlaylistStats.Count Playlists</span>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+@if (SelectedProfile != null)
+{
+    <div class="modal-overlay" @onclick="CloseModal">
+        <div class="modal-content" @onclick:stopPropagation style="max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto;">
+            <h2>@SelectedProfile.Dancercard.Name</h2>
+            
+            <div class="details-grid">
+                <div class="detail-item">
+                    <label>ID</label>
+                    <span>@SelectedProfile.Id</span>
+                </div>
+                 <div class="detail-item">
+                    <label>Country</label>
+                    <span>@SelectedProfile.Dancercard.Country</span>
+                </div>
+                <div class="detail-item">
+                    <label>Level</label>
+                    <span>@SelectedProfile.CurrentLevel</span>
+                </div>
+                <div class="detail-item">
+                    <label>XP</label>
+                    <span>@SelectedProfile.CurrentXP</span>
+                </div>
+            </div>
+
+            <h3>Map Scores (@SelectedProfile.MapStats.Count)</h3>
+            <div class="score-list">
+                @if (SelectedProfile.MapStats.Any())
+                {
+                    <div class="score-header">
+                        <span>Map Name</span>
+                        <span>Score</span>
+                    </div>
+                    <ul>
+                        @foreach (var stat in SelectedProfile.MapStats.Values.OrderByDescending(s => s.HighScore))
+                        {
+                            <li>
+                                <span title="@GetMapCodeName(stat.MapId)">@GetMapName(stat.MapId)</span>
+                                <span style="color: #ffd700;">@stat.HighScore</span>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No map scores recorded.</p>
+                }
+            </div>
+
+            <h3>Playlist Scores (@SelectedProfile.PlaylistStats.Count)</h3>
+            <div class="score-list">
+                @if (SelectedProfile.PlaylistStats.Any())
+                {
+                    <div class="score-header">
+                        <span>Playlist Name</span>
+                        <span>Score</span>
+                    </div>
+                    <ul>
+                        @foreach (var stat in SelectedProfile.PlaylistStats.Values.OrderByDescending(s => s.HighScore))
+                        {
+                            <li>
+                                <span>@GetPlaylistName(stat.PlaylistId)</span>
+                                <span style="color: #ffd700;">@stat.HighScore</span>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No playlist scores recorded.</p>
+                }
+            </div>
+
+            <button class="close-btn" @onclick="CloseModal">Close</button>
+        </div>
+    </div>
+}
+
+<style>
+    .full-width {
+        grid-column: 1 / -1;
+    }
+    
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    .detail-item {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .detail-item label {
+        font-size: 0.8em;
+        opacity: 0.7;
+        margin-bottom: 5px;
+    }
+    
+    .detail-item span {
+        font-weight: bold;
+    }
+
+    .score-list {
+        max-height: 300px;
+        overflow-y: auto;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+
+    .score-list ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .score-list li {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .score-list li:last-child {
+        border-bottom: none;
+    }
+
+    .score-header {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        font-weight: bold;
+        color: #00d2ff;
+        border-bottom: 1px solid rgba(0, 210, 255, 0.3);
+        margin-bottom: 5px;
+    }
+</style>
+
+@code {
+    private List<Profile> UserProfiles = [];
+    private string UserFilter { get; set; } = "";
+    private Profile? SelectedProfile;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (!AuthService.IsAuthenticated)
+            {
+                Navigation.NavigateTo("/", true);
+                return;
+            }
+
+            await LoadUsers();
+        }
+    }
+
+    private async Task LoadUsers()
+    {
+        try
+        {
+            UserProfiles = await UserDataService.GetAllProfilesAsync();
+            await InvokeAsync(StateHasChanged);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Error loading users");
+        }
+    }
+
+    private void ShowUserDetails(Profile profile)
+    {
+        SelectedProfile = profile;
+    }
+
+    private void CloseModal()
+    {
+        SelectedProfile = null;
+    }
+
+    private string GetMapCodeName(Guid mapId)
+    {
+        if (MapService.Songs.TryGetValue(mapId, out var song))
+        {
+            return song.MapName;
+        }
+        
+        return mapId.ToString();
+    }
+
+    private string GetMapName(Guid mapId)
+    {
+        if (MapService.Songs.TryGetValue(mapId, out var song))
+        {
+            string songTitle = song.Title;
+		    if (song.DanceVersionLocId != 0)
+			    songTitle += $" ({song.DanceVersionLocId.Name})";
+            return songTitle;
+        }
+
+        return mapId.ToString();
+    }
+
+    private string GetPlaylistName(Guid playlistId)
+    {
+        if (PlaylistService.PlaylistDB.Playlists.TryGetValue(playlistId, out var playlist))
+        {
+            return playlist.PlaylistName;
+        }
+        return playlistId.ToString();
+    }
+
+    private IEnumerable<Profile> FilteredProfiles =>
+        UserProfiles.Where(p => string.IsNullOrEmpty(UserFilter) ||
+                                p.Dancercard.Name.Contains(UserFilter, StringComparison.OrdinalIgnoreCase) ||
+                                p.Id.ToString().Contains(UserFilter, StringComparison.OrdinalIgnoreCase));
+}

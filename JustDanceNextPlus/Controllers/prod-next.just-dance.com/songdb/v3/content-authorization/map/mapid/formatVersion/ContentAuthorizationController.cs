@@ -63,7 +63,7 @@ public class ContentAuthorizationController(ILogger<ContentAuthorizationControll
 			songTitle += $" ({song.DanceVersionLocId.Name})";
 
         logger.LogInformation("Map {MapCodename} requested by {Username}", mapCodename, username);
-		dashboardService.LogRequest(mapCodename, songTitle, username);
+		dashboardService.LogRequest(mapCodename, username);
 
 		return mapService.ContentAuthorization.TryGetValue(mapId, out ContentAuthorization? contentAuthorization)
 			? Ok(contentAuthorization)

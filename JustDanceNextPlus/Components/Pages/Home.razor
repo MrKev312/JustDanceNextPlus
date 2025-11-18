@@ -35,6 +35,14 @@
                     <span>Go to Dashboard &rarr;</span>
                 </div>
             </div>
+
+            <div class="card" @onclick="NavigateToUsers" style="cursor: pointer;">
+                <h2>Users</h2>
+                <p>View and manage registered users.</p>
+                <div class="card-footer">
+                    <span>Go to Users &rarr;</span>
+                </div>
+            </div>
             
             <!-- Placeholder for future admin pages -->
             <div class="card disabled">
@@ -227,6 +235,11 @@
     private void NavigateToDashboard()
     {
         Navigation.NavigateTo("/dashboard");
+    }
+
+    private void NavigateToUsers()
+    {
+        Navigation.NavigateTo("/users");
     }
 
     public void Dispose()

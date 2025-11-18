@@ -260,11 +260,229 @@ em {
     padding: 0.75rem 1.5rem;
     color: #fff;
     font-weight: 600;
-    cursor: pointer;
-    width: 100%;
-    transition: transform 0.2s;
 }
 
-.close-btn:hover {
-    transform: scale(1.02);
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--card-border);
+    color: var(--accent-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.search-input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.search-input:focus {
+    border-color: var(--accent-color);
+}
+
+.sort-select {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 0.5rem;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.sort-select option {
+    background: #1a1a2e;
+    color: var(--text-primary);
+}
+
+.list-container {
+    overflow-y: auto;
+    flex: 1;
+    padding-right: 0.5rem;
+}
+
+/* Custom Scrollbar */
+.list-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.list-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.list-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.list-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--card-border);
+    transition: background 0.2s;
+    border-radius: 8px;
+    margin-bottom: 0.25rem;
+}
+
+li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+li:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.item-content {
+    font-size: 1rem;
+}
+
+strong {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+em {
+    font-style: normal;
+    color: #fff;
+    font-weight: 500;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge-map {
+    background: rgba(255, 99, 71, 0.2);
+    color: #ff6347;
+    border: 1px solid rgba(255, 99, 71, 0.3);
+}
+
+.badge-playlist {
+    background: rgba(60, 179, 113, 0.2);
+    color: #3cb371;
+    border: 1px solid rgba(60, 179, 113, 0.3);
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #1a1a2e;
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    color: var(--text-primary);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.modal-content p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+}
+
+.close-btn {
+    margin-top: 1.5rem;
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    color: #fff;
+    font-weight: 600;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.header-actions h1 {
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.btn-nav {
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+    text-align: center;
+}
+
+.btn-nav:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
 }

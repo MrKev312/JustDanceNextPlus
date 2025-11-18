@@ -4,6 +4,8 @@
 @inject DashboardService DashboardService
 @inject ISessionManager SessionManager
 @inject IUserDataService UserDataService
+@inject IMapService MapService
+@inject IPlaylistService PlaylistService
 @inject ILogger<Dashboard> Logger
 @inject AdminAuthService AuthService
 @inject NavigationManager Navigation
@@ -11,7 +13,12 @@
 
 <PageTitle>Dashboard</PageTitle>
 
-<h1>Dashboard</h1>
+<div class="header-actions">
+    <h1>Dashboard</h1>
+    <div>
+        <a href="" class="btn-nav" style="margin-right: 10px;">Back to Home</a>
+    </div>
+</div>
 
 <div class="dashboard-grid">
     <!-- Active Sessions -->
@@ -58,7 +65,7 @@
                             <span>@request.Timestamp.ToLongTimeString()</span>
                         </div>
                         <div class="item-content">
-                            <strong>@request.Username</strong> requested <em title="@request.CodeName">@request.MapName</em>
+                            <strong>@request.Username</strong> requested <em title="@request.CodeName">request.CodeName</em>
                         </div>
                     </li>
                 }
@@ -86,7 +93,7 @@
                             <span class="badge @(score.Type == "Map" ? "badge-map" : "badge-playlist")">@score.Type</span>
                         </div>
                         <div class="item-content">
-                            <strong>@score.Username</strong> scored <span style="color: #ffd700;">@score.Score</span> on <em>@score.ItemName</em>
+                            <strong>@score.Username</strong> scored <span style="color: #ffd700;">@score.Score</span> on <em>@GetItemName(score)</em>
                         </div>
                     </li>
                 }
@@ -236,6 +243,53 @@
         SelectedSession = null;
     }
 
+    private string GetMapNameFromCodename(string codename)
+    {
+        if (MapService.MapToGuid.TryGetValue(codename, out Guid mapId))
+        {
+            return GetMapName(mapId);
+        }
+        return codename;
+    }
+
+    private string GetMapName(Guid mapId)
+    {
+        if (MapService.Songs.TryGetValue(mapId, out var song))
+        {
+            string songTitle = song.Title;
+            if (song.DanceVersionLocId != 0)
+                songTitle += $" ({song.DanceVersionLocId.Name})";
+            return songTitle;
+        }
+        return mapId.ToString();
+    }
+
+    private string GetPlaylistName(string playlistIdStr)
+    {
+        if (Guid.TryParse(playlistIdStr, out Guid playlistId) && 
+            PlaylistService.PlaylistDB.Playlists.TryGetValue(playlistId, out var playlist))
+        {
+            return playlist.PlaylistName;
+        }
+        return playlistIdStr;
+    }
+
+    private string GetItemName(ScoreLog score)
+    {
+        if (score.Type == "Map")
+        {
+            if (Guid.TryParse(score.ItemId, out Guid mapId))
+            {
+                return GetMapName(mapId);
+            }
+            return score.ItemId;
+        }
+        else
+        {
+            return GetPlaylistName(score.ItemId);
+        }
+    }
+
     // Computed Properties for Filtering/Sorting
 
     private IEnumerable<Session> FilteredSessions => 
@@ -246,7 +300,7 @@
     private IEnumerable<RequestLog> FilteredRequests =>
         DashboardService.RecentRequests
             .Where(r => string.IsNullOrEmpty(RequestFilter) ||
-                        r.MapName.Contains(RequestFilter, StringComparison.OrdinalIgnoreCase) ||
+                        GetMapNameFromCodename(r.CodeName).Contains(RequestFilter, StringComparison.OrdinalIgnoreCase) ||
                         r.Username.Contains(RequestFilter, StringComparison.OrdinalIgnoreCase))
             .OrderByDescending(r => r.Timestamp);
 
@@ -256,7 +310,7 @@
         {
             var query = DashboardService.RecentScores
                 .Where(s => string.IsNullOrEmpty(ScoreFilter) ||
-                            s.ItemName.Contains(ScoreFilter, StringComparison.OrdinalIgnoreCase) ||
+                            GetItemName(s).Contains(ScoreFilter, StringComparison.OrdinalIgnoreCase) ||
                             s.Username.Contains(ScoreFilter, StringComparison.OrdinalIgnoreCase));
 
             return ScoreSort switch

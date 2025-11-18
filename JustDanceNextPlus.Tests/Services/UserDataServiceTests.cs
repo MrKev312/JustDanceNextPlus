@@ -371,6 +371,43 @@ public class UserDataServiceTests : IDisposable
         Assert.Equal("Updated Name", updatedProfile.Dancercard.Name);
     }
 
+    [Fact]
+    public async Task GetAllProfilesAsync_ReturnsAllProfilesWithStats()
+    {
+        // Act
+        List<Profile> profiles = await _service.GetAllProfilesAsync();
+
+        // Assert
+        Assert.Equal(3, profiles.Count);
+        
+        // Verify profile 1
+        Profile profile1 = profiles.First(p => p.Id == _profile1.Id);
+        Assert.NotNull(profile1);
+        Assert.Equal("Player A", profile1.Dancercard.Name);
+        Assert.Single(profile1.MapStats);
+        Assert.Equal(10000, profile1.MapStats[_mapId].HighScore);
+        Assert.Single(profile1.PlaylistStats);
+        Assert.Equal(20000, profile1.PlaylistStats[_playlistId].HighScore);
+        
+        // Verify profile 2
+        Profile profile2 = profiles.First(p => p.Id == _profile2.Id);
+        Assert.NotNull(profile2);
+        Assert.Equal("Player B", profile2.Dancercard.Name);
+        Assert.Single(profile2.MapStats);
+        Assert.Equal(12000, profile2.MapStats[_mapId].HighScore);
+        Assert.Single(profile2.PlaylistStats);
+        Assert.Equal(22000, profile2.PlaylistStats[_playlistId].HighScore);
+        
+        // Verify profile 3
+        Profile profile3 = profiles.First(p => p.Id == _profile3.Id);
+        Assert.NotNull(profile3);
+        Assert.Equal("Player C", profile3.Dancercard.Name);
+        Assert.Single(profile3.MapStats);
+        Assert.Equal(11000, profile3.MapStats[_mapId].HighScore);
+        Assert.Single(profile3.PlaylistStats);
+        Assert.Equal(21000, profile3.PlaylistStats[_playlistId].HighScore);
+    }
+
     public void Dispose()
     {
         _dbContext.Database.EnsureDeleted();

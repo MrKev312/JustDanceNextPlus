@@ -9,10 +9,9 @@ public class DashboardService(ILogger<DashboardService> logger)
     public ConcurrentQueue<RequestLog> RecentRequests { get; } = [];
     public ConcurrentQueue<ScoreLog> RecentScores { get; } = [];
 
-    public void LogRequest(string codeName, string mapName, string username)
+    public void LogRequest(string codeName, string username)
     {
-        //RecentRequests.Insert(0, new RequestLog(mapName, username, DateTime.Now));
-        RecentRequests.Enqueue(new RequestLog(codeName, mapName, username, DateTime.Now));
+        RecentRequests.Enqueue(new RequestLog(codeName, username, DateTime.Now));
         while (RecentRequests.Count > 50)
             RecentRequests.TryDequeue(out _);
 
@@ -20,9 +19,9 @@ public class DashboardService(ILogger<DashboardService> logger)
         NotifyStateChanged();
     }
 
-    public void LogScore(string mapName, string username, int score, string type)
+    public void LogScore(string itemId, string username, int score, string type)
     {
-        RecentScores.Enqueue(new ScoreLog(mapName, username, score, type, DateTime.Now));
+        RecentScores.Enqueue(new ScoreLog(itemId, username, score, type, DateTime.Now));
         while (RecentScores.Count > 50)
             RecentScores.TryDequeue(out _);
 
@@ -37,5 +36,5 @@ public class DashboardService(ILogger<DashboardService> logger)
     }
 }
 
-public record RequestLog(string CodeName, string MapName, string Username, DateTime Timestamp);
-public record ScoreLog(string ItemName, string Username, int Score, string Type, DateTime Timestamp);
+public record RequestLog(string CodeName, string Username, DateTime Timestamp);
+public record ScoreLog(string ItemId, string Username, int Score, string Type, DateTime Timestamp);
