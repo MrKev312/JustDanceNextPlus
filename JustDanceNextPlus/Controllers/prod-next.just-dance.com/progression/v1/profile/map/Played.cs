@@ -7,7 +7,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.progression.v1.
 
 [ApiController]
 [Route("progression/v1/profile/map/played")]
-public class Played(IUserDataService userDataService) : ControllerBase
+public class Played(IUserDataService userDataService, DashboardService dashboardService) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> PushMapsPlayedAsync([FromBody] PlayedWrapper body,
@@ -49,6 +49,8 @@ public class Played(IUserDataService userDataService) : ControllerBase
         (bool success, bool isNewHighScore) = await userDataService.UpdateHighScoreAsync(highScorePerformance, map.Score, profile.Id, map.MapId);
         if (!success)
             return BadRequest("Failed to update high score.");
+		
+		dashboardService.LogScore(map.MapId.ToString(), profile.Dancercard.Name, map.Score, "Map");
 
 		MapStats? MapStats = await userDataService.GetHighScoreByProfileIdAndMapIdAsync(profile.Id, map.MapId);
 

@@ -1,0 +1,276 @@
+@page "/dashboard"
+@using JustDanceNextPlus.Services
+@using JustDanceNextPlus.JustDanceClasses.Database.Profile
+@inject DashboardService DashboardService
+@inject ISessionManager SessionManager
+@inject IUserDataService UserDataService
+@inject ILogger<Dashboard> Logger
+@inject AdminAuthService AuthService
+@inject NavigationManager Navigation
+@implements IDisposable
+
+<PageTitle>Dashboard</PageTitle>
+
+<h1>Dashboard</h1>
+
+<div class="dashboard-grid">
+    <!-- Active Sessions -->
+    <div class="card">
+        <h2>
+            Active Sessions
+            <span style="font-size: 0.8em; opacity: 0.7;">@Sessions.Count</span>
+        </h2>
+        <div class="controls">
+            <input type="text" class="search-input" placeholder="Search player..." @bind="SessionFilter" @bind:event="oninput" />
+        </div>
+        <div class="list-container">
+            <ul>
+                @foreach (var session in FilteredSessions)
+                {
+                    <li @onclick="() => ShowSessionDetails(session)" style="cursor: pointer;">
+                        <div class="item-header">
+                            <span>Session ID: @session.SessionId.ToString().Substring(0, 8)...</span>
+                            <span class="badge" style="background: rgba(0, 210, 255, 0.2); color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.3);">
+                                @GetTimeLeft(session.ExpirationTime)
+                            </span>
+                        </div>
+                        <div class="item-content">
+                            <strong>@GetPlayerName(session.PlayerId)</strong>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <!-- Recent Requests -->
+    <div class="card">
+        <h2>Recent Requests</h2>
+        <div class="controls">
+            <input type="text" class="search-input" placeholder="Search map or user..." @bind="RequestFilter" @bind:event="oninput" />
+        </div>
+        <div class="list-container">
+            <ul>
+                @foreach (var request in FilteredRequests)
+                {
+                    <li>
+                        <div class="item-header">
+                            <span>@request.Timestamp.ToLongTimeString()</span>
+                        </div>
+                        <div class="item-content">
+                            <strong>@request.Username</strong> requested <em title="@request.CodeName">@request.MapName</em>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <!-- Recent Scores -->
+    <div class="card">
+        <h2>Recent Scores</h2>
+        <div class="controls">
+            <input type="text" class="search-input" placeholder="Search..." @bind="ScoreFilter" @bind:event="oninput" />
+            <select class="sort-select" @bind="ScoreSort">
+                <option value="Time">Time</option>
+                <option value="Score">Score</option>
+            </select>
+        </div>
+        <div class="list-container">
+            <ul>
+                @foreach (var score in FilteredScores)
+                {
+                    <li>
+                        <div class="item-header">
+                            <span>@score.Timestamp.ToLongTimeString()</span>
+                            <span class="badge @(score.Type == "Map" ? "badge-map" : "badge-playlist")">@score.Type</span>
+                        </div>
+                        <div class="item-content">
+                            <strong>@score.Username</strong> scored <span style="color: #ffd700;">@score.Score</span> on <em>@score.ItemName</em>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+@if (SelectedSession != null)
+{
+    <div class="modal-overlay" @onclick="CloseModal">
+        <div class="modal-content" @onclick:stopPropagation>
+            <h2>Session Details</h2>
+            <p><strong>Session ID:</strong> @SelectedSession.SessionId</p>
+            <p><strong>Player ID:</strong> @SelectedSession.PlayerId</p>
+            <p><strong>Player Name:</strong> @GetPlayerName(SelectedSession.PlayerId)</p>
+            <p><strong>App ID:</strong> @SelectedSession.UbiAppId</p>
+            <p><strong>Expires At:</strong> @SelectedSession.ExpirationTime.ToLocalTime()</p>
+            <p><strong>Time Left:</strong> @GetTimeLeft(SelectedSession.ExpirationTime)</p>
+            <button class="close-btn" @onclick="CloseModal">Close</button>
+        </div>
+    </div>
+}
+
+@code {
+    private List<Session> Sessions = [];
+    private Dictionary<Guid, string> PlayerNames = [];
+    
+    // Filters
+    private string SessionFilter { get; set; } = "";
+    private string RequestFilter { get; set; } = "";
+    private string ScoreFilter { get; set; } = "";
+    private string ScoreSort { get; set; } = "Time";
+
+    private System.Threading.Timer? _timer;
+    private Session? SelectedSession;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (!AuthService.IsAuthenticated)
+            {
+                Navigation.NavigateTo("/", true);
+                return;
+            }
+
+            Logger.LogInformation("Dashboard: OnAfterRenderAsync subscribing to events.");
+            DashboardService.OnStateChanged += OnDashboardStateChanged;
+            SessionManager.OnSessionsChanged += UpdateSessions;
+            UpdateSessions();
+            
+            // Timer to update UI every second for countdowns
+            _timer = new System.Threading.Timer(_ =>
+            {
+                InvokeAsync(StateHasChanged);
+            }, null, 0, 1000);
+        }
+    }
+
+    private async void OnDashboardStateChanged()
+    {
+        try
+        {
+            Logger.LogInformation("Dashboard: OnDashboardStateChanged called.");
+            await InvokeAsync(() => 
+            {
+                Logger.LogInformation("Dashboard: Calling StateHasChanged.");
+                StateHasChanged();
+            });
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Dashboard: Error in OnDashboardStateChanged.");
+        }
+    }
+
+    private async void UpdateSessions()
+    {
+        try
+        {
+            Logger.LogInformation("Dashboard: UpdateSessions called.");
+            Sessions = SessionManager.GetAllSessions().ToList();
+            
+            // Resolve names for new sessions
+            foreach (var session in Sessions)
+            {
+                if (!PlayerNames.ContainsKey(session.PlayerId))
+                {
+                    PlayerNames[session.PlayerId] = "Loading...";
+                    // Fire and forget the lookup
+                    _ = ResolvePlayerName(session.PlayerId);
+                }
+            }
+
+            await InvokeAsync(() => StateHasChanged());
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Dashboard: Error in UpdateSessions.");
+        }
+    }
+
+    private async Task ResolvePlayerName(Guid playerId)
+    {
+        try
+        {
+            Profile? profile = await UserDataService.GetProfileByIdAsync(playerId);
+            if (profile != null)
+            {
+                PlayerNames[playerId] = profile.Dancercard.Name;
+                await InvokeAsync(StateHasChanged);
+            }
+            else 
+            {
+                PlayerNames[playerId] = "Unknown";
+                await InvokeAsync(StateHasChanged);
+            }
+        }
+        catch
+        {
+            PlayerNames[playerId] = "Error";
+        }
+    }
+
+    private string GetPlayerName(Guid playerId)
+    {
+        return PlayerNames.TryGetValue(playerId, out string? name) ? name : playerId.ToString();
+    }
+    
+    private string GetTimeLeft(DateTime expirationTime)
+    {
+        TimeSpan timeLeft = expirationTime - DateTime.UtcNow;
+        if (timeLeft.TotalSeconds <= 0)
+            return "Expired";
+            
+        return $"{(int)timeLeft.TotalHours:D2}:{timeLeft.Minutes:D2}:{timeLeft.Seconds:D2}";
+    }
+    
+    private void ShowSessionDetails(Session session)
+    {
+        SelectedSession = session;
+    }
+    
+    private void CloseModal()
+    {
+        SelectedSession = null;
+    }
+
+    // Computed Properties for Filtering/Sorting
+
+    private IEnumerable<Session> FilteredSessions => 
+        Sessions.Where(s => string.IsNullOrEmpty(SessionFilter) || 
+                            GetPlayerName(s.PlayerId).Contains(SessionFilter, StringComparison.OrdinalIgnoreCase) ||
+                            s.SessionId.ToString().Contains(SessionFilter, StringComparison.OrdinalIgnoreCase));
+
+    private IEnumerable<RequestLog> FilteredRequests =>
+        DashboardService.RecentRequests
+            .Where(r => string.IsNullOrEmpty(RequestFilter) ||
+                        r.MapName.Contains(RequestFilter, StringComparison.OrdinalIgnoreCase) ||
+                        r.Username.Contains(RequestFilter, StringComparison.OrdinalIgnoreCase))
+            .OrderByDescending(r => r.Timestamp);
+
+    private IEnumerable<ScoreLog> FilteredScores
+    {
+        get
+        {
+            var query = DashboardService.RecentScores
+                .Where(s => string.IsNullOrEmpty(ScoreFilter) ||
+                            s.ItemName.Contains(ScoreFilter, StringComparison.OrdinalIgnoreCase) ||
+                            s.Username.Contains(ScoreFilter, StringComparison.OrdinalIgnoreCase));
+
+            return ScoreSort switch
+            {
+                "Score" => query.OrderByDescending(s => s.Score),
+                _ => query.OrderByDescending(s => s.Timestamp)
+            };
+        }
+    }
+
+    public void Dispose()
+    {
+        DashboardService.OnStateChanged -= OnDashboardStateChanged;
+        SessionManager.OnSessionsChanged -= UpdateSessions;
+        _timer?.Dispose();
+    }
+}

@@ -7,7 +7,7 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.progression.v1.
 
 [ApiController]
 [Route("progression/v1/profile/playlist/played")]
-public class Played(IUserDataService userDataService) : ControllerBase
+public class Played(IUserDataService userDataService, DashboardService dashboardService) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> PushPlaylistPlayedAsync([FromBody] PlayedWrapper body,
@@ -54,6 +54,8 @@ public class Played(IUserDataService userDataService) : ControllerBase
 
         // Update using the user data service
         (bool success, bool isNewHighScore) = await userDataService.UpdatePlaylistHighScoreAsync(playlistStats, playlist.TotalScore, profile.Id, playlist.PlaylistId);
+		
+		dashboardService.LogScore(playlist.PlaylistId.ToString(), profile.Dancercard.Name, playlist.TotalScore, "Playlist");
 
         // Retrieve stored playlist high score
         PlaylistStats? playlistHighScore = await userDataService.GetPlaylistHighScoreByProfileIdAndPlaylistIdAsync(profile.Id, playlist.PlaylistId);

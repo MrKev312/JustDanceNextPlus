@@ -14,7 +14,9 @@ public interface ISessionManager
 	Session? GetSessionByAppId(Guid appId);
 	(string ticket, Guid sessionId) GenerateSession(Guid playerId, Guid appId, string NSAToken);
 	(string ticket, Guid sessionId) GenerateOrRefreshSession(Guid playerId, Guid appId, string NSAToken);
+	IEnumerable<Session> GetAllSessions();
 	TimeSpan SessionExpirationTimeSpan { get; }
+	event Action? OnSessionsChanged;
 }
 
 public class SessionManager(ISecurityService securityService) : ISessionManager
@@ -29,6 +31,8 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 	private const int SessionExpirationGraceMinutes = 10;
 
 	public TimeSpan SessionExpirationTimeSpan => TimeSpan.FromHours(SessionExpirationHours);
+
+	public event Action? OnSessionsChanged;
 
 	public Session? GetSessionByNSATicket(string ticket)
 	{
@@ -69,12 +73,15 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 
 		string ticket = GenerateJWTTicket(sessionId, appId);
 
-		sessions[sessionId] = new Session { SessionId = sessionId, PlayerId = playerId, UbiAppId = appId };
+		DateTime expiration = DateTime.UtcNow.Add(SessionExpirationTimeSpan).Add(TimeSpan.FromMinutes(SessionExpirationGraceMinutes));
+		sessions[sessionId] = new Session { SessionId = sessionId, PlayerId = playerId, UbiAppId = appId, ExpirationTime = expiration };
 		NSATicketToSessionId[NSAToken] = sessionId;
 		appIdToSessionId[appId] = sessionId;
 
 		// Start expiration timer
 		StartExpirationTimer(sessionId);
+
+		OnSessionsChanged?.Invoke();
 
 		return (ticket, sessionId);
 	}
@@ -94,6 +101,11 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 
 		// No existing session, generate a new one
 		return GenerateSession(playerId, appId, NSAToken);
+	}
+
+	public IEnumerable<Session> GetAllSessions()
+	{
+		return sessions.Values;
 	}
 
 	private void StartExpirationTimer(Guid sessionId)
@@ -122,6 +134,11 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 	{
 		// Restart the expiration timer
 		StartExpirationTimer(sessionId);
+		
+		if (sessions.TryGetValue(sessionId, out Session? session))
+		{
+			session.ExpirationTime = DateTime.UtcNow.Add(SessionExpirationTimeSpan).Add(TimeSpan.FromMinutes(SessionExpirationGraceMinutes));
+		}
 	}
 
 	private void RemoveSession(Guid sessionId)
@@ -146,6 +163,8 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 				timer.Dispose();
 			}
 		}
+		
+		OnSessionsChanged?.Invoke();
 	}
 
 	string GenerateJWTTicket(Guid sessionId, Guid appId)
@@ -181,4 +200,5 @@ public record Session
 	public required Guid SessionId { get; init; }
 	public required Guid PlayerId { get; init; }
 	public required Guid UbiAppId { get; init; }
+	public DateTime ExpirationTime { get; set; }
 }

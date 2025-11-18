@@ -42,7 +42,7 @@ public class Program
 		// Configure the HTTP request pipeline.
 		ConfigureMiddleware(app);
 
-		app.MapGet("/", () => "Hello, World!");
+
 
 		app.Run();
 	}
@@ -51,6 +51,7 @@ public class Program
 	{
 		// Add controllers
 		builder.Services.AddControllers();
+		builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
 		// Learn more about configuring OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 		builder.Services.AddEndpointsApiExplorer();
@@ -94,6 +95,10 @@ public class Program
 		builder.Services.AddSingleton<ITimingService, TimingService>();
 		builder.Services.AddSingleton<IUtilityService, UtilityService>();
         builder.Services.AddSingleton<IWebmExtractor, WebmExtractor>();
+		builder.Services.AddSingleton<DashboardService>();
+        
+        // Scoped services
+        builder.Services.AddScoped<AdminAuthService>();
 
         // Inject json converters.
         builder.Services.AddSingleton<JsonSettingsService>();
@@ -138,7 +143,11 @@ public class Program
 #endif
 
 		app.UseHttpsRedirection();
-		app.UseResponseCompression();
+		
+		if (!app.Environment.IsDevelopment())
+		{
+			app.UseResponseCompression();
+		}
 
 		// Configure static file serving with custom content types.
 		FileExtensionContentTypeProvider provider = new();
@@ -176,7 +185,9 @@ public class Program
 			});
 		}
 
+		app.UseAntiforgery();
 		app.MapControllers();
+		app.MapRazorComponents<Components.App>().AddInteractiveServerRenderMode();
 	}
 
 	public static bool CheckJsonExistance(string jsonPath)

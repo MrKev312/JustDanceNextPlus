@@ -1,4 +1,5 @@
-﻿using JustDanceNextPlus.JustDanceClasses.Database.Profile;
+﻿using JustDanceNextPlus.JustDanceClasses.Database;
+using JustDanceNextPlus.JustDanceClasses.Database.Profile;
 using JustDanceNextPlus.JustDanceClasses.Endpoints;
 using JustDanceNextPlus.Services;
 
@@ -11,7 +12,8 @@ namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.songdb.v3.conte
 public class ContentAuthorizationController(ILogger<ContentAuthorizationController> logger,
 	IMapService mapService,
 	ISessionManager sessionManager,
-	IUserDataService userDataService)
+	IUserDataService userDataService,
+	DashboardService dashboardService)
 	: ControllerBase
 {
 	[HttpGet]
@@ -55,7 +57,13 @@ public class ContentAuthorizationController(ILogger<ContentAuthorizationControll
 			return NotFound();
 		}
 
-		logger.LogInformation("Map {MapCodename} requested by {Username}", mapCodename, username);
+		JustDanceSongDBEntry song = mapService.Songs[mapId];
+		string songTitle = song.Title;
+		if (song.DanceVersionLocId != 0)
+			songTitle += $" ({song.DanceVersionLocId.Name})";
+
+        logger.LogInformation("Map {MapCodename} requested by {Username}", mapCodename, username);
+		dashboardService.LogRequest(mapCodename, songTitle, username);
 
 		return mapService.ContentAuthorization.TryGetValue(mapId, out ContentAuthorization? contentAuthorization)
 			? Ok(contentAuthorization)

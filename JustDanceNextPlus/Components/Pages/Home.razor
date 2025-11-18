@@ -1,0 +1,236 @@
+@page "/"
+@using JustDanceNextPlus.Services
+@inject AdminAuthService AuthService
+@inject NavigationManager Navigation
+
+<PageTitle>Just Dance Next Plus - Admin</PageTitle>
+
+<div class="container">
+    @if (!AuthService.IsAuthenticated)
+    {
+        <div class="login-card">
+            <h1>Admin Login</h1>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" @bind="Username" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" @bind="Password" class="form-control" @onkeyup="HandleKeyUp" />
+            </div>
+            @if (!string.IsNullOrEmpty(ErrorMessage))
+            {
+                <div class="error-message">@ErrorMessage</div>
+            }
+            <button class="btn-primary" @onclick="Login">Login</button>
+        </div>
+    }
+    else
+    {
+        <div class="dashboard-grid">
+            <div class="card" @onclick="NavigateToDashboard" style="cursor: pointer;">
+                <h2>Dashboard</h2>
+                <p>View active sessions, requests, and scores.</p>
+                <div class="card-footer">
+                    <span>Go to Dashboard &rarr;</span>
+                </div>
+            </div>
+            
+            <!-- Placeholder for future admin pages -->
+            <div class="card disabled">
+                <h2>More</h2>
+                <p>Coming soon...</p>
+            </div>
+        </div>
+        
+        <button class="logout-btn" @onclick="Logout">Logout</button>
+    }
+</div>
+
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+        padding: 20px;
+    }
+
+    .login-card {
+        background: rgba(30, 30, 40, 0.95);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        max-width: 400px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .login-card h1 {
+        margin-top: 0;
+        text-align: center;
+        color: #fff;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #ccc;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #444;
+        background: #2a2a35;
+        color: #fff;
+        font-size: 1rem;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #00d2ff;
+        box-shadow: 0 0 0 2px rgba(0, 210, 255, 0.2);
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #00d2ff, #007bff);
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.1s;
+        margin-top: 1rem;
+    }
+
+    .btn-primary:hover {
+        transform: scale(1.02);
+    }
+
+    .error-message {
+        color: #ff4d4d;
+        background: rgba(255, 77, 77, 0.1);
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    /* Dashboard Grid Styles (Reused/Adapted) */
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        width: 100%;
+        max-width: 800px;
+    }
+
+    .card {
+        background: rgba(30, 30, 40, 0.8);
+        border-radius: 12px;
+        padding: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover:not(.disabled) {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        border-color: rgba(0, 210, 255, 0.3);
+    }
+
+    .card.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .card h2 {
+        margin-top: 0;
+        color: #00d2ff;
+    }
+
+    .card p {
+        color: #ccc;
+    }
+
+    .card-footer {
+        margin-top: 20px;
+        text-align: right;
+        color: #00d2ff;
+        font-weight: bold;
+    }
+
+    .logout-btn {
+        margin-top: 40px;
+        background: transparent;
+        border: 1px solid #ff4d4d;
+        color: #ff4d4d;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .logout-btn:hover {
+        background: #ff4d4d;
+        color: white;
+    }
+</style>
+
+@code {
+    private string Username { get; set; } = "";
+    private string Password { get; set; } = "";
+    private string ErrorMessage { get; set; } = "";
+
+    protected override void OnInitialized()
+    {
+        AuthService.OnAuthStateChanged += StateHasChanged;
+    }
+
+    private void Login()
+    {
+        if (AuthService.Login(Username, Password))
+        {
+            ErrorMessage = "";
+            Username = "";
+            Password = "";
+        }
+        else
+        {
+            ErrorMessage = "Invalid username or password.";
+        }
+    }
+
+    private void HandleKeyUp(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            Login();
+        }
+    }
+
+    private void Logout()
+    {
+        AuthService.Logout();
+    }
+
+    private void NavigateToDashboard()
+    {
+        Navigation.NavigateTo("/dashboard");
+    }
+
+    public void Dispose()
+    {
+        AuthService.OnAuthStateChanged -= StateHasChanged;
+    }
+}

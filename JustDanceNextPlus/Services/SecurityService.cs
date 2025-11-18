@@ -6,6 +6,7 @@ namespace JustDanceNextPlus.Services;
 public interface ISecurityService
 {
     IReadOnlyList<byte> Secret256bit { get; }
+    bool ValidateCredentials(string username, string password);
 }
 
 public class SecurityService : ISecurityService
@@ -28,4 +29,10 @@ public class SecurityService : ISecurityService
 
         return [.. key];
 	}
+
+    public bool ValidateCredentials(string username, string password)
+    {
+        // Hardcoded credentials for now
+        return username == "admin" && password == "admin";
+    }
 }
