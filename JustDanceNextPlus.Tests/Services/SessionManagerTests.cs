@@ -178,4 +178,77 @@ public class SessionManagerTests
         // Assert
         Assert.Null(session);
     }
+
+    [Fact]
+    public void GenerateOrRefreshSession_WithNewToken_CreatesNewSession()
+    {
+		// Arrange
+		Guid playerId = Guid.NewGuid();
+		Guid appId = Guid.NewGuid();
+		string nsaToken = "new_nsa_token";
+
+        // Act
+        (string ticket, Guid sessionId) = _sessionManager.GenerateOrRefreshSession(playerId, appId, nsaToken);
+
+        // Assert
+        Assert.False(string.IsNullOrEmpty(ticket));
+        Assert.NotEqual(Guid.Empty, sessionId);
+
+		Session? session = _sessionManager.GetSessionById(sessionId);
+        Assert.NotNull(session);
+        Assert.Equal(playerId, session.PlayerId);
+        Assert.Equal(appId, session.UbiAppId);
+    }
+
+    [Fact]
+    public void GenerateOrRefreshSession_WithExistingToken_RefreshesExistingSession()
+    {
+		// Arrange
+		Guid playerId = Guid.NewGuid();
+		Guid appId = Guid.NewGuid();
+		string nsaToken = "existing_nsa_token";
+
+        // Create initial session
+        (_, Guid originalSessionId) = _sessionManager.GenerateSession(playerId, appId, nsaToken);
+
+        // Act - Refresh the session with the same token
+        (string refreshedTicket, Guid refreshedSessionId) = _sessionManager.GenerateOrRefreshSession(playerId, appId, nsaToken);
+
+        // Assert
+        Assert.Equal(originalSessionId, refreshedSessionId);
+        Assert.False(string.IsNullOrEmpty(refreshedTicket));
+
+		Session? session = _sessionManager.GetSessionById(refreshedSessionId);
+        Assert.NotNull(session);
+        Assert.Equal(playerId, session.PlayerId);
+    }
+
+    [Fact]
+    public void GenerateOrRefreshSession_WithDifferentPlayerIds_CreatesNewSession()
+    {
+		// Arrange
+		Guid playerId1 = Guid.NewGuid();
+		Guid playerId2 = Guid.NewGuid();
+		Guid appId = Guid.NewGuid();
+		string nsaToken = "shared_nsa_token";
+
+        // Create initial session with playerId1
+        (_, Guid sessionId1) = _sessionManager.GenerateSession(playerId1, appId, nsaToken);
+
+        // Act - Try to refresh with different playerId (should still refresh existing session)
+        (_, Guid sessionId2) = _sessionManager.GenerateOrRefreshSession(playerId2, appId, nsaToken);
+
+        // Assert - Should reuse the same session
+        Assert.Equal(sessionId1, sessionId2);
+    }
+
+    [Fact]
+    public void SessionExpirationTimeSpan_ReturnsCorrectDuration()
+    {
+		// Act
+		TimeSpan expirationTimeSpan = _sessionManager.SessionExpirationTimeSpan;
+
+        // Assert - Should be 3 hours
+        Assert.Equal(TimeSpan.FromHours(3), expirationTimeSpan);
+    }
 }

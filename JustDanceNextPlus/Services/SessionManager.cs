@@ -13,6 +13,8 @@ public interface ISessionManager
 	bool TryGetSessionById(Guid sessionId, [MaybeNullWhen(false)] out Session session);
 	Session? GetSessionByAppId(Guid appId);
 	(string ticket, Guid sessionId) GenerateSession(Guid playerId, Guid appId, string NSAToken);
+	(string ticket, Guid sessionId) GenerateOrRefreshSession(Guid playerId, Guid appId, string NSAToken);
+	TimeSpan SessionExpirationTimeSpan { get; }
 }
 
 public class SessionManager(ISecurityService securityService) : ISessionManager
@@ -21,6 +23,12 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 
 	readonly ConcurrentDictionary<Guid, Session> sessions = new();
 	readonly ConcurrentDictionary<Guid, Guid> appIdToSessionId = new();
+	readonly ConcurrentDictionary<Guid, Timer> sessionTimers = new();
+
+	private const int SessionExpirationHours = 3;
+	private const int SessionExpirationGraceMinutes = 10;
+
+	public TimeSpan SessionExpirationTimeSpan => TimeSpan.FromHours(SessionExpirationHours);
 
 	public Session? GetSessionByNSATicket(string ticket)
 	{
@@ -65,7 +73,79 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 		NSATicketToSessionId[NSAToken] = sessionId;
 		appIdToSessionId[appId] = sessionId;
 
+		// Start expiration timer
+		StartExpirationTimer(sessionId);
+
 		return (ticket, sessionId);
+	}
+
+	public (string ticket, Guid sessionId) GenerateOrRefreshSession(Guid playerId, Guid appId, string NSAToken)
+	{
+		// Check if session already exists by NSA token
+		Session? existingSession = GetSessionByNSATicket(NSAToken);
+		
+		if (existingSession != null)
+		{
+			// Refresh the existing session by resetting the expiration timer
+			RefreshSession(existingSession.SessionId);
+			string existingTicket = GenerateJWTTicket(existingSession.SessionId, appId);
+			return (existingTicket, existingSession.SessionId);
+		}
+
+		// No existing session, generate a new one
+		return GenerateSession(playerId, appId, NSAToken);
+	}
+
+	private void StartExpirationTimer(Guid sessionId)
+	{
+		// Cancel existing timer if present
+		if (sessionTimers.TryRemove(sessionId, out Timer? existingTimer))
+		{
+			existingTimer.Dispose();
+		}
+
+		// Calculate total expiration time: 3 hours + 10 minutes grace period
+		TimeSpan expirationTime = TimeSpan.FromHours(SessionExpirationHours)
+			.Add(TimeSpan.FromMinutes(SessionExpirationGraceMinutes));
+
+		// Create a new timer that will remove the session when it expires
+		Timer timer = new Timer(
+			callback: _ => RemoveSession(sessionId),
+			state: null,
+			dueTime: expirationTime,
+			period: Timeout.InfiniteTimeSpan);
+
+		sessionTimers[sessionId] = timer;
+	}
+
+	private void RefreshSession(Guid sessionId)
+	{
+		// Restart the expiration timer
+		StartExpirationTimer(sessionId);
+	}
+
+	private void RemoveSession(Guid sessionId)
+	{
+		// Remove the session from all dictionaries
+		if (sessions.TryRemove(sessionId, out Session? session))
+		{
+			// Remove from appId mapping
+			appIdToSessionId.TryRemove(session.UbiAppId, out _);
+
+			// Remove from NSA token mapping
+			string? nsaToken = NSATicketToSessionId
+				.FirstOrDefault(kvp => kvp.Value == sessionId).Key;
+			if (nsaToken != null)
+			{
+				NSATicketToSessionId.TryRemove(nsaToken, out _);
+			}
+
+			// Clean up the timer
+			if (sessionTimers.TryRemove(sessionId, out Timer? timer))
+			{
+				timer.Dispose();
+			}
+		}
 	}
 
 	string GenerateJWTTicket(Guid sessionId, Guid appId)

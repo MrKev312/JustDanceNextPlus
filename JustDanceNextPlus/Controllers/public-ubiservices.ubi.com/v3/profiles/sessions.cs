@@ -62,8 +62,8 @@ public class Sessions(IUserDataService userDataService, ITimingService timingSer
 				?? throw new InvalidOperationException("Failed to retrieve newly created profile.");
 		}
 
-		// Generate a session ticket
-		(string ticket, Guid sessionId) = sessionManager.GenerateSession(userData.Id, ubiAppId, authorization);
+		// Generate or refresh session ticket
+		(string ticket, Guid sessionId) = sessionManager.GenerateOrRefreshSession(userData.Id, ubiAppId, authorization);
 
 		// Generate a new 256-bit (32 bytes) session key
 		byte[] sessionKeyBytes = new byte[32];
@@ -73,8 +73,8 @@ public class Sessions(IUserDataService userDataService, ITimingService timingSer
 		// Current time
 		DateTime now = DateTime.UtcNow;
 
-		// Time in 3 hours
-		DateTime expiration = now.AddHours(3);
+		// Calculate expiration time from session manager
+		DateTime expiration = now.Add(sessionManager.SessionExpirationTimeSpan);
 
 		SessionResponse response = new()
 		{
