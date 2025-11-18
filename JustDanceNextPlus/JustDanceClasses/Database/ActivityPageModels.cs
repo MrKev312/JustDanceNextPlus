@@ -8,7 +8,7 @@ namespace JustDanceNextPlus.JustDanceClasses.Database;
 
 public record ActivityPageResponse
 {
-    public ImmutableDictionary<Guid, ICategory> Categories { get; init; } = ImmutableDictionary<Guid, ICategory>.Empty;
+    public ImmutableDictionary<Guid, ICategory> Categories { get; init; } = [];
 
     public ImmutableList<IModifier> CategoryModifiers { get; init; } = [];
 }
@@ -123,10 +123,8 @@ public class IModifierConverter : JsonConverter<IModifier>
             throw new JsonException("Expected StartObject token.");
         using JsonDocument doc = JsonDocument.ParseValue(ref reader);
         JsonElement root = doc.RootElement;
-        string? type = root.GetProperty("name").GetString();
-        if (type == null)
-            throw new JsonException("Modifier type is missing.");
-        return type switch
+        string? type = root.GetProperty("name").GetString() ?? throw new JsonException("Modifier type is missing.");
+		return type switch
         {
             "positionModifier" => JsonSerializer.Deserialize<PositionModifier>(root.GetRawText(), options)!,
             "maxAmountElement" => JsonSerializer.Deserialize<MaxAmountElements>(root.GetRawText(), options)!,

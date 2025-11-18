@@ -81,6 +81,7 @@ public class MapServiceTests
         {
             _mockFileSystem.Setup(fs => fs.GetDirectoryCreationTime(dir)).Returns(creationTimes[dir]);
         }
+
         foreach ((string? name, Guid id) in mapIds)
         {
             _service.MapToGuid[name] = id;

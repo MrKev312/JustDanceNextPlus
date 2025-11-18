@@ -178,7 +178,7 @@ public class ActivityPageServiceTests
 		PositionModifier firstModifier = Assert.IsType<PositionModifier>(_service.ActivityPage.CategoryModifiers[0]);
         Assert.Equal(0, firstModifier.Position.Position);
 
-        Guid newCategoryGuid = _service.ActivityPage.Categories.First(kvp => kvp.Value == newCategory).Key;
+        Guid newCategoryGuid = _service.ActivityPage.Categories.First(kvp => (kvp.Value as CarouselCategory) == newCategory).Key;
         Assert.Equal(newCategoryGuid, firstModifier.Position.Id);
     }
 

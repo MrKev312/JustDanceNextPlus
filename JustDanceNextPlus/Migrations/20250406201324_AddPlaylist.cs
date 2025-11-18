@@ -16,10 +16,7 @@ namespace JustDanceNextPlus.Migrations
                 {
                     BossId = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BossMode", x => x.BossId);
-                });
+                constraints: table => table.PrimaryKey("PK_BossMode", x => x.BossId));
 
             migrationBuilder.CreateTable(
                 name: "CompletedTasks",
@@ -28,10 +25,7 @@ namespace JustDanceNextPlus.Migrations
                     TaskId = table.Column<Guid>(type: "TEXT", nullable: false),
                     CompletedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CompletedTasks", x => x.TaskId);
-                });
+                constraints: table => table.PrimaryKey("PK_CompletedTasks", x => x.TaskId));
 
             migrationBuilder.CreateTable(
                 name: "DancerCard",
@@ -50,10 +44,7 @@ namespace JustDanceNextPlus.Migrations
                     BadgesIds = table.Column<string>(type: "TEXT", nullable: false),
                     StickersIds = table.Column<string>(type: "TEXT", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DancerCard", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_DancerCard", x => x.Id));
 
             migrationBuilder.CreateTable(
                 name: "HighScores",
@@ -75,10 +66,7 @@ namespace JustDanceNextPlus.Migrations
                     GameModeStats_Exists = table.Column<bool>(type: "INTEGER", nullable: true),
                     GameModeStats_Challenge_LastScore = table.Column<int>(type: "INTEGER", nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HighScores", x => new { x.MapId, x.ProfileId });
-                });
+                constraints: table => table.PrimaryKey("PK_HighScores", x => new { x.MapId, x.ProfileId }));
 
             migrationBuilder.CreateTable(
                 name: "ObjectiveCompletionData",
@@ -87,10 +75,7 @@ namespace JustDanceNextPlus.Migrations
                     ObjectiveId = table.Column<Guid>(type: "TEXT", nullable: false),
                     CompletedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ObjectiveCompletionData", x => x.ObjectiveId);
-                });
+                constraints: table => table.PrimaryKey("PK_ObjectiveCompletionData", x => x.ObjectiveId));
 
             migrationBuilder.CreateTable(
                 name: "PlaylistHighScores",
@@ -104,10 +89,7 @@ namespace JustDanceNextPlus.Migrations
                     UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     HighScorePerMap = table.Column<string>(type: "TEXT", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlaylistHighScores", x => new { x.PlaylistId, x.ProfileId });
-                });
+                constraints: table => table.PrimaryKey("PK_PlaylistHighScores", x => new { x.PlaylistId, x.ProfileId }));
 
             migrationBuilder.CreateTable(
                 name: "RunningTasks",
@@ -118,10 +100,7 @@ namespace JustDanceNextPlus.Migrations
                     Type = table.Column<int>(type: "INTEGER", nullable: false),
                     StepsDone = table.Column<int>(type: "INTEGER", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RunningTasks", x => x.TaskId);
-                });
+                constraints: table => table.PrimaryKey("PK_RunningTasks", x => x.TaskId));
 
             migrationBuilder.CreateTable(
                 name: "BossStats",

@@ -11,9 +11,9 @@ public record ShopConfig
 
 public record FirstPartyProductDb
 {
-	public ImmutableDictionary<Guid, DlcProduct> DlcProducts { get; init; } = ImmutableDictionary<Guid, DlcProduct>.Empty;
-    public ImmutableDictionary<Guid, object> SubscriptionProducts { get; init; } = ImmutableDictionary<Guid, object>.Empty;
-    public ImmutableDictionary<Guid, ProductGroup> ProductGroups { get; init; } = ImmutableDictionary<Guid, ProductGroup>.Empty;
+	public ImmutableDictionary<Guid, DlcProduct> DlcProducts { get; init; } = [];
+    public ImmutableDictionary<Guid, object> SubscriptionProducts { get; init; } = [];
+    public ImmutableDictionary<Guid, ProductGroup> ProductGroups { get; init; } = [];
 }
 
 public record DlcProduct

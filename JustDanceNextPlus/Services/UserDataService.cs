@@ -325,7 +325,6 @@ public class UserDataService(
         return leaderboard;
     }
 
-
     public async ValueTask<Leaderboard> GetPlaylistLeaderboardAroundAsync(Guid playlistId, Guid userId, int limit = 3)
     {
         // Step 1: Get the user's score for the playlist.
