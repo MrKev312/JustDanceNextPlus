@@ -1,16 +1,29 @@
 ﻿using JustDanceNextPlus.JustDanceClasses.Database;
 using JustDanceNextPlus.Services;
+using JustDanceNextPlus.Utilities;
 
 using Microsoft.AspNetCore.Mvc;
 
 using System.Buffers;
+using System.Collections.Immutable;
 
 namespace JustDanceNextPlus.Controllers.prod_next.just_dance.com.recommendation.v3;
 
 [ApiController]
 [Route("recommendation/v3/search")]
-public class Search(IMapService mapService) : ControllerBase
+public class Search(IMapService mapService, ITagService tagService) : ControllerBase
 {
+	private const uint VersionExactMatchScore = 100;
+	private const uint TitleExactMatchScore = 10;
+	private const uint TitlePartialMatchScore = 7;
+	private const uint TitleFuzzyMatchScore = 5;
+	private const uint ArtistExactMatchScore = 5;
+	private const uint ArtistFuzzyMatchScore = 2;
+	private const uint ArtistPresenceScore = 1;
+	private const uint TagExactMatchScore = 6;
+	private const uint TagPartialMatchScore = 4;
+	private const uint TagFuzzyMatchScore = 2;
+
 	readonly struct SongRelevance(KeyValuePair<Guid, JustDanceSongDBEntry> song, uint relevance)
 	{
 		public readonly KeyValuePair<Guid, JustDanceSongDBEntry> Song = song;
@@ -20,13 +33,16 @@ public class Search(IMapService mapService) : ControllerBase
 	[HttpPost(Name = "Search")]
 	public IActionResult ProcessSearch([FromBody] SearchRequest searchRequest)
 	{
+		string searchInput = searchRequest.SearchInput ?? string.Empty;
+		IReadOnlyDictionary<Guid, uint> tagScoreLookup = BuildTagScoreLookup(searchInput, tagService.TagDatabase.Tags);
+
 		// Search the database
 		SongRelevance[] searchSongResult = mapService.Songs
 			.AsParallel()
 			.Select(song => new SongRelevance(
                 song,
 				// Calculate relevance with higher score for exact artist match
-				GetRelevance(searchRequest.SearchInput, song.Value)
+				GetRelevance(searchInput, song.Value, tagScoreLookup)
             ))
 			.Where(song => song.Relevance > 0)
 			.OrderByDescending(song => song.Relevance)
@@ -52,7 +68,7 @@ public class Search(IMapService mapService) : ControllerBase
 		return Ok(searchResults);
 	}
 
-	static uint GetRelevance(string searchInput, JustDanceSongDBEntry song)
+	static uint GetRelevance(string searchInput, JustDanceSongDBEntry song, IReadOnlyDictionary<Guid, uint> tagScoreLookup)
 	{
 		uint relevance = 0;
 
@@ -64,25 +80,119 @@ public class Search(IMapService mapService) : ControllerBase
 		bool partialMatchArtist = song.Artist.Contains(searchInput, StringComparison.OrdinalIgnoreCase);
 
 		if (uint.TryParse(searchInput, out uint searchNumber) && song.OriginalJDVersion == searchNumber)
-			relevance += 100;
+			relevance += VersionExactMatchScore;
 
 		// Title checks
 		if (partialMatchTitle && searchInput.Length == fullSongTitle.Length)
-			relevance += 10;
+			relevance += TitleExactMatchScore;
 		else if (partialMatchTitle)
-			relevance += 7;
+			relevance += TitlePartialMatchScore;
 		else if (IsWithinAllowedEditDistance(searchInput, fullSongTitle) || IsPartialWordMatch(searchInput, fullSongTitle))
-			relevance += 5;
+			relevance += TitleFuzzyMatchScore;
 
 		// Artist checks
 		if (partialMatchArtist && searchInput.Length == song.Artist.Length)
-			relevance += 5;
+			relevance += ArtistExactMatchScore;
 		else if (IsWithinAllowedEditDistance(searchInput, song.Artist) || IsPartialWordMatch(searchInput, song.Artist))
-			relevance += 2;
+			relevance += ArtistFuzzyMatchScore;
 		if (partialMatchArtist)
-			relevance += 1;
+			relevance += ArtistPresenceScore;
+
+		relevance += GetTagRelevance(song.TagIds, tagScoreLookup);
 
 		return relevance;
+	}
+
+	static uint GetTagRelevance(ImmutableArray<GuidTag> tagIds, IReadOnlyDictionary<Guid, uint> tagScoreLookup)
+	{
+		if (tagIds.IsDefaultOrEmpty || tagScoreLookup.Count == 0)
+			return 0;
+
+		uint bestScore = 0;
+
+		foreach (GuidTag guidTag in tagIds)
+		{
+			Tag? tag = guidTag.Tag;
+			if (tag == null || tag.TagGuid == Guid.Empty)
+				continue;
+
+			if (tagScoreLookup.TryGetValue(tag.TagGuid, out uint score) && score > bestScore)
+			{
+				bestScore = score;
+
+				if (bestScore == TagExactMatchScore)
+					break;
+			}
+		}
+
+		return bestScore;
+	}
+
+	static IReadOnlyDictionary<Guid, uint> BuildTagScoreLookup(string searchInput, IEnumerable<KeyValuePair<Guid, Tag>> availableTags)
+	{
+		if (string.IsNullOrWhiteSpace(searchInput))
+			return ImmutableDictionary<Guid, uint>.Empty;
+
+		Dictionary<Guid, uint> matchingTags = [];
+
+		foreach (KeyValuePair<Guid, Tag> entry in availableTags)
+		{
+			uint bestScore = 0;
+
+			foreach (string candidate in EnumerateTagTerms(entry.Value))
+			{
+				uint termScore = ScoreTagCandidate(searchInput, candidate);
+				if (termScore > bestScore)
+				{
+					bestScore = termScore;
+
+					if (bestScore == TagExactMatchScore)
+						break;
+				}
+			}
+
+			if (bestScore > 0)
+				matchingTags[entry.Key] = bestScore;
+		}
+
+		return matchingTags.Count == 0
+			? ImmutableDictionary<Guid, uint>.Empty
+			: matchingTags;
+	}
+
+	static IEnumerable<string> EnumerateTagTerms(Tag tag)
+	{
+		if (!string.IsNullOrWhiteSpace(tag.LocId.Name))
+			yield return tag.LocId.Name!;
+
+		if (!string.IsNullOrWhiteSpace(tag.TagName) && !tag.TagName.Equals(tag.LocId.Name, StringComparison.OrdinalIgnoreCase))
+			yield return tag.TagName;
+
+		ImmutableArray<string> synonyms = tag.Synonyms;
+		if (synonyms.IsDefaultOrEmpty)
+			yield break;
+
+		foreach (string synonym in synonyms)
+		{
+			if (!string.IsNullOrWhiteSpace(synonym))
+				yield return synonym;
+		}
+	}
+
+	static uint ScoreTagCandidate(string searchInput, string candidate)
+	{
+		if (string.IsNullOrWhiteSpace(candidate))
+			return 0;
+
+		if (candidate.Equals(searchInput, StringComparison.OrdinalIgnoreCase))
+			return TagExactMatchScore;
+
+		if (candidate.Contains(searchInput, StringComparison.OrdinalIgnoreCase))
+			return TagPartialMatchScore;
+
+		return (IsWithinAllowedEditDistance(searchInput, candidate) || IsPartialWordMatch(searchInput, candidate))
+			? TagFuzzyMatchScore
+			: 0;
 	}
 
 	static bool IsPartialWordMatch(string input, string title)
