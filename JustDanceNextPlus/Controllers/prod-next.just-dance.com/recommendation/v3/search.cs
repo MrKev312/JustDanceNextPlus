@@ -206,8 +206,8 @@ public class Search(IMapService mapService, ITagService tagService) : Controller
 	static bool IsWithinAllowedEditDistance(ReadOnlySpan<char> s1, ReadOnlySpan<char> s2)
 	{
 		int maxLen = Math.Max(s1.Length, s2.Length);
-		int maxAllowed = Math.Max(1, maxLen / 10); // at least 1, at most 10% of length
-		int dist = LevenshteinDistance(s1, s2, maxAllowed);
+		int maxAllowed = (maxLen / 10) + 1; // at least 1 plus 1 per 10 characters
+        int dist = LevenshteinDistance(s1, s2, maxAllowed);
 		return dist >= 1 && dist <= maxAllowed;
 	}
 
