@@ -86,7 +86,7 @@ And where the SongInfo.json is in the following format:
   "originalJDVersion": 2020,
   "parentMapName": "codename here",
   "sweatDifficulty": 1,
-  "tagIds": [], (either as a tag guid or as a string)
+  "tagIds": [], (either a string GUID or a string in the form of "{category}:{tagname}")
   "tags": [
 	(Pick which are applicable)
 	"Main",

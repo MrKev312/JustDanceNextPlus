@@ -47,10 +47,18 @@ public class GuidTagConverter(ITagService tagService,
 		}
 		else
 		{
-			tag = tagService.GetAddTag(tagString, "tag");
-		}
+			// If the tag is not a guid, it must be a custom tag, these are of the form "{category}:{name}"
+			string[] parts = tagString.Split(':', 2);
+			if (parts.Length != 2)
+				throw new JsonException("Invalid tag format: " + tagString);
 
-		return new GuidTag(tag);
+			string category = parts[0];
+			string name = parts[1];
+
+			tag = tagService.GetAddTag(name, category);
+        }
+
+        return new GuidTag(tag);
 	}
 
 	public override void Write(Utf8JsonWriter writer, GuidTag value, JsonSerializerOptions options)
