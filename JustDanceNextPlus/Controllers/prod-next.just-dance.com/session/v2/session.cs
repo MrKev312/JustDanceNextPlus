@@ -15,8 +15,6 @@ public class Session(ITimingService timingService, ISessionManager sessionManage
 	[HttpPost("refresh-purchase")]
 	public IActionResult PostSessions2([FromBody] JsonElement body)
 	{
-		Console.WriteLine($"[session/v2/session] body: {body}");
-
 		// Guard: if body is not an object, skip all property access
 		Guid bootID = Guid.NewGuid();
 		string? nsaIdToken = null;

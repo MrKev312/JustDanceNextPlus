@@ -27,6 +27,7 @@ public interface IUtilityService
 	(string audioPreview, string coachesLarge, string coachesSmall, string cover, string? songTitleLogo) GetAssetUrls(string mapFolder);
 	(string low, string mid, string high, string ultra) GetContentAuthorizationVideoUrls(WebmData[] videoData, string mapFolder);
 	AudioPreviewTrk GenerateAudioPreviewTrk(string mapPackagePath);
+	bool HasCameraScoring(string mapPackagePath);
 }
 
 public class UtilityService(JsonSettingsService jsonSettingsService,
@@ -63,12 +64,22 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 			(string audioPreview, string coachesLarge, string coachesSmall, string cover, string? songTitleLogo) = GetAssetUrls(mapFolder);
 
 			// Update songInfo with asset URLs and metadata
+			string mapPackagePath = fileSystem.GetFiles(Path.Combine(mapFolder, "MapPackage"))[0];
+			AudioPreviewTrk audioPreviewTrk;
+			bool hasCameraScoring;
+			using (MapPackageSession mapPackageSession = LoadMapPackageSession(mapPackagePath))
+			{
+				audioPreviewTrk = GenerateAudioPreviewTrk(mapPackageSession.Manager, mapPackageSession.AssetsFileInstance);
+				hasCameraScoring = HasCameraScoring(mapPackageSession.Manager, mapPackageSession.AssetsFileInstance);
+			}
+
 			songInfo = songInfo with
 			{
+				HasCameraScoring = hasCameraScoring,
 				AssetsMetadata = new AssetsMetadata
 				{
 					VideoData = [.. videoData],
-					AudioPreviewTrk = GenerateAudioPreviewTrk(fileSystem.GetFiles(Path.Combine(mapFolder, "MapPackage"))[0])
+					AudioPreviewTrk = audioPreviewTrk
 				},
 				Assets = new SongDBAssets
 				{
@@ -374,35 +385,25 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 		if (!fileSystem.FileExists(mapPackagePath))
 			throw new FileNotFoundException($"Missing map package in {mapPackagePath}");
 
-		// Load map package
-		AssetsManager manager = new();
-		BundleFileInstance bunInst = manager.LoadBundleFile(mapPackagePath, true);
-		AssetBundleFile bun = bunInst.file;
-		AssetsFileInstance afileInst = manager.LoadAssetsFileFromBundle(bunInst, 0, false);
-		AssetsFile afile = afileInst.file;
+		using MapPackageSession mapPackageSession = LoadMapPackageSession(mapPackagePath);
+		return GenerateAudioPreviewTrk(mapPackageSession.Manager, mapPackageSession.AssetsFileInstance);
+	}
 
-        // Find the MusicTrack index
-        int? index = null;
-        foreach (KeyValuePair<int, AssetTypeReference> fileInfo in AssetHelper.GetAssetsFileScriptInfos(manager, afileInst))
-        {
-            if (fileInfo.Value.ClassName != "MusicTrack")
-                continue;
+	public AudioPreviewTrk GenerateAudioPreviewTrk(AssetsManager manager, AssetsFileInstance assetsFileInstance)
+	{
+		int musicTrackScriptIndex = FindScriptIndex(
+			manager,
+			assetsFileInstance,
+			className => className == "MusicTrack",
+			"Failed to find MusicTrack script info");
 
-            index = fileInfo.Key;
-        }
+		List<AssetFileInfo> infos = assetsFileInstance.file.GetAssetsOfType((int)AssetClassID.MonoBehaviour, (ushort)musicTrackScriptIndex);
+		AssetFileInfo musicTrackInfo = infos.FirstOrDefault()
+			?? throw new InvalidOperationException("Failed to find MusicTrack MonoBehaviour");
+		AssetTypeValueField trackInfo = manager.GetBaseField(assetsFileInstance, musicTrackInfo);
+		AssetTypeValueField structure = trackInfo["m_structure"]["MusicTrackStructure"];
 
-        if (index == null)
-            throw new InvalidOperationException("Failed to find MusicTrack script info");
-
-		// Grab the MonoBehaviour
-		List<AssetFileInfo> infos = afile.GetAssetsOfType((int)AssetClassID.MonoBehaviour, (ushort)index.Value);
-        AssetFileInfo? musicTrackInfo = infos.ElementAtOrDefault(index.Value)
-            ?? throw new InvalidOperationException("Failed to find MusicTrack MonoBehaviour");
-        AssetTypeValueField trackInfo = manager.GetBaseField(afileInst, musicTrackInfo);
-        AssetTypeValueField structure = trackInfo["m_structure"]["MusicTrackStructure"];
-
-        // Create an AudioPreviewTrk object
-        AudioPreviewTrk audioPreviewTrk = new()
+		return new AudioPreviewTrk
 		{
 			StartBeat = structure["startBeat"].AsFloat,
 			EndBeat = structure["endBeat"].AsFloat,
@@ -412,10 +413,63 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 			PreviewLoopStart = structure["previewLoopStart"].AsFloat,
 			PreviewEntry = structure["previewEntry"].AsFloat
 		};
-
-		manager.UnloadAll(true);
-
-		// Serialize the object
-		return audioPreviewTrk;
 	}
+
+	public bool HasCameraScoring(string mapPackagePath)
+	{
+		if (!fileSystem.FileExists(mapPackagePath))
+			throw new FileNotFoundException($"Missing map package in {mapPackagePath}");
+
+		using MapPackageSession mapPackageSession = LoadMapPackageSession(mapPackagePath);
+		return HasCameraScoring(mapPackageSession.Manager, mapPackageSession.AssetsFileInstance);
+	}
+
+	public bool HasCameraScoring(AssetsManager manager, AssetsFileInstance assetsFileInstance)
+	{
+		List<AssetFileInfo> textAssetInfos = assetsFileInstance.file.GetAssetsOfType((int)AssetClassID.TextAsset);
+		foreach (AssetFileInfo textAssetInfo in textAssetInfos)
+		{
+			AssetTypeValueField textAsset = manager.GetBaseField(assetsFileInstance, textAssetInfo);
+			string? assetName = textAsset["m_Name"].AsString;
+			if (assetName != null && assetName.EndsWith(".gesture", StringComparison.OrdinalIgnoreCase))
+				return true;
+		}
+
+		return false;
+	}
+
+	private static int FindScriptIndex(
+		AssetsManager manager,
+		AssetsFileInstance assetsFileInstance,
+		Func<string, bool> predicate,
+		string notFoundMessage)
+	{
+		foreach (KeyValuePair<int, AssetTypeReference> fileInfo in AssetHelper.GetAssetsFileScriptInfos(manager, assetsFileInstance))
+		{
+			if (predicate(fileInfo.Value.ClassName))
+				return fileInfo.Key;
+		}
+
+		throw new InvalidOperationException(notFoundMessage);
+	}
+
+	private MapPackageSession LoadMapPackageSession(string mapPackagePath)
+	{
+		AssetsManager manager = new();
+		BundleFileInstance bundleFileInstance = manager.LoadBundleFile(mapPackagePath, true);
+		AssetsFileInstance assetsFileInstance = manager.LoadAssetsFileFromBundle(bundleFileInstance, 0, false);
+		return new MapPackageSession(manager, assetsFileInstance);
+	}
+
+	private sealed class MapPackageSession(AssetsManager manager, AssetsFileInstance assetsFileInstance) : IDisposable
+	{
+		public AssetsManager Manager { get; } = manager;
+		public AssetsFileInstance AssetsFileInstance { get; } = assetsFileInstance;
+
+		public void Dispose()
+		{
+			Manager.UnloadAll(true);
+		}
+	}
+
 }

@@ -251,6 +251,17 @@ public class UtilityServiceTests
     }
 
     [Fact]
+    public void HasCameraScoring_MapPackageNotFound_ThrowsFileNotFoundException()
+    {
+        // Arrange
+        string mapPackagePath = "C:\\maps\\TestMap\\MapPackage\\file.bundle";
+        _mockFileSystem.Setup(fs => fs.FileExists(mapPackagePath)).Returns(false);
+
+        // Act & Assert
+        Assert.Throws<FileNotFoundException>(() => _service.HasCameraScoring(mapPackagePath));
+    }
+
+    [Fact]
     public void GetVideoUrls_AssignsUrlsToCorrectOrder()
     {
         // Arrange
