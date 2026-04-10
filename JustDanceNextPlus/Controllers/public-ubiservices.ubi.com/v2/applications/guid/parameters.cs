@@ -13,6 +13,24 @@ public class Parameters(IOptions<UrlSettings> urlSettings) : ControllerBase
 	[HttpGet(Name = "GetParameters")]
 	public IActionResult GetParameters([FromRoute] Guid guid)
     {
+		// Use the requesting host so both Switch (DNS redirect)
+		// and phone (binary patched domain) reach the correct server
+		string hostUrl = Request.Host.ToString();
+		var urls = (Dictionary<string, string>)parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_ws"]!;
+		urls["Standard"] = $"wss://{{env}}{hostUrl}";
+		var aws = (Dictionary<string, string>)parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_aws"]!;
+		aws["Standard"] = $"https://{{env}}{hostUrl}";
+		var msr = (Dictionary<string, string>)parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_msr"]!;
+		msr["Standard"] = $"https://msr-{{env}}{hostUrl}";
+
+		var fleet = parameters.Parameters["us-sdkClientFleet"].Fields;
+		fleet["spaces"] = $"https://{{env}}{hostUrl}/{{version}}/spaces/{{spaceId}}/title/{{title}}/";
+		fleet["profiles"] = $"https://{{env}}{hostUrl}/{{version}}/profiles/{{profileId}}/title/{{title}}/";
+		fleet["spaces_all"] = $"https://{{env}}{hostUrl}/{{version}}/spaces/title/{{title}}/";
+		fleet["applications"] = $"https://{{env}}{hostUrl}/{{version}}/applications/{{applicationId}}/title/{{title}}/";
+		fleet["profiles_all"] = $"https://{{env}}{hostUrl}/{{version}}/profiles/title/{{title}}/";
+		fleet["applications_all"] = $"https://{{env}}{hostUrl}/{{version}}/applications/title/{{title}}/";
+
 		return Ok(parameters);
 	}
 

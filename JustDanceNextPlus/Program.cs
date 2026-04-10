@@ -91,6 +91,7 @@ public class Program
 		builder.Services.AddSingleton<IPartyManager, PartyManager>();
 		builder.Services.AddSingleton<ISecurityService, SecurityService>();
 		builder.Services.AddSingleton<ISessionManager, SessionManager>();
+		builder.Services.AddSingleton<IPairingService, PairingService>();
 		builder.Services.AddSingleton<ITimingService, TimingService>();
 		builder.Services.AddSingleton<IUtilityService, UtilityService>();
         builder.Services.AddSingleton<IWebmExtractor, WebmExtractor>();

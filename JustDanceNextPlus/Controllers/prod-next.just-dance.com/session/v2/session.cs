@@ -15,20 +15,29 @@ public class Session(ITimingService timingService, ISessionManager sessionManage
 	[HttpPost("refresh-purchase")]
 	public IActionResult PostSessions2([FromBody] JsonElement body)
 	{
-		// Get the bootId from the request body
-		if (!body.TryGetProperty("bootId", out JsonElement bootIdElement)
-			|| Guid.TryParse(bootIdElement.GetString(), out Guid bootID) == false)
-		{
-			return BadRequest("Missing 'bootId' field in request body");
-		}
+		Console.WriteLine($"[session/v2/session] body: {body}");
 
-		// Get the userOwnership.dlcCheckToken.nsaIdToken from the request body
-		if (!body.TryGetProperty("userOwnership", out JsonElement userOwnerShipElement)
-			|| !userOwnerShipElement.TryGetProperty("dlcCheckToken", out JsonElement dlcCheckTokenElement)
-			|| !dlcCheckTokenElement.TryGetProperty("nsaIdToken", out JsonElement nsaIdTokenElement)
-			|| nsaIdTokenElement.GetString() == null)
+		// Guard: if body is not an object, skip all property access
+		Guid bootID = Guid.NewGuid();
+		string? nsaIdToken = null;
+
+		if (body.ValueKind == JsonValueKind.Object)
 		{
-			return BadRequest("Missing 'userOwnerShip.dlcCheckToken.nsaIdToken' field in request body");
+			if (body.TryGetProperty("bootId", out JsonElement bootIdElement)
+				&& Guid.TryParse(bootIdElement.GetString(), out bootID))
+			{
+				// Switch flow: bootId provided
+			}
+
+			// Try to get nsaIdToken (Switch flow) — optional for phone controller
+			if (body.TryGetProperty("userOwnership", out JsonElement userOwnerShipElement)
+				&& userOwnerShipElement.ValueKind == JsonValueKind.Object
+				&& userOwnerShipElement.TryGetProperty("dlcCheckToken", out JsonElement dlcCheckTokenElement)
+				&& dlcCheckTokenElement.ValueKind == JsonValueKind.Object
+				&& dlcCheckTokenElement.TryGetProperty("nsaIdToken", out JsonElement nsaIdTokenElement))
+			{
+				nsaIdToken = nsaIdTokenElement.GetString();
+			}
 		}
 
 		// Get the ubi-sessionid from the request headers
@@ -38,17 +47,33 @@ public class Session(ITimingService timingService, ISessionManager sessionManage
 			return BadRequest("Missing 'ubi-sessionid' header in request");
 		}
 
-		// Convert to JWT token
-		 JwtSecurityToken jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(nsaIdTokenElement.GetString()!);
-		// From the payload, get the subject (sub) claim
-		string? subject = jwtToken.Payload.Sub;
-		if (subject == null)
-			return BadRequest("Invalid 'userOwnership.dlcCheckToken.nsaIdToken' field in request body");
+		Services.Session? session;
+		if (nsaIdToken != null)
+		{
+			// Switch flow: parse JWT to get subject
+			JwtSecurityToken jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(nsaIdToken);
+			string? subject = jwtToken.Payload.Sub;
+			if (subject == null)
+				return BadRequest("Invalid 'userOwnership.dlcCheckToken.nsaIdToken' field in request body");
 
-		// Get the profileId from the session manager
-		Services.Session? session = sessionId == Guid.Empty
-			? sessionManager.GetSessionByNSATicket(subject)
-			: sessionManager.GetSessionById(sessionId);
+			session = sessionId == Guid.Empty
+				? sessionManager.GetSessionByNSATicket(subject)
+				: sessionManager.GetSessionById(sessionId);
+		}
+		else if (sessionId != Guid.Empty)
+		{
+			session = sessionManager.GetSessionById(sessionId);
+		}
+		else
+		{
+			// Phone controller flow: sessionId is empty, find session by ubi-appid
+			session = null;
+			if (Request.Headers.TryGetValue("ubi-appid", out var appIdValues)
+				&& Guid.TryParse(appIdValues.ToString(), out Guid appId))
+			{
+				session = sessionManager.GetSessionByAppId(appId);
+			}
+		}
 
 		if (session == null)
 			return NotFound("Session not found");

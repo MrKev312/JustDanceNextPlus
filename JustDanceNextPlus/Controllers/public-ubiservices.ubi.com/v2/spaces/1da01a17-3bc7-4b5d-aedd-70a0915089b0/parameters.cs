@@ -16,6 +16,10 @@ public class Parameters(IBundleService bundleService, ITagService tagService, IO
     [HttpGet(Name = "GetParametersSpaces")]
     public IActionResult GetParametersSpaces()
     {
+        // Use the requesting host for the EFDS URL so both Switch (DNS redirect)
+        // and phone (binary patched domain) reach the correct server
+        string hostUrl = Request.Host.ToString();
+        parameters.Parameters["ServerInfo"].Fields["url"] = $"https://{hostUrl}";
         return Ok(parameters);
     }
 

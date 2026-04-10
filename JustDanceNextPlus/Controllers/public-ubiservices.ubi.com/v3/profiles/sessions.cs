@@ -16,10 +16,10 @@ public class Sessions(IUserDataService userDataService, ITimingService timingSer
 	[HttpPost(Name = "PostSessions")]
 	public async Task<IActionResult> PostSessions([FromBody] JsonElement body)
 	{
-		string? nameOnPlatform = body.GetProperty("switch.nameOnPlatform").GetString();
-
-		if (nameOnPlatform == null)
-			return BadRequest("Missing 'switch.nameOnPlatform' field in request body");
+		// nameOnPlatform is optional — phone controller doesn't send it
+		string nameOnPlatform = body.TryGetProperty("switch.nameOnPlatform", out JsonElement nameElem)
+			? nameElem.GetString() ?? "PhoneController"
+			: "PhoneController";
 
 		// Get the Ubi-AppId from the request headers
 		if (!Request.Headers.TryGetValue("Ubi-AppId", out StringValues sessionIdValues)
@@ -32,17 +32,31 @@ public class Sessions(IUserDataService userDataService, ITimingService timingSer
 			return BadRequest("Missing 'Authorization' header in request");
 
 		string authorization = authorizationValues.ToString();
-		if (!authorization.StartsWith("switch t="))
-			return BadRequest("Invalid 'Authorization' header in request");
-		authorization = authorization[9..];
 
-		// Convert to JWT token
-		JwtSecurityToken jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(authorization);
-		// From the payload, get the subject (sub) claim
-		string? subject = jwtToken.Payload.Sub;
-		if (subject == null)
+		if (authorization.StartsWith("switch t="))
+		{
+			// Switch flow: parse JWT to get subject claim
+			authorization = authorization[9..];
+			JwtSecurityToken jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(authorization);
+			string? subject = jwtToken.Payload.Sub;
+			if (subject == null)
+				return BadRequest("Invalid 'Authorization' header in request");
+			authorization = subject;
+		}
+		else if (authorization.StartsWith("ubi_v1 t="))
+		{
+			// Phone controller flow: use opaque token directly as profile key
+			authorization = authorization[9..];
+		}
+		else if (authorization.StartsWith("UbiMobile_v2 t="))
+		{
+			// Mobile app flow: use opaque token directly as profile key
+			authorization = authorization[15..];
+		}
+		else
+		{
 			return BadRequest("Invalid 'Authorization' header in request");
-		authorization = subject;
+		}
 
 		Profile? userData = await userDataService.GetProfileByTicketAsync(authorization);
 
@@ -96,6 +110,12 @@ public class Sessions(IUserDataService userDataService, ITimingService timingSer
 		};
 
 		return Ok(response);
+	}
+
+	[HttpDelete]
+	public IActionResult DeleteSession()
+	{
+		return Ok();
 	}
 }
 
