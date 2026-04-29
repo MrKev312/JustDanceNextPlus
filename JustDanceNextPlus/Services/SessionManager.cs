@@ -12,6 +12,7 @@ public interface ISessionManager
 	Session? GetSessionById(Guid sessionId);
 	bool TryGetSessionById(Guid sessionId, [MaybeNullWhen(false)] out Session session);
 	Session? GetSessionByAppId(Guid appId);
+	IReadOnlyCollection<Session> GetSessions();
 	(string ticket, Guid sessionId) GenerateSession(Guid playerId, Guid appId, string NSAToken);
 	(string ticket, Guid sessionId) GenerateOrRefreshSession(Guid playerId, Guid appId, string NSAToken);
 	TimeSpan SessionExpirationTimeSpan { get; }
@@ -57,6 +58,11 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 		return GetSessionById(sessionId);
 	}
 
+	public IReadOnlyCollection<Session> GetSessions()
+	{
+		return [.. sessions.Values.OrderByDescending(session => session.LastRefreshedAt)];
+	}
+
 	public (string ticket, Guid sessionId) GenerateSession(Guid playerId, Guid appId, string NSAToken)
 	{
 		// Generate a random session ID
@@ -69,7 +75,16 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 
 		string ticket = GenerateJWTTicket(sessionId, appId);
 
-		sessions[sessionId] = new Session { SessionId = sessionId, PlayerId = playerId, UbiAppId = appId };
+		DateTime now = DateTime.UtcNow;
+		sessions[sessionId] = new Session
+		{
+			SessionId = sessionId,
+			PlayerId = playerId,
+			UbiAppId = appId,
+			CreatedAt = now,
+			LastRefreshedAt = now,
+			ExpiresAt = now.Add(SessionExpirationTimeSpan)
+		};
 		NSATicketToSessionId[NSAToken] = sessionId;
 		appIdToSessionId[appId] = sessionId;
 
@@ -120,6 +135,16 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 
 	private void RefreshSession(Guid sessionId)
 	{
+		if (sessions.TryGetValue(sessionId, out Session? session))
+		{
+			DateTime now = DateTime.UtcNow;
+			sessions[sessionId] = session with
+			{
+				LastRefreshedAt = now,
+				ExpiresAt = now.Add(SessionExpirationTimeSpan)
+			};
+		}
+
 		// Restart the expiration timer
 		StartExpirationTimer(sessionId);
 	}
@@ -181,4 +206,7 @@ public record Session
 	public required Guid SessionId { get; init; }
 	public required Guid PlayerId { get; init; }
 	public required Guid UbiAppId { get; init; }
+	public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
+	public DateTime LastRefreshedAt { get; init; } = DateTime.UtcNow;
+	public DateTime ExpiresAt { get; init; } = DateTime.UtcNow.AddHours(3);
 }

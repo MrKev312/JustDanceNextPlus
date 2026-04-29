@@ -18,8 +18,16 @@ public class Parameters(IBundleService bundleService, ITagService tagService, IO
     {
         // Use the requesting host for the EFDS URL so both Switch (DNS redirect)
         // and phone (binary patched domain) reach the correct server
-        string hostUrl = Request.Host.ToString();
-        parameters.Parameters["ServerInfo"].Fields["url"] = $"https://{hostUrl}";
+        string hostUrl = urlSettings.Value.HostUrl;
+        string webSocketBaseUrl = $"wss://{hostUrl}";
+		parameters.Parameters["ServerInfo"].Fields["url"] = $"https://{hostUrl}";
+        parameters.Parameters["UbiConnect"].Fields["getVisualNotificationUrl"] =
+            $"https://{hostUrl}/v1/profiles/{{profileId}}/global/ubiconnect/visualnotifications/api/{{visualNotificationType}}/{{visualNotificationId}}?spaceId={{spaceId}}";
+
+        var sdkClientUrls = parameters.Parameters["us-sdkClientUrls"].Fields;
+        sdkClientUrls["websocketServer"] = webSocketBaseUrl;
+        sdkClientUrls["websocketNotifications"] = $"{webSocketBaseUrl}/v2/websocket";
+
         return Ok(parameters);
     }
 
@@ -766,7 +774,7 @@ public class Parameters(IBundleService bundleService, ITagService tagService, IO
             {
                 Fields = new()
                 {
-                    ["getVisualNotificationUrl"] = "https://public-ubiservices.ubi.com/v1/profiles/{profileId}/global/ubiconnect/visualnotifications/api/{visualNotificationType}/{visualNotificationId}?spaceId={spaceId}",
+                    ["getVisualNotificationUrl"] = $"https://{urlSettings.Value.HostUrl}/v1/profiles/{{profileId}}/global/ubiconnect/visualnotifications/api/{{visualNotificationType}}/{{visualNotificationId}}?spaceId={{spaceId}}",
                     ["visualNotificationButton"] = new Dictionary<string, string>
                     {
                         { "PS5", "ps5_triangle" },

@@ -15,9 +15,10 @@ public class Parameters(IOptions<UrlSettings> urlSettings) : ControllerBase
     {
 		// Use the requesting host so both Switch (DNS redirect)
 		// and phone (binary patched domain) reach the correct server
-		string hostUrl = Request.Host.ToString();
+		string hostUrl = urlSettings.Value.HostUrl;
+		string webSocketBaseUrl = $"wss://{hostUrl}";
 		var urls = (Dictionary<string, string>)parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_ws"]!;
-		urls["Standard"] = $"wss://{{env}}{hostUrl}";
+		urls["Standard"] = webSocketBaseUrl;
 		var aws = (Dictionary<string, string>)parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_aws"]!;
 		aws["Standard"] = $"https://{{env}}{hostUrl}";
 		var msr = (Dictionary<string, string>)parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_msr"]!;
@@ -30,6 +31,10 @@ public class Parameters(IOptions<UrlSettings> urlSettings) : ControllerBase
 		fleet["applications"] = $"https://{{env}}{hostUrl}/{{version}}/applications/{{applicationId}}/title/{{title}}/";
 		fleet["profiles_all"] = $"https://{{env}}{hostUrl}/{{version}}/profiles/title/{{title}}/";
 		fleet["applications_all"] = $"https://{{env}}{hostUrl}/{{version}}/applications/title/{{title}}/";
+
+		var sdkClientUrls = parameters.Parameters["us-sdkClientUrls"].Fields;
+		sdkClientUrls["websocketServer"] = webSocketBaseUrl;
+		sdkClientUrls["websocketNotifications"] = $"{webSocketBaseUrl}/v2/websocket";
 
 		return Ok(parameters);
 	}
@@ -140,7 +145,9 @@ public class Parameters(IOptions<UrlSettings> urlSettings) : ControllerBase
 				Fields = new()
 				{
 					["populations"] = "{baseurl_aws}/{version}/profiles/me/populations",
-					["profilesToken"] = "{baseurl_aws}/{version}/profiles/{profileId}/tokens/{token}"
+					["profilesToken"] = "{baseurl_aws}/{version}/profiles/{profileId}/tokens/{token}",
+					["websocketServer"] = "{baseurl_ws}",
+					["websocketNotifications"] = "{baseurl_ws}/{version}/websocket"
 				}
 			}
 		}
