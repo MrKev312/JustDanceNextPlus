@@ -11,6 +11,7 @@ public class LiveTile(IBundleService bundleService) : ControllerBase
 	[HttpGet(Name = "GetLiveTile")]
 	public IActionResult GetLiveTile()
 	{
-		return Ok(bundleService.LiveTiles);
+		string platform = ClientPlatform.FromRequest(Request);
+		return Ok(bundleService.GetLiveTiles(platform));
 	}
 }

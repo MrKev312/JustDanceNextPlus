@@ -7,10 +7,11 @@ using Microsoft.Extensions.Options;
 namespace JustDanceNextPlus.Controllers.public_ubiservices.ubi.com.v2.applications.guid;
 
 [ApiController]
+[Route("/v1/applications/{Guid:guid}/parameters")]
 [Route("/v2/applications/{Guid:guid}/parameters")]
 public class Parameters(IOptions<UrlSettings> urlSettings) : ControllerBase
 {
-	[HttpGet(Name = "GetParameters")]
+	[HttpGet]
 	public IActionResult GetParameters([FromRoute] Guid guid)
     {
 		// Use the requesting host so both Switch (DNS redirect)

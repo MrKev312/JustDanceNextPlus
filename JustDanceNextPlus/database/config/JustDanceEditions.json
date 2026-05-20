@@ -24,8 +24,7 @@
       "HotNCold",
       "Acceptable",
       "DogsOut"
-    ],
-    "productGroupBundle": "https://{{cdnUrl}}/bundles/1.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -52,8 +51,7 @@
       "Girlfriend",
       "SOS",
       "ElectroTribalDLC"
-    ],
-    "productGroupBundle": "https://{{cdnUrl}}/bundles/2.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -80,8 +78,7 @@
       "PartyRock",
       "ToTheMall",
       "VideoKilled"
-    ],
-    "productGroupBundle": "https://{{cdnUrl}}/bundles/3.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -108,8 +105,7 @@
       "LivinLaVidaLoca",
       "MovesLikeDLC",
       "Umbrella"
-    ],
-    "productGroupBundle": "https://{{cdnUrl}}/bundles/4.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -136,8 +132,7 @@
       "KiloPapaDLC",
       "Starships",
       "YMCA"
-    ],
-    "productGroupBundle": "https://{{cdnUrl}}/bundles/2014.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -164,8 +159,7 @@
       "TheFox",
       "Burn",
       "LetItGo"
-    ],
-    "productGroupBundle": "https://{{cdnUrl}}/bundles/2015.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -192,8 +186,7 @@
       "UptownFunk",
       "Coolos",
       "BadRomance"
-    ],
-    "productGroupBundle": "https://{{cdnUrl}}/bundles/2016.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -220,8 +213,7 @@
       "LeanOn",
       "IntoYou",
       "Hips"
-    ],
-    "productGroupBundle": "https://{{cdnUrl}}/bundles/2017.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -248,8 +240,7 @@
       "ShapeOfYou",
       "SwishSwish",
       "Blue"
-    ],
-    "productGroupBundle": "https://{{cdnUrl}}/bundles/2018.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -276,8 +267,7 @@
       "SweetSensation",
       "Sugar",
       "TOY"
-    ],
-    "productGroupBundle": "https://{{cdnUrl}}/bundles/2019.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -304,8 +294,7 @@
       "ConAltura",
       "Skibidi",
       "ConCalma"
-    ],
-    "productGroupBundle": "https://{{cdnUrl}}/bundles/2020.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -332,8 +321,7 @@
       "BlindingLights",
       "Kuliki",
       "PacaDance"
-    ],
-    "productGroupBundle": "https://{{cdnUrl}}/bundles/2021.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -360,8 +348,7 @@
       "LoveStory",
       "Good4U",
       "TGIF"
-    ],
-    "productGroupBundle": "https://{{cdnUrl}}/bundles/2022.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -388,8 +375,7 @@
       "Numb",
       "Physical",
       "ThereforeIAm"
-    ],
-    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/084e28e8-34ab-4428-95ea-9ddd4d7abc92/nx/productGroupBundle/120586a6aceccc2450f1a36342e1dfb3.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -416,8 +402,7 @@
       "Vampire",
       "KillBill",
       "CalmDown"
-    ],
-    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/261fc221-8aa7-4a91-b3ec-df3a4ea8d6a5/nx/productGroupBundle/453b39a881765d851fb6ab6125ac8cdb.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -444,8 +429,7 @@
       "Unstoppable",
       "BasketCase",
       "Vogue"
-    ],
-    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/7c65f88f-4a05-46e6-a915-9c1f17b92830/nx/productGroupBundle/d3426f432613fcf066ddfe5c6f086fbe.bundle"
+    ]
   },
   {
     "dlcType": "Yearly",
@@ -472,8 +456,7 @@
       "GoodLuckBabe",
       "AllStar",
       "Houdini"
-    ],
-    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/c47c3d4f-f754-4f3d-a406-fdfd888a9741/nx/productGroupBundle/5ab645348a2d3c8110478d254e7c14c8.bundle"
+    ]
   },
   {
     "dlcType": "Exclusive",
@@ -493,8 +476,7 @@
       "Soltera",
       "LaBachata",
       "Despacito"
-    ],
-    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/2cb63a3d-f685-4c02-af75-994e05db3e8e/nx/productGroupBundle/ac0aa3c8f56e096d5696b91573489589.bundle"
+    ]
   },
   {
     "dlcType": "Exclusive",
@@ -514,8 +496,7 @@
       "Apple",
       "FeelSoClose",
       "YouKissMe"
-    ],
-    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/3d7fd108-5603-4c14-99f7-a6d73a6c3a5d/nx/productGroupBundle/31c2fd180212c103e05ed33371fe7139.bundle"
+    ]
   },
   {
     "dlcType": "Exclusive",
@@ -536,8 +517,7 @@
       "PrinceAli",
       "HowFar",
       "ZeroToHero"
-    ],
-    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/81714ac1-0845-4b4c-b84a-6a21d3930883/nx/productGroupBundle/47a0281ffcdc7c6cdee7cc2ad9ffdfb6.bundle"
+    ]
   },
   {
     "dlcType": "Exclusive",
@@ -558,8 +538,7 @@
       "Blue",
       "MakeItJingle",
       "DragosteaDinTei"
-    ],
-    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/098f8ab0-b9b5-42fe-b141-ac9250e0bbd0/nx/productGroupBundle/fb064ff419baaa3ccec7f7e2a5f685da.bundle"
+    ]
   },
   {
     "dlcType": "Exclusive",
@@ -580,7 +559,6 @@
       "DanceMonkey",
       "MrSaxobeat",
       "Malibu"
-    ],
-    "productGroupBundle": "https://jd-s3.cdn.ubi.com/public/jdnext/shop/c9e3b359-30aa-4329-9e8c-671d617af6eb/nx/productGroupBundle/7b92bc735b9b2dddf739d94c957e1921.bundle"
+    ]
   }
 ]

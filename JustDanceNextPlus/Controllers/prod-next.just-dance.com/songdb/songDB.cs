@@ -13,7 +13,8 @@ public class SongDB(IMapService mapService, JsonSettingsService jsonSettingsServ
 	[HttpGet(Name = "GetSongDB")]
 	public IActionResult GetSongDB()
 	{
-		string response = JsonSerializer.Serialize(mapService.Songs, jsonSettingsService.PrettyPascalFormat);
+		string platform = ClientPlatform.FromRequest(Request);
+		string response = JsonSerializer.Serialize(mapService.GetSongs(platform), jsonSettingsService.PrettyPascalFormat);
 
 		// Disable compression for this specific response
 		Response.Headers.ContentEncoding = "identity";

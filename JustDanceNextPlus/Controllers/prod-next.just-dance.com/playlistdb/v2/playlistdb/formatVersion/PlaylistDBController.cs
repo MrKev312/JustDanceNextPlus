@@ -11,6 +11,7 @@ public class PlaylistDBController(IPlaylistService playlistService) : Controller
 	[HttpGet]
 	public IActionResult GetFormatVersion()
 	{
-		return Ok(playlistService.PlaylistDB);
+		string platform = ClientPlatform.FromRequest(Request);
+		return Ok(playlistService.GetPlaylistDB(platform));
 	}
 }

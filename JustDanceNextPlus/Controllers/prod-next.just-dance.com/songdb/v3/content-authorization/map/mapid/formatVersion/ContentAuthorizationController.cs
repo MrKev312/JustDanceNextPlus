@@ -57,7 +57,8 @@ public class ContentAuthorizationController(ILogger<ContentAuthorizationControll
 
 		logger.LogInformation("Map {MapCodename} requested by {Username}", mapCodename, username);
 
-		return mapService.ContentAuthorization.TryGetValue(mapId, out ContentAuthorization? contentAuthorization)
+		string platform = ClientPlatform.FromRequest(Request);
+		return mapService.GetContentAuthorization(platform).TryGetValue(mapId, out ContentAuthorization? contentAuthorization)
 			? Ok(contentAuthorization)
 			: NotFound();
 	}

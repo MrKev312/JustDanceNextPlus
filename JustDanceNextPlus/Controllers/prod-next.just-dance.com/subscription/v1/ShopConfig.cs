@@ -11,6 +11,7 @@ public class ShopConfig(IBundleService bundleService) : ControllerBase
 	[HttpGet]
 	public IActionResult GetShopConfig()
 	{
-		return Ok(bundleService.ShopConfig);
+		string platform = ClientPlatform.FromRequest(Request);
+		return Ok(bundleService.GetShopConfig(platform));
 	}
 }

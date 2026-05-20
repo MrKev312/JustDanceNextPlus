@@ -17,14 +17,16 @@ namespace JustDanceNextPlus.Services;
 
 public interface IUtilityService
 {
-	ValueTask<LocalJustDanceSongDBEntry> LoadMapDBEntryAsync(string mapFolder);
-    IReadOnlyDictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder);
-	ContentAuthorization LoadContentAuthorization(string mapFolder);
+	ValueTask<LocalJustDanceSongDBEntry> LoadMapDBEntryAsync(string mapFolder, string platform = ClientPlatform.DefaultPlatform);
+    IReadOnlyDictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder, string platform = ClientPlatform.DefaultPlatform);
+	ContentAuthorization LoadContentAuthorization(string mapFolder, string platform = ClientPlatform.DefaultPlatform);
 	WebmData[] GetVideoData(string videoFolder);
-	string GetAssetUrl(string mapFolder, string name);
-	string? TryGetAssetUrl(string mapFolder, string name);
+	string GetAssetUrl(string mapFolder, string name, string platform = ClientPlatform.DefaultPlatform);
+	string? TryGetAssetUrl(string mapFolder, string name, string platform = ClientPlatform.DefaultPlatform);
 	(string low, string mid, string high, string ultra) GetVideoUrls(WebmData[] videoData, string mapFolder);
-	(string audioPreview, string coachesLarge, string coachesSmall, string cover, string? songTitleLogo) GetAssetUrls(string mapFolder);
+	(string audioPreview, string coachesLarge, string coachesSmall, string cover, string? songTitleLogo) GetAssetUrls(string mapFolder, string platform = ClientPlatform.DefaultPlatform);
+	SongDBAssets LoadSongDBAssets(string mapFolder, WebmData[] videoData, string platform = ClientPlatform.DefaultPlatform);
+	AssetsAuthorization LoadContentAuthorizationAssets(string mapFolder, WebmData[] videoData, string platform = ClientPlatform.DefaultPlatform);
 	(string low, string mid, string high, string ultra) GetContentAuthorizationVideoUrls(WebmData[] videoData, string mapFolder);
 	AudioPreviewTrk GenerateAudioPreviewTrk(string mapPackagePath);
 	bool HasCameraScoring(string mapPackagePath);
@@ -38,7 +40,7 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 {
 	private readonly UrlSettings urlSettings = urlOptions.Value;
 
-	public async ValueTask<LocalJustDanceSongDBEntry> LoadMapDBEntryAsync(string mapFolder)
+	public async ValueTask<LocalJustDanceSongDBEntry> LoadMapDBEntryAsync(string mapFolder, string platform = ClientPlatform.DefaultPlatform)
 	{
 		try
 		{
@@ -59,12 +61,13 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 
 			WebmData[] videoData = GetVideoData(Path.Combine(mapFolder, "videoPreview"));
 
-			// Compute asset URLs
-			(string low, string mid, string high, string ultra) = GetVideoUrls(videoData, mapFolder);
-			(string audioPreview, string coachesLarge, string coachesSmall, string cover, string? songTitleLogo) = GetAssetUrls(mapFolder);
-
 			// Update songInfo with asset URLs and metadata
-			string mapPackagePath = fileSystem.GetFiles(Path.Combine(mapFolder, "MapPackage"))[0];
+			(string mapPackageFolder, _) = ResolveAssetFolder(mapFolder, "MapPackage", platform);
+			string[] mapPackageFiles = fileSystem.GetFiles(mapPackageFolder);
+			if (mapPackageFiles.Length == 0)
+				throw new FileNotFoundException($"Missing map package in {mapPackageFolder}");
+
+			string mapPackagePath = mapPackageFiles[0];
 			AudioPreviewTrk audioPreviewTrk;
 			bool hasCameraScoring;
 			using (MapPackageSession mapPackageSession = LoadMapPackageSession(mapPackagePath))
@@ -81,22 +84,7 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 					VideoData = [.. videoData],
 					AudioPreviewTrk = audioPreviewTrk
 				},
-				Assets = new SongDBAssets
-				{
-					AudioPreview_opus = audioPreview,
-					VideoPreview_HIGH_vp8_webm = high,
-					VideoPreview_HIGH_vp9_webm = high,
-					VideoPreview_LOW_vp8_webm = low,
-					VideoPreview_LOW_vp9_webm = low,
-					VideoPreview_MID_vp8_webm = mid,
-					VideoPreview_MID_vp9_webm = mid,
-					VideoPreview_ULTRA_vp8_webm = ultra,
-					VideoPreview_ULTRA_vp9_webm = ultra,
-					CoachesLarge = coachesLarge,
-					CoachesSmall = coachesSmall,
-					Cover = cover,
-					SongTitleLogo = songTitleLogo
-				}
+				Assets = LoadSongDBAssets(mapFolder, videoData, platform)
 			};
 
 			// If there's no game version tag, add a "jdplus" tag
@@ -120,7 +108,7 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 			throw new InvalidOperationException("No video data provided");
 
 		string[] urls = new string[4];
-		string baseUrl = $"https://{urlSettings.CDNUrl}/maps/{Path.GetFileName(mapFolder)}/videoPreview";
+		string baseUrl = $"{CdnBaseUrl}/maps/{Path.GetFileName(mapFolder)}/videoPreview";
 
 		for (int i = 0; i < 4; i++)
 		{
@@ -132,22 +120,46 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 		return (urls[0], urls[1], urls[2], urls[3]);
 	}
 
-	public (string audioPreview, string coachesLarge, string coachesSmall, string cover, string? songTitleLogo) GetAssetUrls(string mapFolder)
+	public (string audioPreview, string coachesLarge, string coachesSmall, string cover, string? songTitleLogo) GetAssetUrls(string mapFolder, string platform = ClientPlatform.DefaultPlatform)
 	{
 		// Compute values, preferring existing values
-		string audioPreview = GetAssetUrl(mapFolder, "audioPreview_opus");
-		string coachesLarge = GetAssetUrl(mapFolder, "coachesLarge");
-		string coachesSmall = GetAssetUrl(mapFolder, "coachesSmall");
-		string cover = GetAssetUrl(mapFolder, "cover");
-		string? songTitleLogo = TryGetAssetUrl(mapFolder, "songTitleLogo");
+		string audioPreview = GetAssetUrl(mapFolder, "audioPreview_opus", platform);
+		string coachesLarge = GetAssetUrl(mapFolder, "coachesLarge", platform);
+		string coachesSmall = GetAssetUrl(mapFolder, "coachesSmall", platform);
+		string cover = GetAssetUrl(mapFolder, "cover", platform);
+		string? songTitleLogo = TryGetAssetUrl(mapFolder, "songTitleLogo", platform);
 
 		return (audioPreview, coachesLarge, coachesSmall, cover, songTitleLogo);
 	}
 
-	public IReadOnlyDictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder)
+	public SongDBAssets LoadSongDBAssets(string mapFolder, WebmData[] videoData, string platform = ClientPlatform.DefaultPlatform)
+	{
+		(string low, string mid, string high, string ultra) = GetVideoUrls(videoData, mapFolder);
+		(string audioPreview, string coachesLarge, string coachesSmall, string cover, string? songTitleLogo) = GetAssetUrls(mapFolder, platform);
+
+		return new SongDBAssets
+		{
+			AudioPreview_opus = audioPreview,
+			VideoPreview_HIGH_vp8_webm = high,
+			VideoPreview_HIGH_vp9_webm = high,
+			VideoPreview_LOW_vp8_webm = low,
+			VideoPreview_LOW_vp9_webm = low,
+			VideoPreview_MID_vp8_webm = mid,
+			VideoPreview_MID_vp9_webm = mid,
+			VideoPreview_ULTRA_vp8_webm = ultra,
+			VideoPreview_ULTRA_vp9_webm = ultra,
+			CoachesLarge = coachesLarge,
+			CoachesSmall = coachesSmall,
+			Cover = cover,
+			SongTitleLogo = songTitleLogo
+		};
+	}
+
+	public IReadOnlyDictionary<string, AssetMetadata> LoadAssetMetadata(string mapFolder, string platform = ClientPlatform.DefaultPlatform)
 	{
         ImmutableDictionary<string, AssetMetadata>.Builder assetMetadata = ImmutableDictionary.CreateBuilder<string, AssetMetadata>();
         mapFolder = Path.GetFullPath(mapFolder);
+		string normalizedPlatform = ClientPlatform.Normalize(platform);
 
 		// This now gets strings, not FileInfo objects
 		string[] allFiles = fileSystem.GetFiles(mapFolder, "*", SearchOption.AllDirectories);
@@ -168,12 +180,12 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 			assetMetadata[key] = new AssetMetadata(hash, fileSystem.GetFileLength(largestFile));
 		}
 
-		AddAsset("cover", "cover");
-		AddAsset("audioPreview_opus", "audioPreview.opus");
-		AddAsset("audio", "audio.opus");
-		AddAsset("coachesSmall");
-		AddAsset("coachesLarge");
-		AddAsset("MapPackage", "mapPackage");
+		AddAsset(Path.Combine(normalizedPlatform, "Cover"), "cover");
+		AddAsset("AudioPreview_opus", "audioPreview.opus");
+		AddAsset("Audio_opus", "audio.opus");
+		AddAsset(Path.Combine(normalizedPlatform, "CoachesSmall"), "coachesSmall");
+		AddAsset(Path.Combine(normalizedPlatform, "CoachesLarge"), "coachesLarge");
+		AddAsset(Path.Combine(normalizedPlatform, "MapPackage"), "mapPackage");
 
 		void AddVideoAsset(string subfolder, string[] keys, Func<IReadOnlyList<string>, string?> selector)
 		{
@@ -214,27 +226,13 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 		return assetMetadata.ToImmutable();
     }
 
-	public ContentAuthorization LoadContentAuthorization(string mapFolder)
+	public ContentAuthorization LoadContentAuthorization(string mapFolder, string platform = ClientPlatform.DefaultPlatform)
 	{
 		WebmData[] videoData = GetVideoData(Path.Combine(mapFolder, "video"));
 
-		(string? low, string? mid, string? high, string? ultra) = GetContentAuthorizationVideoUrls(videoData, mapFolder);
-
 		ContentAuthorization contentAuthorization = new()
 		{
-			Assets = new AssetsAuthorization
-			{
-				AudioOpus = GetAssetUrl(mapFolder, "Audio_opus")!,
-				VideoLowHdWebm = low,
-				VideoLowVP9Webm = low,
-				VideoMidHdWebm = mid,
-				VideoMidVP9Webm = mid,
-				VideoHighHdWebm = high,
-				VideoHighVP9Webm = high,
-				VideoUltraHdWebm = ultra,
-				VideoUltraVP9Webm = ultra,
-				MapPackage = GetAssetUrl(mapFolder, "MapPackage")!
-			},
+			Assets = LoadContentAuthorizationAssets(mapFolder, videoData, platform),
 			AssetsMetadata = new AssetsmetadataAuthorization()
 			{
 				VideoData = [.. videoData]
@@ -244,6 +242,25 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 		return contentAuthorization;
 	}
 
+	public AssetsAuthorization LoadContentAuthorizationAssets(string mapFolder, WebmData[] videoData, string platform = ClientPlatform.DefaultPlatform)
+	{
+		(string low, string mid, string high, string ultra) = GetContentAuthorizationVideoUrls(videoData, mapFolder);
+
+		return new AssetsAuthorization
+		{
+			AudioOpus = GetAssetUrl(mapFolder, "Audio_opus", platform)!,
+			VideoLowHdWebm = low,
+			VideoLowVP9Webm = low,
+			VideoMidHdWebm = mid,
+			VideoMidVP9Webm = mid,
+			VideoHighHdWebm = high,
+			VideoHighVP9Webm = high,
+			VideoUltraHdWebm = ultra,
+			VideoUltraVP9Webm = ultra,
+			MapPackage = GetAssetUrl(mapFolder, "MapPackage", platform)!
+		};
+	}
+
 	public (string low, string mid, string high, string ultra) GetContentAuthorizationVideoUrls(
 		WebmData[] videoData,
 		string mapFolder)
@@ -251,7 +268,7 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 		if (videoData.Length == 0)
 			throw new InvalidOperationException("No video data provided");
 
-		string baseUrl = $"https://{urlSettings.CDNUrl}/maps/{Path.GetFileName(mapFolder)}/video";
+		string baseUrl = $"{CdnBaseUrl}/maps/{Path.GetFileName(mapFolder)}/video";
 		string[] urls = new string[4];
 
 		for (int i = 0; i < 4; i++)
@@ -299,9 +316,9 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 		return webmData;
 	}
 
-	public string GetAssetUrl(string mapFolder, string name)
+	public string GetAssetUrl(string mapFolder, string name, string platform = ClientPlatform.DefaultPlatform)
 	{
-		string assetFolder = Path.Combine(mapFolder, name);
+		(string assetFolder, string urlFolder) = ResolveAssetFolder(mapFolder, name, platform);
 
 		if (fileSystem.DirectoryExists(assetFolder))
 		{
@@ -309,15 +326,15 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 			if (files.Length == 0)
 				throw new FileNotFoundException($"Missing asset file in {assetFolder}");
 
-			return $"https://{urlSettings.CDNUrl}/maps/{Path.GetFileName(mapFolder)}/{name}/{Path.GetFileName(files[0])}";
+			return $"{CdnBaseUrl}/maps/{Path.GetFileName(mapFolder)}/{urlFolder}/{Path.GetFileName(files[0])}";
 		}
 
 		throw new DirectoryNotFoundException($"Missing asset folder {assetFolder}");
 	}
 
-	public string? TryGetAssetUrl(string mapFolder, string name)
+	public string? TryGetAssetUrl(string mapFolder, string name, string platform = ClientPlatform.DefaultPlatform)
 	{
-		string assetFolder = Path.Combine(mapFolder, name);
+		(string assetFolder, string urlFolder) = ResolveAssetFolder(mapFolder, name, platform);
 
 		if (fileSystem.DirectoryExists(assetFolder))
 		{
@@ -325,10 +342,56 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 			if (files.Length == 0)
 				return null;
 
-			return $"https://{urlSettings.CDNUrl}/maps/{Path.GetFileName(mapFolder)}/{name}/{Path.GetFileName(files[0])}";
+			return $"{CdnBaseUrl}/maps/{Path.GetFileName(mapFolder)}/{urlFolder}/{Path.GetFileName(files[0])}";
 		}
 
 		return null;
+	}
+
+	private string CdnBaseUrl
+	{
+		get
+		{
+			string trimmedUrl = urlSettings.CDNUrl.Trim().TrimEnd('/');
+			return trimmedUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+				|| trimmedUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase)
+				? trimmedUrl
+				: $"https://{trimmedUrl}";
+		}
+	}
+
+	private static (string AssetFolder, string UrlFolder) ResolveAssetFolder(string mapFolder, string name, string platform)
+	{
+		string canonicalName = CanonicalAssetFolderName(name);
+		if (IsPlatformSpecificAssetFolder(canonicalName))
+		{
+			string normalizedPlatform = ClientPlatform.Normalize(platform);
+			return (
+				Path.Combine(mapFolder, normalizedPlatform, canonicalName),
+				$"{normalizedPlatform}/{canonicalName}");
+		}
+
+		return (Path.Combine(mapFolder, canonicalName), canonicalName);
+	}
+
+	private static string CanonicalAssetFolderName(string name)
+	{
+		return name.Trim().ToLowerInvariant() switch
+		{
+			"audio_opus" or "audio" => "Audio_opus",
+			"audiopreview_opus" or "audiopreview" => "AudioPreview_opus",
+			"coacheslarge" => "CoachesLarge",
+			"coachessmall" => "CoachesSmall",
+			"cover" => "Cover",
+			"mappackage" => "MapPackage",
+			"songtitlelogo" => "songTitleLogo",
+			_ => name
+		};
+	}
+
+	private static bool IsPlatformSpecificAssetFolder(string name)
+	{
+		return name is "CoachesLarge" or "CoachesSmall" or "Cover" or "MapPackage" or "songTitleLogo";
 	}
 
 	public static string GenerateMpd(IEnumerable<WebmData> webms, bool isPreview = false)

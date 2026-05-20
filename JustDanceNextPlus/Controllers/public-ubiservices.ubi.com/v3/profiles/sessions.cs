@@ -31,32 +31,8 @@ public class Sessions(IUserDataService userDataService, ITimingService timingSer
 			|| authorizationValues.Count == 0)
 			return BadRequest("Missing 'Authorization' header in request");
 
-		string authorization = authorizationValues.ToString();
-
-		if (authorization.StartsWith("switch t="))
-		{
-			// Switch flow: parse JWT to get subject claim
-			authorization = authorization[9..];
-			JwtSecurityToken jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(authorization);
-			string? subject = jwtToken.Payload.Sub;
-			if (subject == null)
-				return BadRequest("Invalid 'Authorization' header in request");
-			authorization = subject;
-		}
-		else if (authorization.StartsWith("ubi_v1 t="))
-		{
-			// Phone controller flow: use opaque token directly as profile key
-			authorization = authorization[9..];
-		}
-		else if (authorization.StartsWith("UbiMobile_v2 t="))
-		{
-			// Mobile app flow: use opaque token directly as profile key
-			authorization = authorization[15..];
-		}
-		else
-		{
+		if (!TryGetAuthenticationTicket(authorizationValues.ToString(), out string authorization))
 			return BadRequest("Invalid 'Authorization' header in request");
-		}
 
 		Profile? userData = await userDataService.GetProfileByTicketAsync(authorization);
 
@@ -116,6 +92,66 @@ public class Sessions(IUserDataService userDataService, ITimingService timingSer
 	public IActionResult DeleteSession()
 	{
 		return Ok();
+	}
+
+	private static bool TryGetAuthenticationTicket(string authorization, out string ticket)
+	{
+		ticket = "";
+
+		if (TryReadTokenScheme(authorization, "switch t=", out string switchToken))
+		{
+			try
+			{
+				JwtSecurityToken jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(switchToken);
+				ticket = jwtToken.Payload.Sub ?? "";
+			}
+			catch (ArgumentException)
+			{
+				return false;
+			}
+
+			return !string.IsNullOrWhiteSpace(ticket);
+		}
+
+		if (TryReadTokenScheme(authorization, "ubi_v1 t=", out ticket)
+			|| TryReadTokenScheme(authorization, "UbiMobile_v1 t=", out ticket)
+			|| TryReadTokenScheme(authorization, "UbiMobile_v2 t=", out ticket)
+			|| TryReadTokenScheme(authorization, "uplaypc_v1 t=", out ticket))
+			return true;
+
+		if (authorization.StartsWith("Basic ", StringComparison.OrdinalIgnoreCase))
+		{
+			string credentials = authorization["Basic ".Length..].Trim();
+			if (credentials.Length == 0)
+				return false;
+
+			try
+			{
+				string decodedCredentials = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(credentials));
+				int separatorIndex = decodedCredentials.IndexOf(':');
+				ticket = separatorIndex > 0 ? decodedCredentials[..separatorIndex] : decodedCredentials;
+			}
+			catch (FormatException)
+			{
+				ticket = credentials;
+			}
+
+			return !string.IsNullOrWhiteSpace(ticket);
+		}
+
+		return false;
+	}
+
+	private static bool TryReadTokenScheme(string authorization, string prefix, out string token)
+	{
+		if (authorization.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+		{
+			token = authorization[prefix.Length..].Trim();
+			return token.Length > 0;
+		}
+
+		token = "";
+		return false;
 	}
 }
 

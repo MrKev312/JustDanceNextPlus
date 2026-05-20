@@ -93,7 +93,7 @@ public class BundleServiceTests
         // Assert
         Assert.Single(result);
         Assert.True(result.ContainsKey(tileId));
-        Assert.Equal("test.cdn.com/path/to/image.png", result[tileId].Assets.BackgroundImage);
+        Assert.Equal("https://test.cdn.com/bundles/NX/image.bundle", result[tileId].Assets.BackgroundImage);
         Assert.Equal(123, result[tileId].ButtonId.ID);
         Assert.Equal(456, result[tileId].SubtitleId.ID);
         _mockLogger.Verify(
@@ -134,7 +134,8 @@ public class BundleServiceTests
         Assert.Equal("songpack_year1", product.Name);
 
 		ProductGroup productGroup = _service.ShopConfig.FirstPartyProductDb.ProductGroups.Values.First(pg => pg.Name == "songpack_year1");
-        Assert.Equal("test.cdn.com/bundle.bundle", productGroup.Assets.ProductGroupBundle);
+        Assert.Equal("https://test.cdn.com/bundles/NX/songpack_year1.bundle", productGroup.Assets.ProductGroupBundle);
+        Assert.Equal("https://test.cdn.com/bundles/PS5/songpack_year1.bundle", _service.GetShopConfig(ClientPlatform.PlayStation5).FirstPartyProductDb.ProductGroups.Values.First(pg => pg.Name == "songpack_year1").Assets.ProductGroupBundle);
 
         // We have one claim in total
         Assert.Single(_service.Claims);

@@ -11,9 +11,10 @@ public class V0(IMapService mapService) : ControllerBase
 	[HttpGet]
 	public IActionResult Get()
 	{
+		string platform = ClientPlatform.FromRequest(Request);
 		return Ok(new
 		{
-			mapService.AssetMetadataPerSong
+			AssetMetadataPerSong = mapService.GetAssetMetadataPerSong(platform)
 		});
 	}
 }

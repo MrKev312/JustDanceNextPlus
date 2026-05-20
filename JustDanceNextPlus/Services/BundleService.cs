@@ -15,6 +15,8 @@ public interface IBundleService : ILoadService
     IReadOnlyDictionary<Guid, LiveTile> LiveTiles { get; }
     ImmutableArray<string> Claims { get; }
     ImmutableArray<string> ClaimDisplayPriority { get; }
+    ShopConfig GetShopConfig(string platform);
+    IReadOnlyDictionary<Guid, LiveTile> GetLiveTiles(string platform);
     ImmutableArray<string> GetAllClaims();
 }
 
@@ -67,12 +69,14 @@ public class BundleService(ILogger<BundleService> logger,
             return ImmutableDictionary<Guid, LiveTile>.Empty;
         }
 
-		// This is a pure transformation: it takes one immutable dictionary and returns a new one.
 		ImmutableDictionary<Guid, LiveTile> updatedLiveTiles = liveTiles.ToImmutableDictionary(
             kvp => kvp.Key,
             kvp => kvp.Value with
             {
-                Assets = kvp.Value.Assets with { BackgroundImage = kvp.Value.Assets.BackgroundImage.Replace("{{cdnUrl}}", urlSettings.Value.CDNUrl) }
+                Assets = kvp.Value.Assets with
+                {
+                    BackgroundImage = BuildLiveTileBundleUrl(ClientPlatform.DefaultPlatform, kvp.Value.Assets.BackgroundImage)
+                }
             });
 
         logger.LogInformation("Live tiles database loaded");
@@ -97,15 +101,9 @@ public class BundleService(ILogger<BundleService> logger,
             return new ShopConfig();
         }
 
-        // Replace the CDN URL in the assets
-        ImmutableArray<JustDanceEdition> updatedDb = [.. db.Select(edition => edition with
-        {
-            ProductGroupBundle = edition.ProductGroupBundle.Replace("{{cdnUrl}}", urlSettings.Value.CDNUrl)
-        })];
-
         logger.LogInformation("Bundle database loaded");
         // Call the pure function to parse the database and return a new ShopConfig
-        return ParseDatabase(updatedDb);
+        return ParseDatabase(db);
     }
 
     private ShopConfig ParseDatabase(IReadOnlyList<JustDanceEdition> db)
@@ -148,7 +146,7 @@ public class BundleService(ILogger<BundleService> logger,
                 TracklistLimited = edition.TracklistLimited,
                 TracklistExtendedLocId = edition.TracklistExtendedLocId ?? localizedStringService.GetAddLocalizedTag(trackExtLocId),
                 TracklistLimitedLocId = edition.TracklistLimitedLocId ?? localizedStringService.GetAddLocalizedTag(trackLimLocId),
-                Assets = new() { ProductGroupBundle = edition.ProductGroupBundle }
+                Assets = new() { ProductGroupBundle = BuildVersionBundleUrl(ClientPlatform.DefaultPlatform, edition.Name) }
             };
             tempProductGroups.Add((guid, productGroup));
         }
@@ -168,7 +166,7 @@ public class BundleService(ILogger<BundleService> logger,
             TracklistLimited = [],
             TracklistExtendedLocId = localizedStringService.GetLocalizedTag(0)!,
             TracklistLimitedLocId = localizedStringService.GetLocalizedTag(0)!,
-            Assets = new() { ProductGroupBundle = "https://jd-s3.cdn.ubi.com/public/jdnext/shop/e788d44c-c411-4222-a7a8-c432e2095c50/nx/productGroupBundle/3d043eb625538fbbc750d2f90ab01872.bundle" }
+            Assets = new() { ProductGroupBundle = BuildVersionBundleUrl(ClientPlatform.DefaultPlatform, "jdplus") }
         };
         tempProductGroups.Add((subscriptionGuid, jdPlus));
 
@@ -221,6 +219,40 @@ public class BundleService(ILogger<BundleService> logger,
 
     public ImmutableArray<string> GetAllClaims() => GetAllClaims(ShopConfig);
 
+    public ShopConfig GetShopConfig(string platform)
+    {
+        ImmutableDictionary<Guid, ProductGroup> productGroups = ShopConfig.FirstPartyProductDb.ProductGroups.ToImmutableDictionary(
+            kvp => kvp.Key,
+            kvp => kvp.Value with
+            {
+                Assets = kvp.Value.Assets with
+                {
+                    ProductGroupBundle = BuildVersionBundleUrl(platform, ProductGroupBundleName(kvp.Value))
+                }
+            });
+
+        return ShopConfig with
+        {
+            FirstPartyProductDb = ShopConfig.FirstPartyProductDb with
+            {
+                ProductGroups = productGroups
+            }
+        };
+    }
+
+    public IReadOnlyDictionary<Guid, LiveTile> GetLiveTiles(string platform)
+    {
+        return LiveTiles.ToImmutableDictionary(
+            kvp => kvp.Key,
+            kvp => kvp.Value with
+            {
+                Assets = kvp.Value.Assets with
+                {
+                    BackgroundImage = BuildLiveTileBundleUrl(platform, kvp.Value.Assets.BackgroundImage)
+                }
+            });
+    }
+
     private static ImmutableArray<string> GetAllClaims(ShopConfig shopConfig)
     {
         return [.. shopConfig.FirstPartyProductDb.DlcProducts.Values
@@ -228,4 +260,41 @@ public class BundleService(ILogger<BundleService> logger,
             .Distinct()
             .OrderBy(c => c)];
     }
+
+    private string BuildVersionBundleUrl(string platform, string bundleName)
+        => BuildBundleUrl(platform, bundleName);
+
+    private string BuildLiveTileBundleUrl(string platform, string bundleReference)
+        => BuildBundleUrl(platform, NormalizeBundleName(bundleReference, "live-tile"));
+
+    private string BuildBundleUrl(string platform, string bundleName)
+        => $"{CdnBaseUrl}/bundles/{ClientPlatform.Normalize(platform)}/{NormalizeBundleName(bundleName, bundleName)}.bundle";
+
+    private string CdnBaseUrl
+    {
+        get
+        {
+            string trimmedUrl = urlSettings.Value.CDNUrl.Trim().TrimEnd('/');
+            return trimmedUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+                || trimmedUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase)
+                ? trimmedUrl
+                : $"https://{trimmedUrl}";
+        }
+    }
+
+    private static string NormalizeBundleName(string? bundleReference, string fallback)
+    {
+        if (string.IsNullOrWhiteSpace(bundleReference))
+            return fallback;
+
+        string normalizedReference = bundleReference.Trim().Replace('\\', '/');
+        if (Uri.TryCreate(normalizedReference, UriKind.Absolute, out Uri? uri))
+            normalizedReference = uri.LocalPath;
+
+        string name = Path.GetFileNameWithoutExtension(normalizedReference);
+        return string.IsNullOrWhiteSpace(name) ? fallback : name;
+    }
+
+    private static string ProductGroupBundleName(ProductGroup group)
+        => group.Name == "SUBSCRIPTION_JD+" ? "jdplus" : group.Name;
 }

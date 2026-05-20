@@ -19,6 +19,7 @@ public class PlaylistServiceTests
     private readonly Mock<ILogger<PlaylistService>> _mockLogger;
     private readonly JsonSettingsService _jsonSettingsService;
     private readonly IOptions<PathSettings> _mockPathSettings;
+    private readonly IOptions<UrlSettings> _mockUrlSettings;
     private readonly PlaylistService _service;
     private readonly Mock<ITagService> _mockTagService;
     private readonly Mock<ILocalizedStringService> _mockLocalizedStringService;
@@ -29,6 +30,7 @@ public class PlaylistServiceTests
         _mockFileSystem = new Mock<IFileSystem>();
         _mockLogger = new Mock<ILogger<PlaylistService>>();
         _mockPathSettings = Options.Create(new PathSettings { PlaylistPath = "C:\\playlists" });
+        _mockUrlSettings = Options.Create(new UrlSettings { CDNUrl = "test.cdn.com" });
 
         // Mocks required by the JsonConverters
         _mockTagService = new Mock<ITagService>();
@@ -57,6 +59,7 @@ public class PlaylistServiceTests
             _mockMapService.Object,
             _jsonSettingsService,
             _mockPathSettings,
+            _mockUrlSettings,
             _mockLogger.Object,
             _mockFileSystem.Object
         );

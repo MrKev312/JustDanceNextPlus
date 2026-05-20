@@ -14,11 +14,13 @@ namespace JustDanceNextPlus.Services;
 public interface IPlaylistService : ILoadService
 {
 	PlaylistDB PlaylistDB { get; set; }
+	PlaylistDB GetPlaylistDB(string platform);
 }
 
 public class PlaylistService(IMapService mapService,
 	JsonSettingsService jsonSettingsService,
 	IOptions<PathSettings> pathSettings,
+	IOptions<UrlSettings> urlSettings,
 	ILogger<PlaylistService> logger,
     IFileSystem fileSystem) : IPlaylistService, ILoadService
 {
@@ -47,7 +49,15 @@ public class PlaylistService(IMapService mapService,
 				continue;
 			}
 
-			JustDancePlaylist playlistFinal = playlist;
+			string playlistName = string.IsNullOrWhiteSpace(playlist.PlaylistName)
+				? Path.GetFileNameWithoutExtension(file)
+				: playlist.PlaylistName;
+
+			JustDancePlaylist playlistFinal = ((JustDancePlaylist)playlist) with
+			{
+				PlaylistName = playlistName,
+				Assets = BuildPlaylistAssets(ClientPlatform.DefaultPlatform, playlistName)
+			};
 
             List<Itemlist> itemList = [.. playlistFinal.ItemList];
 
@@ -97,6 +107,66 @@ public class PlaylistService(IMapService mapService,
 		}
 
 		logger.LogInformation("Finished loading playlists");
+	}
+
+	public PlaylistDB GetPlaylistDB(string platform)
+	{
+		return new PlaylistDB
+		{
+			Playlists = new SortedDictionary<Guid, JustDancePlaylist>(
+				PlaylistDB.Playlists.ToDictionary(
+					kvp => kvp.Key,
+					kvp => kvp.Value with
+					{
+						Assets = BuildPlaylistAssets(platform, kvp.Value.PlaylistName)
+					})),
+			ShowcasePlaylists = [.. PlaylistDB.ShowcasePlaylists],
+			DynamicPlaylists = [.. PlaylistDB.DynamicPlaylists],
+			PlaylistsOffers = new PlaylistsOffers
+			{
+				FreePlaylists = [.. PlaylistDB.PlaylistsOffers.FreePlaylists],
+				AvailablePlaylists = [.. PlaylistDB.PlaylistsOffers.AvailablePlaylists],
+				VisiblePlaylists = [.. PlaylistDB.PlaylistsOffers.VisiblePlaylists],
+				HiddenPlaylists = [.. PlaylistDB.PlaylistsOffers.HiddenPlaylists],
+				Subscribed = [.. PlaylistDB.PlaylistsOffers.Subscribed]
+			}
+		};
+	}
+
+	private PlaylistAssets BuildPlaylistAssets(string platform, string playlistName)
+	{
+		return new PlaylistAssets
+		{
+			En = new LocalizedAssets
+			{
+				Cover = BuildBundleUrl(platform, playlistName),
+				CoverDetails = BuildBundleUrl(platform, $"{playlistName}_details")
+			}
+		};
+	}
+
+	private string BuildBundleUrl(string platform, string bundleName)
+		=> $"{CdnBaseUrl}/bundles/{ClientPlatform.Normalize(platform)}/{NormalizeBundleName(bundleName)}.bundle";
+
+	private string CdnBaseUrl
+	{
+		get
+		{
+			string trimmedUrl = urlSettings.Value.CDNUrl.Trim().TrimEnd('/');
+			return trimmedUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+				|| trimmedUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase)
+				? trimmedUrl
+				: $"https://{trimmedUrl}";
+		}
+	}
+
+	private static string NormalizeBundleName(string bundleName)
+	{
+		string normalizedName = bundleName.Trim().Replace('\\', '/');
+		if (Uri.TryCreate(normalizedName, UriKind.Absolute, out Uri? uri))
+			normalizedName = uri.LocalPath;
+
+		return Path.GetFileNameWithoutExtension(normalizedName);
 	}
 }
 

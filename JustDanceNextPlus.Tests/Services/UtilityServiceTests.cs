@@ -73,7 +73,7 @@ public class UtilityServiceTests
         string mapName = "TestMap";
         string mapFolder = Path.Combine(_baseMapsPath, mapName);
         string assetName = "cover";
-        string assetFolder = Path.Combine(mapFolder, assetName);
+        string assetFolder = Path.Combine(mapFolder, ClientPlatform.DefaultPlatform, "Cover");
         string expectedFile = Path.Combine(assetFolder, "cover.png");
         _mockFileSystem.Setup(fs => fs.DirectoryExists(assetFolder)).Returns(true);
         _mockFileSystem.Setup(fs => fs.GetFiles(assetFolder, "*", SearchOption.TopDirectoryOnly)).Returns([expectedFile]);
@@ -82,7 +82,7 @@ public class UtilityServiceTests
         string result = _service.GetAssetUrl(mapFolder, assetName);
 
         // Assert
-        Assert.Equal($"https://test.cdn.com/maps/{mapName}/cover/cover.png", result);
+        Assert.Equal($"https://test.cdn.com/maps/{mapName}/NX/Cover/cover.png", result);
     }
 
     [Fact]
@@ -91,7 +91,7 @@ public class UtilityServiceTests
         // Arrange
         string mapFolder = "C:\\maps\\TestMap";
         string assetName = "cover";
-        string assetFolder = Path.Combine(mapFolder, assetName);
+        string assetFolder = Path.Combine(mapFolder, ClientPlatform.DefaultPlatform, "Cover");
         _mockFileSystem.Setup(fs => fs.DirectoryExists(assetFolder)).Returns(false);
 
         // Act & Assert
@@ -104,7 +104,7 @@ public class UtilityServiceTests
         // Arrange
         string mapFolder = "C:\\maps\\TestMap";
         string assetName = "songTitleLogo";
-        string assetFolder = Path.Combine(mapFolder, assetName);
+        string assetFolder = Path.Combine(mapFolder, ClientPlatform.DefaultPlatform, assetName);
         _mockFileSystem.Setup(fs => fs.DirectoryExists(assetFolder)).Returns(false);
 
         // Act
@@ -148,12 +148,12 @@ public class UtilityServiceTests
 		// Use the FULL path to build the dictionary keys for the mock setup.
 		Dictionary<string, long> filesWithLengths = new()
 		{
-            [Path.Combine(mapFolder, "cover", "abc.png")] = 100L,
-            [Path.Combine(mapFolder, "audioPreview_opus", "def.opus")] = 200L,
-            [Path.Combine(mapFolder, "audio", "ghi.opus")] = 300L,
-            [Path.Combine(mapFolder, "coachesSmall", "jkl.png")] = 400L,
-            [Path.Combine(mapFolder, "coachesLarge", "mno.png")] = 500L,
-            [Path.Combine(mapFolder, "MapPackage", "pqr.bundle")] = 600L,
+            [Path.Combine(mapFolder, "NX", "Cover", "abc.png")] = 100L,
+            [Path.Combine(mapFolder, "AudioPreview_opus", "def.opus")] = 200L,
+            [Path.Combine(mapFolder, "Audio_opus", "ghi.opus")] = 300L,
+            [Path.Combine(mapFolder, "NX", "CoachesSmall", "jkl.png")] = 400L,
+            [Path.Combine(mapFolder, "NX", "CoachesLarge", "mno.png")] = 500L,
+            [Path.Combine(mapFolder, "NX", "MapPackage", "pqr.bundle")] = 600L,
             [Path.Combine(mapFolder, "videoPreview", "pv_small.webm")] = 800L,
             [Path.Combine(mapFolder, "videoPreview", "pv_large.webm")] = 1200L,
             [Path.Combine(mapFolder, "video", "small_video.webm")] = 1000L, //1st small video
@@ -294,37 +294,37 @@ public class UtilityServiceTests
         string mapFolder = Path.Combine(_baseMapsPath, mapName);
 
         // audioPreview_opus
-        string audioPreviewFolder = Path.Combine(mapFolder, "audioPreview_opus");
+        string audioPreviewFolder = Path.Combine(mapFolder, "AudioPreview_opus");
         _mockFileSystem.Setup(fs => fs.DirectoryExists(audioPreviewFolder)).Returns(true);
         _mockFileSystem.Setup(fs => fs.GetFiles(audioPreviewFolder, "*", SearchOption.TopDirectoryOnly)).Returns([Path.Combine(audioPreviewFolder, "preview.opus")]);
 
         // coachesLarge
-        string coachesLargeFolder = Path.Combine(mapFolder, "coachesLarge");
+        string coachesLargeFolder = Path.Combine(mapFolder, "NX", "CoachesLarge");
         _mockFileSystem.Setup(fs => fs.DirectoryExists(coachesLargeFolder)).Returns(true);
         _mockFileSystem.Setup(fs => fs.GetFiles(coachesLargeFolder, "*", SearchOption.TopDirectoryOnly)).Returns([Path.Combine(coachesLargeFolder, "cl.png")]);
 
         // coachesSmall
-        string coachesSmallFolder = Path.Combine(mapFolder, "coachesSmall");
+        string coachesSmallFolder = Path.Combine(mapFolder, "NX", "CoachesSmall");
         _mockFileSystem.Setup(fs => fs.DirectoryExists(coachesSmallFolder)).Returns(true);
         _mockFileSystem.Setup(fs => fs.GetFiles(coachesSmallFolder, "*", SearchOption.TopDirectoryOnly)).Returns([Path.Combine(coachesSmallFolder, "cs.png")]);
 
         // cover
-        string coverFolder = Path.Combine(mapFolder, "cover");
+        string coverFolder = Path.Combine(mapFolder, "NX", "Cover");
         _mockFileSystem.Setup(fs => fs.DirectoryExists(coverFolder)).Returns(true);
         _mockFileSystem.Setup(fs => fs.GetFiles(coverFolder, "*", SearchOption.TopDirectoryOnly)).Returns([Path.Combine(coverFolder, "cover.png")]);
 
         // songTitleLogo missing
-        string songTitleLogoFolder = Path.Combine(mapFolder, "songTitleLogo");
+        string songTitleLogoFolder = Path.Combine(mapFolder, "NX", "songTitleLogo");
         _mockFileSystem.Setup(fs => fs.DirectoryExists(songTitleLogoFolder)).Returns(false);
 
         // Act
         (string audioPreview, string coachesLarge, string coachesSmall, string cover, string? songTitleLogo) = _service.GetAssetUrls(mapFolder);
 
         // Assert
-        Assert.Equal($"https://test.cdn.com/maps/{mapName}/audioPreview_opus/preview.opus", audioPreview);
-        Assert.Equal($"https://test.cdn.com/maps/{mapName}/coachesLarge/cl.png", coachesLarge);
-        Assert.Equal($"https://test.cdn.com/maps/{mapName}/coachesSmall/cs.png", coachesSmall);
-        Assert.Equal($"https://test.cdn.com/maps/{mapName}/cover/cover.png", cover);
+        Assert.Equal($"https://test.cdn.com/maps/{mapName}/AudioPreview_opus/preview.opus", audioPreview);
+        Assert.Equal($"https://test.cdn.com/maps/{mapName}/NX/CoachesLarge/cl.png", coachesLarge);
+        Assert.Equal($"https://test.cdn.com/maps/{mapName}/NX/CoachesSmall/cs.png", coachesSmall);
+        Assert.Equal($"https://test.cdn.com/maps/{mapName}/NX/Cover/cover.png", cover);
         Assert.Null(songTitleLogo);
     }
 

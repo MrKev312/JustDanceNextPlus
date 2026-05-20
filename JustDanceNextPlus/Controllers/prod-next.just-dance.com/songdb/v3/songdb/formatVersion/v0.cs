@@ -11,6 +11,7 @@ public class V0(IMapService mapService) : ControllerBase
 	[HttpGet]
 	public IActionResult Get()
 	{
-		return Ok(mapService.SongDBTypeSet);
+		string platform = ClientPlatform.FromRequest(Request);
+		return Ok(mapService.GetSongDBTypeSet(platform));
 	}
 }
