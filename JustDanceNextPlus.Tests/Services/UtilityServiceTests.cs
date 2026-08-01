@@ -137,6 +137,61 @@ public class UtilityServiceTests
     }
 
     [Fact]
+    public void GetVideoData_WhenCuesAreAtEnd_LogsWarning()
+    {
+        // Arrange
+        string videoFolder = "C:\\maps\\TestMap\\videoPreview";
+        string videoFile = Path.Combine(videoFolder, "preview.webm");
+        _mockFileSystem.Setup(fs => fs.GetFiles(videoFolder, "*.webm", SearchOption.TopDirectoryOnly)).Returns([videoFile]);
+        _mockFileSystem.Setup(fs => fs.GetFileLength(videoFile)).Returns(10_000);
+        _mockWebmExtractor.Setup(x => x.GetCuesInfo(videoFile)).Returns(new WebmData
+        {
+            FileName = "preview",
+            Start = 9_500,
+            End = 10_000,
+            Duration = 30,
+            Bitrate = 100_000
+        });
+
+        // Act
+        WebmData[] result = _service.GetVideoData(videoFolder);
+
+        // Assert
+        Assert.Equal(4, result.Length);
+        _mockLogger.Verify(
+            x => x.Log(LogLevel.Warning, It.IsAny<EventId>(), It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("has cues at the end")), null, It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+            Times.Once);
+    }
+
+    [Fact]
+    public void NormalizeSongInfoForBoot_WhenSweatDifficultyIsZero_DefaultsToOne()
+    {
+        // Arrange
+        LocalJustDanceSongDBEntry songInfo = new()
+        {
+            MapName = "ExampleMap",
+            SweatDifficulty = 0,
+            DanceVersionLocId = new LocalizedString(0, "")
+        };
+
+        // Act
+        LocalJustDanceSongDBEntry normalized = UtilityService.NormalizeSongInfoForBoot(songInfo, "maps\\ExampleMap", _mockLogger.Object);
+
+        // Assert
+        Assert.Equal(1, normalized.SweatDifficulty);
+        _mockLogger.Verify(
+            x => x.Log(LogLevel.Warning, It.IsAny<EventId>(), It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("sweatDifficulty 0")), null, It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+            Times.Once);
+    }
+
+    [Fact]
+    public void CuesAppearAtEnd_DetectsEndLoadedCues()
+    {
+        Assert.True(UtilityService.CuesAppearAtEnd(new WebmData { Start = 9_500, End = 10_000 }, 10_000));
+        Assert.False(UtilityService.CuesAppearAtEnd(new WebmData { Start = 777, End = 834 }, 2_450_457));
+    }
+
+    [Fact]
     public void LoadAssetMetadata_CorrectlyBuildsMetadataDictionary()
     {
         // Arrange

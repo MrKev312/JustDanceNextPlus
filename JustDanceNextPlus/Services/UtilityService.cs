@@ -52,6 +52,8 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 			LocalJustDanceSongDBEntry songInfo = (await JsonSerializer.DeserializeAsync<LocalJustDanceSongDBEntry>(fs, jsonSettingsService.PrettyPascalFormat))
 				?? throw new InvalidOperationException($"Failed to deserialize SongInfo.json in {mapFolder}");
 
+			songInfo = NormalizeSongInfoForBoot(songInfo, mapFolder, logger);
+
 			if (string.IsNullOrEmpty(songInfo.MapName))
 				throw new InvalidOperationException($"MapName is null or empty in {songInfoPath}");
 
@@ -293,7 +295,23 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 
 		WebmData[] webmData = new WebmData[videoFiles.Length];
 
-		Parallel.For(0, videoFiles.Length, i => webmData[i] = webmExtractor.GetCuesInfo(videoFiles[i]));
+		Parallel.For(0, videoFiles.Length, i =>
+		{
+			WebmData data = webmExtractor.GetCuesInfo(videoFiles[i]);
+			long fileLength = fileSystem.GetFileLength(videoFiles[i]);
+
+			if (CuesAppearAtEnd(data, fileLength))
+			{
+				logger.LogWarning(
+					"WebM file '{VideoFile}' has cues at the end ({CueStart}-{CueEnd} of {FileLength} bytes). Run mkclean or regenerate with front-loaded cues.",
+					videoFiles[i],
+					data.Start,
+					data.End,
+					fileLength);
+			}
+
+			webmData[i] = data;
+		});
 
 		// Sort by bitrate
 		Array.Sort(webmData, (a, b) => a.Bitrate.CompareTo(b.Bitrate));
@@ -314,6 +332,28 @@ public class UtilityService(JsonSettingsService jsonSettingsService,
 		}
 
 		return webmData;
+	}
+
+	internal static LocalJustDanceSongDBEntry NormalizeSongInfoForBoot(LocalJustDanceSongDBEntry songInfo, string mapFolder, ILogger logger)
+	{
+		if (songInfo.SweatDifficulty != 0)
+			return songInfo;
+
+		logger.LogWarning(
+			"Map '{MapName}' in '{MapFolder}' has sweatDifficulty 0; defaulting to 1.",
+			string.IsNullOrWhiteSpace(songInfo.MapName) ? Path.GetFileName(mapFolder) : songInfo.MapName,
+			mapFolder);
+
+		return songInfo with { SweatDifficulty = 1 };
+	}
+
+	internal static bool CuesAppearAtEnd(WebmData data, long fileLength)
+	{
+		const long TailToleranceBytes = 4096;
+
+		return fileLength > TailToleranceBytes
+			&& data.Start > TailToleranceBytes
+			&& data.End >= fileLength - TailToleranceBytes;
 	}
 
 	public string GetAssetUrl(string mapFolder, string name, string platform = ClientPlatform.DefaultPlatform)
