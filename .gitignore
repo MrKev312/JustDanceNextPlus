@@ -4,11 +4,11 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Ignore copyrighted/legally-gray files
-/JustDanceNextPlus/wwwroot/maps/
+/JustDanceServer/wwwroot/maps/
 
 # Configuration files
-/JustDanceNextPlus/database/config/*.json
-!/JustDanceNextPlus/database/config/JustDanceEditions.json
+/JustDanceServer/database/config/*.json
+!/JustDanceServer/database/config/JustDanceEditions.json
 
 # Database files
 *.db

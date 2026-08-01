@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="JustDanceServer.Tests/JustDanceServer.Tests.csproj" />
+  <Project Path="JustDanceServer/JustDanceServer.csproj" />
+</Solution>

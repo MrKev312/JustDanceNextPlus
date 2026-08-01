@@ -32,4 +32,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: artifact
-        path: JustDanceNextPlus/bin/Release/net9.0/Publish
+        path: JustDanceServer/bin/Release/net9.0/Publish
