@@ -94,7 +94,11 @@ public class Program
 		builder.Services.AddSingleton<ISessionManager, SessionManager>();
 		builder.Services.AddSingleton<IPairingService, PairingService>();
 		builder.Services.AddSingleton<ITimingService, TimingService>();
-		builder.Services.AddSingleton<IUtilityService, UtilityService>();
+		builder.Services.AddSingleton<IServerMapLoader, ServerMapLoader>();
+		builder.Services.AddSingleton<IMapMediaLoader, MapMediaLoader>();
+		builder.Services.AddSingleton<IVideoFileInspector, VideoFileInspector>();
+		builder.Services.AddSingleton<IMapPackageReader, MapPackageReader>();
+		builder.Services.AddSingleton<IJdPlusAssetMetadataLoader, JdPlusAssetMetadataLoader>();
         builder.Services.AddSingleton<IWebmExtractor, WebmExtractor>();
 
 		// Inject json converters.

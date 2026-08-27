@@ -58,6 +58,6 @@ public record AssetsAuthorization
 public record AssetsmetadataAuthorization
 {
 	[JsonIgnore]
-	public WebmData[] VideoData { get; init; } = [];
-	public string VideoMpd { get => UtilityService.GenerateMpd(VideoData); }
+	public MapVideoSet? VideoSet { get; init; }
+	public string VideoMpd => VideoSet is null ? "" : DashManifestWriter.GenerateFullVideo(VideoSet);
 }

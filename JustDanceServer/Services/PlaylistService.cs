@@ -56,7 +56,7 @@ public class PlaylistService(IMapService mapService,
 			JustDancePlaylist playlistFinal = ((JustDancePlaylist)playlist) with
 			{
 				PlaylistName = playlistName,
-				Assets = BuildPlaylistAssets(ClientPlatform.DefaultPlatform, playlistName)
+				Assets = BuildPlaylistAssets(ClientPlatform.NintendoSwitch, playlistName)
 			};
 
             List<Itemlist> itemList = [.. playlistFinal.ItemList];

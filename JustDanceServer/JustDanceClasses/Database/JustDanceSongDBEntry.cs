@@ -26,6 +26,7 @@ public record JustDanceSongDBEntry
 	public int OriginalJDVersion { get; init; } = 0;
 	public string ParentMapName { get; init; } = "";
 	public int SweatDifficulty { get; init; } = 0;
+	public Dictionary<string, string> SongColors { get; init; } = [];
 	public ImmutableArray<GuidTag> TagIds { get; init; } = [];
 	public ImmutableArray<string> Tags { get; init; } = [];
 	public string Title { get; init; } = "";
@@ -39,7 +40,11 @@ public record AssetsMetadata
 
     [JsonIgnore]
 	public ImmutableArray<WebmData> VideoData { get; init; } = [];
-	public string VideoPreviewMpd => UtilityService.GenerateMpd(VideoData, true);
+
+    [JsonIgnore]
+	public ImmutableArray<WebmData> VideoDataVp8 { get; init; } = [];
+
+	public string VideoPreviewMpd => DashManifestWriter.GeneratePreview(VideoData);
 }
 
 public record AudioPreviewTrk
@@ -57,6 +62,8 @@ public record SongDBAssets
 {
 	[JsonPropertyName("audioPreview.opus")]
 	public string? AudioPreview_opus { get; init; }
+	[JsonIgnore]
+	public string? AudioPreview_ogg { get; init; }
 	[JsonPropertyName("videoPreview_HIGH.vp8.webm")]
 	public string? VideoPreview_HIGH_vp8_webm { get; init; }
 	[JsonPropertyName("videoPreview_HIGH.vp9.webm")]

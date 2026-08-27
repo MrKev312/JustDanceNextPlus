@@ -1,11 +1,13 @@
 using JustDanceServer.Services;
 
+using Microsoft.AspNetCore.Http;
+
 namespace JustDanceServer.Tests.Services;
 
 public class ClientPlatformTests
 {
     [Theory]
-    [InlineData("UbiServices_SDK_Unity_2024.Release.18_SWITCH64", ClientPlatform.DefaultPlatform)]
+    [InlineData("UbiServices_SDK_Unity_2024.Release.18_SWITCH64", ClientPlatform.NintendoSwitch)]
     [InlineData("UbiServices_SDK_Unity_2020.Release.58_PC64_ansi_dynamic", ClientPlatform.PC)]
     public void FromUserAgent_KnownSuffix_ReturnsPlatform(string userAgent, string expectedPlatform)
     {
@@ -13,13 +15,40 @@ public class ClientPlatformTests
     }
 
     [Theory]
-    [InlineData(ClientPlatform.DefaultPlatform, ClientPlatform.DefaultPlatform)]
+    [InlineData(ClientPlatform.NintendoSwitch, ClientPlatform.NintendoSwitch)]
+    [InlineData("switch", ClientPlatform.NintendoSwitch)]
     [InlineData(ClientPlatform.PC, ClientPlatform.PC)]
     [InlineData(ClientPlatform.PlayStation5, ClientPlatform.PlayStation5)]
     [InlineData(ClientPlatform.XboxSeries, ClientPlatform.XboxSeries)]
-    [InlineData("unknown", ClientPlatform.DefaultPlatform)]
-    public void Normalize_ReturnsSupportedPlatformOrDefault(string platform, string expectedPlatform)
+    public void Normalize_ReturnsExplicitSupportedPlatform(string platform, string expectedPlatform)
     {
         Assert.Equal(expectedPlatform, ClientPlatform.Normalize(platform));
     }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("unknown")]
+    public void Normalize_UnsupportedPlatform_Throws(string? platform)
+    {
+        Assert.Throws<NotSupportedException>(() => ClientPlatform.Normalize(platform));
+    }
+
+    [Fact]
+    public void FromRequest_MissingPlatform_ThrowsInsteadOfAssumingSwitch()
+    {
+        DefaultHttpContext context = new();
+
+        Assert.Throws<BadHttpRequestException>(() => ClientPlatform.FromRequest(context.Request));
+    }
+
+	[Theory]
+	[InlineData(ClientPlatform.PC, MapVideoCodec.Vp8)]
+	[InlineData(ClientPlatform.NintendoSwitch, MapVideoCodec.Vp9)]
+	[InlineData(ClientPlatform.PlayStation5, MapVideoCodec.Vp9)]
+	[InlineData(ClientPlatform.XboxSeries, MapVideoCodec.Vp9)]
+	public void GetVideoCodec_ReturnsExplicitPlatformCapability(string platform, MapVideoCodec expected)
+	{
+		Assert.Equal(expected, ClientPlatform.GetVideoCodec(platform));
+	}
 }

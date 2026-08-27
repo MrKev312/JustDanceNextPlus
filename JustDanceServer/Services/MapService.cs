@@ -12,19 +12,26 @@ namespace JustDanceServer.Services;
 
 public interface IMapService : ILoadService
 {
-    OrderedDictionary<Guid, JustDanceSongDBEntry> Songs { get; }
-    OrderedDictionary<Guid, JustDanceSongDBEntry> GetSongs(string platform);
-    OrderedDictionary<Guid, ContentAuthorization> ContentAuthorization { get; }
+    OrderedDictionary<Guid, ServerMap> Maps { get; }
+	OrderedDictionary<Guid, JustDanceSongDBEntry> Songs { get; }
+	OrderedDictionary<Guid, JustDanceSongDBEntry> GetSongs(string platform);
+    OrderedDictionary<Guid, JustDanceSongDBEntry> GetSongs(
+		string platform,
+		MapMediaLayout previewLayout);
     OrderedDictionary<Guid, ContentAuthorization> GetContentAuthorization(string platform);
     SongDBTypeSet SongDBTypeSet { get; }
-    SongDBTypeSet GetSongDBTypeSet(string platform);
-    OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>> AssetMetadataPerSong { get; }
-    OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>> GetAssetMetadataPerSong(string platform);
+	SongDBTypeSet GetSongDBTypeSet(string platform);
+	OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>> GetAssetMetadataPerSong(string platform);
+    OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>> GetAssetMetadataPerSong(
+		string platform,
+		MapMediaLayout previewLayout);
 
     Dictionary<string, Guid> MapToGuid { get; }
     List<MapTag> RecentlyAdded { get; }
 
     Guid? GetSongId(string mapName);
+    ServerMap? GetMap(string mapName);
+	bool TryGetMapName(Guid songId, out string mapName);
 }
 
 public partial class MapService(IOptions<PathSettings> pathSettings,
@@ -33,18 +40,24 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
     ILogger<MapService> logger,
     IFileSystem fileSystem) : IMapService, ILoadService
 {
+	private readonly object loadLock = new();
+	private Task? loadTask;
     private readonly PathSettings settings = pathSettings.Value;
     private readonly UrlSettings urls = urlSettings.Value;
-    public OrderedDictionary<Guid, JustDanceSongDBEntry> Songs { get; set; } = [];
-    public OrderedDictionary<Guid, ContentAuthorization> ContentAuthorization { get; set; } = [];
+    public OrderedDictionary<Guid, ServerMap> Maps { get; } = [];
+	public OrderedDictionary<Guid, JustDanceSongDBEntry> Songs { get; } = [];
     public SongDBTypeSet SongDBTypeSet { get; private set; } = new(urlSettings.Value.HostUrl);
-    public OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>> AssetMetadataPerSong { get; set; } = [];
     public Dictionary<string, Guid> MapToGuid { get; } = [];
     public List<MapTag> RecentlyAdded { get; private set; } = [];
-    private Dictionary<Guid, string> MapFoldersBySongId { get; } = [];
-    private Dictionary<string, OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>>> AssetMetadataPerPlatform { get; } = [];
+	private Dictionary<MapAssetMetadataCacheKey, OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>>> AssetMetadataCache { get; } = [];
 
-    public async Task LoadData()
+	public Task LoadData()
+	{
+		lock (loadLock)
+			return loadTask ??= LoadDataCore();
+	}
+
+    private async Task LoadDataCore()
     {
         try
         {
@@ -71,38 +84,31 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
     {
         // Load the tag service
         ITagService tagService = serviceProvider.GetRequiredService<ITagService>();
-        IUtilityService utilityService = serviceProvider.GetRequiredService<IUtilityService>();
+        IServerMapLoader mapLoader = serviceProvider.GetRequiredService<IServerMapLoader>();
+
+        Maps.Clear();
+		Songs.Clear();
+        MapToGuid.Clear();
+		AssetMetadataCache.Clear();
 
         string[] mapFolders = [.. fileSystem.GetDirectories(settings.MapsPath).Select(x => Path.Combine(settings.MapsPath, Path.GetFileName(x)))];
 
-        var loadMapTasks = mapFolders.Select(async mapFolder =>
-        {
-            (LocalJustDanceSongDBEntry songInfo, ContentAuthorization contentAuthorization, IReadOnlyDictionary<string, AssetMetadata> assetMetadata) = await LoadMapAsync(mapFolder, utilityService);
-            return new
-            {
-                songInfo.SongID,
-                MapFolder = mapFolder,
-                SongInfo = songInfo,
-                ContentAuthorization = contentAuthorization,
-                AssetMetadata = assetMetadata
-            };
-        });
+        IEnumerable<Task<ServerMap>> loadMapTasks = mapFolders
+            .Select(mapFolder => mapLoader.LoadMapAsync(mapFolder).AsTask());
 
         // Sort the results by SongID
-        var mapResults = (await Task.WhenAll(loadMapTasks)).OrderBy(result => result.SongID);
+        IEnumerable<ServerMap> mapResults = (await Task.WhenAll(loadMapTasks))
+            .OrderBy(map => map.SongId);
 		ImmutableHashSet<Guid>.Builder downloadableSongsBuilder = ImmutableHashSet.CreateBuilder<Guid>();
 
-        // Add the songs and content authorizations to the song database
-        foreach (var result in mapResults)
+        foreach (ServerMap map in mapResults)
         {
-            Guid songID = result.SongID;
-            LocalJustDanceSongDBEntry songInfo = result.SongInfo;
-			ContentAuthorization contentAuthorization = result.ContentAuthorization;
-            IReadOnlyDictionary<string, AssetMetadata> assetMetadata = result.AssetMetadata;
+            Guid songID = map.SongId;
+            JustDanceSongDBEntry songInfo = map.Song;
 
             // Split the artist by & and trim the results
             Regex regex = ArtistSplitRegex();
-            string[] artists = [.. regex.Split(result.SongInfo.Artist).Select(x => x.Trim())];
+            string[] artists = [.. regex.Split(songInfo.Artist).Select(x => x.Trim())];
 
             foreach (string artist in artists)
             {
@@ -125,10 +131,8 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
                 };
             }
 
-            Songs[songID] = songInfo;
-            ContentAuthorization[songID] = contentAuthorization;
-            AssetMetadataPerSong[songID] = assetMetadata;
-            MapFoldersBySongId[songID] = result.MapFolder;
+            Maps[songID] = map with { Song = songInfo };
+			Songs[songID] = songInfo;
             downloadableSongsBuilder.Add(songID);
             MapToGuid[songInfo.MapName] = songID;
         }
@@ -144,9 +148,9 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
 
         Dictionary<string, (int GroupLocId, List<Guid> SongIds, string Tag)> tempPacks = [];
 
-        foreach (KeyValuePair<Guid, JustDanceSongDBEntry> song in Songs)
+        foreach ((Guid songId, ServerMap map) in Maps)
         {
-            foreach (string tag in song.Value.Tags)
+            foreach (string tag in map.Song.Tags)
             {
                 if (tag != "jdplus" && !tag.StartsWith("songpack_") && !tag.StartsWith("Music_Pack_"))
                     continue;
@@ -178,7 +182,7 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
                     tempPacks[tag] = packData;
                 }
 
-                packData.SongIds.Add(song.Key);
+                packData.SongIds.Add(songId);
             }
         }
 
@@ -252,15 +256,6 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
         return Task.FromResult(recentlyAddedSongs);
     }
 
-    private static async Task<(LocalJustDanceSongDBEntry, ContentAuthorization, IReadOnlyDictionary<string, AssetMetadata>)> LoadMapAsync(string mapFolder, IUtilityService utilityService)
-    {
-        LocalJustDanceSongDBEntry songInfo = await utilityService.LoadMapDBEntryAsync(mapFolder);
-        ContentAuthorization contentAuthorization = utilityService.LoadContentAuthorization(mapFolder);
-        IReadOnlyDictionary<string, AssetMetadata> assetMetadata = utilityService.LoadAssetMetadata(mapFolder);
-
-        return (songInfo, contentAuthorization, assetMetadata);
-    }
-
     public Guid? GetSongId(string mapName)
     {
         return MapToGuid.TryGetValue(mapName, out Guid songId)
@@ -268,76 +263,183 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
             : null;
     }
 
-    public OrderedDictionary<Guid, JustDanceSongDBEntry> GetSongs(string platform)
+    public ServerMap? GetMap(string mapName)
+    {
+        Guid? songId = GetSongId(mapName);
+        return songId.HasValue && Maps.TryGetValue(songId.Value, out ServerMap? map)
+            ? map
+            : null;
+    }
+
+	public bool TryGetMapName(Guid songId, out string mapName)
+	{
+		if (Maps.TryGetValue(songId, out ServerMap? map))
+		{
+			mapName = map.Song.MapName;
+			return true;
+		}
+
+		mapName = string.Empty;
+		return false;
+	}
+
+	public OrderedDictionary<Guid, JustDanceSongDBEntry> GetSongs(
+		string platform,
+		MapMediaLayout previewLayout)
     {
         string normalizedPlatform = ClientPlatform.Normalize(platform);
-        if (normalizedPlatform == ClientPlatform.DefaultPlatform)
-            return Songs;
-
-        IUtilityService utilityService = serviceProvider.GetRequiredService<IUtilityService>();
         OrderedDictionary<Guid, JustDanceSongDBEntry> platformSongs = [];
 
-        foreach ((Guid songId, JustDanceSongDBEntry song) in Songs)
+        foreach ((Guid songId, ServerMap map) in Maps)
         {
-            if (!MapFoldersBySongId.TryGetValue(songId, out string? mapFolder))
-                continue;
-
-            platformSongs[songId] = song with
+			MapMediaAssets media = map.GetMedia(MapMediaLayouts.JDPlus);
+			MapMediaAssets previewMedia = map.GetMedia(previewLayout);
+            platformSongs[songId] = map.Song with
             {
-                Assets = utilityService.LoadSongDBAssets(mapFolder, [.. song.AssetsMetadata.VideoData], normalizedPlatform)
+				AssetsMetadata = map.Song.AssetsMetadata with
+				{
+					VideoDataVp8 = [.. previewMedia.GetPreviewVideos("vp8").Qualities.Select(quality => quality.Data)],
+					VideoData = [.. previewMedia.GetPreviewVideos("vp9").Qualities.Select(quality => quality.Data)]
+				},
+				Assets = ProjectJdPlusSongAssets(
+					media,
+					previewMedia,
+					normalizedPlatform,
+					map.Song.MapName)
             };
         }
 
         return platformSongs;
     }
 
+	public OrderedDictionary<Guid, JustDanceSongDBEntry> GetSongs(string platform)
+		=> GetSongs(platform, MapMediaLayouts.JDPlus);
+
     public OrderedDictionary<Guid, ContentAuthorization> GetContentAuthorization(string platform)
     {
         string normalizedPlatform = ClientPlatform.Normalize(platform);
-        if (normalizedPlatform == ClientPlatform.DefaultPlatform)
-            return ContentAuthorization;
-
-        IUtilityService utilityService = serviceProvider.GetRequiredService<IUtilityService>();
         OrderedDictionary<Guid, ContentAuthorization> platformContentAuthorization = [];
 
-        foreach ((Guid songId, ContentAuthorization contentAuthorization) in ContentAuthorization)
+        foreach ((Guid songId, ServerMap map) in Maps)
         {
-            if (!MapFoldersBySongId.TryGetValue(songId, out string? mapFolder))
-                continue;
-
-            platformContentAuthorization[songId] = contentAuthorization with
+			MapVideoSet preferredVideos = map.GetFullVideos(
+				ClientPlatform.GetVideoCodec(normalizedPlatform).ToCodecName());
+			MapVideoSet vp8Videos = map.GetFullVideos(MapVideoCodec.Vp8.ToCodecName());
+			MapVideoSet vp9Videos = map.GetFullVideos(MapVideoCodec.Vp9.ToCodecName());
+			MapMediaAssets media = map.GetMedia(MapMediaLayouts.JDPlus);
+			IReadOnlyDictionary<string, string> assets = media.GetPlatformAssets(normalizedPlatform);
+			platformContentAuthorization[songId] = new ContentAuthorization
             {
-                Assets = utilityService.LoadContentAuthorizationAssets(mapFolder, contentAuthorization.AssetsMetadata.VideoData, normalizedPlatform)
+				AssetsMetadata = new AssetsmetadataAuthorization
+				{
+					VideoSet = preferredVideos
+				},
+				Assets = ProjectJdPlusContentAuthorizationAssets(
+					media,
+					vp8Videos,
+					vp9Videos,
+					assets,
+					map.Song.MapName,
+					normalizedPlatform)
             };
         }
 
         return platformContentAuthorization;
     }
 
-    public OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>> GetAssetMetadataPerSong(string platform)
+	public SongDBTypeSet GetSongDBTypeSet(string platform) => SongDBTypeSet;
+
+	public OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>> GetAssetMetadataPerSong(string platform)
+		=> GetAssetMetadataPerSong(platform, MapMediaLayouts.JDPlus);
+
+	public OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>> GetAssetMetadataPerSong(
+		string platform,
+		MapMediaLayout previewLayout)
     {
         string normalizedPlatform = ClientPlatform.Normalize(platform);
-        if (normalizedPlatform == ClientPlatform.DefaultPlatform)
-            return AssetMetadataPerSong;
-
-        if (AssetMetadataPerPlatform.TryGetValue(normalizedPlatform, out OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>>? cachedMetadata))
+		MapAssetMetadataCacheKey cacheKey = new(normalizedPlatform, previewLayout.FolderName);
+		if (AssetMetadataCache.TryGetValue(cacheKey, out OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>>? cachedMetadata))
             return cachedMetadata;
 
-        IUtilityService utilityService = serviceProvider.GetRequiredService<IUtilityService>();
         OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>> platformMetadata = [];
+        IJdPlusAssetMetadataLoader metadataLoader = serviceProvider.GetRequiredService<IJdPlusAssetMetadataLoader>();
 
-        foreach ((Guid songId, string mapFolder) in MapFoldersBySongId)
-            platformMetadata[songId] = utilityService.LoadAssetMetadata(mapFolder, normalizedPlatform);
+        foreach ((Guid songId, ServerMap map) in Maps)
+			platformMetadata[songId] = metadataLoader.Load(
+				map.FolderPath,
+				normalizedPlatform,
+				previewLayout);
 
-        AssetMetadataPerPlatform[normalizedPlatform] = platformMetadata;
+		AssetMetadataCache[cacheKey] = platformMetadata;
         return platformMetadata;
     }
 
-    public SongDBTypeSet GetSongDBTypeSet(string platform)
-    {
-        return SongDBTypeSet;
-    }
+	private static SongDBAssets ProjectJdPlusSongAssets(
+		MapMediaAssets media,
+		MapMediaAssets previewMedia,
+		string platform,
+		string mapName)
+	{
+		IReadOnlyDictionary<string, string> platformAssets = media.GetPlatformAssets(platform);
+		IReadOnlyList<MapVideoQuality> vp8 = previewMedia.GetPreviewVideos("vp8").Qualities;
+		IReadOnlyList<MapVideoQuality> vp9 = previewMedia.GetPreviewVideos("vp9").Qualities;
+		SongDBAssets assets = new()
+		{
+			AudioPreview_opus = media.PreviewAudioUrl,
+			VideoPreview_LOW_vp8_webm = vp8[0].Url,
+			VideoPreview_MID_vp8_webm = vp8[1].Url,
+			VideoPreview_HIGH_vp8_webm = vp8[2].Url,
+			VideoPreview_ULTRA_vp8_webm = vp8[3].Url,
+			VideoPreview_LOW_vp9_webm = vp9[0].Url,
+			VideoPreview_MID_vp9_webm = vp9[1].Url,
+			VideoPreview_HIGH_vp9_webm = vp9[2].Url,
+			VideoPreview_ULTRA_vp9_webm = vp9[3].Url,
+			CoachesLarge = RequireAsset(platformAssets, "CoachesLarge", mapName, platform),
+			CoachesSmall = RequireAsset(platformAssets, "CoachesSmall", mapName, platform),
+			Cover = RequireAsset(platformAssets, "Cover", mapName, platform),
+			SongTitleLogo = platformAssets.GetValueOrDefault("songTitleLogo")
+		};
+
+		return assets;
+	}
+
+	private static AssetsAuthorization ProjectJdPlusContentAuthorizationAssets(
+		MapMediaAssets media,
+		MapVideoSet vp8Videos,
+		MapVideoSet vp9Videos,
+		IReadOnlyDictionary<string, string> platformAssets,
+		string mapName,
+		string platform)
+	{
+		IReadOnlyList<MapVideoQuality> vp8 = vp8Videos.Qualities;
+		IReadOnlyList<MapVideoQuality> vp9 = vp9Videos.Qualities;
+		return new AssetsAuthorization
+		{
+			AudioOpus = media.FullAudioUrl,
+			VideoLowHdWebm = vp8[0].Url,
+			VideoLowVP9Webm = vp9[0].Url,
+			VideoMidHdWebm = vp8[1].Url,
+			VideoMidVP9Webm = vp9[1].Url,
+			VideoHighHdWebm = vp8[2].Url,
+			VideoHighVP9Webm = vp9[2].Url,
+			VideoUltraHdWebm = vp8[3].Url,
+			VideoUltraVP9Webm = vp9[3].Url,
+			MapPackage = RequireAsset(platformAssets, "MapPackage", mapName, platform)
+		};
+	}
+
+	private static string RequireAsset(
+		IReadOnlyDictionary<string, string> assets,
+		string role,
+		string mapName,
+		string platform)
+		=> assets.TryGetValue(role, out string? url)
+			? url
+			: throw new InvalidDataException(
+				$"Map '{mapName}' is missing required {role} assets for {platform}.");
 
     [GeneratedRegex(@"(?: & | ft. | feat. | featuring )", RegexOptions.IgnoreCase, "en-US")]
     private static partial Regex ArtistSplitRegex();
+
+	private readonly record struct MapAssetMetadataCacheKey(string Platform, string PreviewLayout);
 }

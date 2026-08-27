@@ -75,7 +75,7 @@ public class BundleService(ILogger<BundleService> logger,
             {
                 Assets = kvp.Value.Assets with
                 {
-                    BackgroundImage = BuildLiveTileBundleUrl(ClientPlatform.DefaultPlatform, kvp.Value.Assets.BackgroundImage)
+                    BackgroundImage = BuildLiveTileBundleUrl(ClientPlatform.NintendoSwitch, kvp.Value.Assets.BackgroundImage)
                 }
             });
 
@@ -146,7 +146,7 @@ public class BundleService(ILogger<BundleService> logger,
                 TracklistLimited = edition.TracklistLimited,
                 TracklistExtendedLocId = edition.TracklistExtendedLocId ?? localizedStringService.GetAddLocalizedTag(trackExtLocId),
                 TracklistLimitedLocId = edition.TracklistLimitedLocId ?? localizedStringService.GetAddLocalizedTag(trackLimLocId),
-                Assets = new() { ProductGroupBundle = BuildVersionBundleUrl(ClientPlatform.DefaultPlatform, edition.Name) }
+                Assets = new() { ProductGroupBundle = BuildVersionBundleUrl(ClientPlatform.NintendoSwitch, edition.Name) }
             };
             tempProductGroups.Add((guid, productGroup));
         }
@@ -166,7 +166,7 @@ public class BundleService(ILogger<BundleService> logger,
             TracklistLimited = [],
             TracklistExtendedLocId = localizedStringService.GetLocalizedTag(0)!,
             TracklistLimitedLocId = localizedStringService.GetLocalizedTag(0)!,
-            Assets = new() { ProductGroupBundle = BuildVersionBundleUrl(ClientPlatform.DefaultPlatform, "jdplus") }
+            Assets = new() { ProductGroupBundle = BuildVersionBundleUrl(ClientPlatform.NintendoSwitch, "jdplus") }
         };
         tempProductGroups.Add((subscriptionGuid, jdPlus));
 

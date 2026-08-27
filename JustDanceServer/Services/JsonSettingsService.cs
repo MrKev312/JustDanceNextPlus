@@ -31,6 +31,7 @@ public class JsonSettingsService
 	public JsonSerializerOptions PrettyPascalFormat { get; set; } = new()
 	{
 		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+		PropertyNameCaseInsensitive = true,
 		WriteIndented = true,
 		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
 	};
