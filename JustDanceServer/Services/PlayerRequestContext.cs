@@ -16,6 +16,31 @@ public sealed record PlayerRequestContext(
 	public bool SupportsMapHistory => Family == ProgressionFamily.JDUnlimited && GameYear is >= 2019 and <= 2022;
 }
 
+public static class PlayerRequestContextResolver
+{
+	public static PlayerRequestContext FromRequest(HttpRequest request, ISessionManager sessions)
+	{
+		RequestSessionResolver.TryResolve(request, sessions, out Session? session);
+		Guid applicationId = Guid.TryParse(request.Headers["Ubi-AppId"].FirstOrDefault(), out Guid parsedApplicationId)
+			? parsedApplicationId : Guid.Empty;
+		IUbisoftClientProfile? client = UbisoftClientProfiles.All.FirstOrDefault(value =>
+			value.ApplicationId == (session?.UbiAppId ?? applicationId));
+		int? year = client switch
+		{
+			ClassicJduClientProfile classic => classic.GameYear,
+			ModernJduClientProfile modern => modern.GameYear,
+			_ => session is null && WdfRequestResolver.TryGetGameYear(request, out int requestedYear)
+				? requestedYear : null
+		};
+		return new PlayerRequestContext(
+			session?.PlayerId,
+			year.HasValue ? ProgressionFamily.JDUnlimited : ProgressionFamily.JDPlus,
+			year,
+			client?.PlatformType ?? RequestSessionResolver.GetPlatform(request),
+			LocaleFallback.Normalize(request.Headers.AcceptLanguage.FirstOrDefault()));
+	}
+}
+
 public static class LocaleFallback
 {
 	public static string Normalize(string? locale)

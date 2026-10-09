@@ -1,9 +1,7 @@
-using JustDanceServer.Configuration;
 using JustDanceServer.JustDanceClasses.Endpoints;
 using JustDanceServer.Services;
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 
 using System.Text.Json;
 
@@ -11,7 +9,7 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.session.v2;
 
 [ApiController]
 [Route("session/v2/pairing-code")]
-public class PairingCode(IPairingService pairingService, IOptions<UrlSettings> urlSettings) : ControllerBase
+public class PairingCode(IPairingService pairingService) : ControllerBase
 {
 	[HttpPost(Name = "PostPairingCode")]
 	public IActionResult PostPairingCode([FromBody] JsonElement body)

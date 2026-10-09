@@ -1,19 +1,25 @@
 ﻿using JustDanceServer.Services;
 
+using JustDanceServer.Configuration;
+
 using Microsoft.AspNetCore.Mvc;
 
-using System.IdentityModel.Tokens.Jwt;
 using System.Text.Json;
+using Microsoft.Extensions.Primitives;
 
 namespace JustDanceServer.Controllers.prod_next.just_dance.com.session.v2;
 
 [ApiController]
 [Route("session/v2")]
-public class Session(ITimingService timingService, ISessionManager sessionManager, IBundleService bundleService) : ControllerBase
+public class Session(
+	ITimingService timingService,
+	ISessionManager sessionManager,
+	IBundleService bundleService,
+	IPlatformTicketVerifierRegistry platformTicketVerifiers) : ControllerBase
 {
 	[HttpPost("session")]
 	[HttpPost("refresh-purchase")]
-	public IActionResult PostSessions2([FromBody] JsonElement body)
+	public async Task<IActionResult> PostSessions2([FromBody] JsonElement body)
 	{
 		// Guard: if body is not an object, skip all property access
 		Guid bootID = Guid.NewGuid();
@@ -48,15 +54,38 @@ public class Session(ITimingService timingService, ISessionManager sessionManage
 		Services.Session? session;
 		if (nsaIdToken != null)
 		{
-			// Switch flow: parse JWT to get subject
-			JwtSecurityToken jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(nsaIdToken);
-			string? subject = jwtToken.Payload.Sub;
-			if (subject == null)
+			if (!Request.Headers.TryGetValue("ubi-appid", out StringValues platformAppIdValues)
+				|| !Guid.TryParse(platformAppIdValues.ToString(), out Guid platformAppId)
+				|| !UbisoftApplicationProfiles.TryGetSessionIdentity(
+					platformAppId,
+					out UbisoftSessionIdentity? platformSessionIdentity))
+			{
+				return BadRequest("Missing or unsupported 'ubi-appid' header");
+			}
+
+			VerifiedPlatformTicket? platformTicket = await platformTicketVerifiers.VerifyAsync(
+				"switch",
+				nsaIdToken,
+				new PlatformTicketContext(
+					"switch",
+					null,
+					string.Empty,
+					platformSessionIdentity.PlatformApplicationIds),
+				HttpContext.RequestAborted);
+			if (platformTicket is null)
 				return BadRequest("Invalid 'userOwnership.dlcCheckToken.nsaIdToken' field in request body");
 
-			session = sessionId == Guid.Empty
-				? sessionManager.GetSessionByNSATicket(subject)
-				: sessionManager.GetSessionById(sessionId);
+			if (sessionId != Guid.Empty)
+			{
+				session = sessionManager.GetSessionById(sessionId);
+			}
+			else
+			{
+				string identityKey = SessionIdentityKey.ForApplication(
+					$"{platformTicket.Provider}:{platformTicket.Subject}",
+					platformAppId);
+				session = sessionManager.GetSessionByIdentityKey(identityKey);
+			}
 		}
 		else if (sessionId != Guid.Empty)
 		{
@@ -64,13 +93,8 @@ public class Session(ITimingService timingService, ISessionManager sessionManage
 		}
 		else
 		{
-			// Phone controller flow: sessionId is empty, find session by ubi-appid
-			session = null;
-			if (Request.Headers.TryGetValue("ubi-appid", out var appIdValues)
-				&& Guid.TryParse(appIdValues.ToString(), out Guid appId))
-			{
-				session = sessionManager.GetSessionByAppId(appId);
-			}
+			// A public application ID never identifies the phone or its paired player.
+			RequestSessionResolver.TryResolve(Request, sessionManager, out session);
 		}
 
 		if (session == null)

@@ -5,7 +5,7 @@ namespace JustDanceServer.Services;
 
 public interface IPairingService
 {
-	PairingEntry CreatePairing(string ipAddress, int port, string pkcs12Certificate, string tlsCertificate, string protocol, string titleId, string displayName = "JustDanceServer", int platform = 38);
+	PairingEntry CreatePairing(string ipAddress, int port, string pkcs12Certificate, string tlsCertificate, string protocol, string titleId, string displayName = "JustDanceServer", int platform = 38, int codeLength = 8);
 	PairingEntry? GetPairingInfo(string code);
 	PairingEntry? AddPhone(string code, PairedPhone phone);
 	bool RemovePhone(string code, string deviceId);
@@ -18,12 +18,12 @@ public class PairingService : IPairingService
 	readonly ConcurrentDictionary<string, Timer> expirationTimers = new();
 
 	private const int PairingExpirationMinutes = 10;
-	private const int CodeLength = 8;
+	private const int DefaultCodeLength = 8;
 	private const string CodeChars = "0123456789";
 
-	public PairingEntry CreatePairing(string ipAddress, int port, string pkcs12Certificate, string tlsCertificate, string protocol, string titleId, string displayName = "JustDanceServer", int platform = 38)
+	public PairingEntry CreatePairing(string ipAddress, int port, string pkcs12Certificate, string tlsCertificate, string protocol, string titleId, string displayName = "JustDanceServer", int platform = 38, int codeLength = DefaultCodeLength)
 	{
-		string code = GenerateCode();
+		string code = GenerateCode(Math.Clamp(codeLength, 4, 12));
 
 		PairingEntry entry = new()
 		{
@@ -86,13 +86,13 @@ public class PairingService : IPairingService
 		return pairings.TryRemove(code, out _);
 	}
 
-	string GenerateCode()
+	string GenerateCode(int codeLength)
 	{
-		Span<char> code = stackalloc char[CodeLength];
+		Span<char> code = stackalloc char[codeLength];
 
 		do
 		{
-			for (int i = 0; i < CodeLength; i++)
+			for (int i = 0; i < codeLength; i++)
 				code[i] = CodeChars[RandomNumberGenerator.GetInt32(CodeChars.Length)];
 		}
 		while (pairings.ContainsKey(new string(code)));

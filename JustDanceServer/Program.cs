@@ -72,6 +72,13 @@ public class Program
 		// Bind configuration.
 		builder.Services.Configure<PathSettings>(builder.Configuration.GetSection("Paths"));
 		builder.Services.Configure<UrlSettings>(builder.Configuration.GetSection("HostingUrls"));
+		builder.Services.Configure<PlatformAuthenticationSettings>(
+			builder.Configuration.GetSection("PlatformAuthentication"));
+		builder.Services.AddHttpClient("NintendoJwks")
+			.ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+			{
+				AllowAutoRedirect = false
+			});
 
 		// Configure Entity Framework with SQLite.
 		SqliteConnectionStringBuilder connectionString = new()
@@ -93,6 +100,12 @@ public class Program
 		builder.Services.AddScoped<IClassicProfileService, ClassicProfileService>();
 		builder.Services.AddScoped<IProgressionService, ProgressionService>();
 		builder.Services.AddScoped<IPlayerMetadataService, PlayerMetadataService>();
+		builder.Services.AddScoped<IPlayerIdentityService, PlayerIdentityService>();
+		builder.Services.AddSingleton<IPlatformTicketVerifier, NintendoPlatformTicketVerifier>();
+		builder.Services.AddSingleton<IPlatformTicketVerifier, DevelopmentPlatformTicketVerifier>();
+		builder.Services.AddSingleton<IPlatformTicketVerifierRegistry, PlatformTicketVerifierRegistry>();
+		builder.Services.AddSingleton<ISessionLoginIdentityParser, SessionLoginIdentityParser>();
+		builder.Services.AddSingleton<IBasicCredentialVerifier, BasicCredentialVerifier>();
 		builder.Services.AddScoped<IPlayerActivityService, PlayerActivityService>();
 		builder.Services.AddScoped<IMapCompletionService, MapCompletionService>();
 		builder.Services.AddSingleton<IDatabaseInitializer, DatabaseInitializer>();

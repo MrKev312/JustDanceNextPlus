@@ -4,6 +4,7 @@ using JustDanceServer.Services;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Primitives;
 
 using System.Text.Json;
 
@@ -57,7 +58,7 @@ public class MobileInfo(IPairingService pairingService, IOptions<UrlSettings> ur
 		string? deviceId = null;
 
 		// Try to get deviceId from query or session context
-		if (Request.Query.TryGetValue("deviceId", out var devIdValues))
+		if (Request.Query.TryGetValue("deviceId", out StringValues devIdValues))
 			deviceId = devIdValues.ToString();
 
 		if (string.IsNullOrEmpty(deviceId))

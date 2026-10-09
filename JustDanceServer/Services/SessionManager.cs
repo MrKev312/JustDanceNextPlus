@@ -1,4 +1,6 @@
-﻿using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Tokens;
+
+using JustDanceServer.Configuration;
 
 using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
@@ -8,113 +10,166 @@ namespace JustDanceServer.Services;
 
 public interface ISessionManager
 {
-	Session? GetSessionByNSATicket(string ticket);
+	Session? GetSessionByIdentityKey(string identityKey);
 	Session? GetSessionById(Guid sessionId);
 	bool TryGetSessionById(Guid sessionId, [MaybeNullWhen(false)] out Session session);
 	Session? GetSessionByAppId(Guid appId);
 	IReadOnlyCollection<Session> GetSessions();
-	(string ticket, Guid sessionId) GenerateSession(Guid playerId, Guid appId, string NSAToken);
-	(string ticket, Guid sessionId) GenerateOrRefreshSession(Guid playerId, Guid appId, string NSAToken);
+	IReadOnlyCollection<Session> GetSessionsByPlayerId(Guid playerId);
+	bool TouchSession(Guid sessionId);
+	bool RemoveSession(Guid sessionId);
+	(string ticket, Guid sessionId) GenerateSession(Guid playerId, Guid appId, string identityKey);
+	(string ticket, Guid sessionId) GenerateOrRefreshSession(Guid playerId, Guid appId, string identityKey);
 	TimeSpan SessionExpirationTimeSpan { get; }
 }
 
-public class SessionManager(ISecurityService securityService) : ISessionManager
+public class SessionManager(
+	ISecurityService securityService,
+	IPartyService? partyService = null,
+	TimeProvider? timeProvider = null) : ISessionManager, IDisposable
 {
-	readonly ConcurrentDictionary<string, Guid> NSATicketToSessionId = new();
+	private readonly TimeProvider clock = timeProvider ?? TimeProvider.System;
+	private readonly Lock stateLock = new();
+	private readonly ConcurrentDictionary<Guid, long> expirationVersions = new();
+	private long nextExpirationVersion;
+	readonly ConcurrentDictionary<string, Guid> identityKeyToSessionId = new();
 
 	readonly ConcurrentDictionary<Guid, Session> sessions = new();
 	readonly ConcurrentDictionary<Guid, Guid> appIdToSessionId = new();
-	readonly ConcurrentDictionary<Guid, Timer> sessionTimers = new();
+	readonly ConcurrentDictionary<Guid, ITimer> sessionTimers = new();
 
 	private const int SessionExpirationHours = 3;
 	private const int SessionExpirationGraceMinutes = 10;
 
 	public TimeSpan SessionExpirationTimeSpan => TimeSpan.FromHours(SessionExpirationHours);
 
-	public Session? GetSessionByNSATicket(string ticket)
+	public Session? GetSessionByIdentityKey(string identityKey)
 	{
-		if (!NSATicketToSessionId.TryGetValue(ticket, out Guid sessionId))
-			return null;
+		lock (stateLock)
+		{
+			if (!identityKeyToSessionId.TryGetValue(identityKey, out Guid sessionId))
+				return null;
 
-		sessions.TryGetValue(sessionId, out Session? session);
+			sessions.TryGetValue(sessionId, out Session? session);
 
-		return session;
+			return session;
+		}
 	}
 
 	public Session? GetSessionById(Guid sessionId)
 	{
-		sessions.TryGetValue(sessionId, out Session? session);
-		return session;
+		lock (stateLock)
+		{
+			sessions.TryGetValue(sessionId, out Session? session);
+			return session;
+		}
 	}
 
 	public bool TryGetSessionById(Guid sessionId, [MaybeNullWhen(false)] out Session session)
 	{
-		return sessions.TryGetValue(sessionId, out session);
+		lock (stateLock)
+		{
+			return sessions.TryGetValue(sessionId, out session);
+		}
 	}
 
 	public Session? GetSessionByAppId(Guid appId)
 	{
-		appIdToSessionId.TryGetValue(appId, out Guid sessionId);
-		return GetSessionById(sessionId);
+		lock (stateLock)
+		{
+			appIdToSessionId.TryGetValue(appId, out Guid sessionId);
+			return GetSessionById(sessionId);
+		}
 	}
 
 	public IReadOnlyCollection<Session> GetSessions()
 	{
-		return [.. sessions.Values.OrderByDescending(session => session.LastRefreshedAt)];
+		lock (stateLock)
+		{
+			return [.. sessions.Values.OrderByDescending(session => session.LastRefreshedAt)];
+		}
 	}
 
-	public (string ticket, Guid sessionId) GenerateSession(Guid playerId, Guid appId, string NSAToken)
+	public IReadOnlyCollection<Session> GetSessionsByPlayerId(Guid playerId)
+		=> [.. sessions.Values
+			.Where(session => session.PlayerId == playerId)
+			.OrderByDescending(session => session.LastRefreshedAt)];
+
+	public bool TouchSession(Guid sessionId)
 	{
-		// Generate a random session ID
-		Guid sessionId;
-		do
+		lock (stateLock)
 		{
-			sessionId = Guid.NewGuid();
+			if (!sessions.TryGetValue(sessionId, out Session? session))
+				return false;
+
+			DateTime now = clock.GetUtcNow().UtcDateTime;
+			sessions[sessionId] = session with
+			{
+				LastRefreshedAt = now
+			};
+			return true;
 		}
-		while (sessions.ContainsKey(sessionId));
-
-		string ticket = GenerateJWTTicket(sessionId, appId);
-
-		DateTime now = DateTime.UtcNow;
-		sessions[sessionId] = new Session
-		{
-			SessionId = sessionId,
-			PlayerId = playerId,
-			UbiAppId = appId,
-			CreatedAt = now,
-			LastRefreshedAt = now,
-			ExpiresAt = now.Add(SessionExpirationTimeSpan)
-		};
-		NSATicketToSessionId[NSAToken] = sessionId;
-		appIdToSessionId[appId] = sessionId;
-
-		// Start expiration timer
-		StartExpirationTimer(sessionId);
-
-		return (ticket, sessionId);
 	}
 
-	public (string ticket, Guid sessionId) GenerateOrRefreshSession(Guid playerId, Guid appId, string NSAToken)
+	public (string ticket, Guid sessionId) GenerateSession(Guid playerId, Guid appId, string identityKey)
 	{
-		// Check if session already exists by NSA token
-		Session? existingSession = GetSessionByNSATicket(NSAToken);
-		
-		if (existingSession != null)
+		lock (stateLock)
 		{
-			// Refresh the existing session by resetting the expiration timer
-			RefreshSession(existingSession.SessionId);
-			string existingTicket = GenerateJWTTicket(existingSession.SessionId, appId);
-			return (existingTicket, existingSession.SessionId);
-		}
+			// Generate a random session ID
+			Guid sessionId;
+			do
+			{
+				sessionId = Guid.NewGuid();
+			}
+			while (sessions.ContainsKey(sessionId));
 
-		// No existing session, generate a new one
-		return GenerateSession(playerId, appId, NSAToken);
+			string ticket = GenerateJWTTicket(sessionId, appId);
+
+			DateTime now = clock.GetUtcNow().UtcDateTime;
+			sessions[sessionId] = new Session
+			{
+				SessionId = sessionId,
+				PlayerId = playerId,
+				UbiAppId = appId,
+				CreatedAt = now,
+				LastRefreshedAt = now,
+				ExpiresAt = now.Add(SessionExpirationTimeSpan)
+			};
+			identityKeyToSessionId[identityKey] = sessionId;
+			appIdToSessionId[appId] = sessionId;
+
+			// Start expiration timer
+			StartExpirationTimer(sessionId);
+
+			return (ticket, sessionId);
+		}
+	}
+
+	public (string ticket, Guid sessionId) GenerateOrRefreshSession(Guid playerId, Guid appId, string identityKey)
+	{
+		lock (stateLock)
+		{
+			Session? existingSession = GetSessionByIdentityKey(identityKey);
+
+			if (existingSession != null)
+			{
+				if (existingSession.PlayerId != playerId)
+					throw new InvalidOperationException("A session identity cannot change its player.");
+				// Refresh the existing session by resetting the expiration timer
+				RefreshSession(existingSession.SessionId, appId);
+				string existingTicket = GenerateJWTTicket(existingSession.SessionId, appId);
+				return (existingTicket, existingSession.SessionId);
+			}
+
+			// No existing session, generate a new one
+			return GenerateSession(playerId, appId, identityKey);
+		}
 	}
 
 	private void StartExpirationTimer(Guid sessionId)
 	{
 		// Cancel existing timer if present
-		if (sessionTimers.TryRemove(sessionId, out Timer? existingTimer))
+		if (sessionTimers.TryRemove(sessionId, out ITimer? existingTimer))
 		{
 			existingTimer.Dispose();
 		}
@@ -124,8 +179,18 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 			.Add(TimeSpan.FromMinutes(SessionExpirationGraceMinutes));
 
 		// Create a new timer that will remove the session when it expires
-		Timer timer = new Timer(
-			callback: _ => RemoveSession(sessionId),
+		long version = ++nextExpirationVersion;
+		expirationVersions[sessionId] = version;
+		ITimer timer = clock.CreateTimer(
+			callback: _ =>
+			{
+				lock (stateLock)
+				{
+					// Disposing a timer does not cancel callbacks that are already queued.
+					if (expirationVersions.TryGetValue(sessionId, out long current) && current == version)
+						RemoveSession(sessionId);
+				}
+			},
 			state: null,
 			dueTime: expirationTime,
 			period: Timeout.InfiniteTimeSpan);
@@ -133,13 +198,20 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 		sessionTimers[sessionId] = timer;
 	}
 
-	private void RefreshSession(Guid sessionId)
+	private void RefreshSession(Guid sessionId, Guid appId)
 	{
 		if (sessions.TryGetValue(sessionId, out Session? session))
 		{
-			DateTime now = DateTime.UtcNow;
+			DateTime now = clock.GetUtcNow().UtcDateTime;
+			if (session.UbiAppId != appId)
+			{
+				appIdToSessionId.TryRemove(new KeyValuePair<Guid, Guid>(session.UbiAppId, sessionId));
+				appIdToSessionId[appId] = sessionId;
+			}
+
 			sessions[sessionId] = session with
 			{
+				UbiAppId = appId,
 				LastRefreshedAt = now,
 				ExpiresAt = now.Add(SessionExpirationTimeSpan)
 			};
@@ -149,36 +221,62 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 		StartExpirationTimer(sessionId);
 	}
 
-	private void RemoveSession(Guid sessionId)
+	public bool RemoveSession(Guid sessionId)
 	{
-		// Remove the session from all dictionaries
-		if (sessions.TryRemove(sessionId, out Session? session))
+		lock (stateLock)
 		{
-			// Remove from appId mapping
-			appIdToSessionId.TryRemove(session.UbiAppId, out _);
-
-			// Remove from NSA token mapping
-			string? nsaToken = NSATicketToSessionId
-				.FirstOrDefault(kvp => kvp.Value == sessionId).Key;
-			if (nsaToken != null)
+			// Remove the session from all dictionaries
+			if (sessions.TryRemove(sessionId, out Session? session))
 			{
-				NSATicketToSessionId.TryRemove(nsaToken, out _);
+				// Remove from appId mapping
+				appIdToSessionId.TryRemove(new KeyValuePair<Guid, Guid>(session.UbiAppId, sessionId));
+				expirationVersions.TryRemove(sessionId, out _);
+
+				// Remove from NSA token mapping
+				string? identityKey = identityKeyToSessionId
+					.FirstOrDefault(kvp => kvp.Value == sessionId).Key;
+				if (identityKey != null)
+				{
+					identityKeyToSessionId.TryRemove(new KeyValuePair<string, Guid>(identityKey, sessionId));
+				}
+
+				// Clean up the timer
+				if (sessionTimers.TryRemove(sessionId, out ITimer? timer))
+				{
+					timer.Dispose();
+				}
+
+				if (!sessions.Values.Any(value => value.PlayerId == session.PlayerId))
+					partyService?.HandleDisconnect(session.PlayerId);
+				return true;
 			}
 
-			// Clean up the timer
-			if (sessionTimers.TryRemove(sessionId, out Timer? timer))
-			{
-				timer.Dispose();
-			}
+			return false;
 		}
+	}
+
+	public void Dispose()
+	{
+		lock (stateLock)
+		{
+			expirationVersions.Clear();
+			foreach (ITimer timer in sessionTimers.Values)
+				timer.Dispose();
+			sessionTimers.Clear();
+			sessions.Clear();
+			identityKeyToSessionId.Clear();
+			appIdToSessionId.Clear();
+		}
+
+		GC.SuppressFinalize(this);
 	}
 
 	string GenerateJWTTicket(Guid sessionId, Guid appId)
 	{
 		// Hardcoded header and payload values
-		JwtHeader header = new(new SigningCredentials(
+		JwtHeader header = [with(new SigningCredentials(
 			new SymmetricSecurityKey([.. securityService.Secret256bit]),
-			SecurityAlgorithms.HmacSha256));
+			SecurityAlgorithms.HmacSha256))];
 
 		JwtPayload payload = new()
 		{
@@ -189,7 +287,7 @@ public class SessionManager(ISecurityService securityService) : ISessionManager
 			{ "typ", "JWT" },
 			{ "enc", "A128CBC" },
 			{ "int", "HS256" },
-			{ "kid", "bbee8ceb-dd57-4617-9d1a-b0cc6994d2b5" }
+			{ "kid", JdNextConstants.SessionSigningKeyId }
 		};
 
 		JwtSecurityToken token = new(header, payload);

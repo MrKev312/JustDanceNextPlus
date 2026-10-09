@@ -10,15 +10,7 @@ public interface ISecurityService
 
 public class SecurityService : ISecurityService
 {
-	public IReadOnlyList<byte> Secret256bit { get; private set; }
-
-	public SecurityService(ILogger<SecurityService> logger)
-	{
-		// Generate a random 256-bit key
-		Secret256bit = GenerateRandom256BitKey();
-
-		logger.LogInformation("Generated 256-bit key: {secret}", Secret256bit);
-	}
+	public IReadOnlyList<byte> Secret256bit { get; } = GenerateRandom256BitKey();
 
 	// Method to generate a random 256-bit key
 	private static ImmutableArray<byte> GenerateRandom256BitKey()
