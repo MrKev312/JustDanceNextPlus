@@ -1,5 +1,4 @@
 using JustDanceServer.Configuration;
-using JustDanceServer.JustDanceClasses.Database;
 using JustDanceServer.Utilities;
 
 using Microsoft.Extensions.Options;
@@ -57,11 +56,11 @@ public sealed class MapMediaLoader(
 			throw new DirectoryNotFoundException($"Missing {layout.FolderName} assets folder {assetsFolder}.");
 
 		Dictionary<string, IReadOnlyDictionary<string, string>> platforms =
-			new(StringComparer.OrdinalIgnoreCase);
+			[with(StringComparer.OrdinalIgnoreCase)];
 		foreach (string platformFolder in fileSystem.GetDirectories(assetsFolder))
 		{
 			string platform = Path.GetFileName(platformFolder);
-			Dictionary<string, string> roles = new(StringComparer.OrdinalIgnoreCase);
+			Dictionary<string, string> roles = [with(StringComparer.OrdinalIgnoreCase)];
 			foreach (string roleFolder in fileSystem.GetDirectories(platformFolder))
 			{
 				string role = Path.GetFileName(roleFolder);
@@ -112,10 +111,7 @@ public sealed class MapMediaLoader(
 		string? file = fileSystem.GetFiles(assetFolder)
 			.Where(path => Path.GetExtension(path).Equals(audioLayout.FileExtension, StringComparison.OrdinalIgnoreCase))
 			.OrderBy(path => path, StringComparer.OrdinalIgnoreCase)
-			.FirstOrDefault();
-		if (file is null)
-			throw new FileNotFoundException($"Missing {audioLayout.FileExtension} audio file in {assetFolder}.");
-
+			.FirstOrDefault() ?? throw new FileNotFoundException($"Missing {audioLayout.FileExtension} audio file in {assetFolder}.");
 		return BuildAssetUrl(mapFolder, relativeFolder.Replace('\\', '/'), file);
 	}
 

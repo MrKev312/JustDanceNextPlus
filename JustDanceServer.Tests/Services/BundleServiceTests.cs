@@ -63,7 +63,7 @@ public class BundleServiceTests
     }
 
     [Fact]
-    public async Task LoadLiveTiles_FileExists_LoadsAndReplacesCdnUrl()
+    public async Task LoadLiveTiles_FileExists_KeepsPlatformNeutralBundleReference()
     {
 		// Arrange
 		Guid tileId = Guid.NewGuid();
@@ -92,9 +92,9 @@ public class BundleServiceTests
 
         // Assert
         Assert.Single(result);
-        Assert.True(result.ContainsKey(tileId));
-        Assert.Equal("https://test.cdn.com/bundles/NX/image.bundle", result[tileId].Assets.BackgroundImage);
-        Assert.Equal(123, result[tileId].ButtonId.ID);
+		Assert.True(result.ContainsKey(tileId));
+		Assert.Equal("{{cdnUrl}}/path/to/image.png", result[tileId].Assets.BackgroundImage);
+		Assert.Equal(123, result[tileId].ButtonId.ID);
         Assert.Equal(456, result[tileId].SubtitleId.ID);
         _mockLogger.Verify(
             x => x.Log(LogLevel.Information, It.IsAny<EventId>(), It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Live tiles database loaded")), null, It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
@@ -134,8 +134,8 @@ public class BundleServiceTests
         Assert.Equal("songpack_year1", product.Name);
 
 		ProductGroup productGroup = _service.ShopConfig.FirstPartyProductDb.ProductGroups.Values.First(pg => pg.Name == "songpack_year1");
-        Assert.Equal("https://test.cdn.com/bundles/NX/songpack_year1.bundle", productGroup.Assets.ProductGroupBundle);
-        Assert.Equal("https://test.cdn.com/bundles/PS5/songpack_year1.bundle", _service.GetShopConfig(ClientPlatform.PlayStation5).FirstPartyProductDb.ProductGroups.Values.First(pg => pg.Name == "songpack_year1").Assets.ProductGroupBundle);
+		Assert.Equal("songpack_year1", productGroup.Assets.ProductGroupBundle);
+        Assert.Equal("https://test.cdn.com/JDNext/PS5/songpack_year1.bundle", _service.GetShopConfig(ClientPlatform.PlayStation5).FirstPartyProductDb.ProductGroups.Values.First(pg => pg.Name == "songpack_year1").Assets.ProductGroupBundle);
 
         // We have one claim in total
         Assert.Single(_service.Claims);

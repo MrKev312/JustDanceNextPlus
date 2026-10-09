@@ -37,7 +37,8 @@ public class Search(IMapService mapService, ITagService tagService) : Controller
 		IReadOnlyDictionary<Guid, uint> tagScoreLookup = BuildTagScoreLookup(searchInput, tagService.TagDatabase.Tags);
 
 		// Search the database
-		SongRelevance[] searchSongResult = mapService.Songs
+		SongRelevance[] searchSongResult = mapService.Maps
+			.Select(map => new KeyValuePair<Guid, JustDanceSongDBEntry>(map.Key, map.Value.Song))
 			.AsParallel()
 			.Select(song => new SongRelevance(
                 song,

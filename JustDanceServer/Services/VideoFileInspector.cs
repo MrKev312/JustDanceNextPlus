@@ -1,4 +1,3 @@
-using JustDanceServer.JustDanceClasses.Database;
 using JustDanceServer.Utilities;
 
 namespace JustDanceServer.Services;

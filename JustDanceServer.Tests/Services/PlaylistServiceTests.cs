@@ -84,7 +84,7 @@ public class PlaylistServiceTests
             ["Map2"] = map2Id,
             ["Map3"] = map3Id
         };
-        _mockMapService.Setup(m => m.Songs).Returns(songDb);
+        _mockMapService.Setup(m => m.Maps).Returns(songDb.ToServerMaps());
         _mockMapService.Setup(m => m.MapToGuid).Returns(mapToGuid);
 
 		Guid playlistGuid = Guid.NewGuid();
@@ -111,6 +111,9 @@ public class PlaylistServiceTests
         Assert.Equal(2, playlist.ItemList.Length);
         Assert.Equal(map2Id, playlist.ItemList[0].Id); // 2024
         Assert.Equal(map3Id, playlist.ItemList[1].Id); // 2023
+		ServerPlaylist sharedPlaylist = _service.Playlists[playlistGuid];
+		Assert.Equal(playlistGuid, sharedPlaylist.Id);
+		Assert.Equal(["Map2", "Map3"], sharedPlaylist.MapNames);
     }
 
     [Fact]
@@ -119,7 +122,7 @@ public class PlaylistServiceTests
 		// Arrange
 		Guid map1Id = Guid.NewGuid();
 		OrderedDictionary<Guid, JustDanceSongDBEntry> songDb = new() { [map1Id] = new() { MapName = "Map1", DanceVersionLocId = new LocalizedString(0, "") } };
-        _mockMapService.Setup(m => m.Songs).Returns(songDb);
+        _mockMapService.Setup(m => m.Maps).Returns(songDb.ToServerMaps());
 
 		Guid playlistGuid = Guid.NewGuid();
         string playlistJson = $$"""
@@ -145,4 +148,47 @@ public class PlaylistServiceTests
             Times.Once
         );
     }
+
+	[Theory]
+	[InlineData("NX")]
+	[InlineData("PC")]
+	[InlineData("PS5")]
+	[InlineData("XboxScarlett")]
+	public async Task GetPlaylistDb_UsesAnExplicitSharedAssetBundleName(string platform)
+	{
+		Guid map1Id = Guid.NewGuid();
+		Guid map2Id = Guid.NewGuid();
+		_mockMapService.Setup(m => m.Maps).Returns(new OrderedDictionary<Guid, JustDanceSongDBEntry>
+		{
+			[map1Id] = new() { MapName = "Map1", DanceVersionLocId = new LocalizedString(0, "") },
+			[map2Id] = new() { MapName = "Map2", DanceVersionLocId = new LocalizedString(0, "") }
+		}.ToServerMaps());
+
+		Guid playlistGuid = Guid.NewGuid();
+		string playlistJson = $$"""
+		{
+		  "localizedTitle": 0,
+		  "localizedDescription": 0,
+		  "guid": "{{playlistGuid}}",
+		  "playlistName": "ImportedPlaylist",
+		  "assetBundleName": "recoforyou",
+		  "itemList": ["{{map1Id}}", "{{map2Id}}"]
+		}
+		""";
+		_mockFileSystem.Setup(fs => fs.DirectoryExists(It.IsAny<string>())).Returns(true);
+		_mockFileSystem.Setup(fs => fs.GetFiles(It.IsAny<string>(), "*.json", SearchOption.TopDirectoryOnly))
+			.Returns(["playlist.json"]);
+		_mockFileSystem.Setup(fs => fs.OpenRead("playlist.json"))
+			.Returns(new MemoryStream(Encoding.UTF8.GetBytes(playlistJson)));
+
+		await _service.LoadData();
+		JustDancePlaylist playlist = _service.GetPlaylistDB(platform).Playlists[playlistGuid];
+
+		Assert.Equal(
+			$"https://test.cdn.com/JDNext/{platform}/recoforyou.bundle",
+			playlist.Assets.En.Cover);
+		Assert.Equal(
+			$"https://test.cdn.com/JDNext/{platform}/recoforyou_details.bundle",
+			playlist.Assets.En.CoverDetails);
+	}
 }

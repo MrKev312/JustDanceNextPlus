@@ -1,5 +1,4 @@
 using JustDanceServer.JustDanceClasses.Endpoints;
-using JustDanceServer.Utilities;
 
 using System.Collections.Immutable;
 
@@ -72,7 +71,7 @@ public sealed class JdPlusAssetMetadataLoader(IFileSystem fileSystem) : IJdPlusA
 		AddVideoAsset(
 			Path.Combine("Video", "vp8"),
 			["video_ULTRA.hd.webm"],
-			files => files.LastOrDefault());
+			files => files.Count == 0 ? null : files[^1]);
 
 		return metadata.ToImmutable();
 

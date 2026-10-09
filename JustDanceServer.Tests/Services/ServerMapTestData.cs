@@ -102,7 +102,7 @@ internal static class ServerMapTestData
 	private static IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> CreateJduPlatforms(string mapName)
 	{
 		Dictionary<string, IReadOnlyDictionary<string, string>> platforms =
-			new(StringComparer.OrdinalIgnoreCase);
+			[with(StringComparer.OrdinalIgnoreCase)];
 		foreach (string platform in new[] { "NX", "WIIU" })
 		{
 			platforms[platform] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)

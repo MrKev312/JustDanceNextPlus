@@ -12,9 +12,10 @@ public class V0(IMapService mapService) : ControllerBase
 	public IActionResult Get()
 	{
 		string platform = ClientPlatform.FromRequest(Request);
+		MapMediaLayout previewLayout = JdNextPreviewLayout.FromRequest(Request);
 		return Ok(new
 		{
-			AssetMetadataPerSong = mapService.GetAssetMetadataPerSong(platform)
+			AssetMetadataPerSong = mapService.GetAssetMetadataPerSong(platform, previewLayout)
 		});
 	}
 }

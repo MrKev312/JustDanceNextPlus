@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Http;
-
 namespace JustDanceServer.Services;
 
 public static class ClientPlatform

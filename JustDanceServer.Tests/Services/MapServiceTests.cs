@@ -288,11 +288,12 @@ public class MapServiceTests
 			_service.GetContentAuthorization(ClientPlatform.NintendoSwitch)[map1Id];
 		Assert.Contains("codecs=\"vp9\"", switchAuthorization.AssetsMetadata.VideoMpd);
 		Assert.Contains("video_HIGH.vp9.webm", switchAuthorization.AssetsMetadata.VideoMpd);
-		Assert.Equal(
-			metadata1,
-			_service.GetAssetMetadataPerSong(
-				ClientPlatform.NintendoSwitch,
-				MapMediaLayouts.JDUnlimited)[map1Id]);
+		OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>>[] concurrentMetadata = await Task.WhenAll(Enumerable.Range(0, 16).Select(_ => Task.Run(() =>
+			_service.GetAssetMetadataPerSong(ClientPlatform.NintendoSwitch, MapMediaLayouts.JDUnlimited))));
+		Assert.All(concurrentMetadata, value => Assert.Same(concurrentMetadata[0], value));
+		Assert.Equal(metadata1, concurrentMetadata[0][map1Id]);
+		_mockAssetMetadataLoader.Verify(loader => loader.Load(map1Folder, ClientPlatform.NintendoSwitch,
+			MapMediaLayouts.JDUnlimited), Times.Once);
 
         Assert.Equal(2, _service.MapToGuid.Count);
         Assert.Equal(map2Id, _service.MapToGuid["map2"]);
@@ -318,7 +319,7 @@ public class MapServiceTests
         _mockFileSystem.Setup(fs => fs.GetDirectories(It.IsAny<string>())).Throws(exception);
 
         // Act & Assert
-        await Assert.ThrowsAsync<InvalidOperationException>(() => _service.LoadData());
+        await Assert.ThrowsAsync<InvalidOperationException>(_service.LoadData);
 
         // Verify that the error was logged
         _mockLogger.Verify(

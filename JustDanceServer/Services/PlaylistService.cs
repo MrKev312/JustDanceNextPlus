@@ -14,6 +14,7 @@ namespace JustDanceServer.Services;
 public interface IPlaylistService : ILoadService
 {
 	PlaylistDB PlaylistDB { get; set; }
+	IReadOnlyDictionary<Guid, ServerPlaylist> Playlists { get; }
 	PlaylistDB GetPlaylistDB(string platform);
 }
 
@@ -25,10 +26,15 @@ public class PlaylistService(IMapService mapService,
     IFileSystem fileSystem) : IPlaylistService, ILoadService
 {
 	public PlaylistDB PlaylistDB { get; set; } = new();
+	public IReadOnlyDictionary<Guid, ServerPlaylist> Playlists { get; private set; }
+		= new Dictionary<Guid, ServerPlaylist>();
 
 	public async Task LoadData()
 	{
 		string path = pathSettings.Value.PlaylistPath;
+		PlaylistDB = new PlaylistDB();
+		Playlists = new Dictionary<Guid, ServerPlaylist>();
+		Dictionary<Guid, ServerPlaylist> playlists = [];
 
 		if (!fileSystem.DirectoryExists(path))
 		{
@@ -55,8 +61,7 @@ public class PlaylistService(IMapService mapService,
 
 			JustDancePlaylist playlistFinal = ((JustDancePlaylist)playlist) with
 			{
-				PlaylistName = playlistName,
-				Assets = BuildPlaylistAssets(ClientPlatform.NintendoSwitch, playlistName)
+				PlaylistName = playlistName
 			};
 
             List<Itemlist> itemList = [.. playlistFinal.ItemList];
@@ -64,7 +69,7 @@ public class PlaylistService(IMapService mapService,
             // If the playlist has a query, run the query on the map database and get the maps
             if (playlist.Query != null)
 			{
-				List<Itemlist> maps = [.. mapService.Songs.Select(x => x.Value).AsQueryable()
+				List<Itemlist> maps = [.. mapService.Maps.Values.Select(map => map.Song).AsQueryable()
 					.Where(playlist.Query)
 					.Select(x => x.MapName)
 					.Select(x=> new Itemlist
@@ -80,7 +85,7 @@ public class PlaylistService(IMapService mapService,
 			// If the playlist has an order by, sort the maps
 			if (playlist.OrderBy != null)
 			{
-                itemList = [.. itemList.Select(x => mapService.Songs[x.Id])
+                itemList = [.. itemList.Select(x => mapService.Maps[x.Id].Song)
 					.AsQueryable()
 					.OrderBy(playlist.OrderBy)
 					.Select(x => new Itemlist
@@ -104,7 +109,30 @@ public class PlaylistService(IMapService mapService,
 			PlaylistDB.Playlists[playlist.Guid] = playlistFinal;
 			PlaylistDB.PlaylistsOffers.AvailablePlaylists.Add(playlist.Guid);
 			PlaylistDB.PlaylistsOffers.VisiblePlaylists.Add(playlist.Guid);
+			playlists[playlist.Guid] = new ServerPlaylist
+			{
+				Id = playlist.Guid,
+				Name = playlistFinal.PlaylistName,
+				Title = string.IsNullOrWhiteSpace(playlist.LocalizedTitle.Name)
+					? playlistFinal.PlaylistName
+					: playlist.LocalizedTitle.Name,
+				Description = playlist.LocalizedDescription.Name ?? string.Empty,
+				TitleTag = playlist.LocalizedTitle.LocalizedString,
+				DescriptionTag = playlist.LocalizedDescription.LocalizedString,
+				MapNames =
+				[
+					.. playlistFinal.ItemList
+						.Select(item => mapService.Maps.TryGetValue(item.Id, out ServerMap? map)
+							? map.Song.MapName
+							: null)
+						.Where(mapName => !string.IsNullOrWhiteSpace(mapName))
+						.Cast<string>()
+						.Distinct(StringComparer.OrdinalIgnoreCase)
+				]
+			};
 		}
+
+		Playlists = playlists;
 
 		logger.LogInformation("Finished loading playlists");
 	}
@@ -113,13 +141,17 @@ public class PlaylistService(IMapService mapService,
 	{
 		return new PlaylistDB
 		{
-			Playlists = new SortedDictionary<Guid, JustDancePlaylist>(
+			Playlists = [with(
 				PlaylistDB.Playlists.ToDictionary(
 					kvp => kvp.Key,
 					kvp => kvp.Value with
 					{
-						Assets = BuildPlaylistAssets(platform, kvp.Value.PlaylistName)
-					})),
+						Assets = BuildPlaylistAssets(
+							platform,
+							string.IsNullOrWhiteSpace(kvp.Value.AssetBundleName)
+								? kvp.Value.PlaylistName
+								: kvp.Value.AssetBundleName)
+					}))],
 			ShowcasePlaylists = [.. PlaylistDB.ShowcasePlaylists],
 			DynamicPlaylists = [.. PlaylistDB.DynamicPlaylists],
 			PlaylistsOffers = new PlaylistsOffers
@@ -146,7 +178,7 @@ public class PlaylistService(IMapService mapService,
 	}
 
 	private string BuildBundleUrl(string platform, string bundleName)
-		=> $"{CdnBaseUrl}/bundles/{ClientPlatform.Normalize(platform)}/{NormalizeBundleName(bundleName)}.bundle";
+		=> $"{CdnBaseUrl}/{CdnContentPaths.JdNextRoot}/{ClientPlatform.Normalize(platform)}/{NormalizeBundleName(bundleName)}.bundle";
 
 	private string CdnBaseUrl
 	{
@@ -170,6 +202,17 @@ public class PlaylistService(IMapService mapService,
 	}
 }
 
+public sealed record ServerPlaylist
+{
+	public LocalizedString? TitleTag { get; init; }
+	public LocalizedString? DescriptionTag { get; init; }
+	public required Guid Id { get; init; }
+	public required string Name { get; init; }
+	public required string Title { get; init; }
+	public required string Description { get; init; }
+	public required string[] MapNames { get; init; }
+}
+
 public class PlaylistDB
 {
 	public SortedDictionary<Guid, JustDancePlaylist> Playlists { get; set; } = [];
@@ -182,6 +225,8 @@ public record JustDancePlaylist
 {
 	[JsonIgnore]
 	public Guid Guid { get; init; } = Guid.Empty;
+	[JsonIgnore]
+	public string AssetBundleName { get; init; } = string.Empty;
 	public string PlaylistName { get; init; } = "Placeholder";
 	public ImmutableArray<Itemlist> ItemList { get; init; } = [];
 	public string ListSource { get; init; } = "editorial";

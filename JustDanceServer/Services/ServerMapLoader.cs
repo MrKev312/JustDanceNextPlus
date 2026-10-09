@@ -1,6 +1,4 @@
 using JustDanceServer.JustDanceClasses.Database;
-using JustDanceServer.JustDanceClasses.Endpoints;
-using JustDanceServer.Utilities;
 
 using System.Text.Json;
 
@@ -18,6 +16,8 @@ public sealed class ServerMapLoader(
 	IMapMediaLoader mediaLoader,
 	IMapPackageReader mapPackageReader) : IServerMapLoader
 {
+	private static readonly string[] VideoCodecs = ["vp8", "vp9"];
+
 	public async ValueTask<ServerMap> LoadMapAsync(string mapFolder)
 	{
 		try
@@ -27,7 +27,7 @@ public sealed class ServerMapLoader(
 				layout => layout.FolderName,
 				layout => mediaLoader.LoadMedia(mapFolder, layout),
 				StringComparer.OrdinalIgnoreCase);
-			IReadOnlyDictionary<string, MapVideoSet> fullVideos = new[] { "vp8", "vp9" }.ToDictionary(
+			IReadOnlyDictionary<string, MapVideoSet> fullVideos = VideoCodecs.ToDictionary(
 				codec => codec,
 				codec => mediaLoader.LoadVideoSet(mapFolder, $"Video/{codec}", codec),
 				StringComparer.OrdinalIgnoreCase);
