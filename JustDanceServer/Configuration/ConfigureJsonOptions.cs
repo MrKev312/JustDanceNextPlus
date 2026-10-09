@@ -25,6 +25,6 @@ public class ConfigureJsonOptions(
 
 		options.JsonSerializerOptions.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
 		options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-		options.JsonSerializerOptions.WriteIndented = true;
+		options.JsonSerializerOptions.WriteIndented = false;
 	}
 }

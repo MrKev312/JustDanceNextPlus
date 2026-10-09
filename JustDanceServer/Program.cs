@@ -21,6 +21,7 @@ public class Program
 	{
 
 		WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+		PemCertificateConfiguration.Configure(builder);
 
 		// Add services to the container.
 		ConfigureServices(builder);
@@ -172,19 +173,10 @@ public class Program
             ContentTypeProvider = provider
         });
 
-        // Cache static files if not in development environment.
+        // Dynamic responses may depend on session and platform headers.
         if (!app.Environment.IsDevelopment())
 		{
-			app.Use(async (context, next) =>
-			{
-				context.Response.GetTypedHeaders().CacheControl =
-					new Microsoft.Net.Http.Headers.CacheControlHeaderValue
-					{
-						Public = true,
-						MaxAge = TimeSpan.FromMinutes(5)
-					};
-				await next();
-			});
+			app.UseMiddleware<ApiCachePolicyMiddleware>();
 		}
 
 		app.MapControllers();
