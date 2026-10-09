@@ -14,9 +14,12 @@ public class Profile
 	[JsonIgnore]
 	public virtual DancerCard Dancercard { get; set; } = new();
 
+	[NotMapped]
 	public int CurrentXP { get; set; } = 1;
+	[NotMapped]
 	public int CurrentLevel { get; set; } = 1;
-	public int PrestigeGrade { get; set; } = 0;
+	[NotMapped]
+	public int PrestigeGrade { get; set; }
 
 	// Ignore in the database
 	[NotMapped]
@@ -24,7 +27,7 @@ public class Profile
 	[NotMapped]
 	public Ownership Ownership { get; set; } = new();
 	[NotMapped]
-	public Dictionary<Guid, MapStats> MapStats { get; set; } = [];
+	public Dictionary<string, MapStats> MapStats { get; set; } = [with(StringComparer.OrdinalIgnoreCase)];
 	[NotMapped]
 	public Dictionary<Guid, PlaylistStats> PlaylistStats { get; set; } = [];
 	[NotMapped]

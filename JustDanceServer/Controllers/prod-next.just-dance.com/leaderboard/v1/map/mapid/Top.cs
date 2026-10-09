@@ -7,13 +7,15 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.leaderboard.v1.ma
 
 [ApiController]
 [Route("leaderboard/v1/map/{mapId:guid}/top")]
-public class Top(IUserDataService userDataService) : ControllerBase
+public class Top(IUserDataService userDataService, IMapService mapService) : ControllerBase
 {
 	[HttpGet]
 	public async Task<IActionResult> Get([FromRoute] Guid mapId, [FromQuery] int limit = 10, [FromQuery] int skip = 0)
 	{
-		// Get the leaderboard for the mapId
-		Leaderboard leaderboard = await userDataService.GetLeaderboardByMapIdAsync(mapId, limit, skip);
+		if (!mapService.TryGetMapName(mapId, out string mapName))
+			return NotFound();
+
+		Leaderboard leaderboard = await userDataService.GetLeaderboardAsync(mapName, limit, skip);
 
 		// Return the leaderboard
 		return Ok(leaderboard);

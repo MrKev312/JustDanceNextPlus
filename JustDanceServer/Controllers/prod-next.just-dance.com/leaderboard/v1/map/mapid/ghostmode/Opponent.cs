@@ -7,7 +7,10 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.leaderboard.v1.ma
 
 [ApiController]
 [Route("leaderboard/v1/map/{mapId:guid}/ghostmode/opponent")]
-public class Opponent(IUserDataService userDataService, ISessionManager sessionManager) : ControllerBase
+public class Opponent(
+	IUserDataService userDataService,
+	ISessionManager sessionManager,
+	IMapService mapService) : ControllerBase
 {
 	[HttpPost]
 	public async Task<IActionResult> Post([FromRoute] Guid mapId)
@@ -28,8 +31,10 @@ public class Opponent(IUserDataService userDataService, ISessionManager sessionM
 
 		Guid userProfile = session.PlayerId;
 
-		// Get the leaderboard for the mapId
-		Leaderboard leaderboard = await userDataService.GetRandomOpponentAsync(mapId, userProfile);
+		if (!mapService.TryGetMapName(mapId, out string mapName))
+			return NotFound();
+
+		Leaderboard leaderboard = await userDataService.GetRandomOpponentAsync(mapName, userProfile);
 
 		// Return the leaderboard
 		return Ok(leaderboard);

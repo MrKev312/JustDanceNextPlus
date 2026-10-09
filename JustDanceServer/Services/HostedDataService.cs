@@ -1,14 +1,16 @@
 ﻿namespace JustDanceServer.Services;
 
-public class HostedDataService(IServiceProvider serviceProvider) : IHostedService
+public class HostedDataService(
+	IServiceProvider serviceProvider,
+	IDatabaseInitializer databaseInitializer) : IHostedService
 {
 	public async Task StartAsync(CancellationToken cancellationToken)
 	{
 		using IServiceScope scope = serviceProvider.CreateScope();
 
-		await Task.WhenAll(
-			LoadServicesForSerialization(scope),
-			LoadData<ILockerItemsService>(scope));
+		await LoadServicesForSerialization(scope);
+		await databaseInitializer.InitializeAsync(cancellationToken);
+		await LoadData<ILockerItemsService>(scope);
 
 		await Task.WhenAll(
             LoadData<IPlaylistService>(scope),

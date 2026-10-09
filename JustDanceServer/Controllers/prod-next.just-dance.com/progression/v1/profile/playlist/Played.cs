@@ -7,7 +7,7 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.progression.v1.pr
 
 [ApiController]
 [Route("progression/v1/profile/playlist/played")]
-public class Played(IUserDataService userDataService) : ControllerBase
+public class Played(IUserDataService userDataService, IMapService mapService) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> PushPlaylistPlayedAsync([FromBody] PlayedWrapper body,
@@ -42,14 +42,23 @@ public class Played(IUserDataService userDataService) : ControllerBase
         if (profile == null)
             return NotFound("Profile not found");
 
-        // Build PlaylistStats to update
-        PlaylistStats playlistStats = new()
+		Dictionary<string, int> scoresByMapName = [with(StringComparer.OrdinalIgnoreCase)];
+		foreach (MapData map in playlist.MapData)
+		{
+			if (!mapService.TryGetMapName(map.MapId, out string mapName))
+				return NotFound($"Map '{map.MapId}' was not found.");
+			scoresByMapName[mapName] = map.Score;
+		}
+
+		// Build PlaylistStats to update
+		PlaylistStats playlistStats = new()
         {
             PlayCount = 1,
             HighScore = playlist.TotalScore,
             PlaylistId = playlist.PlaylistId,
             ProfileId = profile.Id,
-            HighScorePerMap = playlist.MapData.ToDictionary(m => m.MapId, m => m.Score)
+			Platform = ClientPlatform.FromUserAgent(Request.Headers.UserAgent) ?? "Unknown",
+			HighScorePerMap = scoresByMapName
         };
 
         // Update using the user data service
@@ -58,8 +67,17 @@ public class Played(IUserDataService userDataService) : ControllerBase
         // Retrieve stored playlist high score
         PlaylistStats? playlistHighScore = await userDataService.GetPlaylistHighScoreByProfileIdAndPlaylistIdAsync(profile.Id, playlist.PlaylistId);
 
-        if (!success || playlistHighScore == null)
+        if (!success || (playlistHighScore == null && playlist.TotalScore != 0))
             return StatusCode(500, "Failed to update playlist high score");
+
+		// Zero-point submissions still need the ordinary success envelope, but are not plays.
+		playlistHighScore ??= new PlaylistStats
+		{
+			PlaylistId = playlist.PlaylistId,
+			ProfileId = profile.Id,
+			Platform = playlistStats.Platform,
+			HighScorePerMap = scoresByMapName
+		};
 
         return Ok(new
         {
@@ -68,7 +86,11 @@ public class Played(IUserDataService userDataService) : ControllerBase
             {
                 highScore = playlistHighScore.HighScore,
                 playCount = playlistHighScore.PlayCount,
-                highScorePerMap = playlistHighScore.HighScorePerMap?.Select(kv => new { mapId = kv.Key, highScore = kv.Value }).ToArray() ?? Array.Empty<object>(),
+				highScorePerMap = playlistHighScore.HighScorePerMap.Select(kv => new
+				{
+					mapId = mapService.GetSongId(kv.Key),
+					highScore = kv.Value
+				}).Where(value => value.mapId.HasValue).ToArray(),
                 platform = playlistHighScore.Platform
             }
         });

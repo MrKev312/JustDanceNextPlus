@@ -1,10 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace JustDanceServer.JustDanceClasses.Database.Profile;
 
-[PrimaryKey("PlaylistId", "ProfileId")]
 public class PlaylistStats
 {
 	[JsonIgnore]
@@ -16,5 +13,5 @@ public class PlaylistStats
 	public int PlayCount { get; set; }
 	public string Platform { get; set; } = "Unknown";
 	public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
-	public Dictionary<Guid, int> HighScorePerMap { get; set; } = [];
+	public Dictionary<string, int> HighScorePerMap { get; set; } = [with(StringComparer.OrdinalIgnoreCase)];
 }

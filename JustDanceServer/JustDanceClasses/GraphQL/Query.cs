@@ -21,19 +21,9 @@ public class Query
 	[GraphQLName("getProfilesById")]
 	public async Task<List<GraphQlProfile>> GetProfilesById(List<string> ids, [Service] IUserDataService userDataService)
 	{
-		List<GraphQlProfile> profiles = [];
-
-		foreach (string id in ids)
-		{
-			if (!Guid.TryParse(id, out Guid guid))
-				continue;
-
-			Profile? profile = await userDataService.GetProfileByIdAsync(guid);
-			if (profile != null)
-				profiles.Add(GraphQlProfile.FromProfile(profile));
-		}
-
-		return profiles;
+		Guid[] parsedIds = ParseIds(ids);
+		IReadOnlyDictionary<Guid, Profile> profiles = await userDataService.GetProfilesByIdsAsync(parsedIds);
+		return [.. parsedIds.Where(profiles.ContainsKey).Select(id => GraphQlProfile.FromProfile(profiles[id]))];
 	}
 
 	[GraphQLName("getProfilesLeaderboardById")]
@@ -41,23 +31,22 @@ public class Query
 		List<string> ids,
 		string? mapId,
 		string? playlistId,
-		[Service] IUserDataService userDataService)
+		[Service] IUserDataService userDataService,
+		[Service] IMapService mapService)
 	{
-		Guid.TryParse(mapId, out Guid mapGuid);
-		Guid.TryParse(playlistId, out Guid playlistGuid);
+		Guid mapGuid = Guid.TryParse(mapId, out Guid parsedMapId) ? parsedMapId : Guid.Empty;
+		Guid playlistGuid = Guid.TryParse(playlistId, out Guid parsedPlaylistId) ? parsedPlaylistId : Guid.Empty;
+		string? mapName = mapService.TryGetMapName(mapGuid, out string resolvedMapName)
+			? resolvedMapName
+			: null;
 
-		List<GraphQlLeaderboardProfile> profiles = [];
-
-		foreach (string id in ids)
-		{
-			if (!Guid.TryParse(id, out Guid profileGuid))
-				continue;
-
-			Profile? profile = await userDataService.GetProfileByIdAsync(profileGuid);
-			if (profile != null)
-				profiles.Add(GraphQlLeaderboardProfile.FromProfile(profile, mapGuid, playlistGuid));
-		}
-
-		return profiles;
+		Guid[] parsedIds = ParseIds(ids);
+		IReadOnlyDictionary<Guid, Profile> profiles = await userDataService.GetProfilesByIdsAsync(parsedIds);
+		return [.. parsedIds.Where(profiles.ContainsKey)
+			.Select(id => GraphQlLeaderboardProfile.FromProfile(profiles[id], mapName, playlistGuid))];
 	}
+
+	private static Guid[] ParseIds(IEnumerable<string> ids)
+		=> [.. ids.Select(id => Guid.TryParse(id, out Guid parsed) ? (Guid?)parsed : null)
+			.Where(id => id.HasValue).Select(id => id!.Value)];
 }

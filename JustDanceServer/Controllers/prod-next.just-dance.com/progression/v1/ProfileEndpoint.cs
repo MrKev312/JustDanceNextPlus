@@ -7,7 +7,10 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.progression.v1;
 
 [ApiController]
 [Route("progression/v1/profile")]
-public class ProfileEndpoint(IUserDataService userDataService, ISessionManager sessionManager) : ControllerBase
+public class ProfileEndpoint(
+	IUserDataService userDataService,
+	ISessionManager sessionManager,
+	IPlayerMetadataService metadataService) : ControllerBase
 {
     [HttpPatch]
     public async Task<IActionResult> UpdateProfileAsync(
@@ -26,11 +29,12 @@ public class ProfileEndpoint(IUserDataService userDataService, ISessionManager s
         if (profile == null)
             return NotFound("Profile not found");
         // Update the profile using the input
-        profile.Dancercard = updatedProfile;
+        profile.Dancercard.CopyCosmeticsFrom(updatedProfile);
         // Update the profile in the database
         bool updated = await userDataService.UpdateProfileAsync(profile);
         if (!updated)
             return BadRequest("Failed to update profile");
+		await metadataService.UpdateAsync(profile.Id, countryCode: profile.Dancercard.Country);
 
         return Ok(new
         {

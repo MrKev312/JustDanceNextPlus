@@ -7,7 +7,7 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.progression.v1;
 
 [ApiController]
 [Route("progression/v1/progression-info")]
-public class ProgressionInfo(ISessionManager sessionManager, IUserDataService userDataService) : ControllerBase
+public class ProgressionInfo(ISessionManager sessionManager, IUserDataService userDataService, IMapService mapService) : ControllerBase
 {
 	[HttpGet(Name = "GetProgressionInfo")]
 	public async Task<IActionResult> GetProgressionInfo()
@@ -29,6 +29,6 @@ public class ProgressionInfo(ISessionManager sessionManager, IUserDataService us
 
 		Profile? profile = await userDataService.GetProfileByIdAsync(session.PlayerId);
 
-		return Ok(profile);
+		return Ok(JdNextProgressionProjection.ToProfile(profile, mapService));
 	}
 }

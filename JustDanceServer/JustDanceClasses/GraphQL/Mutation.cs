@@ -28,8 +28,10 @@ public class Mutation
 	public async Task<ExecutionResult<MapStatsResponse>> PushMapsPlayedAsync(
 		PushMapsPlayedInput input,
 		[Service] IUserDataService userDataService,
+		[Service] IMapService mapService,
 		[Service] ISessionManager sessionManager,
-		[Service] IHttpContextAccessor httpContextAccessor)
+		[Service] IHttpContextAccessor httpContextAccessor,
+		[Service] IMapCompletionService completions)
 	{
 		ExecutionResult<MapStatsResponse> error = new() { Success = false };
 
@@ -38,6 +40,8 @@ public class Mutation
 			return error;
 
 		MapInfo map = input.Maps;
+		if (!mapService.TryGetMapName(map.MapId, out string mapName))
+			return error;
 		HighscorePerformance highScorePerformance = new()
 		{
 			GoldMovesAchieved = map.GoldMovesAchieved,
@@ -52,18 +56,20 @@ public class Mutation
 			}
 		};
 
-		(bool success, bool isNewHighScore) = await userDataService.UpdateHighScoreAsync(highScorePerformance, map.Score, profile.Id, map.MapId);
+		MapCompletionResult completion = await completions.RecordAsync(new MapCompletion(
+			profile.Id, mapName, map.Score, "Unknown", map.IsCoopEnabled, highScorePerformance, GrantXp: false));
+		(bool success, bool isNewHighScore) = completion.Score;
 		if (!success)
 			return error;
 
-		MapStats? highScoreForMap = await userDataService.GetHighScoreByProfileIdAndMapIdAsync(profile.Id, map.MapId);
+		MapStats? highScoreForMap = await userDataService.GetHighScoreByProfileIdAndMapNameAsync(profile.Id, mapName);
 		highScoreForMap ??= new MapStats
 		{
 			HighScore = map.Score,
-			PlayCount = 1,
+			PlayCount = map.Score == 0 ? 0 : 1,
 			HighScorePerformance = highScorePerformance,
 			ProfileId = profile.Id,
-			MapId = map.MapId
+			MapName = mapName
 		};
 
 		return new ExecutionResult<MapStatsResponse>
@@ -87,6 +93,7 @@ public class Mutation
 	public async Task<ExecutionResult<PlaylistStatsResponse>> PushPlaylistPlayedAsync(
 		PushPlaylistPlayedInput input,
 		[Service] IUserDataService userDataService,
+		[Service] IMapService mapService,
 		[Service] ISessionManager sessionManager,
 		[Service] IHttpContextAccessor httpContextAccessor)
 	{
@@ -101,13 +108,21 @@ public class Mutation
 			return error;
 
 		PlaylistInfo playlist = input.Playlist;
+		Dictionary<string, int> scoresByMapName = [with(StringComparer.OrdinalIgnoreCase)];
+		foreach (Objects.MapData map in playlist.MapData)
+		{
+			if (!mapService.TryGetMapName(map.MapId, out string mapName))
+				return error;
+			scoresByMapName[mapName] = map.Score;
+		}
+
 		PlaylistStats playlistStats = new()
 		{
-			PlayCount = 1,
+			PlayCount = playlist.TotalScore == 0 ? 0 : 1,
 			HighScore = playlist.TotalScore,
 			PlaylistId = playlist.PlaylistId,
 			ProfileId = profile.Id,
-			HighScorePerMap = playlist.MapData.ToDictionary(map => map.MapId, map => map.Score)
+			HighScorePerMap = scoresByMapName
 		};
 
 		(bool success, bool isNewHighScore) = await userDataService.UpdatePlaylistHighScoreAsync(playlistStats, playlist.TotalScore, profile.Id, playlist.PlaylistId);
@@ -129,7 +144,7 @@ public class Mutation
 					PlayCount = playlistHighScore.PlayCount,
 					HighScorePerMap = [.. playlistHighScore.HighScorePerMap.Select(map => new MapDataResponse
 					{
-						MapId = map.Key,
+						MapId = mapService.GetSongId(map.Key) ?? Guid.Empty,
 						HighScore = map.Value
 					})],
 					Platform = playlistHighScore.Platform

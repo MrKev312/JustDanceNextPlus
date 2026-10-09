@@ -23,7 +23,7 @@ public class GraphQlLeaderboardProfile : GraphQlProfile
 	public GraphQlPlatformStat PlaylistStat { get; init; } = new();
 	public Ownership Ownership { get; init; } = new();
 
-	public static GraphQlLeaderboardProfile FromProfile(Profile profile, Guid mapId, Guid playlistId)
+	public static GraphQlLeaderboardProfile FromProfile(Profile profile, string? mapName, Guid playlistId)
 	{
 		return new GraphQlLeaderboardProfile
 		{
@@ -31,7 +31,7 @@ public class GraphQlLeaderboardProfile : GraphQlProfile
 			Dancercard = profile.Dancercard,
 			MapStat = new GraphQlPlatformStat
 			{
-				Platform = mapId != Guid.Empty && profile.MapStats.TryGetValue(mapId, out MapStats? mapStats)
+				Platform = !string.IsNullOrEmpty(mapName) && profile.MapStats.TryGetValue(mapName, out MapStats? mapStats)
 					? mapStats.Platform
 					: "uplay"
 			},

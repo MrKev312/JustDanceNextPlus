@@ -15,7 +15,7 @@ public class UserDataServiceTests : IDisposable
     private readonly UserDataContext _dbContext;
     private readonly UserDataService _service;
     private readonly DbContextOptions<UserDataContext> _dbOptions;
-    private readonly Guid _mapId;
+    private readonly string _mapName;
     private readonly Guid _playlistId;
     private readonly Profile _profile1, _profile2, _profile3;
 
@@ -25,21 +25,24 @@ public class UserDataServiceTests : IDisposable
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
         _dbContext = new UserDataContext(_dbOptions);
-        _service = new UserDataService(_dbContext, Mock.Of<ILogger<UserDataService>>());
+        _service = new UserDataService(
+            new UserProfileService(_dbContext, Mock.Of<ILogger<UserProfileService>>()),
+            new LeaderboardService(_dbContext),
+            new ScoreService(_dbContext, Mock.Of<ILogger<ScoreService>>()));
 
-        _mapId = Guid.NewGuid();
+        _mapName = "TestMap";
         _playlistId = Guid.NewGuid();
         _profile1 = new() { Id = Guid.NewGuid(), Dancercard = new() { Name = "Player A" }, Ticket = "ticket-A" };
         _profile2 = new() { Id = Guid.NewGuid(), Dancercard = new() { Name = "Player B" } };
         _profile3 = new() { Id = Guid.NewGuid(), Dancercard = new() { Name = "Player C" } };
 
         _dbContext.Profiles.AddRange(_profile1, _profile2, _profile3);
-        _dbContext.HighScores.AddRange(
-            new MapStats { ProfileId = _profile1.Id, MapId = _mapId, HighScore = 10000, PlayCount = 2 },
-            new MapStats { ProfileId = _profile2.Id, MapId = _mapId, HighScore = 12000, PlayCount = 5 },
-            new MapStats { ProfileId = _profile3.Id, MapId = _mapId, HighScore = 11000, PlayCount = 1 }
+        _dbContext.MapScores.AddRange(
+            new MapStats { ProfileId = _profile1.Id, MapName = _mapName, HighScore = 10000, PlayCount = 2 },
+            new MapStats { ProfileId = _profile2.Id, MapName = _mapName, HighScore = 12000, PlayCount = 5 },
+            new MapStats { ProfileId = _profile3.Id, MapName = _mapName, HighScore = 11000, PlayCount = 1 }
         );
-        _dbContext.PlaylistHighScores.AddRange(
+        _dbContext.PlaylistScores.AddRange(
             new PlaylistStats { ProfileId = _profile1.Id, PlaylistId = _playlistId, HighScore = 20000, PlayCount = 2 },
             new PlaylistStats { ProfileId = _profile2.Id, PlaylistId = _playlistId, HighScore = 22000, PlayCount = 3 },
             new PlaylistStats { ProfileId = _profile3.Id, PlaylistId = _playlistId, HighScore = 21000, PlayCount = 1 }
@@ -78,10 +81,10 @@ public class UserDataServiceTests : IDisposable
     }
 
     [Fact]
-    public async Task GetHighScoreByProfileIdAndMapIdAsync_ReturnsCorrectScore()
+    public async Task GetHighScoreByProfileIdAndMapNameAsync_ReturnsCorrectScore()
     {
         // Act
-        MapStats? score = await _service.GetHighScoreByProfileIdAndMapIdAsync(_profile2.Id, _mapId);
+        MapStats? score = await _service.GetHighScoreByProfileIdAndMapNameAsync(_profile2.Id, _mapName);
 
         // Assert
         Assert.NotNull(score);
@@ -92,8 +95,8 @@ public class UserDataServiceTests : IDisposable
     public async Task GetHighScoresByProfileIdAsync_ReturnsAllScoresForProfile()
     {
         // Arrange
-        Guid anotherMapId = Guid.NewGuid();
-        _dbContext.HighScores.Add(new MapStats { ProfileId = _profile1.Id, MapId = anotherMapId, HighScore = 5000 });
+        const string anotherMapName = "AnotherMap";
+        _dbContext.MapScores.Add(new MapStats { ProfileId = _profile1.Id, MapName = anotherMapName, HighScore = 5000 });
         await _dbContext.SaveChangesAsync();
 
         // Act
@@ -101,15 +104,15 @@ public class UserDataServiceTests : IDisposable
 
         // Assert
         Assert.Equal(2, scores.Count);
-        Assert.Contains(scores, s => s.MapId == _mapId);
-        Assert.Contains(scores, s => s.MapId == anotherMapId);
+        Assert.Contains(scores, s => s.MapName == _mapName);
+        Assert.Contains(scores, s => s.MapName == anotherMapName);
     }
 
     [Fact]
     public async Task GetLeaderboardAroundAsync_ReturnsCorrectSliceWithUserInMiddle()
     {
         // Act
-        Leaderboard leaderboard = await _service.GetLeaderboardAroundAsync(_mapId, _profile3.Id, limit: 3);
+        Leaderboard leaderboard = await _service.GetLeaderboardAroundAsync(_mapName, _profile3.Id, limit: 3);
 
         // Assert
         Assert.Equal(3, leaderboard.Count);
@@ -120,10 +123,10 @@ public class UserDataServiceTests : IDisposable
     }
 
     [Fact]
-    public async Task GetLeaderboardByMapIdAsync_ReturnsCorrectlySortedLeaderboard()
+    public async Task GetLeaderboardAsync_ReturnsCorrectlySortedLeaderboard()
     {
         // Act
-        Leaderboard leaderboard = await _service.GetLeaderboardByMapIdAsync(_mapId, limit: 3, offset: 0);
+        Leaderboard leaderboard = await _service.GetLeaderboardAsync(_mapName, limit: 3, offset: 0);
 
         // Assert
         Assert.Equal(3, leaderboard.Count);
@@ -135,6 +138,21 @@ public class UserDataServiceTests : IDisposable
         Assert.Equal(3, leaderboard.Scores[2].Position);
     }
 
+	[Fact]
+	public async Task GetLeaderboardAsync_UsesCompetitionRanksAcrossPageBoundaries()
+	{
+		MapStats tiedScore = await _dbContext.MapScores.SingleAsync(score =>
+			score.ProfileId == _profile1.Id && score.MapName == _mapName);
+		tiedScore.HighScore = 12000;
+		await _dbContext.SaveChangesAsync();
+
+		Leaderboard firstPage = await _service.GetLeaderboardAsync(_mapName, limit: 3, offset: 0);
+		Leaderboard secondPage = await _service.GetLeaderboardAsync(_mapName, limit: 2, offset: 1);
+
+		Assert.Equal([1L, 1L, 3L], firstPage.Scores.Select(score => score.Position));
+		Assert.Equal([1L, 3L], secondPage.Scores.Select(score => score.Position));
+	}
+
     [Fact]
     public async Task GetLeaderboardFromIdsAsync_ReturnsFilteredAndSortedLeaderboard()
     {
@@ -142,7 +160,7 @@ public class UserDataServiceTests : IDisposable
         List<Guid> userIds = [_profile1.Id, _profile3.Id];
 
         // Act
-        Leaderboard leaderboard = await _service.GetLeaderboardFromIdsAsync(_mapId, userIds);
+        Leaderboard leaderboard = await _service.GetLeaderboardFromIdsAsync(_mapName, userIds);
 
         // Assert
         Assert.Equal(2, leaderboard.Count);
@@ -166,7 +184,7 @@ public class UserDataServiceTests : IDisposable
     {
         // Arrange
         Guid anotherPlaylistId = Guid.NewGuid();
-        _dbContext.PlaylistHighScores.Add(new PlaylistStats { ProfileId = _profile1.Id, PlaylistId = anotherPlaylistId, HighScore = 5000 });
+        _dbContext.PlaylistScores.Add(new PlaylistStats { ProfileId = _profile1.Id, PlaylistId = anotherPlaylistId, HighScore = 5000 });
         await _dbContext.SaveChangesAsync();
 
         // Act
@@ -233,7 +251,7 @@ public class UserDataServiceTests : IDisposable
         Assert.NotNull(result);
         Assert.Equal(_profile1.Id, result.Id);
         Assert.Single(result.MapStats);
-        Assert.Equal(10000, result.MapStats[_mapId].HighScore);
+        Assert.Equal(10000, result.MapStats[_mapName].HighScore);
         Assert.Single(result.PlaylistStats);
         Assert.Equal(20000, result.PlaylistStats[_playlistId].HighScore);
     }
@@ -253,7 +271,7 @@ public class UserDataServiceTests : IDisposable
     public async Task GetRandomOpponentAsync_WhenOpponentsExist_ReturnsOneOpponent()
     {
         // Act
-        Leaderboard opponentLeaderboard = await _service.GetRandomOpponentAsync(_mapId, _profile1.Id);
+        Leaderboard opponentLeaderboard = await _service.GetRandomOpponentAsync(_mapName, _profile1.Id);
 
         // Assert
         Assert.Equal(1, opponentLeaderboard.Count);
@@ -275,58 +293,62 @@ public class UserDataServiceTests : IDisposable
     }
 
     [Fact]
-    public async Task UpdateHighScoreAsync_AddsNewScore_WhenNoneExists()
+    public async Task RecordMapPlayAsync_AddsNewScore_WhenNoneExists()
     {
         // Arrange
         Guid newPlayerId = Guid.NewGuid();
-        Guid newMapId = Guid.NewGuid();
+        const string newMapName = "NewMap";
         HighscorePerformance performance = new();
 
         // Act
-        (bool success, bool isNewHighScore) = await _service.UpdateHighScoreAsync(performance, 13000, newPlayerId, newMapId);
+        (bool success, bool isNewHighScore) = await _service.RecordMapPlayAsync(
+            performance, 13000, newPlayerId, newMapName, "switch");
 
         // Assert
         Assert.True(success);
         Assert.True(isNewHighScore);
-        MapStats? savedScore = await _dbContext.HighScores.SingleOrDefaultAsync(hs => hs.ProfileId == newPlayerId && hs.MapId == newMapId);
+        MapStats? savedScore = await _dbContext.MapScores.SingleOrDefaultAsync(
+            hs => hs.ProfileId == newPlayerId && hs.MapName == newMapName);
         Assert.NotNull(savedScore);
         Assert.Equal(13000, savedScore.HighScore);
         Assert.Equal(1, savedScore.PlayCount);
     }
 
     [Fact]
-    public async Task UpdateHighScoreAsync_UpdatesExistingHigherScore()
+    public async Task RecordMapPlayAsync_UpdatesExistingHigherScore()
     {
         // Arrange
         HighscorePerformance performance = new();
 
         // Act
-        (bool success, bool isNewHighScore) = await _service.UpdateHighScoreAsync(performance, 10500, _profile1.Id, _mapId);
+        (bool success, bool isNewHighScore) = await _service.RecordMapPlayAsync(
+            performance, 10500, _profile1.Id, _mapName, "switch");
 
         // Assert
         Assert.True(success);
         Assert.True(isNewHighScore);
-        MapStats? updatedScore = await _dbContext.HighScores
-            .FirstOrDefaultAsync(hs => hs.ProfileId == _profile1.Id && hs.MapId == _mapId);
+        MapStats? updatedScore = await _dbContext.MapScores
+            .FirstOrDefaultAsync(hs => hs.ProfileId == _profile1.Id && hs.MapName == _mapName);
         Assert.NotNull(updatedScore);
         Assert.Equal(10500, updatedScore.HighScore);
         Assert.Equal(3, updatedScore.PlayCount); // Play count should increment
     }
 
     [Fact]
-    public async Task UpdateHighScoreAsync_DoesNotUpdateForLowerScoreButIncrementsPlayCount()
+    public async Task RecordMapPlayAsync_DoesNotUpdateForLowerScoreButIncrementsPlayCount()
     {
         // Arrange
         HighscorePerformance performance = new();
 
         // Act
-        (bool success, bool isNewHighScore) = await _service.UpdateHighScoreAsync(performance, 9500, _profile1.Id, _mapId);
+        (bool success, bool isNewHighScore) = await _service.RecordMapPlayAsync(
+            performance, 9500, _profile1.Id, _mapName, "switch");
 
         // Assert
         Assert.True(success);
         Assert.False(isNewHighScore);
-        MapStats? updatedScore = await _dbContext.HighScores
-            .FirstOrDefaultAsync(hs => hs.ProfileId == _profile1.Id && hs.MapId == _mapId);
+        MapStats? updatedScore = await _dbContext.MapScores
+            .FirstOrDefaultAsync(hs => hs.ProfileId == _profile1.Id && hs.MapName == _mapName);
         Assert.NotNull(updatedScore);
         Assert.Equal(10000, updatedScore.HighScore); // Score should NOT change
         Assert.Equal(3, updatedScore.PlayCount); // Play count SHOULD increment
@@ -345,7 +367,7 @@ public class UserDataServiceTests : IDisposable
         // Assert
         Assert.True(success);
         Assert.True(isNewHighScore);
-        PlaylistStats? savedScore = await _dbContext.PlaylistHighScores
+        PlaylistStats? savedScore = await _dbContext.PlaylistScores
             .SingleOrDefaultAsync(hs => hs.ProfileId == newPlayerId && hs.PlaylistId == newPlaylistId);
         Assert.NotNull(savedScore);
         Assert.Equal(25000, savedScore.HighScore);

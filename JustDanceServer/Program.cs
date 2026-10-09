@@ -7,6 +7,7 @@ using JustDanceServer.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
@@ -37,9 +38,6 @@ public class Program
 		Directory.CreateDirectory(builder.Configuration["Paths:MapsPath"]!);
 
 		WebApplication app = builder.Build();
-
-		// Ensure the database is created.
-		InitializeDatabase(app);
 
 		// Configure the HTTP request pipeline.
 		ConfigureMiddleware(app);
@@ -76,13 +74,29 @@ public class Program
 		builder.Services.Configure<UrlSettings>(builder.Configuration.GetSection("HostingUrls"));
 
 		// Configure Entity Framework with SQLite.
+		SqliteConnectionStringBuilder connectionString = new()
+		{
+			DataSource = builder.Configuration["Paths:UserDataPath"],
+			Cache = SqliteCacheMode.Shared,
+			Pooling = true,
+			DefaultTimeout = 30
+		};
 		builder.Services.AddDbContext<UserDataContext>(options =>
-			options.UseLazyLoadingProxies()
-				   .UseSqlite($"Data Source={builder.Configuration["Paths:UserDataPath"]}"));
+			options.UseSqlite(connectionString.ToString()));
 
 		// Inject custom services.
 		builder.Services.AddSingleton<IFileSystem, SystemFileSystem>();
         builder.Services.AddScoped<IUserDataService, UserDataService>();
+		builder.Services.AddScoped<IUserProfileService, UserProfileService>();
+		builder.Services.AddScoped<ILeaderboardService, LeaderboardService>();
+		builder.Services.AddScoped<IScoreService, ScoreService>();
+		builder.Services.AddScoped<IClassicProfileService, ClassicProfileService>();
+		builder.Services.AddScoped<IProgressionService, ProgressionService>();
+		builder.Services.AddScoped<IPlayerMetadataService, PlayerMetadataService>();
+		builder.Services.AddScoped<IPlayerActivityService, PlayerActivityService>();
+		builder.Services.AddScoped<IMapCompletionService, MapCompletionService>();
+		builder.Services.AddSingleton<IDatabaseInitializer, DatabaseInitializer>();
+		builder.Services.AddSingleton(TimeProvider.System);
 		builder.Services.AddSingleton<ILocalizedStringService, LocalizedStringService>();
 		builder.Services.AddSingleton<ITagService, TagService>();
         builder.Services.AddSingleton<IMapService, MapService>();
@@ -129,17 +143,6 @@ public class Program
 		// Add MVC with custom JSON options.
 		builder.Services.AddSingleton<IConfigureOptions<JsonOptions>, ConfigureJsonOptions>();
 		builder.Services.AddMvc();
-	}
-
-	private static void InitializeDatabase(WebApplication app)
-	{
-		using IServiceScope scope = app.Services.CreateScope();
-		UserDataContext dbContext = scope.ServiceProvider.GetRequiredService<UserDataContext>();
-		// Ensure the folder exists.
-		Directory.CreateDirectory(Path.GetDirectoryName(dbContext.Database.GetDbConnection().DataSource)!);
-
-		// Migrations
-		dbContext.Database.Migrate();
 	}
 
 	private static void ConfigureMiddleware(WebApplication app)
