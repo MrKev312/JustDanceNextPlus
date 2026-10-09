@@ -65,7 +65,7 @@ public class ActivityPageService(ILogger<ActivityPageService> logger,
     private ActivityPageResponse CreatePageWithNewlyAddedSongs(ActivityPageResponse basePage)
     {
         // Create a new category for the newly added songs
-        Guid newSongsGuid = Guid.NewGuid();
+        Guid newSongsGuid = StableContentId.Create("menu:recently-added");
 		CarouselCategory newCategory = new()
         {
             CategoryName = "Newly Added Songs",

@@ -17,6 +17,8 @@ public class HostedDataServiceTests
 		Mock<IMapService> mockMapService = new();
 		Mock<IDatabaseInitializer> mockDatabaseInitializer = new();
 		Mock<ILockerItemsService> mockLockerService = new();
+		Mock<IEditorialService> mockEditorialService = new();
+		Mock<IMenuDefinitionService> mockMenuService = new();
 		Mock<IPlaylistService> mockPlaylistService = new();
 		Mock<IActivityPageService> mockActivityService = new();
 
@@ -34,6 +36,8 @@ public class HostedDataServiceTests
         serviceCollection.AddSingleton(mockTagService.Object);
         serviceCollection.AddSingleton(mockMapService.Object);
         serviceCollection.AddSingleton(mockLockerService.Object);
+		serviceCollection.AddSingleton(mockEditorialService.Object);
+		serviceCollection.AddSingleton(mockMenuService.Object);
         serviceCollection.AddSingleton(mockPlaylistService.Object);
         serviceCollection.AddSingleton(mockActivityService.Object);
 
@@ -54,6 +58,8 @@ public class HostedDataServiceTests
 
         // Verify the other services were also called.
         mockLockerService.Verify(s => s.LoadData(), Times.Once);
+		mockEditorialService.Verify(s => s.LoadData(), Times.Once);
+		mockMenuService.Verify(s => s.LoadData(), Times.Once);
         mockPlaylistService.Verify(s => s.LoadData(), Times.Once);
         mockActivityService.Verify(s => s.LoadData(), Times.Once);
     }

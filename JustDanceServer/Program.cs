@@ -51,6 +51,11 @@ public class Program
 	{
 		// Add controllers
 		builder.Services.AddControllers();
+		builder.Services.Configure<RouteOptions>(options =>
+		{
+			options.ConstraintMap["jdnext"] = typeof(JdNextSpaceRouteConstraint);
+			options.ConstraintMap["jdu"] = typeof(JduSpaceRouteConstraint);
+		});
 
 		// Learn more about configuring OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 		builder.Services.AddEndpointsApiExplorer();
@@ -109,6 +114,12 @@ public class Program
 		builder.Services.AddScoped<IPlayerActivityService, PlayerActivityService>();
 		builder.Services.AddScoped<IMapCompletionService, MapCompletionService>();
 		builder.Services.AddSingleton<IDatabaseInitializer, DatabaseInitializer>();
+		builder.Services.AddScoped<IJduRecommendationService, JduRecommendationService>();
+		builder.Services.AddScoped<IRecommendationService, RecommendationService>();
+		builder.Services.AddScoped<IPlayerPreferenceService, PlayerPreferenceService>();
+		builder.Services.AddScoped<IMenuService, MenuService>();
+		builder.Services.AddSingleton<IMenuDefinitionService, MenuDefinitionService>();
+		builder.Services.AddSingleton<IEditorialService, EditorialService>();
 		builder.Services.AddSingleton(TimeProvider.System);
 		builder.Services.AddSingleton<ILocalizedStringService, LocalizedStringService>();
 		builder.Services.AddSingleton<ITagService, TagService>();

@@ -15,14 +15,20 @@ public interface ILocalizedStringService : ILoadService
     LocalizedString? GetLocalizedTag(Guid id);
     LocalizedString? GetLocalizedTag(int id);
     LocalizedString GetAddLocalizedTag(string text);
+	string ResolveText(string key, string? locale, string? fallback = null);
+	LocalizedString? GetTextTag(string key);
+	string ResolveTag(LocalizedString tag, string? locale);
+	IReadOnlyDictionary<string, Dictionary<string, string>> GetJduLocalisation();
+	int? GetJduAlias(int jdNextId);
+	LocalizedStringDatabase GetDatabase(string? locale);
 }
 
-public class LocalizedStringService(ILogger<LocalizedStringService> logger,
+public partial class LocalizedStringService(ILogger<LocalizedStringService> logger,
 	IServiceProvider serviceProvider,
     IFileSystem fileSystem) : ILocalizedStringService, ILoadService
 {
 	public LocalizedStringDatabase Database { get; private set; } = new();
-	int? highestId = null;
+	private readonly Lock stringLock = new();
 
 	// Localization strings that are only available in the game and are not needed to be localized
 	// TODO: Add all missing localized strings from the game
@@ -52,6 +58,7 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 		if (!fileSystem.FileExists(path))
 		{
 			logger.LogInformation("Localized strings database not found, creating a new one");
+			await LoadSharedTextAsync(settings.Value.JsonsPath, jsonSettingsService);
 			return;
 		}
 
@@ -61,6 +68,7 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 		if (db == null)
 		{
 			logger.LogWarning("Localized strings database could not be loaded");
+			await LoadSharedTextAsync(settings.Value.JsonsPath, jsonSettingsService);
 			return;
 		}
 
@@ -68,62 +76,53 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 		db.LocalizedStrings = [.. db.LocalizedStrings.OrderBy(ls => ls.OasisId)];
 
 		Database = db;
+		await LoadSharedTextAsync(settings.Value.JsonsPath, jsonSettingsService);
 		logger.LogInformation("Localized strings database loaded");
 	}
 
 	public LocalizedString? GetLocalizedTag(string text)
 	{
-		return defaultLocalizedStrings
-			.FirstOrDefault(ls => ls.DisplayString == text)
-			?? Database.LocalizedStrings
-			.FirstOrDefault(ls => ls.DisplayString == text);
+		lock (stringLock)
+		{
+			return Database.LocalizedStrings.FirstOrDefault(ls => ls.DisplayString == text)
+				?? defaultLocalizedStrings.FirstOrDefault(ls => ls.DisplayString == text);
+		}
 	}
 
 	public LocalizedString? GetLocalizedTag(Guid id)
 	{
-		return defaultLocalizedStrings
-			.FirstOrDefault(ls => ls.LocalizedStringId == id)
-			?? Database.LocalizedStrings
-			.FirstOrDefault(ls => ls.LocalizedStringId == id);
+		lock (stringLock)
+		{
+			return Database.LocalizedStrings.FirstOrDefault(ls => ls.LocalizedStringId == id)
+				?? defaultLocalizedStrings.FirstOrDefault(ls => ls.LocalizedStringId == id);
+		}
 	}
 
 	public LocalizedString? GetLocalizedTag(int id)
 	{
-		return defaultLocalizedStrings
-			.FirstOrDefault(ls => ls.OasisId == id)
-			?? Database.LocalizedStrings
-			.FirstOrDefault(ls => ls.OasisId == id);
+		lock (stringLock)
+		{
+			return Database.LocalizedStrings.FirstOrDefault(ls => ls.OasisId == id)
+				?? defaultLocalizedStrings.FirstOrDefault(ls => ls.OasisId == id);
+		}
 	}
 
 	public LocalizedString GetAddLocalizedTag(string text)
 	{
-		// If it contains the tag, return it
-		LocalizedString? localizedTag = GetLocalizedTag(text);
-		if (localizedTag != null)
-			return localizedTag;
-
-		// Lock the list
-		lock (Database.LocalizedStrings)
+		lock (stringLock)
 		{
-			// Check again
-			localizedTag = GetLocalizedTag(text);
+			LocalizedString? localizedTag = GetLocalizedTag(text);
 			if (localizedTag != null)
 				return localizedTag;
 
-			// Generate a new GUID
-			Guid guid;
-			do
-			{
-				guid = Guid.NewGuid();
-			}
-			while (Database.LocalizedStrings.Any(ls => ls.LocalizedStringId == guid));
-
-			highestId ??= Database.LocalizedStrings.Max(ls => ls.OasisId); // Get the highest ID in the database
-			highestId++; // Increment it for the new localized string
+			Guid guid = StableContentId.Create($"text:{text}");
+			int id = 1_000_000_000 + (int)(Convert.ToUInt32(StableContentId.Hash(text)[..8], 16) % 1_000_000_000);
+			if (GetLocalizedTag(id) is not null)
+				throw new InvalidOperationException($"Generated localization ID collision for '{text}'; assign an explicit shared-text alias.");
 
 			localizedTag = new()
 			{
-				OasisId = highestId.Value,
+				OasisId = id,
 				LocaleCode = "en-US",
 				DisplayString = text,
 				LocalizedStringId = guid
@@ -138,6 +137,6 @@ public class LocalizedStringService(ILogger<LocalizedStringService> logger,
 
 public class LocalizedStringDatabase
 {
-	public Guid SpaceId => Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0");
+	public Guid SpaceId => JdNextConstants.GameSpaceId;
 	public List<LocalizedString> LocalizedStrings { get; set; } = [];
 }

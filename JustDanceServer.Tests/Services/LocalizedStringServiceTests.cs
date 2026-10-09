@@ -52,7 +52,8 @@ public class LocalizedStringServiceTests
         await _service.LoadData();
 
         // Assert
-        Assert.Empty(_service.Database.LocalizedStrings);
+        Assert.Equal(7, _service.Database.LocalizedStrings.Count);
+        Assert.Equal("For You", _service.ResolveText("discovery.for-you", "en-US"));
         _mockLogger.Verify(
             x => x.Log(LogLevel.Information, It.IsAny<EventId>(), It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Localized strings database not found")), null, It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
             Times.Once
@@ -82,7 +83,7 @@ public class LocalizedStringServiceTests
         await _service.LoadData();
 
         // Assert
-        Assert.Equal(2, _service.Database.LocalizedStrings.Count);
+        Assert.Equal(9, _service.Database.LocalizedStrings.Count);
         Assert.Equal(4000, _service.Database.LocalizedStrings[0].OasisId); // Verify it was sorted
         Assert.Equal("Test String A", _service.Database.LocalizedStrings[0].DisplayString);
         _mockLogger.Verify(
@@ -106,7 +107,7 @@ public class LocalizedStringServiceTests
         await _service.LoadData();
 
         // Assert
-        Assert.Empty(_service.Database.LocalizedStrings); // Database should not be replaced
+        Assert.Equal(7, _service.Database.LocalizedStrings.Count);
         _mockLogger.Verify(
             x => x.Log(LogLevel.Warning, It.IsAny<EventId>(), It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Localized strings database could not be loaded")), null, It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
             Times.Once
@@ -174,7 +175,7 @@ public class LocalizedStringServiceTests
     }
 
     [Fact]
-    public void GetAddLocalizedTag_AddsNewTagWithIncrementedId()
+    public void GetAddLocalizedTag_AddsStableIdWithoutRenumberingExistingTags()
     {
         // Arrange
         _service.Database.LocalizedStrings.Add(new LocalizedString(10000, "Highest ID String"));
@@ -185,18 +186,23 @@ public class LocalizedStringServiceTests
         // Assert
         Assert.NotNull(newTag);
         Assert.Equal("A Brand New String", newTag.DisplayString);
-        Assert.Equal(10001, newTag.OasisId);
+        Assert.InRange(newTag.OasisId, 1_000_000_000, 1_999_999_999);
+        Assert.Equal(10000, _service.GetLocalizedTag("Highest ID String")!.OasisId);
 
 		LocalizedString? foundTag = _service.GetLocalizedTag("A Brand New String");
         Assert.NotNull(foundTag);
-        Assert.Equal(10001, foundTag.OasisId);
+        Assert.Equal(newTag.OasisId, foundTag.OasisId);
+        LocalizedStringService restarted = new(_mockLogger.Object, _mockServiceProvider.Object, _mockFileSystem.Object);
+        restarted.GetAddLocalizedTag("An unrelated addition");
+        Assert.Equal(newTag, restarted.GetAddLocalizedTag("A Brand New String"));
     }
 
     [Fact]
-    public void GetAddLocalizedTag_ThrowsWhenDatabaseIsEmpty()
+    public void GetAddLocalizedTag_CreatesTagWhenDatabaseIsEmpty()
     {
         // Assert
-        Assert.Throws<InvalidOperationException>(() => _service.GetAddLocalizedTag("First Ever String"));
+        LocalizedString tag = _service.GetAddLocalizedTag("First Ever String");
+        Assert.Equal(tag, Assert.Single(_service.Database.LocalizedStrings));
     }
 
     [Fact]

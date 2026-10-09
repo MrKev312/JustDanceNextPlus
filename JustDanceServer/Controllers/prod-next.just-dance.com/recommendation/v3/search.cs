@@ -24,9 +24,10 @@ public class Search(IMapService mapService, ITagService tagService) : Controller
 	private const uint TagPartialMatchScore = 4;
 	private const uint TagFuzzyMatchScore = 2;
 
-	readonly struct SongRelevance(KeyValuePair<Guid, JustDanceSongDBEntry> song, uint relevance)
+	readonly struct SongRelevance(Guid songId, JustDanceSongDBEntry song, uint relevance)
 	{
-		public readonly KeyValuePair<Guid, JustDanceSongDBEntry> Song = song;
+		public readonly Guid SongId = songId;
+		public readonly JustDanceSongDBEntry Song = song;
 		public readonly uint Relevance = relevance;
 	}
 
@@ -38,22 +39,22 @@ public class Search(IMapService mapService, ITagService tagService) : Controller
 
 		// Search the database
 		SongRelevance[] searchSongResult = mapService.Maps
-			.Select(map => new KeyValuePair<Guid, JustDanceSongDBEntry>(map.Key, map.Value.Song))
 			.AsParallel()
-			.Select(song => new SongRelevance(
-                song,
+			.Select(map => new SongRelevance(
+				map.Key,
+				map.Value.Song,
 				// Calculate relevance with higher score for exact artist match
-				GetRelevance(searchInput, song.Value, tagScoreLookup)
+				GetRelevance(searchInput, map.Value.Song, tagScoreLookup)
             ))
 			.Where(song => song.Relevance > 0)
 			.OrderByDescending(song => song.Relevance)
-			.ThenBy(song => song.Song.Value.Title)
-			.ThenBy(song => song.Song.Value.MapName)
+			.ThenBy(song => song.Song.Title)
+			.ThenBy(song => song.Song.MapName)
 			.ToArray();
 
-		List<Guid> mapIds = [.. searchSongResult.Select(song => song.Song.Key)];
-		List<string> codeNames = [.. searchSongResult.Select(song => song.Song.Value.ParentMapName)];
-		List<string> artistIds = [.. searchSongResult.Select(song => song.Song.Value.Artist).Distinct()];
+		List<Guid> mapIds = [.. searchSongResult.Select(song => song.SongId)];
+		List<string> codeNames = [.. searchSongResult.Select(song => song.Song.ParentMapName)];
+		List<string> artistIds = [.. searchSongResult.Select(song => song.Song.Artist).Distinct()];
 
 		// Create the response
 		SearchResponse searchResults = new()

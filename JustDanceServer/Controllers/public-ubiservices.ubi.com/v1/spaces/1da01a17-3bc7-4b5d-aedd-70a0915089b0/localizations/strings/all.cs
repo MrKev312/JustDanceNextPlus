@@ -4,29 +4,32 @@ using JustDanceServer.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
+using System.Security.Cryptography;
+
 namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v1.spaces._1da01a17_3bc7_4b5d_aedd_70a0915089b0.localizations.strings;
 
 [ApiController]
-[Route("v1/spaces/1da01a17-3bc7-4b5d-aedd-70a0915089b0/localizations/strings/all")]
-public class All(ITimingService timingService, IOptions<UrlSettings> urlSettings) : ControllerBase
+[Route("v1/spaces/{spaceId:jdnext}/localizations/strings/all")]
+public class All(ITimingService timingService, IOptions<UrlSettings> urlSettings,
+	ILocalizedStringService text, TimeProvider timeProvider) : ControllerBase
 {
 	[HttpGet(Name = "GetAll")]
-	public IActionResult GetAll()
+	public IActionResult GetAll([FromRoute] Guid spaceId, [FromQuery] string? localeCode = null)
 	{
-		// Get time over an hour from now
-		DateTime expiresAt = DateTime.UtcNow.AddHours(1);
-
-		string response = $$"""
-			{
-				"getUrl": "https://{{urlSettings.Value.CDNUrl}}/editorial/v1/All.en-US.json.gz",
-				"getUrlExpiresAt": "{{timingService.TimeString(expiresAt)}}",
-				"localeCode": "en-US",
-				"md5": "d7dab8accbbaef4b109de1dbd1c9f091",
-				"revision": 1,
-				"spaceRevision": 121
-			}
-			""";
-
-		return Content(response, "application/json");
+		string locale = LocaleFallback.Normalize(localeCode ?? Request.Headers.AcceptLanguage.FirstOrDefault());
+		string digest = Convert.ToHexStringLower(MD5.HashData(LocalizationDocument.Create(text, locale)));
+		string cdn = urlSettings.Value.CDNUrl.TrimEnd('/');
+		if (!cdn.StartsWith("https://", StringComparison.OrdinalIgnoreCase)
+			&& !cdn.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
+			cdn = $"https://{cdn}";
+		return Ok(new
+		{
+			GetUrl = $"{cdn}/editorial/v1/All.{locale}.json.gz",
+			GetUrlExpiresAt = timingService.TimeString(timeProvider.GetUtcNow().UtcDateTime.AddHours(1)),
+			LocaleCode = locale,
+			Md5 = digest,
+			Revision = (int)(Convert.ToUInt32(digest[..8], 16) & int.MaxValue),
+			SpaceRevision = 121
+		});
 	}
 }

@@ -11,10 +11,12 @@ public class HostedDataService(
 		await LoadServicesForSerialization(scope);
 		await databaseInitializer.InitializeAsync(cancellationToken);
 		await LoadData<ILockerItemsService>(scope);
+		await LoadData<IEditorialService>(scope);
 
 		await Task.WhenAll(
             LoadData<IPlaylistService>(scope),
 			LoadData<IActivityPageService>(scope));
+		await LoadData<IMenuDefinitionService>(scope);
 	}
 
 	private static async Task LoadServicesForSerialization(IServiceScope scope)

@@ -16,6 +16,8 @@ namespace JustDanceServer.Tests.Controllers;
 
 public class ActivityPageControllerTests
 {
+	private static readonly JsonSerializerOptions SerializerOptions = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+
 	[Fact]
 	public void ActivityPageController_ExposesPcDebugCarouselRoute()
 	{
@@ -30,7 +32,7 @@ public class ActivityPageControllerTests
 	}
 
 	[Fact]
-	public void GetActivityPage_WhenCarouselV3Request_ReturnsLegacyListShape()
+	public async Task GetActivityPage_WhenCarouselV3Request_ReturnsLegacyListShape()
 	{
 		Guid categoryId = Guid.Parse("11111111-1111-1111-1111-111111111111");
 		Guid songId = Guid.Parse("22222222-2222-2222-2222-222222222222");
@@ -53,7 +55,10 @@ public class ActivityPageControllerTests
 		Mock<IActivityPageService> activityPageService = new();
 		activityPageService.Setup(service => service.ActivityPage).Returns(activityPage);
 
-		ActivityPageController controller = new(activityPageService.Object)
+		Mock<IMenuService> menus = new();
+		menus.Setup(value => value.GetRowsAsync(It.IsAny<string>(), It.IsAny<PlayerRequestContext>())).ReturnsAsync([]);
+		ActivityPageController controller = new(activityPageService.Object, menus.Object,
+			Mock.Of<ISessionManager>(), Mock.Of<IMapService>())
 		{
 			ControllerContext = new ControllerContext
 			{
@@ -62,10 +67,10 @@ public class ActivityPageControllerTests
 		};
 		controller.ControllerContext.HttpContext.Request.Path = "/carousel/v3/activity-page/formatVersion/v0";
 
-		OkObjectResult result = Assert.IsType<OkObjectResult>(controller.GetActivityPage());
+		OkObjectResult result = Assert.IsType<OkObjectResult>(await controller.GetActivityPage());
 		JsonElement body = JsonSerializer.SerializeToElement(
 			result.Value,
-			new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+			SerializerOptions);
 
 		JsonElement categories = body.GetProperty("categories");
 		Assert.Equal(JsonValueKind.Array, categories.ValueKind);

@@ -8,14 +8,18 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.editorial.v1.acti
 [ApiController]
 [Route("editorial/v1/activity-page/formatVersion/v0")]
 [Route("carousel/v3/activity-page/formatVersion/v0")]
-public class V0(IActivityPageService activityPageService) : ControllerBase
+public class V0(IActivityPageService activityPageService, IMenuService menuService,
+	ISessionManager sessions, IMapService maps) : ControllerBase
 {
 	[HttpGet]
-	public IActionResult GetActivityPage()
+	public async Task<IActionResult> GetActivityPage()
 	{
 		ActivityPageResponse? activityPage = activityPageService.ActivityPage;
 		if (activityPage == null)
 			return NotFound();
+		IReadOnlyList<MenuRow> rows = await menuService.GetRowsAsync("jdnext-activity",
+			PlayerRequestContextResolver.FromRequest(Request, sessions));
+		activityPage = MenuProjection.AddRows(activityPage, rows, maps);
 
 		return IsCarouselV3Request()
 			? Ok(ToCarouselV3(activityPage))
