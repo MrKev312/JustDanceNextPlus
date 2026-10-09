@@ -148,7 +148,11 @@ public class Program
 		builder.Services.AddSingleton<IPlaylistService, PlaylistService>();
         builder.Services.AddSingleton<ILockerItemsService, LockerItemsService>();
         builder.Services.AddSingleton<IActivityPageService, ActivityPageService>();
-		builder.Services.AddSingleton<IPartyManager, PartyManager>();
+		builder.Services.AddSingleton<IUbiServicesNotificationHub, UbiServicesNotificationHub>();
+		builder.Services.AddScoped<IFriendService, FriendService>();
+		builder.Services.AddSingleton<PartyService>();
+		builder.Services.AddSingleton<IPartyService>(provider => provider.GetRequiredService<PartyService>());
+		builder.Services.AddSingleton<IChallengeMatchService, ChallengeMatchService>();
 		builder.Services.AddSingleton<ISecurityService, SecurityService>();
 		builder.Services.AddSingleton<ISessionManager, SessionManager>();
 		builder.Services.AddSingleton<IPairingService, PairingService>();
@@ -198,6 +202,10 @@ public class Program
 
 		app.UseHttpsRedirection();
 		app.UseResponseCompression();
+		app.UseWebSockets(new WebSocketOptions
+		{
+			KeepAliveInterval = TimeSpan.FromSeconds(30)
+		});
 
 		// Configure static file serving with custom content types.
 		FileExtensionContentTypeProvider provider = new();

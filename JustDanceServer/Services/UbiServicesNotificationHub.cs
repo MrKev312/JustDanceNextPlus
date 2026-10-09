@@ -44,6 +44,7 @@ public sealed class UbiServicesNotificationSubscription : IDisposable
 
 public sealed class UbiServicesNotificationHub : IUbiServicesNotificationHub
 {
+	private readonly Lock subscriptionLock = new();
 	private readonly ConcurrentDictionary<Guid, ConcurrentDictionary<Guid, Subscriber>>
 		subscribersByProfile = [];
 
@@ -64,9 +65,14 @@ public sealed class UbiServicesNotificationHub : IUbiServicesNotificationHub
 			channel,
 			new HashSet<string>(notificationTypes, StringComparer.OrdinalIgnoreCase),
 			new HashSet<Guid>(spaceIds));
-		ConcurrentDictionary<Guid, Subscriber> profileSubscribers =
-			subscribersByProfile.GetOrAdd(profileId, _ => []);
-		profileSubscribers[subscriptionId] = subscriber;
+		// Adding a connection and removing an empty profile must be atomic together:
+		// otherwise reconnecting can add to a dictionary that has just been detached.
+		lock (subscriptionLock)
+		{
+			ConcurrentDictionary<Guid, Subscriber> profileSubscribers =
+				subscribersByProfile.GetOrAdd(profileId, _ => []);
+			profileSubscribers[subscriptionId] = subscriber;
+		}
 
 		return new UbiServicesNotificationSubscription(
 			channel.Reader,
@@ -91,15 +97,18 @@ public sealed class UbiServicesNotificationHub : IUbiServicesNotificationHub
 	private void Unsubscribe(Guid profileId, Guid subscriptionId, Subscriber subscriber)
 	{
 		subscriber.Channel.Writer.TryComplete();
-		if (!subscribersByProfile.TryGetValue(profileId, out ConcurrentDictionary<Guid, Subscriber>? subscribers))
-			return;
+		lock (subscriptionLock)
+		{
+			if (!subscribersByProfile.TryGetValue(profileId, out ConcurrentDictionary<Guid, Subscriber>? subscribers))
+				return;
 
-		subscribers.TryRemove(subscriptionId, out _);
-		if (subscribers.IsEmpty)
-			subscribersByProfile.TryRemove(
-				new KeyValuePair<Guid, ConcurrentDictionary<Guid, Subscriber>>(
-					profileId,
-					subscribers));
+			subscribers.TryRemove(subscriptionId, out _);
+			if (subscribers.IsEmpty)
+				subscribersByProfile.TryRemove(
+					new KeyValuePair<Guid, ConcurrentDictionary<Guid, Subscriber>>(
+						profileId,
+						subscribers));
+		}
 	}
 
 	private sealed record Subscriber(

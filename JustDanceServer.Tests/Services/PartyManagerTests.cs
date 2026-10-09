@@ -1,115 +1,87 @@
-﻿using JustDanceServer.JustDanceClasses.Endpoints;
 using JustDanceServer.Services;
 
 namespace JustDanceServer.Tests.Services;
 
-public class PartyManagerTests
+public sealed class PartyServiceTests
 {
-    private readonly PartyManager _partyManager;
+	private readonly PartyService parties = new(new UbiServicesNotificationHub());
 
-    public PartyManagerTests()
-    {
-        _partyManager = new PartyManager();
-    }
+	[Fact]
+	public void CreateBuildsAnOwnedParty()
+	{
+		Guid owner = Guid.NewGuid();
+		PartySnapshot party = parties.Create(owner);
 
-    [Fact]
-    public void GenerateParty_CreatesPartyAndReturnsId()
-    {
-		// Arrange
-		Guid profileId = Guid.NewGuid();
+		Assert.NotEqual(Guid.Empty, party.PartyId);
+		Assert.Equal(owner, party.OwnerProfileId);
+		Assert.Equal(owner, Assert.Single(party.Members).ProfileId);
+		Assert.Equal(party.PartyId, parties.GetByProfileId(owner)!.PartyId);
+	}
 
-		// Act
-		Guid partyId = _partyManager.GenerateParty(profileId);
-		Party? party = _partyManager.GetParty(partyId);
+	[Fact]
+	public void AnIssuedTokenCanBeUsedOnlyOnce()
+	{
+		Guid owner = Guid.NewGuid();
+		Guid member = Guid.NewGuid();
+		PartySnapshot party = parties.Create(owner);
+		PartyAccessToken token = Assert.IsType<PartyAccessToken>(
+			parties.IssueAccessToken(party.PartyId, owner, member));
 
-        // Assert
-        Assert.NotEqual(Guid.Empty, partyId);
-        Assert.NotNull(party);
-        Assert.Single(party.PartyMembers);
-        Assert.Contains(profileId, party.PartyMembers);
-    }
+		Assert.True(parties.Join(party.PartyId, member, token.Value));
+		Assert.False(parties.Join(party.PartyId, Guid.NewGuid(), token.Value));
+		Assert.Equal(2, parties.Get(party.PartyId)!.Members.Count);
+	}
 
-    [Fact]
-    public void GetPartyByProfileId_FindsCorrectParty()
-    {
-		// Arrange
-		Guid profileId1 = Guid.NewGuid();
-		Guid profileId2 = Guid.NewGuid();
-		Guid partyId = _partyManager.GenerateParty(profileId1);
-        _partyManager.AddPartyMember(partyId, profileId2);
+	[Fact]
+	public void OwnerCanRemoveAMemberWithoutDeletingTheParty()
+	{
+		Guid owner = Guid.NewGuid();
+		Guid member = Guid.NewGuid();
+		PartySnapshot party = parties.Create(owner);
+		PartyAccessToken token = parties.IssueAccessToken(party.PartyId, owner, member)!;
+		Assert.True(parties.Join(party.PartyId, member, token.Value));
 
-		// Act
-		Party? foundParty = _partyManager.GetPartyByProfileId(profileId2);
+		Assert.True(parties.Leave(party.PartyId, member, owner));
+		Assert.Equal(owner, Assert.Single(parties.Get(party.PartyId)!.Members).ProfileId);
+	}
 
-        // Assert
-        Assert.NotNull(foundParty);
-        Assert.Equal(partyId, foundParty.PartyId);
-    }
+	[Fact]
+	public void LastMemberLeavingDeletesTheParty()
+	{
+		Guid owner = Guid.NewGuid();
+		PartySnapshot party = parties.Create(owner);
 
-    [Fact]
-    public void AddPartyMember_AddsMemberSuccessfully()
-    {
-		// Arrange
-		Guid profileId1 = Guid.NewGuid();
-		Guid profileId2 = Guid.NewGuid();
-		Guid partyId = _partyManager.GenerateParty(profileId1);
+		Assert.True(parties.Leave(party.PartyId, owner, owner));
+		Assert.Null(parties.Get(party.PartyId));
+	}
 
-		// Act
-		bool result = _partyManager.AddPartyMember(partyId, profileId2);
-		Party? party = _partyManager.GetParty(partyId);
+	[Fact]
+	public void ATokenForAnotherProfileIsRejected()
+	{
+		Guid owner = Guid.NewGuid();
+		PartySnapshot party = parties.Create(owner);
+		PartyAccessToken token = parties.IssueAccessToken(
+			party.PartyId,
+			owner,
+			Guid.NewGuid())!;
 
-        // Assert
-        Assert.True(result);
-        Assert.NotNull(party);
-        Assert.Equal(2, party.PartyMembers.Count);
-        Assert.Contains(profileId2, party.PartyMembers);
-    }
+		Assert.False(parties.Join(party.PartyId, Guid.NewGuid(), token.Value));
+	}
 
-    [Fact]
-    public void RemovePartyMember_RemovesMemberButKeepsParty()
-    {
-		// Arrange
-		Guid profileId1 = Guid.NewGuid();
-		Guid profileId2 = Guid.NewGuid();
-		Guid partyId = _partyManager.GenerateParty(profileId1);
-        _partyManager.AddPartyMember(partyId, profileId2);
+	[Fact]
+	public void DisconnectOnlyRemovesMembersWhoEnabledAutoRemove()
+	{
+		Guid owner = Guid.NewGuid();
+		Guid member = Guid.NewGuid();
+		PartySnapshot party = parties.Create(owner);
+		PartyAccessToken token = parties.IssueAccessToken(party.PartyId, owner, member)!;
+		Assert.True(parties.Join(party.PartyId, member, token.Value));
 
-        // Act
-        _partyManager.RemovePartyMember(partyId, profileId2);
-		Party? party = _partyManager.GetParty(partyId);
+		parties.HandleDisconnect(member);
+		Assert.Equal(2, parties.Get(party.PartyId)!.Members.Count);
 
-        // Assert
-        Assert.NotNull(party);
-        Assert.Single(party.PartyMembers);
-        Assert.DoesNotContain(profileId2, party.PartyMembers);
-    }
-
-    [Fact]
-    public void RemovePartyMember_RemovesLastMemberAndDeletesParty()
-    {
-		// Arrange
-		Guid profileId = Guid.NewGuid();
-		Guid partyId = _partyManager.GenerateParty(profileId);
-
-        // Act
-        _partyManager.RemovePartyMember(partyId, profileId);
-		Party? party = _partyManager.GetParty(partyId);
-
-        // Assert
-        Assert.Null(party);
-    }
-
-    [Fact]
-    public void AddPartyMember_FailsForNonExistentParty()
-    {
-		// Arrange
-		Guid nonExistentPartyId = Guid.NewGuid();
-		Guid profileId = Guid.NewGuid();
-
-		// Act
-		bool result = _partyManager.AddPartyMember(nonExistentPartyId, profileId);
-
-        // Assert
-        Assert.False(result);
-    }
+		Assert.True(parties.SetAutoRemove(party.PartyId, member, true));
+		parties.HandleDisconnect(member);
+		Assert.Equal(owner, Assert.Single(parties.Get(party.PartyId)!.Members).ProfileId);
+	}
 }

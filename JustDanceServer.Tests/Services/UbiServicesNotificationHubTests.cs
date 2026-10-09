@@ -82,6 +82,47 @@ public sealed class UbiServicesNotificationHubTests
 		Assert.NotNull(content["addedAt"]);
 	}
 
+	[Fact]
+	public void ReconnectingWhileTheLastConnectionClosesKeepsReceivingNotifications()
+	{
+		UbiServicesNotificationHub hub = new();
+		Guid profileId = Guid.NewGuid();
+		UbiServicesNotification notification = new("PARTY_MEMBER_ADDED", new JsonObject(), DateTime.UtcNow);
+
+		for (int attempt = 0; attempt < 10_000; attempt++)
+		{
+			using UbiServicesNotificationSubscription previous = hub.Subscribe(profileId, [], []);
+			UbiServicesNotificationSubscription? next = null;
+			Parallel.Invoke(previous.Dispose, () => next = hub.Subscribe(profileId, [], []));
+			using (next)
+			{
+				Assert.NotNull(next);
+				hub.Publish([profileId], notification);
+				Assert.True(next.Notifications.TryRead(out UbiServicesNotification? received),
+					$"The replacement subscription was detached on reconnect {attempt}.");
+				Assert.Same(notification, received);
+				Assert.True(previous.Notifications.Completion.IsCompletedSuccessfully);
+			}
+		}
+	}
+
+	[Fact]
+	public void DisposingOneConnectionDoesNotCloseAnotherAndIsIdempotent()
+	{
+		UbiServicesNotificationHub hub = new();
+		Guid profileId = Guid.NewGuid();
+		using UbiServicesNotificationSubscription first = hub.Subscribe(profileId, [], []);
+		using UbiServicesNotificationSubscription second = hub.Subscribe(profileId, [], []);
+
+		first.Dispose();
+		first.Dispose();
+		UbiServicesNotification notification = new("PARTY_MEMBER_ADDED", new JsonObject(), DateTime.UtcNow);
+		hub.Publish([profileId], notification);
+
+		Assert.Same(notification, Read(second));
+		Assert.True(first.Notifications.Completion.IsCompletedSuccessfully);
+	}
+
 	private static UbiServicesNotification Read(UbiServicesNotificationSubscription subscription)
 	{
 		Assert.True(subscription.Notifications.TryRead(out UbiServicesNotification? notification));
