@@ -11,4 +11,14 @@ public static class WdfRequestResolver
 			&& (gameYear = profile.GameYear) != 0;
 	}
 
+	public static bool TryResolveRoom(
+		HttpRequest request,
+		string requestedRoom,
+		IWdfService wdfService,
+		out WdfRoomId room)
+	{
+		room = default;
+		return TryGetGameYear(request, out int gameYear)
+			&& wdfService.TryResolveRoom(requestedRoom, gameYear, out room);
+	}
 }

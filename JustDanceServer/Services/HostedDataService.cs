@@ -13,6 +13,7 @@ public class HostedDataService(
 		await LoadData<ILockerItemsService>(scope);
 		await LoadData<IJduCatalogService>(scope);
 		await LoadData<IEditorialService>(scope);
+		await LoadData<IWdfProgramService>(scope);
 
 		await Task.WhenAll(
             LoadData<IPlaylistService>(scope),

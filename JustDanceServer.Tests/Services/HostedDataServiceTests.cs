@@ -39,6 +39,7 @@ public class HostedDataServiceTests
 			services.AddSingleton(mapService.Object);
 			services.AddSingleton(Mock.Of<ILockerItemsService>());
 			services.AddSingleton(Mock.Of<IEditorialService>());
+			services.AddSingleton(Mock.Of<IWdfProgramService>());
 			services.AddSingleton(Mock.Of<IPlaylistService>());
 			services.AddSingleton(Mock.Of<IActivityPageService>());
 			services.AddSingleton(Mock.Of<IMenuDefinitionService>());
@@ -94,6 +95,7 @@ public class HostedDataServiceTests
 		Mock<ILockerItemsService> mockLockerService = new();
 		Mock<IJduCatalogService> mockJduCatalogService = new();
 		Mock<IEditorialService> mockEditorialService = new();
+		Mock<IWdfProgramService> mockWdfProgramService = new();
 		Mock<IPlaylistService> mockPlaylistService = new();
 		Mock<IActivityPageService> mockActivityService = new();
 		Mock<IMenuDefinitionService> mockMenuService = new();
@@ -114,6 +116,7 @@ public class HostedDataServiceTests
         serviceCollection.AddSingleton(mockLockerService.Object);
 		serviceCollection.AddSingleton(mockJduCatalogService.Object);
 		serviceCollection.AddSingleton(mockEditorialService.Object);
+		serviceCollection.AddSingleton(mockWdfProgramService.Object);
         serviceCollection.AddSingleton(mockPlaylistService.Object);
         serviceCollection.AddSingleton(mockActivityService.Object);
 		serviceCollection.AddSingleton(mockMenuService.Object);
@@ -137,6 +140,7 @@ public class HostedDataServiceTests
         mockLockerService.Verify(s => s.LoadData(), Times.Once);
 		mockJduCatalogService.Verify(s => s.LoadData(), Times.Once);
 		mockEditorialService.Verify(s => s.LoadData(), Times.Once);
+		mockWdfProgramService.Verify(s => s.LoadData(), Times.Once);
         mockPlaylistService.Verify(s => s.LoadData(), Times.Once);
         mockActivityService.Verify(s => s.LoadData(), Times.Once);
 		mockMenuService.Verify(s => s.LoadData(), Times.Once);

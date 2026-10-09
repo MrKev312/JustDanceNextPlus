@@ -79,6 +79,7 @@ public class Program
 		builder.Services.Configure<UrlSettings>(builder.Configuration.GetSection("HostingUrls"));
 		builder.Services.Configure<ClassicJduDiagnosticsSettings>(
 			builder.Configuration.GetSection("ClassicJduDiagnostics"));
+		builder.Services.Configure<WdfSettings>(builder.Configuration.GetSection("WorldDanceFloor"));
 		builder.Services.Configure<PlatformAuthenticationSettings>(
 			builder.Configuration.GetSection("PlatformAuthentication"));
 		builder.Services.AddHttpClient("NintendoJwks")
@@ -100,28 +101,66 @@ public class Program
 
 		// Inject custom services.
 		builder.Services.AddSingleton<IFileSystem, SystemFileSystem>();
-        builder.Services.AddScoped<IUserDataService, UserDataService>();
 		builder.Services.AddScoped<IUserProfileService, UserProfileService>();
 		builder.Services.AddScoped<ILeaderboardService, LeaderboardService>();
 		builder.Services.AddScoped<IScoreService, ScoreService>();
 		builder.Services.AddScoped<IClassicProfileService, ClassicProfileService>();
-		builder.Services.AddScoped<IProgressionService, ProgressionService>();
-		builder.Services.AddScoped<IPlayerMetadataService, PlayerMetadataService>();
 		builder.Services.AddScoped<IPlayerIdentityService, PlayerIdentityService>();
 		builder.Services.AddSingleton<IPlatformTicketVerifier, NintendoPlatformTicketVerifier>();
 		builder.Services.AddSingleton<IPlatformTicketVerifier, DevelopmentPlatformTicketVerifier>();
 		builder.Services.AddSingleton<IPlatformTicketVerifierRegistry, PlatformTicketVerifierRegistry>();
 		builder.Services.AddSingleton<ISessionLoginIdentityParser, SessionLoginIdentityParser>();
 		builder.Services.AddSingleton<IBasicCredentialVerifier, BasicCredentialVerifier>();
-		builder.Services.AddScoped<IPlayerActivityService, PlayerActivityService>();
-		builder.Services.AddScoped<IMapCompletionService, MapCompletionService>();
-		builder.Services.AddSingleton<IDatabaseInitializer, DatabaseInitializer>();
+		builder.Services.AddSingleton<IUbiServicesNotificationHub, UbiServicesNotificationHub>();
+		builder.Services.AddScoped<IFriendService, FriendService>();
+		builder.Services.AddScoped<IProgressionService, ProgressionService>();
+		builder.Services.AddScoped<IPlayerMetadataService, PlayerMetadataService>();
 		builder.Services.AddScoped<IJduRecommendationService, JduRecommendationService>();
 		builder.Services.AddScoped<IRecommendationService, RecommendationService>();
 		builder.Services.AddScoped<IPlayerPreferenceService, PlayerPreferenceService>();
+		builder.Services.AddScoped<IPlayerActivityService, PlayerActivityService>();
+		builder.Services.AddScoped<IMapCompletionService, MapCompletionService>();
 		builder.Services.AddScoped<IMenuService, MenuService>();
 		builder.Services.AddSingleton<IMenuDefinitionService, MenuDefinitionService>();
+		builder.Services.AddScoped<IUserDataService, UserDataService>();
+		builder.Services.AddSingleton<IDatabaseInitializer, DatabaseInitializer>();
+		builder.Services.AddSingleton<ILocalizedStringService, LocalizedStringService>();
+		builder.Services.AddSingleton<ITagService, TagService>();
+        builder.Services.AddSingleton<IMapService, MapService>();
+        builder.Services.AddSingleton<IBundleService, BundleService>();
+		builder.Services.AddSingleton<IPlaylistService, PlaylistService>();
+        builder.Services.AddSingleton<ILockerItemsService, LockerItemsService>();
+		builder.Services.AddSingleton<IActivityPageService, ActivityPageService>();
 		builder.Services.AddSingleton<IEditorialService, EditorialService>();
+		builder.Services.AddSingleton<PartyService>();
+		builder.Services.AddSingleton<IPartyService>(provider => provider.GetRequiredService<PartyService>());
+		builder.Services.AddSingleton<IChallengeMatchService, ChallengeMatchService>();
+		builder.Services.AddSingleton<ISecurityService, SecurityService>();
+		builder.Services.AddSingleton<ISessionManager, SessionManager>();
+		builder.Services.AddSingleton<IPairingService, PairingService>();
+		builder.Services.AddSingleton(TimeProvider.System);
+		builder.Services.AddSingleton<WdfHappyHourSchedule>();
+		builder.Services.AddSingleton<WdfCatalog>();
+		builder.Services.AddSingleton<IWdfProgramService, WdfProgramService>();
+		builder.Services.AddSingleton<WdfDirector>();
+		builder.Services.AddSingleton<IWdfCommandService>(provider => provider.GetRequiredService<WdfDirector>());
+		builder.Services.AddSingleton<IWdfService, WdfService>();
+		builder.Services.AddSingleton<ITimingService, TimingService>();
+		builder.Services.AddSingleton<IServerMapLoader, ServerMapLoader>();
+		builder.Services.AddSingleton<IMapMediaLoader, MapMediaLoader>();
+		builder.Services.AddSingleton<IVideoFileInspector, VideoFileInspector>();
+		builder.Services.AddSingleton<IMapPackageReader, MapPackageReader>();
+		builder.Services.AddSingleton<IJdPlusAssetMetadataLoader, JdPlusAssetMetadataLoader>();
+        builder.Services.AddSingleton<IWebmExtractor, WebmExtractor>();
+		builder.Services.AddSingleton<IModernJduSongDatabaseService, ModernJduSongDatabaseService>();
+		builder.Services.AddSingleton<IModernJduMenuService, ModernJduMenuService>();
+		builder.Services.AddSingleton<IModernJduApplicationConfigurationService, ModernJduApplicationConfigurationService>();
+		builder.Services.AddSingleton<IModernJduDiscoveryService, ModernJduDiscoveryService>();
+		builder.Services.AddSingleton<IClassicJduConfigurationService, ClassicJduConfigurationService>();
+		builder.Services.AddSingleton<IClassicJduDiscoveryService, ClassicJduDiscoveryService>();
+		builder.Services.AddSingleton<IClassicJduSongDatabaseService, ClassicJduSongDatabaseService>();
+		builder.Services.AddSingleton<IClassicJduConstantService, ClassicJduConstantService>();
+		builder.Services.AddSingleton<IClassicJduMenuService, ClassicJduMenuService>();
 		builder.Services.AddSingleton<IJduPackageService, JduPackageService>();
 		builder.Services.AddSingleton<IJduContentAuthorizationService, JduContentAuthorizationService>();
 		builder.Services.AddSingleton<IJduAvatarCatalog, JduAvatarCatalog>();
@@ -131,38 +170,6 @@ public class Program
 		builder.Services.AddSingleton<IJduQuestCatalog, JduQuestCatalog>();
 		builder.Services.AddSingleton<JduCatalogWireProjection>();
 		builder.Services.AddSingleton<IJduCatalogService, JduCatalogService>();
-		builder.Services.AddSingleton<IClassicJduConfigurationService, ClassicJduConfigurationService>();
-		builder.Services.AddSingleton<IClassicJduDiscoveryService, ClassicJduDiscoveryService>();
-		builder.Services.AddSingleton<IClassicJduSongDatabaseService, ClassicJduSongDatabaseService>();
-		builder.Services.AddSingleton<IClassicJduConstantService, ClassicJduConstantService>();
-		builder.Services.AddSingleton<IClassicJduMenuService, ClassicJduMenuService>();
-		builder.Services.AddSingleton<IModernJduSongDatabaseService, ModernJduSongDatabaseService>();
-		builder.Services.AddSingleton<IModernJduMenuService, ModernJduMenuService>();
-		builder.Services.AddSingleton<IModernJduApplicationConfigurationService, ModernJduApplicationConfigurationService>();
-		builder.Services.AddSingleton<IModernJduDiscoveryService, ModernJduDiscoveryService>();
-		builder.Services.AddSingleton(TimeProvider.System);
-		builder.Services.AddSingleton<ILocalizedStringService, LocalizedStringService>();
-		builder.Services.AddSingleton<ITagService, TagService>();
-        builder.Services.AddSingleton<IMapService, MapService>();
-        builder.Services.AddSingleton<IBundleService, BundleService>();
-		builder.Services.AddSingleton<IPlaylistService, PlaylistService>();
-        builder.Services.AddSingleton<ILockerItemsService, LockerItemsService>();
-        builder.Services.AddSingleton<IActivityPageService, ActivityPageService>();
-		builder.Services.AddSingleton<IUbiServicesNotificationHub, UbiServicesNotificationHub>();
-		builder.Services.AddScoped<IFriendService, FriendService>();
-		builder.Services.AddSingleton<PartyService>();
-		builder.Services.AddSingleton<IPartyService>(provider => provider.GetRequiredService<PartyService>());
-		builder.Services.AddSingleton<IChallengeMatchService, ChallengeMatchService>();
-		builder.Services.AddSingleton<ISecurityService, SecurityService>();
-		builder.Services.AddSingleton<ISessionManager, SessionManager>();
-		builder.Services.AddSingleton<IPairingService, PairingService>();
-		builder.Services.AddSingleton<ITimingService, TimingService>();
-		builder.Services.AddSingleton<IServerMapLoader, ServerMapLoader>();
-		builder.Services.AddSingleton<IMapMediaLoader, MapMediaLoader>();
-		builder.Services.AddSingleton<IVideoFileInspector, VideoFileInspector>();
-		builder.Services.AddSingleton<IMapPackageReader, MapPackageReader>();
-		builder.Services.AddSingleton<IJdPlusAssetMetadataLoader, JdPlusAssetMetadataLoader>();
-        builder.Services.AddSingleton<IWebmExtractor, WebmExtractor>();
 
 		// Inject json converters.
         builder.Services.AddSingleton<JsonSettingsService>();
@@ -178,6 +185,7 @@ public class Program
 
 		// Add hosted service.
 		builder.Services.AddHostedService<HostedDataService>();
+		builder.Services.AddHostedService(provider => provider.GetRequiredService<WdfDirector>());
 
 		// Add HTTP context accessor.
 		builder.Services.AddHttpContextAccessor();
@@ -222,7 +230,6 @@ public class Program
 			ContentTypeProvider = provider
 		});
 
-        // Add external maps middleware
 		string? jduCatalogAssetsPath = app.Configuration["Paths:JduCatalogAssetsPath"];
 		if (!string.IsNullOrWhiteSpace(jduCatalogAssetsPath)
 			&& Directory.Exists(jduCatalogAssetsPath))
@@ -235,6 +242,7 @@ public class Program
 			});
 		}
 
+        // Add external maps middleware
         app.UseStaticFiles(new StaticFileOptions
         {
             FileProvider = new PhysicalFileProvider(
