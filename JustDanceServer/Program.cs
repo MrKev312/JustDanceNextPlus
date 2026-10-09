@@ -77,6 +77,8 @@ public class Program
 		// Bind configuration.
 		builder.Services.Configure<PathSettings>(builder.Configuration.GetSection("Paths"));
 		builder.Services.Configure<UrlSettings>(builder.Configuration.GetSection("HostingUrls"));
+		builder.Services.Configure<ClassicJduDiagnosticsSettings>(
+			builder.Configuration.GetSection("ClassicJduDiagnostics"));
 		builder.Services.Configure<PlatformAuthenticationSettings>(
 			builder.Configuration.GetSection("PlatformAuthentication"));
 		builder.Services.AddHttpClient("NintendoJwks")
@@ -129,6 +131,11 @@ public class Program
 		builder.Services.AddSingleton<IJduQuestCatalog, JduQuestCatalog>();
 		builder.Services.AddSingleton<JduCatalogWireProjection>();
 		builder.Services.AddSingleton<IJduCatalogService, JduCatalogService>();
+		builder.Services.AddSingleton<IClassicJduConfigurationService, ClassicJduConfigurationService>();
+		builder.Services.AddSingleton<IClassicJduDiscoveryService, ClassicJduDiscoveryService>();
+		builder.Services.AddSingleton<IClassicJduSongDatabaseService, ClassicJduSongDatabaseService>();
+		builder.Services.AddSingleton<IClassicJduConstantService, ClassicJduConstantService>();
+		builder.Services.AddSingleton<IClassicJduMenuService, ClassicJduMenuService>();
 		builder.Services.AddSingleton(TimeProvider.System);
 		builder.Services.AddSingleton<ILocalizedStringService, LocalizedStringService>();
 		builder.Services.AddSingleton<ITagService, TagService>();
