@@ -120,6 +120,15 @@ public class Program
 		builder.Services.AddScoped<IMenuService, MenuService>();
 		builder.Services.AddSingleton<IMenuDefinitionService, MenuDefinitionService>();
 		builder.Services.AddSingleton<IEditorialService, EditorialService>();
+		builder.Services.AddSingleton<IJduPackageService, JduPackageService>();
+		builder.Services.AddSingleton<IJduContentAuthorizationService, JduContentAuthorizationService>();
+		builder.Services.AddSingleton<IJduAvatarCatalog, JduAvatarCatalog>();
+		builder.Services.AddSingleton<JduAvatarWireProjection>();
+		builder.Services.AddSingleton<IJduCustomizableItemCatalog, JduCustomizableItemCatalog>();
+		builder.Services.AddSingleton<IJduAliasCatalog, JduAliasCatalog>();
+		builder.Services.AddSingleton<IJduQuestCatalog, JduQuestCatalog>();
+		builder.Services.AddSingleton<JduCatalogWireProjection>();
+		builder.Services.AddSingleton<IJduCatalogService, JduCatalogService>();
 		builder.Services.AddSingleton(TimeProvider.System);
 		builder.Services.AddSingleton<ILocalizedStringService, LocalizedStringService>();
 		builder.Services.AddSingleton<ITagService, TagService>();
@@ -184,6 +193,9 @@ public class Program
 		provider.Mappings[".bundle"] = "application/octet-stream";
 		provider.Mappings[".webm"] = "video/webm";
 		provider.Mappings[".opus"] = "audio/opus";
+		provider.Mappings[".ogg"] = "audio/ogg";
+		provider.Mappings[".zip"] = "application/zip";
+		provider.Mappings[".ckd"] = "application/octet-stream";
 
         // Serve static files.
         app.UseStaticFiles(new StaticFileOptions
@@ -192,6 +204,18 @@ public class Program
 		});
 
         // Add external maps middleware
+		string? jduCatalogAssetsPath = app.Configuration["Paths:JduCatalogAssetsPath"];
+		if (!string.IsNullOrWhiteSpace(jduCatalogAssetsPath)
+			&& Directory.Exists(jduCatalogAssetsPath))
+		{
+			app.UseStaticFiles(new StaticFileOptions
+			{
+				FileProvider = new PhysicalFileProvider(Path.GetFullPath(jduCatalogAssetsPath)),
+				RequestPath = $"/{CdnContentPaths.JduCatalogAssetsRoot}",
+				ContentTypeProvider = provider
+			});
+		}
+
         app.UseStaticFiles(new StaticFileOptions
         {
             FileProvider = new PhysicalFileProvider(

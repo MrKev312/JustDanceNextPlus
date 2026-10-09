@@ -11,6 +11,7 @@ public class HostedDataService(
 		await LoadServicesForSerialization(scope);
 		await databaseInitializer.InitializeAsync(cancellationToken);
 		await LoadData<ILockerItemsService>(scope);
+		await LoadData<IJduCatalogService>(scope);
 		await LoadData<IEditorialService>(scope);
 
 		await Task.WhenAll(
