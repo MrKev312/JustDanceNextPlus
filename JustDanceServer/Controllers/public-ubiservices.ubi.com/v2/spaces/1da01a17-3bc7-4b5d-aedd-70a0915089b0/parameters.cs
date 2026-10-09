@@ -5,17 +5,15 @@ using JustDanceServer.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
-using System.Text.Json.Serialization;
-
 namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v2.spaces._1da01a17_3bc7_4b5d_aedd_70a0915089b0;
 
 [ApiController]
-[Route("/v1/spaces/1da01a17-3bc7-4b5d-aedd-70a0915089b0/parameters")]
-[Route("/v2/spaces/1da01a17-3bc7-4b5d-aedd-70a0915089b0/parameters")]
+[Route("/v1/spaces/{spaceId:jdnext}/parameters")]
+[Route("/v2/spaces/{spaceId:jdnext}/parameters")]
 public class Parameters(IBundleService bundleService, ITagService tagService, IOptions<UrlSettings> urlSettings) : ControllerBase
 {
     [HttpGet]
-    public IActionResult GetParametersSpaces()
+    public IActionResult GetParametersSpaces([FromRoute] Guid spaceId)
     {
         // Use the requesting host for the EFDS URL so both Switch (DNS redirect)
         // and phone (binary patched domain) reach the correct server
@@ -25,7 +23,7 @@ public class Parameters(IBundleService bundleService, ITagService tagService, IO
         parameters.Parameters["UbiConnect"].Fields["getVisualNotificationUrl"] =
             $"https://{hostUrl}/v1/profiles/{{profileId}}/global/ubiconnect/visualnotifications/api/{{visualNotificationType}}/{{visualNotificationId}}?spaceId={{spaceId}}";
 
-        var sdkClientUrls = parameters.Parameters["us-sdkClientUrls"].Fields;
+		Dictionary<string, object?> sdkClientUrls = parameters.Parameters["us-sdkClientUrls"].Fields;
         sdkClientUrls["websocketServer"] = webSocketBaseUrl;
         sdkClientUrls["websocketNotifications"] = $"{webSocketBaseUrl}/v2/websocket";
 
@@ -40,8 +38,8 @@ public class Parameters(IBundleService bundleService, ITagService tagService, IO
             {
                 Fields = new()
                 {
-                    ["FriendsSpaceId"] = Guid.Parse("45d58365-547f-4b45-ab5b-53ed14cc79ed"),
-                    ["BlocklistSpaceId"] = Guid.Parse("45d58365-547f-4b45-ab5b-53ed14cc79ed")
+                    ["FriendsSpaceId"] = UbisoftServicesConstants.SocialSpaceId,
+                    ["BlocklistSpaceId"] = UbisoftServicesConstants.SocialSpaceId
                 }
             },
             ["us-sdkClientFeaturesSwitches"] = new()
@@ -257,9 +255,9 @@ public class Parameters(IBundleService bundleService, ITagService tagService, IO
             {
                 Fields = new()
                 {
-                    ["FriendsService"] = Guid.Parse("abb909cd-ebaa-4ba5-a4a5-afa75cae8195"),
-                    ["BlocklistService"] = Guid.Parse("45d58365-547f-4b45-ab5b-53ed14cc79ed"),
-                    ["PlayerPrivilegesService"] = Guid.Parse("2d2f687d-cf94-4757-9157-b8736284c438")
+                    ["FriendsService"] = JdNextConstants.FriendsServiceId,
+                    ["BlocklistService"] = UbisoftServicesConstants.SocialSpaceId,
+                    ["PlayerPrivilegesService"] = JdNextConstants.PlayerPrivilegesServiceId
                 }
             },
             ["us-sdkClientRemoteLogsGame"] = new()
@@ -703,7 +701,7 @@ public class Parameters(IBundleService bundleService, ITagService tagService, IO
                 Fields = new()
                 {
                     ["GameMode"] = "test_type_1",
-                    ["SaltRevision"] = Guid.Parse("884c590a-a36e-42c1-90c8-e24321921389"),
+                    ["SaltRevision"] = JdNextConstants.MatchmakingSaltRevisionId,
                     ["ConfigRevision"] = 2,
                     ["AlgorithmParameters"] = new Dictionary<string, object>()
                 }
@@ -788,69 +786,4 @@ public class Parameters(IBundleService bundleService, ITagService tagService, IO
             }
         }
     };
-}
-
-public class Template
-{
-    [JsonPropertyName("template")]
-    public List<TemplateItem> TemplateItems { get; set; } =
-    [
-        new("song", "carousel"),
-        new("playlist", "carousel"),
-        new("banner"),
-        new("song", "carousel"),
-        new("playlist", "carousel"),
-        new("song", "carousel"),
-        new("banner"),
-        new("song", "carousel"),
-        new("song", "carousel"),
-        new("song", "carousel"),
-        new("playlist", "carousel"),
-        new("banner"),
-        new("song", "carousel"),
-        new("song", "carousel"),
-        new("playlist", "carousel"),
-        new("song", "carousel"),
-        new("banner"),
-        new("song", "carousel"),
-        new("song", "carousel"),
-        new("song", "carousel")
-    ];
-}
-
-public class TemplateItem
-{
-    public TemplateItem(string categorytype)
-    {
-        Categorytype = categorytype;
-    }
-
-    public TemplateItem(string itemtype, string categorytype)
-    {
-        Itemtype = itemtype;
-        Categorytype = categorytype;
-    }
-
-    public string Itemtype { get; set; } = "";
-    public string Bannertype { get; set; } = "";
-    public string Categorytype { get; set; } = "";
-}
-
-public class PublicKeyPinning
-{
-    public List<PinningKey> PinningKeys { get; set; } = [];
-}
-
-public class PinningKey
-{
-    public string Endpoint { get; set; } = "";
-    public string Description { get; set; } = "";
-    public List<string> PublicKeyDigests { get; set; } = [];
-}
-
-public class Filters(ITagService tagService)
-{
-
-    [JsonPropertyName("filters")]
-    public List<Filter> FilterList { get; set; } = tagService.GetFilters();
 }

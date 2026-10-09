@@ -14,9 +14,19 @@ public class Parameters(IOptions<UrlSettings> urlSettings) : ControllerBase
 	[HttpGet]
 	public IActionResult GetParameters([FromRoute] Guid guid)
     {
-		// Use the requesting host so both Switch (DNS redirect)
-		// and phone (binary patched domain) reach the correct server
-		string hostUrl = urlSettings.Value.HostUrl;
+		if (!UbisoftApplicationProfiles.TryGetApplicationTarget(
+			guid,
+			out UbisoftApplicationTarget? target))
+			return NotFound();
+
+		parameters.Parameters["us-staging"].Fields["spaceId"] = target.SpaceId;
+
+		// Legacy games continue talking to the Ubisoft Services host after this
+		// response. Keep that traffic on the host which served discovery instead
+		// of sending it to the JDNext JMCS host.
+		string hostUrl = target.UseDiscoveryHost
+			? ControllerContext.HttpContext?.Request.Host.Value ?? "public-ubiservices.ubi.com"
+			: urlSettings.Value.HostUrl;
 		string webSocketBaseUrl = $"wss://{hostUrl}";
 		var urls = (Dictionary<string, string>)parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_ws"]!;
 		urls["Standard"] = webSocketBaseUrl;
@@ -24,8 +34,10 @@ public class Parameters(IOptions<UrlSettings> urlSettings) : ControllerBase
 		aws["Standard"] = $"https://{{env}}{hostUrl}";
 		var msr = (Dictionary<string, string>)parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_msr"]!;
 		msr["Standard"] = $"https://msr-{{env}}{hostUrl}";
+		parameters.Parameters["us-sdkClientClub"].Fields["dynamicPanelUrl"] =
+			$"https://{{env}}{hostUrl}/v1/profiles/{{profileId}}/club/dynamicPanel/MyProfile.png?spaceId={{spaceId}}&noRedirect=true";
 
-		var fleet = parameters.Parameters["us-sdkClientFleet"].Fields;
+		Dictionary<string, object?> fleet = parameters.Parameters["us-sdkClientFleet"].Fields;
 		fleet["spaces"] = $"https://{{env}}{hostUrl}/{{version}}/spaces/{{spaceId}}/title/{{title}}/";
 		fleet["profiles"] = $"https://{{env}}{hostUrl}/{{version}}/profiles/{{profileId}}/title/{{title}}/";
 		fleet["spaces_all"] = $"https://{{env}}{hostUrl}/{{version}}/spaces/title/{{title}}/";
@@ -33,7 +45,7 @@ public class Parameters(IOptions<UrlSettings> urlSettings) : ControllerBase
 		fleet["profiles_all"] = $"https://{{env}}{hostUrl}/{{version}}/profiles/title/{{title}}/";
 		fleet["applications_all"] = $"https://{{env}}{hostUrl}/{{version}}/applications/title/{{title}}/";
 
-		var sdkClientUrls = parameters.Parameters["us-sdkClientUrls"].Fields;
+		Dictionary<string, object?> sdkClientUrls = parameters.Parameters["us-sdkClientUrls"].Fields;
 		sdkClientUrls["websocketServer"] = webSocketBaseUrl;
 		sdkClientUrls["websocketNotifications"] = $"{webSocketBaseUrl}/v2/websocket";
 
@@ -48,7 +60,7 @@ public class Parameters(IOptions<UrlSettings> urlSettings) : ControllerBase
 			{
 				Fields = new()
 				{
-					["spaceId"] = Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0")
+					["spaceId"] = JdNextConstants.GameSpaceId
 				},
 				RelatedPopulation = new()
 				{

@@ -136,6 +136,10 @@ public class Program
 		builder.Services.AddSingleton<IClassicJduSongDatabaseService, ClassicJduSongDatabaseService>();
 		builder.Services.AddSingleton<IClassicJduConstantService, ClassicJduConstantService>();
 		builder.Services.AddSingleton<IClassicJduMenuService, ClassicJduMenuService>();
+		builder.Services.AddSingleton<IModernJduSongDatabaseService, ModernJduSongDatabaseService>();
+		builder.Services.AddSingleton<IModernJduMenuService, ModernJduMenuService>();
+		builder.Services.AddSingleton<IModernJduApplicationConfigurationService, ModernJduApplicationConfigurationService>();
+		builder.Services.AddSingleton<IModernJduDiscoveryService, ModernJduDiscoveryService>();
 		builder.Services.AddSingleton(TimeProvider.System);
 		builder.Services.AddSingleton<ILocalizedStringService, LocalizedStringService>();
 		builder.Services.AddSingleton<ITagService, TagService>();

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Immutable;
+using JustDanceServer.Configuration;
+
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
@@ -7,7 +9,7 @@ namespace JustDanceServer.JustDanceClasses.Database;
 public record LockerItem
 {
 	public Guid ItemId { get; init; }
-	public Guid SpaceId { get; init; } = Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0");
+	public Guid SpaceId { get; init; } = JdNextConstants.GameSpaceId;
 	public required string NameId { get; init; }
 	public required string Type { get; init; } // Enum?
 	// Todo: Parse this nicely

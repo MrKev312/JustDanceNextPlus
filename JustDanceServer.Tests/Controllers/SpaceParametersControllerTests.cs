@@ -15,8 +15,8 @@ public class SpaceParametersControllerTests
             .Select(attribute => attribute.Template)
             .ToArray()!;
 
-        Assert.Contains("/v1/spaces/1da01a17-3bc7-4b5d-aedd-70a0915089b0/parameters", routeTemplates);
-        Assert.Contains("/v2/spaces/1da01a17-3bc7-4b5d-aedd-70a0915089b0/parameters", routeTemplates);
+        Assert.Contains("/v1/spaces/{spaceId:jdnext}/parameters", routeTemplates);
+        Assert.Contains("/v2/spaces/{spaceId:jdnext}/parameters", routeTemplates);
 
         HttpGetAttribute httpGet = Assert.Single(typeof(SpaceParametersController)
             .GetMethod(nameof(SpaceParametersController.GetParametersSpaces))!
