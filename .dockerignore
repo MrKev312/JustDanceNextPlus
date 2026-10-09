@@ -19,6 +19,11 @@
 **/node_modules
 **/npm-debug.log
 **/obj
+**/wwwroot/maps
+**/wwwroot/JDU/CatalogAssets
+**/*.db
+**/*.db-shm
+**/*.db-wal
 **/secrets.dev.yaml
 **/values.dev.yaml
 LICENSE
