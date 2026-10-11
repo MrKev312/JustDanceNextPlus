@@ -1,6 +1,8 @@
 using JustDanceServer.Configuration;
+using JustDanceServer.JustDanceClasses.Database;
 using JustDanceServer.JustDanceClasses.Endpoints;
 using JustDanceServer.Services;
+using JustDanceServer.Utilities;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -46,8 +48,6 @@ public sealed class JduPackageServiceTests
 		string archiveMd5 = Convert.ToHexStringLower(MD5.HashData(archiveBytes));
 		string archivePath = Path.Combine(packageDirectory, $"{archiveMd5}.zip");
 		Mock<IFileSystem> fileSystem = new();
-		fileSystem.Setup(system => system.DirectoryExists(mapsPath)).Returns(true);
-		fileSystem.Setup(system => system.GetDirectories(mapsPath)).Returns([mapDirectory]);
 		fileSystem.Setup(system => system.DirectoryExists(packageDirectory)).Returns(true);
 		fileSystem.Setup(system => system.GetFiles(packageDirectory, "*.zip", SearchOption.TopDirectoryOnly))
 			.Returns([archivePath]);
@@ -55,7 +55,7 @@ public sealed class JduPackageServiceTests
 		fileSystem.Setup(system => system.OpenRead(archivePath)).Returns(() => new MemoryStream(archiveBytes));
 
 		JduPackageService service = new(
-			Options.Create(new PathSettings { MapsPath = mapsPath }),
+			CreateMapService(mapDirectory, "TestMap"),
 			Options.Create(new UrlSettings
 			{
 				HostUrl = "next-service.local.test",
@@ -82,11 +82,141 @@ public sealed class JduPackageServiceTests
 		using Stream zipStream = archive.Contents;
 		Assert.True(zipStream.CanSeek);
 		Assert.Equal(archiveBytes.Length, zipStream.Length);
-		fileSystem.Verify(system => system.GetDirectories(mapsPath), Times.Once);
+		fileSystem.Verify(system => system.GetDirectories(It.IsAny<string>()), Times.Never);
 		using ZipArchive zip = new(zipStream, ZipArchiveMode.Read);
 		Assert.Equal(5, zip.Entries.Count);
 		Assert.Contains(zip.Entries, entry => entry.Name == "TestMap_main_scene_nx.ipk");
 		Assert.Contains(zip.Entries, entry => entry.Name == "secure_fat.gf");
+	}
+
+	[Theory]
+	[InlineData("jd2017-nx-all", true, MapVideoCodec.Vp8)]
+	[InlineData("jd2018-nx-all", true, MapVideoCodec.Vp9)]
+	[InlineData("jd2022-nx-all", true, MapVideoCodec.Vp9)]
+	[InlineData("jd2022-nx-all", false, MapVideoCodec.Vp8)]
+	[InlineData("jd2022-ps5-all", true, MapVideoCodec.Vp8)]
+	[InlineData("jd2022-scarlett-all", true, MapVideoCodec.Vp8)]
+	[InlineData("jd2022-orbis-all", true, MapVideoCodec.Vp8)]
+	[InlineData("jd2022-durango-all", true, MapVideoCodec.Vp8)]
+	[InlineData("jd2018-wiiu-noe", true, MapVideoCodec.Vp8)]
+	[InlineData("jd2017-pc-all", true, MapVideoCodec.Vp8)]
+	public void PackageSelection_KeepsCatalogAndVideoAuthorizationTogether(
+		string skuId,
+		bool hasVp9,
+		MapVideoCodec expectedCodec)
+	{
+		Assert.True(JduMediaClientProfiles.TryResolve(skuId, out JduMediaClientProfile? client));
+		JduPackageService packages = CreatePackageService(client.AssetPlatform, hasVp8: true, hasVp9);
+		JduPackageSelection selection = Assert.IsType<JduPackageSelection>(packages.SelectPackage("TestMap", client));
+		JduPackageEntry catalogEntry = packages.CreateCatalog(skuId)["TestMap_mapContent"];
+		Assert.Equal(expectedCodec, selection.VideoCodec);
+		Assert.Equal(selection.Package, catalogEntry);
+		Assert.Equal(new string(expectedCodec == MapVideoCodec.Vp9 ? 'b' : 'a', 32), catalogEntry.Md5);
+
+		ServerMap map = ServerMapTestData.CreateMap(
+			Guid.NewGuid(),
+			Path.Combine("maps", "TestMap"),
+			new JustDanceSongDBEntry { MapName = "TestMap", DanceVersionLocId = new OasisTag(new LocalizedString(1, "Standard")) });
+		Mock<IMapService> maps = new();
+		maps.Setup(service => service.GetMap("TestMap")).Returns(map);
+		JduContentAuthorizationService authorization = new(maps.Object, packages, Options.Create(new UrlSettings { CDNUrl = "cdn.test" }));
+		JduContentAuthorizationEntry content = Assert.IsType<JduContentAuthorizationEntry>(authorization.Create("TestMap", client));
+		string codec = expectedCodec.ToCodecName();
+		Assert.All(content.Urls.Where(entry => entry.Key.EndsWith(".webm", StringComparison.Ordinal)), entry =>
+			Assert.Contains($"/Video/{codec}/", entry.Value, StringComparison.Ordinal));
+		Assert.Equal(
+			content.Urls["jmcs://jd-contents/TestMap/TestMap_LOW.webm"],
+			content.Urls["jmcs://jd-contents/TestMap/TestMap_LOW.hd.webm"]);
+	}
+
+	[Fact]
+	public void PackageSelection_RequiresTheVp8Baseline()
+	{
+		JduPackageService packages = CreatePackageService("NX", hasVp8: false, hasVp9: true);
+		Assert.True(JduMediaClientProfiles.TryResolve("jd2022-nx-all", out JduMediaClientProfile? client));
+		Assert.Empty(packages.CreateCatalog("jd2022-nx-all"));
+		Assert.Null(packages.SelectPackage("TestMap", client));
+		Assert.Null(packages.GetArchive(new string('b', 32), "NX"));
+
+		ServerMap map = ServerMapTestData.CreateMap(
+			Guid.NewGuid(),
+			Path.Combine("maps", "TestMap"),
+			new JustDanceSongDBEntry { MapName = "TestMap", DanceVersionLocId = new OasisTag(new LocalizedString(1, "Standard")) });
+		Mock<IMapService> maps = new();
+		maps.Setup(service => service.GetMap("TestMap")).Returns(map);
+		JduContentAuthorizationService authorization = new(maps.Object, packages, Options.Create(new UrlSettings()));
+		Assert.Null(authorization.Create("TestMap", client));
+	}
+
+	[Theory]
+	[InlineData("jd2017-nx-all")]
+	[InlineData("jd2022-nx-all")]
+	public void PackageArchives_ResolveBothVariantsFromTheSamePlatformIndex(string firstSkuId)
+	{
+		JduPackageService packages = CreatePackageService("NX", hasVp8: true, hasVp9: true);
+		Assert.Single(packages.CreateCatalog(firstSkuId));
+		JduPackageEntry vp8 = packages.CreateCatalog("jd2017-nx-all")["TestMap_mapContent"];
+		JduPackageEntry vp9 = packages.CreateCatalog("jd2022-nx-all")["TestMap_mapContent"];
+		Assert.NotEqual(vp8.Md5, vp9.Md5);
+		Assert.NotEqual(vp8.Version, vp9.Version);
+		foreach (JduPackageEntry entry in new[] { vp8, vp9 })
+		{
+			JduPackageArchiveMetadata metadata = Assert.IsType<JduPackageArchiveMetadata>(packages.GetArchiveMetadata(entry.Md5, "nx"));
+			JduPackageArchive archive = Assert.IsType<JduPackageArchive>(packages.GetArchive(entry.Md5, "nx"));
+			using Stream stream = archive.Contents;
+			Assert.Equal(entry.Md5 + ".zip", archive.FileName);
+			Assert.Equal(stream.Length, metadata.Length);
+		}
+		Assert.Empty(packages.CreateCatalog("invalid"));
+		Assert.True(JduMediaClientProfiles.TryResolve("jd2022-nx-all", out JduMediaClientProfile? client));
+		Assert.Equal(vp9, packages.SelectPackage("testmap", client)!.Package);
+		Assert.Null(packages.SelectPackage("UnknownMap", client));
+	}
+
+	[Fact]
+	public void PackageSelection_UsesTheCanonicalMapNameInsteadOfTheFolderName()
+	{
+		JduPackageService packages = CreatePackageService("NX", hasVp8: true, hasVp9: true, "CanonicalMap");
+		Assert.True(JduMediaClientProfiles.TryResolve("jd2022-nx-all", out JduMediaClientProfile? client));
+		JduPackageEntry catalogEntry = Assert.Single(packages.CreateCatalog("jd2022-nx-all")).Value;
+		Assert.Equal(catalogEntry, packages.SelectPackage("CanonicalMap", client)!.Package);
+		Assert.Contains("CanonicalMap_mapContent", packages.CreateCatalog("jd2022-nx-all").Keys);
+		Assert.Null(packages.SelectPackage("TestMap", client));
+	}
+
+	private static JduPackageService CreatePackageService(string platform, bool hasVp8, bool hasVp9, string mapName = "TestMap")
+	{
+		string mapDirectory = Path.Combine("maps", "TestMap");
+		Mock<IFileSystem> fileSystem = new();
+		AddArchive("MainScene", new string('a', 32), hasVp8);
+		AddArchive("MainSceneVP9", new string('b', 32), hasVp9);
+		return new JduPackageService(
+			CreateMapService(mapDirectory, mapName),
+			Options.Create(new UrlSettings { CDNUrl = "cdn.test" }),
+			fileSystem.Object,
+			NullLogger<JduPackageService>.Instance);
+
+		void AddArchive(string role, string hash, bool exists)
+		{
+			string directory = Path.Combine(mapDirectory, "JDUnlimited", "Assets", platform, role);
+			string path = Path.Combine(directory, hash + ".zip");
+			fileSystem.Setup(system => system.DirectoryExists(directory)).Returns(exists);
+			fileSystem.Setup(system => system.GetFiles(directory, "*.zip", SearchOption.TopDirectoryOnly)).Returns([path]);
+			fileSystem.Setup(system => system.GetFileLength(path)).Returns(3);
+			fileSystem.Setup(system => system.OpenRead(path)).Returns(() => new MemoryStream([1, 2, 3]));
+		}
+	}
+
+	private static IMapService CreateMapService(string folderPath, string mapName)
+	{
+		ServerMap map = ServerMapTestData.CreateMap(
+			Guid.NewGuid(),
+			folderPath,
+			new JustDanceSongDBEntry { MapName = mapName, DanceVersionLocId = new OasisTag(new LocalizedString(1, "Standard")) });
+		Mock<IMapService> maps = new();
+		maps.SetupGet(service => service.Maps).Returns(new OrderedDictionary<Guid, ServerMap> { [map.SongId] = map });
+		maps.Setup(service => service.GetMap(mapName)).Returns(map);
+		return maps.Object;
 	}
 
 	[Theory]

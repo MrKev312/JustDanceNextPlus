@@ -13,6 +13,7 @@ public interface IJduContentAuthorizationService
 
 public sealed class JduContentAuthorizationService(
     IMapService mapService,
+    IJduPackageService packageService,
     IOptions<UrlSettings> urlOptions) : IJduContentAuthorizationService
 {
     public JduContentAuthorizationEntry? Create(string mapName, JduMediaClientProfile client)
@@ -23,8 +24,12 @@ public sealed class JduContentAuthorizationService(
 
         JustDanceSongDBEntry song = map.Song;
         string canonicalMapName = song.MapName;
+        JduPackageSelection? selection = packageService.SelectPackage(canonicalMapName, client);
+        if (selection is null)
+            return null;
+
 		MapMediaAssets media = map.GetMedia(MapMediaLayouts.JDUnlimited);
-		MapVideoSet videos = map.GetFullVideos(client.VideoCodec.ToCodecName());
+		MapVideoSet videos = map.GetFullVideos(selection.VideoCodec.ToCodecName());
 		if (!JduVideoCapabilities.Supports1080p(client.Platform))
 			videos = UseSecondHighestForUltra(videos);
         Dictionary<string, string> urls = new(StringComparer.Ordinal)
@@ -46,8 +51,8 @@ public sealed class JduContentAuthorizationService(
 
 	private static MapVideoSet UseSecondHighestForUltra(MapVideoSet source)
     {
-		// Retail Wii U struggles with the 1080p VP8 representation. Preserve its
-		// four logical quality slots while repeating the second-highest stream as ULTRA.
+		// Preserve all four logical quality slots for clients capped below 1080p
+		// by repeating the second-highest stream as ULTRA.
 		MapVideoQuality[] qualities = [.. source.Qualities];
 		qualities[^1] = qualities[^2];
 		return new MapVideoSet(source.Codec, qualities);

@@ -75,19 +75,19 @@ public sealed class ClassicJduBootstrapTests
 		Assert.True(JduMediaClientProfiles.TryResolve("jd2022-nx-all", out JduMediaClientProfile? nx2022));
 		Assert.Equal(MapVideoCodec.Vp9, nx2022.VideoCodec);
 		Assert.True(JduMediaClientProfiles.TryResolve("jd2022-ps5-all", out JduMediaClientProfile? ps52022));
-		Assert.Equal(MapVideoCodec.Vp9, ps52022.VideoCodec);
+		Assert.Equal(MapVideoCodec.Vp8, ps52022.VideoCodec);
 		Assert.True(JduMediaClientProfiles.TryResolve("jd2022-ps4-all", out JduMediaClientProfile? ps42022));
 		Assert.Equal(MapVideoCodec.Vp8, ps42022.VideoCodec);
 		Assert.All(
 			new[]
 			{
 				JduPlatform.Pc,
-				JduPlatform.NintendoSwitch,
 				JduPlatform.PlayStation4,
 				JduPlatform.PlayStation5,
 				JduPlatform.XboxOne
 			},
 			platform => Assert.True(JduVideoCapabilities.Supports1080p(platform)));
+		Assert.True(JduVideoCapabilities.Supports1080p(JduPlatform.NintendoSwitch));
 		Assert.False(JduVideoCapabilities.Supports1080p(JduPlatform.WiiU));
 	}
 

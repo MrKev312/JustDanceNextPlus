@@ -106,6 +106,8 @@ maps/
           Coach2/ ... Coach<coachCount>/ (for maps with more than one coach)
           MainScene/
             <map_file>.zip
+          MainSceneVP9/ (optional)
+            <map_file>.zip
 ```
 
 `SongInfo.json` and the full videos under `Video/` are shared between JDNext and JDU. Audio-preview timing and camera-scoring metadata are read once from an available `JDPlus/Assets/<platform>/MapPackage` bundle and shared as well.
@@ -113,6 +115,8 @@ maps/
 Each map must contain both the `JDPlus` and `JDUnlimited` media layouts, including VP8 and VP9 previews and full videos. Each video folder must contain between one and four WEBM files, ordered by bitrate by the server. If fewer than four are supplied, the highest-bitrate file is reused for the remaining quality slots.
 
 JDPlus platform folder names are `NX`, `PC`, `PS5`, and `XboxScarlett`. JDU platform folder names are `NX`, `PC`, `WIIU`, `ORBIS`, `DURANGO`, `PROSPERO`, `SCARLETT`, and `GGP`. Supply the assets for the clients you intend to serve; assets are not converted between platforms. Every asset-role folder must contain exactly one file, and JDU requires a `Coach1` through `Coach<coachCount>` image for each map. Its map package is an MD5-named ZIP under `MainScene/`.
+
+`MainScene/` is the required VP8 baseline. An optional `MainSceneVP9/` ZIP can provide a VP9 variant without duplicating the other platform asset folders. JDU Switch clients from JD2018 onward select that variant when present; otherwise both the package and full-dance videos fall back to VP8. JD2017 Switch and the other JDU platforms use VP8. Each package's embedded full-dance MPD must describe the exact videos served, including any repeated quality slots, and changed packages need new MD5 filenames. These rules do not change JDNext codec selection.
 
 Incomplete maps intentionally stop startup, and missing assets for a requested platform cause that catalog request to fail rather than silently omit the map. Keep both media layouts complete and preserve the folder casing shown above.
 

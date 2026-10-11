@@ -14,8 +14,7 @@ public static class JduVideoCapabilities
 {
 	private static readonly JduPlatform[] Vp9Platforms =
 	[
-		JduPlatform.NintendoSwitch,
-		JduPlatform.PlayStation5
+		JduPlatform.NintendoSwitch
 	];
 	private static readonly JduPlatform[] PlatformsSupporting1080p =
 	[

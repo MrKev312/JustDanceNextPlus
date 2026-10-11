@@ -13,7 +13,7 @@ namespace JustDanceServer.Tests.Services;
 public sealed class JduContentAuthorizationServiceTests
 {
 	[Fact]
-	public void ContentAuthorization_UsesClientVideoCodecAndWiiUQualityPolicy()
+	public void ContentAuthorization_UsesClientVideoCodecAndQualityPolicy()
 	{
 		const string mapName = "PokerFaceALT";
 		string mapFolder = Path.Combine("maps", mapName);
@@ -60,9 +60,15 @@ public sealed class JduContentAuthorizationServiceTests
 					["vp9low", "vp9mid", "vp9high", "vp9ultra"])
 			});
 		mapService.Setup(service => service.GetMap(mapName)).Returns(map);
+		Mock<IJduPackageService> packages = new();
+		packages.Setup(service => service.SelectPackage(mapName, It.IsAny<JduMediaClientProfile>()))
+			.Returns((string _, JduMediaClientProfile client) => new JduPackageSelection(
+				client.VideoCodec,
+				new JduPackageEntry { Url = "https://cdn.test/package.zip", Md5 = new string('a', 32), Version = 1 }));
 
 		JduContentAuthorizationService service = new(
 			mapService.Object,
+			packages.Object,
 			Options.Create(new UrlSettings
 			{
 				HostUrl = "next-service.test",
@@ -103,6 +109,37 @@ public sealed class JduContentAuthorizationServiceTests
 		Assert.Equal(
 			"https://cdn.test/maps/PokerFaceALT/Video/vp9/vp9ultra.webm",
 			switch2018.Urls["jmcs://jd-contents/PokerFaceALT/PokerFaceALT_ULTRA.hd.webm"]);
+
+		JduContentAuthorizationEntry switch2022 = Assert.IsType<JduContentAuthorizationEntry>(
+			service.Create(mapName, ResolveMedia("jd2022-nx-all")));
+		Assert.Equal(9, switch2022.Urls.Count);
+		Assert.All(
+			switch2022.Urls.Values.Where(url => url.EndsWith(".webm", StringComparison.Ordinal)),
+			url => Assert.Contains("/Video/vp9/", url, StringComparison.Ordinal));
+		Assert.Equal(
+			"https://cdn.test/maps/PokerFaceALT/Video/vp9/vp9ultra.webm",
+			switch2022.Urls["jmcs://jd-contents/PokerFaceALT/PokerFaceALT_ULTRA.webm"]);
+		Assert.Equal(
+			"https://cdn.test/maps/PokerFaceALT/Video/vp9/vp9ultra.webm",
+			switch2022.Urls["jmcs://jd-contents/PokerFaceALT/PokerFaceALT_ULTRA.hd.webm"]);
+
+		// Every supported Switch release keeps ULTRA, regardless of its codec.
+		foreach (int year in Enumerable.Range(2017, 6))
+		{
+			JduContentAuthorizationEntry entry = Assert.IsType<JduContentAuthorizationEntry>(
+				service.Create(mapName, ResolveMedia($"jd{year}-nx-all")));
+			string expected = year == 2017
+				? "https://cdn.test/maps/PokerFaceALT/Video/vp8/ultrahash.webm"
+				: "https://cdn.test/maps/PokerFaceALT/Video/vp9/vp9ultra.webm";
+			Assert.Equal(expected, entry.Urls["jmcs://jd-contents/PokerFaceALT/PokerFaceALT_ULTRA.webm"]);
+			Assert.Equal(expected, entry.Urls["jmcs://jd-contents/PokerFaceALT/PokerFaceALT_ULTRA.hd.webm"]);
+		}
+
+		JduContentAuthorizationEntry ps52022 = Assert.IsType<JduContentAuthorizationEntry>(
+			service.Create(mapName, ResolveMedia("jd2022-ps5-all")));
+		Assert.Equal(
+			"https://cdn.test/maps/PokerFaceALT/Video/vp8/ultrahash.webm",
+			ps52022.Urls["jmcs://jd-contents/PokerFaceALT/PokerFaceALT_ULTRA.hd.webm"]);
 	}
 
 	private static JduMediaClientProfile ResolveMedia(string skuId)
