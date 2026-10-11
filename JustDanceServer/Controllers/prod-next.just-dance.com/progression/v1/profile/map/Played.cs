@@ -7,7 +7,10 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.progression.v1.pr
 
 [ApiController]
 [Route("progression/v1/profile/map/played")]
-public class Played(IUserDataService userDataService) : ControllerBase
+public class Played(
+    IUserDataService userDataService,
+    IMapService mapService,
+    IMapCompletionService completions) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> PushMapsPlayedAsync([FromBody] PlayedWrapper body,
@@ -19,20 +22,22 @@ public class Played(IUserDataService userDataService) : ControllerBase
         if (body?.Map == null || sessionId == null || body.Map.Score is < 0 or > 13333 || !Guid.TryParse(sessionId, out Guid sessionGuid))
             return BadRequest("Improperly formatted request.");
 
-		// Resolve session and profile
-		Session? session = sessionManager.GetSessionById(sessionGuid);
+        // Resolve session and profile
+        Session? session = sessionManager.GetSessionById(sessionGuid);
         if (session == null)
             return Unauthorized("Invalid or expired session.");
 
-		Profile? profile = await userDataService.GetProfileByIdAsync(session.PlayerId);
+        Profile? profile = await userDataService.GetProfileByIdAsync(session.PlayerId);
         if (profile == null)
             return Unauthorized("Profile not found for the current session.");
 
-		PlayedRequest map = body.Map;
+        PlayedRequest map = body.Map;
+        if (!mapService.TryGetMapName(map.MapId, out string mapName))
+            return NotFound("Map not found.");
 
-		// Build highscore performance
-		HighscorePerformance highScorePerformance = new()
-		{
+        // Build highscore performance
+        HighscorePerformance highScorePerformance = new()
+        {
             GoldMovesAchieved = map.GoldMovesAchieved,
             Moves = new MoveCounts
             {
@@ -46,21 +51,40 @@ public class Played(IUserDataService userDataService) : ControllerBase
         };
 
         // Update high score using the existing service
-        (bool success, bool isNewHighScore) = await userDataService.UpdateHighScoreAsync(highScorePerformance, map.Score, profile.Id, map.MapId);
+        string platform = ClientPlatform.FromUserAgent(Request.Headers.UserAgent) ?? "Unknown";
+        MapCompletionResult completion = await completions.RecordAsync(new MapCompletion(
+            profile.Id, mapName, map.Score, platform, map.IsCoopEnabled, highScorePerformance, GrantXp: true));
+        (bool success, bool isNewHighScore) = completion.Score;
         if (!success)
             return BadRequest("Failed to update high score.");
 
-		MapStats? MapStats = await userDataService.GetHighScoreByProfileIdAndMapIdAsync(profile.Id, map.MapId);
+        MapStats? MapStats = await userDataService.GetHighScoreByProfileIdAndMapNameAsync(profile.Id, mapName);
+        MapStats ??= new MapStats
+        {
+            ProfileId = profile.Id,
+            MapName = mapName,
+            Platform = platform,
+            HighScorePerformance = highScorePerformance
+        };
+        PlayerProgression progression = completion.Progression ?? new PlayerProgression
+        {
+            ProfileId = profile.Id,
+            Family = ProgressionFamily.JDPlus,
+            Xp = profile.CurrentXP,
+            Level = profile.CurrentLevel,
+            Prestige = profile.PrestigeGrade
+        };
 
-        return Ok(new {
-            EarnedXP = 0,
+        return Ok(new
+        {
+            EarnedXP = Math.Clamp(map.Score, 0, 13_333) / 100,
             IsHighScore = isNewHighScore,
             IsLevelIncreased = false,
             IsPrestigeIncreased = false,
-			profile.CurrentXP,
-			profile.CurrentLevel,
-            PrestigeGrade = 0,
-			MapStats,
+            CurrentXP = progression.Xp,
+            CurrentLevel = progression.Level,
+            PrestigeGrade = progression.Prestige,
+            MapStats,
             EarnedSeasonPoints = 0
         });
     }

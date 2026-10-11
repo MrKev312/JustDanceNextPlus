@@ -1,4 +1,4 @@
-﻿using JustDanceServer.JustDanceClasses.Endpoints;
+using JustDanceServer.JustDanceClasses.Endpoints;
 using JustDanceServer.Services;
 
 using Microsoft.AspNetCore.Mvc;
@@ -6,38 +6,52 @@ using Microsoft.AspNetCore.Mvc;
 namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v1.spaces._1da01a17_3bc7_4b5d_aedd_70a0915089b0.parties;
 
 [ApiController]
-[Route("v1/spaces/1da01a17-3bc7-4b5d-aedd-70a0915089b0/parties/{partyID:guid}/members")]
-public class Members(IPartyManager partyManager) : ControllerBase
+[Route("v1/spaces/{spaceId:jdnext}/parties/{partyId:guid}/members")]
+public sealed class Members(IPartyService partyService, ISessionManager sessionManager) : ControllerBase
 {
-	[HttpGet(Name = "GetMembers")]
-	public IActionResult GetMembers([FromRoute] Guid partyID)
-	{
-		Party? party = partyManager.GetParty(partyID);
+    [HttpGet(Name = "GetMembers")]
+    public IActionResult GetMembers([FromRoute] Guid spaceId, [FromRoute] Guid partyId)
+    {
+        PartySnapshot? party = partyService.Get(partyId);
+        if (party is null)
+            return NotFound();
 
-		if (party == null)
-			return NotFound();
+        return Ok(new
+        {
+            ownerProfileId = party.OwnerProfileId,
+            members = party.Members.Select(member => new PartyMemberResponse
+            {
+                ProfileId = member.ProfileId,
+                AddedAt = member.CreatedAt,
+                LastModifiedAt = member.LastModifiedAt,
+                Revision = member.Revision
+            })
+        });
+    }
 
-		string response = $$"""
-			{
-				"ownerProfileId": "{{party.PartyMembers[0]}}",
-				"members": [{
-					"profileId": "{{party.PartyMembers[0]}}",
-					"obj": {},
-					"addedAt": "2024-10-07T09:32:22.063Z",
-					"lastModifiedAt": "2024-10-07T09:32:22.063Z",
-					"revision": 1
-				}]
-			}
-			""";
+    [HttpPost]
+    public IActionResult Join(
+        [FromRoute] Guid spaceId,
+        [FromRoute] Guid partyId,
+        [FromBody] JoinPartyRequest request)
+    {
+        if (!RequestSessionResolver.TryResolve(Request, sessionManager, out Session? session))
+            return Unauthorized();
+        return partyService.Join(partyId, session.PlayerId, request.AccessToken)
+            ? Ok()
+            : BadRequest("The party access token is invalid or expired.");
+    }
 
-		return Ok(response);
-	}
-
-	[HttpDelete("{profileId}", Name = "DeleteMember")]
-	public IActionResult DeleteMember([FromRoute] Guid partyID, [FromRoute] Guid profileId)
-	{
-		partyManager.RemovePartyMember(partyID, profileId);
-
-		return Ok();
-	}
+    [HttpDelete("{profileId:guid}", Name = "DeleteMember")]
+    public IActionResult DeleteMember(
+        [FromRoute] Guid spaceId,
+        [FromRoute] Guid partyId,
+        [FromRoute] Guid profileId)
+    {
+        if (!RequestSessionResolver.TryResolve(Request, sessionManager, out Session? session))
+            return Unauthorized();
+        return partyService.Leave(partyId, profileId, session.PlayerId) ? Ok() : StatusCode(StatusCodes.Status403Forbidden);
+    }
 }
+
+public sealed record JoinPartyRequest(string AccessToken);

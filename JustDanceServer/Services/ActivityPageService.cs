@@ -22,8 +22,8 @@ public class ActivityPageService(ILogger<ActivityPageService> logger,
 
     public async Task LoadData()
     {
-		// First, load the base activity page from the file.
-		ActivityPageResponse? loadedActivityPage = await LoadBaseActivityPageAsync();
+        // First, load the base activity page from the file.
+        ActivityPageResponse? loadedActivityPage = await LoadBaseActivityPageAsync();
 
         // If loading failed or there are no recently added songs, assign the loaded page and we're done.
         if (loadedActivityPage == null || mapService.RecentlyAdded.Count == 0)
@@ -50,9 +50,9 @@ public class ActivityPageService(ILogger<ActivityPageService> logger,
         try
         {
             using Stream openStream = fileSystem.OpenRead(filePath);
-			ActivityPageResponse? activityPage = await JsonSerializer.DeserializeAsync<ActivityPageResponse>(openStream, jsonSettingsService.PrettyPascalFormat)
+            ActivityPageResponse? activityPage = await JsonSerializer.DeserializeAsync<ActivityPageResponse>(openStream, jsonSettingsService.PrettyPascalFormat)
                 ?? throw new NullReferenceException("Deserialized ActivityPage is null");
-			logger.LogInformation("Successfully loaded activity page data.");
+            logger.LogInformation("Successfully loaded activity page data.");
             return activityPage;
         }
         catch (Exception ex)
@@ -65,8 +65,8 @@ public class ActivityPageService(ILogger<ActivityPageService> logger,
     private ActivityPageResponse CreatePageWithNewlyAddedSongs(ActivityPageResponse basePage)
     {
         // Create a new category for the newly added songs
-        Guid newSongsGuid = Guid.NewGuid();
-		CarouselCategory newCategory = new()
+        Guid newSongsGuid = StableContentId.Create("menu:recently-added");
+        CarouselCategory newCategory = new()
         {
             CategoryName = "Newly Added Songs",
             TitleId = localizedStringService.GetAddLocalizedTag("Newly Added Songs!"),
@@ -74,12 +74,12 @@ public class ActivityPageService(ILogger<ActivityPageService> logger,
             DoNotFilterOwnership = false
         };
 
-		// Create a new modifier to place this category at the top
-		PositionModifier newModifier = new("carousel", newSongsGuid, 0);
+        // Create a new modifier to place this category at the top
+        PositionModifier newModifier = new("carousel", newSongsGuid, 0);
 
-		// Create new immutable collections by adding our new items to the existing ones.
-		ImmutableDictionary<Guid, ICategory> updatedCategories = basePage.Categories.Add(newSongsGuid, newCategory);
-		ImmutableList<IModifier> updatedModifiers = basePage.CategoryModifiers.Insert(0, newModifier);
+        // Create new immutable collections by adding our new items to the existing ones.
+        ImmutableDictionary<Guid, ICategory> updatedCategories = basePage.Categories.Add(newSongsGuid, newCategory);
+        ImmutableList<IModifier> updatedModifiers = basePage.CategoryModifiers.Insert(0, newModifier);
 
         // Use a 'with' expression to create a new, updated ActivityPageResponse.
         return basePage with

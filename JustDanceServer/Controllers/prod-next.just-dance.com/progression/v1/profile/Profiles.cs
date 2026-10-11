@@ -14,22 +14,22 @@ public class Profiles(IUserDataService userDataServices) : ControllerBase
     {
         List<ProfileData> profiles = [];
         foreach (string pid in request.ProfileIds)
-		{
-			if (!Guid.TryParse(pid, out Guid guid))
-				continue;
+        {
+            if (!Guid.TryParse(pid, out Guid guid))
+                continue;
 
-			Profile? profile = await userDataServices.GetProfileByIdAsync(guid);
-			if (profile == null)
-				continue;
+            Profile? profile = await userDataServices.GetProfileByIdAsync(guid);
+            if (profile == null)
+                continue;
 
-			profiles.Add(new ProfileData
-			{
-				Id = profile.Id,
-				Dancercard = profile.Dancercard
-			});
-		}
+            profiles.Add(new ProfileData
+            {
+                Id = profile.Id,
+                Dancercard = profile.Dancercard
+            });
+        }
 
-		return Ok(new
+        return Ok(new
         {
             Profiles = profiles
         });

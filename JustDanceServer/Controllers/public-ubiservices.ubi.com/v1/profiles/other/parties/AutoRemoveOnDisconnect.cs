@@ -1,21 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using JustDanceServer.Configuration;
+using JustDanceServer.Services;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v1.profiles.other.parties;
 
 [ApiController]
 [Route("v1/profiles/{profileId:guid}/parties/{partyId:guid}/autoRemoveOnDisconnect")]
-public class AutoRemoveOnDisconnect : ControllerBase
+public sealed class AutoRemoveOnDisconnect(
+    IPartyService partyService,
+    ISessionManager sessionManager) : ControllerBase
 {
-	[HttpPut]
-	public IActionResult Put([FromRoute] Guid profileId, [FromRoute] Guid partyId)
+    [HttpPut]
+    public IActionResult Put([FromRoute] Guid profileId, [FromRoute] Guid partyId)
     {
-		string response = """
-			{
-				"spaceId": "1da01a17-3bc7-4b5d-aedd-70a0915089b0",
-				"applicationIds": ["77b6223b-eb41-4ccd-833c-c7b16537fde3"]
-			}
-			""";
-
-		return Content(response, "application/json");
-	}
+        if (!RequestSessionResolver.TryResolve(Request, sessionManager, out Session? session))
+            return Unauthorized();
+        if (session.PlayerId != profileId || !partyService.SetAutoRemove(partyId, profileId, true))
+            return StatusCode(StatusCodes.Status403Forbidden);
+        return Ok(new
+        {
+            spaceId = JdNextConstants.GameSpaceId,
+            applicationIds = UbisoftApplicationProfiles.GetApplicationIdsForTarget(
+                JdNextConstants.GameSpaceId)
+        });
+    }
 }

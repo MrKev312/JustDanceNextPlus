@@ -1,0 +1,17 @@
+[
+  {
+    "id": "252a20bc-dba4-4a70-95c9-6f0e12535285",
+    "title": "this is a test",
+    "body": "this is a test",
+    "summary": "this is a test",
+    "type": "normal",
+    "placement": "Notification center",
+    "locale": "en-US",
+    "priority": 1,
+    "publicationDate": "2026-01-01T00:00:00Z",
+    "products": [ "JDPlus", "JDUnlimited" ],
+    "gameYears": [],
+    "platforms": [],
+    "showOnHome": true
+  }
+]

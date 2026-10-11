@@ -33,18 +33,18 @@ public class BundleServiceTests
         _mockLocalizedStringService = new Mock<ILocalizedStringService>();
         _mockFileSystem = new Mock<IFileSystem>();
 
-		// Mocks required by the JsonConverters
-		Mock<ITagService> mockTagService = new();
-		Mock<IMapService> mockMapService = new();
+        // Mocks required by the JsonConverters
+        Mock<ITagService> mockTagService = new();
+        Mock<IMapService> mockMapService = new();
 
-		// Create concrete instances of the converters with mocked dependencies
-		GuidTagConverter guidTagConverter = new(mockTagService.Object, _mockLocalizedStringService.Object);
-		MapTagConverter mapTagConverter = new(mockMapService.Object, Mock.Of<ILogger<MapTagConverter>>());
-		TagIdConverter tagIdConverter = new(_mockLocalizedStringService.Object);
-		MapTagListConverter mapTagListConverter = new(mockMapService.Object, Mock.Of<ILogger<MapTagListConverter>>());
+        // Create concrete instances of the converters with mocked dependencies
+        GuidTagConverter guidTagConverter = new(mockTagService.Object, _mockLocalizedStringService.Object);
+        MapTagConverter mapTagConverter = new(mockMapService.Object, Mock.Of<ILogger<MapTagConverter>>());
+        TagIdConverter tagIdConverter = new(_mockLocalizedStringService.Object);
+        MapTagListConverter mapTagListConverter = new(mockMapService.Object, Mock.Of<ILogger<MapTagListConverter>>());
 
-		// Mock the IServiceProvider to return the concrete converter instances
-		Mock<IServiceProvider> mockServiceProvider = new();
+        // Mock the IServiceProvider to return the concrete converter instances
+        Mock<IServiceProvider> mockServiceProvider = new();
         mockServiceProvider.Setup(sp => sp.GetService(typeof(GuidTagConverter))).Returns(guidTagConverter);
         mockServiceProvider.Setup(sp => sp.GetService(typeof(MapTagConverter))).Returns(mapTagConverter);
         mockServiceProvider.Setup(sp => sp.GetService(typeof(TagIdConverter))).Returns(tagIdConverter);
@@ -63,10 +63,10 @@ public class BundleServiceTests
     }
 
     [Fact]
-    public async Task LoadLiveTiles_FileExists_LoadsAndReplacesCdnUrl()
+    public async Task LoadLiveTiles_FileExists_KeepsPlatformNeutralBundleReference()
     {
-		// Arrange
-		Guid tileId = Guid.NewGuid();
+        // Arrange
+        Guid tileId = Guid.NewGuid();
         // Added required properties buttonId and subtitleId to the JSON
         string fakeJson = $$$"""
         {
@@ -79,7 +79,7 @@ public class BundleServiceTests
           }
         }
         """;
-		MemoryStream fakeStream = new(Encoding.UTF8.GetBytes(fakeJson));
+        MemoryStream fakeStream = new(Encoding.UTF8.GetBytes(fakeJson));
         _mockFileSystem.Setup(fs => fs.FileExists(It.IsAny<string>())).Returns(true);
         _mockFileSystem.Setup(fs => fs.OpenRead(It.IsAny<string>())).Returns(fakeStream);
 
@@ -87,13 +87,13 @@ public class BundleServiceTests
         _mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag(123)).Returns(new LocalizedString(123, "Button Text"));
         _mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag(456)).Returns(new LocalizedString(456, "Subtitle Text"));
 
-		// Act
-		IReadOnlyDictionary<Guid, LiveTile> result = await _service.LoadLiveTiles();
+        // Act
+        IReadOnlyDictionary<Guid, LiveTile> result = await _service.LoadLiveTiles();
 
         // Assert
         Assert.Single(result);
         Assert.True(result.ContainsKey(tileId));
-        Assert.Equal("https://test.cdn.com/bundles/NX/image.bundle", result[tileId].Assets.BackgroundImage);
+        Assert.Equal("{{cdnUrl}}/path/to/image.png", result[tileId].Assets.BackgroundImage);
         Assert.Equal(123, result[tileId].ButtonId.ID);
         Assert.Equal(456, result[tileId].SubtitleId.ID);
         _mockLogger.Verify(
@@ -105,17 +105,17 @@ public class BundleServiceTests
     [Fact]
     public async Task LoadJustDanceBundles_FileExists_ParsesAndInitializesClaims()
     {
-		// Arrange
-		JustDanceEdition fakeEdition = new()
-		{
+        // Arrange
+        JustDanceEdition fakeEdition = new()
+        {
             Name = "songpack_year1",
             DlcType = VersionType.Yearly,
             ProductGroupBundle = "{{cdnUrl}}/bundle.bundle",
             GroupLocId = new LocalizedString(1234, "Song Pack 2023"),
         };
-		List<JustDanceEdition> db = [fakeEdition];
-		string fakeJson = JsonSerializer.Serialize(db, _jsonSettingsService.PrettyPascalFormat);
-		MemoryStream fakeStream = new(Encoding.UTF8.GetBytes(fakeJson));
+        List<JustDanceEdition> db = [fakeEdition];
+        string fakeJson = JsonSerializer.Serialize(db, _jsonSettingsService.PrettyPascalFormat);
+        MemoryStream fakeStream = new(Encoding.UTF8.GetBytes(fakeJson));
 
         _mockFileSystem.Setup(fs => fs.FileExists(Path.Combine(_mockPathSettings.Value.JsonsPath, "JustDanceEditions.json"))).Returns(true);
         _mockFileSystem.Setup(fs => fs.OpenRead(Path.Combine(_mockPathSettings.Value.JsonsPath, "JustDanceEditions.json"))).Returns(fakeStream);
@@ -130,12 +130,12 @@ public class BundleServiceTests
         Assert.Equal(2, _service.ShopConfig.FirstPartyProductDb.ProductGroups.Count); // 1 edition + 1 JD+
         Assert.Single(_service.ShopConfig.FirstPartyProductDb.DlcProducts);
 
-		DlcProduct product = _service.ShopConfig.FirstPartyProductDb.DlcProducts.Values.First();
+        DlcProduct product = _service.ShopConfig.FirstPartyProductDb.DlcProducts.Values.First();
         Assert.Equal("songpack_year1", product.Name);
 
-		ProductGroup productGroup = _service.ShopConfig.FirstPartyProductDb.ProductGroups.Values.First(pg => pg.Name == "songpack_year1");
-        Assert.Equal("https://test.cdn.com/bundles/NX/songpack_year1.bundle", productGroup.Assets.ProductGroupBundle);
-        Assert.Equal("https://test.cdn.com/bundles/PS5/songpack_year1.bundle", _service.GetShopConfig(ClientPlatform.PlayStation5).FirstPartyProductDb.ProductGroups.Values.First(pg => pg.Name == "songpack_year1").Assets.ProductGroupBundle);
+        ProductGroup productGroup = _service.ShopConfig.FirstPartyProductDb.ProductGroups.Values.First(pg => pg.Name == "songpack_year1");
+        Assert.Equal("songpack_year1", productGroup.Assets.ProductGroupBundle);
+        Assert.Equal("https://test.cdn.com/JDNext/PS5/songpack_year1.bundle", _service.GetShopConfig(ClientPlatform.PlayStation5).FirstPartyProductDb.ProductGroups.Values.First(pg => pg.Name == "songpack_year1").Assets.ProductGroupBundle);
 
         // We have one claim in total
         Assert.Single(_service.Claims);

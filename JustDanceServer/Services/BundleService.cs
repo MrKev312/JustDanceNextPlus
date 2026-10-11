@@ -34,9 +34,9 @@ public class BundleService(ILogger<BundleService> logger,
 
     public async Task LoadData()
     {
-		// Run file-loading operations in parallel
-		Task<ShopConfig> loadShopConfigTask = LoadBundleDatabaseAsync();
-		Task<IReadOnlyDictionary<Guid, LiveTile>> loadLiveTilesTask = LoadLiveTiles();
+        // Run file-loading operations in parallel
+        Task<ShopConfig> loadShopConfigTask = LoadBundleDatabaseAsync();
+        Task<IReadOnlyDictionary<Guid, LiveTile>> loadLiveTilesTask = LoadLiveTiles();
 
         await Task.WhenAll(loadShopConfigTask, loadLiveTilesTask);
 
@@ -69,18 +69,8 @@ public class BundleService(ILogger<BundleService> logger,
             return ImmutableDictionary<Guid, LiveTile>.Empty;
         }
 
-		ImmutableDictionary<Guid, LiveTile> updatedLiveTiles = liveTiles.ToImmutableDictionary(
-            kvp => kvp.Key,
-            kvp => kvp.Value with
-            {
-                Assets = kvp.Value.Assets with
-                {
-                    BackgroundImage = BuildLiveTileBundleUrl(ClientPlatform.NintendoSwitch, kvp.Value.Assets.BackgroundImage)
-                }
-            });
-
         logger.LogInformation("Live tiles database loaded");
-        return updatedLiveTiles;
+        return liveTiles;
     }
 
     private async Task<ShopConfig> LoadBundleDatabaseAsync()
@@ -108,16 +98,16 @@ public class BundleService(ILogger<BundleService> logger,
 
     private ShopConfig ParseDatabase(IReadOnlyList<JustDanceEdition> db)
     {
-		ImmutableDictionary<Guid, DlcProduct>.Builder dlcProductsBuilder = ImmutableDictionary.CreateBuilder<Guid, DlcProduct>();
-		ImmutableDictionary<Guid, ProductGroup>.Builder productGroupsBuilder = ImmutableDictionary.CreateBuilder<Guid, ProductGroup>();
-		List<(Guid Id, ProductGroup Group)> tempProductGroups = [];
+        ImmutableDictionary<Guid, DlcProduct>.Builder dlcProductsBuilder = ImmutableDictionary.CreateBuilder<Guid, DlcProduct>();
+        ImmutableDictionary<Guid, ProductGroup>.Builder productGroupsBuilder = ImmutableDictionary.CreateBuilder<Guid, ProductGroup>();
+        List<(Guid Id, ProductGroup Group)> tempProductGroups = [];
 
         // 1. Build the DlcProducts and initial ProductGroups
         foreach (JustDanceEdition edition in db)
         {
             Guid guid = Guid.NewGuid();
-			DlcProduct product = new()
-			{
+            DlcProduct product = new()
+            {
                 ClaimIds = edition.ClaimIds ?? [edition.Name],
                 FirstPartyId = edition.Name,
                 Name = edition.Name,
@@ -128,33 +118,33 @@ public class BundleService(ILogger<BundleService> logger,
             };
             dlcProductsBuilder.Add(guid, product);
 
-            // Determine tracklist loc IDs
-            (string trackExtLocId, string trackLimLocId) = edition.DlcType == VersionType.Yearly
-                ? ("[VAR:SHOP_TRACKLIST]\n\n[TAG:STRONG]and more![/STRONG]", "[VAR:SHOP_TRACKLIST]\n[TAG:STRONG]and more![/STRONG]")
-                : ("[VAR:SHOP_TRACKLIST]\n[TAG:STRONG]and more![/STRONG]", "[VAR:SHOP_TRACKLIST]\n[TAG:STRONG]and more![/STRONG]");
+            string extendedTracklistText = edition.DlcType == VersionType.Yearly
+                ? "[VAR:SHOP_TRACKLIST]\n\n[TAG:STRONG]and more![/STRONG]"
+                : "[VAR:SHOP_TRACKLIST]\n[TAG:STRONG]and more![/STRONG]";
+            const string LimitedTracklistText = "[VAR:SHOP_TRACKLIST]\n[TAG:STRONG]and more![/STRONG]";
 
-			ProductGroup productGroup = new()
-			{
+            ProductGroup productGroup = new()
+            {
                 Type = edition.DlcType.ToString().ToLowerInvariant(),
-				DisplayPriority = 0, // Will be updated later
+                DisplayPriority = 0, // Will be updated later
                 GroupLocId = edition.GroupLocId,
                 Name = edition.Name,
                 ProductIds = [guid],
                 SongsCountLocId = edition.SongsCountLocId ?? localizedStringService.GetAddLocalizedTag("Unlimited songs"),
-				GroupDescriptionLocId = edition.GroupDescriptionLocId ?? localizedStringService.GetAddLocalizedTag("Get all the songs"),
+                GroupDescriptionLocId = edition.GroupDescriptionLocId ?? localizedStringService.GetAddLocalizedTag("Get all the songs"),
                 TracklistExtended = edition.TracklistExtended,
                 TracklistLimited = edition.TracklistLimited,
-                TracklistExtendedLocId = edition.TracklistExtendedLocId ?? localizedStringService.GetAddLocalizedTag(trackExtLocId),
-                TracklistLimitedLocId = edition.TracklistLimitedLocId ?? localizedStringService.GetAddLocalizedTag(trackLimLocId),
-                Assets = new() { ProductGroupBundle = BuildVersionBundleUrl(ClientPlatform.NintendoSwitch, edition.Name) }
+                TracklistExtendedLocId = edition.TracklistExtendedLocId ?? localizedStringService.GetAddLocalizedTag(extendedTracklistText),
+                TracklistLimitedLocId = edition.TracklistLimitedLocId ?? localizedStringService.GetAddLocalizedTag(LimitedTracklistText),
+                Assets = new() { ProductGroupBundle = edition.Name }
             };
             tempProductGroups.Add((guid, productGroup));
         }
 
         // 2. Add the static JD+ product group
         Guid subscriptionGuid = Guid.NewGuid();
-		ProductGroup jdPlus = new()
-		{
+        ProductGroup jdPlus = new()
+        {
             Type = "jdplus",
             DisplayPriority = 0, // Placeholder
             GroupLocId = localizedStringService.GetLocalizedTag(8747)!,
@@ -166,16 +156,16 @@ public class BundleService(ILogger<BundleService> logger,
             TracklistLimited = [],
             TracklistExtendedLocId = localizedStringService.GetLocalizedTag(0)!,
             TracklistLimitedLocId = localizedStringService.GetLocalizedTag(0)!,
-            Assets = new() { ProductGroupBundle = BuildVersionBundleUrl(ClientPlatform.NintendoSwitch, "jdplus") }
+            Assets = new() { ProductGroupBundle = "jdplus" }
         };
         tempProductGroups.Add((subscriptionGuid, jdPlus));
 
-		// 3. Calculate display priorities
-		ImmutableDictionary<Guid, DlcProduct> dlcProducts = dlcProductsBuilder.ToImmutable();
-		IEnumerable<string> allClaimIds = dlcProducts.Values.SelectMany(x => x.ClaimIds);
-        (ImmutableArray<string> songpacks, ImmutableArray<string> otherClaims) = GetClaimLists(allClaimIds);
-		List<string> sortedClaims = [.. songpacks, .. otherClaims, "jdplus"];
-		Dictionary<string, int> claimIndex = sortedClaims.Select((claim, i) => (claim, i)).ToDictionary(x => x.claim, x => x.i);
+        // 3. Calculate display priorities
+        ImmutableDictionary<Guid, DlcProduct> dlcProducts = dlcProductsBuilder.ToImmutable();
+        IEnumerable<string> allClaimIds = dlcProducts.Values.SelectMany(x => x.ClaimIds);
+        ClaimLists claimLists = GetClaimLists(allClaimIds);
+        List<string> sortedClaims = [.. claimLists.Songpacks, .. claimLists.OtherClaims, "jdplus"];
+        Dictionary<string, int> claimIndex = sortedClaims.Select((claim, i) => (claim, i)).ToDictionary(x => x.claim, x => x.i);
 
         // 4. Create final ProductGroup instances with correct priorities
         foreach ((Guid id, ProductGroup group) in tempProductGroups)
@@ -200,22 +190,26 @@ public class BundleService(ILogger<BundleService> logger,
 
     private static ImmutableArray<string> CalculateClaimDisplayPriority(ImmutableArray<string> claims)
     {
-        (ImmutableArray<string> songpacks, ImmutableArray<string> otherClaims) = GetClaimLists(claims);
-        return [.. songpacks, "jdplus", .. otherClaims];
+        ClaimLists claimLists = GetClaimLists(claims);
+        return [.. claimLists.Songpacks, "jdplus", .. claimLists.OtherClaims];
     }
 
-    private static (ImmutableArray<string> songpacks, ImmutableArray<string> otherClaims) GetClaimLists(IEnumerable<string> claims)
+    private static ClaimLists GetClaimLists(IEnumerable<string> claims)
     {
-		ImmutableArray<string> songpacks =
-		[
-			.. claims.Where(x => x.StartsWith("songpack_year")).OrderByDescending(x => int.Parse(x[13..])),
-			.. claims.Where(x => x.StartsWith("songpack_game")).OrderByDescending(x => int.Parse(x[13..])),
-		];
+        ImmutableArray<string> songpacks =
+        [
+            .. claims.Where(x => x.StartsWith("songpack_year")).OrderByDescending(x => int.Parse(x[13..])),
+            .. claims.Where(x => x.StartsWith("songpack_game")).OrderByDescending(x => int.Parse(x[13..])),
+        ];
 
-		ImmutableArray<string> otherClaims = [.. claims.Except(songpacks).OrderBy(c => c)];
+        ImmutableArray<string> otherClaims = [.. claims.Except(songpacks).OrderBy(c => c)];
 
-        return (songpacks, otherClaims);
+        return new ClaimLists(songpacks, otherClaims);
     }
+
+    private sealed record ClaimLists(
+        ImmutableArray<string> Songpacks,
+        ImmutableArray<string> OtherClaims);
 
     public ImmutableArray<string> GetAllClaims() => GetAllClaims(ShopConfig);
 
@@ -268,7 +262,7 @@ public class BundleService(ILogger<BundleService> logger,
         => BuildBundleUrl(platform, NormalizeBundleName(bundleReference, "live-tile"));
 
     private string BuildBundleUrl(string platform, string bundleName)
-        => $"{CdnBaseUrl}/bundles/{ClientPlatform.Normalize(platform)}/{NormalizeBundleName(bundleName, bundleName)}.bundle";
+        => $"{CdnBaseUrl}/{CdnContentPaths.JdNextRoot}/{ClientPlatform.Normalize(platform)}/{NormalizeBundleName(bundleName, bundleName)}.bundle";
 
     private string CdnBaseUrl
     {

@@ -7,13 +7,13 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.progression.v1.pr
 
 [ApiController]
 [Route("progression/v1/profile/leaderboard/playlist/profiles")]
-public class Profiles(IUserDataService userDataService) : ControllerBase
+public class Profiles(IUserDataService userDataService, IMapService mapService) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> GetProfiles([FromBody] ProfilesRequest request)
     {
         Guid playlistId = request.PlaylistId;
-		List<ResponseProfile> Profiles = [];
+        List<ResponseProfile> Profiles = [];
         foreach (Guid userId in request.UsUserIds)
         {
             Profile? profile = await userDataService.GetProfileByIdAsync(userId);
@@ -24,7 +24,7 @@ public class Profiles(IUserDataService userDataService) : ControllerBase
                 {
                     Id = profile.Id,
                     Dancercard = profile.Dancercard,
-                    PlaylistStat = playlistStats,
+                    PlaylistStat = JdNextProgressionProjection.ToPlaylistStats(playlistStats, mapService),
                     Ownership = profile.Ownership
                 };
                 Profiles.Add(profileData);
@@ -33,8 +33,8 @@ public class Profiles(IUserDataService userDataService) : ControllerBase
 
         return Ok(new
         {
-			Profiles
-		});
+            Profiles
+        });
     }
 }
 
@@ -48,6 +48,6 @@ public class ResponseProfile
 {
     public Guid Id { get; set; }
     public DancerCard? Dancercard { get; set; }
-    public PlaylistStats? PlaylistStat { get; set; }
+    public JdNextPlaylistStats? PlaylistStat { get; set; }
     public Ownership? Ownership { get; set; }
 }

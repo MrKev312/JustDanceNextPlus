@@ -8,10 +8,10 @@ namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v1.profiles.me.
 [Route("v1/profiles/me/inventory/primarystore")]
 public class PrimaryStore : ControllerBase
 {
-	[HttpPost]
-	public IActionResult PostPrimaryStore([FromBody] JsonElement body)
-	{
-		string response = """
+    [HttpPost]
+    public IActionResult PostPrimaryStore([FromBody] JsonElement body)
+    {
+        string response = """
 			{
 				"results": [],
 				"errors": [],
@@ -19,6 +19,6 @@ public class PrimaryStore : ControllerBase
 			}
 			""";
 
-		return Content(response, "application/json");
-	}
+        return Content(response, "application/json");
+    }
 }

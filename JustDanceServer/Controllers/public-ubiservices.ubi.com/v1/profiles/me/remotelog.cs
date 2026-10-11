@@ -8,10 +8,10 @@ namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v1.profiles.me;
 [Route("v1/profiles/me/remotelog")]
 public class RemoteLog : ControllerBase
 {
-	[HttpPost]
-	public IActionResult PostRemoteLog([FromBody] JsonElement body)
-	{
-		string response = $$"""
+    [HttpPost]
+    public IActionResult PostRemoteLog([FromBody] JsonElement body)
+    {
+        string response = $$"""
 			{
 				"transactionId": "{{Guid.NewGuid()}}",
 				"buildVersion": "1.10.6",
@@ -33,6 +33,6 @@ public class RemoteLog : ControllerBase
 			}
 			""";
 
-		return Content(response, "application/json");
-	}
+        return Content(response, "application/json");
+    }
 }

@@ -9,12 +9,14 @@
 		<UserSecretsId>0e061590-f3c9-40ee-a7bc-ad3ce28c2c4e</UserSecretsId>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<SustainedLowLatency>true</SustainedLowLatency>
+		<DefaultItemExcludes>$(DefaultItemExcludes);wwwroot/maps/**;wwwroot/JDU/CatalogAssets/**</DefaultItemExcludes>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="AssetsTools.NET" Version="3.0.2" />
 		<PackageReference Include="HotChocolate.AspNetCore" Version="16.0.3" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
+		<PackageReference Include="Microsoft.OpenApi" Version="2.7.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0">
 		  <PrivateAssets>all</PrivateAssets>
@@ -22,6 +24,7 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="10.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.0" />
+		<PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.5" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
 		<PackageReference Include="SharpZipLib" Version="1.4.2" />
 		<PackageReference Include="Scalar.AspNetCore" Version="2.10.3" />
@@ -29,9 +32,10 @@
 		<PackageReference Include="System.Linq.Dynamic.Core" Version="1.7.0" />
 	</ItemGroup>
 
-	<!--Ignore wwwroot\maps\*-->
+	<!-- Large local map/catalog assets are runtime data, not build or publish inputs. -->
 	<ItemGroup>
 		<Content Remove="wwwroot\maps\**\*" />
+		<Content Remove="wwwroot\JDU\CatalogAssets\**\*" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="database\config\" />

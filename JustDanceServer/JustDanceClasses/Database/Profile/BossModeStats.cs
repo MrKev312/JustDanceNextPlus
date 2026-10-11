@@ -5,16 +5,16 @@ namespace JustDanceServer.JustDanceClasses.Database.Profile;
 
 public class BossModeStats
 {
-	[Key]
-	[JsonIgnore]
-	public Guid BossStatsId { get; set; }
+    [Key]
+    [JsonIgnore]
+    public Guid BossStatsId { get; set; }
 
-	public virtual BossMode BossMode { get; set; } = new();
+    public virtual BossMode BossMode { get; set; } = new();
 }
 
 public class BossMode
 {
-	[Key]
-	[JsonIgnore]
-	public Guid BossId { get; set; }
+    [Key]
+    [JsonIgnore]
+    public Guid BossId { get; set; }
 }

@@ -6,9 +6,9 @@ namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v3.profiles.me;
 [Route("v3/profiles/me/events")]
 public class Events : ControllerBase
 {
-	[HttpPost(Name = "PostEvents")]
-	public IActionResult PostEvents([FromBody] object body)
-	{
-		return Content("{}", "application/json");
-	}
+    [HttpPost(Name = "PostEvents")]
+    public IActionResult PostEvents([FromBody] object body)
+    {
+        return Content("{}", "application/json");
+    }
 }

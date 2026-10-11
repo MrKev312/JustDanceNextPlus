@@ -8,13 +8,14 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.songdb.v3.downloa
 [Route("songdb/v3/downloadable-songs-metadata/formatVersion/v0")]
 public class V0(IMapService mapService) : ControllerBase
 {
-	[HttpGet]
-	public IActionResult Get()
-	{
-		string platform = ClientPlatform.FromRequest(Request);
-		return Ok(new
-		{
-			AssetMetadataPerSong = mapService.GetAssetMetadataPerSong(platform)
-		});
-	}
+    [HttpGet]
+    public IActionResult Get()
+    {
+        string platform = ClientPlatform.FromRequest(Request);
+        MapMediaLayout previewLayout = JdNextPreviewLayout.FromRequest(Request);
+        return Ok(new
+        {
+            AssetMetadataPerSong = mapService.GetAssetMetadataPerSong(platform, previewLayout)
+        });
+    }
 }

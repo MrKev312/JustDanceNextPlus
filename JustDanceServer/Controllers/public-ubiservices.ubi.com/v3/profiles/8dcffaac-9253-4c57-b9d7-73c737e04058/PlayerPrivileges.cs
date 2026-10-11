@@ -1,5 +1,7 @@
 ﻿using JustDanceServer.Services;
 
+using JustDanceServer.Configuration;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v2.profiles._afcb4bd7_eae8_40fe_bb4a_8a03c16ad95f;
@@ -14,13 +16,13 @@ public class PlayerPrivileges(ITimingService timingService) : ControllerBase
         string response = $$"""
         {
         	"privileges": {
-        		"30101a43-422c-4c6b-ab19-e6ea319a5dfa": {
+                "{{JdNextConstants.AccessGamePrivilegeId}}": {
         			"displayValues": {
         				"name": "AccessGame",
         				"description": "AccessGame"
         			},
         			"computedValue": {
-        				"reasonId": "f6cc52d5-8250-483f-8975-75b30dd65157",
+                        "reasonId": "{{JdNextConstants.GlobalDefaultPrivilegeReasonId}}",
         				"isGranted": true
         			},
         			"reasons": [{
@@ -28,7 +30,7 @@ public class PlayerPrivileges(ITimingService timingService) : ControllerBase
         					"name": "globalDefaultReason",
         					"description": "Global default reason description"
         				},
-        				"reasonId": "f6cc52d5-8250-483f-8975-75b30dd65157",
+                        "reasonId": "{{JdNextConstants.GlobalDefaultPrivilegeReasonId}}",
         				"isGranted": true,
         				"isDefault": true,
         				"lastModifiedAt": "{{timingService.ServerTime()}}"

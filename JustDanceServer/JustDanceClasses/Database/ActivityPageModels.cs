@@ -124,7 +124,7 @@ public class IModifierConverter : JsonConverter<IModifier>
         using JsonDocument doc = JsonDocument.ParseValue(ref reader);
         JsonElement root = doc.RootElement;
         string? type = root.GetProperty("name").GetString() ?? throw new JsonException("Modifier type is missing.");
-		return type switch
+        return type switch
         {
             "positionModifier" => JsonSerializer.Deserialize<PositionModifier>(root.GetRawText(), options)!,
             "maxAmountElement" => JsonSerializer.Deserialize<MaxAmountElements>(root.GetRawText(), options)!,

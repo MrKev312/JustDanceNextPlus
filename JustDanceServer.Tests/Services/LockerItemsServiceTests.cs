@@ -24,7 +24,7 @@ public class LockerItemsServiceTests
         _mockPathSettings = Options.Create(new PathSettings { LockerItemsPath = "C:\\lockers" });
         _mockFileSystem = new Mock<IFileSystem>();
 
-		Mock<IServiceProvider> mockServiceProvider = new();
+        Mock<IServiceProvider> mockServiceProvider = new();
         _jsonSettingsService = new JsonSettingsService(mockServiceProvider.Object);
 
         _service = new LockerItemsService(
@@ -56,9 +56,9 @@ public class LockerItemsServiceTests
     [Fact]
     public async Task LoadData_LoadsItemsFromMultipleFiles()
     {
-		// Arrange
-		Guid avatarId = Guid.NewGuid();
-		Guid skinId = Guid.NewGuid();
+        // Arrange
+        Guid avatarId = Guid.NewGuid();
+        Guid skinId = Guid.NewGuid();
         string avatarsJson = $$"""
         [
           { "itemId": "{{avatarId}}", "type": "avatar", "nameId": "avatar_test" }
@@ -92,8 +92,8 @@ public class LockerItemsServiceTests
     [Fact]
     public async Task LoadData_LogsWarningForDuplicateLockerItemId()
     {
-		// Arrange
-		Guid duplicateId = Guid.NewGuid();
+        // Arrange
+        Guid duplicateId = Guid.NewGuid();
         string avatarsJson = $$"""[ { "itemId": "{{duplicateId}}", "type": "avatar", "nameId": "avatar_test" } ]""";
         string skinsJson = $$"""[ { "itemId": "{{duplicateId}}", "type": "skin", "nameId": "skin_test" } ]""";
 

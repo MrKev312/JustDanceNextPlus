@@ -7,21 +7,23 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.progression.v1.pr
 
 [ApiController]
 [Route("progression/v1/profile/leaderboard/map/profiles")]
-public class Profiles(IUserDataService userDataService) : ControllerBase
+public class Profiles(IUserDataService userDataService, IMapService mapService) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> GetProfiles([FromBody] ProfilesRequest request)
     {
-        Guid mapId = request.MapId;
-		List<object> profiles = [];
+        if (!mapService.TryGetMapName(request.MapId, out string mapName))
+            return NotFound();
+
+        List<object> profiles = [];
         foreach (Guid userId in request.UsUserIds)
         {
-			Profile? profile = await userDataService.GetProfileByIdAsync(userId);
+            Profile? profile = await userDataService.GetProfileByIdAsync(userId);
             if (profile != null)
             {
-                MapStats? mapStats = profile.MapStats.TryGetValue(mapId, out MapStats? stats) ? stats : null;
-				ResponseProfile profileData = new()
-				{
+                MapStats? mapStats = profile.MapStats.TryGetValue(mapName, out MapStats? stats) ? stats : null;
+                ResponseProfile profileData = new()
+                {
                     Id = profile.Id,
                     Dancercard = profile.Dancercard,
                     MapStat = mapStats,

@@ -11,146 +11,158 @@ namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v2.applications
 [Route("/v2/applications/{Guid:guid}/parameters")]
 public class Parameters(IOptions<UrlSettings> urlSettings) : ControllerBase
 {
-	[HttpGet]
-	public IActionResult GetParameters([FromRoute] Guid guid)
+    [HttpGet]
+    public IActionResult GetParameters([FromRoute] Guid guid)
     {
-		// Use the requesting host so both Switch (DNS redirect)
-		// and phone (binary patched domain) reach the correct server
-		string hostUrl = urlSettings.Value.HostUrl;
-		string webSocketBaseUrl = $"wss://{hostUrl}";
-		var urls = (Dictionary<string, string>)parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_ws"]!;
-		urls["Standard"] = webSocketBaseUrl;
-		var aws = (Dictionary<string, string>)parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_aws"]!;
-		aws["Standard"] = $"https://{{env}}{hostUrl}";
-		var msr = (Dictionary<string, string>)parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_msr"]!;
-		msr["Standard"] = $"https://msr-{{env}}{hostUrl}";
+        if (!UbisoftApplicationProfiles.TryGetApplicationTarget(
+            guid,
+            out UbisoftApplicationTarget? target))
+            return NotFound();
 
-		var fleet = parameters.Parameters["us-sdkClientFleet"].Fields;
-		fleet["spaces"] = $"https://{{env}}{hostUrl}/{{version}}/spaces/{{spaceId}}/title/{{title}}/";
-		fleet["profiles"] = $"https://{{env}}{hostUrl}/{{version}}/profiles/{{profileId}}/title/{{title}}/";
-		fleet["spaces_all"] = $"https://{{env}}{hostUrl}/{{version}}/spaces/title/{{title}}/";
-		fleet["applications"] = $"https://{{env}}{hostUrl}/{{version}}/applications/{{applicationId}}/title/{{title}}/";
-		fleet["profiles_all"] = $"https://{{env}}{hostUrl}/{{version}}/profiles/title/{{title}}/";
-		fleet["applications_all"] = $"https://{{env}}{hostUrl}/{{version}}/applications/title/{{title}}/";
+        parameters.Parameters["us-staging"].Fields["spaceId"] = target.SpaceId;
 
-		var sdkClientUrls = parameters.Parameters["us-sdkClientUrls"].Fields;
-		sdkClientUrls["websocketServer"] = webSocketBaseUrl;
-		sdkClientUrls["websocketNotifications"] = $"{webSocketBaseUrl}/v2/websocket";
+        // Legacy games continue talking to the Ubisoft Services host after this
+        // response. Keep that traffic on the host which served discovery instead
+        // of sending it to the JDNext JMCS host.
+        string hostUrl = target.UseDiscoveryHost
+            ? ControllerContext.HttpContext?.Request.Host.Value ?? "public-ubiservices.ubi.com"
+            : urlSettings.Value.HostUrl;
+        string webSocketBaseUrl = $"wss://{hostUrl}";
+        var urls = (Dictionary<string, string>)parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_ws"]!;
+        urls["Standard"] = webSocketBaseUrl;
+        var aws = (Dictionary<string, string>)parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_aws"]!;
+        aws["Standard"] = $"https://{{env}}{hostUrl}";
+        var msr = (Dictionary<string, string>)parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_msr"]!;
+        msr["Standard"] = $"https://msr-{{env}}{hostUrl}";
+        parameters.Parameters["us-sdkClientClub"].Fields["dynamicPanelUrl"] =
+            $"https://{{env}}{hostUrl}/v1/profiles/{{profileId}}/club/dynamicPanel/MyProfile.png?spaceId={{spaceId}}&noRedirect=true";
 
-		return Ok(parameters);
-	}
+        Dictionary<string, object?> fleet = parameters.Parameters["us-sdkClientFleet"].Fields;
+        fleet["spaces"] = $"https://{{env}}{hostUrl}/{{version}}/spaces/{{spaceId}}/title/{{title}}/";
+        fleet["profiles"] = $"https://{{env}}{hostUrl}/{{version}}/profiles/{{profileId}}/title/{{title}}/";
+        fleet["spaces_all"] = $"https://{{env}}{hostUrl}/{{version}}/spaces/title/{{title}}/";
+        fleet["applications"] = $"https://{{env}}{hostUrl}/{{version}}/applications/{{applicationId}}/title/{{title}}/";
+        fleet["profiles_all"] = $"https://{{env}}{hostUrl}/{{version}}/profiles/title/{{title}}/";
+        fleet["applications_all"] = $"https://{{env}}{hostUrl}/{{version}}/applications/title/{{title}}/";
 
-	readonly ParameterList parameters = new()
-	{
-		Parameters = new()
-		{
-			["us-staging"] = new()
-			{
-				Fields = new()
-				{
-					["spaceId"] = Guid.Parse("1da01a17-3bc7-4b5d-aedd-70a0915089b0")
-				},
-				RelatedPopulation = new()
-				{
-					Name = "prod",
-					Subject = "us_staging"
-				}
-			},
-			["us-sdkClientClub"] = new()
-			{
-				Fields = new()
-				{
-					["dynamicPanelUrl"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/v1/profiles/{profileId}/club/dynamicPanel/MyProfile.png?spaceId={spaceId}&noRedirect=true""",
-					["switchClubWebsiteUrl"] = "https://static8.cdn.ubi.com/u/sites/UbisoftClub/NintendoSwitch/index.html?url=/games/{deepLink}&ussdkversion={usSdkVersionName}&env={clubEnvName}&actioncompleted={actionCompletedList}&forceLang={forceLang}&profileId={profileId}&ticket={ticket}&context={context}&debug={debug}&spaceId={spaceId}&applicationId={applicationId}"
-				}
-			},
-			["us-sdkClientRemoteGaming"] = new()
-			{
-				Fields = new()
-				{
-					["remoteGamingNetworkDelayTTLSec"] = 1
-				}
-			},
-			["us-sdkClientGlobalAppConfig"] = new()
-			{
-				Fields = new()
-				{
-					["mobileDeviceEmailsDaysTTL"] = 90
-				}
-			},
-			["us-sdkClientHttpConfig"] = new()
-			{
-				Fields = new()
-				{
-					["maxConcurrentUsRequests"] = null
-				}
-			},
-			["us-sdkClientTelemetry"] = new()
-			{
-				Fields = new()
-				{
-					["categories"] = new Dictionary<string, object>()
-				}
-			},
-			["us-sdkClientUrlsPlaceholders"] = new()
-			{
-				Fields = new()
-				{
-					["baseurl_ws"] = new Dictionary<string, string>()
-					{
-						["Standard"] = $$"""wss://{env}{{urlSettings.Value.HostUrl}}"""
-					},
-					["baseurl_aws"] = new Dictionary<string, string>()
-					{
-						["Standard"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}"""
-					},
-					["baseurl_msr"] = new Dictionary<string, string>()
-					{
-						["Standard"] = $$"""https://msr-{env}{{urlSettings.Value.HostUrl}}"""
-					}
-				}
-			},
-			["us-sdkClientLogin"] = new()
-			{
-				Fields = new()
-				{
-					["populationHttpRequestOptimizationEnabled"] = true,
-					["populationHttpRequestOptimizationRetryCount"] = 0,
-					["populationHttpRequestOptimizationRetryTimeoutIntervalMsec"] = 5000,
-					["populationHttpRequestOptimizationRetryTimeoutIncrementMsec"] = 1000
-				}
-			},
-			["us-sdkClientFeaturesSwitches"] = new()
-			{
-				Fields = new()
-				{
-					["populationsAutomaticUpdate"] = true,
-					["forcePrimarySecondaryStoreSyncOnReturnFromBackground"] = true
-				}
-			},
-			["us-sdkClientFleet"] = new()
-			{
-				Fields = new()
-				{
-					["title"] = "",
-					["spaces"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/spaces/{spaceId}/title/{title}/""",
-					["profiles"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/profiles/{profileId}/title/{title}/""",
-					["spaces_all"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/spaces/title/{title}/""",
-					["applications"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/applications/{applicationId}/title/{title}/""",
-					["profiles_all"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/profiles/title/{title}/""",
-					["applications_all"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/applications/title/{title}/"""
-				}
-			},
-			["us-sdkClientUrls"] = new()
-			{
-				Fields = new()
-				{
-					["populations"] = "{baseurl_aws}/{version}/profiles/me/populations",
-					["profilesToken"] = "{baseurl_aws}/{version}/profiles/{profileId}/tokens/{token}",
-					["websocketServer"] = "{baseurl_ws}",
-					["websocketNotifications"] = "{baseurl_ws}/{version}/websocket"
-				}
-			}
-		}
-	};
+        Dictionary<string, object?> sdkClientUrls = parameters.Parameters["us-sdkClientUrls"].Fields;
+        sdkClientUrls["websocketServer"] = webSocketBaseUrl;
+        sdkClientUrls["websocketNotifications"] = $"{webSocketBaseUrl}/v2/websocket";
+
+        return Ok(parameters);
+    }
+
+    readonly ParameterList parameters = new()
+    {
+        Parameters = new()
+        {
+            ["us-staging"] = new()
+            {
+                Fields = new()
+                {
+                    ["spaceId"] = JdNextConstants.GameSpaceId
+                },
+                RelatedPopulation = new()
+                {
+                    Name = "prod",
+                    Subject = "us_staging"
+                }
+            },
+            ["us-sdkClientClub"] = new()
+            {
+                Fields = new()
+                {
+                    ["dynamicPanelUrl"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/v1/profiles/{profileId}/club/dynamicPanel/MyProfile.png?spaceId={spaceId}&noRedirect=true""",
+                    ["switchClubWebsiteUrl"] = "https://static8.cdn.ubi.com/u/sites/UbisoftClub/NintendoSwitch/index.html?url=/games/{deepLink}&ussdkversion={usSdkVersionName}&env={clubEnvName}&actioncompleted={actionCompletedList}&forceLang={forceLang}&profileId={profileId}&ticket={ticket}&context={context}&debug={debug}&spaceId={spaceId}&applicationId={applicationId}"
+                }
+            },
+            ["us-sdkClientRemoteGaming"] = new()
+            {
+                Fields = new()
+                {
+                    ["remoteGamingNetworkDelayTTLSec"] = 1
+                }
+            },
+            ["us-sdkClientGlobalAppConfig"] = new()
+            {
+                Fields = new()
+                {
+                    ["mobileDeviceEmailsDaysTTL"] = 90
+                }
+            },
+            ["us-sdkClientHttpConfig"] = new()
+            {
+                Fields = new()
+                {
+                    ["maxConcurrentUsRequests"] = null
+                }
+            },
+            ["us-sdkClientTelemetry"] = new()
+            {
+                Fields = new()
+                {
+                    ["categories"] = new Dictionary<string, object>()
+                }
+            },
+            ["us-sdkClientUrlsPlaceholders"] = new()
+            {
+                Fields = new()
+                {
+                    ["baseurl_ws"] = new Dictionary<string, string>()
+                    {
+                        ["Standard"] = $$"""wss://{env}{{urlSettings.Value.HostUrl}}"""
+                    },
+                    ["baseurl_aws"] = new Dictionary<string, string>()
+                    {
+                        ["Standard"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}"""
+                    },
+                    ["baseurl_msr"] = new Dictionary<string, string>()
+                    {
+                        ["Standard"] = $$"""https://msr-{env}{{urlSettings.Value.HostUrl}}"""
+                    }
+                }
+            },
+            ["us-sdkClientLogin"] = new()
+            {
+                Fields = new()
+                {
+                    ["populationHttpRequestOptimizationEnabled"] = true,
+                    ["populationHttpRequestOptimizationRetryCount"] = 0,
+                    ["populationHttpRequestOptimizationRetryTimeoutIntervalMsec"] = 5000,
+                    ["populationHttpRequestOptimizationRetryTimeoutIncrementMsec"] = 1000
+                }
+            },
+            ["us-sdkClientFeaturesSwitches"] = new()
+            {
+                Fields = new()
+                {
+                    ["populationsAutomaticUpdate"] = true,
+                    ["forcePrimarySecondaryStoreSyncOnReturnFromBackground"] = true
+                }
+            },
+            ["us-sdkClientFleet"] = new()
+            {
+                Fields = new()
+                {
+                    ["title"] = "",
+                    ["spaces"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/spaces/{spaceId}/title/{title}/""",
+                    ["profiles"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/profiles/{profileId}/title/{title}/""",
+                    ["spaces_all"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/spaces/title/{title}/""",
+                    ["applications"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/applications/{applicationId}/title/{title}/""",
+                    ["profiles_all"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/profiles/title/{title}/""",
+                    ["applications_all"] = $$"""https://{env}{{urlSettings.Value.HostUrl}}/{version}/applications/title/{title}/"""
+                }
+            },
+            ["us-sdkClientUrls"] = new()
+            {
+                Fields = new()
+                {
+                    ["populations"] = "{baseurl_aws}/{version}/profiles/me/populations",
+                    ["profilesToken"] = "{baseurl_aws}/{version}/profiles/{profileId}/tokens/{token}",
+                    ["websocketServer"] = "{baseurl_ws}",
+                    ["websocketNotifications"] = "{baseurl_ws}/{version}/websocket"
+                }
+            }
+        }
+    };
 }

@@ -2,5 +2,5 @@
 
 public interface ILoadService
 {
-	public Task LoadData();
+    public Task LoadData();
 }

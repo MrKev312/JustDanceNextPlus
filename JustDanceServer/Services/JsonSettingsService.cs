@@ -8,31 +8,31 @@ namespace JustDanceServer.Services;
 
 public class JsonSettingsService
 {
-	public JsonSettingsService(IServiceProvider serviceProvider)
-	{
-		Type[] serviceConverters = [
-			typeof(GuidTagConverter),
-			typeof(MapTagConverter),
-			typeof(TagIdConverter),
-			typeof(MapTagListConverter)
+    public JsonSettingsService(IServiceProvider serviceProvider)
+    {
+        Type[] serviceConverters = [
+            typeof(GuidTagConverter),
+            typeof(MapTagConverter),
+            typeof(TagIdConverter),
+            typeof(MapTagListConverter)
             ];
 
         // Foreach check if it's registered
         foreach (Type converterType in serviceConverters)
-		{
-			if (serviceProvider.GetService(converterType) is JsonConverter converter)
-			{
-				PrettyPascalFormat.Converters.Add(converter);
+        {
+            if (serviceProvider.GetService(converterType) is JsonConverter converter)
+            {
+                PrettyPascalFormat.Converters.Add(converter);
             }
             // Else we're in a test environment
         }
-	}
+    }
 
-	public JsonSerializerOptions PrettyPascalFormat { get; set; } = new()
-	{
-		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-		PropertyNameCaseInsensitive = true,
-		WriteIndented = true,
-		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-	};
+    public JsonSerializerOptions PrettyPascalFormat { get; set; } = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        PropertyNameCaseInsensitive = true,
+        WriteIndented = true,
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+    };
 }

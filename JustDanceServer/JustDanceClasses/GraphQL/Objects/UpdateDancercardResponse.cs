@@ -4,6 +4,6 @@ namespace JustDanceServer.JustDanceClasses.GraphQL.Objects;
 
 public class UpdateDancercardResponse
 {
-	public bool Success { get; set; }
-	public DancerCard? Dancercard { get; set; }
+    public bool Success { get; set; }
+    public DancerCard? Dancercard { get; set; }
 }

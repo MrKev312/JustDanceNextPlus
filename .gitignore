@@ -5,6 +5,8 @@
 
 # Ignore copyrighted/legally-gray files
 /JustDanceServer/wwwroot/maps/
+/JustDanceServer/wwwroot/JDU/CatalogAssets/
+/JustDanceServer/database/jdu/
 
 # Configuration files
 /JustDanceServer/database/config/*.json
@@ -211,6 +213,9 @@ PublishScripts/
 *.snupkg
 # The packages folder can be ignored because of Package Restore
 **/[Pp]ackages/*
+!/JustDanceServer/Controllers/prod.just-dance.com/packages/v1/
+!/JustDanceServer/Controllers/prod.just-dance.com/packages/v1/*.cs
+
 # except build/, which is used as an MSBuild target.
 !**/[Pp]ackages/build/
 # Uncomment if necessary however generally it will be regenerated when needed

@@ -1,175 +1,137 @@
-﻿using JustDanceServer.JustDanceClasses.Database.Profile;
+﻿using JustDanceServer.Configuration;
 using JustDanceServer.Services;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 
-using System.IdentityModel.Tokens.Jwt;
 using System.Text.Json;
 
 namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v3.profiles;
 
 [ApiController]
+[Route("v2/profiles/sessions")]
 [Route("v3/profiles/sessions")]
-public class Sessions(IUserDataService userDataService, ITimingService timingService, ISessionManager sessionManager) : ControllerBase
+public class Sessions(
+    IPlayerIdentityService playerIdentityService,
+    ISessionLoginIdentityParser loginIdentityParser,
+    ITimingService timingService,
+    ISessionManager sessionManager) : ControllerBase
 {
-	[HttpPost(Name = "PostSessions")]
-	public async Task<IActionResult> PostSessions([FromBody] JsonElement body)
-	{
-		// nameOnPlatform is optional — phone controller doesn't send it
-		string nameOnPlatform = body.TryGetProperty("switch.nameOnPlatform", out JsonElement nameElem)
-			? nameElem.GetString() ?? "PhoneController"
-			: "PhoneController";
+    [HttpPost]
+    public async Task<IActionResult> PostSessions([FromBody] JsonElement body)
+    {
+        // nameOnPlatform is optional — phone controller doesn't send it. Switch uses
+        // a platform-qualified property while the older console clients use the plain one.
+        string nameOnPlatform = GetOptionalString(body, "nameOnPlatform")
+            ?? GetOptionalString(body, "switch.nameOnPlatform")
+            ?? "PhoneController";
 
-		// Get the Ubi-AppId from the request headers
-		if (!Request.Headers.TryGetValue("Ubi-AppId", out StringValues sessionIdValues)
-			|| Guid.TryParse(sessionIdValues.ToString(), out Guid ubiAppId) == false)
-			return BadRequest("Missing 'Ubi-AppId' header in request");
+        // Get the Ubi-AppId from the request headers
+        if (!Request.Headers.TryGetValue("Ubi-AppId", out StringValues sessionIdValues)
+            || Guid.TryParse(sessionIdValues.ToString(), out Guid ubiAppId) == false)
+            return BadRequest("Missing 'Ubi-AppId' header in request");
 
-		// Get the authentication token from the request headers
-		if (!Request.Headers.TryGetValue("Authorization", out StringValues authorizationValues)
-			|| authorizationValues.Count == 0)
-			return BadRequest("Missing 'Authorization' header in request");
+        if (!UbisoftApplicationProfiles.TryGetSessionIdentity(
+            ubiAppId,
+            out UbisoftSessionIdentity? sessionIdentity))
+        {
+            return BadRequest("Unsupported 'Ubi-AppId' header in request");
+        }
 
-		if (!TryGetAuthenticationTicket(authorizationValues.ToString(), out string authorization))
-			return BadRequest("Invalid 'Authorization' header in request");
+        // Get the authentication token from the request headers
+        if (!Request.Headers.TryGetValue("Authorization", out StringValues authorizationValues)
+            || authorizationValues.Count == 0)
+            return BadRequest("Missing 'Authorization' header in request");
 
-		Profile? userData = await userDataService.GetProfileByTicketAsync(authorization);
+        SessionLoginIdentity? loginIdentity = await loginIdentityParser.ParseAsync(
+            authorizationValues.ToString(),
+            body,
+            sessionIdentity.PlatformType,
+            nameOnPlatform,
+            sessionIdentity.PlatformApplicationIds,
+            HttpContext.RequestAborted);
+        if (loginIdentity is null)
+            return BadRequest("Invalid 'Authorization' header in request");
 
-		if (userData == null)
-		{
-			userData = new Profile
-			{
-				Ticket = authorization,
-				Dancercard = new DancerCard
-				{
-					Name = nameOnPlatform,
-				}
-			};
+        ResolvedPlayerIdentity player = await playerIdentityService.ResolveOrCreateAsync(loginIdentity);
 
-			Guid id = await userDataService.GenerateAddProfileAsync(userData);
-			userData = await userDataService.GetProfileByIdAsync(id) 
-				?? throw new InvalidOperationException("Failed to retrieve newly created profile.");
-		}
+        // Generate or refresh session ticket
+        string applicationSessionKey = SessionIdentityKey.ForApplication(player.SessionKey, ubiAppId);
+        (string ticket, Guid sessionId) = sessionManager.GenerateOrRefreshSession(
+            player.ProfileId,
+            ubiAppId,
+            applicationSessionKey);
 
-		// Generate or refresh session ticket
-		(string ticket, Guid sessionId) = sessionManager.GenerateOrRefreshSession(userData.Id, ubiAppId, authorization);
+        // Captured UbiServices session responses use a 512-bit (64-byte) key.
+        byte[] sessionKeyBytes = new byte[64];
+        System.Security.Cryptography.RandomNumberGenerator.Fill(sessionKeyBytes);
+        string sessionKey = Convert.ToBase64String(sessionKeyBytes);
 
-		// Generate a new 256-bit (32 bytes) session key
-		byte[] sessionKeyBytes = new byte[32];
-		System.Security.Cryptography.RandomNumberGenerator.Fill(sessionKeyBytes);
-		string sessionKey = Convert.ToBase64String(sessionKeyBytes);
+        // Current time
+        DateTime now = DateTime.UtcNow;
 
-		// Current time
-		DateTime now = DateTime.UtcNow;
+        // Calculate expiration time from session manager
+        DateTime expiration = now.Add(sessionManager.SessionExpirationTimeSpan);
 
-		// Calculate expiration time from session manager
-		DateTime expiration = now.Add(sessionManager.SessionExpirationTimeSpan);
+        SessionResponse response = new()
+        {
+            PlatformType = sessionIdentity.PlatformType,
+            Ticket = ticket,
+            TwoFactorAuthenticationTicket = null,
+            ProfileId = player.ProfileId,
+            UserId = player.ProfileId,
+            NameOnPlatform = player.NameOnPlatform,
+            Environment = "Prod",
+            Expiration = timingService.TimeString(expiration),
+            SpaceId = sessionIdentity.SpaceId,
+            ClientIp = HttpContext.Connection.RemoteIpAddress?.ToString(),
+            ClientIpCountry = "NL",
+            ServerTime = timingService.ServerTime(),
+            SessionId = sessionId,
+            SessionKey = sessionKey,
+            RememberMeTicket = null
+        };
 
-		SessionResponse response = new()
-		{
-			PlatformType = "uplay",
-			Ticket = ticket,
-			TwoFactorAuthenticationTicket = null,
-			ProfileId = userData.Id,
-			UserId = userData.Id,
-			NameOnPlatform = userData.Dancercard.Name,
-			Environment = "Prod",
-			Expiration = timingService.TimeString(expiration),
-			SpaceId = Guid.Parse("df67242d-9616-4652-9f40-fbcfde99b3c6"),
-			ClientIp = HttpContext.Connection.RemoteIpAddress?.ToString(),
-			ClientIpCountry = "NL",
-			ServerTime = timingService.ServerTime(),
-			SessionId = sessionId,
-			SessionKey = sessionKey,
-			RememberMeTicket = null
-		};
+        return Ok(response);
+    }
 
-		return Ok(response);
-	}
+    [HttpDelete]
+    public IActionResult DeleteSession()
+    {
+        if (!RequestSessionResolver.TryResolve(Request, sessionManager, out Session? session))
+            return Unauthorized();
 
-	[HttpDelete]
-	public IActionResult DeleteSession()
-	{
-		return Ok();
-	}
+        return sessionManager.RemoveSession(session.SessionId) ? Ok() : NotFound();
+    }
 
-	private static bool TryGetAuthenticationTicket(string authorization, out string ticket)
-	{
-		ticket = "";
+    private static string? GetOptionalString(JsonElement body, string propertyName)
+    {
+        if (!body.TryGetProperty(propertyName, out JsonElement property)
+            || property.ValueKind != JsonValueKind.String)
+            return null;
 
-		if (TryReadTokenScheme(authorization, "switch t=", out string switchToken))
-		{
-			try
-			{
-				JwtSecurityToken jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(switchToken);
-				ticket = jwtToken.Payload.Sub ?? "";
-			}
-			catch (ArgumentException)
-			{
-				return false;
-			}
-
-			return !string.IsNullOrWhiteSpace(ticket);
-		}
-
-		if (TryReadTokenScheme(authorization, "ubi_v1 t=", out ticket)
-			|| TryReadTokenScheme(authorization, "UbiMobile_v1 t=", out ticket)
-			|| TryReadTokenScheme(authorization, "UbiMobile_v2 t=", out ticket)
-			|| TryReadTokenScheme(authorization, "uplaypc_v1 t=", out ticket))
-			return true;
-
-		if (authorization.StartsWith("Basic ", StringComparison.OrdinalIgnoreCase))
-		{
-			string credentials = authorization["Basic ".Length..].Trim();
-			if (credentials.Length == 0)
-				return false;
-
-			try
-			{
-				string decodedCredentials = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(credentials));
-				int separatorIndex = decodedCredentials.IndexOf(':');
-				ticket = separatorIndex > 0 ? decodedCredentials[..separatorIndex] : decodedCredentials;
-			}
-			catch (FormatException)
-			{
-				ticket = credentials;
-			}
-
-			return !string.IsNullOrWhiteSpace(ticket);
-		}
-
-		return false;
-	}
-
-	private static bool TryReadTokenScheme(string authorization, string prefix, out string token)
-	{
-		if (authorization.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-		{
-			token = authorization[prefix.Length..].Trim();
-			return token.Length > 0;
-		}
-
-		token = "";
-		return false;
-	}
+        string? value = property.GetString();
+        return string.IsNullOrWhiteSpace(value) ? null : value;
+    }
 }
 
 public class SessionResponse
 {
-	public string PlatformType { get; set; } = "uplay";
-	public string Ticket { get; set; } = "";
-	public string? TwoFactorAuthenticationTicket { get; set; }
-	public Guid ProfileId { get; set; }
-	public Guid UserId { get; set; }
-	public string NameOnPlatform { get; set; } = "John Doe";
-	public string Environment { get; set; } = "Prod";
-	public string Expiration { get; set; } = "2022-01-01T00:00:00Z";
-	public Guid SpaceId { get; set; }
-	public string? ClientIp { get; set; }
-	public string ClientIpCountry { get; set; } = "";
-	public string ServerTime { get; set; } = "2022-01-01T00:00:00Z";
-	public Guid SessionId { get; set; }
-	public string SessionKey { get; set; } = "";
-	public string? RememberMeTicket { get; set; }
+    public string PlatformType { get; set; } = "uplay";
+    public string Ticket { get; set; } = "";
+    public string? TwoFactorAuthenticationTicket { get; set; }
+    public Guid ProfileId { get; set; }
+    public Guid UserId { get; set; }
+    public string NameOnPlatform { get; set; } = "John Doe";
+    public bool HasAcceptedLegalOptins { get; set; } = true;
+    public string Environment { get; set; } = "Prod";
+    public string Expiration { get; set; } = "2022-01-01T00:00:00Z";
+    public Guid SpaceId { get; set; }
+    public string? ClientIp { get; set; }
+    public string ClientIpCountry { get; set; } = "";
+    public string ServerTime { get; set; } = "2022-01-01T00:00:00Z";
+    public Guid SessionId { get; set; }
+    public object[] AccountIssues { get; set; } = [];
+    public string SessionKey { get; set; } = "";
+    public string? RememberMeTicket { get; set; }
 }

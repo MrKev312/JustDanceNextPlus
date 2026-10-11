@@ -57,11 +57,11 @@ public class MapServiceTests
     [Fact]
     public async Task LoadRecentlyAddedMaps_SelectsMapsWithinOneHourOfLatest()
     {
-		// Arrange
-		DateTime now = DateTime.UtcNow;
-		string[] directories = ["mapA", "mapB", "mapC", "mapD", "mapE", "mapF"];
-		Dictionary<string, DateTime> creationTimes = new()
-		{
+        // Arrange
+        DateTime now = DateTime.UtcNow;
+        string[] directories = ["mapA", "mapB", "mapC", "mapD", "mapE", "mapF"];
+        Dictionary<string, DateTime> creationTimes = new()
+        {
             ["mapA"] = now.AddHours(-10), // Not needed
             ["mapB"] = now.AddHours(-3),  // Too much difference
             ["mapC"] = now.AddHours(-1.1),// Needed for 4th map
@@ -69,8 +69,8 @@ public class MapServiceTests
             ["mapE"] = now.AddMinutes(-20),// Recent
             ["mapF"] = now.AddMinutes(-5), // Latest
         };
-		Dictionary<string, Guid> mapIds = new()
-		{
+        Dictionary<string, Guid> mapIds = new()
+        {
             ["mapA"] = Guid.NewGuid(),
             ["mapB"] = Guid.NewGuid(),
             ["mapC"] = Guid.NewGuid(),
@@ -90,8 +90,8 @@ public class MapServiceTests
             _service.MapToGuid[name] = id;
         }
 
-		// Act
-		List<MapTag> recentlyAdded = await _service.LoadRecentlyAddedMaps();
+        // Act
+        List<MapTag> recentlyAdded = await _service.LoadRecentlyAddedMaps();
 
         // Assert
         Assert.Equal(4, recentlyAdded.Count);
@@ -104,18 +104,18 @@ public class MapServiceTests
     [Fact]
     public async Task LoadRecentlyAddedMaps_SelectsAtLeastFourIfTimesAreClose()
     {
-		// Arrange
-		DateTime now = DateTime.UtcNow;
-		string[] directories = ["mapA", "mapB", "mapC", "mapD", "mapE"];
-		Dictionary<string, DateTime> creationTimes = new()
-		{
+        // Arrange
+        DateTime now = DateTime.UtcNow;
+        string[] directories = ["mapA", "mapB", "mapC", "mapD", "mapE"];
+        Dictionary<string, DateTime> creationTimes = new()
+        {
             ["mapA"] = now.AddMinutes(-40),
             ["mapB"] = now.AddMinutes(-30),
             ["mapC"] = now.AddMinutes(-20),
             ["mapD"] = now.AddMinutes(-10),
             ["mapE"] = now.AddMinutes(-5),
         };
-		Dictionary<string, Guid> mapIds = directories.ToDictionary(d => d, d => Guid.NewGuid());
+        Dictionary<string, Guid> mapIds = directories.ToDictionary(d => d, d => Guid.NewGuid());
         _mockFileSystem.Setup(fs => fs.GetDirectories(It.IsAny<string>())).Returns(directories);
         foreach (string? dir in directories)
         {
@@ -123,8 +123,8 @@ public class MapServiceTests
             _service.MapToGuid[dir] = mapIds[dir];
         }
 
-		// Act
-		List<MapTag> recentlyAdded = await _service.LoadRecentlyAddedMaps();
+        // Act
+        List<MapTag> recentlyAdded = await _service.LoadRecentlyAddedMaps();
 
         // Assert
         Assert.Equal(5, recentlyAdded.Count);
@@ -133,13 +133,13 @@ public class MapServiceTests
     [Fact]
     public void GetSongId_WhenMapExists_ReturnsCorrectGuid()
     {
-		// Arrange
-		Guid expectedGuid = Guid.NewGuid();
-		string mapName = "TestMap";
+        // Arrange
+        Guid expectedGuid = Guid.NewGuid();
+        string mapName = "TestMap";
         _service.MapToGuid[mapName] = expectedGuid;
 
-		// Act
-		Guid? result = _service.GetSongId(mapName);
+        // Act
+        Guid? result = _service.GetSongId(mapName);
 
         // Assert
         Assert.NotNull(result);
@@ -152,8 +152,8 @@ public class MapServiceTests
         // Arrange
         _service.MapToGuid["SomeOtherMap"] = Guid.NewGuid();
 
-		// Act
-		Guid? result = _service.GetSongId("NonExistentMap");
+        // Act
+        Guid? result = _service.GetSongId("NonExistentMap");
 
         // Assert
         Assert.Null(result);
@@ -162,13 +162,13 @@ public class MapServiceTests
     [Fact]
     public void GetSongId_IsCaseSensitive_ReturnsNullForMismatchedCase()
     {
-		// Arrange
-		Guid expectedGuid = Guid.NewGuid();
-		string mapName = "CaseSensitiveMap";
+        // Arrange
+        Guid expectedGuid = Guid.NewGuid();
+        string mapName = "CaseSensitiveMap";
         _service.MapToGuid[mapName] = expectedGuid;
 
-		// Act
-		Guid? result = _service.GetSongId("casesensitivemap");
+        // Act
+        Guid? result = _service.GetSongId("casesensitivemap");
 
         // Assert
         Assert.Null(result);
@@ -177,58 +177,58 @@ public class MapServiceTests
     [Fact]
     public async Task LoadData_LoadsEachFolderOnceIntoSingleMapCollection()
     {
-		// Arrange
-		Guid map1Id = Guid.NewGuid();
-		Guid map2Id = Guid.NewGuid();
-		string map1Folder = Path.Combine("C:\\maps", "map1");
-		string map2Folder = Path.Combine("C:\\maps", "map2");
+        // Arrange
+        Guid map1Id = Guid.NewGuid();
+        Guid map2Id = Guid.NewGuid();
+        string map1Folder = Path.Combine("C:\\maps", "map1");
+        string map2Folder = Path.Combine("C:\\maps", "map2");
 
-		// Data for the first map
-		LocalJustDanceSongDBEntry songInfo1 = new() { SongID = map1Id, MapName = "map1", Artist = "Artist A", CoachCount = 1, TagIds = [], DanceVersionLocId = new LocalizedString(0, "") };
-		Dictionary<string, AssetMetadata> metadata1 = new() { ["cover"] = new("hash1", 123) };
+        // Data for the first map
+        LocalJustDanceSongDBEntry songInfo1 = new() { SongID = map1Id, MapName = "map1", Artist = "Artist A", CoachCount = 1, TagIds = [], DanceVersionLocId = new LocalizedString(0, "") };
+        Dictionary<string, AssetMetadata> metadata1 = new() { ["cover"] = new("hash1", 123) };
 
-		// Data for the second map
-		LocalJustDanceSongDBEntry songInfo2 = new() { SongID = map2Id, MapName = "map2", Artist = "Artist B", CoachCount = 2, TagIds = [], DanceVersionLocId = new LocalizedString(0, "") };
-		Dictionary<string, AssetMetadata> metadata2 = new() { ["cover"] = new("hash2", 456) };
-		IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> jdPlusPlatforms =
-			new Dictionary<string, IReadOnlyDictionary<string, string>>(StringComparer.OrdinalIgnoreCase)
-			{
-				[ClientPlatform.NintendoSwitch] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-				{
-					["Cover"] = "switch-cover",
-					["CoachesLarge"] = "switch-coaches-large",
-					["CoachesSmall"] = "switch-coaches-small",
-					["MapPackage"] = "switch-map-package"
-				},
-				[ClientPlatform.PC] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-				{
-					["Cover"] = "pc-cover",
-					["CoachesLarge"] = "pc-coaches-large",
-					["CoachesSmall"] = "pc-coaches-small",
-					["MapPackage"] = "pc-map-package"
-				}
-			};
-		MapMediaAssets jdPlusMedia = ServerMapTestData.CreateMedia(MapMediaLayouts.JDPlus, jdPlusPlatforms);
+        // Data for the second map
+        LocalJustDanceSongDBEntry songInfo2 = new() { SongID = map2Id, MapName = "map2", Artist = "Artist B", CoachCount = 2, TagIds = [], DanceVersionLocId = new LocalizedString(0, "") };
+        Dictionary<string, AssetMetadata> metadata2 = new() { ["cover"] = new("hash2", 456) };
+        IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> jdPlusPlatforms =
+            new Dictionary<string, IReadOnlyDictionary<string, string>>(StringComparer.OrdinalIgnoreCase)
+            {
+                [ClientPlatform.NintendoSwitch] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["Cover"] = "switch-cover",
+                    ["CoachesLarge"] = "switch-coaches-large",
+                    ["CoachesSmall"] = "switch-coaches-small",
+                    ["MapPackage"] = "switch-map-package"
+                },
+                [ClientPlatform.PC] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["Cover"] = "pc-cover",
+                    ["CoachesLarge"] = "pc-coaches-large",
+                    ["CoachesSmall"] = "pc-coaches-small",
+                    ["MapPackage"] = "pc-map-package"
+                }
+            };
+        MapMediaAssets jdPlusMedia = ServerMapTestData.CreateMedia(MapMediaLayouts.JDPlus, jdPlusPlatforms);
 
         _mockFileSystem.Setup(fs => fs.GetDirectories("C:\\maps")).Returns([map1Folder, map2Folder]);
 
-		_mockMapLoader
-			.Setup(u => u.LoadMapAsync(map1Folder))
-			.ReturnsAsync(ServerMapTestData.CreateMap(map1Id, map1Folder, songInfo1, jdPlus: jdPlusMedia));
-		_mockMapLoader
-			.Setup(u => u.LoadMapAsync(map2Folder))
-			.ReturnsAsync(ServerMapTestData.CreateMap(map2Id, map2Folder, songInfo2, jdPlus: jdPlusMedia));
+        _mockMapLoader
+            .Setup(u => u.LoadMapAsync(map1Folder))
+            .ReturnsAsync(ServerMapTestData.CreateMap(map1Id, map1Folder, songInfo1, jdPlus: jdPlusMedia));
+        _mockMapLoader
+            .Setup(u => u.LoadMapAsync(map2Folder))
+            .ReturnsAsync(ServerMapTestData.CreateMap(map2Id, map2Folder, songInfo2, jdPlus: jdPlusMedia));
         _mockAssetMetadataLoader
-			.Setup(loader => loader.Load(
-				map1Folder,
-				ClientPlatform.NintendoSwitch,
-				MapMediaLayouts.JDUnlimited))
+            .Setup(loader => loader.Load(
+                map1Folder,
+                ClientPlatform.NintendoSwitch,
+                MapMediaLayouts.JDUnlimited))
             .Returns(metadata1);
         _mockAssetMetadataLoader
-			.Setup(loader => loader.Load(
-				map2Folder,
-				ClientPlatform.NintendoSwitch,
-				MapMediaLayouts.JDUnlimited))
+            .Setup(loader => loader.Load(
+                map2Folder,
+                ClientPlatform.NintendoSwitch,
+                MapMediaLayouts.JDUnlimited))
             .Returns(metadata2);
 
         // Correctly mock TagService to return a Tag with a valid OasisTag
@@ -240,8 +240,8 @@ public class MapServiceTests
                            LocId = new OasisTag(new LocalizedString(text.GetHashCode(), text))
                        });
 
-		// Correctly initialize ShopConfig with a fully valid ProductGroup
-		ShopConfig shopConfig = new();
+        // Correctly initialize ShopConfig with a fully valid ProductGroup
+        ShopConfig shopConfig = new();
         shopConfig.FirstPartyProductDb.ProductGroups.Add(Guid.NewGuid(), new ProductGroup
         {
             Type = "jdplus",
@@ -255,44 +255,45 @@ public class MapServiceTests
         _mockBundleService.Setup(bs => bs.LoadData()).Returns(Task.CompletedTask);
 
         // Act
-		await Task.WhenAll(_service.LoadData(), _service.LoadData());
-		await _service.LoadData();
+        await Task.WhenAll(_service.LoadData(), _service.LoadData());
+        await _service.LoadData();
 
         // Assert
         Assert.Equal(2, _service.Maps.Count);
         Assert.True(_service.Maps.ContainsKey(map1Id));
         Assert.Equal("map1", _service.Maps[map1Id].Song.MapName);
         Assert.Equal(map1Folder, _service.Maps[map1Id].FolderPath);
-		JustDanceSongDBEntry switchSong = _service.GetSongs(
-			ClientPlatform.NintendoSwitch,
-			MapMediaLayouts.JDUnlimited)[map1Id];
-		Assert.Equal("switch-cover", switchSong.Assets.Cover);
-		Assert.Contains("/JDUnlimited/Preview/vp8/", switchSong.Assets.VideoPreview_MID_vp8_webm);
-		Assert.Contains("/JDUnlimited/Preview/vp9/", switchSong.Assets.VideoPreview_MID_vp9_webm);
-		Assert.StartsWith("https://cdn.test/JDPlus/", switchSong.Assets.AudioPreview_opus);
-		JustDanceSongDBEntry laterSwitchSong = _service.GetSongs(
-			ClientPlatform.NintendoSwitch,
-			MapMediaLayouts.JDPlus)[map1Id];
-		Assert.Contains("/JDPlus/Preview/vp8/", laterSwitchSong.Assets.VideoPreview_MID_vp8_webm);
-		Assert.Contains("/JDPlus/Preview/vp9/", laterSwitchSong.Assets.VideoPreview_MID_vp9_webm);
-		Assert.Equal(
-			"switch-map-package",
-			_service.GetContentAuthorization(ClientPlatform.NintendoSwitch)[map2Id].Assets.MapPackage);
-		ContentAuthorization pcAuthorization = _service.GetContentAuthorization(ClientPlatform.PC)[map1Id];
-		Assert.Contains("/Video/vp8/high.webm", pcAuthorization.Assets.VideoHighHdWebm);
-		Assert.Contains("/Video/vp9/high.webm", pcAuthorization.Assets.VideoHighVP9Webm);
-		Assert.Contains("codecs=\"vp8\"", pcAuthorization.AssetsMetadata.VideoMpd);
-		Assert.Contains("video_HIGH.hd.webm", pcAuthorization.AssetsMetadata.VideoMpd);
+        JustDanceSongDBEntry switchSong = _service.GetSongs(
+            ClientPlatform.NintendoSwitch,
+            MapMediaLayouts.JDUnlimited)[map1Id];
+        Assert.Equal("switch-cover", switchSong.Assets.Cover);
+        Assert.Contains("/JDUnlimited/Preview/vp8/", switchSong.Assets.VideoPreview_MID_vp8_webm);
+        Assert.Contains("/JDUnlimited/Preview/vp9/", switchSong.Assets.VideoPreview_MID_vp9_webm);
+        Assert.StartsWith("https://cdn.test/JDPlus/", switchSong.Assets.AudioPreview_opus);
+        JustDanceSongDBEntry laterSwitchSong = _service.GetSongs(
+            ClientPlatform.NintendoSwitch,
+            MapMediaLayouts.JDPlus)[map1Id];
+        Assert.Contains("/JDPlus/Preview/vp8/", laterSwitchSong.Assets.VideoPreview_MID_vp8_webm);
+        Assert.Contains("/JDPlus/Preview/vp9/", laterSwitchSong.Assets.VideoPreview_MID_vp9_webm);
+        Assert.Equal(
+            "switch-map-package",
+            _service.GetContentAuthorization(ClientPlatform.NintendoSwitch)[map2Id].Assets.MapPackage);
+        ContentAuthorization pcAuthorization = _service.GetContentAuthorization(ClientPlatform.PC)[map1Id];
+        Assert.Contains("/Video/vp8/high.webm", pcAuthorization.Assets.VideoHighHdWebm);
+        Assert.Contains("/Video/vp9/high.webm", pcAuthorization.Assets.VideoHighVP9Webm);
+        Assert.Contains("codecs=\"vp8\"", pcAuthorization.AssetsMetadata.VideoMpd);
+        Assert.Contains("video_HIGH.hd.webm", pcAuthorization.AssetsMetadata.VideoMpd);
 
-		ContentAuthorization switchAuthorization =
-			_service.GetContentAuthorization(ClientPlatform.NintendoSwitch)[map1Id];
-		Assert.Contains("codecs=\"vp9\"", switchAuthorization.AssetsMetadata.VideoMpd);
-		Assert.Contains("video_HIGH.vp9.webm", switchAuthorization.AssetsMetadata.VideoMpd);
-		Assert.Equal(
-			metadata1,
-			_service.GetAssetMetadataPerSong(
-				ClientPlatform.NintendoSwitch,
-				MapMediaLayouts.JDUnlimited)[map1Id]);
+        ContentAuthorization switchAuthorization =
+            _service.GetContentAuthorization(ClientPlatform.NintendoSwitch)[map1Id];
+        Assert.Contains("codecs=\"vp9\"", switchAuthorization.AssetsMetadata.VideoMpd);
+        Assert.Contains("video_HIGH.vp9.webm", switchAuthorization.AssetsMetadata.VideoMpd);
+        OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>>[] concurrentMetadata = await Task.WhenAll(Enumerable.Range(0, 16).Select(_ => Task.Run(() =>
+            _service.GetAssetMetadataPerSong(ClientPlatform.NintendoSwitch, MapMediaLayouts.JDUnlimited))));
+        Assert.All(concurrentMetadata, value => Assert.Same(concurrentMetadata[0], value));
+        Assert.Equal(metadata1, concurrentMetadata[0][map1Id]);
+        _mockAssetMetadataLoader.Verify(loader => loader.Load(map1Folder, ClientPlatform.NintendoSwitch,
+            MapMediaLayouts.JDUnlimited), Times.Once);
 
         Assert.Equal(2, _service.MapToGuid.Count);
         Assert.Equal(map2Id, _service.MapToGuid["map2"]);
@@ -313,12 +314,12 @@ public class MapServiceTests
     [Fact]
     public async Task LoadData_CatchesAndLogsException_WhenLoadFails()
     {
-		// Arrange
-		InvalidOperationException exception = new("Test exception");
+        // Arrange
+        InvalidOperationException exception = new("Test exception");
         _mockFileSystem.Setup(fs => fs.GetDirectories(It.IsAny<string>())).Throws(exception);
 
         // Act & Assert
-        await Assert.ThrowsAsync<InvalidOperationException>(() => _service.LoadData());
+        await Assert.ThrowsAsync<InvalidOperationException>(_service.LoadData);
 
         // Verify that the error was logged
         _mockLogger.Verify(
@@ -342,7 +343,7 @@ public class MapServiceTests
         _mockFileSystem.Setup(fs => fs.GetDirectories(_baseMapsPath)).Returns([mapFolder]);
         _mockMapLoader
             .Setup(u => u.LoadMapAsync(mapFolder))
-			.ReturnsAsync(ServerMapTestData.CreateMap(mapId, mapFolder, songInfo));
+            .ReturnsAsync(ServerMapTestData.CreateMap(mapId, mapFolder, songInfo));
 
         // Mocks for LoadOffers
         _mockBundleService.SetupGet(bs => bs.ShopConfig).Returns(new ShopConfig());
@@ -363,12 +364,12 @@ public class MapServiceTests
         // Arrange
         DateTime now = DateTime.UtcNow;
         string[] directories = ["mapA", "mapB"];
-		Dictionary<string, DateTime> creationTimes = new()
-		{
+        Dictionary<string, DateTime> creationTimes = new()
+        {
             ["mapA"] = now.AddMinutes(-20),
             ["mapB"] = now.AddMinutes(-10)
         };
-		Dictionary<string, Guid> mapIds = directories.ToDictionary(d => d, d => Guid.NewGuid());
+        Dictionary<string, Guid> mapIds = directories.ToDictionary(d => d, d => Guid.NewGuid());
         _mockFileSystem.Setup(fs => fs.GetDirectories(It.IsAny<string>())).Returns(directories);
         foreach (var dir in directories)
         {
@@ -376,8 +377,8 @@ public class MapServiceTests
             _service.MapToGuid[dir] = mapIds[dir];
         }
 
-		// Act
-		List<MapTag> recentlyAdded = await _service.LoadRecentlyAddedMaps();
+        // Act
+        List<MapTag> recentlyAdded = await _service.LoadRecentlyAddedMaps();
 
         // Assert
         Assert.Equal(2, recentlyAdded.Count);
@@ -391,8 +392,8 @@ public class MapServiceTests
         // Arrange
         DateTime now = DateTime.UtcNow;
         string[] directories = ["mapA", "mapB_no_guid", "mapC"];
-		Dictionary<string, DateTime> creationTimes = new()
-		{
+        Dictionary<string, DateTime> creationTimes = new()
+        {
             ["mapA"] = now.AddMinutes(-20),
             ["mapB_no_guid"] = now.AddMinutes(-15),
             ["mapC"] = now.AddMinutes(-10),
@@ -408,8 +409,8 @@ public class MapServiceTests
         _service.MapToGuid["mapA"] = Guid.NewGuid();
         _service.MapToGuid["mapC"] = Guid.NewGuid();
 
-		// Act
-		List<MapTag> recentlyAdded = await _service.LoadRecentlyAddedMaps();
+        // Act
+        List<MapTag> recentlyAdded = await _service.LoadRecentlyAddedMaps();
 
         // Assert
         Assert.Equal(2, recentlyAdded.Count);

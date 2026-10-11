@@ -2,9 +2,13 @@
 
 public class PathSettings
 {
-	public string JsonsPath { get; set; } = "";
-	public string LockerItemsPath { get; set; } = "";
-	public string MapsPath { get; set; } = "";
-	public string PlaylistPath { get; set; } = "";
-	public string UserDataPath { get; set; } = "";
+    public string JsonsPath { get; set; } = "";
+    public string LockerItemsPath { get; set; } = "";
+    public string MapsPath { get; set; } = "";
+    public string PlaylistPath { get; set; } = "";
+    public string JduCatalogPath { get; set; } = "";
+    public string JduCatalogAssetsPath { get; set; } = "";
+    public string UserDataPath { get; set; } = "";
+    public string EditorialPath { get; set; } = "";
+    public string WdfProgramsPath { get; set; } = "";
 }

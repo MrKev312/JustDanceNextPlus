@@ -2,5 +2,5 @@
 
 public record LocalJustDanceSongDBEntry : JustDanceSongDBEntry
 {
-	public Guid SongID { get; init; }
+    public Guid SongID { get; init; }
 }

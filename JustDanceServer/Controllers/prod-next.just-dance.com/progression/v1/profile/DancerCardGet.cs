@@ -12,13 +12,13 @@ public class DancerCardGet(IUserDataService userDataService) : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetDancerCard([FromRoute] Guid guid)
     {
-		Profile? profile = await userDataService.GetProfileByIdAsync(guid);
+        Profile? profile = await userDataService.GetProfileByIdAsync(guid);
         if (profile == null)
             return NotFound("Profile not found.");
 
         return Ok(new
         {
-			profile.Dancercard
+            profile.Dancercard
         });
     }
 }

@@ -16,71 +16,75 @@ namespace JustDanceServer.Tests.Controllers;
 
 public class ActivityPageControllerTests
 {
-	[Fact]
-	public void ActivityPageController_ExposesPcDebugCarouselRoute()
-	{
-		string[] routeTemplates = typeof(ActivityPageController)
-			.GetCustomAttributes(typeof(RouteAttribute), inherit: false)
-			.Cast<RouteAttribute>()
-			.Select(attribute => attribute.Template)
-			.ToArray()!;
+    private static readonly JsonSerializerOptions SerializerOptions = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
-		Assert.Contains("editorial/v1/activity-page/formatVersion/v0", routeTemplates);
-		Assert.Contains("carousel/v3/activity-page/formatVersion/v0", routeTemplates);
-	}
+    [Fact]
+    public void ActivityPageController_ExposesPcDebugCarouselRoute()
+    {
+        string[] routeTemplates = typeof(ActivityPageController)
+            .GetCustomAttributes(typeof(RouteAttribute), inherit: false)
+            .Cast<RouteAttribute>()
+            .Select(attribute => attribute.Template)
+            .ToArray()!;
 
-	[Fact]
-	public void GetActivityPage_WhenCarouselV3Request_ReturnsLegacyListShape()
-	{
-		Guid categoryId = Guid.Parse("11111111-1111-1111-1111-111111111111");
-		Guid songId = Guid.Parse("22222222-2222-2222-2222-222222222222");
+        Assert.Contains("editorial/v1/activity-page/formatVersion/v0", routeTemplates);
+        Assert.Contains("carousel/v3/activity-page/formatVersion/v0", routeTemplates);
+    }
 
-		ActivityPageResponse activityPage = new()
-		{
-			Categories = ImmutableDictionary<Guid, ICategory>.Empty.Add(
-				categoryId,
-				new CarouselCategory
-				{
-					CategoryName = "RecentlyAdded",
-					TitleId = new OasisTag(new LocalizedString(1234, "Recently Added")),
-					RecommendedItemType = "map",
-					ItemList = ImmutableList.Create(new MapTag { Guid = songId })
-				}),
-			CategoryModifiers = ImmutableList<IModifier>.Empty.Add(
-				new PositionModifier("carousel", categoryId, 0))
-		};
+    [Fact]
+    public async Task GetActivityPage_WhenCarouselV3Request_ReturnsLegacyListShape()
+    {
+        Guid categoryId = Guid.Parse("11111111-1111-1111-1111-111111111111");
+        Guid songId = Guid.Parse("22222222-2222-2222-2222-222222222222");
 
-		Mock<IActivityPageService> activityPageService = new();
-		activityPageService.Setup(service => service.ActivityPage).Returns(activityPage);
+        ActivityPageResponse activityPage = new()
+        {
+            Categories = ImmutableDictionary<Guid, ICategory>.Empty.Add(
+                categoryId,
+                new CarouselCategory
+                {
+                    CategoryName = "RecentlyAdded",
+                    TitleId = new OasisTag(new LocalizedString(1234, "Recently Added")),
+                    RecommendedItemType = "map",
+                    ItemList = [new MapTag { Guid = songId }]
+                }),
+            CategoryModifiers = [new PositionModifier("carousel", categoryId, 0)]
+        };
 
-		ActivityPageController controller = new(activityPageService.Object)
-		{
-			ControllerContext = new ControllerContext
-			{
-				HttpContext = new DefaultHttpContext()
-			}
-		};
-		controller.ControllerContext.HttpContext.Request.Path = "/carousel/v3/activity-page/formatVersion/v0";
+        Mock<IActivityPageService> activityPageService = new();
+        activityPageService.Setup(service => service.ActivityPage).Returns(activityPage);
 
-		OkObjectResult result = Assert.IsType<OkObjectResult>(controller.GetActivityPage());
-		JsonElement body = JsonSerializer.SerializeToElement(
-			result.Value,
-			new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+        Mock<IMenuService> menus = new();
+        menus.Setup(value => value.GetRowsAsync(It.IsAny<string>(), It.IsAny<PlayerRequestContext>())).ReturnsAsync([]);
+        ActivityPageController controller = new(activityPageService.Object, menus.Object,
+            Mock.Of<ISessionManager>(), Mock.Of<IMapService>())
+        {
+            ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext()
+            }
+        };
+        controller.ControllerContext.HttpContext.Request.Path = "/carousel/v3/activity-page/formatVersion/v0";
 
-		JsonElement categories = body.GetProperty("categories");
-		Assert.Equal(JsonValueKind.Array, categories.ValueKind);
+        OkObjectResult result = Assert.IsType<OkObjectResult>(await controller.GetActivityPage());
+        JsonElement body = JsonSerializer.SerializeToElement(
+            result.Value,
+            SerializerOptions);
 
-		JsonElement category = categories.EnumerateArray().Single();
-		Assert.Equal(categoryId, category.GetProperty("id").GetGuid());
-		Assert.Equal("carousel", category.GetProperty("type").GetString());
-		Assert.Equal(1234, category.GetProperty("titleId").GetInt32());
+        JsonElement categories = body.GetProperty("categories");
+        Assert.Equal(JsonValueKind.Array, categories.ValueKind);
 
-		JsonElement item = category.GetProperty("itemList").EnumerateArray().Single();
-		Assert.Equal(songId, item.GetProperty("id").GetGuid());
-		Assert.Equal("map", item.GetProperty("type").GetString());
+        JsonElement category = categories.EnumerateArray().Single();
+        Assert.Equal(categoryId, category.GetProperty("id").GetGuid());
+        Assert.Equal("carousel", category.GetProperty("type").GetString());
+        Assert.Equal(1234, category.GetProperty("titleId").GetInt32());
 
-		JsonElement modifier = body.GetProperty("categoryModifiers").EnumerateArray().Single();
-		Assert.Equal("position", modifier.GetProperty("name").GetString());
-		Assert.Equal("carousel", modifier.GetProperty("itemTypeToModify").GetString());
-	}
+        JsonElement item = category.GetProperty("itemList").EnumerateArray().Single();
+        Assert.Equal(songId, item.GetProperty("id").GetGuid());
+        Assert.Equal("map", item.GetProperty("type").GetString());
+
+        JsonElement modifier = body.GetProperty("categoryModifiers").EnumerateArray().Single();
+        Assert.Equal("position", modifier.GetProperty("name").GetString());
+        Assert.Equal("carousel", modifier.GetProperty("itemTypeToModify").GetString());
+    }
 }
