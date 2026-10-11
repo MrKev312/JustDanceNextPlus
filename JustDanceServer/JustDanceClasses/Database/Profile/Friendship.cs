@@ -2,8 +2,8 @@ namespace JustDanceServer.JustDanceClasses.Database.Profile;
 
 public enum FriendshipState
 {
-	Pending,
-	Accepted
+    Pending,
+    Accepted
 }
 
 /// <summary>
@@ -13,10 +13,10 @@ public enum FriendshipState
 /// </summary>
 public sealed class Friendship
 {
-	public Guid FirstProfileId { get; set; }
-	public Guid SecondProfileId { get; set; }
-	public Guid RequestedByProfileId { get; set; }
-	public FriendshipState State { get; set; }
-	public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-	public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+    public Guid FirstProfileId { get; set; }
+    public Guid SecondProfileId { get; set; }
+    public Guid RequestedByProfileId { get; set; }
+    public FriendshipState State { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 }

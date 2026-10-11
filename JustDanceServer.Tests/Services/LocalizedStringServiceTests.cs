@@ -63,17 +63,17 @@ public class LocalizedStringServiceTests
     [Fact]
     public async Task LoadData_FileFound_LoadsAndSortsDataCorrectly()
     {
-		// Arrange
-		LocalizedStringDatabase db = new()
-		{
+        // Arrange
+        LocalizedStringDatabase db = new()
+        {
             LocalizedStrings =
             [
                 new LocalizedString(5000, "Test String B"),
                 new LocalizedString(4000, "Test String A")
             ]
         };
-		string json = JsonSerializer.Serialize(db, _jsonSettingsService.PrettyPascalFormat);
-		MemoryStream stream = new(Encoding.UTF8.GetBytes(json));
+        string json = JsonSerializer.Serialize(db, _jsonSettingsService.PrettyPascalFormat);
+        MemoryStream stream = new(Encoding.UTF8.GetBytes(json));
         string expectedPath = Path.Combine(_mockPathSettings.Value.JsonsPath, "localizedstrings.json");
 
         _mockFileSystem.Setup(fs => fs.FileExists(expectedPath)).Returns(true);
@@ -97,7 +97,7 @@ public class LocalizedStringServiceTests
     {
         // Arrange
         string invalidJson = "null";
-		MemoryStream stream = new(Encoding.UTF8.GetBytes(invalidJson));
+        MemoryStream stream = new(Encoding.UTF8.GetBytes(invalidJson));
         string expectedPath = Path.Combine(_mockPathSettings.Value.JsonsPath, "localizedstrings.json");
 
         _mockFileSystem.Setup(fs => fs.FileExists(expectedPath)).Returns(true);
@@ -117,9 +117,9 @@ public class LocalizedStringServiceTests
     [Fact]
     public void GetLocalizedTag_FindsTagInDefaultList()
     {
-		// Act
-		LocalizedString? tagById = _service.GetLocalizedTag(8747);
-		LocalizedString? tagByText = _service.GetLocalizedTag("OK");
+        // Act
+        LocalizedString? tagById = _service.GetLocalizedTag(8747);
+        LocalizedString? tagByText = _service.GetLocalizedTag("OK");
 
         // Assert
         Assert.NotNull(tagById);
@@ -131,23 +131,23 @@ public class LocalizedStringServiceTests
     [Fact]
     public async Task GetLocalizedTag_FindsTagInDatabaseList()
     {
-		// Arrange
-		Guid guid = Guid.NewGuid();
-		LocalizedStringDatabase db = new()
-		{
+        // Arrange
+        Guid guid = Guid.NewGuid();
+        LocalizedStringDatabase db = new()
+        {
             LocalizedStrings = [new() { OasisId = 9999, DisplayString = "Database String", LocalizedStringId = guid }]
         };
-		string json = JsonSerializer.Serialize(db, _jsonSettingsService.PrettyPascalFormat);
-		MemoryStream stream = new(Encoding.UTF8.GetBytes(json));
+        string json = JsonSerializer.Serialize(db, _jsonSettingsService.PrettyPascalFormat);
+        MemoryStream stream = new(Encoding.UTF8.GetBytes(json));
         string path = Path.Combine(_mockPathSettings.Value.JsonsPath, "localizedstrings.json");
         _mockFileSystem.Setup(fs => fs.FileExists(path)).Returns(true);
         _mockFileSystem.Setup(fs => fs.OpenRead(path)).Returns(stream);
         await _service.LoadData();
 
-		// Act
-		LocalizedString? tagById = _service.GetLocalizedTag(9999);
-		LocalizedString? tagByText = _service.GetLocalizedTag("Database String");
-		LocalizedString? tagByGuid = _service.GetLocalizedTag(guid);
+        // Act
+        LocalizedString? tagById = _service.GetLocalizedTag(9999);
+        LocalizedString? tagByText = _service.GetLocalizedTag("Database String");
+        LocalizedString? tagByGuid = _service.GetLocalizedTag(guid);
 
         // Assert
         Assert.NotNull(tagById);
@@ -164,9 +164,9 @@ public class LocalizedStringServiceTests
         // Arrange
         _service.Database.LocalizedStrings.Add(new LocalizedString(10000, "Existing DB String"));
 
-		// Act
-		LocalizedString resultFromDefault = _service.GetAddLocalizedTag("Yes");
-		LocalizedString resultFromDb = _service.GetAddLocalizedTag("Existing DB String");
+        // Act
+        LocalizedString resultFromDefault = _service.GetAddLocalizedTag("Yes");
+        LocalizedString resultFromDb = _service.GetAddLocalizedTag("Existing DB String");
 
         // Assert
         Assert.Equal(2, resultFromDefault.OasisId);
@@ -180,8 +180,8 @@ public class LocalizedStringServiceTests
         // Arrange
         _service.Database.LocalizedStrings.Add(new LocalizedString(10000, "Highest ID String"));
 
-		// Act
-		LocalizedString newTag = _service.GetAddLocalizedTag("A Brand New String");
+        // Act
+        LocalizedString newTag = _service.GetAddLocalizedTag("A Brand New String");
 
         // Assert
         Assert.NotNull(newTag);
@@ -189,7 +189,7 @@ public class LocalizedStringServiceTests
         Assert.InRange(newTag.OasisId, 1_000_000_000, 1_999_999_999);
         Assert.Equal(10000, _service.GetLocalizedTag("Highest ID String")!.OasisId);
 
-		LocalizedString? foundTag = _service.GetLocalizedTag("A Brand New String");
+        LocalizedString? foundTag = _service.GetLocalizedTag("A Brand New String");
         Assert.NotNull(foundTag);
         Assert.Equal(newTag.OasisId, foundTag.OasisId);
         LocalizedStringService restarted = new(_mockLogger.Object, _mockServiceProvider.Object, _mockFileSystem.Object);
@@ -211,16 +211,16 @@ public class LocalizedStringServiceTests
         // Arrange
         _service.Database.LocalizedStrings.Add(new LocalizedString(10000, "Highest ID String"));
 
-		// Act
-		List<Task<LocalizedString>> tasks = [.. Enumerable.Range(0, 10).Select(_ => Task.Run(() => _service.GetAddLocalizedTag("Thread Safe Test")))];
+        // Act
+        List<Task<LocalizedString>> tasks = [.. Enumerable.Range(0, 10).Select(_ => Task.Run(() => _service.GetAddLocalizedTag("Thread Safe Test")))];
 
-		LocalizedString[] results = await Task.WhenAll(tasks);
+        LocalizedString[] results = await Task.WhenAll(tasks);
 
-		// Assert
-		int firstId = results[0].OasisId;
+        // Assert
+        int firstId = results[0].OasisId;
         Assert.All(results, result => Assert.Equal(firstId, result.OasisId));
 
-		int countInDb = _service.Database.LocalizedStrings.Count(s => s.DisplayString == "Thread Safe Test");
+        int countInDb = _service.Database.LocalizedStrings.Count(s => s.DisplayString == "Thread Safe Test");
         Assert.Equal(1, countInDb);
     }
 }

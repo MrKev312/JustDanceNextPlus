@@ -6,19 +6,19 @@ namespace JustDanceServer.Tests.Controllers;
 
 public class SongPacksControllerTests
 {
-	[Fact]
-	public void SongPacksController_ExposesPcDebugSongPacksRoute()
-	{
-		RouteAttribute route = Assert.Single(typeof(SongPacksController)
-			.GetCustomAttributes(typeof(RouteAttribute), inherit: false)
-			.Cast<RouteAttribute>());
+    [Fact]
+    public void SongPacksController_ExposesPcDebugSongPacksRoute()
+    {
+        RouteAttribute route = Assert.Single(typeof(SongPacksController)
+            .GetCustomAttributes(typeof(RouteAttribute), inherit: false)
+            .Cast<RouteAttribute>());
 
-		Assert.Equal("songdb/v3/songpacks", route.Template);
+        Assert.Equal("songdb/v3/songpacks", route.Template);
 
-		HttpGetAttribute httpGet = Assert.Single(typeof(SongPacksController)
-			.GetMethod(nameof(SongPacksController.Get))!
-			.GetCustomAttributes(typeof(HttpGetAttribute), inherit: false)
-			.Cast<HttpGetAttribute>());
-		Assert.Null(httpGet.Template);
-	}
+        HttpGetAttribute httpGet = Assert.Single(typeof(SongPacksController)
+            .GetMethod(nameof(SongPacksController.Get))!
+            .GetCustomAttributes(typeof(HttpGetAttribute), inherit: false)
+            .Cast<HttpGetAttribute>());
+        Assert.Null(httpGet.Template);
+    }
 }

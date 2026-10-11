@@ -7,9 +7,9 @@ public class SecurityServiceTests
     [Fact]
     public void Constructor_InitializesKey_IsNotNullAndCorrectLength()
     {
-		// Act
-		SecurityService securityService = new();
-		IReadOnlyList<byte> key = securityService.Secret256bit;
+        // Act
+        SecurityService securityService = new();
+        IReadOnlyList<byte> key = securityService.Secret256bit;
 
         // Assert
         Assert.NotNull(key);
@@ -19,9 +19,9 @@ public class SecurityServiceTests
     [Fact]
     public void Constructor_CalledTwice_GeneratesDifferentKeys()
     {
-		// Act
-		SecurityService service1 = new();
-		SecurityService service2 = new();
+        // Act
+        SecurityService service1 = new();
+        SecurityService service2 = new();
 
         IReadOnlyList<byte> key1 = service1.Secret256bit;
         IReadOnlyList<byte> key2 = service2.Secret256bit;

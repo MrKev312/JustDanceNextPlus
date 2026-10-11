@@ -6,13 +6,13 @@ namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v4.spaces._1da0
 [Route("v4/spaces/{spaceId:jdnext}/configs/events")]
 public class Events : ControllerBase
 {
-	[HttpGet]
-	public IActionResult GetEvents([FromRoute] Guid spaceId)
-	{
-		string response = """
+    [HttpGet]
+    public IActionResult GetEvents([FromRoute] Guid spaceId)
+    {
+        string response = """
 			{}
 			""";
 
-		return Content(response, "application/json");
-	}
+        return Content(response, "application/json");
+    }
 }

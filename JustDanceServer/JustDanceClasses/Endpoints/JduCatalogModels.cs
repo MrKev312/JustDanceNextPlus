@@ -21,8 +21,8 @@ public record JduSongDatabaseEntry
     public int CoachCount { get; init; }
     public string Credits { get; init; } = string.Empty;
     public string CustomTypeName { get; init; } = string.Empty;
-	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-	public int? CustomTypeNameId { get; init; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public int? CustomTypeNameId { get; init; }
     public int Difficulty { get; init; }
     public string[] JdmAttributes { get; init; } = [];
     public string LyricsColor { get; init; } = "FFFFFFFF";
@@ -134,7 +134,7 @@ public record JduPlaylist
     [JsonPropertyName("__class")]
     public string Class { get; init; } = "PlaylistDbService::Playlist";
     public bool Filters { get; init; } = true;
-	public string Type { get; init; } = "editorial";
+    public string Type { get; init; } = "editorial";
     public string[] Maps { get; init; } = [];
     public string Title { get; init; } = string.Empty;
     public string Description { get; init; } = string.Empty;
@@ -312,9 +312,9 @@ public record JduCarouselEpisodeComponent : JduCarouselContentComponent
 
 public sealed record JduCarouselRequest
 {
-	public Guid[] FriendIds { get; init; } = [];
-	public Guid[] AuthorizedFriendIds { get; init; } = [];
-	public string[] SearchTags { get; init; } = [];
-	public string SearchString { get; init; } = string.Empty;
-	public string LastMapPlayed { get; init; } = string.Empty;
+    public Guid[] FriendIds { get; init; } = [];
+    public Guid[] AuthorizedFriendIds { get; init; } = [];
+    public string[] SearchTags { get; init; } = [];
+    public string SearchString { get; init; } = string.Empty;
+    public string LastMapPlayed { get; init; } = string.Empty;
 }

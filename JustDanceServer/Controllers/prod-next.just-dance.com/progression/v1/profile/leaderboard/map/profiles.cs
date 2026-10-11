@@ -12,18 +12,18 @@ public class Profiles(IUserDataService userDataService, IMapService mapService) 
     [HttpPost]
     public async Task<IActionResult> GetProfiles([FromBody] ProfilesRequest request)
     {
-		if (!mapService.TryGetMapName(request.MapId, out string mapName))
-			return NotFound();
+        if (!mapService.TryGetMapName(request.MapId, out string mapName))
+            return NotFound();
 
-		List<object> profiles = [];
+        List<object> profiles = [];
         foreach (Guid userId in request.UsUserIds)
         {
-			Profile? profile = await userDataService.GetProfileByIdAsync(userId);
+            Profile? profile = await userDataService.GetProfileByIdAsync(userId);
             if (profile != null)
             {
-				MapStats? mapStats = profile.MapStats.TryGetValue(mapName, out MapStats? stats) ? stats : null;
-				ResponseProfile profileData = new()
-				{
+                MapStats? mapStats = profile.MapStats.TryGetValue(mapName, out MapStats? stats) ? stats : null;
+                ResponseProfile profileData = new()
+                {
                     Id = profile.Id,
                     Dancercard = profile.Dancercard,
                     MapStat = mapStats,

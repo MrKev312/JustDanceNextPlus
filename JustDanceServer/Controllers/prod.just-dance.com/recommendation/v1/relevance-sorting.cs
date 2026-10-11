@@ -12,8 +12,8 @@ public class RelevanceSorting(IJduRecommendationService recommendationService, I
     public async Task<IActionResult> GetRelevanceSorting()
     {
         return Ok(new RecommendedSongsResponse
-		{
-			OrderedMaps = await recommendationService.GetOrderedMapsAsync(PlayerRequestContextResolver.FromRequest(Request, sessions).ProfileId)
-		});
+        {
+            OrderedMaps = await recommendationService.GetOrderedMapsAsync(PlayerRequestContextResolver.FromRequest(Request, sessions).ProfileId)
+        });
     }
 }

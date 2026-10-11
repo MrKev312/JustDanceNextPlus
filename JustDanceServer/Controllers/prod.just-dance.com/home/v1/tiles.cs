@@ -13,9 +13,9 @@ public class Tiles(IModernJduMenuService menuService, IMenuService sharedMenus, 
     [RequestSizeLimit(131072)]
     public async Task<IActionResult> GetTiles([FromBody] JduHomeRequest request)
     {
-		PlayerRequestContext context = PlayerRequestContextResolver.FromRequest(Request, sessions);
-		EditorialAudience audience = new(EditorialProduct.JDUnlimited, context.GameYear, context.Platform, context.Locale);
-		return Ok(menuService.CreateHomeData(audience, request,
-			await sharedMenus.GetRowsAsync("jdu-home", context)));
+        PlayerRequestContext context = PlayerRequestContextResolver.FromRequest(Request, sessions);
+        EditorialAudience audience = new(EditorialProduct.JDUnlimited, context.GameYear, context.Platform, context.Locale);
+        return Ok(menuService.CreateHomeData(audience, request,
+            await sharedMenus.GetRowsAsync("jdu-home", context)));
     }
 }

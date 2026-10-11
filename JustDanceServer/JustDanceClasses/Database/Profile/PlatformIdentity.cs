@@ -9,11 +9,11 @@ namespace JustDanceServer.JustDanceClasses.Database.Profile;
 /// </summary>
 public sealed class PlatformIdentity
 {
-	public string Provider { get; set; } = string.Empty;
-	public string Subject { get; set; } = string.Empty;
-	public Guid ProfileId { get; set; }
-	public string PlatformType { get; set; } = string.Empty;
-	public string IdOnPlatform { get; set; } = string.Empty;
-	public string NameOnPlatform { get; set; } = string.Empty;
-	public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+    public string Provider { get; set; } = string.Empty;
+    public string Subject { get; set; } = string.Empty;
+    public Guid ProfileId { get; set; }
+    public string PlatformType { get; set; } = string.Empty;
+    public string IdOnPlatform { get; set; } = string.Empty;
+    public string NameOnPlatform { get; set; } = string.Empty;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 }

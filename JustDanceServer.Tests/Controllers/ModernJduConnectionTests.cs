@@ -33,10 +33,10 @@ public sealed class ModernJduConnectionTests
     {
         ModernJduSongDbController controller = new(LocalUrls);
 
-		OkObjectResult result = Assert.IsType<OkObjectResult>(controller.GetSongs("jd2022-nx-all"));
-		SongDbResponse response = Assert.IsType<JustDanceServer.Controllers.prod.just_dance.com.songdb.v2.SongDbResponse>(result.Value);
+        OkObjectResult result = Assert.IsType<OkObjectResult>(controller.GetSongs("jd2022-nx-all"));
+        SongDbResponse response = Assert.IsType<JustDanceServer.Controllers.prod.just_dance.com.songdb.v2.SongDbResponse>(result.Value);
 
-		Assert.Equal("https://jdu.local.test/songdb/v2/database?assetPlatform=NX", response.SongdbUrl);
+        Assert.Equal("https://jdu.local.test/songdb/v2/database?assetPlatform=NX", response.SongdbUrl);
         Assert.Equal("https://jdu.local.test/songdb/v2/localisation", response.LocalisationUrl);
     }
 
@@ -50,7 +50,7 @@ public sealed class ModernJduConnectionTests
         });
 
         OkObjectResult result = Assert.IsType<OkObjectResult>(controller.RefreshSubscription(request));
-		SubscriptionRefreshResponse response = Assert.IsType<JustDanceServer.Controllers.prod.just_dance.com.subscription.v1.SubscriptionRefreshResponse>(result.Value);
+        SubscriptionRefreshResponse response = Assert.IsType<JustDanceServer.Controllers.prod.just_dance.com.subscription.v1.SubscriptionRefreshResponse>(result.Value);
 
         Assert.True(response.Validity);
         Assert.True(response.TimeLeft > 0);
@@ -75,10 +75,10 @@ public sealed class ModernJduConnectionTests
         profiles.Setup(service => service.GetProfilesAsync(It.IsAny<IEnumerable<Guid>>()))
             .ReturnsAsync([]);
         ModernJduProfilesController controller = new(profiles.Object, Mock.Of<ISessionManager>(),
-			Mock.Of<IPlayerPreferenceService>(), Mock.Of<IPlayerActivityService>())
-		{
-			ControllerContext = new() { HttpContext = new Microsoft.AspNetCore.Http.DefaultHttpContext() }
-		};
+            Mock.Of<IPlayerPreferenceService>(), Mock.Of<IPlayerActivityService>())
+        {
+            ControllerContext = new() { HttpContext = new Microsoft.AspNetCore.Http.DefaultHttpContext() }
+        };
 
         OkObjectResult result = Assert.IsType<OkObjectResult>(
             await controller.GetProfiles(null));
@@ -91,18 +91,18 @@ public sealed class ModernJduConnectionTests
     [Fact]
     public void WdfAssignment_UsesTheRoomSelectedForTheClientYear()
     {
-		Mock<IWdfService> wdf = new();
-		wdf.Setup(service => service.GetAssignedRoom(2022)).Returns(WdfRoomId.HappyHour);
-		ModernJduWdfController controller = new(
-			wdf.Object,
-			Mock.Of<ISessionManager>())
-		{
-			ControllerContext = new ControllerContext { HttpContext = new DefaultHttpContext() }
-		};
-		controller.Request.Headers["X-SkuId"] = "jd2022-nx-all";
+        Mock<IWdfService> wdf = new();
+        wdf.Setup(service => service.GetAssignedRoom(2022)).Returns(WdfRoomId.HappyHour);
+        ModernJduWdfController controller = new(
+            wdf.Object,
+            Mock.Of<ISessionManager>())
+        {
+            ControllerContext = new ControllerContext { HttpContext = new DefaultHttpContext() }
+        };
+        controller.Request.Headers["X-SkuId"] = "jd2022-nx-all";
 
         OkObjectResult result = Assert.IsType<OkObjectResult>(controller.Assign());
-		RoomInfoResponse response = Assert.IsType<JustDanceServer.Controllers.prod.just_dance.com.wdf.v1.RoomInfoResponse>(result.Value);
+        RoomInfoResponse response = Assert.IsType<JustDanceServer.Controllers.prod.just_dance.com.wdf.v1.RoomInfoResponse>(result.Value);
 
         Assert.Equal(WdfRoomId.HappyHour.Name, response.Room);
     }

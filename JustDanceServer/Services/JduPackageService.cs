@@ -109,7 +109,7 @@ public sealed class JduPackageService(
             PackageVariants[] variants = [.. FindPackageSources(value)];
             IEnumerable<PackageSource> sources = variants.SelectMany(variant => variant.Vp9 is { } vp9
                 ? new[] { variant.Vp8, vp9 }
-                : new[] { variant.Vp8 });
+                : [variant.Vp8]);
             return new PackageIndex(
                 variants.ToFrozenDictionary(variant => variant.MapName, StringComparer.OrdinalIgnoreCase),
                 sources.GroupBy(source => source.Md5, StringComparer.OrdinalIgnoreCase)

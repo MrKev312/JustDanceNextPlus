@@ -10,8 +10,8 @@ public class Ccu(IWdfService wdfService) : ControllerBase
     [HttpGet]
     public IActionResult GetCcu([FromRoute] string room)
     {
-		if (!WdfRequestResolver.TryResolveRoom(Request, room, wdfService, out WdfRoomId resolvedRoom))
-			return BadRequest();
+        if (!WdfRequestResolver.TryResolveRoom(Request, room, wdfService, out WdfRoomId resolvedRoom))
+            return BadRequest();
 
         return Content(wdfService.GetActivePlayerCount(resolvedRoom).ToString(), "text/html");
     }

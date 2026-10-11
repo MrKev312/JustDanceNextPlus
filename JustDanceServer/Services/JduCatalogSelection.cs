@@ -11,12 +11,12 @@ internal static class JduCatalogSelection
         => songs;
 
     public static IEnumerable<JustDanceSongDBEntry> FromClassic(IEnumerable<JustDanceSongDBEntry> songs)
-		=> songs.Where(IsClassicCompatible);
+        => songs.Where(IsClassicCompatible);
 
-	public static bool IsClassicCompatible(JustDanceSongDBEntry song)
-		=> IsClassicCompatibleText(song.MapName)
-			&& IsClassicCompatibleText(song.Title)
-			&& IsClassicCompatibleText(song.Artist);
+    public static bool IsClassicCompatible(JustDanceSongDBEntry song)
+        => IsClassicCompatibleText(song.MapName)
+            && IsClassicCompatibleText(song.Title)
+            && IsClassicCompatibleText(song.Artist);
 
     public static bool IsClassicCompatibleText(string value)
     {

@@ -57,8 +57,8 @@ public sealed class ZeroScoreContractTests
             http.Request.Headers["ubi-sessionid"] = sessionId.ToString();
             HttpContextAccessor accessor = new() { HttpContext = http };
             Mock<IProgressionService> noProgressionWrites = new(MockBehavior.Strict);
-			PlayerActivityService activity = new(db, maps.Object, scores, TimeProvider.System);
-			MapCompletionService completions = new(db, scores, noProgressionWrites.Object, activity);
+            PlayerActivityService activity = new(db, maps.Object, scores, TimeProvider.System);
+            MapCompletionService completions = new(db, scores, noProgressionWrites.Object, activity);
             MapController mapController = new(data, maps.Object, completions)
             { ControllerContext = new() { HttpContext = http } };
             OkObjectResult mapResult = Assert.IsType<OkObjectResult>(await mapController.PushMapsPlayedAsync(
@@ -81,12 +81,15 @@ public sealed class ZeroScoreContractTests
             Assert.Equal(song, playlistJson.GetProperty("playlistStats").GetProperty("highScorePerMap")[0].GetProperty("mapId").GetGuid());
 
             Mutation mutation = new();
-			ExecutionResult<MapStatsResponse> graphMap = await mutation.PushMapsPlayedAsync(new() { Maps = new() { MapId = song, Score = 0 } },
+            ExecutionResult<MapStatsResponse> graphMap = await mutation.PushMapsPlayedAsync(new() { Maps = new() { MapId = song, Score = 0 } },
                 data, maps.Object, sessions, accessor, completions);
             Assert.True(graphMap.Success);
             Assert.Equal(hasScore ? 1 : 0, graphMap.Response!.MapStats.PlayCount);
-			ExecutionResult<PlaylistStatsResponse> graphPlaylist = await mutation.PushPlaylistPlayedAsync(new() { Playlist = new()
-            { PlaylistId = playlist, TotalScore = 0, MapData = [new() { MapId = song, Score = 0 }] } },
+            ExecutionResult<PlaylistStatsResponse> graphPlaylist = await mutation.PushPlaylistPlayedAsync(new()
+            {
+                Playlist = new()
+                { PlaylistId = playlist, TotalScore = 0, MapData = [new() { MapId = song, Score = 0 }] }
+            },
                 data, maps.Object, sessions, accessor);
             Assert.True(graphPlaylist.Success);
             Assert.Equal(hasScore ? 1 : 0, graphPlaylist.Response!.PlaylistStats.PlayCount);
@@ -96,12 +99,12 @@ public sealed class ZeroScoreContractTests
             Assert.Equal(before, await SnapshotAsync(db));
         }
         finally
-		{
-			sessions.RemoveSession(sessionId);
-		}
-	}
+        {
+            sessions.RemoveSession(sessionId);
+        }
+    }
 
-	private static async Task<string> SnapshotAsync(UserDataContext db) => JsonSerializer.Serialize(new
+    private static async Task<string> SnapshotAsync(UserDataContext db) => JsonSerializer.Serialize(new
     {
         Maps = await db.MapScores.AsNoTracking().ToListAsync(),
         Playlists = await db.PlaylistScores.AsNoTracking().ToListAsync(),

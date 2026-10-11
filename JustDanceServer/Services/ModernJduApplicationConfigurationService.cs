@@ -79,9 +79,7 @@ public sealed class ModernJduApplicationConfigurationService : IModernJduApplica
                     Platform = profile.Platform
                 },
                 Custom = CreateCustomConfiguration(),
-                FeaturesSwitches = EnabledFeatures
-                    .Select(name => new ModernJduFeatureSwitch { Name = name })
-                    .ToArray(),
+                FeaturesSwitches = [.. EnabledFeatures.Select(name => new ModernJduFeatureSwitch { Name = name })],
                 GatewayResources = CreateGatewayResources(baseUrl),
                 SdkConfig = new Dictionary<string, object>
                 {

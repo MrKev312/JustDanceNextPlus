@@ -7,64 +7,64 @@ namespace JustDanceServer.Utilities;
 
 public record OasisTag(LocalizedString LocalizedString)
 {
-	public int ID => LocalizedString.OasisId;
-	public string? Name => LocalizedString.DisplayString;
+    public int ID => LocalizedString.OasisId;
+    public string? Name => LocalizedString.DisplayString;
 
-	// Allow implicit conversion from OasisTag to int
-	public static implicit operator int(OasisTag tag) => tag.ID;
-	public static implicit operator OasisTag(LocalizedString localizedString) => new(localizedString);
+    // Allow implicit conversion from OasisTag to int
+    public static implicit operator int(OasisTag tag) => tag.ID;
+    public static implicit operator OasisTag(LocalizedString localizedString) => new(localizedString);
 }
 
 public record LocalizedString
 {
-	public LocalizedString() { }
+    public LocalizedString() { }
 
-	public LocalizedString(int oasisId, string displayString)
-	{
-		OasisId = oasisId;
-		LocaleCode = "en-US"; // Default locale code
-		DisplayString = displayString;
-		LocalizedStringId = Guid.NewGuid(); // Generate a new GUID for the localized string
-	}
+    public LocalizedString(int oasisId, string displayString)
+    {
+        OasisId = oasisId;
+        LocaleCode = "en-US"; // Default locale code
+        DisplayString = displayString;
+        LocalizedStringId = Guid.NewGuid(); // Generate a new GUID for the localized string
+    }
 
-	[JsonConverter(typeof(JsonStringConverter))]
-	public int OasisId { get; init; }
-	public string LocaleCode { get; init; } = "";
-	public string DisplayString { get; init; } = "";
-	public Guid LocalizedStringId { get; init; }
-	public object? Obj { get; init; }
-	public int SpaceRevision { get; init; } = 121;
+    [JsonConverter(typeof(JsonStringConverter))]
+    public int OasisId { get; init; }
+    public string LocaleCode { get; init; } = "";
+    public string DisplayString { get; init; } = "";
+    public Guid LocalizedStringId { get; init; }
+    public object? Obj { get; init; }
+    public int SpaceRevision { get; init; } = 121;
 }
 
 public class TagIdConverter(ILocalizedStringService localizedStringService) : JsonConverter<OasisTag>
 {
-	public override OasisTag Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-	{
-		LocalizedString? localizedString;
+    public override OasisTag Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        LocalizedString? localizedString;
 
-		// If we're reading an integer, just return it as an OasisTag
-		switch (reader.TokenType)
-		{
-			case JsonTokenType.Number:
-				int tagId = reader.GetInt32();
-				localizedString = localizedStringService.GetLocalizedTag(tagId)
-					?? throw new JsonException($"Tag ID {tagId} not found in localized strings database.");
+        // If we're reading an integer, just return it as an OasisTag
+        switch (reader.TokenType)
+        {
+            case JsonTokenType.Number:
+                int tagId = reader.GetInt32();
+                localizedString = localizedStringService.GetLocalizedTag(tagId)
+                    ?? throw new JsonException($"Tag ID {tagId} not found in localized strings database.");
 
-				break;
-			case JsonTokenType.String:
-				// If we're reading a string, we need to convert it to an int using the localized string service
-				string read = reader.GetString() ?? throw new JsonException("Tag string is null");
-				localizedString = localizedStringService.GetAddLocalizedTag(read);
-				break;
-			default:
-				throw new JsonException($"Unexpected token type: {reader.TokenType}");
-		}
+                break;
+            case JsonTokenType.String:
+                // If we're reading a string, we need to convert it to an int using the localized string service
+                string read = reader.GetString() ?? throw new JsonException("Tag string is null");
+                localizedString = localizedStringService.GetAddLocalizedTag(read);
+                break;
+            default:
+                throw new JsonException($"Unexpected token type: {reader.TokenType}");
+        }
 
-		return new OasisTag(localizedString);
-	}
+        return new OasisTag(localizedString);
+    }
 
-	public override void Write(Utf8JsonWriter writer, OasisTag value, JsonSerializerOptions options)
-	{
-		writer.WriteNumberValue(value.ID);
-	}
+    public override void Write(Utf8JsonWriter writer, OasisTag value, JsonSerializerOptions options)
+    {
+        writer.WriteNumberValue(value.ID);
+    }
 }

@@ -9,8 +9,8 @@ namespace JustDanceServer.Services;
 public interface IClassicJduSongDatabaseService
 {
     IReadOnlyDictionary<string, ClassicJduSongDatabaseEntry> CreateDatabase(
-		MapVideoCodec? videoPreviewCodec,
-		string assetPlatform);
+        MapVideoCodec? videoPreviewCodec,
+        string assetPlatform);
 }
 
 public sealed class ClassicJduSongDatabaseService(
@@ -19,77 +19,76 @@ public sealed class ClassicJduSongDatabaseService(
     IOptions<ClassicJduDiagnosticsSettings> diagnosticsSettings) : IClassicJduSongDatabaseService
 {
     public IReadOnlyDictionary<string, ClassicJduSongDatabaseEntry> CreateDatabase(
-		MapVideoCodec? videoPreviewCodec,
-		string assetPlatform)
+        MapVideoCodec? videoPreviewCodec,
+        string assetPlatform)
     {
         Dictionary<string, ClassicJduSongDatabaseEntry> database = [with(StringComparer.Ordinal)];
 
-		foreach (ServerMap map in mapService.Maps.Values.Where(map =>
-			JduCatalogSelection.IsClassicCompatible(map.Song)))
+        foreach (ServerMap map in mapService.Maps.Values.Where(map =>
+            JduCatalogSelection.IsClassicCompatible(map.Song)))
         {
-			JustDanceSongDBEntry source = map.Song;
+            JustDanceSongDBEntry source = map.Song;
             if (!string.IsNullOrWhiteSpace(source.MapName))
                 database[source.MapName] = ProjectSong(
-					map,
+                    map,
                     urlSettings.Value,
-					videoPreviewCodec,
-					assetPlatform);
+                    videoPreviewCodec,
+                    assetPlatform);
         }
 
         return database;
     }
 
     private ClassicJduSongDatabaseEntry ProjectSong(
-		ServerMap map,
+        ServerMap map,
         UrlSettings urlSettings,
-		MapVideoCodec? videoPreviewCodec,
-		string assetPlatform)
+        MapVideoCodec? videoPreviewCodec,
+        string assetPlatform)
     {
-		JustDanceSongDBEntry source = map.Song;
-		MapMediaAssets media = map.GetMedia(MapMediaLayouts.JDUnlimited);
+        JustDanceSongDBEntry source = map.Song;
+        MapMediaAssets media = map.GetMedia(MapMediaLayouts.JDUnlimited);
         string mapName = source.MapName;
-        string[] tags = source.Tags
+        string[] tags = [.. source.Tags
             .Append("Main")
             .Append("subscribedSong")
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
-		JduAudioPreviewProjection audioPreview = JduAudioPreviewFactory.Create(source, media, urlSettings);
-		JduVideoPreviewProjection videoPreview = videoPreviewCodec.HasValue
-			? JduVideoPreviewFactory.Create(source, media, urlSettings, videoPreviewCodec.Value)
-			: new JduVideoPreviewProjection(string.Empty, []);
+            .Distinct(StringComparer.OrdinalIgnoreCase)];
+        JduAudioPreviewProjection audioPreview = JduAudioPreviewFactory.Create(source, media, urlSettings);
+        JduVideoPreviewProjection videoPreview = videoPreviewCodec.HasValue
+            ? JduVideoPreviewFactory.Create(source, media, urlSettings, videoPreviewCodec.Value)
+            : new JduVideoPreviewProjection(string.Empty, []);
         Dictionary<string, string> urls = new(audioPreview.Urls, StringComparer.Ordinal);
         foreach ((string logicalUrl, string physicalUrl) in videoPreview.Urls)
             urls[logicalUrl] = physicalUrl;
 
-		IReadOnlyDictionary<string, string> assets =
-			JduContentUrlResolver.RebaseAssets(
-				JduPlatformAssetProjection.Create(
-					media.GetPlatformAssets(assetPlatform),
-					source.CoachCount,
-					mapName,
-					assetPlatform),
-				urlSettings);
-		ClassicJduDiagnosticsSettings diagnostics = diagnosticsSettings.Value;
-		if (string.Equals(
-			mapName,
-			diagnostics.AssetOverrideMapName,
-			StringComparison.OrdinalIgnoreCase)
-			&& diagnostics.AssetOverrides.Count > 0)
-		{
-			assets = diagnostics.AssetOverrides;
-		}
+        IReadOnlyDictionary<string, string> assets =
+            JduContentUrlResolver.RebaseAssets(
+                JduPlatformAssetProjection.Create(
+                    media.GetPlatformAssets(assetPlatform),
+                    source.CoachCount,
+                    mapName,
+                    assetPlatform),
+                urlSettings);
+        ClassicJduDiagnosticsSettings diagnostics = diagnosticsSettings.Value;
+        if (string.Equals(
+            mapName,
+            diagnostics.AssetOverrideMapName,
+            StringComparison.OrdinalIgnoreCase)
+            && diagnostics.AssetOverrides.Count > 0)
+        {
+            assets = diagnostics.AssetOverrides;
+        }
 
         return new ClassicJduSongDatabaseEntry
         {
-			MapName = mapName,
-			Assets = new Dictionary<string, string>(assets, StringComparer.Ordinal),
+            MapName = mapName,
+            Assets = new Dictionary<string, string>(assets, StringComparer.Ordinal),
             ParentMapName = string.IsNullOrWhiteSpace(source.ParentMapName)
                 ? mapName
                 : source.ParentMapName,
             Title = source.Title,
             Artist = source.Artist,
             Difficulty = source.Difficulty,
-			SweatDifficulty = source.SweatDifficulty,
+            SweatDifficulty = source.SweatDifficulty,
             MapLength = source.MapLength,
             CoachCount = source.CoachCount is >= 1 and <= 4 ? source.CoachCount : 1,
             Credits = source.Credits,

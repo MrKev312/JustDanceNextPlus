@@ -6,5 +6,5 @@ public class CreateProfileInput : DancerCardInput
 
 public class CreateProfileResponse
 {
-	public bool Success { get; set; }
+    public bool Success { get; set; }
 }

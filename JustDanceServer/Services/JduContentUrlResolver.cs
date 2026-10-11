@@ -4,13 +4,13 @@ namespace JustDanceServer.Services;
 
 internal static class JduContentUrlResolver
 {
-	public static Dictionary<string, string> RebaseAssets(
-		IReadOnlyDictionary<string, string> assets,
-		UrlSettings urlSettings)
-		=> assets.ToDictionary(
-			asset => asset.Key,
-			asset => RebaseToCdn(asset.Value, urlSettings),
-			StringComparer.Ordinal);
+    public static Dictionary<string, string> RebaseAssets(
+        IReadOnlyDictionary<string, string> assets,
+        UrlSettings urlSettings)
+        => assets.ToDictionary(
+            asset => asset.Key,
+            asset => RebaseToCdn(asset.Value, urlSettings),
+            StringComparer.Ordinal);
 
     public static string RebaseToCdn(string sourceUrl, UrlSettings urlSettings)
     {

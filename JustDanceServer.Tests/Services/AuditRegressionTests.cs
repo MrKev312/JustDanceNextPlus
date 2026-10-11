@@ -33,7 +33,7 @@ public sealed class AuditRegressionTests
         try
         {
             Mock<IBundleService> bundles = new();
-            bundles.Setup(value => value.GetAllClaims()).Returns(ImmutableArray<string>.Empty);
+            bundles.Setup(value => value.GetAllClaims()).Returns([]);
             Mock<IPlatformTicketVerifierRegistry> verifier = new(MockBehavior.Strict);
             PurchaseController controller = new(new TimingService(), sessions, bundles.Object, verifier.Object)
             {
@@ -46,18 +46,18 @@ public sealed class AuditRegressionTests
             verifier.VerifyNoOtherCalls();
         }
         finally
-		{
-			sessions.RemoveSession(sessionId);
-		}
-	}
+        {
+            sessions.RemoveSession(sessionId);
+        }
+    }
 
-	[Fact]
+    [Fact]
     public async Task BasicAuthenticationRequiresTheConfiguredPassword()
     {
         SessionLoginIdentityParser parser = CreateParser();
         using JsonDocument body = JsonDocument.Parse("{}");
-		SessionLoginIdentity? first = await parser.ParseAsync(Basic("audit-login:correct"), body.RootElement, "uplay", "Player");
-		SessionLoginIdentity? second = await parser.ParseAsync(Basic("audit-login:wrong"), body.RootElement, "uplay", "Player");
+        SessionLoginIdentity? first = await parser.ParseAsync(Basic("audit-login:correct"), body.RootElement, "uplay", "Player");
+        SessionLoginIdentity? second = await parser.ParseAsync(Basic("audit-login:wrong"), body.RootElement, "uplay", "Player");
         Assert.NotNull(first);
         Assert.Null(second);
 
@@ -77,7 +77,7 @@ public sealed class AuditRegressionTests
         using JsonDocument body = JsonDocument.Parse("{}");
         var forged = new SessionLoginIdentity("ubisoft-login", victim.Ticket, "uplay", victim.Ticket, "Attacker", victim.Ticket);
         PlayerIdentityService identities = new(db, new PlayerMetadataService(db));
-		ResolvedPlayerIdentity resolved = await identities.ResolveOrCreateAsync(forged!);
+        ResolvedPlayerIdentity resolved = await identities.ResolveOrCreateAsync(forged!);
         Assert.NotEqual(victim.Id, resolved.ProfileId);
         Assert.Equal("ubisoft-login", (await db.PlatformIdentities.SingleAsync()).Provider);
         Assert.Equal("Victim", (await db.Profiles.Include(p => p.Dancercard).SingleAsync(p => p.Id == victim.Id)).Dancercard.Name);
@@ -94,10 +94,13 @@ public sealed class AuditRegressionTests
         db.Profiles.AddRange(players);
         db.MapScores.AddRange(players.Select(p => new MapStats
         {
-            MapName = "AuditSong", ProfileId = p.Id, HighScore = 13333, PlayCount = 1
+            MapName = "AuditSong",
+            ProfileId = p.Id,
+            HighScore = 13333,
+            PlayCount = 1
         }));
         await db.SaveChangesAsync();
-		Leaderboard result = await new LeaderboardService(db).GetLeaderboardAroundAsync("AuditSong", players[3].Id, 3);
+        Leaderboard result = await new LeaderboardService(db).GetLeaderboardAroundAsync("AuditSong", players[3].Id, 3);
         Assert.InRange(result.Scores.Length, 1, 3);
         Assert.Contains(result.Scores, row => row.ProfileId == players[3].Id);
         Assert.All(result.Scores, row => Assert.Equal(1, row.Position));
@@ -130,11 +133,12 @@ public sealed class AuditRegressionTests
             {
                 ControllerContext = new() { HttpContext = http }
             };
-			IActionResult result = await controller.PushPlaylistPlayedAsync(new PlaylistController.PlayedWrapper
+            IActionResult result = await controller.PushPlaylistPlayedAsync(new PlaylistController.PlayedWrapper
             {
                 Playlist = new()
                 {
-                    PlaylistId = Guid.NewGuid(), TotalScore = 0,
+                    PlaylistId = Guid.NewGuid(),
+                    TotalScore = 0,
                     MapData = [new() { MapId = song, Score = 0 }]
                 }
             }, sessions, new HttpContextAccessor { HttpContext = http });
@@ -142,17 +146,17 @@ public sealed class AuditRegressionTests
             Assert.Empty(await db.PlaylistScores.ToListAsync());
         }
         finally
-		{
-			sessions.RemoveSession(sessionId);
-		}
-	}
+        {
+            sessions.RemoveSession(sessionId);
+        }
+    }
 
-	[Fact]
+    [Fact]
     public void RemovingOlderSessionPreservesNewerApplicationLookup()
     {
         SessionManager sessions = new(new SecurityService());
         (_, Guid sessionId) = sessions.GenerateSession(Guid.NewGuid(), JdNextConstants.SwitchApplicationId, "audit-first");
-		(string ticket, Guid sessionId) second = sessions.GenerateSession(Guid.NewGuid(), JdNextConstants.SwitchApplicationId, "audit-second");
+        (string ticket, Guid sessionId) second = sessions.GenerateSession(Guid.NewGuid(), JdNextConstants.SwitchApplicationId, "audit-second");
         try
         {
             Assert.Equal(second.sessionId, sessions.GetSessionByAppId(JdNextConstants.SwitchApplicationId)!.SessionId);
@@ -161,13 +165,13 @@ public sealed class AuditRegressionTests
             Assert.Equal(second.sessionId, sessions.GetSessionByAppId(JdNextConstants.SwitchApplicationId)!.SessionId);
         }
         finally
-		{
-			sessions.RemoveSession(sessionId);
-			sessions.RemoveSession(second.sessionId);
-		}
-	}
+        {
+            sessions.RemoveSession(sessionId);
+            sessions.RemoveSession(second.sessionId);
+        }
+    }
 
-	[Fact]
+    [Fact]
     public async Task ProfilePatchKeepsDancerCardOwnershipAndVictimCosmetics()
     {
         await using SqliteConnection connection = new("Data Source=:memory:");
@@ -198,12 +202,12 @@ public sealed class AuditRegressionTests
             Assert.Equal("Overwritten", loadedAttacker.Dancercard.Name);
         }
         finally
-		{
-			sessions.RemoveSession(sessionId);
-		}
-	}
+        {
+            sessions.RemoveSession(sessionId);
+        }
+    }
 
-	private static SessionLoginIdentityParser CreateParser() => new(new PlatformTicketVerifierRegistry([]),
+    private static SessionLoginIdentityParser CreateParser() => new(new PlatformTicketVerifierRegistry([]),
         new BasicCredentialVerifier(Options.Create(new PlatformAuthenticationSettings
         {
             BasicPasswordHashes = new()

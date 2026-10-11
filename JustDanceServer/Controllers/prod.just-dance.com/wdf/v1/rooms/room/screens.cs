@@ -12,21 +12,21 @@ public class Screens(IWdfService wdfService, ISessionManager sessionManager) : C
 {
     [HttpPost]
     public IActionResult GetScreens(
-		[FromRoute] string room,
-		[FromBody] WdfScreensRequest? request)
+        [FromRoute] string room,
+        [FromBody] WdfScreensRequest? request)
     {
-		if (!WdfRequestResolver.TryResolveRoom(Request, room, wdfService, out WdfRoomId resolvedRoom))
-			return BadRequest();
+        if (!WdfRequestResolver.TryResolveRoom(Request, room, wdfService, out WdfRoomId resolvedRoom))
+            return BadRequest();
 
-		Guid? playerId = RequestSessionResolver.TryResolve(Request, sessionManager, out Session? session)
-			? session.PlayerId
-			: null;
-		return Ok(wdfService.GetScreens(resolvedRoom, request?.StartTime, playerId));
+        Guid? playerId = RequestSessionResolver.TryResolve(Request, sessionManager, out Session? session)
+            ? session.PlayerId
+            : null;
+        return Ok(wdfService.GetScreens(resolvedRoom, request?.StartTime, playerId));
     }
 }
 
 public sealed record WdfScreensRequest
 {
-	[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
-	public double StartTime { get; init; }
+    [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+    public double StartTime { get; init; }
 }

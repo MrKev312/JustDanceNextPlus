@@ -16,15 +16,15 @@ public static class JduAudioPreviewFactory
     private static readonly JsonSerializerOptions SerializerOptions = new(JsonSerializerDefaults.Web);
 
     public static JduAudioPreviewProjection Create(
-		JustDanceSongDBEntry song,
-		MapMediaAssets media,
-		UrlSettings urlSettings)
+        JustDanceSongDBEntry song,
+        MapMediaAssets media,
+        UrlSettings urlSettings)
     {
         AudioPreviewTrk? track = song.AssetsMetadata.AudioPreviewTrk;
-		if (track is null)
+        if (track is null)
             return new JduAudioPreviewProjection(string.Empty, []);
 
-		string httpsUrl = JduContentUrlResolver.RebaseToCdn(media.PreviewAudioUrl, urlSettings);
+        string httpsUrl = JduContentUrlResolver.RebaseToCdn(media.PreviewAudioUrl, urlSettings);
         string logicalUrl = $"jmcs://jd-contents/{song.MapName}/{song.MapName}_AudioPreview.ogg";
         int[] previewMarkers = CreatePreviewMarkers(track, out int previewLoopEnd);
         JduMusicTrackData data = new()

@@ -8,32 +8,32 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.leaderboard.v1.ma
 [ApiController]
 [Route("leaderboard/v1/map/{mapId:guid}/around")]
 public class Around(
-	IUserDataService userDataService,
-	ISessionManager sessionManager,
-	IMapService mapService) : ControllerBase
+    IUserDataService userDataService,
+    ISessionManager sessionManager,
+    IMapService mapService) : ControllerBase
 {
-	[HttpGet]
-	public async Task<IActionResult> Get([FromRoute] Guid mapId, [FromQuery] int limit = 3)
-	{
-		// Get the session id
-		string? sessionIdString = Request.Headers["ubi-sessionid"];
+    [HttpGet]
+    public async Task<IActionResult> Get([FromRoute] Guid mapId, [FromQuery] int limit = 3)
+    {
+        // Get the session id
+        string? sessionIdString = Request.Headers["ubi-sessionid"];
 
-		if (sessionIdString == null)
-			return Unauthorized();
+        if (sessionIdString == null)
+            return Unauthorized();
 
-		Guid sessionId = Guid.Parse(sessionIdString);
+        Guid sessionId = Guid.Parse(sessionIdString);
 
-		Session? session = sessionManager.GetSessionById(sessionId);
+        Session? session = sessionManager.GetSessionById(sessionId);
 
-		if (session == null)
-			return Unauthorized();
+        if (session == null)
+            return Unauthorized();
 
-		if (!mapService.TryGetMapName(mapId, out string mapName))
-			return NotFound();
+        if (!mapService.TryGetMapName(mapId, out string mapName))
+            return NotFound();
 
-		Leaderboard leaderboard = await userDataService.GetLeaderboardAroundAsync(mapName, session.PlayerId, limit);
+        Leaderboard leaderboard = await userDataService.GetLeaderboardAroundAsync(mapName, session.PlayerId, limit);
 
-		// Return the leaderboard
-		return Ok(leaderboard);
-	}
+        // Return the leaderboard
+        return Ok(leaderboard);
+    }
 }

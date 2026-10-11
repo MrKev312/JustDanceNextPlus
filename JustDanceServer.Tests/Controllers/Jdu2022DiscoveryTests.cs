@@ -206,7 +206,7 @@ public sealed class Jdu2022DiscoveryTests
                 DisplayName = "Console"
             }
         }));
-		JustDanceServer.Controllers.prod.just_dance.com.sessions.v1.SessionResponse response = Assert.IsType<JustDanceServer.Controllers.prod.just_dance.com.sessions.v1.SessionResponse>(result.Value);
+        JustDanceServer.Controllers.prod.just_dance.com.sessions.v1.SessionResponse response = Assert.IsType<JustDanceServer.Controllers.prod.just_dance.com.sessions.v1.SessionResponse>(result.Value);
 
         Assert.Equal(6, response.PairingCode.Length);
         Assert.Equal(sessionId, response.SessionId);

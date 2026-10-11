@@ -19,11 +19,11 @@ public class Parameters(IBundleService bundleService, ITagService tagService, IO
         // and phone (binary patched domain) reach the correct server
         string hostUrl = urlSettings.Value.HostUrl;
         string webSocketBaseUrl = $"wss://{hostUrl}";
-		parameters.Parameters["ServerInfo"].Fields["url"] = $"https://{hostUrl}";
+        parameters.Parameters["ServerInfo"].Fields["url"] = $"https://{hostUrl}";
         parameters.Parameters["UbiConnect"].Fields["getVisualNotificationUrl"] =
             $"https://{hostUrl}/v1/profiles/{{profileId}}/global/ubiconnect/visualnotifications/api/{{visualNotificationType}}/{{visualNotificationId}}?spaceId={{spaceId}}";
 
-		Dictionary<string, object?> sdkClientUrls = parameters.Parameters["us-sdkClientUrls"].Fields;
+        Dictionary<string, object?> sdkClientUrls = parameters.Parameters["us-sdkClientUrls"].Fields;
         sdkClientUrls["websocketServer"] = webSocketBaseUrl;
         sdkClientUrls["websocketNotifications"] = $"{webSocketBaseUrl}/v2/websocket";
 

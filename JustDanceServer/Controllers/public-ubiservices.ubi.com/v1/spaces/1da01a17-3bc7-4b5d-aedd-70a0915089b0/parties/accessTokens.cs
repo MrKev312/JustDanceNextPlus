@@ -9,25 +9,25 @@ namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v1.spaces._1da0
 [Route("v1/spaces/{spaceId:jdnext}/parties/{partyId:guid}/accessTokens")]
 public sealed class AccessTokens(IPartyService partyService, ISessionManager sessionManager) : ControllerBase
 {
-	[HttpPost]
-	public IActionResult Post(
-		[FromRoute] Guid spaceId,
-		[FromRoute] Guid partyId,
-		[FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Allow)] AccessTokenRequest? request)
-	{
-		if (!RequestSessionResolver.TryResolve(Request, sessionManager, out Session? session))
-			return Unauthorized();
-		PartyAccessToken? token = partyService.IssueAccessToken(
-			partyId,
-			session.PlayerId,
-			request?.ProfileId);
-		return token is null ? StatusCode(StatusCodes.Status403Forbidden) : Ok(new
-		{
-			accessToken = token.Value,
-			createdAt = token.CreatedAt,
-			expiresAt = token.ExpiresAt
-		});
-	}
+    [HttpPost]
+    public IActionResult Post(
+        [FromRoute] Guid spaceId,
+        [FromRoute] Guid partyId,
+        [FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Allow)] AccessTokenRequest? request)
+    {
+        if (!RequestSessionResolver.TryResolve(Request, sessionManager, out Session? session))
+            return Unauthorized();
+        PartyAccessToken? token = partyService.IssueAccessToken(
+            partyId,
+            session.PlayerId,
+            request?.ProfileId);
+        return token is null ? StatusCode(StatusCodes.Status403Forbidden) : Ok(new
+        {
+            accessToken = token.Value,
+            createdAt = token.CreatedAt,
+            expiresAt = token.ExpiresAt
+        });
+    }
 }
 
 public sealed record AccessTokenRequest(Guid? ProfileId);

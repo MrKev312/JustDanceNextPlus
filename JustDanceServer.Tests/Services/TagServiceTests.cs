@@ -47,17 +47,17 @@ public class TagServiceTests
     [Fact]
     public async Task LoadData_FileExists_LoadsAndInitializesTags()
     {
-		// Arrange
-		Guid tagGuid = Guid.NewGuid();
-		TagDatabase db = new()
-		{
+        // Arrange
+        Guid tagGuid = Guid.NewGuid();
+        TagDatabase db = new()
+        {
             Tags = new OrderedDictionary<Guid, Tag>
             {
                 [tagGuid] = new Tag { TagName = "TestTag", LocId = new OasisTag(new LocalizedString(123, "TestTag")) }
             }
         };
-		string json = JsonSerializer.Serialize(db, _jsonSettingsService.PrettyPascalFormat);
-		MemoryStream stream = new(Encoding.UTF8.GetBytes(json));
+        string json = JsonSerializer.Serialize(db, _jsonSettingsService.PrettyPascalFormat);
+        MemoryStream stream = new(Encoding.UTF8.GetBytes(json));
         string path = Path.Combine(_mockPathSettings.Value.JsonsPath, "tagdb.json");
 
         _mockFileSystem.Setup(fs => fs.FileExists(path)).Returns(true);
@@ -68,7 +68,7 @@ public class TagServiceTests
 
         // Assert
         Assert.Single(_service.TagDatabase.Tags);
-		Tag loadedTag = _service.TagDatabase.Tags[tagGuid];
+        Tag loadedTag = _service.TagDatabase.Tags[tagGuid];
         Assert.Equal(tagGuid, loadedTag.TagGuid); // Verify the Guid was set from the key
         _mockLogger.Verify(
             x => x.Log(LogLevel.Information, It.IsAny<EventId>(), It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Tag database loaded")), null, It.IsAny<Func<It.IsAnyType, Exception, string>>()!),
@@ -79,13 +79,13 @@ public class TagServiceTests
     [Fact]
     public void GetTag_ByGuid_ReturnsCorrectTag()
     {
-		// Arrange
-		Guid tagGuid = Guid.NewGuid();
-		Tag expectedTag = new() { TagGuid = tagGuid, TagName = "Test", LocId = new OasisTag(new LocalizedString(123, "Test")) };
+        // Arrange
+        Guid tagGuid = Guid.NewGuid();
+        Tag expectedTag = new() { TagGuid = tagGuid, TagName = "Test", LocId = new OasisTag(new LocalizedString(123, "Test")) };
         _service.TagDatabase.Tags[tagGuid] = expectedTag;
 
-		// Act
-		Tag? result = _service.GetTag(tagGuid);
+        // Act
+        Tag? result = _service.GetTag(tagGuid);
 
         // Assert
         Assert.Equal(expectedTag, result);
@@ -94,14 +94,14 @@ public class TagServiceTests
     [Fact]
     public void GetTag_ByText_WhenTagExists_ReturnsTag()
     {
-		// Arrange
-		LocalizedString locString = new(123, "Test Tag");
-		Tag expectedTag = new() { LocId = new OasisTag(locString) };
+        // Arrange
+        LocalizedString locString = new(123, "Test Tag");
+        Tag expectedTag = new() { LocId = new OasisTag(locString) };
         _service.TagDatabase.Tags[Guid.NewGuid()] = expectedTag;
         _mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag("Test Tag")).Returns(locString);
 
-		// Act
-		Tag? result = _service.GetTag("Test Tag");
+        // Act
+        Tag? result = _service.GetTag("Test Tag");
 
         // Assert
         Assert.NotNull(result);
@@ -114,8 +114,8 @@ public class TagServiceTests
         // Arrange
         _mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag("NonExistent")).Returns((LocalizedString?)null);
 
-		// Act
-		Tag? result = _service.GetTag("NonExistent");
+        // Act
+        Tag? result = _service.GetTag("NonExistent");
 
         // Assert
         Assert.Null(result);
@@ -124,15 +124,15 @@ public class TagServiceTests
     [Fact]
     public void GetAddTag_WhenTagExists_ReturnsExistingTag()
     {
-		// Arrange
-		LocalizedString locString = new(1, "Existing Tag");
-		Tag existingTag = new() { LocId = new OasisTag(locString) };
+        // Arrange
+        LocalizedString locString = new(1, "Existing Tag");
+        Tag existingTag = new() { LocId = new OasisTag(locString) };
         _service.TagDatabase.Tags[Guid.NewGuid()] = existingTag;
         _mockLocalizedStringService.Setup(ls => ls.GetAddLocalizedTag("Existing Tag")).Returns(locString);
         _mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag("Existing Tag")).Returns(locString);
 
-		// Act
-		Tag result = _service.GetAddTag("Existing Tag", "any_category");
+        // Act
+        Tag result = _service.GetAddTag("Existing Tag", "any_category");
 
         // Assert
         Assert.Equal(existingTag, result);
@@ -142,13 +142,13 @@ public class TagServiceTests
     [Fact]
     public void GetAddTag_WhenTagDoesNotExist_CreatesNewTag()
     {
-		// Arrange
-		LocalizedString locString = new(1, "New Tag");
+        // Arrange
+        LocalizedString locString = new(1, "New Tag");
         _mockLocalizedStringService.Setup(ls => ls.GetAddLocalizedTag("New Tag")).Returns(locString);
         _mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag("New Tag")).Returns((LocalizedString?)null);
 
-		// Act
-		Tag result = _service.GetAddTag("New Tag", "mood");
+        // Act
+        Tag result = _service.GetAddTag("New Tag", "mood");
 
         // Assert
         Assert.NotNull(result);
@@ -162,13 +162,13 @@ public class TagServiceTests
     [Fact]
     public void GetAddTag_ForArtistCategory_DoesNotAddToLibraryLists()
     {
-		// Arrange
-		LocalizedString locString = new(1, "New Artist");
+        // Arrange
+        LocalizedString locString = new(1, "New Artist");
         _mockLocalizedStringService.Setup(ls => ls.GetAddLocalizedTag("New Artist")).Returns(locString);
         _mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag("New Artist")).Returns((LocalizedString?)null);
 
-		// Act
-		Tag result = _service.GetAddTag("New Artist", "artist");
+        // Act
+        Tag result = _service.GetAddTag("New Artist", "artist");
 
         // Assert
         Assert.NotNull(result);
@@ -180,11 +180,11 @@ public class TagServiceTests
     [Fact]
     public void GetFilters_ReturnsCorrectlyStructuredAndOrderedFilters()
     {
-		// Arrange
-		Guid soloGuid = Guid.NewGuid();
-		Guid duoGuid = Guid.NewGuid();
-		Guid popGuid = Guid.NewGuid();
-		Guid rockGuid = Guid.NewGuid();
+        // Arrange
+        Guid soloGuid = Guid.NewGuid();
+        Guid duoGuid = Guid.NewGuid();
+        Guid popGuid = Guid.NewGuid();
+        Guid rockGuid = Guid.NewGuid();
         _service.TagDatabase.Tags = new OrderedDictionary<Guid, Tag>
         {
             [soloGuid] = new Tag { TagName = "Solo", Category = "choreoSettings", LocId = new OasisTag(new LocalizedString(1, "Solo")) },
@@ -193,19 +193,19 @@ public class TagServiceTests
             [rockGuid] = new Tag { TagName = "Rock", Category = "musicalGenre", LocId = new OasisTag(new LocalizedString(4, "Rock")) },
         };
 
-		// Act
-		List<Filter> filters = _service.GetFilters();
+        // Act
+        List<Filter> filters = _service.GetFilters();
 
         // Assert
         Assert.Equal(5, filters.Count);
 
-		Filter? choreoFilter = filters.FirstOrDefault(f => f.Category == "choreoSettings");
+        Filter? choreoFilter = filters.FirstOrDefault(f => f.Category == "choreoSettings");
         Assert.NotNull(choreoFilter);
         Assert.Equal(318, choreoFilter.LocId);
         Assert.Equal(soloGuid, choreoFilter.Order[0]);
         Assert.Equal(duoGuid, choreoFilter.Order[1]);
 
-		Filter? genreFilter = filters.FirstOrDefault(f => f.Category == "musicalGenre");
+        Filter? genreFilter = filters.FirstOrDefault(f => f.Category == "musicalGenre");
         Assert.NotNull(genreFilter);
         Assert.Equal(317, genreFilter.LocId);
         Assert.Equal(popGuid, genreFilter.Order[0]); // Verifies alphabetical order by TagName

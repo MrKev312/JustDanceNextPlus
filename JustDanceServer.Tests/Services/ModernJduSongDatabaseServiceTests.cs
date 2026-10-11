@@ -21,9 +21,9 @@ public sealed class ModernJduSongDatabaseServiceTests
     {
         IModernJduSongDatabaseService service = CreateService(out _);
 
-		IReadOnlyDictionary<string, JduSongDatabaseEntry> database = service.CreateDatabase("NX");
+        IReadOnlyDictionary<string, JduSongDatabaseEntry> database = service.CreateDatabase("NX");
         Assert.Equal(2, database.Count);
-		JduSongDatabaseEntry song = database["Abracadabra"];
+        JduSongDatabaseEntry song = database["Abracadabra"];
 
         Assert.Equal("Abracadabra", song.MapName);
         Assert.Equal("The Artist", song.Artist);
@@ -60,7 +60,7 @@ public sealed class ModernJduSongDatabaseServiceTests
         IModernJduSongDatabaseService service = CreateService(out _);
         SongDatabaseController controller = new(service);
 
-		FileContentResult result = Assert.IsType<FileContentResult>(controller.GetDatabase("NX"));
+        FileContentResult result = Assert.IsType<FileContentResult>(controller.GetDatabase("NX"));
         using JsonDocument json = JsonDocument.Parse(result.FileContents);
         JsonElement song = json.RootElement.GetProperty("Abracadabra");
 
@@ -74,7 +74,7 @@ public sealed class ModernJduSongDatabaseServiceTests
     {
         IModernJduSongDatabaseService service = CreateService(out _);
 
-		JduSongDatabaseEntry song = service.CreateDatabase("WIIU")["Abracadabra"];
+        JduSongDatabaseEntry song = service.CreateDatabase("WIIU")["Abracadabra"];
 
         Assert.Contains("codecs=\"vp8\"", song.MapPreviewMpd);
         Assert.Contains(
@@ -87,8 +87,8 @@ public sealed class ModernJduSongDatabaseServiceTests
 
     private static IModernJduSongDatabaseService CreateService(out Mock<IMapService> mapService)
     {
-		Guid primaryId = Guid.NewGuid();
-		JustDanceSongDBEntry primarySong = new()
+        Guid primaryId = Guid.NewGuid();
+        JustDanceSongDBEntry primarySong = new()
         {
             Artist = "The Artist",
             AssetsMetadata = new AssetsMetadata
@@ -97,7 +97,7 @@ public sealed class ModernJduSongDatabaseServiceTests
                 {
                     Markers = [0, 48_000, 96_000],
                     PreviewEntry = 0
-				}
+                }
             },
             CoachCount = 2,
             Credits = "The Credits",
@@ -118,42 +118,42 @@ public sealed class ModernJduSongDatabaseServiceTests
             Tags = ["jdplus"],
             Title = "The Title"
         };
-		MapMediaAssets jduMedia = ServerMapTestData.CreateMedia(
-			MapMediaLayouts.JDUnlimited,
-			CreateJduPlatforms("Abracadabra", coachCount: 2),
-			previewAudioUrl: "https://cdn.test/maps/Abracadabra/JDUnlimited/Preview/test.ogg",
-			vp8: ServerMapTestData.CreateVideoSet(
-				"vp8",
-				"https://cdn.test/maps/Abracadabra/JDUnlimited/Preview/vp8",
-				[
-					new WebmData { Start = 460, End = 950, Duration = 30, Bitrate = 500_000 },
-					new WebmData { Start = 461, End = 951, Duration = 30, Bitrate = 1_500_000 }
-				],
-				["low", "mid"]),
-			vp9: ServerMapTestData.CreateVideoSet(
-				"vp9",
-				"https://cdn.test/maps/Abracadabra/JDUnlimited/Preview/vp9",
-				[
-					new WebmData { Start = 640, End = 1130, Duration = 30, Bitrate = 500_000 },
-					new WebmData { Start = 641, End = 1131, Duration = 30, Bitrate = 1_500_000 }
-				],
-				["low", "mid"]));
+        MapMediaAssets jduMedia = ServerMapTestData.CreateMedia(
+            MapMediaLayouts.JDUnlimited,
+            CreateJduPlatforms("Abracadabra", coachCount: 2),
+            previewAudioUrl: "https://cdn.test/maps/Abracadabra/JDUnlimited/Preview/test.ogg",
+            vp8: ServerMapTestData.CreateVideoSet(
+                "vp8",
+                "https://cdn.test/maps/Abracadabra/JDUnlimited/Preview/vp8",
+                [
+                    new WebmData { Start = 460, End = 950, Duration = 30, Bitrate = 500_000 },
+                    new WebmData { Start = 461, End = 951, Duration = 30, Bitrate = 1_500_000 }
+                ],
+                ["low", "mid"]),
+            vp9: ServerMapTestData.CreateVideoSet(
+                "vp9",
+                "https://cdn.test/maps/Abracadabra/JDUnlimited/Preview/vp9",
+                [
+                    new WebmData { Start = 640, End = 1130, Duration = 30, Bitrate = 500_000 },
+                    new WebmData { Start = 641, End = 1131, Duration = 30, Bitrate = 1_500_000 }
+                ],
+                ["low", "mid"]));
 
-		Guid secondaryId = Guid.NewGuid();
-		JustDanceSongDBEntry secondarySong = new()
+        Guid secondaryId = Guid.NewGuid();
+        JustDanceSongDBEntry secondarySong = new()
         {
             DanceVersionLocId = new OasisTag(new LocalizedString(1, "Standard")),
             MapName = "PreviouslyFilteredMap",
             OriginalJDVersion = 2018,
             Title = "Another Title"
         };
-		OrderedDictionary<Guid, ServerMap> maps = new()
-		{
-			[primaryId] = ServerMapTestData.CreateMap(primaryId, Path.Combine("maps", primarySong.MapName), primarySong, jdUnlimited: jduMedia),
-			[secondaryId] = ServerMapTestData.CreateMap(secondaryId, Path.Combine("maps", secondarySong.MapName), secondarySong)
-		};
+        OrderedDictionary<Guid, ServerMap> maps = new()
+        {
+            [primaryId] = ServerMapTestData.CreateMap(primaryId, Path.Combine("maps", primarySong.MapName), primarySong, jdUnlimited: jduMedia),
+            [secondaryId] = ServerMapTestData.CreateMap(secondaryId, Path.Combine("maps", secondarySong.MapName), secondarySong)
+        };
         mapService = new Mock<IMapService>();
-		mapService.SetupGet(service => service.Maps).Returns(maps);
+        mapService.SetupGet(service => service.Maps).Returns(maps);
 
         JsonSettingsService jsonSettings = new(Mock.Of<IServiceProvider>());
         return new ModernJduSongDatabaseService(
@@ -167,31 +167,31 @@ public sealed class ModernJduSongDatabaseServiceTests
             }), Mock.Of<ILocalizedStringService>());
     }
 
-	private static IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> CreateJduPlatforms(
-		string mapName,
-		int coachCount)
-	{
-		Dictionary<string, IReadOnlyDictionary<string, string>> platforms =
-			[with(StringComparer.OrdinalIgnoreCase)];
-		foreach (string platform in new[] { "NX", "WIIU" })
-		{
-			Dictionary<string, string> roles = new(StringComparer.OrdinalIgnoreCase)
-			{
-				["BannerBackground"] = Asset("BannerBackground", "banner.ckd"),
-				["AlbumBackground"] = Asset("AlbumBackground", "album.ckd"),
-				["MapBackground"] = Asset("MapBackground", "map.ckd"),
-				["AlbumCoach"] = Asset("AlbumCoach", "albumcoach.ckd"),
-				["CoverSmall"] = Asset("CoverSmall", "cover-small.ckd"),
-				["Cover"] = Asset("Cover", "cover.ckd")
-			};
-			for (int coach = 1; coach <= coachCount; coach++)
-				roles[$"Coach{coach}"] = Asset($"Coach{coach}", $"coach{coach}.ckd");
-			platforms[platform] = roles;
+    private static IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> CreateJduPlatforms(
+        string mapName,
+        int coachCount)
+    {
+        Dictionary<string, IReadOnlyDictionary<string, string>> platforms =
+            [with(StringComparer.OrdinalIgnoreCase)];
+        foreach (string platform in new[] { "NX", "WIIU" })
+        {
+            Dictionary<string, string> roles = new(StringComparer.OrdinalIgnoreCase)
+            {
+                ["BannerBackground"] = Asset("BannerBackground", "banner.ckd"),
+                ["AlbumBackground"] = Asset("AlbumBackground", "album.ckd"),
+                ["MapBackground"] = Asset("MapBackground", "map.ckd"),
+                ["AlbumCoach"] = Asset("AlbumCoach", "albumcoach.ckd"),
+                ["CoverSmall"] = Asset("CoverSmall", "cover-small.ckd"),
+                ["Cover"] = Asset("Cover", "cover.ckd")
+            };
+            for (int coach = 1; coach <= coachCount; coach++)
+                roles[$"Coach{coach}"] = Asset($"Coach{coach}", $"coach{coach}.ckd");
+            platforms[platform] = roles;
 
-			string Asset(string role, string file)
-				=> $"https://cdn.test/maps/{mapName}/JDUnlimited/Assets/{platform}/{role}/{file}";
-		}
+            string Asset(string role, string file)
+                => $"https://cdn.test/maps/{mapName}/JDUnlimited/Assets/{platform}/{role}/{file}";
+        }
 
-		return platforms;
-	}
+        return platforms;
+    }
 }

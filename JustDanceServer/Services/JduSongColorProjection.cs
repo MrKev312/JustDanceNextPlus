@@ -32,7 +32,7 @@ internal static class JduSongColorProjection
     }
 
     private static string NormalizeKey(string key)
-        => new(key.Where(char.IsLetterOrDigit).Select(char.ToLowerInvariant).ToArray());
+        => new([.. key.Where(char.IsLetterOrDigit).Select(char.ToLowerInvariant)]);
 
     private static string NormalizeRgba(string color)
     {

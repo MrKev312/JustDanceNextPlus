@@ -138,20 +138,20 @@ public class UserDataServiceTests : IDisposable
         Assert.Equal(3, leaderboard.Scores[2].Position);
     }
 
-	[Fact]
-	public async Task GetLeaderboardAsync_UsesCompetitionRanksAcrossPageBoundaries()
-	{
-		MapStats tiedScore = await _dbContext.MapScores.SingleAsync(score =>
-			score.ProfileId == _profile1.Id && score.MapName == _mapName);
-		tiedScore.HighScore = 12000;
-		await _dbContext.SaveChangesAsync();
+    [Fact]
+    public async Task GetLeaderboardAsync_UsesCompetitionRanksAcrossPageBoundaries()
+    {
+        MapStats tiedScore = await _dbContext.MapScores.SingleAsync(score =>
+            score.ProfileId == _profile1.Id && score.MapName == _mapName);
+        tiedScore.HighScore = 12000;
+        await _dbContext.SaveChangesAsync();
 
-		Leaderboard firstPage = await _service.GetLeaderboardAsync(_mapName, limit: 3, offset: 0);
-		Leaderboard secondPage = await _service.GetLeaderboardAsync(_mapName, limit: 2, offset: 1);
+        Leaderboard firstPage = await _service.GetLeaderboardAsync(_mapName, limit: 3, offset: 0);
+        Leaderboard secondPage = await _service.GetLeaderboardAsync(_mapName, limit: 2, offset: 1);
 
-		Assert.Equal([1L, 1L, 3L], firstPage.Scores.Select(score => score.Position));
-		Assert.Equal([1L, 3L], secondPage.Scores.Select(score => score.Position));
-	}
+        Assert.Equal([1L, 1L, 3L], firstPage.Scores.Select(score => score.Position));
+        Assert.Equal([1L, 3L], secondPage.Scores.Select(score => score.Position));
+    }
 
     [Fact]
     public async Task GetLeaderboardFromIdsAsync_ReturnsFilteredAndSortedLeaderboard()

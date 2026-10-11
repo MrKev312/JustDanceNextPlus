@@ -14,9 +14,9 @@ public class SongRelevance(IJduRecommendationService recommendationService, ISes
     public async Task<IActionResult> GetSongRelevance()
     {
         return Ok(new RecommendedSongsResponse
-		{
-			OrderedMaps = await recommendationService.GetOrderedMapsAsync(PlayerRequestContextResolver.FromRequest(Request, sessions).ProfileId)
-		});
+        {
+            OrderedMaps = await recommendationService.GetOrderedMapsAsync(PlayerRequestContextResolver.FromRequest(Request, sessions).ProfileId)
+        });
     }
 }
 

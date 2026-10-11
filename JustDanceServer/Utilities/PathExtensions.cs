@@ -2,20 +2,20 @@
 
 public static class PathExtensions
 {
-	public static string? GetFirstFile(this string directoryPath)
-	{
-		string[] files = Directory.GetFiles(directoryPath);
+    public static string? GetFirstFile(this string directoryPath)
+    {
+        string[] files = Directory.GetFiles(directoryPath);
 
-		return files.FirstOrDefault();
-	}
+        return files.FirstOrDefault();
+    }
 
-	public static (string name, long size)? GetLargestFile(this string directoryPath)
-	{
-		string[] files = Directory.GetFiles(directoryPath);
+    public static (string name, long size)? GetLargestFile(this string directoryPath)
+    {
+        string[] files = Directory.GetFiles(directoryPath);
 
-		return files.Select(file => new FileInfo(file))
-			.Select(fileInfo => (fileInfo.Name, fileInfo.Length))
-			.OrderByDescending(file => file.Length)
-			.FirstOrDefault();
-	}
+        return files.Select(file => new FileInfo(file))
+            .Select(fileInfo => (fileInfo.Name, fileInfo.Length))
+            .OrderByDescending(file => file.Length)
+            .FirstOrDefault();
+    }
 }

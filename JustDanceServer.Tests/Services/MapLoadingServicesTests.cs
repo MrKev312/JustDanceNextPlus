@@ -167,23 +167,23 @@ public sealed class MapLoadingServicesTests
         // Immediately convert it to a full path to mirror the service's internal logic.
         var mapFolder = Path.GetFullPath(relativeMapFolder);
 
-		// Use the FULL path to build the dictionary keys for the mock setup.
-		Dictionary<string, long> filesWithLengths = new()
-		{
-			[Path.Combine(mapFolder, "JDPlus", "Assets", "NX", "Cover", "abc.bundle")] = 100L,
-			[Path.Combine(mapFolder, "JDPlus", "Preview", "def.opus")] = 200L,
-			[Path.Combine(mapFolder, "JDPlus", "Audio", "ghi.opus")] = 300L,
+        // Use the FULL path to build the dictionary keys for the mock setup.
+        Dictionary<string, long> filesWithLengths = new()
+        {
+            [Path.Combine(mapFolder, "JDPlus", "Assets", "NX", "Cover", "abc.bundle")] = 100L,
+            [Path.Combine(mapFolder, "JDPlus", "Preview", "def.opus")] = 200L,
+            [Path.Combine(mapFolder, "JDPlus", "Audio", "ghi.opus")] = 300L,
             [Path.Combine(mapFolder, "JDPlus", "Assets", "NX", "CoachesSmall", "jkl.bundle")] = 400L,
             [Path.Combine(mapFolder, "JDPlus", "Assets", "NX", "CoachesLarge", "mno.bundle")] = 500L,
             [Path.Combine(mapFolder, "JDPlus", "Assets", "NX", "MapPackage", "pqr.bundle")] = 600L,
-			[Path.Combine(mapFolder, "JDUnlimited", "Preview", "vp8", "pv8_small.webm")] = 800L,
-			[Path.Combine(mapFolder, "JDUnlimited", "Preview", "vp8", "pv8_large.webm")] = 1200L,
-			[Path.Combine(mapFolder, "JDUnlimited", "Preview", "vp9", "pv9_small.webm")] = 900L,
-			[Path.Combine(mapFolder, "JDUnlimited", "Preview", "vp9", "pv9_large.webm")] = 1300L,
-			[Path.Combine(mapFolder, "Video", "vp8", "small_video_vp8.webm")] = 1100L,
-			[Path.Combine(mapFolder, "Video", "vp8", "medium_video_vp8.webm")] = 3100L,
-			[Path.Combine(mapFolder, "Video", "vp8", "large_video_vp8.webm")] = 5100L,
-			[Path.Combine(mapFolder, "Video", "vp8", "huge_video_vp8.webm")] = 10100L,
+            [Path.Combine(mapFolder, "JDUnlimited", "Preview", "vp8", "pv8_small.webm")] = 800L,
+            [Path.Combine(mapFolder, "JDUnlimited", "Preview", "vp8", "pv8_large.webm")] = 1200L,
+            [Path.Combine(mapFolder, "JDUnlimited", "Preview", "vp9", "pv9_small.webm")] = 900L,
+            [Path.Combine(mapFolder, "JDUnlimited", "Preview", "vp9", "pv9_large.webm")] = 1300L,
+            [Path.Combine(mapFolder, "Video", "vp8", "small_video_vp8.webm")] = 1100L,
+            [Path.Combine(mapFolder, "Video", "vp8", "medium_video_vp8.webm")] = 3100L,
+            [Path.Combine(mapFolder, "Video", "vp8", "large_video_vp8.webm")] = 5100L,
+            [Path.Combine(mapFolder, "Video", "vp8", "huge_video_vp8.webm")] = 10100L,
             [Path.Combine(mapFolder, "Video", "vp9", "small_video.webm")] = 1000L, //1st small video
             [Path.Combine(mapFolder, "Video", "vp9", "medium_video.webm")] = 3000L, //2nd medium video
             [Path.Combine(mapFolder, "Video", "vp9", "large_video.webm")] = 5000L, //3rd large video
@@ -203,10 +203,10 @@ public sealed class MapLoadingServicesTests
 
         // Act
         // Call the service with the original RELATIVE path.
-		IReadOnlyDictionary<string, AssetMetadata> metadata = _assetMetadataLoader.Load(
-			relativeMapFolder,
-			ClientPlatform.NintendoSwitch,
-			MapMediaLayouts.JDUnlimited);
+        IReadOnlyDictionary<string, AssetMetadata> metadata = _assetMetadataLoader.Load(
+            relativeMapFolder,
+            ClientPlatform.NintendoSwitch,
+            MapMediaLayouts.JDUnlimited);
 
         // Assert
         Assert.Equal(11, metadata.Count); // base assets +2 videoPreview +2 HIGH +1 ULTRA
@@ -228,15 +228,15 @@ public sealed class MapLoadingServicesTests
 
         // Assert that the sorting logic correctly picked the largest file for HIGH
         Assert.True(metadata.ContainsKey("video_HIGH.hd.webm"));
-		Assert.Equal("large_video_vp8", metadata["video_HIGH.hd.webm"].Hash);
-		Assert.Equal(5100L, metadata["video_HIGH.hd.webm"].Size);
-		Assert.Equal("large_video", metadata["video_HIGH.vp9.webm"].Hash);
-		Assert.Equal(5000L, metadata["video_HIGH.vp9.webm"].Size);
+        Assert.Equal("large_video_vp8", metadata["video_HIGH.hd.webm"].Hash);
+        Assert.Equal(5100L, metadata["video_HIGH.hd.webm"].Size);
+        Assert.Equal("large_video", metadata["video_HIGH.vp9.webm"].Hash);
+        Assert.Equal(5000L, metadata["video_HIGH.vp9.webm"].Size);
 
         // Assert that the sorting logic correctly picked the largest file for ULTRA
         Assert.True(metadata.ContainsKey("video_ULTRA.hd.webm"));
-		Assert.Equal("huge_video_vp8", metadata["video_ULTRA.hd.webm"].Hash);
-		Assert.Equal(10100L, metadata["video_ULTRA.hd.webm"].Size);
+        Assert.Equal("huge_video_vp8", metadata["video_ULTRA.hd.webm"].Hash);
+        Assert.Equal(10100L, metadata["video_ULTRA.hd.webm"].Size);
     }
 
     [Fact]
@@ -255,8 +255,8 @@ public sealed class MapLoadingServicesTests
     {
         // Arrange
         string mapFolder = "C:\\maps\\TestMap";
-		LocalJustDanceSongDBEntry songInfo = new() { MapName = "", DanceVersionLocId = new LocalizedString(0, "") };
-		string json = JsonSerializer.Serialize(songInfo, _jsonSettingsService.PrettyPascalFormat);
+        LocalJustDanceSongDBEntry songInfo = new() { MapName = "", DanceVersionLocId = new LocalizedString(0, "") };
+        string json = JsonSerializer.Serialize(songInfo, _jsonSettingsService.PrettyPascalFormat);
         MemoryStream stream = new(Encoding.UTF8.GetBytes(json));
 
         _mockFileSystem.Setup(fs => fs.FileExists(Path.Combine(mapFolder, "SongInfo.json"))).Returns(true);
@@ -295,82 +295,82 @@ public sealed class MapLoadingServicesTests
         string expectedBaseUrl = $"https://test.cdn.com/maps/{mapName}/JDPlus/Preview/vp9/";
 
         // Act
-		IReadOnlyList<string> urls = _mediaLoader.GetVideoUrls(
-			videoData,
-			mapFolder,
-			"JDPlus/Preview/vp9");
+        IReadOnlyList<string> urls = _mediaLoader.GetVideoUrls(
+            videoData,
+            mapFolder,
+            "JDPlus/Preview/vp9");
 
-		// Assert
-		Assert.Equal(
-		[
-			$"{expectedBaseUrl}low_quality.webm",
-			$"{expectedBaseUrl}mid_quality.webm",
-			$"{expectedBaseUrl}high_quality.webm",
-			$"{expectedBaseUrl}ultra_quality.webm"
-		], urls);
-	}
+        // Assert
+        Assert.Equal(
+        [
+            $"{expectedBaseUrl}low_quality.webm",
+            $"{expectedBaseUrl}mid_quality.webm",
+            $"{expectedBaseUrl}high_quality.webm",
+            $"{expectedBaseUrl}ultra_quality.webm"
+        ], urls);
+    }
 
-	[Fact]
-	public void LoadPlatformAssets_DiscoversPlatformsAndRolesForAnyMediaLayout()
-	{
-		string mapName = "TestMap";
-		string mapFolder = Path.Combine(_baseMapsPath, mapName);
-		string assetsFolder = Path.Combine(mapFolder, "JDUnlimited", "Assets");
-		string[] platforms = ["NX", "WIIU"];
-		string[] roles = ["Cover", "AlbumCoach", "Coach1"];
-		_mockFileSystem.Setup(fs => fs.DirectoryExists(assetsFolder)).Returns(true);
-		_mockFileSystem.Setup(fs => fs.GetDirectories(assetsFolder))
-			.Returns([.. platforms.Select(platform => Path.Combine(assetsFolder, platform))]);
+    [Fact]
+    public void LoadPlatformAssets_DiscoversPlatformsAndRolesForAnyMediaLayout()
+    {
+        string mapName = "TestMap";
+        string mapFolder = Path.Combine(_baseMapsPath, mapName);
+        string assetsFolder = Path.Combine(mapFolder, "JDUnlimited", "Assets");
+        string[] platforms = ["NX", "WIIU"];
+        string[] roles = ["Cover", "AlbumCoach", "Coach1"];
+        _mockFileSystem.Setup(fs => fs.DirectoryExists(assetsFolder)).Returns(true);
+        _mockFileSystem.Setup(fs => fs.GetDirectories(assetsFolder))
+            .Returns([.. platforms.Select(platform => Path.Combine(assetsFolder, platform))]);
 
-		foreach (string platform in platforms)
-		{
-			string platformFolder = Path.Combine(assetsFolder, platform);
-			_mockFileSystem.Setup(fs => fs.GetDirectories(platformFolder))
-				.Returns([.. roles.Select(role => Path.Combine(platformFolder, role))]);
-			foreach (string role in roles)
-			{
-				string folder = Path.Combine(platformFolder, role);
-				string file = Path.Combine(folder, role.ToLowerInvariant() + ".ckd");
-				_mockFileSystem.Setup(fs => fs.GetFiles(folder, "*", SearchOption.TopDirectoryOnly)).Returns([file]);
-			}
-		}
+        foreach (string platform in platforms)
+        {
+            string platformFolder = Path.Combine(assetsFolder, platform);
+            _mockFileSystem.Setup(fs => fs.GetDirectories(platformFolder))
+                .Returns([.. roles.Select(role => Path.Combine(platformFolder, role))]);
+            foreach (string role in roles)
+            {
+                string folder = Path.Combine(platformFolder, role);
+                string file = Path.Combine(folder, role.ToLowerInvariant() + ".ckd");
+                _mockFileSystem.Setup(fs => fs.GetFiles(folder, "*", SearchOption.TopDirectoryOnly)).Returns([file]);
+            }
+        }
 
-		IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> assetsByPlatform =
-			_mediaLoader.LoadPlatformAssets(mapFolder, MapMediaLayouts.JDUnlimited);
+        IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> assetsByPlatform =
+            _mediaLoader.LoadPlatformAssets(mapFolder, MapMediaLayouts.JDUnlimited);
 
-		Assert.Equal(platforms.Length, assetsByPlatform.Count);
-		foreach (string platform in platforms)
-		{
-			IReadOnlyDictionary<string, string> assets = assetsByPlatform[platform];
-			Assert.Equal(roles.Length, assets.Count);
-			foreach (string role in roles)
-			{
-				Assert.Equal(
-					$"https://test.cdn.com/maps/{mapName}/JDUnlimited/Assets/{platform}/{role}/{role.ToLowerInvariant()}.ckd",
-					assets[role]);
-			}
-		}
-	}
+        Assert.Equal(platforms.Length, assetsByPlatform.Count);
+        foreach (string platform in platforms)
+        {
+            IReadOnlyDictionary<string, string> assets = assetsByPlatform[platform];
+            Assert.Equal(roles.Length, assets.Count);
+            foreach (string role in roles)
+            {
+                Assert.Equal(
+                    $"https://test.cdn.com/maps/{mapName}/JDUnlimited/Assets/{platform}/{role}/{role.ToLowerInvariant()}.ckd",
+                    assets[role]);
+            }
+        }
+    }
 
-	[Theory]
-	[InlineData(0)]
-	[InlineData(2)]
-	public void LoadPlatformAssets_RejectsNonSingularRoleFolders(int fileCount)
-	{
-		string mapFolder = Path.Combine(_baseMapsPath, "TestMap");
-		string assetsFolder = Path.Combine(mapFolder, "JDPlus", "Assets");
-		string platformFolder = Path.Combine(assetsFolder, "NX");
-		string roleFolder = Path.Combine(platformFolder, "Cover");
-		_mockFileSystem.Setup(fs => fs.DirectoryExists(assetsFolder)).Returns(true);
-		_mockFileSystem.Setup(fs => fs.GetDirectories(assetsFolder)).Returns([platformFolder]);
-		_mockFileSystem.Setup(fs => fs.GetDirectories(platformFolder)).Returns([roleFolder]);
-		_mockFileSystem.Setup(fs => fs.GetFiles(roleFolder, "*", SearchOption.TopDirectoryOnly))
-			.Returns([.. Enumerable.Range(0, fileCount).Select(index => Path.Combine(roleFolder, $"{index}.bundle"))]);
+    [Theory]
+    [InlineData(0)]
+    [InlineData(2)]
+    public void LoadPlatformAssets_RejectsNonSingularRoleFolders(int fileCount)
+    {
+        string mapFolder = Path.Combine(_baseMapsPath, "TestMap");
+        string assetsFolder = Path.Combine(mapFolder, "JDPlus", "Assets");
+        string platformFolder = Path.Combine(assetsFolder, "NX");
+        string roleFolder = Path.Combine(platformFolder, "Cover");
+        _mockFileSystem.Setup(fs => fs.DirectoryExists(assetsFolder)).Returns(true);
+        _mockFileSystem.Setup(fs => fs.GetDirectories(assetsFolder)).Returns([platformFolder]);
+        _mockFileSystem.Setup(fs => fs.GetDirectories(platformFolder)).Returns([roleFolder]);
+        _mockFileSystem.Setup(fs => fs.GetFiles(roleFolder, "*", SearchOption.TopDirectoryOnly))
+            .Returns([.. Enumerable.Range(0, fileCount).Select(index => Path.Combine(roleFolder, $"{index}.bundle"))]);
 
-		InvalidDataException exception = Assert.Throws<InvalidDataException>(() =>
-			_mediaLoader.LoadPlatformAssets(mapFolder, MapMediaLayouts.JDPlus));
+        InvalidDataException exception = Assert.Throws<InvalidDataException>(() =>
+            _mediaLoader.LoadPlatformAssets(mapFolder, MapMediaLayouts.JDPlus));
 
-		Assert.Contains("must contain exactly one file", exception.Message, StringComparison.OrdinalIgnoreCase);
-		Assert.Contains($"found {fileCount}", exception.Message, StringComparison.OrdinalIgnoreCase);
-	}
+        Assert.Contains("must contain exactly one file", exception.Message, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains($"found {fileCount}", exception.Message, StringComparison.OrdinalIgnoreCase);
+    }
 }

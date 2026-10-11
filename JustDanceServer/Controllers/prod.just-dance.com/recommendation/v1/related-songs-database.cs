@@ -14,7 +14,7 @@ public class RelatedSongsDatabase(IJduRecommendationService recommendationServic
     public async Task<IActionResult> GetDatabase()
     {
         IReadOnlyDictionary<string, string[]> database =
-			await recommendationService.GetRelatedSongsAsync();
-		return File(JsonSerializer.SerializeToUtf8Bytes(database), "application/octet-stream");
+            await recommendationService.GetRelatedSongsAsync();
+        return File(JsonSerializer.SerializeToUtf8Bytes(database), "application/octet-stream");
     }
 }

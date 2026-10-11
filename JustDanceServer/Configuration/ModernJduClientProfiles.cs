@@ -3,6 +3,7 @@ using JustDanceServer.Services;
 using System.Diagnostics.CodeAnalysis;
 
 namespace JustDanceServer.Configuration;
+
 public sealed record ModernJduClientProfile(
     int GameYear,
     Guid ApplicationId,

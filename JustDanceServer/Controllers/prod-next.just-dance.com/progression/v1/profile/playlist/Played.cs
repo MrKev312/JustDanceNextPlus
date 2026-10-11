@@ -42,23 +42,23 @@ public class Played(IUserDataService userDataService, IMapService mapService) : 
         if (profile == null)
             return NotFound("Profile not found");
 
-		Dictionary<string, int> scoresByMapName = [with(StringComparer.OrdinalIgnoreCase)];
-		foreach (MapData map in playlist.MapData)
-		{
-			if (!mapService.TryGetMapName(map.MapId, out string mapName))
-				return NotFound($"Map '{map.MapId}' was not found.");
-			scoresByMapName[mapName] = map.Score;
-		}
+        Dictionary<string, int> scoresByMapName = [with(StringComparer.OrdinalIgnoreCase)];
+        foreach (MapData map in playlist.MapData)
+        {
+            if (!mapService.TryGetMapName(map.MapId, out string mapName))
+                return NotFound($"Map '{map.MapId}' was not found.");
+            scoresByMapName[mapName] = map.Score;
+        }
 
-		// Build PlaylistStats to update
-		PlaylistStats playlistStats = new()
+        // Build PlaylistStats to update
+        PlaylistStats playlistStats = new()
         {
             PlayCount = 1,
             HighScore = playlist.TotalScore,
             PlaylistId = playlist.PlaylistId,
             ProfileId = profile.Id,
-			Platform = ClientPlatform.FromUserAgent(Request.Headers.UserAgent) ?? "Unknown",
-			HighScorePerMap = scoresByMapName
+            Platform = ClientPlatform.FromUserAgent(Request.Headers.UserAgent) ?? "Unknown",
+            HighScorePerMap = scoresByMapName
         };
 
         // Update using the user data service
@@ -70,14 +70,14 @@ public class Played(IUserDataService userDataService, IMapService mapService) : 
         if (!success || (playlistHighScore == null && playlist.TotalScore != 0))
             return StatusCode(500, "Failed to update playlist high score");
 
-		// Zero-point submissions still need the ordinary success envelope, but are not plays.
-		playlistHighScore ??= new PlaylistStats
-		{
-			PlaylistId = playlist.PlaylistId,
-			ProfileId = profile.Id,
-			Platform = playlistStats.Platform,
-			HighScorePerMap = scoresByMapName
-		};
+        // Zero-point submissions still need the ordinary success envelope, but are not plays.
+        playlistHighScore ??= new PlaylistStats
+        {
+            PlaylistId = playlist.PlaylistId,
+            ProfileId = profile.Id,
+            Platform = playlistStats.Platform,
+            HighScorePerMap = scoresByMapName
+        };
 
         return Ok(new
         {
@@ -86,11 +86,11 @@ public class Played(IUserDataService userDataService, IMapService mapService) : 
             {
                 highScore = playlistHighScore.HighScore,
                 playCount = playlistHighScore.PlayCount,
-				highScorePerMap = playlistHighScore.HighScorePerMap.Select(kv => new
-				{
-					mapId = mapService.GetSongId(kv.Key),
-					highScore = kv.Value
-				}).Where(value => value.mapId.HasValue).ToArray(),
+                highScorePerMap = playlistHighScore.HighScorePerMap.Select(kv => new
+                {
+                    mapId = mapService.GetSongId(kv.Key),
+                    highScore = kv.Value
+                }).Where(value => value.mapId.HasValue).ToArray(),
                 platform = playlistHighScore.Platform
             }
         });

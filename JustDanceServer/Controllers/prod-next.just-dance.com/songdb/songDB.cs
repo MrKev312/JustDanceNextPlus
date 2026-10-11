@@ -10,18 +10,18 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.songdb;
 [Route("songdb/songDB")]
 public class SongDB(IMapService mapService, JsonSettingsService jsonSettingsService) : ControllerBase
 {
-	[HttpGet(Name = "GetSongDB")]
-	public IActionResult GetSongDB()
-	{
-		string platform = ClientPlatform.FromRequest(Request);
-		MapMediaLayout previewLayout = JdNextPreviewLayout.FromRequest(Request);
-		string response = JsonSerializer.Serialize(
-			mapService.GetSongs(platform, previewLayout),
-			jsonSettingsService.PrettyPascalFormat);
+    [HttpGet(Name = "GetSongDB")]
+    public IActionResult GetSongDB()
+    {
+        string platform = ClientPlatform.FromRequest(Request);
+        MapMediaLayout previewLayout = JdNextPreviewLayout.FromRequest(Request);
+        string response = JsonSerializer.Serialize(
+            mapService.GetSongs(platform, previewLayout),
+            jsonSettingsService.PrettyPascalFormat);
 
-		// Disable compression for this specific response
-		Response.Headers.ContentEncoding = "identity";
+        // Disable compression for this specific response
+        Response.Headers.ContentEncoding = "identity";
 
-		return Content(response, "application/json");
-	}
+        return Content(response, "application/json");
+    }
 }

@@ -13,12 +13,12 @@ public class AssignRoom(IWdfService wdfService, ISessionManager sessionManager) 
     [HttpPost]
     public IActionResult Assign()
     {
-		if (!WdfRequestResolver.TryGetGameYear(Request, out int gameYear))
-			return BadRequest("Unsupported or missing 'X-SkuId' header.");
+        if (!WdfRequestResolver.TryGetGameYear(Request, out int gameYear))
+            return BadRequest("Unsupported or missing 'X-SkuId' header.");
 
-		WdfRoomId room = wdfService.GetAssignedRoom(gameYear);
-		if (RequestSessionResolver.TryResolve(Request, sessionManager, out Session? session))
-			wdfService.Touch(room, session.PlayerId);
+        WdfRoomId room = wdfService.GetAssignedRoom(gameYear);
+        if (RequestSessionResolver.TryResolve(Request, sessionManager, out Session? session))
+            wdfService.Touch(room, session.PlayerId);
 
         return Ok(new RoomInfoResponse { Room = room.Name });
     }

@@ -8,35 +8,35 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.leaderboard.v1.ma
 [ApiController]
 [Route("leaderboard/v1/map/{mapId:guid}/ghostmode/opponent")]
 public class Opponent(
-	IUserDataService userDataService,
-	ISessionManager sessionManager,
-	IMapService mapService) : ControllerBase
+    IUserDataService userDataService,
+    ISessionManager sessionManager,
+    IMapService mapService) : ControllerBase
 {
-	[HttpPost]
-	public async Task<IActionResult> Post([FromRoute] Guid mapId)
-	{
-		// Grab the session token from the request
-		string? sessionToken = Request.Headers["ubi-sessionid"].ToString();
+    [HttpPost]
+    public async Task<IActionResult> Post([FromRoute] Guid mapId)
+    {
+        // Grab the session token from the request
+        string? sessionToken = Request.Headers["ubi-sessionid"].ToString();
 
-		// If the session token is null or empty, return a 401
-		if (string.IsNullOrEmpty(sessionToken))
-			return Unauthorized();
+        // If the session token is null or empty, return a 401
+        if (string.IsNullOrEmpty(sessionToken))
+            return Unauthorized();
 
-		// Get a guid from the session token
-		Guid sessionGuid = Guid.Parse(sessionToken);
+        // Get a guid from the session token
+        Guid sessionGuid = Guid.Parse(sessionToken);
 
-		// Get the user profile from the session token
-		if (sessionManager.TryGetSessionById(sessionGuid, out Session? session) == false)
-			return Unauthorized();
+        // Get the user profile from the session token
+        if (sessionManager.TryGetSessionById(sessionGuid, out Session? session) == false)
+            return Unauthorized();
 
-		Guid userProfile = session.PlayerId;
+        Guid userProfile = session.PlayerId;
 
-		if (!mapService.TryGetMapName(mapId, out string mapName))
-			return NotFound();
+        if (!mapService.TryGetMapName(mapId, out string mapName))
+            return NotFound();
 
-		Leaderboard leaderboard = await userDataService.GetRandomOpponentAsync(mapName, userProfile);
+        Leaderboard leaderboard = await userDataService.GetRandomOpponentAsync(mapName, userProfile);
 
-		// Return the leaderboard
-		return Ok(leaderboard);
-	}
+        // Return the leaderboard
+        return Ok(leaderboard);
+    }
 }

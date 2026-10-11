@@ -11,12 +11,12 @@ namespace JustDanceServer.Controllers.prod.just_dance.com.avatardb.v1;
 public sealed class Avatars(IJduCatalogService catalogService) : ControllerBase
 {
     [HttpGet]
-	public IActionResult GetAvatars([FromHeader(Name = "X-SkuId")] string? skuId)
-		=> catalogService.TryCreateLegacyAvatarCatalog(skuId, out JsonObject catalog)
-			? Ok(catalog)
-			: Ok(new JsonObject
-			{
-				["__class"] = "OnlineAvatarDb",
-				["avatars"] = new JsonObject()
-			});
+    public IActionResult GetAvatars([FromHeader(Name = "X-SkuId")] string? skuId)
+        => catalogService.TryCreateLegacyAvatarCatalog(skuId, out JsonObject catalog)
+            ? Ok(catalog)
+            : Ok(new JsonObject
+            {
+                ["__class"] = "OnlineAvatarDb",
+                ["avatars"] = new JsonObject()
+            });
 }

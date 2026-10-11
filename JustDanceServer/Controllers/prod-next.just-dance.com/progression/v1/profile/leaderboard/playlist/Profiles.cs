@@ -13,7 +13,7 @@ public class Profiles(IUserDataService userDataService, IMapService mapService) 
     public async Task<IActionResult> GetProfiles([FromBody] ProfilesRequest request)
     {
         Guid playlistId = request.PlaylistId;
-		List<ResponseProfile> Profiles = [];
+        List<ResponseProfile> Profiles = [];
         foreach (Guid userId in request.UsUserIds)
         {
             Profile? profile = await userDataService.GetProfileByIdAsync(userId);
@@ -33,8 +33,8 @@ public class Profiles(IUserDataService userDataService, IMapService mapService) 
 
         return Ok(new
         {
-			Profiles
-		});
+            Profiles
+        });
     }
 }
 

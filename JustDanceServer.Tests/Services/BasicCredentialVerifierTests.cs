@@ -34,11 +34,11 @@ public sealed class BasicCredentialVerifierTests
     {
         PlatformAuthenticationSettings settings = new();
         if (hash is not null)
-			settings.BasicPasswordHashes["user"] = hash;
+            settings.BasicPasswordHashes["user"] = hash;
         Assert.False(new BasicCredentialVerifier(Options.Create(settings)).Verify("user", "password"));
-	}
+    }
 
-	[Fact]
+    [Fact]
     public async Task BasicPasswordsMayContainColonsAndUsernamesAreCaseInsensitive()
     {
         using JsonDocument body = JsonDocument.Parse("{}");

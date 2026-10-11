@@ -16,27 +16,27 @@ public static class JduVideoPreviewFactory
 {
     public static JduVideoPreviewProjection Create(
         JustDanceSongDBEntry song,
-		MapMediaAssets media,
+        MapMediaAssets media,
         UrlSettings urlSettings,
         MapVideoCodec codec)
     {
-		string codecName = codec.ToCodecName();
-		MapVideoSet videos = media.GetPreviewVideos(codecName);
-		WebmData[] videoData = [.. videos.Qualities.Select(quality => quality.Data)];
+        string codecName = codec.ToCodecName();
+        MapVideoSet videos = media.GetPreviewVideos(codecName);
+        WebmData[] videoData = [.. videos.Qualities.Select(quality => quality.Data)];
         Dictionary<string, string> urls = [with(StringComparer.Ordinal)];
         string[] logicalUrls = new string[videoData.Length];
 
         for (int index = 0; index < videoData.Length; index++)
         {
-			string sourceUrl = videos.Qualities[index].Url;
-			string logicalUrl =
-				$"jmcs://jd-contents/{song.MapName}/{song.MapName}_MapPreviewNoSoundCrop_{MapVideoSet.QualityNames[index]}.{codecName}.webm";
+            string sourceUrl = videos.Qualities[index].Url;
+            string logicalUrl =
+                $"jmcs://jd-contents/{song.MapName}/{song.MapName}_MapPreviewNoSoundCrop_{MapVideoSet.QualityNames[index]}.{codecName}.webm";
 
             logicalUrls[index] = logicalUrl;
             urls[logicalUrl] = JduContentUrlResolver.RebaseToCdn(sourceUrl, urlSettings);
         }
 
-		return new JduVideoPreviewProjection(CreateMpd(videoData, logicalUrls, codecName), urls);
+        return new JduVideoPreviewProjection(CreateMpd(videoData, logicalUrls, codecName), urls);
     }
 
     private static string CreateMpd(WebmData[] videoData, string[] logicalUrls, string codec)

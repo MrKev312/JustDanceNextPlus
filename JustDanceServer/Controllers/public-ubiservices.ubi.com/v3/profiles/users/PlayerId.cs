@@ -6,16 +6,16 @@ namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v3.profiles.use
 [Route("v3/profiles/users/{guid:guid}")]
 public class PlayerId : ControllerBase
 {
-	[HttpGet(Name = "GetUsers")]
-	public IActionResult GetUsers([FromRoute] Guid guid)
-	{
-		string response = """
+    [HttpGet(Name = "GetUsers")]
+    public IActionResult GetUsers([FromRoute] Guid guid)
+    {
+        string response = """
 			{
 				"country": "NL",
 				"preferredLanguage": "en"
 			}
 			""";
 
-		return Content(response, "application/json");
-	}
+        return Content(response, "application/json");
+    }
 }

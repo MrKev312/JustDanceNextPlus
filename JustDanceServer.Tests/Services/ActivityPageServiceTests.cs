@@ -53,12 +53,12 @@ public class ActivityPageServiceTests
         Mock<ITagService> mockTagService,
         Mock<ILocalizedStringService> mockLocalizedStringService)
     {
-		GuidTagConverter guidTagConverter = new(mockTagService.Object, mockLocalizedStringService.Object);
-		MapTagConverter mapTagConverter = new(mockMapService.Object, Mock.Of<ILogger<MapTagConverter>>());
-		TagIdConverter tagIdConverter = new(mockLocalizedStringService.Object);
-		MapTagListConverter mapTagListConverter = new(mockMapService.Object, Mock.Of<ILogger<MapTagListConverter>>());
+        GuidTagConverter guidTagConverter = new(mockTagService.Object, mockLocalizedStringService.Object);
+        MapTagConverter mapTagConverter = new(mockMapService.Object, Mock.Of<ILogger<MapTagConverter>>());
+        TagIdConverter tagIdConverter = new(mockLocalizedStringService.Object);
+        MapTagListConverter mapTagListConverter = new(mockMapService.Object, Mock.Of<ILogger<MapTagListConverter>>());
 
-		Mock<IServiceProvider> mockServiceProvider = new();
+        Mock<IServiceProvider> mockServiceProvider = new();
         mockServiceProvider.Setup(sp => sp.GetService(typeof(GuidTagConverter))).Returns(guidTagConverter);
         mockServiceProvider.Setup(sp => sp.GetService(typeof(MapTagConverter))).Returns(mapTagConverter);
         mockServiceProvider.Setup(sp => sp.GetService(typeof(TagIdConverter))).Returns(tagIdConverter);
@@ -94,17 +94,17 @@ public class ActivityPageServiceTests
           ]
         }
         """;
-		MemoryStream fakeStream = new(Encoding.UTF8.GetBytes(fakeJson));
+        MemoryStream fakeStream = new(Encoding.UTF8.GetBytes(fakeJson));
 
         _mockFileSystem.Setup(fs => fs.FileExists(It.IsAny<string>())).Returns(true);
         _mockFileSystem.Setup(fs => fs.OpenRead(It.IsAny<string>())).Returns(fakeStream);
 
         _mockMapService.Setup(ms => ms.RecentlyAdded).Returns([]);
 
-		LocalizedString existingLocalizedString = new(1001, "Existing Test Category");
+        LocalizedString existingLocalizedString = new(1001, "Existing Test Category");
         _mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag(1001)).Returns(existingLocalizedString);
 
-		LocalizedString newLocalizedString = new(12345, "Newly Added Songs!");
+        LocalizedString newLocalizedString = new(12345, "Newly Added Songs!");
         _mockLocalizedStringService.Setup(ls => ls.GetAddLocalizedTag("Newly Added Songs!")).Returns(newLocalizedString);
 
         // Act
@@ -114,11 +114,11 @@ public class ActivityPageServiceTests
         Assert.NotNull(_service.ActivityPage);
         Assert.Single(_service.ActivityPage.Categories);
 
-		CarouselCategory? newCategory = _service.ActivityPage.Categories.Values.OfType<CarouselCategory>().FirstOrDefault(c => c.CategoryName == "Newly Added Songs");
+        CarouselCategory? newCategory = _service.ActivityPage.Categories.Values.OfType<CarouselCategory>().FirstOrDefault(c => c.CategoryName == "Newly Added Songs");
         Assert.Null(newCategory);
 
         Assert.Single(_service.ActivityPage.CategoryModifiers);
-		PositionModifier firstModifier = Assert.IsType<PositionModifier>(_service.ActivityPage.CategoryModifiers[0]);
+        PositionModifier firstModifier = Assert.IsType<PositionModifier>(_service.ActivityPage.CategoryModifiers[0]);
         Assert.Equal(1, firstModifier.Position.Position);
     }
 
@@ -149,18 +149,18 @@ public class ActivityPageServiceTests
           ]
         }
         """;
-		MemoryStream fakeStream = new(Encoding.UTF8.GetBytes(fakeJson));
+        MemoryStream fakeStream = new(Encoding.UTF8.GetBytes(fakeJson));
 
         _mockFileSystem.Setup(fs => fs.FileExists(It.IsAny<string>())).Returns(true);
         _mockFileSystem.Setup(fs => fs.OpenRead(It.IsAny<string>())).Returns(fakeStream);
 
-		Mock<MapTag> mockMapTag = new();
+        Mock<MapTag> mockMapTag = new();
         _mockMapService.Setup(ms => ms.RecentlyAdded).Returns([mockMapTag.Object]);
 
-		LocalizedString existingLocalizedString = new(1001, "Existing Test Category");
+        LocalizedString existingLocalizedString = new(1001, "Existing Test Category");
         _mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag(1001)).Returns(existingLocalizedString);
 
-		LocalizedString newLocalizedString = new(12345, "Newly Added Songs!");
+        LocalizedString newLocalizedString = new(12345, "Newly Added Songs!");
         _mockLocalizedStringService.Setup(ls => ls.GetAddLocalizedTag("Newly Added Songs!")).Returns(newLocalizedString);
 
         // Act
@@ -170,12 +170,12 @@ public class ActivityPageServiceTests
         Assert.NotNull(_service.ActivityPage);
         Assert.Equal(2, _service.ActivityPage.Categories.Count);
 
-		CarouselCategory? newCategory = _service.ActivityPage.Categories.Values.OfType<CarouselCategory>().FirstOrDefault(c => c.CategoryName == "Newly Added Songs");
+        CarouselCategory? newCategory = _service.ActivityPage.Categories.Values.OfType<CarouselCategory>().FirstOrDefault(c => c.CategoryName == "Newly Added Songs");
         Assert.NotNull(newCategory);
         Assert.Equal(newLocalizedString.OasisId, newCategory.TitleId.ID);
 
         Assert.Equal(2, _service.ActivityPage.CategoryModifiers.Count);
-		PositionModifier firstModifier = Assert.IsType<PositionModifier>(_service.ActivityPage.CategoryModifiers[0]);
+        PositionModifier firstModifier = Assert.IsType<PositionModifier>(_service.ActivityPage.CategoryModifiers[0]);
         Assert.Equal(0, firstModifier.Position.Position);
 
         Guid newCategoryGuid = _service.ActivityPage.Categories.First(kvp => (kvp.Value as CarouselCategory) == newCategory).Key;
@@ -210,7 +210,7 @@ public class ActivityPageServiceTests
     {
         // Arrange
         string invalidJson = "{ \"categories\": { }";
-		MemoryStream fakeStream = new(Encoding.UTF8.GetBytes(invalidJson));
+        MemoryStream fakeStream = new(Encoding.UTF8.GetBytes(invalidJson));
 
         _mockFileSystem.Setup(fs => fs.FileExists(It.IsAny<string>())).Returns(true);
         _mockFileSystem.Setup(fs => fs.OpenRead(It.IsAny<string>())).Returns(fakeStream);
@@ -238,7 +238,7 @@ public class ActivityPageServiceTests
     {
         // Arrange
         string nullJson = "null";
-		MemoryStream fakeStream = new(Encoding.UTF8.GetBytes(nullJson));
+        MemoryStream fakeStream = new(Encoding.UTF8.GetBytes(nullJson));
 
         _mockFileSystem.Setup(fs => fs.FileExists(It.IsAny<string>())).Returns(true);
         _mockFileSystem.Setup(fs => fs.OpenRead(It.IsAny<string>())).Returns(fakeStream);

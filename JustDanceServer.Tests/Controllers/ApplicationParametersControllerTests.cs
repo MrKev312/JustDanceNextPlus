@@ -11,12 +11,12 @@ namespace JustDanceServer.Tests.Controllers;
 
 public class ApplicationParametersControllerTests
 {
-	private static readonly IOptions<UrlSettings> LocalUrls = Options.Create(new UrlSettings
-	{
-		HostUrl = "next.local.test",
-		JduHostUrl = "jdu.local.test",
-		CDNUrl = "next.local.test"
-	});
+    private static readonly IOptions<UrlSettings> LocalUrls = Options.Create(new UrlSettings
+    {
+        HostUrl = "next.local.test",
+        JduHostUrl = "jdu.local.test",
+        CDNUrl = "next.local.test"
+    });
 
     [Fact]
     public void ApplicationParametersController_ExposesPcDebugBuildRoute()
@@ -37,46 +37,46 @@ public class ApplicationParametersControllerTests
         Assert.Null(httpGet.Name);
     }
 
-	[Theory]
-	[MemberData(nameof(JdNextApplicationIds))]
-	public void ApplicationParameters_ResolveKnownJdNextApplication(string applicationId)
-	{
-		ApplicationParametersController controller = CreateController();
+    [Theory]
+    [MemberData(nameof(JdNextApplicationIds))]
+    public void ApplicationParameters_ResolveKnownJdNextApplication(string applicationId)
+    {
+        ApplicationParametersController controller = CreateController();
 
-		OkObjectResult result = Assert.IsType<OkObjectResult>(
-			controller.GetParameters(Guid.Parse(applicationId)));
-		ParameterList parameters = Assert.IsType<ParameterList>(result.Value);
+        OkObjectResult result = Assert.IsType<OkObjectResult>(
+            controller.GetParameters(Guid.Parse(applicationId)));
+        ParameterList parameters = Assert.IsType<ParameterList>(result.Value);
 
-		Assert.Equal(
-			JdNextConstants.GameSpaceId,
-			parameters.Parameters["us-staging"].Fields["spaceId"]);
-		Dictionary<string, string> aws = Assert.IsType<Dictionary<string, string>>(
-			parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_aws"]);
-		Assert.Equal("https://{env}next.local.test", aws["Standard"]);
-	}
+        Assert.Equal(
+            JdNextConstants.GameSpaceId,
+            parameters.Parameters["us-staging"].Fields["spaceId"]);
+        Dictionary<string, string> aws = Assert.IsType<Dictionary<string, string>>(
+            parameters.Parameters["us-sdkClientUrlsPlaceholders"].Fields["baseurl_aws"]);
+        Assert.Equal("https://{env}next.local.test", aws["Standard"]);
+    }
 
-	public static TheoryData<string> JdNextApplicationIds =>
-	[
-		JdNextConstants.PcApplicationId.ToString(),
-		JdNextConstants.SwitchApplicationId.ToString()
-	];
+    public static TheoryData<string> JdNextApplicationIds =>
+    [
+        JdNextConstants.PcApplicationId.ToString(),
+        JdNextConstants.SwitchApplicationId.ToString()
+    ];
 
-	[Fact]
-	public void ApplicationParameters_RejectUnknownApplication()
-	{
-		ApplicationParametersController controller = CreateController();
+    [Fact]
+    public void ApplicationParameters_RejectUnknownApplication()
+    {
+        ApplicationParametersController controller = CreateController();
 
-		Assert.IsType<NotFoundResult>(controller.GetParameters(Guid.NewGuid()));
-	}
+        Assert.IsType<NotFoundResult>(controller.GetParameters(Guid.NewGuid()));
+    }
 
-	private static ApplicationParametersController CreateController()
-	{
-		return new ApplicationParametersController(LocalUrls)
-		{
-			ControllerContext = new ControllerContext
-			{
-				HttpContext = new DefaultHttpContext()
-			}
-		};
-	}
+    private static ApplicationParametersController CreateController()
+    {
+        return new ApplicationParametersController(LocalUrls)
+        {
+            ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext()
+            }
+        };
+    }
 }

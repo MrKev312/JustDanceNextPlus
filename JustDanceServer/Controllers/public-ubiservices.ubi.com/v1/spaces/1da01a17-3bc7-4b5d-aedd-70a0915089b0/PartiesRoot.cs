@@ -11,17 +11,17 @@ namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v1.spaces._1da0
 [Route("v1/spaces/{spaceId:jdnext}/parties")]
 public sealed class PartiesRoot(IPartyService partyService, ISessionManager sessionManager) : ControllerBase
 {
-	[HttpPost(Name = "PostParties")]
-	public IActionResult PostParties([FromRoute] Guid spaceId, [FromBody] JsonElement body)
-	{
-		if (!body.TryGetProperty("ownerProfileId", out JsonElement ownerValue)
-			|| !Guid.TryParse(ownerValue.GetString(), out Guid ownerProfileId))
-			return BadRequest("ownerProfileId is required.");
-		if (!RequestSessionResolver.TryResolve(Request, sessionManager, out Session? session))
-			return Unauthorized();
-		if (session.PlayerId != ownerProfileId)
-			return StatusCode(StatusCodes.Status403Forbidden);
+    [HttpPost(Name = "PostParties")]
+    public IActionResult PostParties([FromRoute] Guid spaceId, [FromBody] JsonElement body)
+    {
+        if (!body.TryGetProperty("ownerProfileId", out JsonElement ownerValue)
+            || !Guid.TryParse(ownerValue.GetString(), out Guid ownerProfileId))
+            return BadRequest("ownerProfileId is required.");
+        if (!RequestSessionResolver.TryResolve(Request, sessionManager, out Session? session))
+            return Unauthorized();
+        if (session.PlayerId != ownerProfileId)
+            return StatusCode(StatusCodes.Status403Forbidden);
 
-		return Ok(PartyWireProjection.ToResponse(partyService.Create(ownerProfileId)));
-	}
+        return Ok(PartyWireProjection.ToResponse(partyService.Create(ownerProfileId)));
+    }
 }

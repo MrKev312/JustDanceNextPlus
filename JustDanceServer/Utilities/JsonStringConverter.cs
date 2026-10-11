@@ -11,7 +11,7 @@ public class JsonStringConverter : JsonConverterFactory
 
     public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
     {
-		Type inner = typeof(InnerConverter<>).MakeGenericType(typeToConvert);
+        Type inner = typeof(InnerConverter<>).MakeGenericType(typeToConvert);
         return (JsonConverter)Activator.CreateInstance(inner)!;
     }
 

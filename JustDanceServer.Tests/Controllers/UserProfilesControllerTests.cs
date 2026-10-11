@@ -6,14 +6,14 @@ namespace JustDanceServer.Tests.Controllers;
 
 public class UserProfilesControllerTests
 {
-	[Fact]
-	public void UserController_ExposesPcDebugLinkedProfilesRoute()
-	{
-		HttpGetAttribute httpGet = Assert.Single(typeof(UserController)
-			.GetMethod(nameof(UserController.GetLinkedProfiles))!
-			.GetCustomAttributes(typeof(HttpGetAttribute), inherit: false)
-			.Cast<HttpGetAttribute>());
+    [Fact]
+    public void UserController_ExposesPcDebugLinkedProfilesRoute()
+    {
+        HttpGetAttribute httpGet = Assert.Single(typeof(UserController)
+            .GetMethod(nameof(UserController.GetLinkedProfiles))!
+            .GetCustomAttributes(typeof(HttpGetAttribute), inherit: false)
+            .Cast<HttpGetAttribute>());
 
-		Assert.Equal("profiles", httpGet.Template);
-	}
+        Assert.Equal("profiles", httpGet.Template);
+    }
 }

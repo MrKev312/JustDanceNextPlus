@@ -29,14 +29,14 @@ public sealed class Jdu2019ApplicationConfigurationTests
     [Fact]
     public void Jdu2019SwitchRoute_ReturnsCapturedApplicationAndSpaceIdentity()
     {
-		Jdu2019ConfigurationController controller = new(new ModernJduApplicationConfigurationService())
-		{
-			ControllerContext = new ControllerContext
-			{
-				HttpContext = new DefaultHttpContext()
-			}
-		};
-		controller.Request.Host = new HostString("jdservices.local.test");
+        Jdu2019ConfigurationController controller = new(new ModernJduApplicationConfigurationService())
+        {
+            ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext()
+            }
+        };
+        controller.Request.Host = new HostString("jdservices.local.test");
 
         OkObjectResult result = Assert.IsType<OkObjectResult>(
             controller.GetConfiguration(Guid.Parse("848e9f13-07c1-41ae-baef-57bb9f4ac899")));
@@ -166,32 +166,32 @@ public sealed class Jdu2019ApplicationConfigurationTests
         Assert.Equal("Test Dancer", returnedProfile.GetProperty("nameOnPlatform").GetString());
     }
 
-	[Fact]
-	public async Task ProfilesLookup_AcceptsSdkProfileIdListSelector()
-	{
-		Guid firstId = Guid.NewGuid();
-		Guid secondId = Guid.NewGuid();
-		Mock<IPlayerIdentityService> identityService = new();
-		identityService.Setup(service => service.GetProfilesByIdsAsync(
-			It.IsAny<IEnumerable<Guid>>(),
-			"switch"))
-			.ReturnsAsync([
-				new LinkedProfileIdentity(firstId, firstId, "switch", "first", "First"),
-				new LinkedProfileIdentity(secondId, secondId, "switch", "second", "Second")
-			]);
-		UbisoftProfilesController controller = new(identityService.Object);
+    [Fact]
+    public async Task ProfilesLookup_AcceptsSdkProfileIdListSelector()
+    {
+        Guid firstId = Guid.NewGuid();
+        Guid secondId = Guid.NewGuid();
+        Mock<IPlayerIdentityService> identityService = new();
+        identityService.Setup(service => service.GetProfilesByIdsAsync(
+            It.IsAny<IEnumerable<Guid>>(),
+            "switch"))
+            .ReturnsAsync([
+                new LinkedProfileIdentity(firstId, firstId, "switch", "first", "First"),
+                new LinkedProfileIdentity(secondId, secondId, "switch", "second", "Second")
+            ]);
+        UbisoftProfilesController controller = new(identityService.Object);
 
-		OkObjectResult result = Assert.IsType<OkObjectResult>(await controller.GetProfiles(
-			null,
-			null,
-			null,
-			"switch",
-			$"{firstId},{secondId}"));
-		JsonElement response = JsonSerializer.SerializeToElement(result.Value);
+        OkObjectResult result = Assert.IsType<OkObjectResult>(await controller.GetProfiles(
+            null,
+            null,
+            null,
+            "switch",
+            $"{firstId},{secondId}"));
+        JsonElement response = JsonSerializer.SerializeToElement(result.Value);
 
-		Assert.Equal(2, response.GetProperty("profiles").GetArrayLength());
-		identityService.Verify(service => service.GetProfilesByIdsAsync(
-			It.Is<IEnumerable<Guid>>(ids => ids.Contains(firstId) && ids.Contains(secondId)),
-			"switch"), Times.Once);
-	}
+        Assert.Equal(2, response.GetProperty("profiles").GetArrayLength());
+        identityService.Verify(service => service.GetProfilesByIdsAsync(
+            It.Is<IEnumerable<Guid>>(ids => ids.Contains(firstId) && ids.Contains(secondId)),
+            "switch"), Times.Once);
+    }
 }

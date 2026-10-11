@@ -8,9 +8,9 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.progression.v1;
 [ApiController]
 [Route("progression/v1/profile")]
 public class ProfileEndpoint(
-	IUserDataService userDataService,
-	ISessionManager sessionManager,
-	IPlayerMetadataService metadataService) : ControllerBase
+    IUserDataService userDataService,
+    ISessionManager sessionManager,
+    IPlayerMetadataService metadataService) : ControllerBase
 {
     [HttpPatch]
     public async Task<IActionResult> UpdateProfileAsync(
@@ -34,11 +34,11 @@ public class ProfileEndpoint(
         bool updated = await userDataService.UpdateProfileAsync(profile);
         if (!updated)
             return BadRequest("Failed to update profile");
-		await metadataService.UpdateAsync(profile.Id, countryCode: profile.Dancercard.Country);
+        await metadataService.UpdateAsync(profile.Id, countryCode: profile.Dancercard.Country);
 
         return Ok(new
         {
-			profile.Dancercard
+            profile.Dancercard
         });
     }
 }

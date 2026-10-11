@@ -8,9 +8,9 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.editorial.v1;
 [Route("editorial/v1/tagdb")]
 public class TagDB(ITagService tagService) : ControllerBase
 {
-	[HttpGet]
-	public IActionResult GetTagdb()
-	{
-		return Ok(tagService.TagDatabase);
-	}
+    [HttpGet]
+    public IActionResult GetTagdb()
+    {
+        return Ok(tagService.TagDatabase);
+    }
 }

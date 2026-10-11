@@ -8,16 +8,16 @@ namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v1.profiles.oth
 [Route("v1/profiles/{guid:guid}/inventory/rulesexecution")]
 public class RulesExecution : ControllerBase
 {
-	[HttpPost]
-	public IActionResult PostRuleExecution([FromRoute] Guid guid, [FromBody] JsonElement body)
-	{
-		string response = """
+    [HttpPost]
+    public IActionResult PostRuleExecution([FromRoute] Guid guid, [FromBody] JsonElement body)
+    {
+        string response = """
 			{
 				"executedRules": [],
 				"remainingRulesCount": 0,
 				"failedExecution": null
 			}
 			""";
-		return Content(response, "application/json");
-	}
+        return Content(response, "application/json");
+    }
 }

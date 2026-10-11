@@ -11,17 +11,17 @@ namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v1.spaces._1da0
 public class Offers(IOptions<PathSettings> pathSettings,
     IFileSystem fileSystem) : ControllerBase
 {
-	[HttpGet]
-	public IActionResult GetOffers([FromRoute] Guid spaceId)
-	{
-		string offersJson = Path.Combine(pathSettings.Value.JsonsPath, "offers.json");
+    [HttpGet]
+    public IActionResult GetOffers([FromRoute] Guid spaceId)
+    {
+        string offersJson = Path.Combine(pathSettings.Value.JsonsPath, "offers.json");
 
-		return fileSystem.FileExists(offersJson)
-			? File(fileSystem.OpenRead(offersJson), "application/json")
-			: Ok("""
+        return fileSystem.FileExists(offersJson)
+            ? File(fileSystem.OpenRead(offersJson), "application/json")
+            : Ok("""
 			{
 				"offers": []
 			}
 			""");
-	}
+    }
 }

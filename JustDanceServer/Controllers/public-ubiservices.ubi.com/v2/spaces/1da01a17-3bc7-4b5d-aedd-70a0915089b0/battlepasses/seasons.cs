@@ -6,14 +6,14 @@ namespace JustDanceServer.Controllers.public_ubiservices.ubi.com.v2.spaces._1da0
 [Route("v2/spaces/{spaceId:jdnext}/battlepasses/seasons")]
 public class Seasons : ControllerBase
 {
-	[HttpGet]
-	public IActionResult GetSeasons([FromRoute] Guid spaceId)
-	{
-		string response = """
+    [HttpGet]
+    public IActionResult GetSeasons([FromRoute] Guid spaceId)
+    {
+        string response = """
 			{
 				"seasons": []
 			}
 			""";
-		return Content(response, "application/json");
-	}
+        return Content(response, "application/json");
+    }
 }

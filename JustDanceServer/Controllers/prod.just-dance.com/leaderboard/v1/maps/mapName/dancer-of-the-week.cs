@@ -14,14 +14,14 @@ public class DancerOfTheWeek(ILeaderboardService leaderboardService, IPlayerActi
     [HttpGet]
     public async Task<IActionResult> GetDancerOfTheWeek([FromRoute] string mapName)
     {
-		PlayerMapPlay? winner = await activity.GetWeeklyWinnerAsync(mapName);
-		LeaderboardPlayerScore? dancer = null;
-		if (winner is not null)
-		{
-			LeaderboardPage leaderboard = await leaderboardService.GetDetailedLeaderboardAsync(
-				mapName, 1, profileIds: [winner.ProfileId]);
-			dancer = leaderboard.Entries.Count == 0 ? null : leaderboard.Entries[0];
-		}
+        PlayerMapPlay? winner = await activity.GetWeeklyWinnerAsync(mapName);
+        LeaderboardPlayerScore? dancer = null;
+        if (winner is not null)
+        {
+            LeaderboardPage leaderboard = await leaderboardService.GetDetailedLeaderboardAsync(
+                mapName, 1, profileIds: [winner.ProfileId]);
+            dancer = leaderboard.Entries.Count == 0 ? null : leaderboard.Entries[0];
+        }
 
         return Ok(dancer is null
             ? new DancerOfTheWeekResponse()
@@ -51,7 +51,7 @@ public record DancerOfTheWeekResponse
     public string GameVersion { get; init; } = "jd2022";
     public int Rank { get; init; }
     public string Name { get; init; } = "Player";
-	public uint Avatar { get; init; }
+    public uint Avatar { get; init; }
     public int Country { get; init; }
     public string PlatformId { get; init; } = string.Empty;
     public uint Alias { get; init; }

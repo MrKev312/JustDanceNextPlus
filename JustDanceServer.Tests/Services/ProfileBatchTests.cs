@@ -15,28 +15,28 @@ namespace JustDanceServer.Tests.Services;
 
 public sealed class ProfileBatchTests
 {
-	[Theory]
-	[InlineData(null)]
-	[InlineData("")]
-	[InlineData("not-a-guid")]
-	public async Task LeaderboardQuery_InvalidOptionalIdsKeepDefaultProjections(string? id)
-	{
-		Profile profile = CreateProfile("Player");
-		Mock<IUserDataService> data = new();
-		data.Setup(service => service.GetProfilesByIdsAsync(It.IsAny<IReadOnlyCollection<Guid>>()))
-			.ReturnsAsync(new Dictionary<Guid, Profile> { [profile.Id] = profile });
-		Mock<IMapService> maps = new();
-		Query query = new();
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("not-a-guid")]
+    public async Task LeaderboardQuery_InvalidOptionalIdsKeepDefaultProjections(string? id)
+    {
+        Profile profile = CreateProfile("Player");
+        Mock<IUserDataService> data = new();
+        data.Setup(service => service.GetProfilesByIdsAsync(It.IsAny<IReadOnlyCollection<Guid>>()))
+            .ReturnsAsync(new Dictionary<Guid, Profile> { [profile.Id] = profile });
+        Mock<IMapService> maps = new();
+        Query query = new();
 
-		List<GraphQlLeaderboardProfile> result = await query.GetProfilesLeaderboardById(
-			[profile.Id.ToString()], id, id, data.Object, maps.Object);
+        List<GraphQlLeaderboardProfile> result = await query.GetProfilesLeaderboardById(
+            [profile.Id.ToString()], id, id, data.Object, maps.Object);
 
-		GraphQlLeaderboardProfile player = Assert.Single(result);
-		Assert.Equal(profile.Id, player.Id);
-		Assert.Equal("uplay", player.MapStat.Platform);
-		Assert.Equal("uplay", player.PlaylistStat.Platform);
-		maps.Verify(service => service.TryGetMapName(Guid.Empty, out It.Ref<string>.IsAny), Times.Once);
-	}
+        GraphQlLeaderboardProfile player = Assert.Single(result);
+        Assert.Equal(profile.Id, player.Id);
+        Assert.Equal("uplay", player.MapStat.Platform);
+        Assert.Equal("uplay", player.PlaylistStat.Platform);
+        maps.Verify(service => service.TryGetMapName(Guid.Empty, out It.Ref<string>.IsAny), Times.Once);
+    }
 
     [Fact]
     public async Task BatchReadsPreserveOrderDuplicatesMissingIdsAndProfileProjections()
@@ -62,29 +62,29 @@ public sealed class ProfileBatchTests
         List<string> ids = [order[0].ToString(), "invalid", Guid.NewGuid().ToString(), .. order.Skip(1).Select(id => id.ToString())];
         List<Profile> expected = [];
         foreach (Guid id in order)
-			expected.Add((await profiles.GetProfileByIdAsync(id))!);
+            expected.Add((await profiles.GetProfileByIdAsync(id))!);
         counter.Count = 0;
-		IReadOnlyDictionary<Guid, Profile> batch = await profiles.GetProfilesByIdsAsync([.. order]);
+        IReadOnlyDictionary<Guid, Profile> batch = await profiles.GetProfilesByIdsAsync([.. order]);
         Assert.Equal(4, counter.Count);
         Assert.Equal(555, batch[players[1].Id].CurrentXP);
         Assert.Equal(4, batch[players[1].Id].CurrentLevel);
         Assert.Equal(12000, batch[players[1].Id].PlaylistStats[playlist].HighScore);
 
         Query query = new();
-		List<GraphQlProfile> result = await query.GetProfilesById(ids, data);
+        List<GraphQlProfile> result = await query.GetProfilesById(ids, data);
         Assert.Equal(JsonSerializer.Serialize(expected.Select(GraphQlProfile.FromProfile)), JsonSerializer.Serialize(result));
         Guid mapId = Guid.NewGuid();
         string mapName = "Song";
         Mock<IMapService> maps = new();
         maps.Setup(value => value.TryGetMapName(mapId, out mapName)).Returns(true);
         counter.Count = 0;
-		List<GraphQlLeaderboardProfile> leaderboard = await query.GetProfilesLeaderboardById(ids, mapId.ToString(), playlist.ToString(), data, maps.Object);
+        List<GraphQlLeaderboardProfile> leaderboard = await query.GetProfilesLeaderboardById(ids, mapId.ToString(), playlist.ToString(), data, maps.Object);
         Assert.Equal(4, counter.Count);
         Assert.Equal(JsonSerializer.Serialize(expected.Select(profile => GraphQlLeaderboardProfile.FromProfile(profile, mapName, playlist))),
             JsonSerializer.Serialize(leaderboard));
-	}
+    }
 
-	private static Profile CreateProfile(string name)
+    private static Profile CreateProfile(string name)
     {
         Guid id = Guid.NewGuid();
         return new() { Id = id, Ticket = id.ToString(), Dancercard = new() { Id = id, Name = name } };

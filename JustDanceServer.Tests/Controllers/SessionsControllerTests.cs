@@ -83,31 +83,31 @@ public class SessionsControllerTests
         Assert.Equal("Invalid 'Authorization' header in request", badRequest.Value);
     }
 
-	[Fact]
-	public void DeleteSessionRemovesTheAuthenticatedSession()
-	{
-		Guid sessionId = Guid.NewGuid();
-		Session? session = new()
-		{
-			SessionId = sessionId,
-			PlayerId = Guid.NewGuid(),
-			UbiAppId = JdNextConstants.PcApplicationId
-		};
-		Mock<ISessionManager> sessionManager = new();
-		sessionManager.Setup(value => value.TryGetSessionById(sessionId, out session)).Returns(true);
-		sessionManager.Setup(value => value.TouchSession(sessionId)).Returns(true);
-		sessionManager.Setup(value => value.RemoveSession(sessionId)).Returns(true);
-		SessionsController controller = CreateController(
-			Mock.Of<IPlayerIdentityService>(),
-			Mock.Of<ITimingService>(),
-			sessionManager.Object,
-			JdNextConstants.PcApplicationId,
-			string.Empty);
-		controller.Request.Headers["ubi-sessionid"] = sessionId.ToString();
+    [Fact]
+    public void DeleteSessionRemovesTheAuthenticatedSession()
+    {
+        Guid sessionId = Guid.NewGuid();
+        Session? session = new()
+        {
+            SessionId = sessionId,
+            PlayerId = Guid.NewGuid(),
+            UbiAppId = JdNextConstants.PcApplicationId
+        };
+        Mock<ISessionManager> sessionManager = new();
+        sessionManager.Setup(value => value.TryGetSessionById(sessionId, out session)).Returns(true);
+        sessionManager.Setup(value => value.TouchSession(sessionId)).Returns(true);
+        sessionManager.Setup(value => value.RemoveSession(sessionId)).Returns(true);
+        SessionsController controller = CreateController(
+            Mock.Of<IPlayerIdentityService>(),
+            Mock.Of<ITimingService>(),
+            sessionManager.Object,
+            JdNextConstants.PcApplicationId,
+            string.Empty);
+        controller.Request.Headers["ubi-sessionid"] = sessionId.ToString();
 
-		Assert.IsType<OkResult>(controller.DeleteSession());
-		sessionManager.Verify(value => value.RemoveSession(sessionId), Times.Once);
-	}
+        Assert.IsType<OkResult>(controller.DeleteSession());
+        sessionManager.Verify(value => value.RemoveSession(sessionId), Times.Once);
+    }
 
     [Fact]
     public async Task PostSessions_ReturnsJdu2022SwitchIdentity()
@@ -224,11 +224,10 @@ public class SessionsControllerTests
     [Fact]
     public void SessionsController_ServesV2AndV3Routes()
     {
-        string?[] routes = typeof(SessionsController)
+        string?[] routes = [.. typeof(SessionsController)
             .GetCustomAttributes(typeof(RouteAttribute), inherit: false)
             .Cast<RouteAttribute>()
-            .Select(attribute => attribute.Template)
-            .ToArray();
+            .Select(attribute => attribute.Template)];
 
         Assert.Contains("v2/profiles/sessions", routes);
         Assert.Contains("v3/profiles/sessions", routes);
@@ -312,15 +311,15 @@ public class SessionsControllerTests
         httpContext.Request.Headers["Ubi-AppId"] = appId.ToString();
         httpContext.Request.Headers.Authorization = authorization;
 
-		return new SessionsController(
-			identityService,
-			new SessionLoginIdentityParser(new PlatformTicketVerifierRegistry(
-				[new DevelopmentPlatformTicketVerifier(Options.Create(
-					new PlatformAuthenticationSettings
-					{
-						AllowUnverifiedPlatformTickets = true
-					}))]),
-				Mock.Of<IBasicCredentialVerifier>(verifier => verifier.Verify("test@gmail.com", "test") == true)),
+        return new SessionsController(
+            identityService,
+            new SessionLoginIdentityParser(new PlatformTicketVerifierRegistry(
+                [new DevelopmentPlatformTicketVerifier(Options.Create(
+                    new PlatformAuthenticationSettings
+                    {
+                        AllowUnverifiedPlatformTickets = true
+                    }))]),
+                Mock.Of<IBasicCredentialVerifier>(verifier => verifier.Verify("test@gmail.com", "test") == true)),
             timingService,
             sessionManager)
         {

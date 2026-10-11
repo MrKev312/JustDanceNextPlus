@@ -7,18 +7,18 @@ namespace JustDanceServer.JustDanceClasses.Database.Profile;
 /// </summary>
 public sealed class ClassicProfile
 {
-	public Guid ProfileId { get; set; }
-	public string Name { get; set; } = "Player";
-	public string Nickname { get; set; } = "Player 1";
-	public uint AvatarId { get; set; }
-	public int CountryId { get; set; }
-	public uint SkinId { get; set; }
-	public uint AliasId { get; set; }
-	public int AliasGender { get; set; }
-	public uint PortraitBorderId { get; set; }
-	public int JdPoints { get; set; }
-	public string PlatformId { get; set; } = string.Empty;
-	public string Platform { get; set; } = string.Empty;
-	public string PayloadJson { get; set; } = "{}";
-	public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+    public Guid ProfileId { get; set; }
+    public string Name { get; set; } = "Player";
+    public string Nickname { get; set; } = "Player 1";
+    public uint AvatarId { get; set; }
+    public int CountryId { get; set; }
+    public uint SkinId { get; set; }
+    public uint AliasId { get; set; }
+    public int AliasGender { get; set; }
+    public uint PortraitBorderId { get; set; }
+    public int JdPoints { get; set; }
+    public string PlatformId { get; set; } = string.Empty;
+    public string Platform { get; set; } = string.Empty;
+    public string PayloadJson { get; set; } = "{}";
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 }

@@ -13,15 +13,15 @@ public class Items(IJduCatalogService catalogService) : ControllerBase
     [HttpGet]
     public IActionResult GetItems([FromHeader(Name = "X-SkuId")] string? skuId)
     {
-		if (catalogService.TryCreateCatalog(JduCatalogFamilies.Items, skuId, out JsonObject catalog))
-			return Ok(catalog);
+        if (catalogService.TryCreateCatalog(JduCatalogFamilies.Items, skuId, out JsonObject catalog))
+            return Ok(catalog);
 
-		return Ok(new JsonObject
-		{
-			["__class"] = "OnlineCustomizableItemDb",
-			["avatars"] = new JsonObject(),
-			["skins"] = new JsonObject(),
-			["portraitBorders"] = new JsonObject()
-		});
+        return Ok(new JsonObject
+        {
+            ["__class"] = "OnlineCustomizableItemDb",
+            ["avatars"] = new JsonObject(),
+            ["skins"] = new JsonObject(),
+            ["portraitBorders"] = new JsonObject()
+        });
     }
 }

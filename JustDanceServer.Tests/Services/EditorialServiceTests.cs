@@ -12,17 +12,17 @@ namespace JustDanceServer.Tests.Services;
 
 public sealed class EditorialServiceTests
 {
-	[Fact]
-	public async Task LoadsMultipleMessagesAndFiltersByProductYearPlatformAndTime()
-	{
-		const string path = "editorial";
-		const string file = "editorial/messages.json";
-		Mock<IFileSystem> fileSystem = new();
-		fileSystem.Setup(value => value.DirectoryExists(path)).Returns(true);
-		fileSystem.Setup(value => value.GetFiles(path, "*.json", SearchOption.TopDirectoryOnly))
-			.Returns([file]);
-		fileSystem.Setup(value => value.OpenRead(file)).Returns(() => new MemoryStream(Encoding.UTF8.GetBytes(
-			"""
+    [Fact]
+    public async Task LoadsMultipleMessagesAndFiltersByProductYearPlatformAndTime()
+    {
+        const string path = "editorial";
+        const string file = "editorial/messages.json";
+        Mock<IFileSystem> fileSystem = new();
+        fileSystem.Setup(value => value.DirectoryExists(path)).Returns(true);
+        fileSystem.Setup(value => value.GetFiles(path, "*.json", SearchOption.TopDirectoryOnly))
+            .Returns([file]);
+        fileSystem.Setup(value => value.OpenRead(file)).Returns(() => new MemoryStream(Encoding.UTF8.GetBytes(
+            """
 			[
 			  {
 			    "id": "11111111-1111-1111-1111-111111111111",
@@ -56,33 +56,33 @@ public sealed class EditorialServiceTests
 			  }
 			]
 			""")));
-		TestTimeProvider clock = new(new DateTimeOffset(2026, 8, 15, 12, 0, 0, TimeSpan.Zero));
-		EditorialService service = new(
-			Options.Create(new PathSettings { EditorialPath = path }),
-			new JsonSettingsService(Mock.Of<IServiceProvider>()),
-			fileSystem.Object,
-			clock,
-			NullLogger<EditorialService>.Instance,
-			Mock.Of<ILocalizedStringService>());
+        TestTimeProvider clock = new(new DateTimeOffset(2026, 8, 15, 12, 0, 0, TimeSpan.Zero));
+        EditorialService service = new(
+            Options.Create(new PathSettings { EditorialPath = path }),
+            new JsonSettingsService(Mock.Of<IServiceProvider>()),
+            fileSystem.Object,
+            clock,
+            NullLogger<EditorialService>.Instance,
+            Mock.Of<ILocalizedStringService>());
 
-		await service.LoadData();
+        await service.LoadData();
 
-		Assert.Equal(
-			["All JDU", "2018 Switch"],
-			service.GetEntries(new EditorialAudience(EditorialProduct.JDUnlimited, 2018, "switch"))
-				.Select(value => value.Title));
-		Assert.Equal(
-			["All JDU"],
-			service.GetEntries(new EditorialAudience(EditorialProduct.JDUnlimited, 2017, "wiiu"))
-				.Select(value => value.Title));
-		Assert.Equal(
-			["JD+"],
-			service.GetEntries(new EditorialAudience(EditorialProduct.JDPlus, Platform: "switch"))
-				.Select(value => value.Title));
-	}
+        Assert.Equal(
+            ["All JDU", "2018 Switch"],
+            service.GetEntries(new EditorialAudience(EditorialProduct.JDUnlimited, 2018, "switch"))
+                .Select(value => value.Title));
+        Assert.Equal(
+            ["All JDU"],
+            service.GetEntries(new EditorialAudience(EditorialProduct.JDUnlimited, 2017, "wiiu"))
+                .Select(value => value.Title));
+        Assert.Equal(
+            ["JD+"],
+            service.GetEntries(new EditorialAudience(EditorialProduct.JDPlus, Platform: "switch"))
+                .Select(value => value.Title));
+    }
 
-	private sealed class TestTimeProvider(DateTimeOffset utcNow) : TimeProvider
-	{
-		public override DateTimeOffset GetUtcNow() => utcNow;
-	}
+    private sealed class TestTimeProvider(DateTimeOffset utcNow) : TimeProvider
+    {
+        public override DateTimeOffset GetUtcNow() => utcNow;
+    }
 }

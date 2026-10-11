@@ -13,12 +13,12 @@ public class Root(IJduCatalogService catalogService) : ControllerBase
     [HttpGet]
     public IActionResult GetSessionQuest([FromHeader(Name = "X-SkuId")] string? skuId)
     {
-		return catalogService.TryCreateCatalog(JduCatalogFamilies.SessionQuests, skuId, out JsonObject catalog)
-			? Ok(catalog)
-			: Ok(new JsonObject
-			{
-				["__class"] = "SessionQuestService::QuestData",
-				["newReleases"] = new JsonArray()
-			});
+        return catalogService.TryCreateCatalog(JduCatalogFamilies.SessionQuests, skuId, out JsonObject catalog)
+            ? Ok(catalog)
+            : Ok(new JsonObject
+            {
+                ["__class"] = "SessionQuestService::QuestData",
+                ["newReleases"] = new JsonArray()
+            });
     }
 }

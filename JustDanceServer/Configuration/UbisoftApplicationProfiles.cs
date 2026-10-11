@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 
 namespace JustDanceServer.Configuration;
+
 public sealed record UbisoftSessionIdentity(
     Guid SpaceId,
     string PlatformType,

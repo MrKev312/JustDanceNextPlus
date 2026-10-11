@@ -11,40 +11,40 @@ namespace JustDanceServer.Controllers.prod_next.just_dance.com.progression.v1;
 public class Levels(IOptions<PathSettings> pathSettings,
     IFileSystem fileSystem) : ControllerBase
 {
-	[HttpGet(Name = "GetLevels")]
-	public IActionResult GetLevels()
-	{
-		string levelsJson = Path.Combine(pathSettings.Value.JsonsPath, "levels.json");
-		if (fileSystem.FileExists(levelsJson))
-			return File(fileSystem.OpenRead(levelsJson), "application/json");
+    [HttpGet(Name = "GetLevels")]
+    public IActionResult GetLevels()
+    {
+        string levelsJson = Path.Combine(pathSettings.Value.JsonsPath, "levels.json");
+        if (fileSystem.FileExists(levelsJson))
+            return File(fileSystem.OpenRead(levelsJson), "application/json");
 
-		LevelsConfig levelsConfig = new();
+        LevelsConfig levelsConfig = new();
 
-		for (int i = 0; i < 150; i++)
-		{
-			int levelIndex = (i % levelsConfig.LevelsPerPrestige) + 1;
+        for (int i = 0; i < 150; i++)
+        {
+            int levelIndex = (i % levelsConfig.LevelsPerPrestige) + 1;
 
-			PerLevelConfig perLevelConfig = new()
-			{
-				Xp = 100 * (levelIndex - 1) * (levelIndex + 10)
-			};
+            PerLevelConfig perLevelConfig = new()
+            {
+                Xp = 100 * (levelIndex - 1) * (levelIndex + 10)
+            };
 
-			levelsConfig.PerLevelConfig.Add(i + 1, perLevelConfig);
-		}
+            levelsConfig.PerLevelConfig.Add(i + 1, perLevelConfig);
+        }
 
-		return Ok(levelsConfig);
-	}
+        return Ok(levelsConfig);
+    }
 }
 
 public class LevelsConfig
 {
-	public SortedDictionary<int, PerLevelConfig> PerLevelConfig { get; set; } = [];
-	public int LevelsPerPrestige { get; set; } = 50;
-	public int HiddenLevelXP { get; set; } = 305000;
+    public SortedDictionary<int, PerLevelConfig> PerLevelConfig { get; set; } = [];
+    public int LevelsPerPrestige { get; set; } = 50;
+    public int HiddenLevelXP { get; set; } = 305000;
 }
 
 public class PerLevelConfig
 {
-	public int Xp { get; set; } = 0;
-	public List<Guid> Reward { get; set; } = [];
+    public int Xp { get; set; } = 0;
+    public List<Guid> Reward { get; set; } = [];
 }

@@ -11,8 +11,8 @@ public class NextHappyHours(IWdfService wdfService) : ControllerBase
     [HttpGet]
     public IActionResult GetNextHappyHours([FromRoute] string room)
     {
-		if (!WdfRequestResolver.TryResolveRoom(Request, room, wdfService, out _))
-			return BadRequest();
+        if (!WdfRequestResolver.TryResolveRoom(Request, room, wdfService, out _))
+            return BadRequest();
 
         return Ok(wdfService.GetHappyHours());
     }

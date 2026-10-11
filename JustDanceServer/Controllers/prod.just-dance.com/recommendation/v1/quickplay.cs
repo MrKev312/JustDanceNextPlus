@@ -12,8 +12,8 @@ public class Quickplay(IJduRecommendationService recommendationService, ISession
     public async Task<IActionResult> GetQuickplay()
     {
         return Ok(new RecommendedSongsResponse
-		{
-			OrderedMaps = await recommendationService.GetOrderedMapsAsync(PlayerRequestContextResolver.FromRequest(Request, sessions).ProfileId)
-		});
+        {
+            OrderedMaps = await recommendationService.GetOrderedMapsAsync(PlayerRequestContextResolver.FromRequest(Request, sessions).ProfileId)
+        });
     }
 }

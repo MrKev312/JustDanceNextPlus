@@ -39,14 +39,14 @@ public class PlaylistServiceTests
         // Initialize the mock to handle the GetLocalizedTag(0) call
         _mockLocalizedStringService.Setup(ls => ls.GetLocalizedTag(0)).Returns(new LocalizedString(0, ""));
 
-		// Create concrete instances of the converters with mocked dependencies
-		GuidTagConverter guidTagConverter = new(_mockTagService.Object, _mockLocalizedStringService.Object);
-		MapTagConverter mapTagConverter = new(_mockMapService.Object, Mock.Of<ILogger<MapTagConverter>>());
-		TagIdConverter tagIdConverter = new(_mockLocalizedStringService.Object);
-		MapTagListConverter mapTagListConverter = new(_mockMapService.Object, Mock.Of<ILogger<MapTagListConverter>>());
+        // Create concrete instances of the converters with mocked dependencies
+        GuidTagConverter guidTagConverter = new(_mockTagService.Object, _mockLocalizedStringService.Object);
+        MapTagConverter mapTagConverter = new(_mockMapService.Object, Mock.Of<ILogger<MapTagConverter>>());
+        TagIdConverter tagIdConverter = new(_mockLocalizedStringService.Object);
+        MapTagListConverter mapTagListConverter = new(_mockMapService.Object, Mock.Of<ILogger<MapTagListConverter>>());
 
-		// Mock the IServiceProvider to return the concrete converter instances
-		Mock<IServiceProvider> mockServiceProvider = new();
+        // Mock the IServiceProvider to return the concrete converter instances
+        Mock<IServiceProvider> mockServiceProvider = new();
         mockServiceProvider.Setup(sp => sp.GetService(typeof(GuidTagConverter))).Returns(guidTagConverter);
         mockServiceProvider.Setup(sp => sp.GetService(typeof(MapTagConverter))).Returns(mapTagConverter);
         mockServiceProvider.Setup(sp => sp.GetService(typeof(TagIdConverter))).Returns(tagIdConverter);
@@ -68,18 +68,18 @@ public class PlaylistServiceTests
     [Fact]
     public async Task LoadData_AppliesQueryAndOrderByCorrectly()
     {
-		// Arrange
-		Guid map1Id = Guid.NewGuid();
-		Guid map2Id = Guid.NewGuid();
-		Guid map3Id = Guid.NewGuid();
-		OrderedDictionary<Guid, JustDanceSongDBEntry> songDb = new()
-		{
+        // Arrange
+        Guid map1Id = Guid.NewGuid();
+        Guid map2Id = Guid.NewGuid();
+        Guid map3Id = Guid.NewGuid();
+        OrderedDictionary<Guid, JustDanceSongDBEntry> songDb = new()
+        {
             [map1Id] = new() { MapName = "Map1", DanceVersionLocId = new LocalizedString(0, ""), OriginalJDVersion = 2022 },
             [map2Id] = new() { MapName = "Map2", DanceVersionLocId = new LocalizedString(0, ""), OriginalJDVersion = 2024 },
             [map3Id] = new() { MapName = "Map3", DanceVersionLocId = new LocalizedString(0, ""), OriginalJDVersion = 2023 }
         };
-		Dictionary<string, Guid> mapToGuid = new()
-		{
+        Dictionary<string, Guid> mapToGuid = new()
+        {
             ["Map1"] = map1Id,
             ["Map2"] = map2Id,
             ["Map3"] = map3Id
@@ -87,7 +87,7 @@ public class PlaylistServiceTests
         _mockMapService.Setup(m => m.Maps).Returns(songDb.ToServerMaps());
         _mockMapService.Setup(m => m.MapToGuid).Returns(mapToGuid);
 
-		Guid playlistGuid = Guid.NewGuid();
+        Guid playlistGuid = Guid.NewGuid();
         string playlistJson = $$"""
         {
           "localizedTitle": 0,
@@ -107,24 +107,24 @@ public class PlaylistServiceTests
 
         // Assert
         Assert.True(_service.PlaylistDB.Playlists.ContainsKey(playlistGuid));
-		JustDancePlaylist playlist = _service.PlaylistDB.Playlists[playlistGuid];
+        JustDancePlaylist playlist = _service.PlaylistDB.Playlists[playlistGuid];
         Assert.Equal(2, playlist.ItemList.Length);
         Assert.Equal(map2Id, playlist.ItemList[0].Id); // 2024
         Assert.Equal(map3Id, playlist.ItemList[1].Id); // 2023
-		ServerPlaylist sharedPlaylist = _service.Playlists[playlistGuid];
-		Assert.Equal(playlistGuid, sharedPlaylist.Id);
-		Assert.Equal(["Map2", "Map3"], sharedPlaylist.MapNames);
+        ServerPlaylist sharedPlaylist = _service.Playlists[playlistGuid];
+        Assert.Equal(playlistGuid, sharedPlaylist.Id);
+        Assert.Equal(["Map2", "Map3"], sharedPlaylist.MapNames);
     }
 
     [Fact]
     public async Task LoadData_SkipsPlaylistWithNotEnoughMaps()
     {
-		// Arrange
-		Guid map1Id = Guid.NewGuid();
-		OrderedDictionary<Guid, JustDanceSongDBEntry> songDb = new() { [map1Id] = new() { MapName = "Map1", DanceVersionLocId = new LocalizedString(0, "") } };
+        // Arrange
+        Guid map1Id = Guid.NewGuid();
+        OrderedDictionary<Guid, JustDanceSongDBEntry> songDb = new() { [map1Id] = new() { MapName = "Map1", DanceVersionLocId = new LocalizedString(0, "") } };
         _mockMapService.Setup(m => m.Maps).Returns(songDb.ToServerMaps());
 
-		Guid playlistGuid = Guid.NewGuid();
+        Guid playlistGuid = Guid.NewGuid();
         string playlistJson = $$"""
         {
           "localizedTitle": 0,
@@ -149,23 +149,23 @@ public class PlaylistServiceTests
         );
     }
 
-	[Theory]
-	[InlineData("NX")]
-	[InlineData("PC")]
-	[InlineData("PS5")]
-	[InlineData("XboxScarlett")]
-	public async Task GetPlaylistDb_UsesAnExplicitSharedAssetBundleName(string platform)
-	{
-		Guid map1Id = Guid.NewGuid();
-		Guid map2Id = Guid.NewGuid();
-		_mockMapService.Setup(m => m.Maps).Returns(new OrderedDictionary<Guid, JustDanceSongDBEntry>
-		{
-			[map1Id] = new() { MapName = "Map1", DanceVersionLocId = new LocalizedString(0, "") },
-			[map2Id] = new() { MapName = "Map2", DanceVersionLocId = new LocalizedString(0, "") }
-		}.ToServerMaps());
+    [Theory]
+    [InlineData("NX")]
+    [InlineData("PC")]
+    [InlineData("PS5")]
+    [InlineData("XboxScarlett")]
+    public async Task GetPlaylistDb_UsesAnExplicitSharedAssetBundleName(string platform)
+    {
+        Guid map1Id = Guid.NewGuid();
+        Guid map2Id = Guid.NewGuid();
+        _mockMapService.Setup(m => m.Maps).Returns(new OrderedDictionary<Guid, JustDanceSongDBEntry>
+        {
+            [map1Id] = new() { MapName = "Map1", DanceVersionLocId = new LocalizedString(0, "") },
+            [map2Id] = new() { MapName = "Map2", DanceVersionLocId = new LocalizedString(0, "") }
+        }.ToServerMaps());
 
-		Guid playlistGuid = Guid.NewGuid();
-		string playlistJson = $$"""
+        Guid playlistGuid = Guid.NewGuid();
+        string playlistJson = $$"""
 		{
 		  "localizedTitle": 0,
 		  "localizedDescription": 0,
@@ -175,20 +175,20 @@ public class PlaylistServiceTests
 		  "itemList": ["{{map1Id}}", "{{map2Id}}"]
 		}
 		""";
-		_mockFileSystem.Setup(fs => fs.DirectoryExists(It.IsAny<string>())).Returns(true);
-		_mockFileSystem.Setup(fs => fs.GetFiles(It.IsAny<string>(), "*.json", SearchOption.TopDirectoryOnly))
-			.Returns(["playlist.json"]);
-		_mockFileSystem.Setup(fs => fs.OpenRead("playlist.json"))
-			.Returns(new MemoryStream(Encoding.UTF8.GetBytes(playlistJson)));
+        _mockFileSystem.Setup(fs => fs.DirectoryExists(It.IsAny<string>())).Returns(true);
+        _mockFileSystem.Setup(fs => fs.GetFiles(It.IsAny<string>(), "*.json", SearchOption.TopDirectoryOnly))
+            .Returns(["playlist.json"]);
+        _mockFileSystem.Setup(fs => fs.OpenRead("playlist.json"))
+            .Returns(new MemoryStream(Encoding.UTF8.GetBytes(playlistJson)));
 
-		await _service.LoadData();
-		JustDancePlaylist playlist = _service.GetPlaylistDB(platform).Playlists[playlistGuid];
+        await _service.LoadData();
+        JustDancePlaylist playlist = _service.GetPlaylistDB(platform).Playlists[playlistGuid];
 
-		Assert.Equal(
-			$"https://test.cdn.com/JDNext/{platform}/recoforyou.bundle",
-			playlist.Assets.En.Cover);
-		Assert.Equal(
-			$"https://test.cdn.com/JDNext/{platform}/recoforyou_details.bundle",
-			playlist.Assets.En.CoverDetails);
-	}
+        Assert.Equal(
+            $"https://test.cdn.com/JDNext/{platform}/recoforyou.bundle",
+            playlist.Assets.En.Cover);
+        Assert.Equal(
+            $"https://test.cdn.com/JDNext/{platform}/recoforyou_details.bundle",
+            playlist.Assets.En.CoverDetails);
+    }
 }
