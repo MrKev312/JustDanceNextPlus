@@ -1,3 +1,5 @@
+using JustDanceServer.Utilities;
+
 using System.Text.Json.Serialization;
 
 namespace JustDanceServer.JustDanceClasses.Endpoints;
@@ -65,10 +67,13 @@ public record JduHomeTile
     [JsonPropertyName("__class")]
     public string Class { get; init; } = "HomeService::HomeTile";
     public int Type { get; init; }
+    [JsonConverter(typeof(JsonInt64Converter))]
     public long CreationTime { get; init; }
     public bool Locked { get; init; }
     public bool New { get; init; }
+    [JsonConverter(typeof(JsonInt64Converter))]
     public long LockDuration { get; init; }
+    [JsonConverter(typeof(JsonInt64Converter))]
     public long ContentExpiry { get; init; }
     public Guid Uuid { get; init; }
 
