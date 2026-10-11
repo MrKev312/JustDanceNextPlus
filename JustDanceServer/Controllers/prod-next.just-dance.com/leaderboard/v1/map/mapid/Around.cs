@@ -1,0 +1,34 @@
+﻿using JustDanceServer.JustDanceClasses.Endpoints;
+using JustDanceServer.Services;
+
+using Microsoft.AspNetCore.Mvc;
+
+namespace JustDanceServer.Controllers.prod_next.just_dance.com.leaderboard.v1.map.mapid;
+
+[ApiController]
+[Route("leaderboard/v1/map/{mapId:guid}/around")]
+public class Around(IUserDataService userDataService, ISessionManager sessionManager) : ControllerBase
+{
+	[HttpGet]
+	public async Task<IActionResult> Get([FromRoute] Guid mapId, [FromQuery] int limit = 3)
+	{
+		// Get the session id
+		string? sessionIdString = Request.Headers["ubi-sessionid"];
+
+		if (sessionIdString == null)
+			return Unauthorized();
+
+		Guid sessionId = Guid.Parse(sessionIdString);
+
+		Session? session = sessionManager.GetSessionById(sessionId);
+
+		if (session == null)
+			return Unauthorized();
+
+		// Get the leaderboard for the mapId
+		Leaderboard leaderboard = await userDataService.GetLeaderboardAroundAsync(mapId, session.PlayerId, limit);
+
+		// Return the leaderboard
+		return Ok(leaderboard);
+	}
+}

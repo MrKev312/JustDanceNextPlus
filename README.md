@@ -1,6 +1,6 @@
-# JustDanceNextPlus
+# JustDanceServer
 
-Just Dance Next Plus is a custom Just Dance server that allows you to play both official and custom Just Dance maps.
+JustDanceServer is a custom Just Dance server that allows you to play both official and custom Just Dance maps.
 
 Currently, the server is still undergoing development and is **not yet ready for public use**.
 However, I have made the source code available for anyone who is interested in contributing to the project.
