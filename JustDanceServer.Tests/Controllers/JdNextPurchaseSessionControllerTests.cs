@@ -42,7 +42,7 @@ public sealed class JdNextPurchaseSessionControllerTests
         Mock<ITimingService> timingService = new();
         timingService.Setup(service => service.ServerTime()).Returns("2026-08-13T12:00:00Z");
         Mock<IBundleService> bundleService = new();
-        bundleService.Setup(service => service.GetAllClaims()).Returns([]);
+        bundleService.Setup(service => service.GetAllClaims()).Returns(["Music_Pack_WonderTales"]);
         Mock<IPlatformTicketVerifierRegistry> platformTicketVerifiers = new();
         platformTicketVerifiers
             .Setup(verifiers => verifiers.VerifyAsync(
@@ -85,6 +85,10 @@ public sealed class JdNextPurchaseSessionControllerTests
         Assert.Equal(sessionId.ToString(), response.SessionId);
         Assert.Equal(playerId.ToString(), response.ProfileId);
         Assert.Equal(bootId.ToString(), response.BootId);
+        Assert.Contains(response.SubscriptionInfo.Claims, claim => claim.Id == "Music_Pack_WonderTales");
+        Assert.Contains(response.SubscriptionInfo.Dlcs.Owned,
+            dlc => dlc.Claims.Any(claim => claim.Id == "Music_Pack_WonderTales"));
+
         sessionManager.Verify(manager => manager.GetSessionByIdentityKey(identityKey), Times.Once);
         sessionManager.Verify(manager => manager.GetSessionByAppId(It.IsAny<Guid>()), Times.Never);
     }

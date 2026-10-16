@@ -30,7 +30,7 @@ public static class JduVideoPreviewFactory
         {
             string sourceUrl = videos.Qualities[index].Url;
             string logicalUrl =
-                $"jmcs://jd-contents/{song.MapName}/{song.MapName}_MapPreviewNoSoundCrop_{MapVideoSet.QualityNames[index]}.{codecName}.webm";
+                $"jmcs://jd-contents/{song.MapName}/{song.MapName}_MapPreviewNoSoundCrop_{VideoQualityLayout.Standard[index]}.{codecName}.webm";
 
             logicalUrls[index] = logicalUrl;
             urls[logicalUrl] = JduContentUrlResolver.RebaseToCdn(sourceUrl, urlSettings);

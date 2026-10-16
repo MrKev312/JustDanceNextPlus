@@ -51,6 +51,9 @@ public record AssetsAuthorization
     public string VideoUltraHdWebm { get; init; } = "";
     [JsonPropertyName("video_ULTRA.vp9.webm")]
     public string VideoUltraVP9Webm { get; init; } = "";
+    [JsonPropertyName("video_ULTRA.hd.vp9.webm")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? VideoUltraHdVP9Webm { get; init; }
     public string MapPackage { get; init; } = "";
 }
 

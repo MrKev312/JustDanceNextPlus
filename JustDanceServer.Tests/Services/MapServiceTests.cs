@@ -9,6 +9,9 @@ using Microsoft.Extensions.Options;
 
 using Moq;
 
+using System.Text.Json;
+using System.Xml.Linq;
+
 namespace JustDanceServer.Tests.Services;
 
 public class MapServiceTests
@@ -52,6 +55,93 @@ public class MapServiceTests
             _mockLogger.Object,
             _mockFileSystem.Object
         );
+    }
+
+    [Fact]
+    public void GetContentAuthorization_UnknownMapReturnsNull()
+    {
+        Assert.Null(_service.GetContentAuthorization(ClientPlatform.NintendoSwitch, "Missing", 4));
+    }
+
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(3)]
+    [InlineData(4)]
+    [InlineData(5)]
+    [InlineData(8)]
+    public void GetContentAuthorization_ProjectsRequestedQualitiesWithoutMutatingMap(int fileCount)
+    {
+        Guid id = Guid.NewGuid();
+        MapVideoQuality[] files = [.. Enumerable.Range(1, fileCount).Select(index =>
+            new MapVideoQuality(
+                new WebmData
+                {
+                    Bitrate = index * 1000,
+                    Duration = 30,
+                    Start = index * 100,
+                    End = index * 100 + 50
+                },
+                $"https://cdn.test/{index}.webm"))];
+
+        MapVideoSet vp9 = new(MapVideoCodec.Vp9, files);
+        ServerMap map = ServerMapTestData.CreateMap(id, "maps/Test",
+            new() { MapName = "Test", DanceVersionLocId = new LocalizedString(0, "") },
+            jdPlus: ServerMapTestData.CreateMedia(MapMediaLayouts.JDPlus,
+                new Dictionary<string, IReadOnlyDictionary<string, string>>
+                {
+                    [ClientPlatform.NintendoSwitch] = new Dictionary<string, string> { ["MapPackage"] = "switch-package" },
+                    [ClientPlatform.PC] = new Dictionary<string, string> { ["MapPackage"] = "pc-package" }
+                }),
+            fullVideos: new Dictionary<string, MapVideoSet>
+            {
+                ["vp8"] = ServerMapTestData.CreateVideoSet("vp8", "https://cdn.test/vp8"),
+                ["vp9"] = vp9
+            });
+
+        _service.Maps[id] = map;
+        _service.MapToGuid["Test"] = id;
+
+        // A request for Test must not inspect other maps.
+        _service.Maps[Guid.NewGuid()] = null!;
+
+        ContentAuthorization modern = _service.GetContentAuthorization(ClientPlatform.NintendoSwitch, "Test", 5)!;
+        MapVideoSet selected = modern.AssetsMetadata.VideoSet!;
+        IReadOnlyList<string> assetNames = VideoQualityLayout.FullVideoAssetNames(selected.Codec, selected.Qualities.Count);
+        JsonElement assets = JsonSerializer.SerializeToElement(modern.Assets);
+        XNamespace ns = "urn:mpeg:DASH:schema:MPD:2011";
+        var entries = XDocument.Parse(modern.AssetsMetadata.VideoMpd)
+            .Descendants(ns + "Representation").ToArray();
+
+        Assert.Equal(5, selected.Qualities.Count);
+        Assert.Equal(5, entries.Length);
+
+        for (int index = 0; index < 5; index++)
+        {
+            MapVideoQuality expected = index == selected.Qualities.Count - 1
+                ? files[^1]
+                : files[Math.Min(index, fileCount - 1)];
+
+            Assert.Same(expected, selected.Qualities[index]);
+            Assert.Equal(expected.Url, assets.GetProperty(assetNames[index]).GetString());
+            Assert.Equal(assetNames[index], entries[index].Element(ns + "BaseURL")!.Value);
+            Assert.Equal($"{expected.Data.Start}-{expected.Data.End}",
+                entries[index].Element(ns + "SegmentBase")!.Attribute("indexRange")!.Value);
+        }
+
+        ContentAuthorization legacy = _service.GetContentAuthorization(ClientPlatform.NintendoSwitch, "Test", 4)!;
+
+        Assert.Equal(4, legacy.AssetsMetadata.VideoSet!.Qualities.Count);
+        Assert.Null(legacy.Assets.VideoUltraHdVP9Webm);
+        Assert.Equal(files[^1].Url, legacy.Assets.VideoUltraVP9Webm);
+        Assert.Same(vp9, map.GetFullVideos("vp9"));
+        Assert.Equal(fileCount, vp9.Qualities.Count);
+
+        ContentAuthorization pc = _service.GetContentAuthorization(ClientPlatform.PC, "Test", 4)!;
+
+        Assert.Equal(MapVideoCodec.Vp8, pc.AssetsMetadata.VideoSet!.Codec);
+        Assert.Equal(4, pc.AssetsMetadata.VideoSet.Qualities.Count);
+        Assert.Null(pc.Assets.VideoUltraHdVP9Webm);
     }
 
     [Fact]
@@ -277,15 +367,15 @@ public class MapServiceTests
         Assert.Contains("/JDPlus/Preview/vp9/", laterSwitchSong.Assets.VideoPreview_MID_vp9_webm);
         Assert.Equal(
             "switch-map-package",
-            _service.GetContentAuthorization(ClientPlatform.NintendoSwitch)[map2Id].Assets.MapPackage);
-        ContentAuthorization pcAuthorization = _service.GetContentAuthorization(ClientPlatform.PC)[map1Id];
+            _service.GetContentAuthorization(ClientPlatform.NintendoSwitch, "map2", 4)!.Assets.MapPackage);
+        ContentAuthorization pcAuthorization = _service.GetContentAuthorization(ClientPlatform.PC, "map1", 4)!;
         Assert.Contains("/Video/vp8/high.webm", pcAuthorization.Assets.VideoHighHdWebm);
         Assert.Contains("/Video/vp9/high.webm", pcAuthorization.Assets.VideoHighVP9Webm);
         Assert.Contains("codecs=\"vp8\"", pcAuthorization.AssetsMetadata.VideoMpd);
         Assert.Contains("video_HIGH.hd.webm", pcAuthorization.AssetsMetadata.VideoMpd);
 
         ContentAuthorization switchAuthorization =
-            _service.GetContentAuthorization(ClientPlatform.NintendoSwitch)[map1Id];
+            _service.GetContentAuthorization(ClientPlatform.NintendoSwitch, "map1", 4)!;
         Assert.Contains("codecs=\"vp9\"", switchAuthorization.AssetsMetadata.VideoMpd);
         Assert.Contains("video_HIGH.vp9.webm", switchAuthorization.AssetsMetadata.VideoMpd);
         OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>>[] concurrentMetadata = await Task.WhenAll(Enumerable.Range(0, 16).Select(_ => Task.Run(() =>

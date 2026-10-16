@@ -1676,5 +1676,49 @@
             "us_NotForProd"
         ],
         "lastModified": "2023-02-27T09:16:31.678Z"
+    },
+    {
+        "itemId": "b883ae37-28b7-4de5-ab47-29dd13f83146",
+        "nameId": "sticker_HighNote",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/HighNote_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9835,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/HighNote/StaticTextures/HighNote.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 1,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "9c158b17-cfe2-4c81-9415-4de3b3d0f614",
+        "nameId": "sticker_70sDiscoFever",
+        "type": "sticker",
+        "obj": {
+            "assetAddress": "Assets/Data/ScriptableObjects/RewardItems/Stickers/StickerAssetDefinitions/70sDiscoFever_StickerAssetDefinition.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9836,
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Spine/Stickers/70sDiscoFever/StaticTextures/70sDiscoFever.png",
+            "unlockConditionsLocId": 11315
+        },
+        "revision": 1,
+        "tags": [
+            "sticker",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
     }
 ]

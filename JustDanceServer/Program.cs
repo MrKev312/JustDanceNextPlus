@@ -102,6 +102,7 @@ public class Program
         // Inject custom services.
         builder.Services.AddSingleton<IFileSystem, SystemFileSystem>();
         builder.Services.AddScoped<IUserProfileService, UserProfileService>();
+        builder.Services.AddScoped<ISavedDancerCardService, SavedDancerCardService>();
         builder.Services.AddScoped<ILeaderboardService, LeaderboardService>();
         builder.Services.AddScoped<IScoreService, ScoreService>();
         builder.Services.AddScoped<IClassicProfileService, ClassicProfileService>();

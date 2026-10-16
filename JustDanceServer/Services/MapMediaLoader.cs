@@ -90,10 +90,10 @@ public sealed class MapMediaLoader(
         string mapFolder,
         string relativeFolder)
     {
-        if (videoData.Count != MapVideoSet.QualityCount)
+        if (videoData.Count == 0)
         {
             throw new InvalidOperationException(
-                $"Expected {MapVideoSet.QualityCount} ordered video qualities; received {videoData.Count}.");
+                "Expected at least one video.");
         }
 
         string normalizedFolder = relativeFolder.Trim('/').Replace('\\', '/');

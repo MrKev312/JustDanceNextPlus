@@ -2118,5 +2118,159 @@
             "us_NotForProd"
         ],
         "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "d95d4ead-ea4c-47cf-a1b2-05e035ec0783",
+        "nameId": "border_Twenties",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Twenties.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11292,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Twenties.psd",
+            "unlockConditionsLocId": 11318
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "fd8ac8ab-9c2d-4bbc-acd2-9d661911dfa8",
+        "nameId": "border_TwentyTens",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_TwentyTens.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11294,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_TwentyTens.psd",
+            "unlockConditionsLocId": 11319
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "4e715f89-4177-4023-b5c7-d30150b4aef6",
+        "nameId": "border_70S",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_70S.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9837,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_70S.psd",
+            "unlockConditionsLocId": 11315
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "8054d481-c93f-41cd-8cad-8efeb73a5bcf",
+        "nameId": "border_90S",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_90S.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11289,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_90S.psd",
+            "unlockConditionsLocId": 11317
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "ac9e5522-9814-4ff4-b05a-b4216784f43f",
+        "nameId": "border_Twentytwenties",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_Twentytwenties.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11295,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_Twentytwenties.psd",
+            "unlockConditionsLocId": 11320
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "2b0ebd1d-4aff-4601-a098-417dcc3aa115",
+        "nameId": "border_80S",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_80S.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11287,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_80S.psd",
+            "unlockConditionsLocId": 11316
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "787baf0d-8633-4cb8-850b-ccdad692fc56",
+        "nameId": "border_2000s_ULCPack",
+        "type": "border",
+        "obj": {
+            "assetAddress": "Assets/Data/Textures/Borders/Border_2000s_ULCPack.psd",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11329,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/Borders/Thumbnail_Border_2000s_ULCPack.psd",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 1,
+        "tags": [
+            "border",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
     }
 ]

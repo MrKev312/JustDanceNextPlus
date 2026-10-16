@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
+using System.Text.Json;
+
 using ApplicationParametersController = JustDanceServer.Controllers.public_ubiservices.ubi.com.v2.applications.guid.Parameters;
 
 namespace JustDanceServer.Tests.Controllers;
@@ -60,6 +62,17 @@ public class ApplicationParametersControllerTests
         JdNextConstants.PcApplicationId.ToString(),
         JdNextConstants.SwitchApplicationId.ToString()
     ];
+
+    [Fact]
+    public void NewBuildKeepsLegacyApplicationDiscoveryUrlsAndTlsConfiguration()
+    {
+        ApplicationParametersController legacy = CreateController();
+        ApplicationParametersController modern = CreateController();
+        modern.Request.Headers["ubi-appbuildid"] = "live_27.0.1-417080_NX_Final_only-gel_260916";
+        var before = Assert.IsType<OkObjectResult>(legacy.GetParameters(JdNextConstants.SwitchApplicationId));
+        var after = Assert.IsType<OkObjectResult>(modern.GetParameters(JdNextConstants.SwitchApplicationId));
+        Assert.Equal(JsonSerializer.Serialize(before.Value), JsonSerializer.Serialize(after.Value));
+    }
 
     [Fact]
     public void ApplicationParameters_RejectUnknownApplication()

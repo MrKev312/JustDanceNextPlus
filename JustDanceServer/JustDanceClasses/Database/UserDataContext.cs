@@ -10,6 +10,7 @@ namespace JustDanceServer.JustDanceClasses.Database;
 public class UserDataContext(DbContextOptions<UserDataContext> options) : DbContext(options)
 {
     public DbSet<Profile.Profile> Profiles { get; set; }
+    public DbSet<SavedDancerCard> SavedDancerCards { get; set; }
     public DbSet<PlatformIdentity> PlatformIdentities { get; set; }
     public DbSet<Friendship> Friendships { get; set; }
     public DbSet<MapStats> MapScores { get; set; }
@@ -32,6 +33,13 @@ public class UserDataContext(DbContextOptions<UserDataContext> options) : DbCont
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<SavedDancerCard>(builder =>
+        {
+            builder.HasKey(card => card.Id);
+            builder.HasIndex(card => card.ProfileId);
+            builder.HasOne<Profile.Profile>().WithMany().HasForeignKey(card => card.ProfileId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
         modelBuilder.Entity<PlayerMapPlay>(builder =>
         {
             builder.HasKey(value => value.Id);

@@ -505,5 +505,27 @@
             "us_NotForProd"
         ],
         "lastModified": "2024-02-20T12:04:55.812Z"
+    },
+    {
+        "itemId": "2acdf337-fea2-47e1-9d02-b5f29dd3492e",
+        "nameId": "scoringFx_2000s_ULCPack",
+        "type": "scoringFx",
+        "obj": {
+            "assetAddress": "Assets/Data/Spine/ScoringFXs/2000s_ULCPack/ScoringFX_2000s_ULCPack_SkeletonData.asset",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11352,
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "thumbnailAddress": "Assets/Data/Textures/Thumbnails/ScoringFXs/ScoringFX_Thumbnail_2000s_ULCPack.psd",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 1,
+        "tags": [
+            "scoringFx",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
     }
 ]

@@ -3153,5 +3153,275 @@
             "us_NotForProd"
         ],
         "lastModified": "2024-05-02T13:34:03.748Z"
+    },
+    {
+        "itemId": "57eab7f7-0a00-4c57-815c-297a31bfd97e",
+        "nameId": "avatar_TBD",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "Lyra",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/Lyra/StaticTextures/Lyra_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/Lyra/StaticTextures/Lyra_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/Lyra/StaticTextures/Lyra_Base_DancerCard.png",
+            "descriptionLocId": 11314,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/Lyra/StaticTextures/Lyra_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/Lyra/StaticTextures/Lyra_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11313,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/Lyra/StaticTextures/Lyra_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/Lyra/StaticTextures/Lyra_Base_Square.png",
+            "unlockConditionsLocId": 11403
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "237e86f0-7439-472a-a77a-c63ed520d507",
+        "nameId": "avatar_Gigavoltwatch",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "DrGigavolt",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/DrGigavolt/StaticTextures/DrGigavolt_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/DrGigavolt/StaticTextures/DrGigavolt_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/DrGigavolt/StaticTextures/DrGigavolt_Base_DancerCard.png",
+            "descriptionLocId": 11393,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/DrGigavolt/StaticTextures/DrGigavolt_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/DrGigavolt/StaticTextures/DrGigavolt_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11392,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/DrGigavolt/StaticTextures/DrGigavolt_Base_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/DrGigavolt/StaticTextures/DrGigavolt_Base_Square.png",
+            "unlockConditionsLocId": 11403
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "898a63ec-a1ba-413a-8acd-5b2ed1978f9b",
+        "nameId": "avatar_BrandyStarzBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "StrongerDSBrandyStarz",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/StrongerDSBrandyStarz/StaticTextures/StrongerDSBrandyStarz_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/StrongerDSBrandyStarz/StaticTextures/StrongerDSBrandyStarz_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/StrongerDSBrandyStarz/StaticTextures/StrongerDSBrandyStarz_Base_DancerCard.png",
+            "descriptionLocId": 10423,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/StrongerDSBrandyStarz/StaticTextures/StrongerDSBrandyStarz_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/StrongerDSBrandyStarz/StaticTextures/StrongerDSBrandyStarz_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 10422,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/StrongerDSBrandyStarz/StaticTextures/StrongerDSBrandyStarz_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/StrongerDSBrandyStarz/StaticTextures/StrongerDSBrandyStarz_Base_Square.png",
+            "unlockConditionsLocId": 11318
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "5d3e28a7-8cc2-4155-862d-aa2d165ff0ee",
+        "nameId": "avatar_CaptainThalieBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "HotToGoCaptainThalie",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/HotToGoCaptainThalie/StaticTextures/HotToGoCaptainThalie_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/HotToGoCaptainThalie/StaticTextures/HotToGoCaptainThalie_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/HotToGoCaptainThalie/StaticTextures/HotToGoCaptainThalie_Base_DancerCard.png",
+            "descriptionLocId": 9834,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/HotToGoCaptainThalie/StaticTextures/HotToGoCaptainThalie_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/HotToGoCaptainThalie/StaticTextures/HotToGoCaptainThalie_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9833,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/HotToGoCaptainThalie/StaticTextures/HotToGoCaptainThalie_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/HotToGoCaptainThalie/StaticTextures/HotToGoCaptainThalie_Base_Square.png",
+            "unlockConditionsLocId": 11320
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "e00fd09f-feb0-49c2-8d2d-bf1e7e8bddc0",
+        "nameId": "avatar_RickyRizzo",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "UpTownGirlRickyRizzo",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/UpTownGirlRickyRizzo/StaticTextures/UpTownGirlRickyRizzo_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/UpTownGirlRickyRizzo/StaticTextures/UpTownGirlRickyRizzo_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/UpTownGirlRickyRizzo/StaticTextures/UpTownGirlRickyRizzo_Base_DancerCard.png",
+            "descriptionLocId": 11269,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/UpTownGirlRickyRizzo/StaticTextures/UpTownGirlRickyRizzo_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/UpTownGirlRickyRizzo/StaticTextures/UpTownGirlRickyRizzo_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11268,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/UpTownGirlRickyRizzo/StaticTextures/UpTownGirlRickyRizzo_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/UpTownGirlRickyRizzo/StaticTextures/UpTownGirlRickyRizzo_Base_Square.png",
+            "unlockConditionsLocId": 11316
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "6c07c882-a68c-4e81-b28a-86aacb2762a6",
+        "nameId": "avatar_LivelyStar",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "Wannabe2027LivelyStar",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/Wannabe2027LivelyStar/StaticTextures/Wannabe2027LivelyStar_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/Wannabe2027LivelyStar/StaticTextures/Wannabe2027LivelyStar_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/Wannabe2027LivelyStar/StaticTextures/Wannabe2027LivelyStar_Base_DancerCard.png",
+            "descriptionLocId": 11271,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/Wannabe2027LivelyStar/StaticTextures/Wannabe2027LivelyStar_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/Wannabe2027LivelyStar/StaticTextures/Wannabe2027LivelyStar_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11270,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/Wannabe2027LivelyStar/StaticTextures/Wannabe2027LivelyStar_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/Wannabe2027LivelyStar/StaticTextures/Wannabe2027LivelyStar_Base_Square.png",
+            "unlockConditionsLocId": 11317
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "0fd0e36e-5f36-4ded-8022-49d34d324a9b",
+        "nameId": "avatar_base",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "BrandyStarzULC",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/BrandyStarzULC/StaticTextures/BrandyStarzULC_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/BrandyStarzULC/StaticTextures/BrandyStarzULC_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/BrandyStarzULC/StaticTextures/BrandyStarzULC_Base_DancerCard.png",
+            "descriptionLocId": 11328,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/BrandyStarzULC/StaticTextures/BrandyStarzULC_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/BrandyStarzULC/StaticTextures/BrandyStarzULC_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11327,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/BrandyStarzULC/StaticTextures/BrandyStarzULC_Base_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/BrandyStarzULC/StaticTextures/BrandyStarzULC_Base_Square.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "a2c3e843-9224-42e3-b956-3484fb724cdd",
+        "nameId": "avatar_MrDanzflowBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "GiveMeEverythingMrDanzflow",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/GiveMeEverythingMrDanzflow/StaticTextures/GiveMeEverythingMrDanzflow_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/GiveMeEverythingMrDanzflow/StaticTextures/GiveMeEverythingMrDanzflow_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/GiveMeEverythingMrDanzflow/StaticTextures/GiveMeEverythingMrDanzflow_Base_DancerCard.png",
+            "descriptionLocId": 11273,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/GiveMeEverythingMrDanzflow/StaticTextures/GiveMeEverythingMrDanzflow_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/GiveMeEverythingMrDanzflow/StaticTextures/GiveMeEverythingMrDanzflow_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11272,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/GiveMeEverythingMrDanzflow/StaticTextures/GiveMeEverythingMrDanzflow_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/GiveMeEverythingMrDanzflow/StaticTextures/GiveMeEverythingMrDanzflow_Base_Square.png",
+            "unlockConditionsLocId": 11319
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "4189e13d-455f-448d-b799-ca0656509732",
+        "nameId": "avatar_MammaMiaCoachBase",
+        "type": "avatar",
+        "obj": {
+            "avatarSpineId": "MammaMiaCoach",
+            "bannerSpriteAddress": "Assets/Data/Spine/Avatars/MammaMiaCoach/StaticTextures/MammaMiaCoach_Base_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Spine/Avatars/MammaMiaCoach/StaticTextures/MammaMiaCoach_Base_Cursor.png",
+            "dancerCardSpriteAddress": "Assets/Data/Spine/Avatars/MammaMiaCoach/StaticTextures/MammaMiaCoach_Base_DancerCard.png",
+            "descriptionLocId": 9832,
+            "fullSpriteAddress": "Assets/Data/Spine/Avatars/MammaMiaCoach/StaticTextures/MammaMiaCoach_Base_Full.png",
+            "hiddenUntilUnlocked": true,
+            "hudSpriteAddress": "Assets/Data/Spine/Avatars/MammaMiaCoach/StaticTextures/MammaMiaCoach_Base_Hud.png",
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 9831,
+            "portraitSpriteAddress": "Assets/Data/Spine/Avatars/MammaMiaCoach/StaticTextures/MammaMiaCoach_Base_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "skinId": "Base",
+            "squareSpriteAddress": "Assets/Data/Spine/Avatars/MammaMiaCoach/StaticTextures/MammaMiaCoach_Base_Square.png",
+            "unlockConditionsLocId": 11315
+        },
+        "revision": 1,
+        "tags": [
+            "avatar",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
     }
 ]

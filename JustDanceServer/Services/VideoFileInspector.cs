@@ -18,8 +18,6 @@ public sealed class VideoFileInspector(
 
         if (videoFiles.Length == 0)
             throw new FileNotFoundException($"Missing video file in {videoFolder}");
-        if (videoFiles.Length > MapVideoSet.QualityCount)
-            throw new InvalidOperationException($"Too many video files in {videoFolder}");
 
         WebmData[] webmData = new WebmData[videoFiles.Length];
         Parallel.For(0, videoFiles.Length, index =>
@@ -40,11 +38,7 @@ public sealed class VideoFileInspector(
             webmData[index] = data;
         });
 
-        List<WebmData> qualities = [.. webmData.OrderBy(data => data.Bitrate)];
-        while (qualities.Count < MapVideoSet.QualityCount)
-            qualities.Add(qualities[^1]);
-
-        return [.. qualities];
+        return [.. webmData.OrderBy(data => data.Bitrate)];
     }
 
     internal static bool CuesAppearAtEnd(WebmData data, long fileLength)

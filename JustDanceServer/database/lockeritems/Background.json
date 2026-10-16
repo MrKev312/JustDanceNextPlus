@@ -3084,5 +3084,356 @@
             "us_NotForProd"
         ],
         "lastModified": "2024-01-23T10:59:43.628Z"
+    },
+    {
+        "itemId": "7ca171e6-a19d-4b06-92a6-47d7f25acb11",
+        "nameId": "background_Stronger_ULC27",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Stronger_ULC27/Background_Stronger_ULC27_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Stronger_ULC27/Background_Stronger_ULC27_Cursor.png",
+            "descriptionLocId": 10456,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Stronger_ULC27/Background_Stronger_ULC27_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Stronger_ULC27/Background_Stronger_ULC27_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 10455,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Stronger_ULC27/Background_Stronger_ULC27_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Stronger_ULC27/Background_Stronger_ULC27_Square.png",
+            "unlockConditionsLocId": 300
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "52e8bfdf-dec4-429c-8cb9-669186103532",
+        "nameId": "background_Supersonic",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Supersonic/Background_Supersonic_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Supersonic/Background_Supersonic_Cursor.png",
+            "descriptionLocId": 11385,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Supersonic/Background_Supersonic_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Supersonic/Background_Supersonic_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11384,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Supersonic/Background_Supersonic_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Supersonic/Background_Supersonic_Square.png",
+            "unlockConditionsLocId": 11403
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "9cdc56cd-233f-4cdf-95ca-27923b3634f7",
+        "nameId": "background_MammaMia",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/MammaMia/Background_MammaMia_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/MammaMia/Background_MammaMia_Cursor.png",
+            "descriptionLocId": 10577,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/MammaMia/Background_MammaMia_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/MammaMia/Background_MammaMia_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 10578,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/MammaMia/Background_MammaMia_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/MammaMia/Background_MammaMia_Square.png",
+            "unlockConditionsLocId": 11315
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "fc0e52ac-9cfa-4b66-9701-e3b3bfbeff39",
+        "nameId": "background_Hottogo",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Hottogo/Background_Hottogo_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Hottogo/Background_Hottogo_Cursor.png",
+            "descriptionLocId": 10611,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Hottogo/Background_Hottogo_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Hottogo/Background_Hottogo_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 10610,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Hottogo/Background_Hottogo_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Hottogo/Background_Hottogo_Square.png",
+            "unlockConditionsLocId": 11320
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "92dde184-00c8-472f-abea-0487fd873e35",
+        "nameId": "background_ByeByeBye",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/ByeByeBye/Background_ByeByeBye_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/ByeByeBye/Background_ByeByeBye_Cursor.png",
+            "descriptionLocId": 10619,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/ByeByeBye/Background_ByeByeBye_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/ByeByeBye/Background_ByeByeBye_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 10618,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/ByeByeBye/Background_ByeByeBye_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/ByeByeBye/Background_ByeByeBye_Square.png",
+            "unlockConditionsLocId": 11318
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "85099082-f820-4006-b4be-e74431df6f76",
+        "nameId": "background_Skyline",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Skyline/Background_Skyline_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Skyline/Background_Skyline_Cursor.png",
+            "descriptionLocId": 11389,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Skyline/Background_Skyline_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Skyline/Background_Skyline_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11388,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Skyline/Background_Skyline_Portrait.png",
+            "rarity": "Legendary",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Skyline/Background_Skyline_Square.png",
+            "unlockConditionsLocId": 11403
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "262d4f81-d4c2-4209-ba93-56423968935c",
+        "nameId": "background_UptownGirl",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/UptownGirl/Background_UptownGirl_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/UptownGirl/Background_UptownGirl_Cursor.png",
+            "descriptionLocId": 10574,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/UptownGirl/Background_UptownGirl_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/UptownGirl/Background_UptownGirl_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 10573,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/UptownGirl/Background_UptownGirl_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/UptownGirl/Background_UptownGirl_Square.png",
+            "unlockConditionsLocId": 11316
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "6e62fd54-abff-411c-a3b0-5c5d60e521db",
+        "nameId": "background_Wanabee",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Wanabee/Background_Wanabee_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Wanabee/Background_Wanabee_Cursor.png",
+            "descriptionLocId": 10582,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Wanabee/Background_Wanabee_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Wanabee/Background_Wanabee_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 10581,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Wanabee/Background_Wanabee_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Wanabee/Background_Wanabee_Square.png",
+            "unlockConditionsLocId": 11317
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "5b388752-986c-4b6d-aeeb-a70b2aba9230",
+        "nameId": "background_NuevaYol",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/NuevaYol/Background_NuevaYol_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/NuevaYol/Background_NuevaYol_Cursor.png",
+            "descriptionLocId": 10579,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/NuevaYol/Background_NuevaYol_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/NuevaYol/Background_NuevaYol_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 10580,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/NuevaYol/Background_NuevaYol_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/NuevaYol/Background_NuevaYol_Square.png",
+            "unlockConditionsLocId": 11320
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "2751f749-bfb2-475a-868f-ff09007961b0",
+        "nameId": "background_FeelGoodInc",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/FeelGoodInc/Background_FeelGoodInc_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/FeelGoodInc/Background_FeelGoodInc_Cursor.png",
+            "descriptionLocId": 10617,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/FeelGoodInc/Background_FeelGoodInc_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/FeelGoodInc/Background_FeelGoodInc_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 10616,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/FeelGoodInc/Background_FeelGoodInc_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/FeelGoodInc/Background_FeelGoodInc_Square.png",
+            "unlockConditionsLocId": 11318
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "032ec140-027e-47cd-a7b5-20c39060b2a6",
+        "nameId": "background_GiveMeEverything",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/GiveMeEverything/Background_GiveMeEverything_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/GiveMeEverything/Background_GiveMeEverything_Cursor.png",
+            "descriptionLocId": 11387,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/GiveMeEverything/Background_GiveMeEverything_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/GiveMeEverything/Background_GiveMeEverything_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 11386,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/GiveMeEverything/Background_GiveMeEverything_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/GiveMeEverything/Background_GiveMeEverything_Square.png",
+            "unlockConditionsLocId": 11319
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "440e1d37-442c-4c2e-98fc-c319e4d44863",
+        "nameId": "background_Hello",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/Hello/Background_Hello_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/Hello/Background_Hello_Cursor.png",
+            "descriptionLocId": 10613,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/Hello/Background_Hello_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/Hello/Background_Hello_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 10612,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/Hello/Background_Hello_Portrait.png",
+            "rarity": "Common",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/Hello/Background_Hello_Square.png",
+            "unlockConditionsLocId": 11319
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
+    },
+    {
+        "itemId": "0e87d928-0e61-4208-b6dd-d57788228408",
+        "nameId": "background_NoScrubs",
+        "type": "background",
+        "obj": {
+            "bannerSpriteAddress": "Assets/Data/Textures/Backgrounds/NoScrubs/Background_NoScrubs_Banner.png",
+            "cursorSpriteAddress": "Assets/Data/Textures/Backgrounds/NoScrubs/Background_NoScrubs_Cursor.png",
+            "descriptionLocId": 10571,
+            "fullSpriteAddress": "Assets/Data/Textures/Backgrounds/NoScrubs/Background_NoScrubs_Full.png",
+            "gaugeSpriteAddress": "Assets/Data/Textures/Backgrounds/NoScrubs/Background_NoScrubs_Gauge.png",
+            "hiddenUntilUnlocked": true,
+            "isPremium": false,
+            "isUbiconnect": false,
+            "nameLocId": 10570,
+            "portraitSpriteAddress": "Assets/Data/Textures/Backgrounds/NoScrubs/Background_NoScrubs_Portrait.png",
+            "rarity": "Rare",
+            "seasonId": "00000000-0000-0000-0000-000000000000",
+            "squareSpriteAddress": "Assets/Data/Textures/Backgrounds/NoScrubs/Background_NoScrubs_Square.png",
+            "unlockConditionsLocId": 11318
+        },
+        "revision": 1,
+        "tags": [
+            "background",
+            "us_NotForProd"
+        ],
+        "lastModified": "2026-10-06T08:12:02.729Z"
     }
 ]

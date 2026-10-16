@@ -17,7 +17,7 @@ public interface IMapService : ILoadService
     OrderedDictionary<Guid, JustDanceSongDBEntry> GetSongs(
         string platform,
         MapMediaLayout previewLayout);
-    OrderedDictionary<Guid, ContentAuthorization> GetContentAuthorization(string platform);
+    ContentAuthorization? GetContentAuthorization(string platform, string mapName, int qualityCount);
     SongDBTypeSet SongDBTypeSet { get; }
     OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>> GetAssetMetadataPerSong(
         string platform,
@@ -306,36 +306,36 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
         return platformSongs;
     }
 
-    public OrderedDictionary<Guid, ContentAuthorization> GetContentAuthorization(string platform)
+    public ContentAuthorization? GetContentAuthorization(string platform, string mapName, int qualityCount)
     {
+        ServerMap? map = GetMap(mapName);
+
+        if (map is null)
+            return null;
+
         string normalizedPlatform = ClientPlatform.Normalize(platform);
-        OrderedDictionary<Guid, ContentAuthorization> platformContentAuthorization = [];
+        MapVideoCodec preferredCodec = ClientPlatform.GetVideoCodec(normalizedPlatform);
 
-        foreach ((Guid songId, ServerMap map) in Maps)
+        // Validate the requested wire layout before constructing its asset projection.
+        _ = VideoQualityLayout.FullVideoAssetNames(preferredCodec, qualityCount);
+
+        MapVideoSet vp8Videos = map.GetFullVideos("vp8").WithQualityCount(
+            preferredCodec == MapVideoCodec.Vp8 ? qualityCount : VideoQualityLayout.Standard.Count);
+        MapVideoSet vp9Videos = map.GetFullVideos("vp9").WithQualityCount(
+            preferredCodec == MapVideoCodec.Vp9 ? qualityCount : VideoQualityLayout.Standard.Count);
+
+        MapMediaAssets media = map.GetMedia(MapMediaLayouts.JDPlus);
+        IReadOnlyDictionary<string, string> assets = media.GetPlatformAssets(normalizedPlatform);
+
+        return new ContentAuthorization
         {
-            MapVideoSet preferredVideos = map.GetFullVideos(
-                ClientPlatform.GetVideoCodec(normalizedPlatform).ToCodecName());
-            MapVideoSet vp8Videos = map.GetFullVideos(MapVideoCodec.Vp8.ToCodecName());
-            MapVideoSet vp9Videos = map.GetFullVideos(MapVideoCodec.Vp9.ToCodecName());
-            MapMediaAssets media = map.GetMedia(MapMediaLayouts.JDPlus);
-            IReadOnlyDictionary<string, string> assets = media.GetPlatformAssets(normalizedPlatform);
-            platformContentAuthorization[songId] = new ContentAuthorization
+            AssetsMetadata = new AssetsmetadataAuthorization
             {
-                AssetsMetadata = new AssetsmetadataAuthorization
-                {
-                    VideoSet = preferredVideos
-                },
-                Assets = ProjectJdPlusContentAuthorizationAssets(
-                    media,
-                    vp8Videos,
-                    vp9Videos,
-                    assets,
-                    map.Song.MapName,
-                    normalizedPlatform)
-            };
-        }
-
-        return platformContentAuthorization;
+                VideoSet = preferredCodec == MapVideoCodec.Vp8 ? vp8Videos : vp9Videos
+            },
+            Assets = ProjectJdPlusContentAuthorizationAssets(
+                media, vp8Videos, vp9Videos, assets, map.Song.MapName, normalizedPlatform)
+        };
     }
 
     public OrderedDictionary<Guid, IReadOnlyDictionary<string, AssetMetadata>> GetAssetMetadataPerSong(
@@ -404,6 +404,7 @@ public partial class MapService(IOptions<PathSettings> pathSettings,
             VideoHighVP9Webm = vp9[2].Url,
             VideoUltraHdWebm = vp8[3].Url,
             VideoUltraVP9Webm = vp9[3].Url,
+            VideoUltraHdVP9Webm = vp9.Count > 4 ? vp9[4].Url : null,
             MapPackage = RequireAsset(platformAssets, "MapPackage", mapName, platform)
         };
     }

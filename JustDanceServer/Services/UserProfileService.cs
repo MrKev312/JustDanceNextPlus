@@ -3,6 +3,8 @@ using JustDanceServer.JustDanceClasses.Database.Profile;
 
 using Microsoft.EntityFrameworkCore;
 
+using System.Text.Json;
+
 namespace JustDanceServer.Services;
 
 // Profiles remain mutable because they are EF Core entities.
@@ -125,6 +127,14 @@ public sealed class UserProfileService(
             // The caller may supply cosmetics, never a replacement database identity.
             stored.Dancercard.CopyCosmeticsFrom(profile.Dancercard);
             profile.Dancercard.Id = stored.Dancercard.Id;
+            SavedDancerCard? primary = await dbContext.SavedDancerCards
+                .SingleOrDefaultAsync(card => card.ProfileId == profile.Id && card.Id == stored.Dancercard.Id);
+            if (primary is not null)
+            {
+                primary.CosmeticsJson = JsonSerializer.Serialize(stored.Dancercard);
+                primary.UpdatedAt = DateTime.UtcNow;
+            }
+
             await dbContext.SaveChangesAsync();
             return true;
         }

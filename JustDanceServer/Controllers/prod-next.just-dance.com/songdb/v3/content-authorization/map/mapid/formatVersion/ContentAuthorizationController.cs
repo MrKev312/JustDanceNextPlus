@@ -1,4 +1,5 @@
-﻿using JustDanceServer.JustDanceClasses.Database.Profile;
+﻿using JustDanceServer.Configuration;
+using JustDanceServer.JustDanceClasses.Database.Profile;
 using JustDanceServer.JustDanceClasses.Endpoints;
 using JustDanceServer.Services;
 
@@ -58,8 +59,27 @@ public class ContentAuthorizationController(ILogger<ContentAuthorizationControll
         logger.LogInformation("Map {MapCodename} requested by {Username}", mapCodename, username);
 
         string platform = ClientPlatform.FromRequest(Request);
-        return mapService.GetContentAuthorization(platform).TryGetValue(mapId, out ContentAuthorization? contentAuthorization)
-            ? Ok(contentAuthorization)
+        // Application/space IDs are shared across editions; use the game build header.
+        string? build = Request.Headers["ubi-appbuildid"].FirstOrDefault();
+        if (string.IsNullOrEmpty(build))
+            build = Request.Headers["x-jd-buildid"].FirstOrDefault();
+
+        // JD2027 introduced the fifth VP9 slot
+        int qualityCount = VideoQualityLayout.Standard.Count;
+        int editionEnd = build?.IndexOf('.') ?? -1;
+        if (build?.StartsWith("live_", StringComparison.OrdinalIgnoreCase) == true
+            && editionEnd > 5
+            && int.TryParse(build.AsSpan(5, editionEnd - 5),
+                System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture,
+                out int edition)
+            && edition >= 27
+            && ClientPlatform.GetVideoCodec(platform) == MapVideoCodec.Vp9)
+        {
+            qualityCount = VideoQualityLayout.FullVp9.Count;
+        }
+
+        return mapService.GetContentAuthorization(platform, mapCodename, qualityCount) is { } authorization
+            ? Ok(authorization)
             : NotFound();
     }
 }

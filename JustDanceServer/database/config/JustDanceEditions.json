@@ -459,6 +459,31 @@
     ]
   },
   {
+    "dlcType": "Yearly",
+    "name": "songpack_year5",
+    "groupLocId": "Just Dance: Decades of Hits",
+    "songsCountLocId": "35 songs",
+    "groupDescriptionLocId": "Dance through the decades with iconic hits from the 70s to the 2020s!",
+    "tracklistExtended": [
+      "MammaMiaDOS",
+      "ItsTricky",
+      "Wannabe2027",
+      "AroundTheWorld",
+      "FeelGoodInc",
+      "NoScrubs",
+      "Hello",
+      "GiveMeEverything",
+      "NuevaYol",
+      "Manchild"
+    ],
+    "tracklistLimited": [
+      "MammaMiaDOS",
+      "Wannabe2027",
+      "FeelGoodInc",
+      "NuevaYol"
+    ]
+  },
+  {
     "dlcType": "Exclusive",
     "name": "Music_Pack_FiestaLatina",
     "groupLocId": "Fiesta Latina",
@@ -559,6 +584,28 @@
       "DanceMonkey",
       "MrSaxobeat",
       "Malibu"
+    ]
+  },
+  {
+    "dlcType": "Exclusive",
+    "name": "Music_Pack_WonderTales",
+    "groupLocId": "Wonder Tales",
+    "songsCountLocId": "6 songs",
+    "groupDescriptionLocId": "Step into a realm of magic and mystery!",
+    "productLocId": "Wonder Tales",
+    "tracklistExtended": [
+      "Folded",
+      "MysticalMagical",
+      "WorldEater",
+      "Adeyyo",
+      "Human",
+      "Euphoria"
+    ],
+    "tracklistLimited": [
+      "Folded",
+      "MysticalMagical",
+      "WorldEater",
+      "Adeyyo"
     ]
   }
 ]

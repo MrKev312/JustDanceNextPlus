@@ -92,15 +92,40 @@ public sealed class MapLoadingServicesTests
         Assert.Throws<FileNotFoundException>(() => _videoInspector.GetVideoData(videoFolder));
     }
 
-    [Fact]
-    public void GetVideoData_WhenTooManyVideos_ThrowsInvalidOperationException()
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(3)]
+    [InlineData(4)]
+    [InlineData(5)]
+    [InlineData(8)]
+    public void LoadVideoSet_PreservesAvailableFilesAndPadsSelectedLayout(int fileCount)
     {
-        // Arrange
-        string videoFolder = "C:\\maps\\TestMap\\preview";
-        _mockFileSystem.Setup(fs => fs.GetFiles(videoFolder, "*.webm", SearchOption.TopDirectoryOnly)).Returns(["1.webm", "2.webm", "3.webm", "4.webm", "5.webm"]);
+        string mapFolder = Path.Combine(Path.GetTempPath(), "TestMap");
+        string videoFolder = Path.Combine(mapFolder, "video");
+        string[] files = [.. Enumerable.Range(1, fileCount)
+            .Select(index => Path.Combine(videoFolder, $"{index}.webm"))];
+        _mockFileSystem.Setup(fs => fs.GetFiles(videoFolder, "*.webm", SearchOption.TopDirectoryOnly))
+            .Returns(files.Reverse().ToArray());
+        for (int index = 0; index < fileCount; index++)
+            _mockWebmExtractor.Setup(extractor => extractor.GetCuesInfo(files[index]))
+                .Returns(new WebmData { FileName = (index + 1).ToString(), Bitrate = (index + 1) * 1000 });
+        MapVideoSet available = _mediaLoader.LoadVideoSet(mapFolder, "video", "vp9");
+        MapVideoSet legacy = available.WithQualityCount(VideoQualityLayout.Standard.Count);
+        MapVideoSet modern = available.WithQualityCount(VideoQualityLayout.FullVp9.Count);
 
-        // Act & Assert
-        Assert.Throws<InvalidOperationException>(() => _videoInspector.GetVideoData(videoFolder));
+        Assert.Equal(fileCount, available.Qualities.Count);
+        Assert.Equal(4, legacy.Qualities.Count);
+        Assert.Equal(5, modern.Qualities.Count);
+        for (int index = 0; index < 5; index++)
+        {
+            int sourceIndex = index == modern.Qualities.Count - 1
+                ? fileCount
+                : Math.Min(index + 1, fileCount);
+            Assert.Equal(sourceIndex * 1000, modern.Qualities[index].Data.Bitrate);
+            Assert.EndsWith($"/video/{sourceIndex}.webm", modern.Qualities[index].Url);
+        }
+        Assert.Equal(fileCount * 1000, legacy.Qualities[^1].Data.Bitrate);
     }
 
     [Fact]
@@ -124,7 +149,7 @@ public sealed class MapLoadingServicesTests
         WebmData[] result = _videoInspector.GetVideoData(videoFolder);
 
         // Assert
-        Assert.Equal(4, result.Length);
+        Assert.Single(result);
         _mockVideoLogger.Verify(
             x => x.Log(LogLevel.Warning, It.IsAny<EventId>(), It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("has cues at the end")), null, It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
             Times.Once);

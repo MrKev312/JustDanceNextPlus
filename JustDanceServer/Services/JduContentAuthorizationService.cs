@@ -29,7 +29,8 @@ public sealed class JduContentAuthorizationService(
             return null;
 
         MapMediaAssets media = map.GetMedia(MapMediaLayouts.JDUnlimited);
-        MapVideoSet videos = map.GetFullVideos(selection.VideoCodec.ToCodecName());
+        MapVideoSet videos = map.GetFullVideos(selection.VideoCodec.ToCodecName())
+            .WithQualityCount(VideoQualityLayout.Standard.Count);
         if (!JduVideoCapabilities.Supports1080p(client.Platform))
             videos = UseSecondHighestForUltra(videos);
         Dictionary<string, string> urls = new(StringComparer.Ordinal)
@@ -41,7 +42,7 @@ public sealed class JduContentAuthorizationService(
         for (int index = 0; index < videos.Qualities.Count; index++)
         {
             string authorizedUrl = JduContentUrlResolver.RebaseToCdn(videos.Qualities[index].Url, urlOptions.Value);
-            string logicalBase = $"jmcs://jd-contents/{canonicalMapName}/{canonicalMapName}_{MapVideoSet.QualityNames[index]}";
+            string logicalBase = $"jmcs://jd-contents/{canonicalMapName}/{canonicalMapName}_{VideoQualityLayout.Standard[index]}";
             urls[$"{logicalBase}.webm"] = authorizedUrl;
             urls[$"{logicalBase}.hd.webm"] = authorizedUrl;
         }

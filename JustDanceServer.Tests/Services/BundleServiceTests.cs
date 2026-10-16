@@ -110,7 +110,6 @@ public class BundleServiceTests
         {
             Name = "songpack_year1",
             DlcType = VersionType.Yearly,
-            ProductGroupBundle = "{{cdnUrl}}/bundle.bundle",
             GroupLocId = new LocalizedString(1234, "Song Pack 2023"),
         };
         List<JustDanceEdition> db = [fakeEdition];

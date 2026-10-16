@@ -4,10 +4,16 @@
   "localizedTitle": "Camera ‘n‘ dance",
   "localizedDescription": "Capture your moves with your phone's camera and dance hands-free!",
   "itemList": [
-    "DESPECHA",
     "Flowers",
+    "RappersDelight",
+    "IWannaDance",
+    "SurvivorALT",
+    "DESPECHA",
     "KillBill",
-    "Sail",
-    "Seven"
+    "Seven",
+    "Sail"
+  ],
+  "tags": [
+    "0c9e077f-4199-4717-adb2-80f452a0bfce"
   ]
 }

@@ -620,6 +620,32 @@ namespace JustDanceServer.Migrations
                     b.ToTable("RunningTasks");
                 });
 
+            modelBuilder.Entity("JustDanceServer.JustDanceClasses.Database.Profile.SavedDancerCard", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CosmeticsJson")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ProfileId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("SavedDancerCards");
+                });
+
             modelBuilder.Entity("JustDanceServer.JustDanceClasses.Database.Profile.BossModeStats", b =>
                 {
                     b.HasOne("JustDanceServer.JustDanceClasses.Database.Profile.BossMode", "BossMode")
@@ -745,6 +771,15 @@ namespace JustDanceServer.Migrations
                         .IsRequired();
 
                     b.Navigation("Dancercard");
+                });
+
+            modelBuilder.Entity("JustDanceServer.JustDanceClasses.Database.Profile.SavedDancerCard", b =>
+                {
+                    b.HasOne("JustDanceServer.JustDanceClasses.Database.Profile.Profile", null)
+                        .WithMany()
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -75,9 +75,9 @@ internal static class ServerMapTestData
             ? ["low", "mid", "high", "ultra"]
             : [.. sourceNames];
 
-        while (qualities.Count < MapVideoSet.QualityCount)
+        while (qualities.Count < VideoQualityLayout.Standard.Count)
             qualities.Add(qualities[^1]);
-        while (names.Count < MapVideoSet.QualityCount)
+        while (names.Count < VideoQualityLayout.Standard.Count)
             names.Add(names[^1]);
 
         return new MapVideoSet(
